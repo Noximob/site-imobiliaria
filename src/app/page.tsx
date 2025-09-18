@@ -299,7 +299,7 @@ export default async function HomePage() {
                 Invista em um empreendimento que combina com o seu estilo de vida. Tenha segurança e rentabilidade com imóveis na planta na região mais desejada do Brasil.
               </p>
               
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <button className="w-full lg:w-auto px-6 py-2 border border-gray-900 text-gray-900 font-medium rounded-lg hover:bg-gray-900 hover:text-white transition-colors duration-200 text-sm">
                   Penha
                 </button>
