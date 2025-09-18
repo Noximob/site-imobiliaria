@@ -318,70 +318,40 @@ export default async function HomePage() {
       </section>
 
       {/* Seção Depoimentos/Prova Social */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Título da Seção */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
               O que dizem nossos clientes
             </h2>
           </div>
 
           {/* Card de Depoimento */}
-          <div className="bg-white rounded-2xl shadow-lg border-t-4 border-purple-600 p-8 md:p-12 max-w-4xl mx-auto">
+          <div className="bg-white rounded-lg shadow-sm border-t-2 border-purple-600 p-6 max-w-2xl mx-auto">
             <div className="text-center">
               {/* Nome e Cargo */}
-              <div className="mb-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
+              <div className="mb-4">
+                <h3 className="text-lg font-bold text-gray-900 mb-1">
                   Octavio Deiroz Neto
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-sm text-gray-600">
                   Comprador
                 </p>
               </div>
 
               {/* Depoimento */}
-              <div className="relative">
-                <svg className="absolute -top-4 -left-4 w-12 h-12 text-purple-200" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
-                </svg>
-                <blockquote className="text-lg md:text-xl text-gray-700 leading-relaxed italic">
-                  Atendimento impecável, principalmente do corretor Flávio. Comprei uma casa ano passado e foram muito prestativos e extremamente rápidos com todos os trâmites. Nota 10!
-                </blockquote>
-                <svg className="absolute -bottom-4 -right-4 w-12 h-12 text-purple-200 transform rotate-180" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
-                </svg>
-              </div>
+              <blockquote className="text-base text-gray-700 leading-relaxed italic">
+                "Atendimento impecável, principalmente do corretor Flávio. Comprei uma casa ano passado e foram muito prestativos e extremamente rápidos com todos os trâmites. Nota 10!"
+              </blockquote>
             </div>
           </div>
 
           {/* Indicadores de Navegação */}
-          <div className="flex justify-center mt-8 space-x-2">
-            <div className="w-3 h-3 bg-purple-600 rounded-full"></div>
-            <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
-            <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
-            <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
-          </div>
-
-          {/* Logos de Construtoras/Parceiros */}
-          <div className="mt-16">
-            <h3 className="text-center text-lg font-semibold text-gray-600 mb-8">
-              Parceiros e Construtoras
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
-              <div className="bg-white rounded-lg p-4 shadow-sm border w-32 h-20 flex items-center justify-center">
-                <span className="text-gray-400 text-sm font-medium">Logo 1</span>
-              </div>
-              <div className="bg-white rounded-lg p-4 shadow-sm border w-32 h-20 flex items-center justify-center">
-                <span className="text-gray-400 text-sm font-medium">Logo 2</span>
-              </div>
-              <div className="bg-white rounded-lg p-4 shadow-sm border w-32 h-20 flex items-center justify-center">
-                <span className="text-gray-400 text-sm font-medium">Logo 3</span>
-              </div>
-              <div className="bg-white rounded-lg p-4 shadow-sm border w-32 h-20 flex items-center justify-center">
-                <span className="text-gray-400 text-sm font-medium">Logo 4</span>
-              </div>
-            </div>
+          <div className="flex justify-center mt-6 space-x-2">
+            <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+            <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+            <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
           </div>
         </div>
       </section>
