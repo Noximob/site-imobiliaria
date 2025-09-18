@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { getAnalytics } from 'firebase/analytics';
 
 const firebaseConfig = {
   // Substitua pelas suas credenciais do Firebase
@@ -16,5 +17,8 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firestore
 export const db = getFirestore(app);
+
+// Initialize Analytics (apenas no cliente)
+export const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null;
 
 export default app;

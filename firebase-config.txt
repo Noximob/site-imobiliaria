@@ -1,0 +1,12 @@
+# Copie este conteúdo para o arquivo .env.local
+
+# Firebase Configuration
+NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyA0q2ubFhWGMuUqbU9iI0eArLSiAz1F0x4
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=site-imobiliaria-72d40.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=site-imobiliaria-72d40
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=site-imobiliaria-72d40.firebasestorage.app
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=858342555307
+NEXT_PUBLIC_FIREBASE_APP_ID=1:858342555307:web:68fb728ce81fd0d9b4c1ee
+
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=https://site-imobiliaria-72d40.netlify.app

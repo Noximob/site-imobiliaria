@@ -1,18 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Metadata } from 'next'
 import { Phone, Mail, MapPin, Clock, Send, MessageCircle } from 'lucide-react'
-
-export const metadata: Metadata = {
-  title: 'Contato - Imobiliária',
-  description: 'Entre em contato conosco. Estamos prontos para te ajudar a encontrar o imóvel ideal.',
-  openGraph: {
-    title: 'Contato - Imobiliária',
-    description: 'Entre em contato conosco. Estamos prontos para te ajudar a encontrar o imóvel ideal.',
-    type: 'website',
-  },
-}
 
 export default function ContatoPage() {
   const [formData, setFormData] = useState({

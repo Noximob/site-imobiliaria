@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getImovelBySlug } from '@/lib/imoveis'
+import { getImovelBySlug, getAllImoveis } from '@/lib/imoveis'
 import { formatPrice } from '@/lib/imoveis'
 import { 
   MapPin, 
@@ -27,53 +27,75 @@ interface PageProps {
   }
 }
 
+export async function generateStaticParams() {
+  try {
+    const imoveis = await getAllImoveis()
+    
+    return imoveis.map((imovel) => ({
+      slug: imovel.slug,
+    }))
+  } catch (error) {
+    // Retorna array vazio se Firebase não estiver configurado
+    console.warn('Firebase não configurado, retornando array vazio para generateStaticParams')
+    return []
+  }
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const imovel = await getImovelBySlug(params.slug)
-  
-  if (!imovel) {
+  try {
+    const imovel = await getImovelBySlug(params.slug)
+    
+    if (!imovel) {
+      return {
+        title: 'Imóvel não encontrado',
+        description: 'O imóvel solicitado não foi encontrado.',
+      }
+    }
+
+    const tipoLabels = {
+      casa: 'Casa',
+      apartamento: 'Apartamento',
+      terreno: 'Terreno',
+      comercial: 'Comercial'
+    }
+
+    const statusLabels = {
+      venda: 'Venda',
+      aluguel: 'Aluguel',
+      'venda-aluguel': 'Venda e Aluguel'
+    }
+
+    const title = `${tipoLabels[imovel.tipo]} para ${statusLabels[imovel.status]} - ${imovel.titulo}`
+    const description = `${imovel.descricao.substring(0, 160)}... ${formatPrice(imovel.preco)} - ${imovel.endereco.bairro}, ${imovel.endereco.cidade}`
+
+    return {
+      title,
+      description,
+      openGraph: {
+        title,
+        description,
+        type: 'website',
+        images: imovel.fotos.length > 0 ? [imovel.fotos[0]] : [],
+      },
+      alternates: {
+        canonical: `/imoveis/${imovel.slug}`,
+      },
+    }
+  } catch (error) {
     return {
       title: 'Imóvel não encontrado',
       description: 'O imóvel solicitado não foi encontrado.',
     }
   }
-
-  const tipoLabels = {
-    casa: 'Casa',
-    apartamento: 'Apartamento',
-    terreno: 'Terreno',
-    comercial: 'Comercial'
-  }
-
-  const statusLabels = {
-    venda: 'Venda',
-    aluguel: 'Aluguel',
-    'venda-aluguel': 'Venda e Aluguel'
-  }
-
-  const title = `${tipoLabels[imovel.tipo]} para ${statusLabels[imovel.status]} - ${imovel.titulo}`
-  const description = `${imovel.descricao.substring(0, 160)}... ${formatPrice(imovel.preco)} - ${imovel.endereco.bairro}, ${imovel.endereco.cidade}`
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: 'website',
-      images: imovel.fotos.length > 0 ? [imovel.fotos[0]] : [],
-    },
-    alternates: {
-      canonical: `/imoveis/${imovel.slug}`,
-    },
-  }
 }
 
 export default async function ImovelDetalhePage({ params }: PageProps) {
-  const imovel = await getImovelBySlug(params.slug)
+  try {
+    const imovel = await getImovelBySlug(params.slug)
 
-  if (!imovel) {
-    notFound()
-  }
+    if (!imovel) {
+      notFound()
+    }
 
   const tipoIcons = {
     casa: Home,
@@ -330,4 +352,7 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
       </div>
     </div>
   )
+  } catch (error) {
+    notFound()
+  }
 }
