@@ -15,7 +15,7 @@ export default function Header() {
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+          {/* Logo - Mais à esquerda */}
           <Link href="/" className="flex items-center">
             <div className="relative w-32 h-12">
               <Image
@@ -28,7 +28,29 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation - Cidades */}
+          {/* Telefone e Redes Sociais - Centro esquerdo */}
+          <div className="hidden lg:flex items-center space-x-4">
+            {/* WhatsApp */}
+            <div className="flex items-center space-x-2 text-sm text-green-600">
+              <Phone className="w-4 h-4" />
+              <span className="font-medium">(47) 99753-0113</span>
+            </div>
+            
+            {/* Redes Sociais */}
+            <div className="flex items-center space-x-3">
+              <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Desktop Navigation - Cidades - Centro direito */}
           <nav className="hidden lg:flex items-center space-x-4">
             {/* Imóveis em Penha */}
             <div className="relative">
@@ -108,28 +130,6 @@ export default function Header() {
               )}
             </div>
           </nav>
-
-          {/* Contact Info e Redes Sociais */}
-          <div className="hidden lg:flex items-center space-x-4">
-            {/* WhatsApp */}
-            <div className="flex items-center space-x-2 text-sm text-green-600">
-              <Phone className="w-4 h-4" />
-              <span className="font-medium">(47) 99753-0113</span>
-            </div>
-            
-            {/* Redes Sociais */}
-            <div className="flex items-center space-x-2">
-              <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
-                <Facebook className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
 
           {/* Mobile menu button */}
           <button
