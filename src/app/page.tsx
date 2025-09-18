@@ -47,24 +47,26 @@ export default async function HomePage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Título da Seção */}
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center mb-4">
-              <div className="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center mr-3">
-                <Search className="w-5 h-5 text-black" />
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center mb-6">
+              <div className="w-6 h-6 bg-purple-600 rounded flex items-center justify-center mr-3">
+                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                </svg>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              <h2 className="text-2xl md:text-3xl font-semibold text-gray-800">
                 Encontre o imóvel ideal para cada momento da sua vida
               </h2>
             </div>
           </div>
 
           {/* Cards das Cidades */}
-          <div className="space-y-16">
+          <div className="space-y-12">
             {/* Penha */}
             <div>
-              <div className="flex items-center mb-8">
-                <Search className="w-5 h-5 text-blue-500 mr-3" />
-                <h3 className="text-xl font-bold text-gray-900">Penha</h3>
+              <div className="flex items-center mb-4">
+                <Search className="w-4 h-4 text-blue-500 mr-2" />
+                <h3 className="text-lg font-medium text-gray-800">Penha</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
@@ -112,9 +114,9 @@ export default async function HomePage() {
 
             {/* Piçarras */}
             <div>
-              <div className="flex items-center mb-8">
-                <Search className="w-5 h-5 text-blue-500 mr-3" />
-                <h3 className="text-xl font-bold text-gray-900">Piçarras</h3>
+              <div className="flex items-center mb-4">
+                <Search className="w-4 h-4 text-blue-500 mr-2" />
+                <h3 className="text-lg font-medium text-gray-800">Piçarras</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
@@ -154,9 +156,9 @@ export default async function HomePage() {
 
             {/* Barra Velha */}
             <div>
-              <div className="flex items-center mb-8">
-                <Search className="w-5 h-5 text-blue-500 mr-3" />
-                <h3 className="text-xl font-bold text-gray-900">Barra Velha</h3>
+              <div className="flex items-center mb-4">
+                <Search className="w-4 h-4 text-blue-500 mr-2" />
+                <h3 className="text-lg font-medium text-gray-800">Barra Velha</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
