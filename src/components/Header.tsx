@@ -24,14 +24,7 @@ export default function Header() {
                 fill
                 className="object-contain"
                 priority
-                onError={(e) => {
-                  console.log('Erro ao carregar logo:', e);
-                }}
               />
-              {/* Fallback caso a imagem não carregue */}
-              <div className="absolute inset-0 flex items-center justify-center bg-purple-600 text-white font-bold text-lg rounded">
-                NOX
-              </div>
             </div>
           </Link>
 
