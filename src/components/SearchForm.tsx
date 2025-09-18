@@ -38,15 +38,15 @@ export default function SearchForm() {
   return (
     <div className="w-full">
       {/* Formulário Principal - 3 campos horizontais */}
-      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 mb-4">
-        <div className="flex flex-col lg:flex-row gap-4">
+      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-4 mb-4">
+        <div className="flex flex-col lg:flex-row gap-3">
           {/* TIPO */}
           <div className="flex-1">
             <select
               name="tipo"
               value={filtros.tipo}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
             >
               <option value="">TIPO</option>
               <option value="casa">Casa</option>
@@ -62,7 +62,7 @@ export default function SearchForm() {
               name="cidade"
               value={filtros.cidade}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
             >
               <option value="">CIDADE</option>
               <option value="penha">Penha</option>
@@ -77,7 +77,7 @@ export default function SearchForm() {
               name="bairro"
               value={filtros.bairro}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
             >
               <option value="">BAIRRO OU EMPREENDIMENTO</option>
               <option value="centro">Centro</option>
@@ -90,7 +90,7 @@ export default function SearchForm() {
           <div className="flex-shrink-0">
             <button
               type="submit"
-              className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-200 flex items-center space-x-2"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center space-x-2 text-sm"
             >
               <Search className="w-5 h-5" />
               <span>BUSCAR</span>

@@ -30,13 +30,10 @@ export default async function HomePage() {
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-8">
               Imóveis em Penha, Piçarras e<br />
               Barra Velha
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-white">
-              A melhor imobiliária da região com os melhores imóveis para venda e aluguel
-            </p>
             
             {/* Search Form */}
             <div className="max-w-4xl mx-auto">
