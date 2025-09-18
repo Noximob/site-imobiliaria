@@ -256,33 +256,33 @@ export default async function HomePage() {
       </section>
 
       {/* Seção Imóveis na Planta */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Lado Esquerdo - 3 Frames de Fotos */}
-            <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Lado Esquerdo - 3 Frames de Fotos em Colunas */}
+            <div className="grid grid-cols-3 gap-4">
               {/* Frame 1 - Edifício moderno */}
-              <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-                <div className="aspect-[4/5] bg-gradient-to-br from-amber-50 to-amber-100 flex items-center justify-center">
-                  <svg className="w-20 h-20 text-amber-300" fill="currentColor" viewBox="0 0 20 20">
+              <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+                <div className="aspect-[3/4] bg-gradient-to-br from-amber-50 to-amber-100 flex items-center justify-center">
+                  <svg className="w-12 h-12 text-amber-300" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
                   </svg>
                 </div>
               </div>
               
               {/* Frame 2 - Retrato */}
-              <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-                <div className="aspect-[4/5] bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
-                  <svg className="w-20 h-20 text-blue-300" fill="currentColor" viewBox="0 0 20 20">
+              <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+                <div className="aspect-[3/4] bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+                  <svg className="w-12 h-12 text-blue-300" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                   </svg>
                 </div>
               </div>
               
               {/* Frame 3 - Edifício residencial */}
-              <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-                <div className="aspect-[4/5] bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
-                  <svg className="w-20 h-20 text-green-300" fill="currentColor" viewBox="0 0 20 20">
+              <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+                <div className="aspect-[3/4] bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
+                  <svg className="w-12 h-12 text-green-300" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
                   </svg>
                 </div>
@@ -291,24 +291,24 @@ export default async function HomePage() {
 
             {/* Lado Direito - Texto e Botões */}
             <div className="text-center lg:text-left">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
                 Imóveis na Planta
               </h2>
               
-              <p className="text-xl text-gray-600 mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-base text-gray-600 mb-8 max-w-md mx-auto lg:mx-0 leading-relaxed">
                 Invista em um empreendimento que combina com o seu estilo de vida. Tenha segurança e rentabilidade com imóveis na planta na região mais desejada do Brasil.
               </p>
               
-              <div className="space-y-5">
-                <button className="w-full lg:w-auto px-10 py-4 border-2 border-gray-900 text-gray-900 font-medium rounded-xl hover:bg-gray-900 hover:text-white transition-all duration-300 text-lg">
+              <div className="space-y-3">
+                <button className="w-full lg:w-auto px-6 py-2 border border-gray-900 text-gray-900 font-medium rounded-lg hover:bg-gray-900 hover:text-white transition-colors duration-200 text-sm">
                   Penha
                 </button>
                 
-                <button className="w-full lg:w-auto px-10 py-4 border-2 border-gray-900 text-gray-900 font-medium rounded-xl hover:bg-gray-900 hover:text-white transition-all duration-300 text-lg">
+                <button className="w-full lg:w-auto px-6 py-2 border border-gray-900 text-gray-900 font-medium rounded-lg hover:bg-gray-900 hover:text-white transition-colors duration-200 text-sm">
                   Piçarras
                 </button>
                 
-                <button className="w-full lg:w-auto px-10 py-4 border-2 border-gray-900 text-gray-900 font-medium rounded-xl hover:bg-gray-900 hover:text-white transition-all duration-300 text-lg">
+                <button className="w-full lg:w-auto px-6 py-2 border border-gray-900 text-gray-900 font-medium rounded-lg hover:bg-gray-900 hover:text-white transition-colors duration-200 text-sm">
                   Barra Velha
                 </button>
               </div>
