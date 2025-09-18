@@ -90,7 +90,7 @@ export default function SearchForm() {
           <div className="flex-shrink-0">
             <button
               type="submit"
-              className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-lg transition-colors duration-200 flex items-center space-x-2"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-200 flex items-center space-x-2"
             >
               <Search className="w-5 h-5" />
               <span>BUSCAR</span>

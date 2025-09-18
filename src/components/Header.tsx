@@ -59,15 +59,15 @@ export default function Header() {
             <nav className="hidden lg:flex items-center space-x-3">
               {/* Imóveis em Penha */}
               <div className="relative">
-                <button 
-                  className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm"
-                  onMouseEnter={() => setIsPenhaOpen(true)}
-                  onMouseLeave={() => setIsPenhaOpen(false)}
-                >
-                  <MapPin className="w-4 h-4" />
-                  <span>Imóveis em Penha</span>
-                  <ChevronDown className="w-3 h-3" />
-                </button>
+                    <button 
+                      className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm font-bold"
+                      onMouseEnter={() => setIsPenhaOpen(true)}
+                      onMouseLeave={() => setIsPenhaOpen(false)}
+                    >
+                      <MapPin className="w-4 h-4" />
+                      <span>Imóveis em Penha</span>
+                      <ChevronDown className="w-3 h-3" />
+                    </button>
                 {isPenhaOpen && (
                   <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
                     <Link href="/imoveis?cidade=penha" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
@@ -85,15 +85,15 @@ export default function Header() {
 
               {/* Imóveis em Piçarras */}
               <div className="relative">
-                <button 
-                  className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm"
-                  onMouseEnter={() => setIsPicarrasOpen(true)}
-                  onMouseLeave={() => setIsPicarrasOpen(false)}
-                >
-                  <MapPin className="w-4 h-4" />
-                  <span>Imóveis em Piçarras</span>
-                  <ChevronDown className="w-3 h-3" />
-                </button>
+                    <button 
+                      className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm font-bold"
+                      onMouseEnter={() => setIsPicarrasOpen(true)}
+                      onMouseLeave={() => setIsPicarrasOpen(false)}
+                    >
+                      <MapPin className="w-4 h-4" />
+                      <span>Imóveis em Piçarras</span>
+                      <ChevronDown className="w-3 h-3" />
+                    </button>
                 {isPicarrasOpen && (
                   <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
                     <Link href="/imoveis?cidade=picarras" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
@@ -111,15 +111,15 @@ export default function Header() {
 
               {/* Imóveis em Barra Velha */}
               <div className="relative">
-                <button 
-                  className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm"
-                  onMouseEnter={() => setIsBarraVelhaOpen(true)}
-                  onMouseLeave={() => setIsBarraVelhaOpen(false)}
-                >
-                  <MapPin className="w-4 h-4" />
-                  <span>Imóveis em Barra Velha</span>
-                  <ChevronDown className="w-3 h-3" />
-                </button>
+                    <button 
+                      className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm font-bold"
+                      onMouseEnter={() => setIsBarraVelhaOpen(true)}
+                      onMouseLeave={() => setIsBarraVelhaOpen(false)}
+                    >
+                      <MapPin className="w-4 h-4" />
+                      <span>Imóveis em Barra Velha</span>
+                      <ChevronDown className="w-3 h-3" />
+                    </button>
                 {isBarraVelhaOpen && (
                   <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
                     <Link href="/imoveis?cidade=barra-velha" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
