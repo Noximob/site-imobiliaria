@@ -59,47 +59,52 @@ export default async function HomePage() {
           </div>
 
           {/* Cards das Cidades */}
-          <div className="space-y-12">
+          <div className="space-y-16">
             {/* Penha */}
             <div>
-              <div className="flex items-center mb-6">
-                <Search className="w-6 h-6 text-blue-500 mr-3" />
-                <h3 className="text-2xl font-bold text-gray-900">Penha</h3>
+              <div className="flex items-center mb-8">
+                <Search className="w-5 h-5 text-blue-500 mr-3" />
+                <h3 className="text-xl font-bold text-gray-900">Penha</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600"></div>
-                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-lg font-semibold text-center">Apartamentos e Coberturas</span>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Apartamentos e Coberturas</span>
+                    <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-green-600"></div>
-                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-lg font-semibold text-center">Mobiliados</span>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Mobiliados</span>
+                    <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-600"></div>
-                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-lg font-semibold text-center">Casas em Condomínio</span>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Casas em Condomínio</span>
+                    <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-600"></div>
-                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-lg font-semibold text-center">Centro</span>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Centro</span>
+                    <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-pink-400 to-pink-600"></div>
-                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-lg font-semibold text-center">Praia</span>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Praia</span>
+                    <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
               </div>
@@ -107,37 +112,41 @@ export default async function HomePage() {
 
             {/* Piçarras */}
             <div>
-              <div className="flex items-center mb-6">
-                <Search className="w-6 h-6 text-blue-500 mr-3" />
-                <h3 className="text-2xl font-bold text-gray-900">Piçarras</h3>
+              <div className="flex items-center mb-8">
+                <Search className="w-5 h-5 text-blue-500 mr-3" />
+                <h3 className="text-xl font-bold text-gray-900">Piçarras</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600"></div>
-                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-lg font-semibold text-center">Apartamentos</span>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Apartamentos</span>
+                    <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-green-600"></div>
-                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-lg font-semibold text-center">Coberturas</span>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Coberturas</span>
+                    <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-600"></div>
-                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-lg font-semibold text-center">Mobiliados</span>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Mobiliados</span>
+                    <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-600"></div>
-                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-lg font-semibold text-center">Casas em Condomínio</span>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Casas em Condomínio</span>
+                    <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
               </div>
@@ -145,44 +154,49 @@ export default async function HomePage() {
 
             {/* Barra Velha */}
             <div>
-              <div className="flex items-center mb-6">
-                <Search className="w-6 h-6 text-blue-500 mr-3" />
-                <h3 className="text-2xl font-bold text-gray-900">Barra Velha</h3>
+              <div className="flex items-center mb-8">
+                <Search className="w-5 h-5 text-blue-500 mr-3" />
+                <h3 className="text-xl font-bold text-gray-900">Barra Velha</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600"></div>
-                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-lg font-semibold text-center">Frente Mar</span>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Frente Mar</span>
+                    <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-green-600"></div>
-                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-lg font-semibold text-center">Quadra Mar</span>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Quadra Mar</span>
+                    <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-600"></div>
-                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-lg font-semibold text-center">Vista Mar</span>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Vista Mar</span>
+                    <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-600"></div>
-                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-lg font-semibold text-center">Lançamentos</span>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Lançamentos</span>
+                    <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-pink-400 to-pink-600"></div>
-                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-lg font-semibold text-center">Mobiliados</span>
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Mobiliados</span>
+                    <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
               </div>
