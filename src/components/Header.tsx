@@ -15,38 +15,41 @@ export default function Header() {
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo - Mais à esquerda */}
-          <Link href="/" className="flex items-center">
-            <div className="relative w-32 h-12">
-              <Image
-                src="/imagens/Logo.png"
-                alt="Nox Imóveis"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-          </Link>
+          {/* Logo e Contatos - Esquerda */}
+          <div className="flex items-center space-x-6">
+            {/* Logo */}
+            <Link href="/" className="flex items-center">
+              <div className="relative w-32 h-12">
+                <Image
+                  src="/imagens/Logo.png"
+                  alt="Nox Imóveis"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </Link>
 
-          {/* Telefone e Redes Sociais - Centro esquerdo */}
-          <div className="hidden lg:flex items-center space-x-4">
-            {/* WhatsApp */}
-            <div className="flex items-center space-x-2 text-sm text-green-600">
-              <Phone className="w-4 h-4" />
-              <span className="font-medium">(47) 99753-0113</span>
-            </div>
-            
-            {/* Redes Sociais */}
-            <div className="flex items-center space-x-3">
-              <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
+            {/* Telefone e Redes Sociais */}
+            <div className="hidden lg:flex items-center space-x-4">
+              {/* WhatsApp */}
+              <div className="flex items-center space-x-2 text-sm text-green-600">
+                <Phone className="w-4 h-4" />
+                <span className="font-medium">(47) 99753-0113</span>
+              </div>
+              
+              {/* Redes Sociais */}
+              <div className="flex items-center space-x-3">
+                <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
+                  <Linkedin className="w-5 h-5" />
+                </a>
+              </div>
             </div>
           </div>
 
@@ -131,10 +134,10 @@ export default function Header() {
             </div>
           </nav>
 
-          {/* Mobile menu button */}
+          {/* Menu hambúrguer - Sempre no lado direito */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-md text-purple-600 hover:text-purple-700 hover:bg-purple-50"
+            className="p-2 rounded-md text-purple-600 hover:text-purple-700 hover:bg-purple-50"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -142,7 +145,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden">
+          <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-purple-50 rounded-lg mt-2">
               {/* WhatsApp Mobile */}
               <div className="flex items-center space-x-2 px-3 py-2 text-green-600">
