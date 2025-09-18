@@ -28,17 +28,9 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  try {
-    const imoveis = await getAllImoveis()
-    
-    return imoveis.map((imovel) => ({
-      slug: imovel.slug,
-    }))
-  } catch (error) {
-    // Retorna array vazio se Firebase não estiver configurado
-    console.warn('Firebase não configurado, retornando array vazio para generateStaticParams')
-    return []
-  }
+  // Para sites estáticos, retornamos array vazio
+  // As páginas serão geradas dinamicamente quando necessário
+  return []
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
