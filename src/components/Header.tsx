@@ -19,11 +19,19 @@ export default function Header() {
           <Link href="/" className="flex items-center">
             <div className="relative w-32 h-12">
               <Image
-                src="/imagens/logo/logo.png"
+                src="/imagens/Logo.png"
                 alt="Nox Imóveis"
                 fill
                 className="object-contain"
+                priority
+                onError={(e) => {
+                  console.log('Erro ao carregar logo:', e);
+                }}
               />
+              {/* Fallback caso a imagem não carregue */}
+              <div className="absolute inset-0 flex items-center justify-center bg-purple-600 text-white font-bold text-lg rounded">
+                NOX
+              </div>
             </div>
           </Link>
 
