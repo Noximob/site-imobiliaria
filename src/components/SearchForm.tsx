@@ -2,18 +2,14 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Search, MapPin, Home, DollarSign } from 'lucide-react'
+import { Search, MapPin, Home, Building, List, Filter } from 'lucide-react'
 
 export default function SearchForm() {
   const router = useRouter()
   const [filtros, setFiltros] = useState({
-    cidade: '',
-    bairro: '',
-    precoMin: '',
-    precoMax: '',
-    quartos: '',
     tipo: '',
-    status: ''
+    cidade: '',
+    bairro: ''
   })
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -32,7 +28,7 @@ export default function SearchForm() {
     router.push(`/imoveis?${params.toString()}`)
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFiltros(prev => ({
       ...prev,
       [e.target.name]: e.target.value
@@ -40,152 +36,89 @@ export default function SearchForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        {/* Cidade */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Cidade
-          </label>
-          <div className="relative">
-            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-            <input
-              type="text"
-              name="cidade"
-              value={filtros.cidade}
-              onChange={handleChange}
-              placeholder="Digite a cidade"
-              className="input pl-10"
-            />
-          </div>
-        </div>
-
-        {/* Bairro */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Bairro
-          </label>
-          <div className="relative">
-            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-            <input
-              type="text"
-              name="bairro"
-              value={filtros.bairro}
-              onChange={handleChange}
-              placeholder="Digite o bairro"
-              className="input pl-10"
-            />
-          </div>
-        </div>
-
-        {/* Tipo */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Tipo
-          </label>
-          <div className="relative">
-            <Home className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+    <div className="w-full">
+      {/* Formulário Principal - 3 campos horizontais */}
+      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 mb-4">
+        <div className="flex flex-col lg:flex-row gap-4">
+          {/* TIPO */}
+          <div className="flex-1">
             <select
               name="tipo"
               value={filtros.tipo}
               onChange={handleChange}
-              className="input pl-10"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
             >
-              <option value="">Todos os tipos</option>
+              <option value="">TIPO</option>
               <option value="casa">Casa</option>
               <option value="apartamento">Apartamento</option>
               <option value="terreno">Terreno</option>
               <option value="comercial">Comercial</option>
             </select>
           </div>
-        </div>
 
-        {/* Status */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Status
-          </label>
-          <select
-            name="status"
-            value={filtros.status}
-            onChange={handleChange}
-            className="input"
-          >
-            <option value="">Venda e Aluguel</option>
-            <option value="venda">Venda</option>
-            <option value="aluguel">Aluguel</option>
-            <option value="venda-aluguel">Venda e Aluguel</option>
-          </select>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        {/* Preço Mínimo */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Preço Mínimo
-          </label>
-          <div className="relative">
-            <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-            <input
-              type="number"
-              name="precoMin"
-              value={filtros.precoMin}
+          {/* CIDADE */}
+          <div className="flex-1">
+            <select
+              name="cidade"
+              value={filtros.cidade}
               onChange={handleChange}
-              placeholder="R$ 0"
-              className="input pl-10"
-            />
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            >
+              <option value="">CIDADE</option>
+              <option value="penha">Penha</option>
+              <option value="picarras">Piçarras</option>
+              <option value="barra-velha">Barra Velha</option>
+            </select>
+          </div>
+
+          {/* BAIRRO OU EMPREENDIMENTO */}
+          <div className="flex-1">
+            <select
+              name="bairro"
+              value={filtros.bairro}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            >
+              <option value="">BAIRRO OU EMPREENDIMENTO</option>
+              <option value="centro">Centro</option>
+              <option value="praia">Praia</option>
+              <option value="residencial">Residencial</option>
+            </select>
+          </div>
+
+          {/* Botão BUSCAR */}
+          <div className="flex-shrink-0">
+            <button
+              type="submit"
+              className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-lg transition-colors duration-200 flex items-center space-x-2"
+            >
+              <Search className="w-5 h-5" />
+              <span>BUSCAR</span>
+            </button>
           </div>
         </div>
+      </form>
 
-        {/* Preço Máximo */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Preço Máximo
-          </label>
-          <div className="relative">
-            <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-            <input
-              type="number"
-              name="precoMax"
-              value={filtros.precoMax}
-              onChange={handleChange}
-              placeholder="R$ 1.000.000"
-              className="input pl-10"
-            />
-          </div>
-        </div>
+      {/* Botões de Busca Adicional - 3 botões horizontais */}
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        {/* Avançado */}
+        <button className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-colors duration-200">
+          <Filter className="w-5 h-5" />
+          <span>Avançado</span>
+        </button>
 
-        {/* Quartos */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Quartos
-          </label>
-          <select
-            name="quartos"
-            value={filtros.quartos}
-            onChange={handleChange}
-            className="input"
-          >
-            <option value="">Qualquer</option>
-            <option value="1">1+</option>
-            <option value="2">2+</option>
-            <option value="3">3+</option>
-            <option value="4">4+</option>
-            <option value="5">5+</option>
-          </select>
-        </div>
-      </div>
+        {/* Por código */}
+        <button className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-colors duration-200">
+          <List className="w-5 h-5" />
+          <span>Por código</span>
+        </button>
 
-      <div className="text-center">
-        <button
-          type="submit"
-          className="btn-primary inline-flex items-center space-x-2 px-8 py-3 text-lg"
-        >
-          <Search className="w-5 h-5" />
-          <span>Buscar Imóveis</span>
+        {/* Empreendimentos */}
+        <button className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-colors duration-200">
+          <Building className="w-5 h-5" />
+          <span>Empreendimentos</span>
         </button>
       </div>
-    </form>
+    </div>
   )
 }
