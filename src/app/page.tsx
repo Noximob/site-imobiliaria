@@ -510,6 +510,103 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Seção Conheça nossa equipe */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header da Seção */}
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+              Conheça nossa equipe
+            </h2>
+            
+            {/* Botões de Navegação */}
+            <div className="flex space-x-2">
+              <button className="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors duration-200">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button className="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors duration-200">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Grid da Equipe */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Membro 1 */}
+            <div className="bg-white rounded-t-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+              <div className="h-64 bg-gray-100 flex items-center justify-center">
+                <div className="w-24 h-24 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center">
+                  <svg className="w-12 h-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+              </div>
+              <div className="bg-blue-600 px-4 py-3 flex items-center justify-between">
+                <span className="text-white text-sm font-medium">Adriana Barbosa Campos</span>
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Membro 2 */}
+            <div className="bg-white rounded-t-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+              <div className="h-64 bg-gray-100 flex items-center justify-center">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center">
+                  <svg className="w-12 h-12 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+              </div>
+              <div className="bg-blue-600 px-4 py-3 flex items-center justify-between">
+                <span className="text-white text-sm font-medium">Adriana Medeiros</span>
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Membro 3 */}
+            <div className="bg-white rounded-t-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+              <div className="h-64 bg-gray-100 flex items-center justify-center">
+                <div className="w-24 h-24 bg-gradient-to-br from-purple-100 to-blue-200 rounded-full flex items-center justify-center">
+                  <svg className="w-12 h-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+              </div>
+              <div className="bg-blue-600 px-4 py-3 flex items-center justify-between">
+                <span className="text-white text-sm font-medium">Alan de Freitas Cordeiro</span>
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Membro 4 */}
+            <div className="bg-white rounded-t-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+              <div className="h-64 bg-gray-100 flex items-center justify-center">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-purple-200 rounded-full flex items-center justify-center">
+                  <svg className="w-12 h-12 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+              </div>
+              <div className="bg-blue-600 px-4 py-3 flex items-center justify-between">
+                <span className="text-white text-sm font-medium">Alex Penha</span>
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   )
 }
