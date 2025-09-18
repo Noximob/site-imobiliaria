@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Search, Home, Building, MapPin, Star, Users, Award } from 'lucide-react'
 import SearchForm from '@/components/SearchForm'
 import ImovelCard from '@/components/ImovelCard'
@@ -12,13 +13,27 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative text-white py-20 min-h-[600px] flex items-center">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/imagens/banners/banner-home.png"
+            alt="Nox Imóveis - Encontre o Imóvel dos Seus Sonhos"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Overlay para melhorar legibilidade do texto */}
+          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Encontre o Imóvel dos Seus Sonhos
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-primary-100">
+            <p className="text-xl md:text-2xl mb-8 text-white">
               A melhor imobiliária da região com os melhores imóveis para venda e aluguel
             </p>
             
