@@ -255,6 +255,68 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Seção Imóveis na Planta */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Lado Esquerdo - 3 Frames de Fotos */}
+            <div className="grid grid-cols-3 gap-4">
+              {/* Frame 1 */}
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div className="aspect-square bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                  <svg className="w-16 h-16 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              
+              {/* Frame 2 */}
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div className="aspect-square bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
+                  <svg className="w-16 h-16 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              
+              {/* Frame 3 */}
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div className="aspect-square bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+                  <svg className="w-16 h-16 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* Lado Direito - Texto e Botões */}
+            <div className="text-center lg:text-left">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Imóveis na Planta
+              </h2>
+              
+              <p className="text-lg text-gray-600 mb-8 max-w-md mx-auto lg:mx-0">
+                Invista em um empreendimento que combina com o seu estilo de vida. Tenha segurança e rentabilidade com imóveis na planta na região mais desejada do Brasil.
+              </p>
+              
+              <div className="space-y-4">
+                <button className="w-full lg:w-auto px-8 py-3 border-2 border-gray-900 text-gray-900 font-semibold rounded-lg hover:bg-gray-900 hover:text-white transition-colors duration-200">
+                  Penha
+                </button>
+                
+                <button className="w-full lg:w-auto px-8 py-3 border-2 border-gray-900 text-gray-900 font-semibold rounded-lg hover:bg-gray-900 hover:text-white transition-colors duration-200">
+                  Piçarras
+                </button>
+                
+                <button className="w-full lg:w-auto px-8 py-3 border-2 border-gray-900 text-gray-900 font-semibold rounded-lg hover:bg-gray-900 hover:text-white transition-colors duration-200">
+                  Barra Velha
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Stats Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
