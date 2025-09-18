@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-3 lg:px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo e Contatos - Esquerda */}
           <div className="flex items-center space-x-6">
@@ -53,94 +53,97 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Desktop Navigation - Cidades - Centro direito */}
-          <nav className="hidden lg:flex items-center space-x-4">
-            {/* Imóveis em Penha */}
-            <div className="relative">
-              <button 
-                className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm"
-                onMouseEnter={() => setIsPenhaOpen(true)}
-                onMouseLeave={() => setIsPenhaOpen(false)}
-              >
-                <MapPin className="w-4 h-4" />
-                <span>Imóveis em Penha</span>
-                <ChevronDown className="w-3 h-3" />
-              </button>
-              {isPenhaOpen && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
-                  <Link href="/imoveis?cidade=penha" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                    Apartamentos em Penha
-                  </Link>
-                  <Link href="/imoveis?cidade=penha&tipo=casa" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                    Casas em Penha
-                  </Link>
-                  <Link href="/imoveis?cidade=penha&tipo=terreno" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                    Terrenos em Penha
-                  </Link>
-                </div>
-              )}
-            </div>
+          {/* Cidades e Menu hambúrguer - Lado direito */}
+          <div className="flex items-center space-x-4">
+            {/* Desktop Navigation - Cidades */}
+            <nav className="hidden lg:flex items-center space-x-3">
+              {/* Imóveis em Penha */}
+              <div className="relative">
+                <button 
+                  className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm"
+                  onMouseEnter={() => setIsPenhaOpen(true)}
+                  onMouseLeave={() => setIsPenhaOpen(false)}
+                >
+                  <MapPin className="w-4 h-4" />
+                  <span>Imóveis em Penha</span>
+                  <ChevronDown className="w-3 h-3" />
+                </button>
+                {isPenhaOpen && (
+                  <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
+                    <Link href="/imoveis?cidade=penha" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Apartamentos em Penha
+                    </Link>
+                    <Link href="/imoveis?cidade=penha&tipo=casa" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Casas em Penha
+                    </Link>
+                    <Link href="/imoveis?cidade=penha&tipo=terreno" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Terrenos em Penha
+                    </Link>
+                  </div>
+                )}
+              </div>
 
-            {/* Imóveis em Piçarras */}
-            <div className="relative">
-              <button 
-                className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm"
-                onMouseEnter={() => setIsPicarrasOpen(true)}
-                onMouseLeave={() => setIsPicarrasOpen(false)}
-              >
-                <MapPin className="w-4 h-4" />
-                <span>Imóveis em Piçarras</span>
-                <ChevronDown className="w-3 h-3" />
-              </button>
-              {isPicarrasOpen && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
-                  <Link href="/imoveis?cidade=picarras" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                    Apartamentos em Piçarras
-                  </Link>
-                  <Link href="/imoveis?cidade=picarras&tipo=casa" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                    Casas em Piçarras
-                  </Link>
-                  <Link href="/imoveis?cidade=picarras&tipo=terreno" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                    Terrenos em Piçarras
-                  </Link>
-                </div>
-              )}
-            </div>
+              {/* Imóveis em Piçarras */}
+              <div className="relative">
+                <button 
+                  className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm"
+                  onMouseEnter={() => setIsPicarrasOpen(true)}
+                  onMouseLeave={() => setIsPicarrasOpen(false)}
+                >
+                  <MapPin className="w-4 h-4" />
+                  <span>Imóveis em Piçarras</span>
+                  <ChevronDown className="w-3 h-3" />
+                </button>
+                {isPicarrasOpen && (
+                  <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
+                    <Link href="/imoveis?cidade=picarras" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Apartamentos em Piçarras
+                    </Link>
+                    <Link href="/imoveis?cidade=picarras&tipo=casa" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Casas em Piçarras
+                    </Link>
+                    <Link href="/imoveis?cidade=picarras&tipo=terreno" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Terrenos em Piçarras
+                    </Link>
+                  </div>
+                )}
+              </div>
 
-            {/* Imóveis em Barra Velha */}
-            <div className="relative">
-              <button 
-                className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm"
-                onMouseEnter={() => setIsBarraVelhaOpen(true)}
-                onMouseLeave={() => setIsBarraVelhaOpen(false)}
-              >
-                <MapPin className="w-4 h-4" />
-                <span>Imóveis em Barra Velha</span>
-                <ChevronDown className="w-3 h-3" />
-              </button>
-              {isBarraVelhaOpen && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
-                  <Link href="/imoveis?cidade=barra-velha" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                    Apartamentos em Barra Velha
-                  </Link>
-                  <Link href="/imoveis?cidade=barra-velha&tipo=casa" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                    Casas em Barra Velha
-                  </Link>
-                  <Link href="/imoveis?cidade=barra-velha&tipo=terreno" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                    Terrenos em Barra Velha
-                  </Link>
-                </div>
-              )}
-            </div>
-          </nav>
+              {/* Imóveis em Barra Velha */}
+              <div className="relative">
+                <button 
+                  className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm"
+                  onMouseEnter={() => setIsBarraVelhaOpen(true)}
+                  onMouseLeave={() => setIsBarraVelhaOpen(false)}
+                >
+                  <MapPin className="w-4 h-4" />
+                  <span>Imóveis em Barra Velha</span>
+                  <ChevronDown className="w-3 h-3" />
+                </button>
+                {isBarraVelhaOpen && (
+                  <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
+                    <Link href="/imoveis?cidade=barra-velha" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Apartamentos em Barra Velha
+                    </Link>
+                    <Link href="/imoveis?cidade=barra-velha&tipo=casa" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Casas em Barra Velha
+                    </Link>
+                    <Link href="/imoveis?cidade=barra-velha&tipo=terreno" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Terrenos em Barra Velha
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </nav>
 
-          {/* Menu hambúrguer - Sempre no lado direito */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-2 rounded-md text-purple-600 hover:text-purple-700 hover:bg-purple-50"
-          >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+            {/* Menu hambúrguer */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 rounded-md text-purple-600 hover:text-purple-700 hover:bg-purple-50"
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
