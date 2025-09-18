@@ -16,18 +16,14 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="relative w-12 h-12">
+          <Link href="/" className="flex items-center">
+            <div className="relative w-32 h-12">
               <Image
                 src="/imagens/logo/logo.png"
                 alt="Nox Imóveis"
                 fill
                 className="object-contain"
               />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold text-purple-600">Nox</span>
-              <span className="text-sm text-purple-500 -mt-1">IMOVEIS</span>
             </div>
           </Link>
 
