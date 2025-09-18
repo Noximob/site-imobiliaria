@@ -426,6 +426,51 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Seção Anuncie com a Nox */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
+              {/* Lado Esquerdo - Foto da Corretora */}
+              <div className="relative h-64 lg:h-auto">
+                <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+                  <div className="w-32 h-32 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center">
+                    <svg className="w-16 h-16 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                </div>
+                {/* Ícone da chave */}
+                <div className="absolute bottom-4 right-4 lg:right-8 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
+                  <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Lado Direito - Texto e Botão */}
+              <div className="p-8 lg:p-12 flex flex-col justify-center">
+                <div className="text-white">
+                  <p className="text-sm font-medium mb-2 opacity-90">
+                    Anuncie com a Nox
+                  </p>
+                  <h2 className="text-2xl lg:text-3xl font-bold mb-6">
+                    A melhor forma de anunciar seu imóvel!
+                  </h2>
+                  
+                  <button className="inline-flex items-center px-6 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-lg hover:bg-yellow-500 transition-colors duration-200">
+                    Avaliar meu imóvel
+                    <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Seção Depoimentos/Prova Social */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
