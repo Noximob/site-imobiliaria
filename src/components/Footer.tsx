@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Search, MapPin, Building, Phone, Mail, Instagram, Facebook, Linkedin } from 'lucide-react'
 
 export default function Footer() {
@@ -317,7 +318,7 @@ export default function Footer() {
                   <span className="inline-block bg-purple-100 text-purple-600 text-xs font-medium px-2 py-1 rounded">
                     Dicas e Tendências
                   </span>
-                </div>
+            </div>
                 
                 {/* Título */}
                 <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight">
@@ -406,37 +407,37 @@ export default function Footer() {
                   </Link>
                 </li>
               </ul>
-            </div>
+          </div>
 
             {/* Serviços */}
-            <div>
+          <div>
               <h3 className="text-white font-semibold mb-4 text-sm">Serviços</h3>
-              <ul className="space-y-2">
-                <li>
+            <ul className="space-y-2">
+              <li>
                   <Link href="/anunciar" className="text-gray-300 hover:text-white text-sm transition-colors">
                     Anunciar Imóvel
-                  </Link>
-                </li>
-                <li>
+                </Link>
+              </li>
+              <li>
                   <Link href="/encontrar" className="text-gray-300 hover:text-white text-sm transition-colors">
                     Encontre meu Imóvel
-                  </Link>
-                </li>
-                <li>
+                </Link>
+              </li>
+              <li>
                   <Link href="/como-comprar" className="text-gray-300 hover:text-white text-sm transition-colors">
                     Como comprar
-                  </Link>
-                </li>
-                <li>
+                </Link>
+              </li>
+              <li>
                   <Link href="/simular-financiamento" className="text-gray-300 hover:text-white text-sm transition-colors">
                     Simular Financiamento
-                  </Link>
-                </li>
-              </ul>
-            </div>
+                </Link>
+              </li>
+            </ul>
+          </div>
 
             {/* Institucional */}
-            <div>
+          <div>
               <h3 className="text-white font-semibold mb-4 text-sm">Institucional</h3>
               <ul className="space-y-2">
                 <li>
@@ -455,7 +456,7 @@ export default function Footer() {
                   </Link>
                 </li>
               </ul>
-            </div>
+              </div>
 
             {/* Links Adicionais */}
             <div>
@@ -488,7 +489,14 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center">
             {/* Logo */}
             <div className="mb-6 lg:mb-0">
-              <div className="flex items-center">
+              <div className="flex items-center space-x-2">
+                <Image 
+                  src="/imagens/Logo.png" 
+                  alt="Nox Imóveis" 
+                  width={40} 
+                  height={40}
+                  className="w-10 h-10"
+                />
                 <span className="text-2xl font-bold text-white">
                   <span className="text-purple-400">NOX</span>
                   <span className="text-white"> IMÓVEIS</span>
@@ -496,39 +504,13 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Endereços das Lojas */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full lg:w-auto">
-              {/* Loja Penha */}
-              <div className="text-sm">
-                <h4 className="font-semibold text-purple-400 mb-2">Loja Penha</h4>
-                <p className="text-gray-300 mb-1">CRECI 12345-J</p>
-                <p className="text-gray-300 mb-1">Rua Principal, 123</p>
-                <p className="text-gray-300">Centro, Penha - SC</p>
-              </div>
-
-              {/* Loja Piçarras */}
-              <div className="text-sm">
-                <h4 className="font-semibold text-purple-400 mb-2">Loja Piçarras</h4>
-                <p className="text-gray-300 mb-1">CRECI 12346-J</p>
-                <p className="text-gray-300 mb-1">Av. Beira Mar, 456</p>
-                <p className="text-gray-300">Centro, Piçarras - SC</p>
-              </div>
-
-              {/* Loja Barra Velha */}
-              <div className="text-sm">
-                <h4 className="font-semibold text-purple-400 mb-2">Loja Barra Velha</h4>
-                <p className="text-gray-300 mb-1">CRECI 12347-J</p>
-                <p className="text-gray-300 mb-1">Rua do Comércio, 789</p>
-                <p className="text-gray-300">Centro, Barra Velha - SC</p>
-              </div>
-
-              {/* Loja Matriz */}
-              <div className="text-sm">
-                <h4 className="font-semibold text-purple-400 mb-2">Matriz</h4>
-                <p className="text-gray-300 mb-1">CRECI 12348-J</p>
-                <p className="text-gray-300 mb-1">Av. Principal, 1000</p>
-                <p className="text-gray-300">Centro, Penha - SC</p>
-              </div>
+            {/* Central de Atendimento */}
+            <div className="text-center lg:text-right">
+              <h4 className="font-semibold text-purple-400 mb-2 text-lg">Central de Atendimento</h4>
+              <p className="text-gray-300 mb-1">CRECI 12345-J</p>
+              <p className="text-gray-300 mb-1">Rua Principal, 123</p>
+              <p className="text-gray-300 mb-2">Centro, Penha - SC</p>
+              <p className="text-purple-400 font-semibold">(47) 99753-0113</p>
             </div>
           </div>
 
