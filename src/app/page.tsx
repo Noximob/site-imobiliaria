@@ -504,12 +504,13 @@ export default function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2">
               {/* Lado Esquerdo - Foto da Corretora */}
               <div className="relative h-64 lg:h-auto">
-                <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-                  <div className="w-32 h-32 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center">
-                    <svg className="w-16 h-16 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                  </div>
+                <div className="absolute inset-0">
+                  <Image 
+                    src="/imagens/Anuncie Nox/Mulher.png" 
+                    alt="Anuncie com a Nox" 
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 {/* Ícone da chave */}
                 <div className="absolute bottom-4 right-4 lg:right-8 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
