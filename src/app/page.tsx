@@ -317,30 +317,39 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Lado Esquerdo - 3 Frames de Fotos em Colunas */}
             <div className="grid grid-cols-3 gap-4">
-              {/* Frame 1 - Edifício moderno */}
+              {/* Frame 1 - Penha */}
               <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-                <div className="aspect-[3/4] bg-gradient-to-br from-amber-50 to-amber-100 flex items-center justify-center">
-                  <svg className="w-12 h-12 text-amber-300" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                  </svg>
+                <div className="aspect-[3/4] relative">
+                  <Image 
+                    src="/imagens/Imoveis na Planta/1.png" 
+                    alt="Imóveis na Planta - Penha" 
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
-            </div>
             
-              {/* Frame 2 - Retrato */}
+              {/* Frame 2 - Piçarras */}
               <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-                <div className="aspect-[3/4] bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
-                  <svg className="w-12 h-12 text-blue-300" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                  </svg>
+                <div className="aspect-[3/4] relative">
+                  <Image 
+                    src="/imagens/Imoveis na Planta/2.png" 
+                    alt="Imóveis na Planta - Piçarras" 
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
-            </div>
             
-              {/* Frame 3 - Edifício residencial */}
+              {/* Frame 3 - Barra Velha */}
               <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-                <div className="aspect-[3/4] bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
-                  <svg className="w-12 h-12 text-green-300" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                  </svg>
+                <div className="aspect-[3/4] relative">
+                  <Image 
+                    src="/imagens/Imoveis na Planta/3.png" 
+                    alt="Imóveis na Planta - Barra Velha" 
+                    fill
+                    className="object-cover"
+                  />
                 </div>
               </div>
             </div>
