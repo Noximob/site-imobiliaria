@@ -32,7 +32,7 @@ export default function HomePage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-8">
-              Imóveis em Penha, Piçarras e<br />
+              Imóveis em Penha, Balneário Piçarras e<br />
               Barra Velha
             </h1>
             
@@ -129,7 +129,7 @@ export default function HomePage() {
             <div>
               <div className="flex items-center mb-4">
                 <Search className="w-4 h-4 text-blue-500 mr-2 font-bold" />
-                <h3 className="text-lg font-bold text-blue-500">Piçarras</h3>
+                <h3 className="text-lg font-bold text-blue-500">Balneário Piçarras</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
@@ -290,7 +290,7 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-1">Especialistas em Penha, Piçarras e Barra Velha</h3>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-1">Especialistas em Penha, Balneário Piçarras e Barra Velha</h3>
                   <p className="text-gray-600">Conhecemos cada detalhe da região</p>
               </div>
             </div>

@@ -91,19 +91,19 @@ export default function Header() {
                       onMouseLeave={() => setIsPicarrasOpen(false)}
                     >
                       <MapPin className="w-4 h-4" />
-                      <span>Imóveis em Piçarras</span>
+                      <span>Imóveis em Balneário Piçarras</span>
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isPicarrasOpen && (
                   <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
                     <Link href="/imoveis?cidade=picarras" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                      Apartamentos em Piçarras
+                      Apartamentos em Balneário Piçarras
                     </Link>
                     <Link href="/imoveis?cidade=picarras&tipo=casa" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                      Casas em Piçarras
+                      Casas em Balneário Piçarras
                     </Link>
                     <Link href="/imoveis?cidade=picarras&tipo=terreno" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                      Terrenos em Piçarras
+                      Terrenos em Balneário Piçarras
                     </Link>
                   </div>
                 )}
@@ -218,7 +218,7 @@ export default function Header() {
                       Viva Penha
                     </Link>
                     <Link href="/viva-picarras" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
-                      Viva Piçarras
+                      Viva Balneário Piçarras
                     </Link>
                     <Link href="/viva-barra-velha" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Viva Barra Velha
