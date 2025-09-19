@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16">
           {/* Título da Seção */}
           <div className="text-center mb-8">
-            <h2 className="text-lg font-medium text-white">
+            <h2 className="text-xl font-medium text-white">
               Buscas frequentes em Penha, Piçarras e Barra Velha
             </h2>
           </div>
@@ -174,47 +174,25 @@ export default function Footer() {
                 <Building className="w-3 h-3 text-purple-400" />
                 <h3 className="text-sm font-medium text-purple-400">Construtoras</h3>
               </div>
-              <div className="grid grid-cols-2 gap-1">
-                <div className="space-y-1">
-                  <Link href="/imoveis?construtora=santer" className="block text-xs text-gray-400 hover:text-white transition-colors">
-                    Santer
-                  </Link>
-                  <Link href="/imoveis?construtora=stein" className="block text-xs text-gray-400 hover:text-white transition-colors">
-                    Stein
-                  </Link>
-                  <Link href="/imoveis?construtora=grupo-estrutura" className="block text-xs text-gray-400 hover:text-white transition-colors">
-                    Grupo Estrutura
-                  </Link>
-                  <Link href="/imoveis?construtora=arthaus" className="block text-xs text-gray-400 hover:text-white transition-colors">
-                    ArtHaus
-                  </Link>
-                  <Link href="/imoveis?construtora=vetter" className="block text-xs text-gray-400 hover:text-white transition-colors">
-                    Vetter
-                  </Link>
-                  <Link href="/imoveis?construtora=rogga" className="block text-xs text-gray-400 hover:text-white transition-colors">
-                    Rogga
-                  </Link>
-                </div>
-                <div className="space-y-1">
-                  <Link href="/imoveis?status=lancamento" className="block text-xs text-gray-400 hover:text-white transition-colors">
-                    Lançamentos
-                  </Link>
-                  <Link href="/imoveis?status=na-planta" className="block text-xs text-gray-400 hover:text-white transition-colors">
-                    Na Planta
-                  </Link>
-                  <Link href="/imoveis?status=em-construcao" className="block text-xs text-gray-400 hover:text-white transition-colors">
-                    Em Construção
-                  </Link>
-                  <Link href="/imoveis?status=pronto" className="block text-xs text-gray-400 hover:text-white transition-colors">
-                    Pronto para Morar
-                  </Link>
-                  <Link href="/imoveis?tipo=apartamento" className="block text-xs text-gray-400 hover:text-white transition-colors">
-                    Apartamentos
-                  </Link>
-                  <Link href="/imoveis?tipo=casa" className="block text-xs text-gray-400 hover:text-white transition-colors">
-                    Casas
-                  </Link>
-                </div>
+              <div className="space-y-1">
+                <Link href="/imoveis?construtora=santer" className="block text-xs text-gray-400 hover:text-white transition-colors">
+                  Santer
+                </Link>
+                <Link href="/imoveis?construtora=stein" className="block text-xs text-gray-400 hover:text-white transition-colors">
+                  Stein
+                </Link>
+                <Link href="/imoveis?construtora=grupo-estrutura" className="block text-xs text-gray-400 hover:text-white transition-colors">
+                  Grupo Estrutura
+                </Link>
+                <Link href="/imoveis?construtora=arthaus" className="block text-xs text-gray-400 hover:text-white transition-colors">
+                  ArtHaus
+                </Link>
+                <Link href="/imoveis?construtora=vetter" className="block text-xs text-gray-400 hover:text-white transition-colors">
+                  Vetter
+                </Link>
+                <Link href="/imoveis?construtora=rogga" className="block text-xs text-gray-400 hover:text-white transition-colors">
+                  Rogga
+                </Link>
               </div>
             </div>
           </div>
