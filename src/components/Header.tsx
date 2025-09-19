@@ -186,17 +186,11 @@ export default function Header() {
                     <Link href="/anunciar" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Anunciar imóvel
                     </Link>
-                    <Link href="/calculadora" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
-                      Calculadora de Imóvel
-                    </Link>
                     <Link href="/encontrar" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Encontre meu imóvel
                     </Link>
                     <Link href="/como-comprar" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Como comprar
-                    </Link>
-                    <Link href="/simular-financiamento" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
-                      Simular Financiamento
                     </Link>
                   </div>
                 </div>
@@ -231,15 +225,9 @@ export default function Header() {
 
                 {/* Contatos */}
                 <div className="pt-4 border-t border-gray-700">
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2 text-white text-sm">
-                      <Phone className="w-4 h-4 text-purple-400" />
-                      <span>(47) 3367-0990</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-white text-sm">
-                      <Phone className="w-4 h-4 text-purple-400" />
-                      <span>(47) 99699-3030</span>
-                    </div>
+                  <div className="flex items-center space-x-2 text-white text-sm">
+                    <Phone className="w-4 h-4 text-purple-400" />
+                    <span>(47) 99753-0113</span>
                   </div>
                 </div>
               </div>
