@@ -610,12 +610,13 @@ export default function HomePage() {
                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                    {/* Membro 1 - Adriana Barbosa Campos */}
                    <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-                     <div className="h-64 bg-gray-100 flex items-center justify-center">
-                       <div className="w-24 h-24 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center">
-                         <svg className="w-12 h-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                         </svg>
-                       </div>
+                     <div className="h-64 relative">
+                       <Image 
+                         src="/imagens/Corretores/1.png" 
+                         alt="Adriana Barbosa Campos" 
+                         fill
+                         className="object-cover"
+                       />
                      </div>
                      <div className="p-4">
                        <h3 className="text-lg font-semibold text-gray-900 mb-1">Adriana Barbosa Campos</h3>
@@ -634,12 +635,13 @@ export default function HomePage() {
 
                    {/* Membro 2 - Adriana Medeiros */}
                    <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-                     <div className="h-64 bg-gray-100 flex items-center justify-center">
-                       <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center">
-                         <svg className="w-12 h-12 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                         </svg>
-                       </div>
+                     <div className="h-64 relative">
+                       <Image 
+                         src="/imagens/Corretores/2.png" 
+                         alt="Adriana Medeiros" 
+                         fill
+                         className="object-cover"
+                       />
                      </div>
                      <div className="p-4">
                        <h3 className="text-lg font-semibold text-gray-900 mb-1">Adriana Medeiros</h3>
@@ -658,12 +660,13 @@ export default function HomePage() {
 
                    {/* Membro 3 - Alan de Freitas Cordeiro */}
                    <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-                     <div className="h-64 bg-gray-100 flex items-center justify-center">
-                       <div className="w-24 h-24 bg-gradient-to-br from-purple-100 to-blue-200 rounded-full flex items-center justify-center">
-                         <svg className="w-12 h-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                         </svg>
-                       </div>
+                     <div className="h-64 relative">
+                       <Image 
+                         src="/imagens/Corretores/3.png" 
+                         alt="Alan de Freitas Cordeiro" 
+                         fill
+                         className="object-cover"
+                       />
                      </div>
                      <div className="p-4">
                        <h3 className="text-lg font-semibold text-gray-900 mb-1">Alan de Freitas Cordeiro</h3>
@@ -682,12 +685,13 @@ export default function HomePage() {
 
                    {/* Membro 4 - Alex Penha */}
                    <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-                     <div className="h-64 bg-gray-100 flex items-center justify-center">
-                       <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-purple-200 rounded-full flex items-center justify-center">
-                         <svg className="w-12 h-12 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                         </svg>
-                       </div>
+                     <div className="h-64 relative">
+                       <Image 
+                         src="/imagens/Corretores/4.png" 
+                         alt="Alex Penha" 
+                         fill
+                         className="object-cover"
+                       />
                      </div>
                      <div className="p-4">
                        <h3 className="text-lg font-semibold text-gray-900 mb-1">Alex Penha</h3>
