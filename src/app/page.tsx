@@ -195,7 +195,12 @@ export default function HomePage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 to-orange-500"></div>
+                  <Image 
+                    src="/imagens/Encontre Imovel/Barra Velha/Lançamentos Frente mar.png" 
+                    alt="Lançamentos Frente Mar" 
+                    fill
+                    className="object-cover"
+                  />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Lançamentos Frente Mar</span>
@@ -203,7 +208,12 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-500 to-gray-700"></div>
+                  <Image 
+                    src="/imagens/Encontre Imovel/Barra Velha/Em Construção.png" 
+                    alt="Em Construção" 
+                    fill
+                    className="object-cover"
+                  />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Em Construção</span>
@@ -211,7 +221,12 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-green-600"></div>
+                  <Image 
+                    src="/imagens/Encontre Imovel/Barra Velha/Imoveis Prontos.png" 
+                    alt="Imóveis Prontos" 
+                    fill
+                    className="object-cover"
+                  />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Imóveis Prontos</span>
