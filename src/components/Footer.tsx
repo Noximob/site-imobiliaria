@@ -489,19 +489,13 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center">
             {/* Logo */}
             <div className="mb-6 lg:mb-0">
-              <div className="flex items-center space-x-2">
-                <Image 
-                  src="/imagens/Logo.png" 
-                  alt="Nox Imóveis" 
-                  width={40} 
-                  height={40}
-                  className="w-10 h-10"
-                />
-                <span className="text-2xl font-bold text-white">
-                  <span className="text-purple-400">NOX</span>
-                  <span className="text-white"> IMÓVEIS</span>
-                </span>
-              </div>
+              <Image 
+                src="/imagens/Logo1.png" 
+                alt="Nox Imóveis" 
+                width={200} 
+                height={60}
+                className="h-12 w-auto"
+              />
             </div>
 
             {/* Central de Atendimento */}
