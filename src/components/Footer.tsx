@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="bg-gray-900 text-white">
       {/* Seção Buscas Frequentes */}
       <section className="py-12 bg-gray-900">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16">
           {/* Título da Seção */}
           <div className="text-center mb-8">
             <h2 className="text-lg font-medium text-white">
@@ -17,7 +17,7 @@ export default function Footer() {
           </div>
 
           {/* Grid das Categorias */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {/* Penha */}
             <div className="space-y-3">
               <div className="flex items-center space-x-1 mb-3">
@@ -247,38 +247,38 @@ export default function Footer() {
                   <Mail className="w-4 h-4" />
                   <span>contato@noximoveis.com.br</span>
                 </div>
-              </div>
             </div>
+          </div>
 
-            {/* Links Rápidos */}
-            <div>
+          {/* Links Rápidos */}
+          <div>
               <h3 className="text-white font-semibold mb-4">Links Rápidos</h3>
-              <ul className="space-y-2">
-                <li>
+            <ul className="space-y-2">
+              <li>
                   <Link href="/imoveis" className="text-gray-300 hover:text-white text-sm transition-colors">
                     Imóveis à venda
-                  </Link>
-                </li>
-                <li>
+                </Link>
+              </li>
+              <li>
                   <Link href="/imoveis?status=lancamento" className="text-gray-300 hover:text-white text-sm transition-colors">
                     Lançamentos
-                  </Link>
-                </li>
-                <li>
+                </Link>
+              </li>
+              <li>
                   <Link href="/sobre" className="text-gray-300 hover:text-white text-sm transition-colors">
                     Sobre nós
-                  </Link>
-                </li>
-                <li>
+                </Link>
+              </li>
+              <li>
                   <Link href="/contato" className="text-gray-300 hover:text-white text-sm transition-colors">
-                    Contato
-                  </Link>
-                </li>
-              </ul>
-            </div>
+                  Contato
+                </Link>
+              </li>
+            </ul>
+          </div>
 
             {/* Redes Sociais */}
-            <div>
+          <div>
               <h3 className="text-white font-semibold mb-4">Siga-nos</h3>
               <div className="flex space-x-4">
                 <a href="#" className="text-gray-300 hover:text-white transition-colors">
@@ -290,9 +290,9 @@ export default function Footer() {
                 <a href="#" className="text-gray-300 hover:text-white transition-colors">
                   <Linkedin className="w-5 h-5" />
                 </a>
-              </div>
             </div>
           </div>
+        </div>
 
           {/* Copyright */}
           <div className="border-t border-gray-700 mt-8 pt-8">
