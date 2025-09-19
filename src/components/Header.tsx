@@ -148,77 +148,98 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-purple-50 rounded-lg mt-2">
-              {/* WhatsApp Mobile */}
-              <div className="flex items-center space-x-2 px-3 py-2 text-green-600">
-                <Phone className="w-4 h-4" />
-                <span className="font-medium">(47) 99753-0113</span>
-                <span className="text-xs text-gray-500">VENDAS</span>
+          <div className="fixed inset-0 z-50">
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black bg-opacity-50" onClick={() => setIsMenuOpen(false)}></div>
+            
+            {/* Sidebar */}
+            <div className="absolute right-0 top-0 h-full w-80 bg-gray-900 p-6">
+              {/* Close button */}
+              <div className="flex justify-end mb-8">
+                <button onClick={() => setIsMenuOpen(false)} className="text-white">
+                  <X className="w-6 h-6" />
+                </button>
               </div>
               
-              {/* Redes Sociais Mobile */}
-              <div className="flex items-center space-x-4 px-3 py-2">
-                <a href="#" className="text-purple-600 hover:text-purple-700">
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a href="#" className="text-purple-600 hover:text-purple-700">
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a href="#" className="text-purple-600 hover:text-purple-700">
-                  <Facebook className="w-5 h-5" />
-                </a>
+              {/* Menu content */}
+              <div className="space-y-8">
+                {/* Imóveis */}
+                <div>
+                  <h3 className="text-yellow-400 text-lg font-semibold mb-4">Imóveis</h3>
+                  <div className="space-y-3">
+                    <Link href="/imoveis" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                      Imóveis à venda
+                    </Link>
+                    <Link href="/empreendimentos" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                      Empreendimentos
+                    </Link>
+                    <Link href="/favoritos" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                      Favoritos
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Serviços */}
+                <div>
+                  <h3 className="text-yellow-400 text-lg font-semibold mb-4">Serviços</h3>
+                  <div className="space-y-3">
+                    <Link href="/anunciar" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                      Anunciar imóvel
+                    </Link>
+                    <Link href="/calculadora" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                      Calculadora de Imóvel
+                    </Link>
+                    <Link href="/encontrar" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                      Encontre meu imóvel
+                    </Link>
+                    <Link href="/como-comprar" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                      Como comprar
+                    </Link>
+                    <Link href="/simular-financiamento" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                      Simular Financiamento
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Institucional */}
+                <div>
+                  <h3 className="text-yellow-400 text-lg font-semibold mb-4">Institucional</h3>
+                  <div className="space-y-3">
+                    <Link href="/sobre" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                      Quem somos
+                    </Link>
+                    <Link href="/contato" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                      Contato
+                    </Link>
+                    <Link href="/trabalhe-conosco" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                      Trabalhe Conosco
+                    </Link>
+                    <Link href="/viva-penha" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                      Viva Penha
+                    </Link>
+                    <Link href="/viva-picarras" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                      Viva Piçarras
+                    </Link>
+                    <Link href="/blog" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                      Blog
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Contatos */}
+                <div className="pt-6 border-t border-gray-700">
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3 text-white">
+                      <Phone className="w-5 h-5 text-yellow-400" />
+                      <span>(47) 3367-0990</span>
+                    </div>
+                    <div className="flex items-center space-x-3 text-white">
+                      <Phone className="w-5 h-5 text-yellow-400" />
+                      <span>(47) 99699-3030</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-
-              <div className="border-t border-purple-200 my-2"></div>
-
-              {/* Menu Cidades Mobile */}
-              <Link
-                href="/imoveis?cidade=penha"
-                className="block px-3 py-2 text-purple-600 hover:text-purple-700 hover:bg-purple-100 rounded-md"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Imóveis em Penha
-              </Link>
-              <Link
-                href="/imoveis?cidade=picarras"
-                className="block px-3 py-2 text-purple-600 hover:text-purple-700 hover:bg-purple-100 rounded-md"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Imóveis em Piçarras
-              </Link>
-              <Link
-                href="/imoveis?cidade=barra-velha"
-                className="block px-3 py-2 text-purple-600 hover:text-purple-700 hover:bg-purple-100 rounded-md"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Imóveis em Barra Velha
-              </Link>
-              <Link
-                href="/anunciar"
-                className="block px-3 py-2 text-purple-600 hover:text-purple-700 hover:bg-purple-100 rounded-md"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Anunciar imóvel
-              </Link>
-              
-              <div className="border-t border-purple-200 my-2"></div>
-              
-              {/* Links adicionais */}
-              <Link
-                href="/sobre"
-                className="block px-3 py-2 text-purple-600 hover:text-purple-700 hover:bg-purple-100 rounded-md"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Sobre nós
-              </Link>
-              <Link
-                href="/contato"
-                className="block px-3 py-2 text-purple-600 hover:text-purple-700 hover:bg-purple-100 rounded-md"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contato
-              </Link>
             </div>
           </div>
         )}
