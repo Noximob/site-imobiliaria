@@ -7,61 +7,61 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
       {/* Seção Buscas Frequentes */}
-      <section className="py-16 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 bg-gray-900">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Título da Seção */}
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
+          <div className="text-center mb-8">
+            <h2 className="text-lg font-medium text-white">
               Buscas frequentes em Penha, Piçarras e Barra Velha
             </h2>
           </div>
 
           {/* Grid das Categorias */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Penha */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2 mb-4">
-                <Search className="w-5 h-5 text-yellow-400" />
-                <h3 className="text-lg font-semibold text-yellow-400">Penha</h3>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-1 mb-3">
+                <Search className="w-3 h-3 text-purple-400" />
+                <h3 className="text-sm font-medium text-purple-400">Penha</h3>
               </div>
-              <div className="grid grid-cols-2 gap-2">
-                <div className="space-y-2">
-                  <Link href="/imoveis?cidade=penha&tipo=apartamento" className="block text-sm text-gray-300 hover:text-white transition-colors">
+              <div className="grid grid-cols-2 gap-1">
+                <div className="space-y-1">
+                  <Link href="/imoveis?cidade=penha&tipo=apartamento" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamento à venda
                   </Link>
-                  <Link href="/imoveis?cidade=penha" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=penha" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Imóveis à venda
                   </Link>
-                  <Link href="/imoveis?cidade=penha&tipo=cobertura" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=penha&tipo=cobertura" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Coberturas à venda
                   </Link>
-                  <Link href="/imoveis?cidade=penha&vista=frente-mar" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=penha&vista=frente-mar" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamento Frente Mar
                   </Link>
-                  <Link href="/imoveis?cidade=penha&vista=vista-mar" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=penha&vista=vista-mar" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamento Vista para o Mar
                   </Link>
-                  <Link href="/imoveis?cidade=penha&vista=quadra-mar" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=penha&vista=quadra-mar" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamento Quadra Mar
                   </Link>
                 </div>
-                <div className="space-y-2">
-                  <Link href="/imoveis?cidade=penha&tipo=apartamento&acao=comprar" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                <div className="space-y-1">
+                  <Link href="/imoveis?cidade=penha&tipo=apartamento&acao=comprar" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Comprar Apartamento
                   </Link>
-                  <Link href="/imoveis?cidade=penha&status=na-planta" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=penha&status=na-planta" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamentos na planta
                   </Link>
-                  <Link href="/imoveis?cidade=penha&status=lancamento" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=penha&status=lancamento" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Lançamentos
                   </Link>
-                  <Link href="/imoveis?cidade=penha&tipo=casa" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=penha&tipo=casa" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Casas à venda
                   </Link>
-                  <Link href="/imoveis?cidade=penha&tipo=casa&condominio=fechado" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=penha&tipo=casa&condominio=fechado" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Casas em Condomínio Fechado
                   </Link>
-                  <Link href="/imoveis?cidade=penha&mobiliado=sim" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=penha&mobiliado=sim" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamentos Mobiliados
                   </Link>
                 </div>
@@ -69,49 +69,49 @@ export default function Footer() {
             </div>
 
             {/* Piçarras */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2 mb-4">
-                <Search className="w-5 h-5 text-yellow-400" />
-                <h3 className="text-lg font-semibold text-yellow-400">Piçarras</h3>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-1 mb-3">
+                <Search className="w-3 h-3 text-purple-400" />
+                <h3 className="text-sm font-medium text-purple-400">Piçarras</h3>
               </div>
-              <div className="grid grid-cols-2 gap-2">
-                <div className="space-y-2">
-                  <Link href="/imoveis?cidade=picarras&tipo=apartamento" className="block text-sm text-gray-300 hover:text-white transition-colors">
+              <div className="grid grid-cols-2 gap-1">
+                <div className="space-y-1">
+                  <Link href="/imoveis?cidade=picarras&tipo=apartamento" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamento à venda
                   </Link>
-                  <Link href="/imoveis?cidade=picarras" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=picarras" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Imóveis à venda
                   </Link>
-                  <Link href="/imoveis?cidade=picarras&tipo=cobertura" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=picarras&tipo=cobertura" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Coberturas à venda
                   </Link>
-                  <Link href="/imoveis?cidade=picarras&vista=frente-mar" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=picarras&vista=frente-mar" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamento Frente Mar
                   </Link>
-                  <Link href="/imoveis?cidade=picarras&vista=vista-mar" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=picarras&vista=vista-mar" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamento Vista para o Mar
                   </Link>
-                  <Link href="/imoveis?cidade=picarras&vista=quadra-mar" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=picarras&vista=quadra-mar" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamento Quadra Mar
                   </Link>
                 </div>
-                <div className="space-y-2">
-                  <Link href="/imoveis?cidade=picarras&tipo=apartamento&acao=comprar" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                <div className="space-y-1">
+                  <Link href="/imoveis?cidade=picarras&tipo=apartamento&acao=comprar" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Comprar Apartamento
                   </Link>
-                  <Link href="/imoveis?cidade=picarras&status=na-planta" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=picarras&status=na-planta" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamentos na planta
                   </Link>
-                  <Link href="/imoveis?cidade=picarras&status=lancamento" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=picarras&status=lancamento" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Lançamentos
                   </Link>
-                  <Link href="/imoveis?cidade=picarras&tipo=casa" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=picarras&tipo=casa" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Casas à venda
                   </Link>
-                  <Link href="/imoveis?cidade=picarras&tipo=casa&condominio=fechado" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=picarras&tipo=casa&condominio=fechado" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Casas em Condomínio Fechado
                   </Link>
-                  <Link href="/imoveis?cidade=picarras&mobiliado=sim" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=picarras&mobiliado=sim" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamentos Mobiliados
                   </Link>
                 </div>
@@ -119,49 +119,49 @@ export default function Footer() {
             </div>
 
             {/* Barra Velha */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2 mb-4">
-                <Search className="w-5 h-5 text-yellow-400" />
-                <h3 className="text-lg font-semibold text-yellow-400">Barra Velha</h3>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-1 mb-3">
+                <Search className="w-3 h-3 text-purple-400" />
+                <h3 className="text-sm font-medium text-purple-400">Barra Velha</h3>
               </div>
-              <div className="grid grid-cols-2 gap-2">
-                <div className="space-y-2">
-                  <Link href="/imoveis?cidade=barra-velha&tipo=apartamento" className="block text-sm text-gray-300 hover:text-white transition-colors">
+              <div className="grid grid-cols-2 gap-1">
+                <div className="space-y-1">
+                  <Link href="/imoveis?cidade=barra-velha&tipo=apartamento" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamento à venda
                   </Link>
-                  <Link href="/imoveis?cidade=barra-velha" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=barra-velha" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Imóveis à venda
                   </Link>
-                  <Link href="/imoveis?cidade=barra-velha&tipo=cobertura" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=barra-velha&tipo=cobertura" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Coberturas à venda
                   </Link>
-                  <Link href="/imoveis?cidade=barra-velha&vista=frente-mar" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=barra-velha&vista=frente-mar" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamento Frente Mar
                   </Link>
-                  <Link href="/imoveis?cidade=barra-velha&vista=vista-mar" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=barra-velha&vista=vista-mar" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamento Vista para o Mar
                   </Link>
-                  <Link href="/imoveis?cidade=barra-velha&vista=quadra-mar" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=barra-velha&vista=quadra-mar" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamento Quadra Mar
                   </Link>
                 </div>
-                <div className="space-y-2">
-                  <Link href="/imoveis?cidade=barra-velha&tipo=apartamento&acao=comprar" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                <div className="space-y-1">
+                  <Link href="/imoveis?cidade=barra-velha&tipo=apartamento&acao=comprar" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Comprar Apartamento
                   </Link>
-                  <Link href="/imoveis?cidade=barra-velha&status=na-planta" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=barra-velha&status=na-planta" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamentos na planta
                   </Link>
-                  <Link href="/imoveis?cidade=barra-velha&status=lancamento" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=barra-velha&status=lancamento" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Lançamentos
                   </Link>
-                  <Link href="/imoveis?cidade=barra-velha&tipo=casa" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=barra-velha&tipo=casa" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Casas à venda
                   </Link>
-                  <Link href="/imoveis?cidade=barra-velha&tipo=casa&condominio=fechado" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=barra-velha&tipo=casa&condominio=fechado" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Casas em Condomínio Fechado
                   </Link>
-                  <Link href="/imoveis?cidade=barra-velha&mobiliado=sim" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?cidade=barra-velha&mobiliado=sim" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamentos Mobiliados
                   </Link>
                 </div>
@@ -169,49 +169,49 @@ export default function Footer() {
             </div>
 
             {/* Construtoras */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2 mb-4">
-                <Building className="w-5 h-5 text-yellow-400" />
-                <h3 className="text-lg font-semibold text-yellow-400">Construtoras</h3>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-1 mb-3">
+                <Building className="w-3 h-3 text-purple-400" />
+                <h3 className="text-sm font-medium text-purple-400">Construtoras</h3>
               </div>
-              <div className="grid grid-cols-2 gap-2">
-                <div className="space-y-2">
-                  <Link href="/imoveis?construtora=santer" className="block text-sm text-gray-300 hover:text-white transition-colors">
+              <div className="grid grid-cols-2 gap-1">
+                <div className="space-y-1">
+                  <Link href="/imoveis?construtora=santer" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Santer
                   </Link>
-                  <Link href="/imoveis?construtora=stein" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?construtora=stein" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Stein
                   </Link>
-                  <Link href="/imoveis?construtora=grupo-estrutura" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?construtora=grupo-estrutura" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Grupo Estrutura
                   </Link>
-                  <Link href="/imoveis?construtora=arthaus" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?construtora=arthaus" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     ArtHaus
                   </Link>
-                  <Link href="/imoveis?construtora=vetter" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?construtora=vetter" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Vetter
                   </Link>
-                  <Link href="/imoveis?construtora=rogga" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?construtora=rogga" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Rogga
                   </Link>
                 </div>
-                <div className="space-y-2">
-                  <Link href="/imoveis?status=lancamento" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                <div className="space-y-1">
+                  <Link href="/imoveis?status=lancamento" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Lançamentos
                   </Link>
-                  <Link href="/imoveis?status=na-planta" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?status=na-planta" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Na Planta
                   </Link>
-                  <Link href="/imoveis?status=em-construcao" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?status=em-construcao" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Em Construção
                   </Link>
-                  <Link href="/imoveis?status=pronto" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?status=pronto" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Pronto para Morar
                   </Link>
-                  <Link href="/imoveis?tipo=apartamento" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?tipo=apartamento" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Apartamentos
                   </Link>
-                  <Link href="/imoveis?tipo=casa" className="block text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link href="/imoveis?tipo=casa" className="block text-xs text-gray-400 hover:text-white transition-colors">
                     Casas
                   </Link>
                 </div>
