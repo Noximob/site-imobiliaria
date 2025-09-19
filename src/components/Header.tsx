@@ -153,27 +153,27 @@ export default function Header() {
             <div className="absolute inset-0 bg-black bg-opacity-50" onClick={() => setIsMenuOpen(false)}></div>
             
             {/* Sidebar */}
-            <div className="absolute right-0 top-0 h-full w-80 bg-gray-900 p-6">
+            <div className="absolute right-0 top-0 h-full w-64 bg-gray-900 p-4">
               {/* Close button */}
-              <div className="flex justify-end mb-8">
+              <div className="flex justify-end mb-4">
                 <button onClick={() => setIsMenuOpen(false)} className="text-white">
-                  <X className="w-6 h-6" />
+                  <X className="w-5 h-5" />
                 </button>
               </div>
               
               {/* Menu content */}
-              <div className="space-y-8">
+              <div className="space-y-5">
                 {/* Imóveis */}
                 <div>
-                  <h3 className="text-yellow-400 text-lg font-semibold mb-4">Imóveis</h3>
-                  <div className="space-y-3">
-                    <Link href="/imoveis" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                  <h3 className="text-yellow-400 text-base font-semibold mb-2">Imóveis</h3>
+                  <div className="space-y-1">
+                    <Link href="/imoveis" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Imóveis à venda
                     </Link>
-                    <Link href="/empreendimentos" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                    <Link href="/empreendimentos" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Empreendimentos
                     </Link>
-                    <Link href="/favoritos" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                    <Link href="/favoritos" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Favoritos
                     </Link>
                   </div>
@@ -181,21 +181,21 @@ export default function Header() {
 
                 {/* Serviços */}
                 <div>
-                  <h3 className="text-yellow-400 text-lg font-semibold mb-4">Serviços</h3>
-                  <div className="space-y-3">
-                    <Link href="/anunciar" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                  <h3 className="text-yellow-400 text-base font-semibold mb-2">Serviços</h3>
+                  <div className="space-y-1">
+                    <Link href="/anunciar" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Anunciar imóvel
                     </Link>
-                    <Link href="/calculadora" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                    <Link href="/calculadora" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Calculadora de Imóvel
                     </Link>
-                    <Link href="/encontrar" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                    <Link href="/encontrar" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Encontre meu imóvel
                     </Link>
-                    <Link href="/como-comprar" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                    <Link href="/como-comprar" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Como comprar
                     </Link>
-                    <Link href="/simular-financiamento" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                    <Link href="/simular-financiamento" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Simular Financiamento
                     </Link>
                   </div>
@@ -203,38 +203,38 @@ export default function Header() {
 
                 {/* Institucional */}
                 <div>
-                  <h3 className="text-yellow-400 text-lg font-semibold mb-4">Institucional</h3>
-                  <div className="space-y-3">
-                    <Link href="/sobre" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                  <h3 className="text-yellow-400 text-base font-semibold mb-2">Institucional</h3>
+                  <div className="space-y-1">
+                    <Link href="/sobre" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Quem somos
                     </Link>
-                    <Link href="/contato" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                    <Link href="/contato" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Contato
                     </Link>
-                    <Link href="/trabalhe-conosco" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                    <Link href="/trabalhe-conosco" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Trabalhe Conosco
                     </Link>
-                    <Link href="/viva-penha" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                    <Link href="/viva-penha" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Viva Penha
                     </Link>
-                    <Link href="/viva-picarras" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                    <Link href="/viva-picarras" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Viva Piçarras
                     </Link>
-                    <Link href="/blog" className="block text-white hover:text-gray-300 py-1" onClick={() => setIsMenuOpen(false)}>
+                    <Link href="/blog" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Blog
                     </Link>
                   </div>
                 </div>
 
                 {/* Contatos */}
-                <div className="pt-6 border-t border-gray-700">
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-3 text-white">
-                      <Phone className="w-5 h-5 text-yellow-400" />
+                <div className="pt-4 border-t border-gray-700">
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2 text-white text-sm">
+                      <Phone className="w-4 h-4 text-yellow-400" />
                       <span>(47) 3367-0990</span>
                     </div>
-                    <div className="flex items-center space-x-3 text-white">
-                      <Phone className="w-5 h-5 text-yellow-400" />
+                    <div className="flex items-center space-x-2 text-white text-sm">
+                      <Phone className="w-4 h-4 text-yellow-400" />
                       <span>(47) 99699-3030</span>
                     </div>
                   </div>
