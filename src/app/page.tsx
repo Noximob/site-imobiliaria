@@ -1,14 +1,15 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
+import { useState } from 'react'
 import { Search, Home, Building, MapPin, Star, Users, Award } from 'lucide-react'
 import SearchForm from '@/components/SearchForm'
 import ImovelCard from '@/components/ImovelCard'
 import { getAllImoveis } from '@/lib/imoveis'
 
-export default async function HomePage() {
-  // Buscar imóveis em destaque (primeiros 6)
-  const imoveis = await getAllImoveis()
-  const imoveisDestaque = imoveis.slice(0, 6)
+export default function HomePage() {
+  const [selectedMember, setSelectedMember] = useState<string | null>(null)
 
   return (
     <div className="min-h-screen">
@@ -510,134 +511,192 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Seção Conheça nossa equipe */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header da Seção */}
-          <div className="flex items-center justify-between mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              Conheça nossa equipe
-            </h2>
-            
-            {/* Botões de Navegação */}
-            <div className="flex space-x-2">
-              <button className="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors duration-200">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button className="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors duration-200">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
+             {/* Seção Conheça nossa equipe */}
+             <section className="py-16 bg-white">
+               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                 {/* Header da Seção */}
+                 <div className="flex items-center justify-between mb-12">
+                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+                     Conheça nossa equipe
+                   </h2>
+                   
+                   {/* Botões de Navegação */}
+                   <div className="flex space-x-2">
+                     <button className="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors duration-200">
+                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                       </svg>
+                     </button>
+                     <button className="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors duration-200">
+                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                       </svg>
+                     </button>
+                   </div>
+                 </div>
 
-          {/* Grid da Equipe */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Membro 1 - Adriana Barbosa Campos */}
-            <div className="bg-white rounded-t-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="h-64 bg-gray-100 flex items-center justify-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center">
-                  <svg className="w-12 h-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
-              </div>
-              <div className="bg-gray-900 px-4 py-6">
-                <div className="space-y-3">
-                  <div className="text-yellow-400 text-xs font-medium">Corretora de imóveis</div>
-                  <div className="text-yellow-400 text-xs font-medium">Creci: 9775</div>
-                  
-                  <div className="space-y-2 pt-2">
-                    <div className="flex items-center space-x-2">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                      <span className="text-white text-xs">(47) 99955-0880</span>
-                    </div>
-                    
-                    <div className="flex items-center space-x-2">
-                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
-                      </svg>
-                      <span className="text-white text-xs">adribcampos</span>
-                    </div>
-                    
-                    <div className="flex items-center space-x-2">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                      <span className="text-white text-xs">adriana@noximoveis.com.br</span>
-                    </div>
-                  </div>
-                  
-                  <div className="border-t border-gray-700 pt-3 mt-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-white text-sm font-medium">Adriana Barbosa Campos</span>
-                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                 {/* Grid da Equipe */}
+                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                   {/* Membro 1 - Adriana Barbosa Campos */}
+                   <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                     <div className="h-64 bg-gray-100 flex items-center justify-center">
+                       <div className="w-24 h-24 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center">
+                         <svg className="w-12 h-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                         </svg>
+                       </div>
+                     </div>
+                     <div className="p-4">
+                       <h3 className="text-lg font-semibold text-gray-900 mb-1">Adriana Barbosa Campos</h3>
+                       <p className="text-sm text-gray-600 mb-3">Corretora de imóveis</p>
+                       <button 
+                         onClick={() => setSelectedMember('adriana')}
+                         className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
+                       >
+                         <span>Ver contato</span>
+                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                         </svg>
+                       </button>
+                     </div>
+                   </div>
 
-            {/* Membro 2 - Adriana Medeiros */}
-            <div className="bg-white rounded-t-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="h-64 bg-gray-100 flex items-center justify-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center">
-                  <svg className="w-12 h-12 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
-              </div>
-              <div className="bg-gray-900 px-4 py-3 flex items-center justify-between">
-                <span className="text-white text-sm font-medium">Adriana Medeiros</span>
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-              </div>
-            </div>
+                   {/* Membro 2 - Adriana Medeiros */}
+                   <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                     <div className="h-64 bg-gray-100 flex items-center justify-center">
+                       <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center">
+                         <svg className="w-12 h-12 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                         </svg>
+                       </div>
+                     </div>
+                     <div className="p-4">
+                       <h3 className="text-lg font-semibold text-gray-900 mb-1">Adriana Medeiros</h3>
+                       <p className="text-sm text-gray-600 mb-3">Corretora de imóveis</p>
+                       <button 
+                         onClick={() => setSelectedMember('adriana-medeiros')}
+                         className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
+                       >
+                         <span>Ver contato</span>
+                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                         </svg>
+                       </button>
+                     </div>
+                   </div>
 
-            {/* Membro 3 - Alan de Freitas Cordeiro */}
-            <div className="bg-white rounded-t-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="h-64 bg-gray-100 flex items-center justify-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-purple-100 to-blue-200 rounded-full flex items-center justify-center">
-                  <svg className="w-12 h-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
-              </div>
-              <div className="bg-gray-900 px-4 py-3 flex items-center justify-between">
-                <span className="text-white text-sm font-medium">Alan de Freitas Cordeiro</span>
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-              </div>
-            </div>
+                   {/* Membro 3 - Alan de Freitas Cordeiro */}
+                   <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                     <div className="h-64 bg-gray-100 flex items-center justify-center">
+                       <div className="w-24 h-24 bg-gradient-to-br from-purple-100 to-blue-200 rounded-full flex items-center justify-center">
+                         <svg className="w-12 h-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                         </svg>
+                       </div>
+                     </div>
+                     <div className="p-4">
+                       <h3 className="text-lg font-semibold text-gray-900 mb-1">Alan de Freitas Cordeiro</h3>
+                       <p className="text-sm text-gray-600 mb-3">Corretor de imóveis</p>
+                       <button 
+                         onClick={() => setSelectedMember('alan')}
+                         className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
+                       >
+                         <span>Ver contato</span>
+                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                         </svg>
+                       </button>
+                     </div>
+                   </div>
 
-            {/* Membro 4 - Alex Penha */}
-            <div className="bg-white rounded-t-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="h-64 bg-gray-100 flex items-center justify-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-purple-200 rounded-full flex items-center justify-center">
-                  <svg className="w-12 h-12 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
-              </div>
-              <div className="bg-gray-900 px-4 py-3 flex items-center justify-between">
-                <span className="text-white text-sm font-medium">Alex Penha</span>
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+                   {/* Membro 4 - Alex Penha */}
+                   <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                     <div className="h-64 bg-gray-100 flex items-center justify-center">
+                       <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-purple-200 rounded-full flex items-center justify-center">
+                         <svg className="w-12 h-12 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                         </svg>
+                       </div>
+                     </div>
+                     <div className="p-4">
+                       <h3 className="text-lg font-semibold text-gray-900 mb-1">Alex Penha</h3>
+                       <p className="text-sm text-gray-600 mb-3">Corretor de imóveis</p>
+                       <button 
+                         onClick={() => setSelectedMember('alex')}
+                         className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
+                       >
+                         <span>Ver contato</span>
+                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                         </svg>
+                       </button>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </section>
+
+             {/* Modal de Contato */}
+             {selectedMember && (
+               <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                 <div className="bg-white rounded-lg max-w-md w-full p-6">
+                   <div className="flex items-center justify-between mb-4">
+                     <h3 className="text-xl font-bold text-gray-900">
+                       {selectedMember === 'adriana' && 'Adriana Barbosa Campos'}
+                       {selectedMember === 'adriana-medeiros' && 'Adriana Medeiros'}
+                       {selectedMember === 'alan' && 'Alan de Freitas Cordeiro'}
+                       {selectedMember === 'alex' && 'Alex Penha'}
+                     </h3>
+                     <button 
+                       onClick={() => setSelectedMember(null)}
+                       className="text-gray-400 hover:text-gray-600"
+                     >
+                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                       </svg>
+                     </button>
+                   </div>
+                   
+                   <div className="space-y-4">
+                     <div className="flex items-center space-x-3">
+                       <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                         <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                         </svg>
+                       </div>
+                       <div>
+                         <p className="text-sm text-gray-600">Telefone</p>
+                         <p className="font-medium text-gray-900">(47) 99955-0880</p>
+                       </div>
+                     </div>
+                     
+                     <div className="flex items-center space-x-3">
+                       <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                         <svg className="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                           <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                         </svg>
+                       </div>
+                       <div>
+                         <p className="text-sm text-gray-600">Instagram</p>
+                         <p className="font-medium text-gray-900">@adribcampos</p>
+                       </div>
+                     </div>
+                     
+                     <div className="flex items-center space-x-3">
+                       <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                         <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                         </svg>
+                       </div>
+                       <div>
+                         <p className="text-sm text-gray-600">Email</p>
+                         <p className="font-medium text-gray-900">adriana@noximoveis.com.br</p>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             )}
 
     </div>
   )
