@@ -133,7 +133,12 @@ export default function HomePage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-600"></div>
+                  <Image 
+                    src="/imagens/Encontre Imovel/Piçarras/Apartamento-Cobertura.png" 
+                    alt="Apartamentos e Coberturas" 
+                    fill
+                    className="object-cover"
+                  />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Apartamentos e Coberturas</span>
@@ -141,7 +146,12 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-green-600"></div>
+                  <Image 
+                    src="/imagens/Encontre Imovel/Piçarras/Mobiliado.png" 
+                    alt="Mobiliados" 
+                    fill
+                    className="object-cover"
+                  />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Mobiliados</span>
@@ -149,7 +159,12 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-cyan-600"></div>
+                  <Image 
+                    src="/imagens/Encontre Imovel/Piçarras/Vista-Mar.png" 
+                    alt="Vista Mar" 
+                    fill
+                    className="object-cover"
+                  />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Vista Mar</span>
@@ -157,7 +172,12 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 to-orange-500"></div>
+                  <Image 
+                    src="/imagens/Encontre Imovel/Piçarras/Lançamentos.png" 
+                    alt="Lançamentos" 
+                    fill
+                    className="object-cover"
+                  />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Lançamentos</span>
