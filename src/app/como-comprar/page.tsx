@@ -24,63 +24,77 @@ export default function ComoComprarPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-blue-600 text-white py-20 min-h-[500px] flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <section className="relative text-white py-20 min-h-[600px] flex items-center">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/imagens/banners/banner-home.png"
+            alt="Como Comprar um Imóvel - Nox Imóveis"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Overlay para melhorar legibilidade do texto */}
+          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Lado Esquerdo - Texto e Botão */}
             <div className="text-white">
               <div className="space-y-6">
                 <div className="text-4xl md:text-5xl font-bold leading-tight">
-                  <div>Como Comprar</div>
-                  <div>um Imóvel</div>
+                  <div>A experiência de</div>
+                  <div>quem entende o</div>
+                  <div>mercado ao seu lado!</div>
                 </div>
                 
-                <p className="text-xl text-purple-100 leading-relaxed">
-                  Seu guia completo para adquirir o imóvel dos seus sonhos com segurança e tranquilidade
-                </p>
-                
                 <div className="flex justify-start">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-3">
-                    <span className="text-lg font-medium">CRECI/SC 9839-J</span>
-                  </div>
+                  <Link 
+                    href="/sobre" 
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg transition-colors inline-flex items-center text-lg"
+                  >
+                    Ver as vantagens
+                  </Link>
                 </div>
               </div>
             </div>
             
-            {/* Lado Direito - Elementos Visuais */}
+            {/* Lado Direito - Pessoas (placeholder para depois escolher a foto) */}
             <div className="relative">
-              <div className="grid grid-cols-3 gap-6">
-                {/* Card 1 - Escolha */}
+              <div className="grid grid-cols-3 gap-4">
+                {/* Pessoa 1 */}
                 <div className="text-center">
                   <div className="relative mb-4">
                     <div className="w-32 h-40 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg mx-auto flex items-center justify-center">
-                      <Home className="w-16 h-16 text-white" />
+                      <Users className="w-16 h-16 text-white" />
                     </div>
                   </div>
-                  <h4 className="text-white font-semibold text-sm">1. Escolha</h4>
-                  <p className="text-purple-200 text-xs">o Imóvel</p>
+                  <h4 className="text-white font-semibold text-sm">Especialista em</h4>
+                  <p className="text-purple-200 text-xs">Vendas</p>
                 </div>
                 
-                {/* Card 2 - Documentação */}
+                {/* Pessoa 2 */}
                 <div className="text-center">
                   <div className="relative mb-4">
                     <div className="w-32 h-40 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg mx-auto flex items-center justify-center">
-                      <FileText className="w-16 h-16 text-white" />
+                      <Building className="w-16 h-16 text-white" />
                     </div>
                   </div>
-                  <h4 className="text-white font-semibold text-sm">2. Documentação</h4>
-                  <p className="text-purple-200 text-xs">Necessária</p>
+                  <h4 className="text-white font-semibold text-sm">Consultor em</h4>
+                  <p className="text-purple-200 text-xs">Investimentos</p>
                 </div>
                 
-                {/* Card 3 - Financiamento */}
+                {/* Pessoa 3 */}
                 <div className="text-center">
                   <div className="relative mb-4">
                     <div className="w-32 h-40 bg-gradient-to-br from-green-400 to-green-600 rounded-lg mx-auto flex items-center justify-center">
-                      <CreditCard className="w-16 h-16 text-white" />
+                      <Award className="w-16 h-16 text-white" />
                     </div>
                   </div>
-                  <h4 className="text-white font-semibold text-sm">3. Financiamento</h4>
-                  <p className="text-purple-200 text-xs">e Finalização</p>
+                  <h4 className="text-white font-semibold text-sm">Especialista em</h4>
+                  <p className="text-purple-200 text-xs">Financiamentos</p>
                 </div>
               </div>
             </div>
