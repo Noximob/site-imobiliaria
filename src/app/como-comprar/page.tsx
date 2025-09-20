@@ -90,56 +90,69 @@ export default function ComoComprarPage() {
       {/* Seção Como é Comprar */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-              Como é comprar com a Nox?
-            </h2>
-            
-            <div className="space-y-6">
-              <div className="flex items-start">
-                <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-6 flex-shrink-0">
-                  01
-                </div>
-                <p className="text-lg text-gray-700 pt-2">
-                  Busque o imóvel ideal em nosso site
-                </p>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Lado Esquerdo - Título e Botão */}
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 leading-tight">
+                <div>Como é comprar</div>
+                <div>com a Nox?</div>
+              </h2>
               
-              <div className="flex items-start">
-                <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-6 flex-shrink-0">
-                  02
-                </div>
-                <p className="text-lg text-gray-700 pt-2">
-                  Entre em contato e agende suas visitas
-                </p>
-              </div>
-              
-              <div className="flex items-start">
-                <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-6 flex-shrink-0">
-                  03
-                </div>
-                <p className="text-lg text-gray-700 pt-2">
-                  Faça suas propostas
-                </p>
-              </div>
-              
-              <div className="flex items-start">
-                <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-6 flex-shrink-0">
-                  04
-                </div>
-                <p className="text-lg text-gray-700 pt-2">
-                  Assine digitalmente e receba as chaves
-                </p>
+              <div className="mt-8">
+                <Link 
+                  href="/imoveis" 
+                  className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-8 rounded-lg transition-colors inline-flex items-center text-lg"
+                >
+                  Buscar imóveis
+                </Link>
               </div>
             </div>
             
-            <div className="mt-8">
-              <Link 
-                href="/imoveis" 
-                className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-lg transition-colors inline-flex items-center text-lg"
-              >
-                Buscar imóveis
-              </Link>
+            {/* Lado Direito - 4 Passos Horizontais */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Passo 1 */}
+              <div>
+                <div className="text-4xl font-bold text-gray-300 mb-3">01.</div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  Busque o imóvel ideal em nosso site
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Utilize nossos filtros para otimizar seus resultados
+                </p>
+              </div>
+              
+              {/* Passo 2 */}
+              <div>
+                <div className="text-4xl font-bold text-gray-300 mb-3">02.</div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  Entre em contato e agende suas visitas
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Aproveite para tirar todas as suas dúvidas com o corretor
+                </p>
+              </div>
+              
+              {/* Passo 3 */}
+              <div>
+                <div className="text-4xl font-bold text-gray-300 mb-3">03.</div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  Faça suas propostas
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Nossos especialistas ajudam você com a negociação e documentação
+                </p>
+              </div>
+              
+              {/* Passo 4 */}
+              <div>
+                <div className="text-4xl font-bold text-gray-300 mb-3">04.</div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  Assine digitalmente e receba as chaves
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Todo o processo digital para maior comodidade
+                </p>
+              </div>
             </div>
           </div>
         </div>
