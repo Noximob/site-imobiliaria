@@ -23,18 +23,64 @@ export default function ComoComprarPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-blue-600 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Como Comprar um Imóvel
-            </h1>
-            <p className="text-xl md:text-2xl text-purple-100 mb-8 max-w-3xl mx-auto">
-              Seu guia completo para adquirir o imóvel dos seus sonhos com segurança e tranquilidade
-            </p>
-            <div className="flex justify-center">
-              <div className="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-3">
-                <span className="text-lg font-medium">CRECI/SC 9839-J</span>
+      <section className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-blue-600 text-white py-20 min-h-[500px] flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Lado Esquerdo - Texto e Botão */}
+            <div className="text-white">
+              <div className="space-y-6">
+                <div className="text-4xl md:text-5xl font-bold leading-tight">
+                  <div>Como Comprar</div>
+                  <div>um Imóvel</div>
+                </div>
+                
+                <p className="text-xl text-purple-100 leading-relaxed">
+                  Seu guia completo para adquirir o imóvel dos seus sonhos com segurança e tranquilidade
+                </p>
+                
+                <div className="flex justify-start">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-3">
+                    <span className="text-lg font-medium">CRECI/SC 9839-J</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Lado Direito - Elementos Visuais */}
+            <div className="relative">
+              <div className="grid grid-cols-3 gap-6">
+                {/* Card 1 - Escolha */}
+                <div className="text-center">
+                  <div className="relative mb-4">
+                    <div className="w-32 h-40 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg mx-auto flex items-center justify-center">
+                      <Home className="w-16 h-16 text-white" />
+                    </div>
+                  </div>
+                  <h4 className="text-white font-semibold text-sm">1. Escolha</h4>
+                  <p className="text-purple-200 text-xs">o Imóvel</p>
+                </div>
+                
+                {/* Card 2 - Documentação */}
+                <div className="text-center">
+                  <div className="relative mb-4">
+                    <div className="w-32 h-40 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg mx-auto flex items-center justify-center">
+                      <FileText className="w-16 h-16 text-white" />
+                    </div>
+                  </div>
+                  <h4 className="text-white font-semibold text-sm">2. Documentação</h4>
+                  <p className="text-purple-200 text-xs">Necessária</p>
+                </div>
+                
+                {/* Card 3 - Financiamento */}
+                <div className="text-center">
+                  <div className="relative mb-4">
+                    <div className="w-32 h-40 bg-gradient-to-br from-green-400 to-green-600 rounded-lg mx-auto flex items-center justify-center">
+                      <CreditCard className="w-16 h-16 text-white" />
+                    </div>
+                  </div>
+                  <h4 className="text-white font-semibold text-sm">3. Financiamento</h4>
+                  <p className="text-purple-200 text-xs">e Finalização</p>
+                </div>
               </div>
             </div>
           </div>
