@@ -87,17 +87,60 @@ export default function ComoComprarPage() {
         </div>
       </section>
 
-      {/* Seção de Introdução */}
-      <section className="py-16 bg-gray-50">
+      {/* Seção Como é Comprar */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Você está no lugar certo!
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+              Como é comprar com a Nox?
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Comprar um imóvel é uma das decisões mais importantes da sua vida. Nossa equipe especializada 
-              está aqui para te guiar em cada etapa do processo, garantindo transparência e segurança.
-            </p>
+            
+            <div className="space-y-6">
+              <div className="flex items-start">
+                <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-6 flex-shrink-0">
+                  01
+                </div>
+                <p className="text-lg text-gray-700 pt-2">
+                  Busque o imóvel ideal em nosso site
+                </p>
+              </div>
+              
+              <div className="flex items-start">
+                <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-6 flex-shrink-0">
+                  02
+                </div>
+                <p className="text-lg text-gray-700 pt-2">
+                  Entre em contato e agende suas visitas
+                </p>
+              </div>
+              
+              <div className="flex items-start">
+                <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-6 flex-shrink-0">
+                  03
+                </div>
+                <p className="text-lg text-gray-700 pt-2">
+                  Faça suas propostas
+                </p>
+              </div>
+              
+              <div className="flex items-start">
+                <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-6 flex-shrink-0">
+                  04
+                </div>
+                <p className="text-lg text-gray-700 pt-2">
+                  Assine digitalmente e receba as chaves
+                </p>
+              </div>
+            </div>
+            
+            <div className="mt-8">
+              <Link 
+                href="/imoveis" 
+                className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-lg transition-colors inline-flex items-center text-lg"
+              >
+                Buscar imóveis
+              </Link>
+            </div>
           </div>
         </div>
       </section>
