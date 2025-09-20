@@ -44,6 +44,121 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Seção Seleção Nox */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header da Seção */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
+            <div>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-3">
+                Seleção Nox
+            </h2>
+              <p className="text-sm text-gray-500 max-w-xl">
+                Confira a nossa curadoria dos melhores imóveis selecionados pela equipe da Nox Imóveis.
+              </p>
+            </div>
+            <div className="mt-4 md:mt-0">
+              <a
+                href="/imoveis"
+                className="inline-flex items-center px-5 py-2 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors duration-200"
+              >
+                Buscar imóveis
+                <svg className="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          {/* Carousel de Imóveis */}
+          <div className="relative">
+            {/* Botões de Navegação */}
+            <button className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded flex items-center justify-center transition-colors duration-200 z-10">
+              <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded flex items-center justify-center transition-colors duration-200 z-10">
+              <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            {/* Grid de Imóveis */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Imóvel 1 */}
+              <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
+                <div className="h-40 relative">
+                  <Image 
+                    src="/imagens/Seleção Nox/1.jpg" 
+                    alt="Imóvel Seleção Nox 1" 
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-base font-bold text-gray-900 mb-1">
+                    Apartamento 4 Quartos
+                  </h3>
+                  <p className="text-blue-600 text-xs font-medium mb-2">
+                    Praia Brava, Itajaí
+                  </p>
+                  <p className="text-lg font-bold text-gray-900">
+                    R$ 7.500.000,00
+                  </p>
+                </div>
+              </div>
+
+              {/* Imóvel 2 */}
+              <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
+                <div className="h-40 relative">
+                  <Image 
+                    src="/imagens/Seleção Nox/2.jpg" 
+                    alt="Imóvel Seleção Nox 2" 
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-base font-bold text-gray-900 mb-1">
+                    Apartamento 4 Quartos
+                  </h3>
+                  <p className="text-blue-600 text-xs font-medium mb-2">
+                    Pioneiros, Balneário Camboriú
+                  </p>
+                  <p className="text-lg font-bold text-gray-900">
+                    R$ 6.400.000,00
+                  </p>
+                </div>
+          </div>
+
+              {/* Imóvel 3 */}
+              <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
+                <div className="h-40 relative">
+                  <Image 
+                    src="/imagens/Seleção Nox/3.jpg" 
+                    alt="Imóvel Seleção Nox 3" 
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-base font-bold text-gray-900 mb-1">
+                    Apartamento 3 Quartos
+              </h3>
+                  <p className="text-blue-600 text-xs font-medium mb-2">
+                    Pioneiros, Balneário Camboriú
+                  </p>
+                  <p className="text-lg font-bold text-gray-900">
+                    R$ 8.300.000,00
+              </p>
+            </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Seção Cidades - Cards de Imóveis por Cidade */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -382,120 +497,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Seção Seleção Nox */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header da Seção */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
-            <div>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-3">
-                Seleção Nox
-            </h2>
-              <p className="text-sm text-gray-500 max-w-xl">
-                Confira a nossa curadoria dos melhores imóveis selecionados pela equipe da Nox Imóveis.
-              </p>
-            </div>
-            <div className="mt-4 md:mt-0">
-              <a
-                href="/imoveis"
-                className="inline-flex items-center px-5 py-2 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors duration-200"
-              >
-                Buscar imóveis
-                <svg className="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          {/* Carousel de Imóveis */}
-          <div className="relative">
-            {/* Botões de Navegação */}
-            <button className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded flex items-center justify-center transition-colors duration-200 z-10">
-              <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded flex items-center justify-center transition-colors duration-200 z-10">
-              <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            {/* Grid de Imóveis */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Imóvel 1 */}
-              <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
-                <div className="h-40 relative">
-                  <Image 
-                    src="/imagens/Seleção Nox/1.jpg" 
-                    alt="Imóvel Seleção Nox 1" 
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-base font-bold text-gray-900 mb-1">
-                    Apartamento 4 Quartos
-                  </h3>
-                  <p className="text-blue-600 text-xs font-medium mb-2">
-                    Praia Brava, Itajaí
-                  </p>
-                  <p className="text-lg font-bold text-gray-900">
-                    R$ 7.500.000,00
-                  </p>
-                </div>
-              </div>
-
-              {/* Imóvel 2 */}
-              <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
-                <div className="h-40 relative">
-                  <Image 
-                    src="/imagens/Seleção Nox/2.jpg" 
-                    alt="Imóvel Seleção Nox 2" 
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-base font-bold text-gray-900 mb-1">
-                    Apartamento 4 Quartos
-                  </h3>
-                  <p className="text-blue-600 text-xs font-medium mb-2">
-                    Pioneiros, Balneário Camboriú
-                  </p>
-                  <p className="text-lg font-bold text-gray-900">
-                    R$ 6.400.000,00
-                  </p>
-                </div>
-          </div>
-
-              {/* Imóvel 3 */}
-              <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
-                <div className="h-40 relative">
-                  <Image 
-                    src="/imagens/Seleção Nox/3.jpg" 
-                    alt="Imóvel Seleção Nox 3" 
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-base font-bold text-gray-900 mb-1">
-                    Apartamento 3 Quartos
-              </h3>
-                  <p className="text-blue-600 text-xs font-medium mb-2">
-                    Pioneiros, Balneário Camboriú
-                  </p>
-                  <p className="text-lg font-bold text-gray-900">
-                    R$ 8.300.000,00
-              </p>
-            </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Seção Anuncie com a Nox */}
       <section className="py-16 bg-white">
