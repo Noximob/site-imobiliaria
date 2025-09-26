@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Home, DollarSign, TrendingUp, BarChart3, Camera, Handshake, Laptop, MapPin, ChevronDown } from 'lucide-react'
+import { Home, DollarSign, TrendingUp, BarChart3, Camera, Users, Laptop, MapPin, ChevronDown } from 'lucide-react'
 
 export default function AnunciarPage() {
   const [formData, setFormData] = useState({
@@ -319,7 +319,7 @@ export default function AnunciarPage() {
                 {/* Vantagem 5 */}
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Handshake className="w-6 h-6 text-green-600" />
+                    <Users className="w-6 h-6 text-green-600" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">
