@@ -48,15 +48,15 @@ export default function ContatoPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Lado Esquerdo - Informações de Contato */}
-          <div className="space-y-6">
+          <div className="space-y-4">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
                 Fale com a nossa <span className="text-blue-600">equipe</span>
               </h1>
-              <p className="text-gray-600 text-base mb-6">
+              <p className="text-gray-600 text-sm mb-4">
                 Preencha o formulário ou entre em contato por um de nossos canais de atendimento.
               </p>
               
@@ -72,22 +72,16 @@ export default function ContatoPage() {
               </a>
             </div>
 
-            {/* Telefones */}
-            <div className="space-y-3">
-              <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4 text-gray-600" />
-                <span className="text-gray-900 font-medium text-sm">(47) 99699-3030</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4 text-gray-600" />
-                <span className="text-gray-900 font-medium text-sm">(47) 3367-0990</span>
-              </div>
+            {/* Telefone */}
+            <div className="flex items-center space-x-2">
+              <Phone className="w-4 h-4 text-gray-600" />
+              <span className="text-gray-900 font-medium text-sm">(47) 99753-0113</span>
             </div>
           </div>
 
           {/* Lado Direito - Formulário */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="bg-white rounded-lg shadow-sm p-5">
+            <form onSubmit={handleSubmit} className="space-y-3">
               {/* Nome */}
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">
@@ -154,7 +148,7 @@ export default function ContatoPage() {
 
               {/* Preferência de Contato */}
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-2">
+                <label className="block text-xs font-medium text-gray-700 mb-1">
                   Desejo receber contato por:
                 </label>
                 <div className="space-y-1">
@@ -190,7 +184,7 @@ export default function ContatoPage() {
                   name="mensagem"
                   value={formData.mensagem}
                   onChange={handleChange}
-                  rows={3}
+                  rows={2}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
                   placeholder="Como podemos lhe ajudar?"
                 />
@@ -199,7 +193,7 @@ export default function ContatoPage() {
               {/* Botão Enviar */}
               <button
                 type="submit"
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg transition-colors text-sm"
+                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm"
               >
                 Enviar mensagem
               </button>
