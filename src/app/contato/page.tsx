@@ -1,255 +1,209 @@
 'use client'
 
 import { useState } from 'react'
-import { Phone, Mail, MapPin, Clock, Send, MessageCircle } from 'lucide-react'
+import { Phone } from 'lucide-react'
 
 export default function ContatoPage() {
   const [formData, setFormData] = useState({
     nome: '',
-    email: '',
     telefone: '',
-    assunto: '',
+    email: '',
+    departamento: '',
+    contatoWhatsApp: true,
+    contatoTelefone: false,
     mensagem: ''
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
+    const { name, value, type } = e.target
+    
+    if (type === 'checkbox') {
+      const checked = (e.target as HTMLInputElement).checked
+      setFormData(prev => ({
+        ...prev,
+        [name]: checked
+      }))
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }))
+    }
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Aqui você pode integrar com Netlify Forms ou Firebase
     console.log('Formulário enviado:', formData)
     alert('Mensagem enviada com sucesso! Entraremos em contato em breve.')
     setFormData({
       nome: '',
-      email: '',
       telefone: '',
-      assunto: '',
+      email: '',
+      departamento: '',
+      contatoWhatsApp: true,
+      contatoTelefone: false,
       mensagem: ''
     })
   }
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Entre em Contato
-            </h1>
-            <p className="text-xl md:text-2xl text-primary-100">
-              Estamos prontos para te ajudar a encontrar o imóvel ideal
-            </p>
-          </div>
-        </div>
-      </section>
-
+    <div className="min-h-screen bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Formulário de Contato */}
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              Envie sua Mensagem
-            </h2>
-            <p className="text-gray-600 mb-8">
-              Preencha o formulário abaixo e nossa equipe entrará em contato em breve.
-            </p>
+          {/* Lado Esquerdo - Informações de Contato */}
+          <div className="space-y-8">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
+                Fale com a nossa equipe
+              </h1>
+              <p className="text-gray-600 text-lg mb-8">
+                Preencha o formulário ou entre em contato por um de nossos canais de atendimento.
+              </p>
+              
+              {/* Botão WhatsApp */}
+              <a
+                href="https://wa.me/5547997530113"
+                className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+              >
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                </svg>
+                Receber atendimento
+              </a>
+            </div>
 
+            {/* Telefones */}
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <Phone className="w-5 h-5 text-gray-600" />
+                <span className="text-gray-900 font-medium">(47) 99753-0113</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Phone className="w-5 h-5 text-gray-600" />
+                <span className="text-gray-900 font-medium">(47) 3367-0990</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Lado Direito - Formulário */}
+          <div className="bg-white rounded-lg shadow-lg p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Nome *
-                  </label>
-                  <input
-                    type="text"
-                    name="nome"
-                    value={formData.nome}
-                    onChange={handleChange}
-                    required
-                    className="input"
-                    placeholder="Seu nome completo"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="input"
-                    placeholder="seu@email.com"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Telefone
-                  </label>
-                  <input
-                    type="tel"
-                    name="telefone"
-                    value={formData.telefone}
-                    onChange={handleChange}
-                    className="input"
-                    placeholder="(47) 99999-9999"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Assunto
-                  </label>
-                  <select
-                    name="assunto"
-                    value={formData.assunto}
-                    onChange={handleChange}
-                    className="input"
-                  >
-                    <option value="">Selecione um assunto</option>
-                    <option value="venda">Quero vender meu imóvel</option>
-                    <option value="compra">Quero comprar um imóvel</option>
-                    <option value="aluguel">Quero alugar um imóvel</option>
-                    <option value="locacao">Quero locar meu imóvel</option>
-                    <option value="duvidas">Dúvidas gerais</option>
-                    <option value="outros">Outros</option>
-                  </select>
-                </div>
-              </div>
-
+              {/* Nome */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Mensagem *
+                  Nome
+                </label>
+                <input
+                  type="text"
+                  name="nome"
+                  value={formData.nome}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Seu nome completo"
+                />
+              </div>
+
+              {/* DDD + Telefone */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  DDD + Telefone
+                </label>
+                <input
+                  type="tel"
+                  name="telefone"
+                  value={formData.telefone}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="(47) 99999-9999"
+                />
+              </div>
+
+              {/* E-mail */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  E-mail
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="seu@email.com"
+                />
+              </div>
+
+              {/* Departamento */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Selecionar um departamento
+                </label>
+                <select
+                  name="departamento"
+                  value={formData.departamento}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option value="">Selecione um departamento</option>
+                  <option value="vendas">Vendas</option>
+                  <option value="locacao">Locação</option>
+                  <option value="administrativo">Administrativo</option>
+                  <option value="suporte">Suporte</option>
+                </select>
+              </div>
+
+              {/* Preferência de Contato */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  Desejo receber contato por:
+                </label>
+                <div className="space-y-2">
+                  <label className="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="contatoWhatsApp"
+                      checked={formData.contatoWhatsApp}
+                      onChange={handleChange}
+                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                    />
+                    <span className="ml-2 text-sm text-gray-700">WhatsApp</span>
+                  </label>
+                  <label className="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="contatoTelefone"
+                      checked={formData.contatoTelefone}
+                      onChange={handleChange}
+                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                    />
+                    <span className="ml-2 text-sm text-gray-700">Telefone</span>
+                  </label>
+                </div>
+              </div>
+
+              {/* Mensagem */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Mensagem
                 </label>
                 <textarea
                   name="mensagem"
                   value={formData.mensagem}
                   onChange={handleChange}
-                  required
-                  rows={6}
-                  className="input"
-                  placeholder="Conte-nos como podemos te ajudar..."
+                  rows={4}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Como podemos lhe ajudar?"
                 />
               </div>
 
+              {/* Botão Enviar */}
               <button
                 type="submit"
-                className="w-full btn-primary flex items-center justify-center space-x-2 py-3"
+                className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-6 rounded-lg transition-colors"
               >
-                <Send className="w-4 h-4" />
-                <span>Enviar Mensagem</span>
+                Enviar mensagem
               </button>
             </form>
-          </div>
-
-          {/* Informações de Contato */}
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              Informações de Contato
-            </h2>
-            <p className="text-gray-600 mb-8">
-              Você também pode nos contatar através dos canais abaixo:
-            </p>
-
-            <div className="space-y-6">
-              {/* Telefone */}
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-primary-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                    Telefone
-                  </h3>
-                  <p className="text-gray-600 mb-2">(47) 99999-9999</p>
-                  <p className="text-sm text-gray-500">
-                    Segunda a Sexta: 8h às 18h
-                  </p>
-                </div>
-              </div>
-
-              {/* Email */}
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-primary-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                    Email
-                  </h3>
-                  <p className="text-gray-600 mb-2">contato@imobiliaria.com</p>
-                  <p className="text-sm text-gray-500">
-                    Respondemos em até 24h
-                  </p>
-                </div>
-              </div>
-
-              {/* Endereço */}
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-primary-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                    Endereço
-                  </h3>
-                  <p className="text-gray-600 mb-2">
-                    Rua das Flores, 123 - Centro<br />
-                    Balneário Camboriú - SC<br />
-                    CEP: 88330-000
-                  </p>
-                </div>
-              </div>
-
-              {/* Horário de Funcionamento */}
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-6 h-6 text-primary-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                    Horário de Funcionamento
-                  </h3>
-                  <div className="text-gray-600 space-y-1">
-                    <p>Segunda a Sexta: 8h às 18h</p>
-                    <p>Sábado: 8h às 12h</p>
-                    <p>Domingo: Fechado</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* WhatsApp */}
-            <div className="mt-8 p-6 bg-green-50 rounded-lg">
-              <div className="flex items-center space-x-3 mb-4">
-                <MessageCircle className="w-6 h-6 text-green-600" />
-                <h3 className="text-lg font-semibold text-gray-900">
-                  WhatsApp
-                </h3>
-              </div>
-              <p className="text-gray-600 mb-4">
-                Para atendimento mais rápido, fale conosco pelo WhatsApp:
-              </p>
-              <a
-                href="https://wa.me/5547999999999"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>Falar no WhatsApp</span>
-              </a>
-            </div>
           </div>
         </div>
       </div>
