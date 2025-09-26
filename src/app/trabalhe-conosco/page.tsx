@@ -1,9 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Phone, Mail, MapPin, Send, Upload, X } from 'lucide-react'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import { Upload, X } from 'lucide-react'
 
 export default function TrabalheConoscoPage() {
   const [formData, setFormData] = useState({
@@ -55,23 +53,21 @@ export default function TrabalheConoscoPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
-      
       {/* Primeira Tela - Hero Section */}
-      <div className="relative bg-blue-900 min-h-screen">
+      <div className="relative bg-purple-900 min-h-screen">
         <div className="h-screen flex">
           {/* Lado Esquerdo - Texto */}
-          <div className="flex-1 flex items-center justify-center bg-blue-900">
+          <div className="flex-1 flex items-center justify-center bg-purple-900">
             <div className="text-white max-w-lg px-8">
               <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
                 Venha para o nosso time!
               </h1>
-              <p className="text-lg md:text-xl text-blue-100 leading-relaxed mb-8">
+              <p className="text-lg md:text-xl text-purple-100 leading-relaxed mb-8">
                 Faça parte da imobiliária que mais cresce em Santa Catarina!
               </p>
               <button
                 onClick={() => document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300"
+                className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300"
               >
                 Enviar currículo
               </button>
@@ -99,7 +95,7 @@ export default function TrabalheConoscoPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Lado Esquerdo - Texto */}
             <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-blue-600">
+              <h2 className="text-3xl md:text-4xl font-bold text-purple-600">
                 Venha para a Nox Imóveis
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed">
@@ -121,7 +117,7 @@ export default function TrabalheConoscoPage() {
                     value={formData.nome}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     placeholder="Seu nome completo"
                   />
                 </div>
@@ -137,7 +133,7 @@ export default function TrabalheConoscoPage() {
                     value={formData.telefone}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     placeholder="(47) 99999-9999"
                   />
                 </div>
@@ -153,7 +149,7 @@ export default function TrabalheConoscoPage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     placeholder="seu@email.com"
                   />
                 </div>
@@ -168,7 +164,7 @@ export default function TrabalheConoscoPage() {
                     name="instagram"
                     value={formData.instagram}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     placeholder="@seuusuario"
                   />
                 </div>
@@ -182,7 +178,7 @@ export default function TrabalheConoscoPage() {
                     name="loja"
                     value={formData.loja}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   >
                     <option value="">Selecione uma loja</option>
                     <option value="penha">Penha</option>
@@ -201,7 +197,7 @@ export default function TrabalheConoscoPage() {
                     name="vaga"
                     value={formData.vaga}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     placeholder="Cargo de interesse"
                   />
                 </div>
@@ -226,7 +222,7 @@ export default function TrabalheConoscoPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Anexar arquivos:
                   </label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-purple-400 transition-colors">
                     <input
                       type="file"
                       multiple
@@ -280,7 +276,7 @@ export default function TrabalheConoscoPage() {
                   )}
                   <button
                     type="submit"
-                    className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg transition-colors"
+                    className="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition-colors"
                   >
                     ENVIAR
                   </button>
@@ -290,8 +286,6 @@ export default function TrabalheConoscoPage() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   )
 }
