@@ -264,33 +264,33 @@ export default function ComoComprarPage() {
       </section>
 
       {/* Seção Localização */}
-      <section className="py-12 bg-blue-50">
+      <section className="py-8 bg-blue-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Pergunta */}
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-900">
+          <div className="text-center mb-6">
+            <h2 className="text-lg font-medium text-gray-700">
               Você prefere qual localização?
             </h2>
           </div>
 
           {/* Botões de Localização */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-4 px-8 rounded-lg transition-colors inline-flex items-center justify-center">
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm">
+              <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
               </svg>
               Frente mar
             </button>
             
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-4 px-8 rounded-lg transition-colors inline-flex items-center justify-center">
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm">
+              <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
               Quadra Mar
             </button>
             
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-4 px-8 rounded-lg transition-colors inline-flex items-center justify-center">
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm">
+              <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
               Vista Mar
@@ -298,45 +298,50 @@ export default function ComoComprarPage() {
           </div>
 
           {/* Blocos de Conteúdo */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Bloco Esquerdo - Investimento */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg">
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
               {/* Imagem */}
-              <div className="h-64 bg-gradient-to-br from-orange-400 to-pink-500 flex items-center justify-center">
+              <div className="h-48 bg-gradient-to-br from-orange-400 to-pink-500 flex items-center justify-center">
                 <div className="text-center text-white/20">
-                  <div className="text-4xl font-bold">FOTO PRAIA</div>
-                  <div className="text-sm mt-2">Aqui ficará a imagem da praia</div>
+                  <div className="text-2xl font-bold">FOTO PRAIA</div>
+                  <div className="text-xs mt-1">Aqui ficará a imagem da praia</div>
                 </div>
               </div>
               
               {/* Conteúdo */}
-              <div className="bg-blue-100 p-8">
-                <h3 className="text-white text-xl font-bold mb-4">
-                  Procurando o melhor investimento? Encontre o seu imóvel na praia!
+              <div className="bg-cyan-500 p-6">
+                <h3 className="text-white text-sm font-normal mb-1">
+                  Procurando o melhor investimento?
                 </h3>
-                <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg transition-colors">
+                <h3 className="text-white text-lg font-bold mb-4">
+                  Encontre o seu imóvel na praia!
+                </h3>
+                <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition-colors text-sm">
                   Buscar imóveis
                 </button>
               </div>
             </div>
 
             {/* Bloco Direito - Anuncie */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg">
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
               {/* Imagem */}
-              <div className="h-64 bg-gradient-to-br from-purple-400 to-blue-500 flex items-center justify-center">
+              <div className="h-48 bg-gradient-to-br from-purple-400 to-blue-500 flex items-center justify-center">
                 <div className="text-center text-white/20">
-                  <div className="text-4xl font-bold">FOTO EQUIPE</div>
-                  <div className="text-sm mt-2">Aqui ficará a foto da equipe</div>
+                  <div className="text-2xl font-bold">FOTO EQUIPE</div>
+                  <div className="text-xs mt-1">Aqui ficará a foto da equipe</div>
                 </div>
               </div>
               
               {/* Conteúdo */}
-              <div className="bg-blue-800 p-8">
-                <h3 className="text-white text-xl font-bold mb-4">
-                  Anuncie com a Nox<br />
+              <div className="bg-blue-800 p-6">
+                <h3 className="text-white text-sm font-normal mb-1">
+                  Anuncie com a Nox
+                </h3>
+                <h3 className="text-white text-lg font-bold mb-4">
                   A melhor forma de anunciar seu imóvel!
                 </h3>
-                <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg transition-colors">
+                <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition-colors text-sm">
                   Avaliar meu imóvel
                 </button>
               </div>
