@@ -24,7 +24,7 @@ export default function ComoComprarPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative text-white py-16 min-h-[500px] flex items-center">
+      <section className="relative text-white py-12 min-h-[400px] flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <div className="w-full h-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
@@ -38,12 +38,12 @@ export default function ComoComprarPage() {
         </div>
         
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="flex items-center justify-between">
             {/* Lado Esquerdo - Texto e Botão */}
-            <div className="text-white flex-1 max-w-lg">
-              <div className="space-y-6">
-                <div className="text-4xl md:text-5xl font-bold leading-tight">
+            <div className="text-white w-1/2">
+              <div className="space-y-4">
+                <div className="text-3xl md:text-4xl font-bold leading-tight">
                   <div>A experiência de</div>
                   <div>quem entende o</div>
                   <div>mercado ao seu lado!</div>
@@ -52,7 +52,7 @@ export default function ComoComprarPage() {
                 <div className="flex justify-start">
                   <Link 
                     href="/sobre" 
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg transition-colors inline-flex items-center text-lg"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors inline-flex items-center text-base"
                   >
                     Ver as vantagens
                   </Link>
@@ -61,38 +61,38 @@ export default function ComoComprarPage() {
             </div>
             
             {/* Lado Direito - Pessoas (placeholder para depois escolher a foto) */}
-            <div className="flex-1 flex justify-end">
-              <div className="grid grid-cols-3 gap-4">
+            <div className="w-1/2 flex justify-end">
+              <div className="grid grid-cols-3 gap-3">
                 {/* Pessoa 1 */}
                 <div className="text-center">
-                  <div className="relative mb-4">
-                    <div className="w-32 h-40 bg-white/20 backdrop-blur-sm rounded-lg mx-auto flex items-center justify-center border border-white/30">
-                      <Users className="w-16 h-16 text-white" />
+                  <div className="relative mb-3">
+                    <div className="w-24 h-32 bg-white/20 backdrop-blur-sm rounded-lg mx-auto flex items-center justify-center border border-white/30">
+                      <Users className="w-12 h-12 text-white" />
                     </div>
                   </div>
-                  <h4 className="text-white font-semibold text-sm">Especialista em</h4>
+                  <h4 className="text-white font-semibold text-xs">Especialista em</h4>
                   <p className="text-white/80 text-xs">Vendas</p>
                 </div>
                 
                 {/* Pessoa 2 */}
                 <div className="text-center">
-                  <div className="relative mb-4">
-                    <div className="w-32 h-40 bg-white/20 backdrop-blur-sm rounded-lg mx-auto flex items-center justify-center border border-white/30">
-                      <Building className="w-16 h-16 text-white" />
+                  <div className="relative mb-3">
+                    <div className="w-24 h-32 bg-white/20 backdrop-blur-sm rounded-lg mx-auto flex items-center justify-center border border-white/30">
+                      <Building className="w-12 h-12 text-white" />
                     </div>
                   </div>
-                  <h4 className="text-white font-semibold text-sm">Consultor em</h4>
+                  <h4 className="text-white font-semibold text-xs">Consultor em</h4>
                   <p className="text-white/80 text-xs">Investimentos</p>
                 </div>
                 
                 {/* Pessoa 3 */}
                 <div className="text-center">
-                  <div className="relative mb-4">
-                    <div className="w-32 h-40 bg-white/20 backdrop-blur-sm rounded-lg mx-auto flex items-center justify-center border border-white/30">
-                      <Award className="w-16 h-16 text-white" />
+                  <div className="relative mb-3">
+                    <div className="w-24 h-32 bg-white/20 backdrop-blur-sm rounded-lg mx-auto flex items-center justify-center border border-white/30">
+                      <Award className="w-12 h-12 text-white" />
                     </div>
                   </div>
-                  <h4 className="text-white font-semibold text-sm">Especialista em</h4>
+                  <h4 className="text-white font-semibold text-xs">Especialista em</h4>
                   <p className="text-white/80 text-xs">Financiamentos</p>
                 </div>
               </div>
@@ -102,20 +102,20 @@ export default function ComoComprarPage() {
       </section>
 
       {/* Seção Como é Comprar */}
-      <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-8 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-start justify-between">
             {/* Lado Esquerdo - Título e Botão */}
-            <div className="flex-1 max-w-md">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 leading-tight">
+            <div className="w-1/2">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 leading-tight">
                 <div>Como é comprar</div>
                 <div>com a Nox?</div>
               </h2>
               
-              <div className="mt-8">
+              <div className="mt-6">
                 <Link 
                   href="/imoveis" 
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-8 rounded-lg transition-colors inline-flex items-center text-lg"
+                  className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg transition-colors inline-flex items-center text-base"
                 >
                   Buscar imóveis
                 </Link>
@@ -123,48 +123,48 @@ export default function ComoComprarPage() {
             </div>
             
             {/* Lado Direito - 4 Passos Horizontais */}
-            <div className="flex-1 flex justify-end">
-              <div className="grid grid-cols-4 gap-6">
+            <div className="w-1/2 flex justify-end">
+              <div className="grid grid-cols-4 gap-4">
                 {/* Passo 1 */}
                 <div>
-                  <div className="text-4xl font-bold text-gray-300 mb-3">01.</div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  <div className="text-3xl font-bold text-gray-300 mb-2">01.</div>
+                  <h3 className="text-sm font-bold text-gray-900 mb-1">
                     Busque o imóvel ideal em nosso site
                   </h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-xs text-gray-600">
                     Utilize nossos filtros para otimizar seus resultados
                   </p>
                 </div>
                 
                 {/* Passo 2 */}
                 <div>
-                  <div className="text-4xl font-bold text-gray-300 mb-3">02.</div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  <div className="text-3xl font-bold text-gray-300 mb-2">02.</div>
+                  <h3 className="text-sm font-bold text-gray-900 mb-1">
                     Entre em contato e agende suas visitas
                   </h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-xs text-gray-600">
                     Aproveite para tirar todas as suas dúvidas com o corretor
                   </p>
                 </div>
                 
                 {/* Passo 3 */}
                 <div>
-                  <div className="text-4xl font-bold text-gray-300 mb-3">03.</div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  <div className="text-3xl font-bold text-gray-300 mb-2">03.</div>
+                  <h3 className="text-sm font-bold text-gray-900 mb-1">
                     Faça suas propostas
                   </h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-xs text-gray-600">
                     Nossos especialistas ajudam você com a negociação e documentação
                   </p>
                 </div>
                 
                 {/* Passo 4 */}
                 <div>
-                  <div className="text-4xl font-bold text-gray-300 mb-3">04.</div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  <div className="text-3xl font-bold text-gray-300 mb-2">04.</div>
+                  <h3 className="text-sm font-bold text-gray-900 mb-1">
                     Assine digitalmente e receba as chaves
                   </h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-xs text-gray-600">
                     Todo o processo digital para maior comodidade
                   </p>
                 </div>
