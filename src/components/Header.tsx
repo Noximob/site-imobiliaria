@@ -174,7 +174,7 @@ export default function Header() {
                       Empreendimentos
                     </Link>
                     <Link href="/favoritos" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
-                      Em construção
+                      Favoritos
                     </Link>
                   </div>
                 </div>
