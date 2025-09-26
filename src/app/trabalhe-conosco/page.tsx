@@ -9,8 +9,6 @@ export default function TrabalheConoscoPage() {
     telefone: '',
     email: '',
     instagram: '',
-    loja: '',
-    vaga: '',
     informacoes: ''
   })
 
@@ -44,8 +42,6 @@ export default function TrabalheConoscoPage() {
       telefone: '',
       email: '',
       instagram: '',
-      loja: '',
-      vaga: '',
       informacoes: ''
     })
     setArquivos([])
@@ -89,8 +85,54 @@ export default function TrabalheConoscoPage() {
         </div>
       </div>
 
+      {/* Seção de Valores */}
+      <div className="bg-purple-900 py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Cultura de Aprendizado */}
+            <div className="text-center text-white">
+              <div className="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-purple-900" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Cultura de aprendizado</h3>
+              <p className="text-purple-100 leading-relaxed text-lg">
+                Procuramos inspiração e aprendizado em todos os lugares e instantes.
+              </p>
+            </div>
+
+            {/* Desenvolvimento Constante */}
+            <div className="text-center text-white">
+              <div className="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-purple-900" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Desenvolvimento Constante</h3>
+              <p className="text-purple-100 leading-relaxed text-lg">
+                Focamos no desenvolvimento de cada colaborador. Queremos que você evolua.
+              </p>
+            </div>
+
+            {/* Time Unido */}
+            <div className="text-center text-white">
+              <div className="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-purple-900" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Time unido</h3>
+              <p className="text-purple-100 leading-relaxed text-lg">
+                Juntos, nos empenhamos para oferecer o melhor serviço para a nossa comunidade.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Segunda Tela - Formulário */}
-      <div id="formulario" className="bg-white py-16">
+      <div id="formulario" className="bg-white py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Lado Esquerdo - Texto */}
@@ -169,38 +211,6 @@ export default function TrabalheConoscoPage() {
                   />
                 </div>
 
-                {/* Loja de interesse */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Loja de interesse:
-                  </label>
-                  <select
-                    name="loja"
-                    value={formData.loja}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  >
-                    <option value="">Selecione uma loja</option>
-                    <option value="penha">Penha</option>
-                    <option value="picarras">Balneário Piçarras</option>
-                    <option value="barra-velha">Barra Velha</option>
-                  </select>
-                </div>
-
-                {/* Vaga */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Vaga:
-                  </label>
-                  <input
-                    type="text"
-                    name="vaga"
-                    value={formData.vaga}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    placeholder="Cargo de interesse"
-                  />
-                </div>
 
                 {/* Maiores informações */}
                 <div>
