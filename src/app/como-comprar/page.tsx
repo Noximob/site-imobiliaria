@@ -24,7 +24,7 @@ export default function ComoComprarPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative text-white py-20 min-h-[600px] flex items-center">
+      <section className="relative text-white py-16 min-h-[500px] flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <div className="w-full h-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
@@ -102,7 +102,7 @@ export default function ComoComprarPage() {
       </section>
 
       {/* Seção Como é Comprar */}
-      <section className="py-16 bg-white">
+      <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Lado Esquerdo - Título e Botão */}
