@@ -39,9 +39,9 @@ export default function ComoComprarPage() {
         
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="flex items-center justify-between">
             {/* Lado Esquerdo - Texto e Botão */}
-            <div className="text-white">
+            <div className="text-white flex-1 max-w-lg">
               <div className="space-y-6">
                 <div className="text-4xl md:text-5xl font-bold leading-tight">
                   <div>A experiência de</div>
@@ -61,7 +61,7 @@ export default function ComoComprarPage() {
             </div>
             
             {/* Lado Direito - Pessoas (placeholder para depois escolher a foto) */}
-            <div className="relative">
+            <div className="flex-1 flex justify-end">
               <div className="grid grid-cols-3 gap-4">
                 {/* Pessoa 1 */}
                 <div className="text-center">
@@ -104,9 +104,9 @@ export default function ComoComprarPage() {
       {/* Seção Como é Comprar */}
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="flex items-start justify-between">
             {/* Lado Esquerdo - Título e Botão */}
-            <div>
+            <div className="flex-1 max-w-md">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 leading-tight">
                 <div>Como é comprar</div>
                 <div>com a Nox?</div>
@@ -115,7 +115,7 @@ export default function ComoComprarPage() {
               <div className="mt-8">
                 <Link 
                   href="/imoveis" 
-                  className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-lg transition-colors inline-flex items-center text-lg"
+                  className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-8 rounded-lg transition-colors inline-flex items-center text-lg"
                 >
                   Buscar imóveis
                 </Link>
@@ -123,49 +123,51 @@ export default function ComoComprarPage() {
             </div>
             
             {/* Lado Direito - 4 Passos Horizontais */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* Passo 1 */}
-              <div>
-                <div className="text-4xl font-bold text-gray-300 mb-3">01.</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  Busque o imóvel ideal em nosso site
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Utilize nossos filtros para otimizar seus resultados
-                </p>
-              </div>
-              
-              {/* Passo 2 */}
-              <div>
-                <div className="text-4xl font-bold text-gray-300 mb-3">02.</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  Entre em contato e agende suas visitas
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Aproveite para tirar todas as suas dúvidas com o corretor
-                </p>
-              </div>
-              
-              {/* Passo 3 */}
-              <div>
-                <div className="text-4xl font-bold text-gray-300 mb-3">03.</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  Faça suas propostas
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Nossos especialistas ajudam você com a negociação e documentação
-                </p>
-              </div>
-              
-              {/* Passo 4 */}
-              <div>
-                <div className="text-4xl font-bold text-gray-300 mb-3">04.</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  Assine digitalmente e receba as chaves
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Todo o processo digital para maior comodidade
-                </p>
+            <div className="flex-1 flex justify-end">
+              <div className="grid grid-cols-4 gap-6">
+                {/* Passo 1 */}
+                <div>
+                  <div className="text-4xl font-bold text-gray-300 mb-3">01.</div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    Busque o imóvel ideal em nosso site
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    Utilize nossos filtros para otimizar seus resultados
+                  </p>
+                </div>
+                
+                {/* Passo 2 */}
+                <div>
+                  <div className="text-4xl font-bold text-gray-300 mb-3">02.</div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    Entre em contato e agende suas visitas
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    Aproveite para tirar todas as suas dúvidas com o corretor
+                  </p>
+                </div>
+                
+                {/* Passo 3 */}
+                <div>
+                  <div className="text-4xl font-bold text-gray-300 mb-3">03.</div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    Faça suas propostas
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    Nossos especialistas ajudam você com a negociação e documentação
+                  </p>
+                </div>
+                
+                {/* Passo 4 */}
+                <div>
+                  <div className="text-4xl font-bold text-gray-300 mb-3">04.</div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    Assine digitalmente e receba as chaves
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    Todo o processo digital para maior comodidade
+                  </p>
+                </div>
               </div>
             </div>
           </div>
