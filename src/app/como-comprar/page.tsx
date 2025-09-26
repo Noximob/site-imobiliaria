@@ -27,15 +27,14 @@ export default function ComoComprarPage() {
       <section className="relative text-white py-20 min-h-[600px] flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/imagens/banners/banner-home.png"
-            alt="Como Comprar um Imóvel - Nox Imóveis"
-            fill
-            className="object-cover"
-            priority
-          />
+          <div className="w-full h-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
+            <div className="text-center text-white/20">
+              <div className="text-6xl font-bold">FOTO DE FUNDO</div>
+              <div className="text-lg mt-2">Aqui ficará a imagem que você escolher</div>
+            </div>
+          </div>
           {/* Overlay para melhorar legibilidade do texto */}
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+          <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         </div>
         
         {/* Content */}
@@ -67,34 +66,34 @@ export default function ComoComprarPage() {
                 {/* Pessoa 1 */}
                 <div className="text-center">
                   <div className="relative mb-4">
-                    <div className="w-32 h-40 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg mx-auto flex items-center justify-center">
+                    <div className="w-32 h-40 bg-white/20 backdrop-blur-sm rounded-lg mx-auto flex items-center justify-center border border-white/30">
                       <Users className="w-16 h-16 text-white" />
                     </div>
                   </div>
                   <h4 className="text-white font-semibold text-sm">Especialista em</h4>
-                  <p className="text-purple-200 text-xs">Vendas</p>
+                  <p className="text-white/80 text-xs">Vendas</p>
                 </div>
                 
                 {/* Pessoa 2 */}
                 <div className="text-center">
                   <div className="relative mb-4">
-                    <div className="w-32 h-40 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg mx-auto flex items-center justify-center">
+                    <div className="w-32 h-40 bg-white/20 backdrop-blur-sm rounded-lg mx-auto flex items-center justify-center border border-white/30">
                       <Building className="w-16 h-16 text-white" />
                     </div>
                   </div>
                   <h4 className="text-white font-semibold text-sm">Consultor em</h4>
-                  <p className="text-purple-200 text-xs">Investimentos</p>
+                  <p className="text-white/80 text-xs">Investimentos</p>
                 </div>
                 
                 {/* Pessoa 3 */}
                 <div className="text-center">
                   <div className="relative mb-4">
-                    <div className="w-32 h-40 bg-gradient-to-br from-green-400 to-green-600 rounded-lg mx-auto flex items-center justify-center">
+                    <div className="w-32 h-40 bg-white/20 backdrop-blur-sm rounded-lg mx-auto flex items-center justify-center border border-white/30">
                       <Award className="w-16 h-16 text-white" />
                     </div>
                   </div>
                   <h4 className="text-white font-semibold text-sm">Especialista em</h4>
-                  <p className="text-purple-200 text-xs">Financiamentos</p>
+                  <p className="text-white/80 text-xs">Financiamentos</p>
                 </div>
               </div>
             </div>
@@ -116,7 +115,7 @@ export default function ComoComprarPage() {
               <div className="mt-8">
                 <Link 
                   href="/imoveis" 
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-8 rounded-lg transition-colors inline-flex items-center text-lg"
+                  className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-lg transition-colors inline-flex items-center text-lg"
                 >
                   Buscar imóveis
                 </Link>
