@@ -24,7 +24,7 @@ export default function ComoComprarPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative text-white py-12 min-h-[400px] flex items-center">
+      <section className="relative text-white py-8 min-h-[350px] flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <div className="w-full h-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
