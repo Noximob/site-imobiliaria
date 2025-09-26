@@ -50,8 +50,8 @@ export default function TrabalheConoscoPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Primeira Tela - Hero Section */}
-      <div className="relative bg-purple-900 min-h-screen">
-        <div className="h-screen flex">
+      <div className="relative bg-purple-900 h-4/5">
+        <div className="h-full flex">
           {/* Lado Esquerdo - Texto */}
           <div className="flex-1 flex items-center justify-center bg-purple-900">
             <div className="text-white max-w-lg px-8">
