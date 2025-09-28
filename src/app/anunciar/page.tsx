@@ -30,29 +30,29 @@ export default function AnunciarPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Primeira Seção - Hero com duas colunas */}
-      <section className="relative min-h-screen flex items-center">
+      <section className="relative h-screen flex items-center overflow-hidden">
         {/* Background placeholder - será substituído pela imagem */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900">
-          <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+          <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         </div>
         
         <div className="relative z-10 container mx-auto px-4 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 items-center h-full py-16">
             
             {/* Coluna Esquerda - Marketing */}
-            <div className="text-white space-y-8">
-              <div className="inline-block bg-orange-500 text-white px-6 py-3 rounded-lg font-bold text-sm uppercase tracking-wide">
+            <div className="text-white space-y-6">
+              <div className="inline-block bg-orange-500 text-white px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider">
                 Anuncie com Especialistas
               </div>
               
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
                 Venda rápido, sem custo e sem complicação.
               </h1>
               
-              <div className="pt-8">
+              <div className="pt-4">
                 <button 
                   onClick={() => document.getElementById('vantagens')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors"
+                  className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-bold text-base transition-all duration-300 transform hover:scale-105"
                 >
                   Ver Vantagens
                 </button>
@@ -61,14 +61,14 @@ export default function AnunciarPage() {
 
             {/* Coluna Direita - Formulário Flutuante */}
             <div className="relative">
-              <div className="bg-white rounded-xl shadow-2xl p-8 sticky top-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              <div className="bg-white rounded-2xl shadow-2xl p-6 sticky top-8 max-w-md mx-auto lg:mx-0">
+                <h2 className="text-xl font-bold text-gray-900 mb-4">
                   Anuncie seu imóvel com a Nox
                 </h2>
                 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-3">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-xs font-medium text-gray-700 mb-1">
                       DDD + Celular / WhatsApp
                     </label>
                     <input
@@ -77,13 +77,13 @@ export default function AnunciarPage() {
                       value={formData.telefone}
                       onChange={handleChange}
                       placeholder="(47) 99999-9999"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-xs font-medium text-gray-700 mb-1">
                       E-mail
                     </label>
                     <input
@@ -92,21 +92,21 @@ export default function AnunciarPage() {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="seu@email.com"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                       required
                     />
                   </div>
 
-                  <div className="pt-4">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Dados do imóvel</h3>
+                  <div className="pt-2">
+                    <h3 className="text-sm font-bold text-gray-900 mb-2">Dados do imóvel</h3>
                     
-                    <div className="flex gap-3 mb-4">
+                    <div className="flex gap-2 mb-3">
                       <button
                         type="button"
-                        className={`flex-1 py-3 px-4 rounded-lg font-medium transition-colors ${
+                        className={`flex-1 py-2 px-3 rounded-lg font-medium text-xs transition-all ${
                           formData.tipo === 'vender' 
-                            ? 'bg-purple-600 text-white' 
-                            : 'bg-gray-200 text-gray-700'
+                            ? 'bg-purple-600 text-white shadow-md' 
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                         }`}
                         onClick={() => setFormData(prev => ({ ...prev, tipo: 'vender' }))}
                       >
@@ -114,10 +114,10 @@ export default function AnunciarPage() {
                       </button>
                       <button
                         type="button"
-                        className={`flex-1 py-3 px-4 rounded-lg font-medium transition-colors ${
+                        className={`flex-1 py-2 px-3 rounded-lg font-medium text-xs transition-all ${
                           formData.tipo === 'alugar' 
-                            ? 'bg-purple-600 text-white' 
-                            : 'bg-gray-200 text-gray-700'
+                            ? 'bg-purple-600 text-white shadow-md' 
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                         }`}
                         onClick={() => setFormData(prev => ({ ...prev, tipo: 'alugar' }))}
                       >
@@ -125,15 +125,15 @@ export default function AnunciarPage() {
                       </button>
                     </div>
 
-                    <div className="mb-4">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <div className="mb-3">
+                      <label className="block text-xs font-medium text-gray-700 mb-1">
                         Tipo do imóvel:
                       </label>
                       <select
                         name="tipoImovel"
                         value={formData.tipoImovel}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                       >
                         <option value="">Selecione o tipo</option>
                         <option value="casa">Casa</option>
@@ -143,8 +143,8 @@ export default function AnunciarPage() {
                       </select>
                     </div>
 
-                    <div className="mb-4">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <div className="mb-3">
+                      <label className="block text-xs font-medium text-gray-700 mb-1">
                         Cidade
                       </label>
                       <input
@@ -153,12 +153,12 @@ export default function AnunciarPage() {
                         value={formData.cidade}
                         onChange={handleChange}
                         placeholder="Sua cidade"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-xs font-medium text-gray-700 mb-1">
                         Bairro
                       </label>
                       <input
@@ -167,14 +167,14 @@ export default function AnunciarPage() {
                         value={formData.bairro}
                         onChange={handleChange}
                         placeholder="Seu bairro"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                       />
                     </div>
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-lg font-bold text-lg transition-colors"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-bold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg"
                   >
                     Avaliar meu imóvel
                   </button>
