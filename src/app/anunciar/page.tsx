@@ -28,32 +28,35 @@ export default function AnunciarPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section - Duas colunas */}
-      <section className="py-20">
+    <div className="min-h-screen bg-gray-50">
+      {/* Primeira Seção - Hero com duas colunas */}
+      <section className="relative py-20 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[600px]">
             
             {/* Coluna Esquerda - Marketing */}
-            <div className="space-y-8">
+            <div className="text-white space-y-8">
               <div className="inline-block bg-orange-500 text-white px-6 py-3 rounded-lg font-bold text-sm uppercase tracking-wide">
                 Anuncie com Especialistas
               </div>
               
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight">
                 Venda rápido, sem custo e sem complicação.
               </h1>
               
               <div className="pt-8">
-                <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors">
+                <button 
+                  onClick={() => document.getElementById('vantagens')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors"
+                >
                   Ver Vantagens
                 </button>
               </div>
             </div>
 
             {/* Coluna Direita - Formulário Flutuante */}
-            <div className="lg:sticky lg:top-8">
-              <div className="bg-white rounded-xl shadow-2xl p-8 border border-gray-200">
+            <div className="relative">
+              <div className="bg-white rounded-xl shadow-2xl p-8 sticky top-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">
                   Anuncie seu imóvel com a Nox
                 </h2>
@@ -177,65 +180,76 @@ export default function AnunciarPage() {
         </div>
       </section>
 
-      {/* Vantagens Section */}
-      <section className="py-20 bg-gray-50">
+      {/* Segunda Seção - Vantagens */}
+      <section id="vantagens" className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
-              Vantagens exclusivas de anunciar com a Nox Imóveis
-            </h2>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Vantagem 1 */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <DollarSign className="w-8 h-8 text-green-600" />
+            <div className="grid lg:grid-cols-2 gap-16 items-start">
+              
+              {/* Coluna Esquerda - Vantagens */}
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12">
+                  Vantagens exclusivas de anunciar com a Nox Imóveis
+                </h2>
+                
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* Vantagem 1 */}
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <DollarSign className="w-8 h-8 text-green-600" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">
+                      Anúncio 100% gratuito
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      Você não paga nada para divulgar seu imóvel conosco.
+                    </p>
+                  </div>
+
+                  {/* Vantagem 2 */}
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <TrendingUp className="w-8 h-8 text-blue-600" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">
+                      Máxima visibilidade
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      Seu imóvel será promovido nos principais canais e portais do mercado.
+                    </p>
+                  </div>
+
+                  {/* Vantagem 3 */}
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <BarChart3 className="w-8 h-8 text-purple-600" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">
+                      Avaliação especializada
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      Garantimos o melhor preço para o seu imóvel com base em uma análise criteriosa.
+                    </p>
+                  </div>
+
+                  {/* Vantagem 4 */}
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Camera className="w-8 h-8 text-orange-600" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">
+                      Fotografia profissional
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      Destaque seu imóvel com fotos de alta qualidade feitas por nossa equipe.
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Anúncio 100% gratuito
-                </h3>
-                <p className="text-gray-600">
-                  Você não paga nada para divulgar seu imóvel conosco.
-                </p>
               </div>
 
-              {/* Vantagem 2 */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="w-8 h-8 text-blue-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Máxima visibilidade
-                </h3>
-                <p className="text-gray-600">
-                  Seu imóvel será promovido nos principais canais e portais do mercado.
-                </p>
-              </div>
-
-              {/* Vantagem 3 */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <BarChart3 className="w-8 h-8 text-purple-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Avaliação especializada
-                </h3>
-                <p className="text-gray-600">
-                  Garantimos o melhor preço para o seu imóvel com base em uma análise criteriosa.
-                </p>
-              </div>
-
-              {/* Vantagem 4 */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Camera className="w-8 h-8 text-orange-600" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Fotografia profissional
-                </h3>
-                <p className="text-gray-600">
-                  Destaque seu imóvel com fotos de alta qualidade feitas por nossa equipe.
-                </p>
+              {/* Coluna Direita - Espaço para formulário flutuante */}
+              <div className="lg:block hidden">
+                <div className="h-[600px]"></div>
               </div>
             </div>
           </div>
