@@ -36,11 +36,11 @@ export default function AnunciarPage() {
           <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         </div>
         
-        <div className="relative z-10 container mx-auto px-4 w-full">
-          <div className="grid lg:grid-cols-2 gap-8 items-center h-full py-16">
+        <div className="relative z-10 container mx-auto px-6 w-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-center h-full py-12">
             
             {/* Coluna Esquerda - Marketing */}
-            <div className="text-white space-y-6">
+            <div className="text-white space-y-5">
               <div className="inline-block bg-orange-500 text-white px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider">
                 Anuncie com Especialistas
               </div>
@@ -49,7 +49,7 @@ export default function AnunciarPage() {
                 Venda rápido, sem custo e sem complicação.
               </h1>
               
-              <div className="pt-4">
+              <div className="pt-3">
                 <button 
                   onClick={() => document.getElementById('vantagens')?.scrollIntoView({ behavior: 'smooth' })}
                   className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-bold text-base transition-all duration-300 transform hover:scale-105"
@@ -60,8 +60,8 @@ export default function AnunciarPage() {
             </div>
 
             {/* Coluna Direita - Formulário Flutuante */}
-            <div className="relative">
-              <div className="bg-white rounded-2xl shadow-2xl p-6 sticky top-8 max-w-md mx-auto lg:mx-0">
+            <div className="relative lg:ml-8">
+              <div className="bg-white rounded-2xl shadow-2xl p-6 sticky top-8 max-w-sm mx-auto lg:mx-0">
                 <h2 className="text-xl font-bold text-gray-900 mb-4">
                   Anuncie seu imóvel com a Nox
                 </h2>
