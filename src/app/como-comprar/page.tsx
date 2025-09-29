@@ -53,7 +53,7 @@ export default function ComoComprarPage() {
                 <div className="flex justify-start">
                   <Link 
                     href="/sobre" 
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors inline-flex items-center text-base"
+                    className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors inline-flex items-center text-base"
                   >
                     Ver as vantagens
                   </Link>
