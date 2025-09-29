@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Phone } from 'lucide-react'
+import Image from 'next/image'
 
 export default function ContatoPage() {
   const [formData, setFormData] = useState({
@@ -47,8 +48,20 @@ export default function ContatoPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen relative">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image 
+          src="/imagens/banners/contato-hero.jpg" 
+          alt="Contato Nox Imóveis" 
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-purple-900 bg-opacity-80"></div>
+      </div>
+      
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Lado Esquerdo - Informações de Contato */}
           <div className="space-y-4">

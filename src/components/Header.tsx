@@ -192,9 +192,6 @@ export default function Header() {
                     <Link href="/como-comprar" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Como comprar
                     </Link>
-                    <Link href="/viva-penha" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
-                      Viva Penha
-                    </Link>
                   </div>
                 </div>
 
