@@ -191,12 +191,12 @@ export default function ComoComprarPage() {
             {/* Penha */}
             <div className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                  <div className="text-center text-white/20">
-                    <div className="text-2xl font-bold">FOTO PENHA</div>
-                    <div className="text-xs mt-1">Aqui ficará a imagem de Penha</div>
-                  </div>
-                </div>
+                <Image
+                  src="/imagens/Como Comprar/1.png"
+                  alt="Imóveis em Penha"
+                  fill
+                  className="object-cover"
+                />
                 <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-all duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white">
@@ -210,12 +210,12 @@ export default function ComoComprarPage() {
             {/* Balneário Piçarras */}
             <div className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
-                  <div className="text-center text-white/20">
-                    <div className="text-2xl font-bold">FOTO PIÇARRAS</div>
-                    <div className="text-xs mt-1">Aqui ficará a imagem de Piçarras</div>
-                  </div>
-                </div>
+                <Image
+                  src="/imagens/Como Comprar/2.png"
+                  alt="Imóveis em Balneário Piçarras"
+                  fill
+                  className="object-cover"
+                />
                 <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-all duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white">
@@ -229,12 +229,12 @@ export default function ComoComprarPage() {
             {/* Barra Velha */}
             <div className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
-                  <div className="text-center text-white/20">
-                    <div className="text-2xl font-bold">FOTO BARRA VELHA</div>
-                    <div className="text-xs mt-1">Aqui ficará a imagem de Barra Velha</div>
-                  </div>
-                </div>
+                <Image
+                  src="/imagens/Como Comprar/3.png"
+                  alt="Imóveis em Barra Velha"
+                  fill
+                  className="object-cover"
+                />
                 <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-all duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white">
