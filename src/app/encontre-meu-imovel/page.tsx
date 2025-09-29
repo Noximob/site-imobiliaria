@@ -32,35 +32,35 @@ export default function EncontreMeuImovelPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Primeira Seção - Hero com duas colunas */}
-      <section className="py-16 bg-white">
+      <section className="py-8 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
             
             {/* Coluna Esquerda - Marketing */}
-            <div className="space-y-6">
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <div className="space-y-4">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                 Sem tempo para procurar? A <span className="text-purple-600">Nox</span> encontra seu imóvel dos sonhos!
               </h1>
               
-              <p className="text-lg text-gray-600 leading-relaxed flex items-start">
-                <span className="text-2xl mr-3">💜</span>
+              <p className="text-base text-gray-600 leading-relaxed flex items-start">
+                <span className="text-xl mr-2">💜</span>
                 Conte-nos como é o imóvel que você procura e deixe com a equipe Nox Imóveis que encontraremos rapidamente para você.
               </p>
 
               {/* Seção Como Funciona */}
-              <div className="bg-purple-900 text-white p-6 rounded-lg">
-                <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-purple-900 text-white p-4 rounded-lg">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <div className="text-3xl font-bold text-purple-300 mb-2">01.</div>
-                    <h3 className="text-lg font-bold mb-2">Preencha o formulário</h3>
-                    <p className="text-purple-200 text-sm">
+                    <div className="text-2xl font-bold text-purple-300 mb-1">01.</div>
+                    <h3 className="text-base font-bold mb-1">Preencha o formulário</h3>
+                    <p className="text-purple-200 text-xs">
                       Envie seus dados pelo formulário e mostre como é o imóvel que você está buscando.
                     </p>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-purple-300 mb-2">02.</div>
-                    <h3 className="text-lg font-bold mb-2">Receba os melhores imóveis</h3>
-                    <p className="text-purple-200 text-sm">
+                    <div className="text-2xl font-bold text-purple-300 mb-1">02.</div>
+                    <h3 className="text-base font-bold mb-1">Receba os melhores imóveis</h3>
+                    <p className="text-purple-200 text-xs">
                       Nossa equipe irá realizar uma busca minuciosa e apresentar as melhores opções para você escolher.
                     </p>
                   </div>
@@ -69,60 +69,60 @@ export default function EncontreMeuImovelPage() {
             </div>
 
             {/* Coluna Direita - Formulário */}
-            <div className="bg-white p-6 rounded-lg shadow-xl border-t-4 border-purple-600">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Encontre seu imóvel</h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="bg-white p-4 rounded-lg shadow-xl border-t-4 border-purple-600">
+              <h2 className="text-lg font-bold text-gray-900 mb-3">Encontre seu imóvel</h2>
+              <form onSubmit={handleSubmit} className="space-y-3">
                 {/* Nome */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">Nome</label>
                   <input
                     type="text"
                     name="nome"
                     value={formData.nome}
                     onChange={handleChange}
                     placeholder="Seu nome completo"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     required
                   />
                 </div>
                 {/* Telefone */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">DDD + Celular / WhatsApp</label>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">DDD + Celular / WhatsApp</label>
                   <input
                     type="tel"
                     name="telefone"
                     value={formData.telefone}
                     onChange={handleChange}
                     placeholder="(47) 99999-9999"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     required
                   />
                 </div>
                 {/* Email */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">E-mail</label>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="seu@email.com"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     required
                   />
                 </div>
 
                 {/* Dados do imóvel */}
-                <div className="pt-2">
-                  <h3 className="text-base font-bold text-gray-900 mb-3">Dados do imóvel</h3>
+                <div className="pt-1">
+                  <h3 className="text-sm font-bold text-gray-900 mb-2">Dados do imóvel</h3>
                   {/* Tipo do imóvel */}
-                  <div className="mb-3">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Tipo do imóvel:</label>
+                  <div className="mb-2">
+                    <label className="block text-xs font-medium text-gray-700 mb-1">Tipo do imóvel:</label>
                     <select
                       name="tipoImovel"
                       value={formData.tipoImovel}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     >
                       <option value="">Selecione o tipo</option>
                       <option value="apartamento">Apartamento</option>
@@ -132,13 +132,13 @@ export default function EncontreMeuImovelPage() {
                     </select>
                   </div>
                   {/* Quartos */}
-                  <div className="mb-3">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Qtde Quartos</label>
+                  <div className="mb-2">
+                    <label className="block text-xs font-medium text-gray-700 mb-1">Qtde Quartos</label>
                     <select
                       name="quartos"
                       value={formData.quartos}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     >
                       <option value="">Selecione</option>
                       <option value="1">1</option>
@@ -148,13 +148,13 @@ export default function EncontreMeuImovelPage() {
                     </select>
                   </div>
                   {/* Vagas */}
-                  <div className="mb-3">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Qtde Vagas</label>
+                  <div className="mb-2">
+                    <label className="block text-xs font-medium text-gray-700 mb-1">Qtde Vagas</label>
                     <select
                       name="vagas"
                       value={formData.vagas}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     >
                       <option value="">Selecione</option>
                       <option value="1">1</option>
@@ -163,34 +163,34 @@ export default function EncontreMeuImovelPage() {
                     </select>
                   </div>
                   {/* Cidade */}
-                  <div className="mb-3">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Cidade</label>
+                  <div className="mb-2">
+                    <label className="block text-xs font-medium text-gray-700 mb-1">Cidade</label>
                     <input
                       type="text"
                       name="cidade"
                       value={formData.cidade}
                       onChange={handleChange}
                       placeholder="Sua cidade"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     />
                   </div>
                   {/* Bairro */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Bairro</label>
+                    <label className="block text-xs font-medium text-gray-700 mb-1">Bairro</label>
                     <input
                       type="text"
                       name="bairro"
                       value={formData.bairro}
                       onChange={handleChange}
                       placeholder="Seu bairro"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     />
                   </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-3 rounded-lg transition-colors duration-300 text-sm"
                 >
                   Enviar
                 </button>
