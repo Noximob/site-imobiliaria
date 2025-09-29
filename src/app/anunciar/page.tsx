@@ -36,23 +36,23 @@ export default function AnunciarPage() {
           <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         </div>
         
-        <div className="relative z-10 container mx-auto px-8 w-full">
-          <div className="grid lg:grid-cols-2 gap-16 items-center h-full py-8">
+        <div className="relative z-10 container mx-auto px-6 w-full">
+          <div className="grid lg:grid-cols-2 gap-8 items-center h-full py-12">
             
             {/* Coluna Esquerda - Marketing */}
-            <div className="text-white space-y-4">
-              <div className="inline-block bg-orange-500 text-white px-3 py-2 rounded-lg font-bold text-xs uppercase tracking-wider">
+            <div className="text-white space-y-6">
+              <div className="inline-block bg-orange-500 text-white px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider">
                 Anuncie com Especialistas
               </div>
               
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
                 Venda rápido, sem custo e sem complicação.
               </h1>
               
-              <div className="pt-2">
+              <div className="pt-4">
                 <button 
                   onClick={() => document.getElementById('vantagens')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition-all duration-300 transform hover:scale-105"
+                  className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-bold text-base transition-all duration-300 transform hover:scale-105"
                 >
                   Ver Vantagens
                 </button>
@@ -60,15 +60,15 @@ export default function AnunciarPage() {
             </div>
 
             {/* Coluna Direita - Formulário Flutuante */}
-            <div className="relative lg:ml-12">
-              <div className="bg-white rounded-2xl shadow-2xl p-5 sticky top-8 max-w-xs mx-auto lg:mx-0">
-                <h2 className="text-lg font-bold text-gray-900 mb-3">
+            <div className="relative lg:ml-4">
+              <div className="bg-white rounded-2xl shadow-2xl p-6 sticky top-8 max-w-sm mx-auto lg:mx-0">
+                <h2 className="text-xl font-bold text-gray-900 mb-4">
                   Anuncie seu imóvel com a Nox
                 </h2>
                 
-                <form onSubmit={handleSubmit} className="space-y-2">
+                <form onSubmit={handleSubmit} className="space-y-3">
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
+                    <label className="block text-xs font-medium text-gray-700 mb-2">
                       DDD + Celular / WhatsApp
                     </label>
                     <input
@@ -83,7 +83,7 @@ export default function AnunciarPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
+                    <label className="block text-xs font-medium text-gray-700 mb-2">
                       E-mail
                     </label>
                     <input
@@ -97,13 +97,13 @@ export default function AnunciarPage() {
                     />
                   </div>
 
-                  <div className="pt-1">
-                    <h3 className="text-sm font-bold text-gray-900 mb-2">Dados do imóvel</h3>
+                  <div className="pt-2">
+                    <h3 className="text-sm font-bold text-gray-900 mb-3">Dados do imóvel</h3>
                     
-                    <div className="flex gap-2 mb-2">
+                    <div className="flex gap-2 mb-3">
                       <button
                         type="button"
-                        className={`flex-1 py-2 px-2 rounded-lg font-medium text-xs transition-all ${
+                        className={`flex-1 py-2 px-3 rounded-lg font-medium text-xs transition-all ${
                           formData.tipo === 'vender' 
                             ? 'bg-purple-600 text-white shadow-md' 
                             : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -114,7 +114,7 @@ export default function AnunciarPage() {
                       </button>
                       <button
                         type="button"
-                        className={`flex-1 py-2 px-2 rounded-lg font-medium text-xs transition-all ${
+                        className={`flex-1 py-2 px-3 rounded-lg font-medium text-xs transition-all ${
                           formData.tipo === 'alugar' 
                             ? 'bg-purple-600 text-white shadow-md' 
                             : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -125,8 +125,8 @@ export default function AnunciarPage() {
                       </button>
                     </div>
 
-                    <div className="mb-2">
-                      <label className="block text-xs font-medium text-gray-700 mb-1">
+                    <div className="mb-3">
+                      <label className="block text-xs font-medium text-gray-700 mb-2">
                         Tipo do imóvel:
                       </label>
                       <select
@@ -143,8 +143,8 @@ export default function AnunciarPage() {
                       </select>
                     </div>
 
-                    <div className="mb-2">
-                      <label className="block text-xs font-medium text-gray-700 mb-1">
+                    <div className="mb-3">
+                      <label className="block text-xs font-medium text-gray-700 mb-2">
                         Cidade
                       </label>
                       <input
@@ -158,7 +158,7 @@ export default function AnunciarPage() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium text-gray-700 mb-1">
+                      <label className="block text-xs font-medium text-gray-700 mb-2">
                         Bairro
                       </label>
                       <input
@@ -174,7 +174,7 @@ export default function AnunciarPage() {
 
                   <button
                     type="submit"
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg font-bold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-bold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg"
                   >
                     Avaliar meu imóvel
                   </button>
