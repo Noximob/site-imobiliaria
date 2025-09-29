@@ -49,7 +49,7 @@ export default function AnunciarPage() {
             
             {/* Coluna Esquerda - Marketing */}
             <div className="text-white space-y-3">
-              <div className="inline-block bg-orange-500 text-white px-3 py-2 rounded-lg font-bold text-xs uppercase tracking-wider">
+              <div className="inline-block bg-purple-600 text-white px-3 py-2 rounded-lg font-bold text-xs uppercase tracking-wider">
                 Anuncie com Especialistas
               </div>
               
@@ -60,7 +60,7 @@ export default function AnunciarPage() {
               <div className="pt-2">
                 <button 
                   onClick={() => document.getElementById('vantagens')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition-all duration-300 transform hover:scale-105"
+                  className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-lg font-bold text-sm transition-all duration-300 transform hover:scale-105"
                 >
                   Ver Vantagens
                 </button>
@@ -182,7 +182,7 @@ export default function AnunciarPage() {
 
                   <button
                     type="submit"
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg font-bold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-bold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg"
                   >
                     Avaliar meu imóvel
                   </button>
