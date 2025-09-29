@@ -276,8 +276,13 @@ export default function EncontreMeuImovelPage() {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Column - Team Photo */}
-            <div className="relative w-full h-64 bg-gray-300 rounded-lg overflow-hidden flex items-center justify-center">
-              <span className="text-gray-500">Foto da Equipe</span>
+            <div className="relative w-full h-64 rounded-lg overflow-hidden">
+              <Image
+                src="/imagens/Encontre Meu Imovel/Equipe.png"
+                alt="Equipe Nox Imóveis"
+                fill
+                className="object-cover"
+              />
             </div>
             {/* Right Column - CTA */}
             <div className="text-center lg:text-left space-y-6">
