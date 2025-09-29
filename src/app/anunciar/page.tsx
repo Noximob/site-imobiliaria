@@ -60,8 +60,8 @@ export default function AnunciarPage() {
             </div>
 
             {/* Coluna Direita - Formulário Flutuante */}
-            <div className="relative flex justify-center">
-              <div className="bg-white rounded-2xl shadow-2xl p-5 sticky top-8 max-w-xs mx-auto">
+            <div className="relative flex justify-center items-center h-full">
+              <div className="bg-white rounded-2xl shadow-2xl p-5 sticky top-8 max-w-xs w-full">
                 <h2 className="text-lg font-bold text-gray-900 mb-3">
                   Anuncie seu imóvel com a Nox
                 </h2>
