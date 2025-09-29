@@ -186,7 +186,7 @@ export default function Header() {
                     <Link href="/anunciar" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Anunciar imóvel
                     </Link>
-                    <Link href="/encontrar" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                    <Link href="/encontre-meu-imovel" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Encontre meu imóvel
                     </Link>
                     <Link href="/como-comprar" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
