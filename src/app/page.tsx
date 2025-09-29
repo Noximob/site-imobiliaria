@@ -771,8 +771,137 @@ export default function HomePage() {
                      </div>
                    </div>
                  </div>
-               </div>
-             )}
+            </div>
+          )}
+
+      {/* Seção Blog */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12 text-center">
+            Se atualize nos últimos conteúdos do nosso blog
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {/* Artigo 1 */}
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
+              <div className="relative h-48">
+                <Image 
+                  src="/imagens/blog/arquitetura-paisagista.jpg" 
+                  alt="Arquitetura Paisagista" 
+                  fill
+                  className="object-cover"
+                />
+                {/* Data Overlay */}
+                <div className="absolute top-4 left-4">
+                  <div className="bg-black text-white text-center px-2 py-1 text-sm font-bold">
+                    25
+                  </div>
+                  <div className="bg-yellow-400 text-black text-center px-2 py-1 text-xs font-bold">
+                    Set
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <div className="mb-3">
+                  <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
+                    Dicas e Tendências
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                  Arquitetura Paisagista: Aplicações, Sustentabilidade E Benefícios
+                </h3>
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                  A arquitetura paisagista pode transformar a sua experiência de morar em um imóvel de luxo. Essa característica une design, sustentabilidade e funcionalidade para criar ambientes únicos.
+                </p>
+                <a href="/blog/arquitetura-paisagista" className="text-gray-900 font-medium text-sm uppercase underline decoration-yellow-400 decoration-2 underline-offset-4 hover:text-gray-700 transition-colors">
+                  LEIA MAIS
+                </a>
+              </div>
+            </div>
+
+            {/* Artigo 2 */}
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
+              <div className="relative h-48">
+                <Image 
+                  src="/imagens/blog/binario-praia-brava.jpg" 
+                  alt="Binário Praia Brava" 
+                  fill
+                  className="object-cover"
+                />
+                {/* Data Overlay */}
+                <div className="absolute top-4 left-4">
+                  <div className="bg-black text-white text-center px-2 py-1 text-sm font-bold">
+                    18
+                  </div>
+                  <div className="bg-yellow-400 text-black text-center px-2 py-1 text-xs font-bold">
+                    Set
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <div className="mb-3">
+                  <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
+                    Conheça Itajaí
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                  Binário Praia Brava: O Impacto Na Qualidade De Vida Dos Moradores
+                </h3>
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                  Você já imaginou como seria ter uma mobilidade perfeita entre Itajaí e Balneário Camboriú? O Binário Praia Brava é a solução que está revolucionando o trânsito da região.
+                </p>
+                <a href="/blog/binario-praia-brava" className="text-gray-900 font-medium text-sm uppercase underline decoration-yellow-400 decoration-2 underline-offset-4 hover:text-gray-700 transition-colors">
+                  LEIA MAIS
+                </a>
+              </div>
+            </div>
+
+            {/* Artigo 3 */}
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
+              <div className="relative h-48">
+                <Image 
+                  src="/imagens/blog/curiosidades-itajai.jpg" 
+                  alt="Curiosidades Itajaí" 
+                  fill
+                  className="object-cover"
+                />
+                {/* Data Overlay */}
+                <div className="absolute top-4 left-4">
+                  <div className="bg-black text-white text-center px-2 py-1 text-sm font-bold">
+                    11
+                  </div>
+                  <div className="bg-yellow-400 text-black text-center px-2 py-1 text-xs font-bold">
+                    Set
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <div className="mb-3">
+                  <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
+                    Conheça Itajaí
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                  Curiosidades Sobre Itajaí: Descubra A História E O Encanto Da Cidade
+                </h3>
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                  Você já se perguntou o que torna Itajaí uma cidade tão especial? Localizada em Santa Catarina, ela é conhecida pelo seu porto e pela qualidade de vida.
+                </p>
+                <a href="/blog/curiosidades-itajai" className="text-gray-900 font-medium text-sm uppercase underline decoration-yellow-400 decoration-2 underline-offset-4 hover:text-gray-700 transition-colors">
+                  LEIA MAIS
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Botão Ver mais artigos */}
+          <div className="text-center">
+            <button className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200">
+              Ver mais artigos
+            </button>
+          </div>
+        </div>
+      </section>
 
       {/* Seção Buscas Frequentes */}
       <section className="py-16 bg-gray-900">
