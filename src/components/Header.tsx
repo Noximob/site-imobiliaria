@@ -214,7 +214,7 @@ export default function Header() {
                     <Link href="/viva-penha" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Viva Penha
                     </Link>
-                    <Link href="/viva-picarras" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                    <Link href="/viva-balneario-picarras" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Viva Balneário Piçarras
                     </Link>
                     <Link href="/viva-barra-velha" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
