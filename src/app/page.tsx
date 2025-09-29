@@ -551,7 +551,7 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
               O que dizem nossos clientes
-          </h2>
+            </h2>
           </div>
 
           {/* Card de Depoimento */}
@@ -561,7 +561,7 @@ export default function HomePage() {
               <div className="mb-4">
                 <h3 className="text-lg font-bold text-gray-900 mb-1">
                   Octavio Deiroz Neto
-                </h3>
+              </h3>
                 <p className="text-sm text-gray-600">
                   Comprador
                 </p>
@@ -773,6 +773,205 @@ export default function HomePage() {
                  </div>
                </div>
              )}
+
+      {/* Seção Buscas Frequentes */}
+      <section className="py-16 bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-12 text-center">
+            Buscas frequentes em Penha, Balneário Piçarras e Barra Velha
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Penha */}
+            <div>
+              <div className="flex items-center mb-4">
+                <Search className="w-5 h-5 text-white mr-2" />
+                <h3 className="text-lg font-bold text-white">Penha</h3>
+              </div>
+              <div className="grid grid-cols-1 gap-2">
+                <div className="space-y-2">
+                  <a href="/imoveis?cidade=penha&tipo=apartamento&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamento à venda
+                  </a>
+                  <a href="/imoveis?cidade=penha&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Imóveis à venda
+                  </a>
+                  <a href="/imoveis?cidade=penha&tipo=cobertura&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Coberturas à venda
+                  </a>
+                  <a href="/imoveis?cidade=penha&vista=mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamento Frente Mar
+                  </a>
+                  <a href="/imoveis?cidade=penha&vista=mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamento Vista para o Mar
+                  </a>
+                  <a href="/imoveis?cidade=penha&localizacao=quadra-mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamento Quadra Mar
+                  </a>
+                </div>
+                <div className="space-y-2 mt-4">
+                  <a href="/imoveis?cidade=penha&tipo=apartamento&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Comprar Apartamento
+                  </a>
+                  <a href="/imoveis?cidade=penha&status=na-planta" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamentos na planta
+                  </a>
+                  <a href="/imoveis?cidade=penha&status=lancamento" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Lançamentos
+                  </a>
+                  <a href="/imoveis?cidade=penha&tipo=casa&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Casas à venda
+                  </a>
+                  <a href="/imoveis?cidade=penha&tipo=casa&condominio=fechado" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Casas em Condomínio Fechado
+                  </a>
+                  <a href="/imoveis?cidade=penha&mobiliado=true" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamentos Mobiliados
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Balneário Piçarras */}
+            <div>
+              <div className="flex items-center mb-4">
+                <Search className="w-5 h-5 text-white mr-2" />
+                <h3 className="text-lg font-bold text-white">Balneário Piçarras</h3>
+              </div>
+              <div className="grid grid-cols-1 gap-2">
+                <div className="space-y-2">
+                  <a href="/imoveis?cidade=balneario-picarras&tipo=apartamento&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamento à venda
+                  </a>
+                  <a href="/imoveis?cidade=balneario-picarras&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Imóveis à venda
+                  </a>
+                  <a href="/imoveis?cidade=balneario-picarras&tipo=cobertura&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Coberturas à venda
+                  </a>
+                  <a href="/imoveis?cidade=balneario-picarras&vista=mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamento Frente Mar
+                  </a>
+                  <a href="/imoveis?cidade=balneario-picarras&vista=mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamento Vista para o Mar
+                  </a>
+                  <a href="/imoveis?cidade=balneario-picarras&localizacao=quadra-mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamento Quadra Mar
+                  </a>
+                </div>
+                <div className="space-y-2 mt-4">
+                  <a href="/imoveis?cidade=balneario-picarras&tipo=apartamento&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Comprar Apartamento
+                  </a>
+                  <a href="/imoveis?cidade=balneario-picarras&status=na-planta" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamentos na planta
+                  </a>
+                  <a href="/imoveis?cidade=balneario-picarras&status=lancamento" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Lançamentos
+                  </a>
+                  <a href="/imoveis?cidade=balneario-picarras&tipo=casa&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Casas à venda
+                  </a>
+                  <a href="/imoveis?cidade=balneario-picarras&tipo=casa&condominio=fechado" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Casas em Condomínio Fechado
+                  </a>
+                  <a href="/imoveis?cidade=balneario-picarras&mobiliado=true" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamentos Mobiliados
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Barra Velha */}
+            <div>
+              <div className="flex items-center mb-4">
+                <Search className="w-5 h-5 text-white mr-2" />
+                <h3 className="text-lg font-bold text-white">Barra Velha</h3>
+              </div>
+              <div className="grid grid-cols-1 gap-2">
+                <div className="space-y-2">
+                  <a href="/imoveis?cidade=barra-velha&tipo=apartamento&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamento à venda
+                  </a>
+                  <a href="/imoveis?cidade=barra-velha&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Imóveis à venda
+                  </a>
+                  <a href="/imoveis?cidade=barra-velha&tipo=cobertura&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Coberturas à venda
+                  </a>
+                  <a href="/imoveis?cidade=barra-velha&vista=mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamento Frente Mar
+                  </a>
+                  <a href="/imoveis?cidade=barra-velha&vista=mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamento Vista para o Mar
+                  </a>
+                  <a href="/imoveis?cidade=barra-velha&localizacao=quadra-mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamento Quadra Mar
+                  </a>
+                </div>
+                <div className="space-y-2 mt-4">
+                  <a href="/imoveis?cidade=barra-velha&tipo=apartamento&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Comprar Apartamento
+                  </a>
+                  <a href="/imoveis?cidade=barra-velha&status=na-planta" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamentos na planta
+                  </a>
+                  <a href="/imoveis?cidade=barra-velha&status=lancamento" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Lançamentos
+                  </a>
+                  <a href="/imoveis?cidade=barra-velha&tipo=casa&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Casas à venda
+                  </a>
+                  <a href="/imoveis?cidade=barra-velha&tipo=casa&condominio=fechado" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Casas em Condomínio Fechado
+                  </a>
+                  <a href="/imoveis?cidade=barra-velha&mobiliado=true" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Apartamentos Mobiliados
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Construtoras */}
+            <div>
+              <div className="flex items-center mb-4">
+                <Search className="w-5 h-5 text-white mr-2" />
+                <h3 className="text-lg font-bold text-white">Construtoras</h3>
+              </div>
+              <div className="grid grid-cols-1 gap-2">
+                <div className="space-y-2">
+                  <a href="/imoveis?construtora=santer" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Santer
+                  </a>
+                  <a href="/imoveis?construtora=grupo-estrutura" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Grupo Estrutura
+                  </a>
+                  <a href="/imoveis?construtora=stein" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Stein
+                  </a>
+                  <a href="/imoveis?construtora=art-haus" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Art Haus
+                  </a>
+                  <a href="/imoveis?construtora=rogga" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Rogga
+                  </a>
+                  <a href="/imoveis?construtora=lmr" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    LMR
+                  </a>
+                </div>
+                <div className="space-y-2 mt-4">
+                  <a href="/imoveis?construtora=ox" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    OX
+                  </a>
+                  <a href="/imoveis?construtora=daxo" className="block text-gray-300 hover:text-white text-sm transition-colors">
+                    Daxo
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
     </div>
   )
