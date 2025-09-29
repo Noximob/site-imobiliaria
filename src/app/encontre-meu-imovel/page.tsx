@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 
 export default function EncontreMeuImovelPage() {
   const [formData, setFormData] = useState({
@@ -31,181 +32,169 @@ export default function EncontreMeuImovelPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Primeira Seção - Hero com duas colunas */}
-      <section className="relative h-screen flex items-center overflow-hidden">
-        {/* Background placeholder - será substituído pela imagem */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900">
-          <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-        </div>
-        
-        <div className="relative z-10 container mx-auto px-6 w-full">
-          <div className="grid lg:grid-cols-2 gap-8 items-center h-full py-6">
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             
             {/* Coluna Esquerda - Marketing */}
-            <div className="text-white space-y-3">
-              <div className="inline-block bg-orange-500 text-white px-3 py-2 rounded-lg font-bold text-xs uppercase tracking-wider">
-                Encontre seu Imóvel
-              </div>
-              
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
-                Sem tempo para procurar? A <span className="text-orange-400">Nox</span> encontra seu imóvel dos sonhos!
+            <div className="space-y-6">
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Sem tempo para procurar? A <span className="text-purple-600">Nox</span> encontra seu imóvel dos sonhos!
               </h1>
               
-              <div className="pt-2">
-                <button 
-                  onClick={() => document.getElementById('equipe')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition-all duration-300 transform hover:scale-105"
-                >
-                  Conheça nossa equipe
-                </button>
+              <p className="text-lg text-gray-600 leading-relaxed flex items-start">
+                <span className="text-2xl mr-3">💜</span>
+                Conte-nos como é o imóvel que você procura e deixe com a equipe Nox Imóveis que encontraremos rapidamente para você.
+              </p>
+
+              {/* Seção Como Funciona */}
+              <div className="bg-purple-900 text-white p-6 rounded-lg">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <div className="text-3xl font-bold text-purple-300 mb-2">01.</div>
+                    <h3 className="text-lg font-bold mb-2">Preencha o formulário</h3>
+                    <p className="text-purple-200 text-sm">
+                      Envie seus dados pelo formulário e mostre como é o imóvel que você está buscando.
+                    </p>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold text-purple-300 mb-2">02.</div>
+                    <h3 className="text-lg font-bold mb-2">Receba os melhores imóveis</h3>
+                    <p className="text-purple-200 text-sm">
+                      Nossa equipe irá realizar uma busca minuciosa e apresentar as melhores opções para você escolher.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Coluna Direita - Formulário Flutuante */}
-            <div className="relative flex justify-center items-center h-full">
-              <div className="bg-white rounded-2xl shadow-2xl p-5 sticky top-8 max-w-xs w-full">
-                <h2 className="text-lg font-bold text-gray-900 mb-3">
-                  Encontre seu imóvel
-                </h2>
-                
-                <form onSubmit={handleSubmit} className="space-y-2">
-                  <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
-                      Nome
-                    </label>
+            {/* Coluna Direita - Formulário */}
+            <div className="bg-white p-6 rounded-lg shadow-xl border-t-4 border-purple-600">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Encontre seu imóvel</h2>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Nome */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+                  <input
+                    type="text"
+                    name="nome"
+                    value={formData.nome}
+                    onChange={handleChange}
+                    placeholder="Seu nome completo"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+                {/* Telefone */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">DDD + Celular / WhatsApp</label>
+                  <input
+                    type="tel"
+                    name="telefone"
+                    value={formData.telefone}
+                    onChange={handleChange}
+                    placeholder="(47) 99999-9999"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+                {/* Email */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="seu@email.com"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+
+                {/* Dados do imóvel */}
+                <div className="pt-2">
+                  <h3 className="text-base font-bold text-gray-900 mb-3">Dados do imóvel</h3>
+                  {/* Tipo do imóvel */}
+                  <div className="mb-3">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Tipo do imóvel:</label>
+                    <select
+                      name="tipoImovel"
+                      value={formData.tipoImovel}
+                      onChange={handleChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    >
+                      <option value="">Selecione o tipo</option>
+                      <option value="apartamento">Apartamento</option>
+                      <option value="casa">Casa</option>
+                      <option value="terreno">Terreno</option>
+                      <option value="comercial">Comercial</option>
+                    </select>
+                  </div>
+                  {/* Quartos */}
+                  <div className="mb-3">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Qtde Quartos</label>
+                    <select
+                      name="quartos"
+                      value={formData.quartos}
+                      onChange={handleChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    >
+                      <option value="">Selecione</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4+">4+</option>
+                    </select>
+                  </div>
+                  {/* Vagas */}
+                  <div className="mb-3">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Qtde Vagas</label>
+                    <select
+                      name="vagas"
+                      value={formData.vagas}
+                      onChange={handleChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    >
+                      <option value="">Selecione</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3+">3+</option>
+                    </select>
+                  </div>
+                  {/* Cidade */}
+                  <div className="mb-3">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Cidade</label>
                     <input
                       type="text"
-                      name="nome"
-                      value={formData.nome}
+                      name="cidade"
+                      value={formData.cidade}
                       onChange={handleChange}
-                      placeholder="Seu nome completo"
-                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                      required
+                      placeholder="Sua cidade"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     />
                   </div>
-
+                  {/* Bairro */}
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
-                      DDD + Celular / WhatsApp
-                    </label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Bairro</label>
                     <input
-                      type="tel"
-                      name="telefone"
-                      value={formData.telefone}
+                      type="text"
+                      name="bairro"
+                      value={formData.bairro}
                       onChange={handleChange}
-                      placeholder="(47) 99999-9999"
-                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                      required
+                      placeholder="Seu bairro"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     />
                   </div>
+                </div>
 
-                  <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
-                      E-mail
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="seu@email.com"
-                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                      required
-                    />
-                  </div>
-
-                  <div className="pt-1">
-                    <h3 className="text-sm font-bold text-gray-900 mb-2">Dados do imóvel</h3>
-                    
-                    <div className="mb-2">
-                      <label className="block text-xs font-medium text-gray-700 mb-1">
-                        Tipo do imóvel:
-                      </label>
-                      <select
-                        name="tipoImovel"
-                        value={formData.tipoImovel}
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                      >
-                        <option value="">Selecione o tipo</option>
-                        <option value="apartamento">Apartamento</option>
-                        <option value="casa">Casa</option>
-                        <option value="terreno">Terreno</option>
-                        <option value="comercial">Comercial</option>
-                      </select>
-                    </div>
-
-                    <div className="mb-2">
-                      <label className="block text-xs font-medium text-gray-700 mb-1">
-                        Qtde Quartos
-                      </label>
-                      <select
-                        name="quartos"
-                        value={formData.quartos}
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                      >
-                        <option value="">Selecione</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4+">4+</option>
-                      </select>
-                    </div>
-
-                    <div className="mb-2">
-                      <label className="block text-xs font-medium text-gray-700 mb-1">
-                        Qtde Vagas
-                      </label>
-                      <select
-                        name="vagas"
-                        value={formData.vagas}
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                      >
-                        <option value="">Selecione</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3+">3+</option>
-                      </select>
-                    </div>
-
-                    <div className="mb-2">
-                      <label className="block text-xs font-medium text-gray-700 mb-1">
-                        Cidade
-                      </label>
-                      <input
-                        type="text"
-                        name="cidade"
-                        value={formData.cidade}
-                        onChange={handleChange}
-                        placeholder="Sua cidade"
-                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-medium text-gray-700 mb-1">
-                        Bairro
-                      </label>
-                      <input
-                        type="text"
-                        name="bairro"
-                        value={formData.bairro}
-                        onChange={handleChange}
-                        placeholder="Seu bairro"
-                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg font-bold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg"
-                  >
-                    Enviar
-                  </button>
-                </form>
-              </div>
+                <button
+                  type="submit"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300"
+                >
+                  Enviar
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -239,8 +228,13 @@ export default function EncontreMeuImovelPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Membro 1 - Adriana Barbosa Campos */}
             <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="h-64 relative bg-gray-200 flex items-center justify-center">
-                <span className="text-gray-500 text-sm">Foto do Corretor</span>
+              <div className="h-64 relative">
+                <Image 
+                  src="/imagens/Corretores/1.png" 
+                  alt="Adriana Barbosa Campos" 
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-900 mb-1">Adriana Barbosa Campos</h3>
@@ -256,8 +250,13 @@ export default function EncontreMeuImovelPage() {
 
             {/* Membro 2 - Adriana Medeiros */}
             <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="h-64 relative bg-gray-200 flex items-center justify-center">
-                <span className="text-gray-500 text-sm">Foto do Corretor</span>
+              <div className="h-64 relative">
+                <Image 
+                  src="/imagens/Corretores/2.png" 
+                  alt="Adriana Medeiros" 
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-900 mb-1">Adriana Medeiros</h3>
@@ -273,8 +272,13 @@ export default function EncontreMeuImovelPage() {
 
             {/* Membro 3 - Alan de Freitas Cordeiro */}
             <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="h-64 relative bg-gray-200 flex items-center justify-center">
-                <span className="text-gray-500 text-sm">Foto do Corretor</span>
+              <div className="h-64 relative">
+                <Image 
+                  src="/imagens/Corretores/3.png" 
+                  alt="Alan de Freitas Cordeiro" 
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-900 mb-1">Alan de Freitas Cordeiro</h3>
@@ -290,8 +294,13 @@ export default function EncontreMeuImovelPage() {
 
             {/* Membro 4 - Alex Penha */}
             <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="h-64 relative bg-gray-200 flex items-center justify-center">
-                <span className="text-gray-500 text-sm">Foto do Corretor</span>
+              <div className="h-64 relative">
+                <Image 
+                  src="/imagens/Corretores/4.png" 
+                  alt="Alex Penha" 
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-900 mb-1">Alex Penha</h3>
