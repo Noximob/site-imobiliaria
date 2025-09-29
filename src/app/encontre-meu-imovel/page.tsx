@@ -235,71 +235,96 @@ export default function EncontreMeuImovelPage() {
       </section>
 
       {/* Seção Conheça nossa equipe */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header da Seção */}
           <div className="flex items-center justify-between mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
               Conheça nossa equipe
             </h2>
             
             {/* Botões de Navegação */}
             <div className="flex space-x-2">
-              <button className="w-10 h-10 bg-gray-200 hover:bg-gray-300 rounded-lg flex items-center justify-center transition-colors">
-                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <button className="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors duration-200">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
-              <button className="w-10 h-10 bg-gray-200 hover:bg-gray-300 rounded-lg flex items-center justify-center transition-colors">
-                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <button className="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors duration-200">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
             </div>
           </div>
 
-          {/* Grid de Equipe */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {/* Membro 1 */}
-            <div className="text-center">
-              <div className="w-48 h-48 bg-gray-200 rounded-lg mx-auto mb-4 flex items-center justify-center">
+          {/* Grid da Equipe */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Membro 1 - Adriana Barbosa Campos */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="h-64 relative bg-gray-200 flex items-center justify-center">
                 <span className="text-gray-500 text-sm">Foto do Corretor</span>
               </div>
-              <div className="bg-purple-600 text-white p-3 rounded-lg flex items-center justify-between">
-                <span className="font-medium">Nome do Corretor</span>
-                <span className="text-white">+</span>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">Adriana Barbosa Campos</h3>
+                <p className="text-sm text-gray-600 mb-3">Corretora de imóveis</p>
+                <button className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2">
+                  <span>Ver contato</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                </button>
               </div>
             </div>
 
-            {/* Membro 2 */}
-            <div className="text-center">
-              <div className="w-48 h-48 bg-gray-200 rounded-lg mx-auto mb-4 flex items-center justify-center">
+            {/* Membro 2 - Adriana Medeiros */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="h-64 relative bg-gray-200 flex items-center justify-center">
                 <span className="text-gray-500 text-sm">Foto do Corretor</span>
               </div>
-              <div className="bg-purple-600 text-white p-3 rounded-lg flex items-center justify-between">
-                <span className="font-medium">Nome do Corretor</span>
-                <span className="text-white">+</span>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">Adriana Medeiros</h3>
+                <p className="text-sm text-gray-600 mb-3">Corretora de imóveis</p>
+                <button className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2">
+                  <span>Ver contato</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                </button>
               </div>
             </div>
 
-            {/* Membro 3 */}
-            <div className="text-center">
-              <div className="w-48 h-48 bg-gray-200 rounded-lg mx-auto mb-4 flex items-center justify-center">
+            {/* Membro 3 - Alan de Freitas Cordeiro */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="h-64 relative bg-gray-200 flex items-center justify-center">
                 <span className="text-gray-500 text-sm">Foto do Corretor</span>
               </div>
-              <div className="bg-purple-600 text-white p-3 rounded-lg flex items-center justify-between">
-                <span className="font-medium">Nome do Corretor</span>
-                <span className="text-white">+</span>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">Alan de Freitas Cordeiro</h3>
+                <p className="text-sm text-gray-600 mb-3">Corretor de imóveis</p>
+                <button className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2">
+                  <span>Ver contato</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                </button>
               </div>
             </div>
 
-            {/* Membro 4 */}
-            <div className="text-center">
-              <div className="w-48 h-48 bg-gray-200 rounded-lg mx-auto mb-4 flex items-center justify-center">
+            {/* Membro 4 - Alex Penha */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="h-64 relative bg-gray-200 flex items-center justify-center">
                 <span className="text-gray-500 text-sm">Foto do Corretor</span>
               </div>
-              <div className="bg-purple-600 text-white p-3 rounded-lg flex items-center justify-between">
-                <span className="font-medium">Nome do Corretor</span>
-                <span className="text-white">+</span>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">Alex Penha</h3>
+                <p className="text-sm text-gray-600 mb-3">Corretor de imóveis</p>
+                <button className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2">
+                  <span>Ver contato</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
