@@ -10,8 +10,8 @@ export default function VivaBarraVelhaPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image 
-            src="/imagens/banners/barra-velha-hero.jpg" 
-            alt="Barra Velha - Viva Barra Velha" 
+            src="/imagens/banners/penha-hero.jpg" 
+            alt="Penha - Viva Penha" 
             fill
             className="object-cover"
           />
@@ -31,7 +31,7 @@ export default function VivaBarraVelhaPage() {
         </div>
       </section>
 
-      {/* Seção O que fazer em Barra Velha */}
+      {/* Seção O que fazer em Penha */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -112,16 +112,16 @@ export default function VivaBarraVelhaPage() {
               <div className="space-y-4">
                 <div className="relative h-64 rounded-lg overflow-hidden">
                   <Image 
-                    src="/imagens/barra-velha/praia1.jpg" 
-                    alt="Praia de Barra Velha" 
+                    src="/imagens/penha/praia1.jpg" 
+                    alt="Praia de Penha" 
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden">
                   <Image 
-                    src="/imagens/barra-velha/cristo-luz.jpg" 
-                    alt="Cristo Luz Barra Velha" 
+                    src="/imagens/penha/cristo-luz.jpg" 
+                    alt="Cristo Luz Penha" 
                     fill
                     className="object-cover"
                   />
@@ -130,7 +130,7 @@ export default function VivaBarraVelhaPage() {
               <div className="space-y-4">
                 <div className="relative h-32 rounded-lg overflow-hidden">
                   <Image 
-                    src="/imagens/barra-velha/beto-carrero.jpg" 
+                    src="/imagens/penha/beto-carrero.jpg" 
                     alt="Beto Carrero World" 
                     fill
                     className="object-cover"
@@ -138,7 +138,7 @@ export default function VivaBarraVelhaPage() {
                 </div>
                 <div className="relative h-64 rounded-lg overflow-hidden">
                   <Image 
-                    src="/imagens/barra-velha/jantar-romantico.jpg" 
+                    src="/imagens/penha/jantar-romantico.jpg" 
                     alt="Jantar Romântico" 
                     fill
                     className="object-cover"
@@ -148,16 +148,16 @@ export default function VivaBarraVelhaPage() {
               <div className="space-y-4">
                 <div className="relative h-64 rounded-lg overflow-hidden">
                   <Image 
-                    src="/imagens/barra-velha/praia2.jpg" 
-                    alt="Praia de Barra Velha" 
+                    src="/imagens/penha/praia2.jpg" 
+                    alt="Praia de Penha" 
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden">
                   <Image 
-                    src="/imagens/barra-velha/skyline.jpg" 
-                    alt="Skyline Barra Velha" 
+                    src="/imagens/penha/skyline.jpg" 
+                    alt="Skyline Penha" 
                     fill
                     className="object-cover"
                   />
@@ -253,24 +253,24 @@ export default function VivaBarraVelhaPage() {
             <div className="grid grid-cols-3 gap-4">
               <div className="relative h-48 rounded-lg overflow-hidden">
                 <Image 
-                  src="/imagens/barra-velha/skyline1.jpg" 
-                  alt="Skyline Barra Velha" 
+                  src="/imagens/penha/skyline1.jpg" 
+                  alt="Skyline Penha" 
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="relative h-48 rounded-lg overflow-hidden">
                 <Image 
-                  src="/imagens/barra-velha/skyline2.jpg" 
-                  alt="Skyline Barra Velha" 
+                  src="/imagens/penha/skyline2.jpg" 
+                  alt="Skyline Penha" 
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="relative h-48 rounded-lg overflow-hidden">
                 <Image 
-                  src="/imagens/barra-velha/skyline3.jpg" 
-                  alt="Skyline Barra Velha" 
+                  src="/imagens/penha/skyline3.jpg" 
+                  alt="Skyline Penha" 
                   fill
                   className="object-cover"
                 />
@@ -399,7 +399,7 @@ export default function VivaBarraVelhaPage() {
           <div className="grid lg:grid-cols-2 gap-8 mb-12">
             <div className="relative h-80 rounded-lg overflow-hidden">
               <Image 
-                src="/imagens/barra-velha/sala-vista-mar.jpg" 
+                src="/imagens/penha/sala-vista-mar.jpg" 
                 alt="Sala com vista para o mar" 
                 fill
                 className="object-cover"
@@ -407,7 +407,7 @@ export default function VivaBarraVelhaPage() {
             </div>
             <div className="relative h-80 rounded-lg overflow-hidden">
               <Image 
-                src="/imagens/barra-velha/equipe.jpg" 
+                src="/imagens/penha/equipe.jpg" 
                 alt="Equipe Nox Imóveis" 
                 fill
                 className="object-cover"
