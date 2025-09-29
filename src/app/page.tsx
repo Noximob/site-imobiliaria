@@ -896,7 +896,7 @@ export default function HomePage() {
 
           {/* Botão Ver mais artigos */}
           <div className="text-center">
-            <button className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200">
+            <button className="bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200">
               Ver mais artigos
             </button>
           </div>
