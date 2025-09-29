@@ -69,128 +69,82 @@ export default function EncontreMeuImovelPage() {
             </div>
 
             {/* Coluna Direita - Formulário */}
-            <div className="bg-white p-4 rounded-lg shadow-xl border-t-4 border-purple-600">
-              <h2 className="text-lg font-bold text-gray-900 mb-3">Encontre seu imóvel</h2>
-              <form onSubmit={handleSubmit} className="space-y-3">
+            <div className="bg-white p-6 rounded-lg shadow-xl border-t-4 border-purple-600">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Encontre seu imóvel</h2>
+              <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Nome */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">Nome</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
                   <input
                     type="text"
                     name="nome"
                     value={formData.nome}
                     onChange={handleChange}
                     placeholder="Seu nome completo"
-                    className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     required
                   />
                 </div>
                 {/* Telefone */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">DDD + Celular / WhatsApp</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">DDD + Celular / WhatsApp</label>
                   <input
                     type="tel"
                     name="telefone"
                     value={formData.telefone}
                     onChange={handleChange}
                     placeholder="(47) 99999-9999"
-                    className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     required
                   />
                 </div>
                 {/* Email */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">E-mail</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="seu@email.com"
-                    className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     required
                   />
                 </div>
 
-                {/* Dados do imóvel */}
-                <div className="pt-1">
-                  <h3 className="text-sm font-bold text-gray-900 mb-2">Dados do imóvel</h3>
-                  {/* Tipo do imóvel */}
-                  <div className="mb-2">
-                    <label className="block text-xs font-medium text-gray-700 mb-1">Tipo do imóvel:</label>
-                    <select
-                      name="tipoImovel"
-                      value={formData.tipoImovel}
-                      onChange={handleChange}
-                      className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    >
-                      <option value="">Selecione o tipo</option>
-                      <option value="apartamento">Apartamento</option>
-                      <option value="casa">Casa</option>
-                      <option value="terreno">Terreno</option>
-                      <option value="comercial">Comercial</option>
-                    </select>
-                  </div>
-                  {/* Quartos */}
-                  <div className="mb-2">
-                    <label className="block text-xs font-medium text-gray-700 mb-1">Qtde Quartos</label>
-                    <select
-                      name="quartos"
-                      value={formData.quartos}
-                      onChange={handleChange}
-                      className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    >
-                      <option value="">Selecione</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4+">4+</option>
-                    </select>
-                  </div>
-                  {/* Vagas */}
-                  <div className="mb-2">
-                    <label className="block text-xs font-medium text-gray-700 mb-1">Qtde Vagas</label>
-                    <select
-                      name="vagas"
-                      value={formData.vagas}
-                      onChange={handleChange}
-                      className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    >
-                      <option value="">Selecione</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3+">3+</option>
-                    </select>
-                  </div>
-                  {/* Cidade */}
-                  <div className="mb-2">
-                    <label className="block text-xs font-medium text-gray-700 mb-1">Cidade</label>
-                    <input
-                      type="text"
-                      name="cidade"
-                      value={formData.cidade}
-                      onChange={handleChange}
-                      placeholder="Sua cidade"
-                      className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    />
-                  </div>
-                  {/* Bairro */}
-                  <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">Bairro</label>
-                    <input
-                      type="text"
-                      name="bairro"
-                      value={formData.bairro}
-                      onChange={handleChange}
-                      placeholder="Seu bairro"
-                      className="w-full px-2 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    />
-                  </div>
+                {/* Tipo do imóvel */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Tipo do imóvel</label>
+                  <select
+                    name="tipoImovel"
+                    value={formData.tipoImovel}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  >
+                    <option value="">Selecione o tipo</option>
+                    <option value="apartamento">Apartamento</option>
+                    <option value="casa">Casa</option>
+                    <option value="terreno">Terreno</option>
+                    <option value="comercial">Comercial</option>
+                  </select>
+                </div>
+
+                {/* Cidade */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Cidade</label>
+                  <input
+                    type="text"
+                    name="cidade"
+                    value={formData.cidade}
+                    onChange={handleChange}
+                    placeholder="Sua cidade"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-3 rounded-lg transition-colors duration-300 text-sm"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300"
                 >
                   Enviar
                 </button>
