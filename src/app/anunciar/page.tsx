@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { DollarSign, TrendingUp, BarChart3, Camera } from 'lucide-react'
 
 export default function AnunciarPage() {
@@ -31,9 +32,16 @@ export default function AnunciarPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Primeira Seção - Hero com duas colunas */}
       <section className="relative h-screen flex items-center overflow-hidden">
-        {/* Background placeholder - será substituído pela imagem */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900">
-          <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/imagens/Anunciar Imovel/Anunciar Imovel.png"
+            alt="Anunciar Imóvel - Nox Imóveis"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         </div>
         
         <div className="relative z-10 container mx-auto px-6 w-full">

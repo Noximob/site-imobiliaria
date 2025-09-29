@@ -17,7 +17,7 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo e Contatos - Esquerda */}
           <div className="flex items-center space-x-6">
-            {/* Logo */}
+          {/* Logo */}
             <Link href="/" className="flex items-center">
               <div className="relative w-32 h-12">
                 <Image
@@ -27,14 +27,14 @@ export default function Header() {
                   className="object-contain"
                   priority
                 />
-              </div>
-            </Link>
+            </div>
+          </Link>
 
             {/* Telefone e Redes Sociais */}
-            <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
               {/* WhatsApp */}
               <div className="flex items-center space-x-2 text-sm text-green-600">
-                <Phone className="w-4 h-4" />
+              <Phone className="w-4 h-4" />
                 <span className="font-medium">(47) 99753-0113</span>
               </div>
               
@@ -49,7 +49,7 @@ export default function Header() {
                 <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
                   <Linkedin className="w-5 h-5" />
                 </a>
-              </div>
+            </div>
             </div>
           </div>
 
@@ -137,12 +137,12 @@ export default function Header() {
             </nav>
 
             {/* Menu hambúrguer */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-2 rounded-md text-purple-600 hover:text-purple-700 hover:bg-purple-50"
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
           </div>
         </div>
 
@@ -175,7 +175,7 @@ export default function Header() {
                     </Link>
                     <Link href="/favoritos" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Favoritos
-                    </Link>
+              </Link>
                   </div>
                 </div>
 
@@ -185,13 +185,13 @@ export default function Header() {
                   <div className="space-y-1">
                     <Link href="/anunciar" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Anunciar imóvel
-                    </Link>
+              </Link>
                     <Link href="/encontre-meu-imovel" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Encontre meu imóvel
-                    </Link>
+              </Link>
                     <Link href="/como-comprar" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Como comprar
-                    </Link>
+              </Link>
                   </div>
                 </div>
 

@@ -564,8 +564,8 @@ export default function HomePage() {
               </h3>
                 <p className="text-sm text-gray-600">
                   Comprador
-                </p>
-              </div>
+            </p>
+          </div>
 
               {/* Depoimento */}
               <blockquote className="text-base text-gray-700 leading-relaxed italic">
@@ -709,7 +709,7 @@ export default function HomePage() {
                      </div>
                    </div>
           </div>
-        </div>
+            </div>
       </section>
 
              {/* Modal de Contato */}
@@ -722,7 +722,7 @@ export default function HomePage() {
                        {selectedMember === 'adriana-medeiros' && 'Adriana Medeiros'}
                        {selectedMember === 'alan' && 'Alan de Freitas Cordeiro'}
                        {selectedMember === 'alex' && 'Alex Penha'}
-                     </h3>
+              </h3>
                      <button 
                        onClick={() => setSelectedMember(null)}
                        className="text-gray-400 hover:text-gray-600"
