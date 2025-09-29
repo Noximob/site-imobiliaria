@@ -116,7 +116,7 @@ export default function ComoComprarPage() {
               <div className="mt-6">
                 <Link 
                   href="/imoveis" 
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg transition-colors inline-flex items-center text-base"
+                  className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors inline-flex items-center text-base"
                 >
                   Buscar imóveis
                 </Link>
