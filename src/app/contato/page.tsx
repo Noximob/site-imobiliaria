@@ -206,7 +206,7 @@ export default function ContatoPage() {
               {/* Botão Enviar */}
               <button
                 type="submit"
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm"
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Enviar mensagem
               </button>
