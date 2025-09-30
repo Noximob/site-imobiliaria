@@ -303,11 +303,13 @@ export default function ComoComprarPage() {
             {/* Bloco Esquerdo - Investimento */}
             <div className="bg-white rounded-lg overflow-hidden shadow-sm">
               {/* Imagem */}
-              <div className="h-48 bg-gradient-to-br from-orange-400 to-pink-500 flex items-center justify-center">
-                <div className="text-center text-white/20">
-                  <div className="text-2xl font-bold">FOTO PRAIA</div>
-                  <div className="text-xs mt-1">Aqui ficará a imagem da praia</div>
-                </div>
+              <div className="h-48 relative overflow-hidden">
+                <Image
+                  src="/imagens/Como Comprar/4.png"
+                  alt="Praia - Investimento imobiliário"
+                  fill
+                  className="object-cover"
+                />
               </div>
               
               {/* Conteúdo */}
@@ -327,11 +329,13 @@ export default function ComoComprarPage() {
             {/* Bloco Direito - Anuncie */}
             <div className="bg-white rounded-lg overflow-hidden shadow-sm">
               {/* Imagem */}
-              <div className="h-48 bg-gradient-to-br from-purple-400 to-blue-500 flex items-center justify-center">
-                <div className="text-center text-white/20">
-                  <div className="text-2xl font-bold">FOTO EQUIPE</div>
-                  <div className="text-xs mt-1">Aqui ficará a foto da equipe</div>
-                </div>
+              <div className="h-48 relative overflow-hidden">
+                <Image
+                  src="/imagens/Como Comprar/5.png"
+                  alt="Equipe Nox Imóveis"
+                  fill
+                  className="object-cover"
+                />
               </div>
               
               {/* Conteúdo */}
