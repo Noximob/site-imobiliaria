@@ -52,31 +52,31 @@ export default function TrabalheConoscoPage() {
     <div className="min-h-screen bg-white">
       {/* Primeira Tela - Hero Section */}
       <div className="relative h-screen">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/imagens/Trabalhe Conosco/Trabalhe Conosco.png"
-            alt="Trabalhe Conosco - Nox Imóveis"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-        </div>
-        
-        <div className="relative z-10 h-full flex">
-          {/* Lado Esquerdo - Texto */}
-          <div className="flex-1 flex items-center justify-center">
-            <div className="text-white max-w-lg px-8">
+        <div className="h-full flex">
+          {/* Lado Esquerdo - Texto com Background */}
+          <div className="flex-1 flex items-center justify-center relative">
+            {/* Background Image para lado esquerdo */}
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/imagens/Trabalhe Conosco/Trabalhe Conosco.png"
+                alt="Trabalhe Conosco - Nox Imóveis"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-purple-900 bg-opacity-80"></div>
+            </div>
+            
+            <div className="relative z-10 text-white max-w-lg px-8">
               <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
                 Venha para o nosso time!
               </h1>
-              <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-8">
+              <p className="text-lg md:text-xl text-purple-100 leading-relaxed mb-8">
                 Faça parte da imobiliária que mais cresce em Santa Catarina!
               </p>
               <button
                 onClick={() => document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300"
               >
                 Enviar currículo
               </button>
@@ -84,15 +84,15 @@ export default function TrabalheConoscoPage() {
           </div>
 
           {/* Lado Direito - Imagem da Equipe */}
-          <div className="flex-1 flex items-center justify-center">
-            <div className="text-center text-white p-8">
-              <div className="w-32 h-32 bg-white/20 backdrop-blur-sm rounded-full mx-auto mb-4 flex items-center justify-center border border-white/30">
-                <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+          <div className="flex-1 flex items-center justify-center bg-gray-200">
+            <div className="text-center text-gray-500 p-8">
+              <div className="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <svg className="w-16 h-16 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                 </svg>
               </div>
-              <p className="text-sm font-medium text-white/90">Foto da equipe</p>
-              <p className="text-xs text-white/70">4 pessoas sorrindo</p>
+              <p className="text-sm font-medium">Foto da equipe</p>
+              <p className="text-xs text-gray-400">4 pessoas sorrindo</p>
             </div>
           </div>
         </div>
