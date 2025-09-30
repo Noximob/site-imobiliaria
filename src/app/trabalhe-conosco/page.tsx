@@ -72,19 +72,16 @@ export default function TrabalheConoscoPage() {
           </div>
 
           {/* Lado Direito - Imagem da Equipe */}
-          <div className="flex-1 flex items-center justify-center bg-gray-200">
-            <div className="text-center text-gray-500 p-8">
-              <div className="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
-                <Image
-                  src="/imagens/Trabalhe Conosco/Trabalhe Conosco.png"
-                  alt="Equipe Nox Imóveis"
-                  width={128}
-                  height={128}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+          <div className="flex-1 relative">
+            <Image
+              src="/imagens/Trabalhe Conosco/Trabalhe Conosco.png"
+              alt="Equipe Nox Imóveis"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center text-white bg-black/50 px-4 py-2 rounded-lg">
               <p className="text-sm font-medium">Foto da equipe</p>
-              <p className="text-xs text-gray-400">4 pessoas sorrindo</p>
+              <p className="text-xs text-white/80">4 pessoas sorrindo</p>
             </div>
           </div>
         </div>
