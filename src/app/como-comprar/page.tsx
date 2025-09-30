@@ -265,7 +265,7 @@ export default function ComoComprarPage() {
       </section>
 
       {/* Seção Localização */}
-      <section className="py-8 bg-blue-50">
+      <section className="py-8 bg-purple-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Pergunta */}
           <div className="text-center mb-6">
@@ -276,21 +276,21 @@ export default function ComoComprarPage() {
 
           {/* Botões de Localização */}
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm">
+            <button className="bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
               </svg>
               Frente mar
             </button>
             
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm">
+            <button className="bg-purple-500 hover:bg-purple-600 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
               Quadra Mar
             </button>
             
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm">
+            <button className="bg-purple-700 hover:bg-purple-800 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
@@ -313,14 +313,14 @@ export default function ComoComprarPage() {
               </div>
               
               {/* Conteúdo */}
-              <div className="bg-cyan-500 p-6">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6">
                 <h3 className="text-white text-sm font-normal mb-1">
                   Procurando o melhor investimento?
                 </h3>
                 <h3 className="text-white text-lg font-bold mb-4">
                   Encontre o seu imóvel na praia!
                 </h3>
-                <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition-colors text-sm">
+                <button className="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
                   Buscar imóveis
                 </button>
               </div>
@@ -339,14 +339,14 @@ export default function ComoComprarPage() {
               </div>
               
               {/* Conteúdo */}
-              <div className="bg-blue-800 p-6">
+              <div className="bg-gradient-to-br from-purple-800 to-purple-900 p-6">
                 <h3 className="text-white text-sm font-normal mb-1">
                   Anuncie com a Nox
                 </h3>
                 <h3 className="text-white text-lg font-bold mb-4">
                   A melhor forma de anunciar seu imóvel!
                 </h3>
-                <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition-colors text-sm">
+                <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
                   Avaliar meu imóvel
                 </button>
               </div>
