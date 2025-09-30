@@ -52,13 +52,13 @@ export default function ContatoPage() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="/imagens/banners/contato-hero.jpg" 
+          src="/imagens/Contato/Contato.png" 
           alt="Contato Nox Imóveis" 
           fill
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-purple-900 bg-opacity-80"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>
       
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
