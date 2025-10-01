@@ -6,7 +6,7 @@ export default function VivaPenhaPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image 
@@ -15,17 +15,14 @@ export default function VivaPenhaPage() {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+          <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         </div>
         
-        <div className="relative z-10 container mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+        <div className="relative z-10 text-center">
+          <h1 className="text-6xl md:text-7xl font-bold text-white mb-8">
             Viva Penha
           </h1>
-          <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
-            Descubra o paraíso catarinense com suas praias deslumbrantes, vida noturna animada e oportunidades de investimento incríveis.
-          </p>
-          <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors duration-300">
+          <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition-colors duration-300 shadow-2xl">
             Ver as vantagens
           </button>
         </div>
