@@ -28,6 +28,55 @@ export default function VivaPenhaPage() {
         </div>
       </section>
 
+      {/* Seção Descubra o paraíso catarinense */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column - Text */}
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Descubra o paraíso catarinense
+              </h2>
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                Seja bem-vindo à deslumbrante cidade de Penha, um dos destinos mais encantadores do Brasil. Com suas praias deslumbrantes, vida noturna animada e oportunidades de investimento incríveis, Penha é o local perfeito para viver, visitar e investir.
+              </p>
+              <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300">
+                Ver imóveis
+              </button>
+            </div>
+
+            {/* Right Column - Images */}
+            <div className="relative">
+              {/* Main Image */}
+              <div className="relative rounded-lg overflow-hidden shadow-lg">
+                <Image 
+                  src="/imagens/penha/praia-principal.jpg" 
+                  alt="Praia de Penha" 
+                  width={600}
+                  height={400}
+                  className="w-full h-80 object-cover"
+                />
+                {/* Decorative Heart Icon */}
+                <div className="absolute top-4 left-4 w-8 h-8 bg-yellow-400 rounded flex items-center justify-center">
+                  <span className="text-yellow-600 text-sm">♥</span>
+                </div>
+              </div>
+              
+              {/* Secondary Overlapping Image */}
+              <div className="absolute -bottom-8 -left-8 rounded-lg overflow-hidden shadow-lg">
+                <Image 
+                  src="/imagens/penha/praia-secundaria.jpg" 
+                  alt="Vista da praia de Penha" 
+                  width={300}
+                  height={200}
+                  className="w-64 h-40 object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Seção O que fazer em Penha */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
