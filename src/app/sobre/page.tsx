@@ -79,7 +79,7 @@ export default function SobrePage() {
                 </p>
               </div>
               
-              <button className="mt-8 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
+              <button className="mt-8 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
                 Nossos serviços
               </button>
             </div>
@@ -92,7 +92,7 @@ export default function SobrePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Missão */}
-            <div className="bg-blue-100 rounded-lg p-6">
+            <div className="bg-purple-100 rounded-lg p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Missão</h3>
               <p className="text-gray-700 leading-relaxed">
                 Surpreender nossos clientes desde o primeiro contato até a escritura. 
@@ -101,7 +101,7 @@ export default function SobrePage() {
             </div>
             
             {/* Visão */}
-            <div className="bg-blue-100 rounded-lg p-6">
+            <div className="bg-purple-100 rounded-lg p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Visão</h3>
               <p className="text-gray-700 leading-relaxed">
                 Intermediar 1 bilhão em valor líquido entre janeiro e dezembro de 2026.
@@ -109,7 +109,7 @@ export default function SobrePage() {
             </div>
             
             {/* Valores */}
-            <div className="bg-blue-100 rounded-lg p-6">
+            <div className="bg-purple-100 rounded-lg p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Valores</h3>
               <p className="text-gray-700 leading-relaxed">
                 Leves, alegres, loucos e autênticos. Obstinados, comprometidos, ousados e intensos.
@@ -284,19 +284,19 @@ export default function SobrePage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center space-x-8">
             {/* Ícone Coração */}
-            <div className="w-16 h-16 bg-yellow-200 rounded-lg flex items-center justify-center">
-              <span className="text-3xl">💛</span>
+            <div className="w-16 h-16 bg-purple-200 rounded-lg flex items-center justify-center">
+              <span className="text-3xl">💜</span>
             </div>
             
             {/* Texto */}
             <div className="flex-1">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-                Faça parte da <span className="text-blue-600">Nox</span>
+                Faça parte da <span className="text-purple-600">Nox</span>
               </h2>
             </div>
             
             {/* Botão */}
-            <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
+            <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
               Saiba mais
             </button>
           </div>
