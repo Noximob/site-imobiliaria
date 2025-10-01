@@ -10,7 +10,7 @@ export default function SobrePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section - Quem Somos */}
-      <section className="relative h-screen flex items-end justify-start overflow-hidden">
+      <section className="relative h-[70vh] flex items-end justify-start overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image 
@@ -23,14 +23,14 @@ export default function SobrePage() {
         </div>
         
         {/* Content Overlay */}
-        <div className="relative z-10 text-white p-8 pb-16 max-w-2xl">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+        <div className="relative z-10 text-white p-6 pb-12 max-w-xl">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
             A imobiliária mais alto-astral do litoral catarinense
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-white/90">
+          <p className="text-base md:text-lg mb-6 text-white/90">
             Conheça a história da Nox.
           </p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-300 shadow-lg">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg text-sm transition-colors duration-300 shadow-lg">
             Saiba mais
           </button>
         </div>
