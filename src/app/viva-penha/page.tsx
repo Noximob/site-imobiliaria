@@ -15,14 +15,14 @@ export default function VivaPenhaPage() {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         </div>
         
         <div className="relative z-10 text-center">
-          <h1 className="text-6xl md:text-7xl font-bold text-white mb-8">
+          <h1 className="text-7xl md:text-8xl font-bold text-white mb-12">
             Viva Penha
           </h1>
-          <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition-colors duration-300 shadow-2xl">
+          <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-5 px-10 rounded-lg text-2xl transition-colors duration-300 shadow-2xl">
             Ver as vantagens
           </button>
         </div>
