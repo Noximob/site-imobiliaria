@@ -79,6 +79,138 @@ export default function VivaPenhaPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Column - Text and List */}
             <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                O que fazer em Penha?
+              </h2>
+              <p className="text-base text-gray-600 mb-6 leading-relaxed">
+                Aproveite tudo o que Penha tem a oferecer e viva o melhor da cidade!
+              </p>
+              
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Praias de Areias Brancas</h3>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Parque Beto Carrero World</h3>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Cristo Luz</h3>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Vida Noturna Vibrante</h3>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Gastronomia Excepcional</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Images */}
+            <div className="grid grid-cols-3 gap-4">
+              <div className="space-y-4">
+                <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
+                  <Image 
+                    src="/imagens/penha/praia1.jpg" 
+                    alt="Praia de Penha" 
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
+                  <Image 
+                    src="/imagens/penha/cristo-luz.jpg" 
+                    alt="Cristo Luz Penha" 
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
+                  <Image 
+                    src="/imagens/penha/beto-carrero.jpg" 
+                    alt="Beto Carrero World" 
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
+                  <Image 
+                    src="/imagens/penha/jantar-romantico.jpg" 
+                    alt="Jantar Romântico" 
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
+                  <Image 
+                    src="/imagens/penha/praia2.jpg" 
+                    alt="Praia de Penha" 
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
+                  <Image 
+                    src="/imagens/penha/skyline.jpg" 
+                    alt="Skyline Penha" 
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Seção Características */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column - Text and List */}
+            <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 O que fazer em Penha?
               </h2>
