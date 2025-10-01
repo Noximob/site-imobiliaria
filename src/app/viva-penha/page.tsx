@@ -346,42 +346,57 @@ export default function VivaPenhaPage() {
       </section>
 
       {/* Seção Final CTA */}
-      <section className="py-16 bg-purple-100">
+      <section className="py-16 bg-purple-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Card 1 - Buscar Imóveis */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg">
-              <div className="relative h-64">
-                <Image 
-                  src="/imagens/Como Comprar/4.png" 
-                  alt="Praia com palmeiras" 
+          {/* Blocos de Conteúdo */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {/* Bloco Esquerdo - Investimento */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+              {/* Imagem */}
+              <div className="h-48 relative overflow-hidden">
+                <Image
+                  src="/imagens/Como Comprar/4.png"
+                  alt="Praia - Investimento imobiliário"
                   fill
                   className="object-cover"
                 />
               </div>
-              <div className="bg-purple-600 p-8 text-white text-center">
-                <h3 className="text-lg font-semibold mb-2">Procurando o melhor investimento?</h3>
-                <h2 className="text-2xl font-bold mb-4">Encontre o seu imóvel na praia!</h2>
-                <button className="bg-purple-800 hover:bg-purple-900 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300">
+              
+              {/* Conteúdo */}
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6">
+                <h3 className="text-white text-sm font-normal mb-1">
+                  Procurando o melhor investimento?
+                </h3>
+                <h3 className="text-white text-lg font-bold mb-4">
+                  Encontre o seu imóvel na praia!
+                </h3>
+                <button className="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
                   Buscar imóveis
                 </button>
               </div>
             </div>
 
-            {/* Card 2 - Anunciar Imóvel */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg">
-              <div className="relative h-64">
-                <Image 
-                  src="/imagens/Como Comprar/5.png" 
-                  alt="Equipe Nox Imóveis" 
+            {/* Bloco Direito - Anuncie */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+              {/* Imagem */}
+              <div className="h-48 relative overflow-hidden">
+                <Image
+                  src="/imagens/Como Comprar/5.png"
+                  alt="Equipe Nox Imóveis"
                   fill
                   className="object-cover"
                 />
               </div>
-              <div className="bg-purple-800 p-8 text-white text-center">
-                <h3 className="text-lg font-semibold mb-2">Anuncie com a Nox</h3>
-                <h2 className="text-2xl font-bold mb-4">A melhor forma de anunciar seu imóvel!</h2>
-                <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300">
+              
+              {/* Conteúdo */}
+              <div className="bg-gradient-to-br from-purple-800 to-purple-900 p-6">
+                <h3 className="text-white text-sm font-normal mb-1">
+                  Anuncie com a Nox
+                </h3>
+                <h3 className="text-white text-lg font-bold mb-4">
+                  A melhor forma de anunciar seu imóvel!
+                </h3>
+                <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
                   Avaliar meu imóvel
                 </button>
               </div>
