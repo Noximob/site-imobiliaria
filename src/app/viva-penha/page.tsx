@@ -6,7 +6,7 @@ export default function VivaPenhaPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-start justify-start overflow-hidden">
+      <section className="relative h-[70vh] flex items-start justify-start overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image 
@@ -18,11 +18,11 @@ export default function VivaPenhaPage() {
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         </div>
         
-        <div className="relative z-10 text-left pl-8 pt-16">
-          <h1 className="text-6xl md:text-7xl font-bold text-white mb-8">
+        <div className="relative z-10 text-left pl-8 pt-12">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
             Viva Penha
           </h1>
-          <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition-colors duration-300 shadow-2xl">
+          <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 shadow-2xl">
             Ver as vantagens
           </button>
         </div>
