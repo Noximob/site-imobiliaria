@@ -59,13 +59,13 @@ export default function VivaPenhaPage() {
 
             {/* Right Column - Text */}
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Descubra o paraíso catarinense
               </h2>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              <p className="text-base text-gray-600 mb-6 leading-relaxed">
                 Seja bem-vindo à deslumbrante cidade de Penha, um dos destinos mais encantadores do Brasil. Com suas praias deslumbrantes, vida noturna animada e oportunidades de investimento incríveis, Penha é o local perfeito para viver, visitar e investir.
               </p>
-              <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300">
+              <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-5 rounded-lg text-sm transition-colors duration-300">
                 Ver imóveis
               </button>
             </div>
