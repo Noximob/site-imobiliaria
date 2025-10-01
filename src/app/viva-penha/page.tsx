@@ -266,8 +266,8 @@ export default function VivaPenhaPage() {
 
       {/* Seção Investimento */}
       <section className="py-12 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
             {/* Left Column - CTA (White Background) */}
             <div className="lg:pr-6 flex flex-col items-center lg:items-start">
               <h2 className="text-2xl md:text-3xl font-bold mb-3 leading-tight text-gray-900 text-center lg:text-left">
