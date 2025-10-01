@@ -344,6 +344,83 @@ export default function VivaPenhaPage() {
           </div>
         </div>
       </section>
+
+      {/* Seção Localização */}
+      <section className="py-16 bg-blue-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            Você prefere qual localização?
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <button className="bg-blue-900 text-white p-6 rounded-lg text-center hover:bg-blue-800 transition-colors duration-300">
+              <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 2L3 7v11a1 1 0 001 1h12a1 1 0 001-1V7l-7-5zM8 15v-3a2 2 0 114 0v3H8z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold">Frente mar</h3>
+            </button>
+            
+            <button className="bg-blue-900 text-white p-6 rounded-lg text-center hover:bg-blue-800 transition-colors duration-300">
+              <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold">Quadra Mar</h3>
+            </button>
+            
+            <button className="bg-blue-900 text-white p-6 rounded-lg text-center hover:bg-blue-800 transition-colors duration-300">
+              <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 2L3 7v11a1 1 0 001 1h12a1 1 0 001-1V7l-7-5z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold">Vista Mar</h3>
+            </button>
+          </div>
+
+          {/* Images Section */}
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            <div className="relative h-80 rounded-lg overflow-hidden">
+              <Image 
+                src="/imagens/penha/sala-vista-mar.jpg" 
+                alt="Sala com vista para o mar" 
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="relative h-80 rounded-lg overflow-hidden">
+              <Image 
+                src="/imagens/penha/equipe.jpg" 
+                alt="Equipe Nox Imóveis" 
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          {/* CTA Sections */}
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-cyan-500 text-white p-8 rounded-lg text-center">
+              <h3 className="text-2xl font-bold mb-4">Procurando o melhor investimento?</h3>
+              <p className="text-xl mb-6">Encontre o seu imóvel na praia!</p>
+              <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300">
+                Buscar imóveis
+              </button>
+            </div>
+            
+            <div className="bg-blue-900 text-white p-8 rounded-lg text-center">
+              <h3 className="text-2xl font-bold mb-4">Atendimento especializado</h3>
+              <p className="text-xl mb-6">Converse com um especialista!</p>
+              <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300">
+                Entre em contato
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
