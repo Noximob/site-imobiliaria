@@ -144,7 +144,7 @@ export default function EncontreMeuImovelPage() {
 
                 <button
                   type="submit"
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300"
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300"
                 >
                   Enviar
                 </button>
@@ -294,7 +294,7 @@ export default function EncontreMeuImovelPage() {
                 <h2 className="text-3xl font-bold">Ficou com alguma dúvida?</h2>
               </div>
               <p className="text-xl text-gray-300">Fale com um de nossos especialistas</p>
-              <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
+              <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
                 Entre em contato
               </button>
             </div>
