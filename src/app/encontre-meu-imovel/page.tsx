@@ -34,22 +34,21 @@ export default function EncontreMeuImovelPage() {
       {/* Primeira Seção - Hero com duas colunas */}
       <section className="py-8 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
             
             {/* Coluna Esquerda - Marketing */}
-            <div className="space-y-4">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+            <div className="bg-white p-6 rounded-lg shadow-xl border-t-4 border-purple-600">
+              <h1 className="text-xl font-bold text-gray-900 mb-4">
                 Sem tempo para procurar? A <span className="text-purple-600">Nox</span> encontra seu imóvel dos sonhos!
               </h1>
               
-              <p className="text-base text-gray-600 leading-relaxed flex items-start">
-                <span className="text-xl mr-2">💜</span>
+              <p className="text-base text-gray-600 leading-relaxed mb-6">
                 Conte-nos como é o imóvel que você procura e deixe com a equipe Nox Imóveis que encontraremos rapidamente para você.
               </p>
 
               {/* Seção Como Funciona */}
               <div className="bg-purple-900 text-white p-4 rounded-lg">
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4">
                   <div>
                     <div className="text-2xl font-bold text-purple-300 mb-1">01.</div>
                     <h3 className="text-base font-bold mb-1">Preencha o formulário</h3>
@@ -62,6 +61,26 @@ export default function EncontreMeuImovelPage() {
                     <h3 className="text-base font-bold mb-1">Receba os melhores imóveis</h3>
                     <p className="text-purple-200 text-xs">
                       Nossa equipe irá realizar uma busca minuciosa e apresentar as melhores opções para você escolher.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Segunda caixa com 03 e 04 */}
+              <div className="bg-purple-900 text-white p-4 rounded-lg mt-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <div className="text-2xl font-bold text-purple-300 mb-1">03.</div>
+                    <h3 className="text-base font-bold mb-1">Agende sua visita</h3>
+                    <p className="text-purple-200 text-xs">
+                      Agende visitas nos imóveis que mais chamaram sua atenção e conheça pessoalmente.
+                    </p>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-purple-300 mb-1">04.</div>
+                    <h3 className="text-base font-bold mb-1">Feche o negócio</h3>
+                    <p className="text-purple-200 text-xs">
+                      Nossa equipe te acompanha em todo o processo até a assinatura do contrato.
                     </p>
                   </div>
                 </div>
