@@ -7,41 +7,7 @@ import { Artigo } from '@/types'
 import { createArtigoWithImage, generateSlug, getAllArtigos } from '@/lib/blog'
 
 export default function AdminBlog() {
-  const [artigos, setArtigos] = useState([
-    {
-      id: '1',
-      titulo: 'Dicas para Comprar seu Primeiro Imóvel',
-      slug: 'dicas-para-comprar-primeiro-imovel',
-      resumo: 'Guia completo com todas as informações necessárias para quem está comprando o primeiro imóvel.',
-      autor: 'Equipe Nox',
-      publicado: true,
-      dataPublicacao: '2024-01-15',
-      visualizacoes: 1250,
-      categoria: 'Dicas'
-    },
-    {
-      id: '2',
-      titulo: 'Tendências do Mercado Imobiliário 2024',
-      slug: 'tendencias-mercado-imobiliario-2024',
-      resumo: 'Análise das principais tendências e projeções para o mercado imobiliário neste ano.',
-      autor: 'Equipe Nox',
-      publicado: true,
-      dataPublicacao: '2024-01-10',
-      visualizacoes: 890,
-      categoria: 'Mercado'
-    },
-    {
-      id: '3',
-      titulo: 'Como Escolher o Bairro Ideal',
-      slug: 'como-escolher-bairro-ideal',
-      resumo: 'Fatores importantes a considerar na hora de escolher onde morar.',
-      autor: 'Equipe Nox',
-      publicado: false,
-      dataPublicacao: '2024-01-20',
-      visualizacoes: 0,
-      categoria: 'Dicas'
-    }
-  ])
+  const [artigos, setArtigos] = useState<Artigo[]>([])
 
   const [searchTerm, setSearchTerm] = useState('')
   const [categoriaFilter, setCategoriaFilter] = useState('todas')
@@ -85,8 +51,9 @@ export default function AdminBlog() {
     return matchesSearch && matchesCategoria && matchesStatus
   })
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('pt-BR')
+  const formatDate = (date: Date | string) => {
+    const dateObj = typeof date === 'string' ? new Date(date) : date
+    return dateObj.toLocaleDateString('pt-BR')
   }
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
