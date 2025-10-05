@@ -119,7 +119,7 @@ export default function BlogSection() {
                   </p>
                   <Link 
                     href={`/blog/${artigo.slug}`}
-                    className="text-gray-900 font-medium text-sm uppercase underline decoration-yellow-400 decoration-2 underline-offset-4 hover:text-gray-700 transition-colors"
+                    className="text-gray-900 font-medium text-sm uppercase underline decoration-purple-600 decoration-2 underline-offset-4 hover:text-gray-700 transition-colors"
                   >
                     LEIA MAIS
                   </Link>
