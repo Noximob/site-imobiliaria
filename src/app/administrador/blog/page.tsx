@@ -1,8 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowLeft, BookOpen, Plus, Edit, Trash2, Eye, Calendar, User } from 'lucide-react'
+import { ArrowLeft, BookOpen, Plus, Edit, Trash2, Eye, Calendar, User, X, Save } from 'lucide-react'
 import Link from 'next/link'
+import { Artigo } from '@/types'
+import { createArtigo, generateSlug } from '@/lib/blog'
 
 export default function AdminBlog() {
   const [artigos, setArtigos] = useState([
@@ -44,6 +46,19 @@ export default function AdminBlog() {
   const [searchTerm, setSearchTerm] = useState('')
   const [categoriaFilter, setCategoriaFilter] = useState('todas')
   const [statusFilter, setStatusFilter] = useState('todos')
+  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [novoArtigo, setNovoArtigo] = useState({
+    titulo: '',
+    resumo: '',
+    conteudo: '',
+    autor: 'Equipe Nox',
+    categoria: 'Dicas',
+    tags: '',
+    publicado: true
+  })
+  const [imagemFile, setImagemFile] = useState<File | null>(null)
+  const [imagemPreview, setImagemPreview] = useState<string | null>(null)
 
   const categorias = ['todas', 'Dicas', 'Mercado', 'Financiamento', 'Decoração']
 
@@ -59,6 +74,72 @@ export default function AdminBlog() {
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('pt-BR')
+  }
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setImagemFile(file)
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setImagemPreview(e.target?.result as string)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!novoArtigo.titulo || !novoArtigo.resumo || !novoArtigo.conteudo || !imagemFile) {
+      alert('Preencha todos os campos obrigatórios')
+      return
+    }
+
+    setIsLoading(true)
+    try {
+      // Por enquanto, vamos usar uma URL temporária para a imagem
+      // Depois implementamos o upload para Firebase Storage
+      const imagemUrl = imagemPreview || ''
+      
+      const artigoData = {
+        titulo: novoArtigo.titulo,
+        slug: generateSlug(novoArtigo.titulo),
+        resumo: novoArtigo.resumo,
+        conteudo: novoArtigo.conteudo,
+        imagem: imagemUrl,
+        autor: novoArtigo.autor,
+        categoria: novoArtigo.categoria,
+        tags: novoArtigo.tags.split(',').map(tag => tag.trim()).filter(tag => tag),
+        publicado: novoArtigo.publicado,
+        dataPublicacao: new Date()
+      }
+
+      const id = await createArtigo(artigoData)
+      
+      // Adicionar à lista local
+      setArtigos([{ ...artigoData, id, visualizacoes: 0, dataPublicacao: artigoData.dataPublicacao.toISOString() }, ...artigos])
+      
+      // Resetar formulário
+      setNovoArtigo({
+        titulo: '',
+        resumo: '',
+        conteudo: '',
+        autor: 'Equipe Nox',
+        categoria: 'Dicas',
+        tags: '',
+        publicado: true
+      })
+      setImagemFile(null)
+      setImagemPreview(null)
+      setShowCreateModal(false)
+      
+      alert('Artigo criado com sucesso!')
+    } catch (error) {
+      console.error('Erro ao criar artigo:', error)
+      alert('Erro ao criar artigo')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -79,7 +160,10 @@ export default function AdminBlog() {
                 Gerenciar Blog
               </h1>
             </div>
-            <button className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors flex items-center">
+            <button 
+              onClick={() => setShowCreateModal(true)}
+              className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors flex items-center"
+            >
               <Plus className="w-4 h-4 mr-2" />
               Novo Artigo
             </button>
@@ -252,6 +336,166 @@ export default function AdminBlog() {
           </div>
         </div>
       </main>
+
+      {/* Modal de Criação */}
+      {showCreateModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-gray-200">
+              <div className="flex justify-between items-center">
+                <h2 className="text-xl font-semibold text-gray-900">
+                  Criar Novo Artigo
+                </h2>
+                <button
+                  onClick={() => setShowCreateModal(false)}
+                  className="text-gray-400 hover:text-gray-600"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit} className="p-6 space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Título *
+                  </label>
+                  <input
+                    type="text"
+                    value={novoArtigo.titulo}
+                    onChange={(e) => setNovoArtigo({...novoArtigo, titulo: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    placeholder="Digite o título do artigo"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Categoria
+                  </label>
+                  <select
+                    value={novoArtigo.categoria}
+                    onChange={(e) => setNovoArtigo({...novoArtigo, categoria: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  >
+                    <option value="Dicas">Dicas</option>
+                    <option value="Mercado">Mercado</option>
+                    <option value="Financiamento">Financiamento</option>
+                    <option value="Decoração">Decoração</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Resumo *
+                </label>
+                <textarea
+                  value={novoArtigo.resumo}
+                  onChange={(e) => setNovoArtigo({...novoArtigo, resumo: e.target.value})}
+                  rows={3}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  placeholder="Breve descrição do artigo"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Conteúdo *
+                </label>
+                <textarea
+                  value={novoArtigo.conteudo}
+                  onChange={(e) => setNovoArtigo({...novoArtigo, conteudo: e.target.value})}
+                  rows={8}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  placeholder="Conteúdo completo do artigo"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Imagem *
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  required
+                />
+                {imagemPreview && (
+                  <div className="mt-4">
+                    <img
+                      src={imagemPreview}
+                      alt="Preview"
+                      className="w-32 h-32 object-cover rounded-md"
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Tags (separadas por vírgula)
+                  </label>
+                  <input
+                    type="text"
+                    value={novoArtigo.tags}
+                    onChange={(e) => setNovoArtigo({...novoArtigo, tags: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    placeholder="imóveis, dicas, mercado"
+                  />
+                </div>
+
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="publicado"
+                    checked={novoArtigo.publicado}
+                    onChange={(e) => setNovoArtigo({...novoArtigo, publicado: e.target.checked})}
+                    className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                  />
+                  <label htmlFor="publicado" className="ml-2 block text-sm text-gray-900">
+                    Publicar imediatamente
+                  </label>
+                </div>
+              </div>
+
+              <div className="flex justify-end space-x-4 pt-4 border-t border-gray-200">
+                <button
+                  type="button"
+                  onClick={() => setShowCreateModal(false)}
+                  className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors flex items-center disabled:opacity-50"
+                >
+                  {isLoading ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                      Salvando...
+                    </>
+                  ) : (
+                    <>
+                      <Save className="w-4 h-4 mr-2" />
+                      Salvar Artigo
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

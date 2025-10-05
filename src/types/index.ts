@@ -72,3 +72,20 @@ export interface Lead {
   createdAt: Date;
   status: 'novo' | 'contatado' | 'convertido' | 'perdido';
 }
+
+export interface Artigo {
+  id: string;
+  titulo: string;
+  slug: string;
+  resumo: string;
+  conteudo: string;
+  imagem: string;
+  autor: string;
+  categoria: string;
+  tags: string[];
+  publicado: boolean;
+  dataPublicacao: Date;
+  visualizacoes: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
