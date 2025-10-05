@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { ArrowLeft, BookOpen, Plus, X, Edit, Trash2 } from 'lucide-react'
 import Link from 'next/link'
-import { createArtigo, getAllArtigos, generateSlug } from '@/lib/blog'
+import { createArtigo, createArtigoWithImage, getAllArtigos, generateSlug } from '@/lib/blog'
 import { Artigo } from '@/types'
 
 export default function AdminBlog() {
@@ -17,6 +17,8 @@ export default function AdminBlog() {
     categoria: 'Dicas',
     publicado: true
   })
+  const [imagemFile, setImagemFile] = useState<File | null>(null)
+  const [imagemPreview, setImagemPreview] = useState<string | null>(null)
 
   // Carregar artigos do Firebase
   useEffect(() => {
@@ -35,10 +37,27 @@ export default function AdminBlog() {
     return date.toLocaleDateString('pt-BR')
   }
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setImagemFile(file)
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setImagemPreview(e.target?.result as string)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!novoArtigo.titulo || !novoArtigo.resumo) {
       alert('Preencha título e resumo')
+      return
+    }
+
+    if (!imagemFile) {
+      alert('Selecione uma imagem')
       return
     }
 
@@ -49,7 +68,6 @@ export default function AdminBlog() {
         slug: generateSlug(novoArtigo.titulo),
         resumo: novoArtigo.resumo,
         conteudo: novoArtigo.conteudo,
-        imagem: '', // Por enquanto sem imagem
         autor: 'Equipe Nox',
         categoria: novoArtigo.categoria,
         tags: [],
@@ -57,7 +75,7 @@ export default function AdminBlog() {
         dataPublicacao: new Date()
       }
 
-      await createArtigo(artigoData)
+      await createArtigoWithImage(artigoData, imagemFile)
       
       // Recarregar artigos do Firebase
       const artigosAtualizados = await getAllArtigos()
@@ -71,6 +89,8 @@ export default function AdminBlog() {
         categoria: 'Dicas',
         publicado: true
       })
+      setImagemFile(null)
+      setImagemPreview(null)
       setShowCreateForm(false)
       
       alert('Artigo criado com sucesso!')
@@ -185,6 +205,28 @@ export default function AdminBlog() {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                   placeholder="Conteúdo completo do artigo"
                 />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Imagem *
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  required
+                />
+                {imagemPreview && (
+                  <div className="mt-4">
+                    <img
+                      src={imagemPreview}
+                      alt="Preview"
+                      className="w-32 h-32 object-cover rounded-md"
+                    />
+                  </div>
+                )}
               </div>
 
               <div className="flex items-center">
