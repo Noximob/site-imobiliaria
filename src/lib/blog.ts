@@ -89,10 +89,21 @@ export async function createArtigoWithImage(
   imageFile: File
 ): Promise<string> {
   try {
-    // Upload da imagem
-    const imagePath = generateImagePath(imageFile.name, 'blog');
-    const imageUrl = await uploadImage(imageFile, imagePath);
+    // Upload da imagem via API route
+    const formData = new FormData();
+    formData.append('file', imageFile);
     
+    const response = await fetch('/api/upload-image', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error('Erro no upload da imagem');
+    }
+
+    const { url: imageUrl } = await response.json();
+
     // Criar artigo com URL da imagem
     const artigoData = {
       ...artigo,
