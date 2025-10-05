@@ -112,10 +112,39 @@ export async function createArtigoWithImage(
 
 async function convertToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = error => reject(error);
+    // Redimensionar imagem se for muito grande
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    
+    img.onload = () => {
+      // Calcular novo tamanho (máximo 800px de largura)
+      const maxWidth = 800;
+      const maxHeight = 600;
+      let { width, height } = img;
+      
+      if (width > maxWidth) {
+        height = (height * maxWidth) / width;
+        width = maxWidth;
+      }
+      if (height > maxHeight) {
+        width = (width * maxHeight) / height;
+        height = maxHeight;
+      }
+      
+      canvas.width = width;
+      canvas.height = height;
+      
+      // Desenhar imagem redimensionada
+      ctx?.drawImage(img, 0, 0, width, height);
+      
+      // Converter para base64 com qualidade reduzida
+      const base64 = canvas.toDataURL('image/jpeg', 0.7);
+      resolve(base64);
+    };
+    
+    img.onerror = () => reject(new Error('Erro ao carregar imagem'));
+    img.src = URL.createObjectURL(file);
   });
 }
 
