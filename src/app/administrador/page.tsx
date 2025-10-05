@@ -1,22 +1,47 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Lock, User, Key, Home, Image, FileText, Building, BookOpen } from 'lucide-react'
 
 export default function AdminLogin() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [rememberMe, setRememberMe] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [error, setError] = useState('')
   const router = useRouter()
 
+  // Carregar credenciais salvas ao montar o componente
+  React.useEffect(() => {
+    const savedUsername = localStorage.getItem('admin_username')
+    const savedPassword = localStorage.getItem('admin_password')
+    const savedRemember = localStorage.getItem('admin_remember')
+    
+    if (savedRemember === 'true' && savedUsername && savedPassword) {
+      setUsername(savedUsername)
+      setPassword(savedPassword)
+      setRememberMe(true)
+    }
+  }, [])
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (username === 'Beto' && password === '202020') {
+    if (username === 'admin' && password === 'NoxAdmin2024!') {
       setIsLoggedIn(true)
       setError('')
+      
+      // Salvar credenciais se "Lembrar" estiver marcado
+      if (rememberMe) {
+        localStorage.setItem('admin_username', username)
+        localStorage.setItem('admin_password', password)
+        localStorage.setItem('admin_remember', 'true')
+      } else {
+        localStorage.removeItem('admin_username')
+        localStorage.removeItem('admin_password')
+        localStorage.removeItem('admin_remember')
+      }
     } else {
       setError('Usuário ou senha incorretos')
     }
@@ -208,6 +233,22 @@ export default function AdminLogin() {
               {error}
             </div>
           )}
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+              />
+              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                Lembrar login
+              </label>
+            </div>
+          </div>
 
           <div>
             <button
