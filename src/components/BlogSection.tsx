@@ -100,7 +100,7 @@ export default function BlogSection() {
                     <div className="bg-black text-white text-center px-2 py-1 text-sm font-bold">
                       {day}
                     </div>
-                    <div className="bg-yellow-400 text-black text-center px-2 py-1 text-xs font-bold">
+                    <div className="bg-purple-600 text-white text-center px-2 py-1 text-xs font-bold">
                       {month}
                     </div>
                   </div>
