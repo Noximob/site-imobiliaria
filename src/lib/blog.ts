@@ -89,14 +89,13 @@ export async function createArtigoWithImage(
   imageFile: File
 ): Promise<string> {
   try {
-    // Upload da imagem diretamente para Firebase Storage
-    const imagePath = generateImagePath(imageFile.name, 'blog');
-    const imageUrl = await uploadImage(imageFile, imagePath);
-
-    // Criar artigo com URL da imagem
+    // Converter imagem para base64 e salvar no Firestore
+    const base64Image = await convertToBase64(imageFile);
+    
+    // Criar artigo com imagem em base64
     const artigoData = {
       ...artigo,
-      imagem: imageUrl,
+      imagem: base64Image,
       visualizacoes: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -109,6 +108,15 @@ export async function createArtigoWithImage(
     console.error('Erro ao criar artigo com imagem:', error);
     throw error;
   }
+}
+
+async function convertToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = error => reject(error);
+  });
 }
 
 export function generateSlug(titulo: string): string {
