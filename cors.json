@@ -1,7 +1,8 @@
 [
   {
-    "origin": ["https://noximobiliaria.com.br", "https://www.noximobiliaria.com.br"],
+    "origin": ["https://noximobiliaria.com.br", "https://www.noximobiliaria.com.br", "http://localhost:3000"],
     "method": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    "responseHeader": ["Content-Type", "Authorization"],
     "maxAgeSeconds": 3600
   }
 ]
