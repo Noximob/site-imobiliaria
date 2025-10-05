@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import { headers } from 'next/headers'
+import ConditionalLayout from '@/components/ConditionalLayout'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,25 +27,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const headersList = headers()
-  const pathname = headersList.get('x-pathname') || ''
-  
-  const isAdminRoute = pathname.startsWith('/administrador')
-
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
-        {isAdminRoute ? (
-          children
-        ) : (
-          <>
-            <Header />
-            <main className="min-h-screen">
-              {children}
-            </main>
-            <Footer />
-          </>
-        )}
+        <ConditionalLayout>
+          {children}
+        </ConditionalLayout>
       </body>
     </html>
   )
