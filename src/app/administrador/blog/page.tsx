@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ArrowLeft, BookOpen, Plus, Edit, Trash2, Eye, Calendar, User, X, Save } from 'lucide-react'
 import Link from 'next/link'
 import { Artigo } from '@/types'
-import { createArtigo, generateSlug } from '@/lib/blog'
+import { createArtigoWithImage, generateSlug, getAllArtigos } from '@/lib/blog'
 
 export default function AdminBlog() {
   const [artigos, setArtigos] = useState([
@@ -62,6 +62,19 @@ export default function AdminBlog() {
 
   const categorias = ['todas', 'Dicas', 'Mercado', 'Financiamento', 'Decoração']
 
+  // Carregar artigos do Firebase quando a página carregar
+  useEffect(() => {
+    const loadArtigos = async () => {
+      try {
+        const artigosFirebase = await getAllArtigos()
+        setArtigos(artigosFirebase)
+      } catch (error) {
+        console.error('Erro ao carregar artigos:', error)
+      }
+    }
+    loadArtigos()
+  }, [])
+
   const filteredArtigos = artigos.filter(artigo => {
     const matchesSearch = artigo.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          artigo.resumo.toLowerCase().includes(searchTerm.toLowerCase())
@@ -97,16 +110,11 @@ export default function AdminBlog() {
 
     setIsLoading(true)
     try {
-      // Por enquanto, vamos usar uma URL temporária para a imagem
-      // Depois implementamos o upload para Firebase Storage
-      const imagemUrl = imagemPreview || ''
-      
       const artigoData = {
         titulo: novoArtigo.titulo,
         slug: generateSlug(novoArtigo.titulo),
         resumo: novoArtigo.resumo,
         conteudo: novoArtigo.conteudo,
-        imagem: imagemUrl,
         autor: novoArtigo.autor,
         categoria: novoArtigo.categoria,
         tags: novoArtigo.tags.split(',').map(tag => tag.trim()).filter(tag => tag),
@@ -114,10 +122,11 @@ export default function AdminBlog() {
         dataPublicacao: new Date()
       }
 
-      const id = await createArtigo(artigoData)
+      const id = await createArtigoWithImage(artigoData, imagemFile)
       
-      // Adicionar à lista local
-      setArtigos([{ ...artigoData, id, visualizacoes: 0, dataPublicacao: artigoData.dataPublicacao.toISOString() }, ...artigos])
+      // Recarregar lista de artigos do Firebase
+      const artigosAtualizados = await getAllArtigos()
+      setArtigos(artigosAtualizados)
       
       // Resetar formulário
       setNovoArtigo({
@@ -136,7 +145,7 @@ export default function AdminBlog() {
       alert('Artigo criado com sucesso!')
     } catch (error) {
       console.error('Erro ao criar artigo:', error)
-      alert('Erro ao criar artigo')
+      alert('Erro ao criar artigo: ' + error)
     } finally {
       setIsLoading(false)
     }

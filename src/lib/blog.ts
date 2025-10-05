@@ -1,5 +1,6 @@
 import { collection, getDocs, doc, getDoc, addDoc, updateDoc, deleteDoc, query, where, orderBy, limit } from 'firebase/firestore';
 import { db } from './firebase';
+import { uploadImage, generateImagePath } from './storage';
 import { Artigo } from '@/types';
 
 export async function getAllArtigos(): Promise<Artigo[]> {
@@ -80,6 +81,33 @@ export async function deleteArtigo(id: string): Promise<void> {
     await deleteDoc(artigoRef);
   } catch (error) {
     console.error('Erro ao deletar artigo:', error);
+    throw error;
+  }
+}
+
+export async function createArtigoWithImage(
+  artigo: Omit<Artigo, 'id' | 'createdAt' | 'updatedAt' | 'visualizacoes' | 'imagem'>,
+  imageFile: File
+): Promise<string> {
+  try {
+    // Upload da imagem
+    const imagePath = generateImagePath(imageFile.name, 'blog');
+    const imageUrl = await uploadImage(imageFile, imagePath);
+    
+    // Criar artigo com URL da imagem
+    const artigoData = {
+      ...artigo,
+      imagem: imageUrl,
+      visualizacoes: 0,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+
+    const artigosRef = collection(db, 'artigos');
+    const docRef = await addDoc(artigosRef, artigoData);
+    return docRef.id;
+  } catch (error) {
+    console.error('Erro ao criar artigo com imagem:', error);
     throw error;
   }
 }
