@@ -1,103 +1,65 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { ArrowLeft, BookOpen, Plus, Edit, Trash2, X, Save } from 'lucide-react'
+import { useState } from 'react'
+import { ArrowLeft, BookOpen, Plus } from 'lucide-react'
 import Link from 'next/link'
-import { Artigo } from '@/types'
-import { createArtigoWithImage, generateSlug, getAllArtigos } from '@/lib/blog'
 
 export default function AdminBlog() {
-  const [artigos, setArtigos] = useState<Artigo[]>([])
+  const [artigos, setArtigos] = useState([
+    {
+      id: '1',
+      titulo: 'Teste de Artigo',
+      resumo: 'Este é um artigo de teste',
+      categoria: 'Dicas',
+      publicado: true,
+      dataPublicacao: new Date(),
+      visualizacoes: 0
+    }
+  ])
   const [showCreateForm, setShowCreateForm] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
   const [novoArtigo, setNovoArtigo] = useState({
     titulo: '',
     resumo: '',
     conteudo: '',
-    autor: 'Equipe Nox',
     categoria: 'Dicas',
     publicado: true
   })
-  const [imagemFile, setImagemFile] = useState<File | null>(null)
-  const [imagemPreview, setImagemPreview] = useState<string | null>(null)
 
-  // Carregar artigos do Firebase quando a página carregar
-  useEffect(() => {
-    const loadArtigos = async () => {
-      try {
-        const artigosFirebase = await getAllArtigos()
-        setArtigos(artigosFirebase)
-      } catch (error) {
-        console.error('Erro ao carregar artigos:', error)
-      }
-    }
-    loadArtigos()
-  }, [])
-
-  const formatDate = (date: Date | string) => {
-    const dateObj = typeof date === 'string' ? new Date(date) : date
-    return dateObj.toLocaleDateString('pt-BR')
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString('pt-BR')
   }
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      setImagemFile(file)
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        setImagemPreview(e.target?.result as string)
-      }
-      reader.readAsDataURL(file)
-    }
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!novoArtigo.titulo || !novoArtigo.resumo || !novoArtigo.conteudo || !imagemFile) {
-      alert('Preencha todos os campos obrigatórios')
+    if (!novoArtigo.titulo || !novoArtigo.resumo) {
+      alert('Preencha título e resumo')
       return
     }
 
-    setIsLoading(true)
-    try {
-      const artigoData = {
-        titulo: novoArtigo.titulo,
-        slug: generateSlug(novoArtigo.titulo),
-        resumo: novoArtigo.resumo,
-        conteudo: novoArtigo.conteudo,
-        autor: novoArtigo.autor,
-        categoria: novoArtigo.categoria,
-        tags: [],
-        publicado: novoArtigo.publicado,
-        dataPublicacao: new Date()
-      }
-
-      await createArtigoWithImage(artigoData, imagemFile)
-      
-      // Recarregar lista de artigos do Firebase
-      const artigosAtualizados = await getAllArtigos()
-      setArtigos(artigosAtualizados)
-      
-      // Resetar formulário
-      setNovoArtigo({
-        titulo: '',
-        resumo: '',
-        conteudo: '',
-        autor: 'Equipe Nox',
-        categoria: 'Dicas',
-        publicado: true
-      })
-      setImagemFile(null)
-      setImagemPreview(null)
-      setShowCreateForm(false)
-      
-      alert('Artigo criado com sucesso!')
-    } catch (error) {
-      console.error('Erro ao criar artigo:', error)
-      alert('Erro ao criar artigo: ' + error)
-    } finally {
-      setIsLoading(false)
+    const novoId = (artigos.length + 1).toString()
+    const novoArtigoCompleto = {
+      id: novoId,
+      titulo: novoArtigo.titulo,
+      resumo: novoArtigo.resumo,
+      categoria: novoArtigo.categoria,
+      publicado: novoArtigo.publicado,
+      dataPublicacao: new Date(),
+      visualizacoes: 0
     }
+
+    setArtigos([novoArtigoCompleto, ...artigos])
+    
+    // Resetar formulário
+    setNovoArtigo({
+      titulo: '',
+      resumo: '',
+      conteudo: '',
+      categoria: 'Dicas',
+      publicado: true
+    })
+    setShowCreateForm(false)
+    
+    alert('Artigo criado com sucesso!')
   }
 
   return (
@@ -194,7 +156,7 @@ export default function AdminBlog() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Conteúdo *
+                  Conteúdo
                 </label>
                 <textarea
                   value={novoArtigo.conteudo}
@@ -202,30 +164,7 @@ export default function AdminBlog() {
                   rows={6}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                   placeholder="Conteúdo completo do artigo"
-                  required
                 />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Imagem *
-                </label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  required
-                />
-                {imagemPreview && (
-                  <div className="mt-4">
-                    <img
-                      src={imagemPreview}
-                      alt="Preview"
-                      className="w-32 h-32 object-cover rounded-md"
-                    />
-                  </div>
-                )}
               </div>
 
               <div className="flex items-center">
@@ -251,20 +190,9 @@ export default function AdminBlog() {
                 </button>
                 <button
                   type="submit"
-                  disabled={isLoading}
-                  className="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors flex items-center disabled:opacity-50"
+                  className="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
                 >
-                  {isLoading ? (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                      Salvando...
-                    </>
-                  ) : (
-                    <>
-                      <Save className="w-4 h-4 mr-2" />
-                      Salvar Artigo
-                    </>
-                  )}
+                  Salvar Artigo
                 </button>
               </div>
             </form>
