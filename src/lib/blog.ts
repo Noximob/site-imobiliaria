@@ -6,7 +6,7 @@ import { Artigo } from '@/types';
 export async function getAllArtigos(): Promise<Artigo[]> {
   try {
     const artigosRef = collection(db, 'artigos');
-    const q = query(artigosRef, where('publicado', '==', true), orderBy('dataPublicacao', 'desc'));
+    const q = query(artigosRef, where('publicado', '==', true));
     const querySnapshot = await getDocs(q);
     
     return querySnapshot.docs.map(doc => ({
