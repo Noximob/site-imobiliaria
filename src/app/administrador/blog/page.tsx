@@ -4,9 +4,10 @@ import { useState, useEffect } from 'react'
 import { ArrowLeft, BookOpen, Plus, X, Edit, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import { createArtigo, getAllArtigos, generateSlug } from '@/lib/blog'
+import { Artigo } from '@/types'
 
 export default function AdminBlog() {
-  const [artigos, setArtigos] = useState([])
+  const [artigos, setArtigos] = useState<Artigo[]>([])
   const [showCreateForm, setShowCreateForm] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [novoArtigo, setNovoArtigo] = useState({
