@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowLeft, BookOpen, Plus, X } from 'lucide-react'
+import { ArrowLeft, BookOpen, Plus, X, Edit, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 
 export default function AdminBlog() {
