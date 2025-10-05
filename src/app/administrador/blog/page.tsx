@@ -1,22 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ArrowLeft, BookOpen, Plus, X, Edit, Trash2 } from 'lucide-react'
 import Link from 'next/link'
+import { createArtigo, getAllArtigos, generateSlug } from '@/lib/blog'
 
 export default function AdminBlog() {
-  const [artigos, setArtigos] = useState([
-    {
-      id: '1',
-      titulo: 'Teste de Artigo',
-      resumo: 'Este é um artigo de teste',
-      categoria: 'Dicas',
-      publicado: true,
-      dataPublicacao: new Date(),
-      visualizacoes: 0
-    }
-  ])
+  const [artigos, setArtigos] = useState([])
   const [showCreateForm, setShowCreateForm] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [novoArtigo, setNovoArtigo] = useState({
     titulo: '',
     resumo: '',
@@ -25,41 +17,68 @@ export default function AdminBlog() {
     publicado: true
   })
 
+  // Carregar artigos do Firebase
+  useEffect(() => {
+    const loadArtigos = async () => {
+      try {
+        const artigosFirebase = await getAllArtigos()
+        setArtigos(artigosFirebase)
+      } catch (error) {
+        console.error('Erro ao carregar artigos:', error)
+      }
+    }
+    loadArtigos()
+  }, [])
+
   const formatDate = (date: Date) => {
     return date.toLocaleDateString('pt-BR')
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!novoArtigo.titulo || !novoArtigo.resumo) {
       alert('Preencha título e resumo')
       return
     }
 
-    const novoId = (artigos.length + 1).toString()
-    const novoArtigoCompleto = {
-      id: novoId,
-      titulo: novoArtigo.titulo,
-      resumo: novoArtigo.resumo,
-      categoria: novoArtigo.categoria,
-      publicado: novoArtigo.publicado,
-      dataPublicacao: new Date(),
-      visualizacoes: 0
-    }
+    setIsLoading(true)
+    try {
+      const artigoData = {
+        titulo: novoArtigo.titulo,
+        slug: generateSlug(novoArtigo.titulo),
+        resumo: novoArtigo.resumo,
+        conteudo: novoArtigo.conteudo,
+        imagem: '', // Por enquanto sem imagem
+        autor: 'Equipe Nox',
+        categoria: novoArtigo.categoria,
+        tags: [],
+        publicado: novoArtigo.publicado,
+        dataPublicacao: new Date()
+      }
 
-    setArtigos([novoArtigoCompleto, ...artigos])
-    
-    // Resetar formulário
-    setNovoArtigo({
-      titulo: '',
-      resumo: '',
-      conteudo: '',
-      categoria: 'Dicas',
-      publicado: true
-    })
-    setShowCreateForm(false)
-    
-    alert('Artigo criado com sucesso!')
+      await createArtigo(artigoData)
+      
+      // Recarregar artigos do Firebase
+      const artigosAtualizados = await getAllArtigos()
+      setArtigos(artigosAtualizados)
+      
+      // Resetar formulário
+      setNovoArtigo({
+        titulo: '',
+        resumo: '',
+        conteudo: '',
+        categoria: 'Dicas',
+        publicado: true
+      })
+      setShowCreateForm(false)
+      
+      alert('Artigo criado com sucesso!')
+    } catch (error) {
+      console.error('Erro ao criar artigo:', error)
+      alert('Erro ao criar artigo: ' + error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -190,9 +209,10 @@ export default function AdminBlog() {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
+                  disabled={isLoading}
+                  className="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors disabled:opacity-50"
                 >
-                  Salvar Artigo
+                  {isLoading ? 'Salvando...' : 'Salvar Artigo'}
                 </button>
               </div>
             </form>
