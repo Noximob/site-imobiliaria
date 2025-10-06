@@ -115,7 +115,9 @@ export default function BlogSection() {
                     {artigo.titulo}
                   </h3>
                   <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                    {artigo.resumo}
+                    {artigo.resumo.length > 120 
+                      ? `${artigo.resumo.substring(0, 120)}...` 
+                      : artigo.resumo}
                   </p>
                   <Link 
                     href={`/blog/${artigo.slug}`}

@@ -149,10 +149,43 @@ async function convertToBase64(file: File): Promise<string> {
 }
 
 export function generateSlug(titulo: string): string {
-  return titulo
+  // Palavras-chave importantes para SEO
+  const keywords = [
+    'imovel', 'casa', 'apartamento', 'terreno', 'venda', 'aluguel',
+    'balneario', 'camboriu', 'barra', 'velha', 'picarras', 'penha',
+    'investimento', 'financiamento', 'decoracao', 'mercado', 'imobiliaria',
+    'avenida', 'mobilidade', 'desenvolvimento', 'regiao', 'cidade',
+    'construcao', 'lancamento', 'frente', 'mar', 'vista', 'cobertura'
+  ];
+  
+  // Converter para lowercase e remover acentos
+  let slug = titulo
     .toLowerCase()
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[\u0300-\u036f]/g, '');
+  
+  // Manter palavras-chave importantes
+  const words = slug.split(/\s+/);
+  const importantWords = words.filter(word => 
+    keywords.some(keyword => word.includes(keyword) || keyword.includes(word))
+  );
+  
+  // Se encontrou palavras-chave, usar elas + título
+  if (importantWords.length > 0) {
+    const cleanTitle = titulo
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .trim();
+    
+    return cleanTitle;
+  }
+  
+  // Fallback para slug normal
+  return slug
     .replace(/[^a-z0-9\s-]/g, '')
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
