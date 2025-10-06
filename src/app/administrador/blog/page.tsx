@@ -14,7 +14,8 @@ export default function AdminBlog() {
     titulo: '',
     resumo: '',
     conteudo: '',
-    categoria: 'Dicas',
+    categoria: '',
+    autor: 'Equipe Nox',
     publicado: true
   })
   const [imagemFile, setImagemFile] = useState<File | null>(null)
@@ -68,7 +69,7 @@ export default function AdminBlog() {
         slug: generateSlug(novoArtigo.titulo),
         resumo: novoArtigo.resumo,
         conteudo: novoArtigo.conteudo,
-        autor: 'Equipe Nox',
+        autor: novoArtigo.autor,
         categoria: novoArtigo.categoria,
         tags: [],
         publicado: novoArtigo.publicado,
@@ -86,7 +87,8 @@ export default function AdminBlog() {
         titulo: '',
         resumo: '',
         conteudo: '',
-        categoria: 'Dicas',
+        categoria: '',
+        autor: 'Equipe Nox',
         publicado: true
       })
       setImagemFile(null)
@@ -165,18 +167,32 @@ export default function AdminBlog() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Categoria
+                    Categoria *
                   </label>
-                  <select
+                  <input
+                    type="text"
                     value={novoArtigo.categoria}
                     onChange={(e) => setNovoArtigo({...novoArtigo, categoria: e.target.value})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  >
-                    <option value="Dicas">Dicas</option>
-                    <option value="Mercado">Mercado</option>
-                    <option value="Financiamento">Financiamento</option>
-                    <option value="Decoração">Decoração</option>
-                  </select>
+                    placeholder="Ex: Dicas, Mercado, Financiamento..."
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Autor *
+                  </label>
+                  <input
+                    type="text"
+                    value={novoArtigo.autor}
+                    onChange={(e) => setNovoArtigo({...novoArtigo, autor: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    placeholder="Nome do autor"
+                    required
+                  />
                 </div>
               </div>
 
