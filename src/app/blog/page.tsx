@@ -16,7 +16,10 @@ export default function BlogPage() {
   useEffect(() => {
     const loadArtigos = async () => {
       try {
+        console.log('Carregando artigos...')
         const artigosFirebase = await getAllArtigos()
+        console.log('Artigos carregados:', artigosFirebase.length)
+        console.log('Artigos:', artigosFirebase)
         setArtigos(artigosFirebase)
       } catch (error) {
         console.error('Erro ao carregar artigos:', error)
@@ -47,8 +50,20 @@ export default function BlogPage() {
     const matchesSearch = artigo.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          artigo.resumo.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesCategory = !selectedCategory || artigo.categoria === selectedCategory
-    return matchesSearch && matchesCategory && artigo.publicado
+    const isPublished = artigo.publicado
+    console.log('Filtrando artigo:', {
+      titulo: artigo.titulo,
+      publicado: artigo.publicado,
+      matchesSearch,
+      matchesCategory,
+      isPublished,
+      final: matchesSearch && matchesCategory && isPublished
+    })
+    return matchesSearch && matchesCategory && isPublished
   })
+
+  console.log('Total artigos:', artigos.length)
+  console.log('Artigos filtrados:', filteredArtigos.length)
 
   // Obter categorias únicas
   const categories = Array.from(new Set(artigos.map(artigo => artigo.categoria)))
