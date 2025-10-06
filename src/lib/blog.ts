@@ -1,5 +1,6 @@
 import { collection, getDocs, doc, getDoc, addDoc, updateDoc, deleteDoc, query, where, orderBy, limit } from 'firebase/firestore';
-import { db } from './firebase';
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
+import { db, storage } from './firebase';
 import { Artigo } from '@/types';
 
 export async function getAllArtigos(): Promise<Artigo[]> {
@@ -62,7 +63,26 @@ export async function createArtigo(artigo: Omit<Artigo, 'id' | 'createdAt' | 'up
 
 export async function deleteArtigo(id: string): Promise<void> {
   try {
+    // Buscar o artigo para obter a URL da imagem
     const artigoRef = doc(db, 'artigos', id);
+    const artigoDoc = await getDoc(artigoRef);
+    
+    if (artigoDoc.exists()) {
+      const artigoData = artigoDoc.data();
+      
+      // Se tiver imagem, deletar do Storage
+      if (artigoData.imagem && artigoData.imagem.startsWith('https://firebasestorage.googleapis.com')) {
+        try {
+          const imageRef = ref(storage, artigoData.imagem);
+          await deleteObject(imageRef);
+        } catch (storageError) {
+          console.warn('Erro ao deletar imagem do Storage:', storageError);
+          // Não falhar se não conseguir deletar a imagem
+        }
+      }
+    }
+    
+    // Deletar o documento do Firestore
     await deleteDoc(artigoRef);
   } catch (error) {
     console.error('Erro ao deletar artigo:', error);
@@ -97,10 +117,10 @@ export async function updateArtigoWithImage(
       updatedAt: new Date(),
     };
 
-    // Se uma nova imagem foi fornecida, converter para base64
+    // Se uma nova imagem foi fornecida, fazer upload para Storage
     if (imageFile) {
-      const base64Image = await convertToBase64(imageFile);
-      updateData.imagem = base64Image;
+      const imageUrl = await uploadImageToStorage(imageFile);
+      updateData.imagem = imageUrl;
     }
 
     const artigoRef = doc(db, 'artigos', id);
@@ -116,13 +136,13 @@ export async function createArtigoWithImage(
   imageFile: File
 ): Promise<string> {
   try {
-    // Converter imagem para base64 e salvar no Firestore
-    const base64Image = await convertToBase64(imageFile);
+    // Fazer upload da imagem para Storage
+    const imageUrl = await uploadImageToStorage(imageFile);
     
-    // Criar artigo com imagem em base64
+    // Criar artigo com URL da imagem
     const artigoData = {
       ...artigo,
-      imagem: base64Image,
+      imagem: imageUrl,
       visualizacoes: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -137,17 +157,41 @@ export async function createArtigoWithImage(
   }
 }
 
-async function convertToBase64(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
+async function uploadImageToStorage(file: File): Promise<string> {
+  try {
     // Redimensionar imagem se for muito grande
+    const resizedFile = await resizeImage(file);
+    
+    // Gerar nome único para o arquivo
+    const timestamp = Date.now();
+    const fileName = `blog/${timestamp}-${file.name}`;
+    
+    // Referência no Storage
+    const storageRef = ref(storage, fileName);
+    
+    // Upload da imagem
+    await uploadBytes(storageRef, resizedFile);
+    
+    // Obter URL de download
+    const downloadURL = await getDownloadURL(storageRef);
+    
+    return downloadURL;
+  } catch (error) {
+    console.error('Erro ao fazer upload da imagem:', error);
+    throw error;
+  }
+}
+
+async function resizeImage(file: File): Promise<File> {
+  return new Promise((resolve, reject) => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     const img = new Image();
     
     img.onload = () => {
-      // Calcular novo tamanho (máximo 800px de largura)
-      const maxWidth = 800;
-      const maxHeight = 600;
+      // Calcular novo tamanho (máximo 1200px de largura)
+      const maxWidth = 1200;
+      const maxHeight = 900;
       let { width, height } = img;
       
       if (width > maxWidth) {
@@ -165,9 +209,18 @@ async function convertToBase64(file: File): Promise<string> {
       // Desenhar imagem redimensionada
       ctx?.drawImage(img, 0, 0, width, height);
       
-      // Converter para base64 com qualidade reduzida
-      const base64 = canvas.toDataURL('image/jpeg', 0.7);
-      resolve(base64);
+      // Converter para blob
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const resizedFile = new File([blob], file.name, {
+            type: 'image/jpeg',
+            lastModified: Date.now(),
+          });
+          resolve(resizedFile);
+        } else {
+          reject(new Error('Erro ao redimensionar imagem'));
+        }
+      }, 'image/jpeg', 0.8);
     };
     
     img.onerror = () => reject(new Error('Erro ao carregar imagem'));
