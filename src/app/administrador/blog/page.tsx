@@ -211,6 +211,9 @@ export default function AdminBlog() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Imagem *
                 </label>
+                <p className="text-xs text-gray-500 mb-2">
+                  Tamanho sugerido: <span className="font-medium">1200 x 900px</span> (proporção 4:3). A imagem será otimizada automaticamente.
+                </p>
                 <input
                   type="file"
                   accept="image/*"

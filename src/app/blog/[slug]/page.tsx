@@ -146,7 +146,7 @@ export default function ArtigoPage() {
       {/* Conteúdo do Artigo */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Imagem Principal */}
-        <div className="relative h-64 md:h-96 mb-8 rounded-lg overflow-hidden">
+        <div className="relative mb-8 rounded-lg overflow-hidden aspect-[4/3] md:aspect-[16/9]">
           <Image 
             src={artigo.imagem || '/placeholder-blog.jpg'} 
             alt={artigo.titulo} 

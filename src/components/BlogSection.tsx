@@ -88,7 +88,7 @@ export default function BlogSection() {
             
             return (
               <div key={artigo.id} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
-                <div className="relative h-48">
+                <div className="relative aspect-[4/3]">
                   <Image 
                     src={artigo.imagem || '/placeholder-blog.jpg'} 
                     alt={artigo.titulo} 
