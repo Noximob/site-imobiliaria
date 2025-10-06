@@ -47,12 +47,19 @@ export default function BlogPage() {
 
   // Filtrar artigos
   const filteredArtigos = artigos.filter(artigo => {
-    const matchesSearch = artigo.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         artigo.resumo.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesCategory = !selectedCategory || artigo.categoria === selectedCategory
-    const isPublished = artigo.publicado
+    const titulo = artigo.titulo || ''
+    const resumo = artigo.resumo || ''
+    const categoria = artigo.categoria || ''
+    
+    const matchesSearch = titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         resumo.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesCategory = !selectedCategory || categoria === selectedCategory
+    const isPublished = artigo.publicado === true
+    
     console.log('Filtrando artigo:', {
-      titulo: artigo.titulo,
+      titulo,
+      resumo,
+      categoria,
       publicado: artigo.publicado,
       matchesSearch,
       matchesCategory,
