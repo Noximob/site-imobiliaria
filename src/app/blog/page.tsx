@@ -51,7 +51,7 @@ export default function BlogPage() {
   })
 
   // Obter categorias únicas
-  const categories = [...new Set(artigos.map(artigo => artigo.categoria))]
+  const categories = Array.from(new Set(artigos.map(artigo => artigo.categoria)))
 
   if (isLoading) {
     return (
