@@ -1,6 +1,5 @@
 import { collection, getDocs, doc, getDoc, addDoc, updateDoc, deleteDoc, query, where, orderBy, limit } from 'firebase/firestore';
 import { db } from './firebase';
-import { uploadImage, generateImagePath } from './storage';
 import { Artigo } from '@/types';
 
 export async function getAllArtigos(): Promise<Artigo[]> {
@@ -57,19 +56,6 @@ export async function createArtigo(artigo: Omit<Artigo, 'id' | 'createdAt' | 'up
     return docRef.id;
   } catch (error) {
     console.error('Erro ao criar artigo:', error);
-    throw error;
-  }
-}
-
-export async function updateArtigo(id: string, artigo: Partial<Artigo>): Promise<void> {
-  try {
-    const artigoRef = doc(db, 'artigos', id);
-    await updateDoc(artigoRef, {
-      ...artigo,
-      updatedAt: new Date(),
-    });
-  } catch (error) {
-    console.error('Erro ao atualizar artigo:', error);
     throw error;
   }
 }
