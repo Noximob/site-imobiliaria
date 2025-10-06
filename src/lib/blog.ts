@@ -84,6 +84,47 @@ export async function deleteArtigo(id: string): Promise<void> {
   }
 }
 
+export async function updateArtigo(
+  id: string, 
+  artigo: Partial<Omit<Artigo, 'id' | 'createdAt' | 'visualizacoes'>>
+): Promise<void> {
+  try {
+    const artigoRef = doc(db, 'artigos', id);
+    await updateDoc(artigoRef, {
+      ...artigo,
+      updatedAt: new Date(),
+    });
+  } catch (error) {
+    console.error('Erro ao atualizar artigo:', error);
+    throw error;
+  }
+}
+
+export async function updateArtigoWithImage(
+  id: string,
+  artigo: Partial<Omit<Artigo, 'id' | 'createdAt' | 'visualizacoes' | 'imagem'>>,
+  imageFile?: File
+): Promise<void> {
+  try {
+    let updateData: any = {
+      ...artigo,
+      updatedAt: new Date(),
+    };
+
+    // Se uma nova imagem foi fornecida, converter para base64
+    if (imageFile) {
+      const base64Image = await convertToBase64(imageFile);
+      updateData.imagem = base64Image;
+    }
+
+    const artigoRef = doc(db, 'artigos', id);
+    await updateDoc(artigoRef, updateData);
+  } catch (error) {
+    console.error('Erro ao atualizar artigo com imagem:', error);
+    throw error;
+  }
+}
+
 export async function createArtigoWithImage(
   artigo: Omit<Artigo, 'id' | 'createdAt' | 'updatedAt' | 'visualizacoes' | 'imagem'>,
   imageFile: File

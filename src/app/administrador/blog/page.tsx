@@ -3,12 +3,13 @@
 import { useState, useEffect } from 'react'
 import { ArrowLeft, BookOpen, Plus, X, Edit, Trash2 } from 'lucide-react'
 import Link from 'next/link'
-import { createArtigo, createArtigoWithImage, getAllArtigos, generateSlug } from '@/lib/blog'
+import { createArtigo, createArtigoWithImage, getAllArtigos, generateSlug, updateArtigoWithImage, deleteArtigo } from '@/lib/blog'
 import { Artigo } from '@/types'
 
 export default function AdminBlog() {
   const [artigos, setArtigos] = useState<Artigo[]>([])
   const [showCreateForm, setShowCreateForm] = useState(false)
+  const [editingArtigo, setEditingArtigo] = useState<Artigo | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [novoArtigo, setNovoArtigo] = useState({
     titulo: '',
@@ -50,55 +51,107 @@ export default function AdminBlog() {
     }
   }
 
+  const handleEdit = (artigo: Artigo) => {
+    setEditingArtigo(artigo)
+    setNovoArtigo({
+      titulo: artigo.titulo,
+      resumo: artigo.resumo,
+      conteudo: artigo.conteudo,
+      categoria: artigo.categoria,
+      autor: artigo.autor,
+      publicado: artigo.publicado
+    })
+    setImagemFile(null)
+    setImagemPreview(null)
+    setShowCreateForm(true)
+  }
+
+  const handleDelete = async (id: string) => {
+    if (confirm('Tem certeza que deseja excluir este artigo?')) {
+      try {
+        await deleteArtigo(id)
+        const artigosAtualizados = await getAllArtigos()
+        setArtigos(artigosAtualizados)
+        alert('Artigo excluído com sucesso!')
+      } catch (error) {
+        console.error('Erro ao excluir artigo:', error)
+        alert('Erro ao excluir artigo: ' + error)
+      }
+    }
+  }
+
+  const resetForm = () => {
+    setNovoArtigo({
+      titulo: '',
+      resumo: '',
+      conteudo: '',
+      categoria: '',
+      autor: 'Equipe Nox',
+      publicado: true
+    })
+    setImagemFile(null)
+    setImagemPreview(null)
+    setEditingArtigo(null)
+    setShowCreateForm(false)
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!novoArtigo.titulo || !novoArtigo.resumo) {
-      alert('Preencha título e resumo')
+    if (!novoArtigo.titulo || !novoArtigo.resumo || !novoArtigo.categoria || !novoArtigo.autor) {
+      alert('Preencha todos os campos obrigatórios')
       return
     }
 
-    if (!imagemFile) {
+    // Para criação, imagem é obrigatória. Para edição, é opcional
+    if (!editingArtigo && !imagemFile) {
       alert('Selecione uma imagem')
       return
     }
 
     setIsLoading(true)
     try {
-      const artigoData = {
-        titulo: novoArtigo.titulo,
-        slug: generateSlug(novoArtigo.titulo),
-        resumo: novoArtigo.resumo,
-        conteudo: novoArtigo.conteudo,
-        autor: novoArtigo.autor,
-        categoria: novoArtigo.categoria,
-        tags: [],
-        publicado: novoArtigo.publicado,
-        dataPublicacao: new Date()
-      }
+      if (editingArtigo) {
+        // Editar artigo existente
+        const artigoData = {
+          titulo: novoArtigo.titulo,
+          slug: generateSlug(novoArtigo.titulo),
+          resumo: novoArtigo.resumo,
+          conteudo: novoArtigo.conteudo,
+          autor: novoArtigo.autor,
+          categoria: novoArtigo.categoria,
+          tags: [],
+          publicado: novoArtigo.publicado,
+        }
 
-      await createArtigoWithImage(artigoData, imagemFile)
+        await updateArtigoWithImage(editingArtigo.id, artigoData, imagemFile || undefined)
+        alert('Artigo atualizado com sucesso!')
+      } else {
+        // Criar novo artigo
+        const artigoData = {
+          titulo: novoArtigo.titulo,
+          slug: generateSlug(novoArtigo.titulo),
+          resumo: novoArtigo.resumo,
+          conteudo: novoArtigo.conteudo,
+          autor: novoArtigo.autor,
+          categoria: novoArtigo.categoria,
+          tags: [],
+          publicado: novoArtigo.publicado,
+          dataPublicacao: new Date()
+        }
+
+        await createArtigoWithImage(artigoData, imagemFile!)
+        alert('Artigo criado com sucesso!')
+      }
       
       // Recarregar artigos do Firebase
       const artigosAtualizados = await getAllArtigos()
       setArtigos(artigosAtualizados)
       
       // Resetar formulário
-      setNovoArtigo({
-        titulo: '',
-        resumo: '',
-        conteudo: '',
-        categoria: '',
-        autor: 'Equipe Nox',
-        publicado: true
-      })
-      setImagemFile(null)
-      setImagemPreview(null)
-      setShowCreateForm(false)
-      
-      alert('Artigo criado com sucesso!')
+      resetForm()
     } catch (error) {
-      console.error('Erro ao criar artigo:', error)
-      alert('Erro ao criar artigo: ' + error)
+      console.error('Erro ao salvar artigo:', error)
+      alert('Erro ao salvar artigo: ' + error)
     } finally {
       setIsLoading(false)
     }
@@ -139,10 +192,10 @@ export default function AdminBlog() {
           <div className="bg-white rounded-lg shadow-md p-6 mb-8">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-lg font-semibold text-gray-900">
-                Criar Novo Artigo
+                {editingArtigo ? 'Editar Artigo' : 'Criar Novo Artigo'}
               </h2>
               <button
-                onClick={() => setShowCreateForm(false)}
+                onClick={resetForm}
                 className="text-gray-400 hover:text-gray-600"
               >
                 <X className="w-6 h-6" />
@@ -225,22 +278,23 @@ export default function AdminBlog() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Imagem *
+                  Imagem {!editingArtigo && '*'}
                 </label>
                 <p className="text-xs text-gray-500 mb-2">
                   Tamanho sugerido: <span className="font-medium">1200 x 900px</span> (proporção 4:3). A imagem será otimizada automaticamente.
+                  {editingArtigo && ' Deixe em branco para manter a imagem atual.'}
                 </p>
                 <input
                   type="file"
                   accept="image/*"
                   onChange={handleImageChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  required
+                  required={!editingArtigo}
                 />
-                {imagemPreview && (
+                {(imagemPreview || (editingArtigo && editingArtigo.imagem)) && (
                   <div className="mt-4">
                     <img
-                      src={imagemPreview}
+                      src={imagemPreview || editingArtigo?.imagem || ''}
                       alt="Preview"
                       className="w-32 h-32 object-cover rounded-md"
                     />
@@ -264,7 +318,7 @@ export default function AdminBlog() {
               <div className="flex justify-end space-x-4 pt-4 border-t border-gray-200">
                 <button
                   type="button"
-                  onClick={() => setShowCreateForm(false)}
+                  onClick={resetForm}
                   className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
                 >
                   Cancelar
@@ -274,7 +328,7 @@ export default function AdminBlog() {
                   disabled={isLoading}
                   className="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors disabled:opacity-50"
                 >
-                  {isLoading ? 'Salvando...' : 'Salvar Artigo'}
+                  {isLoading ? 'Salvando...' : (editingArtigo ? 'Atualizar Artigo' : 'Salvar Artigo')}
                 </button>
               </div>
             </form>
@@ -317,10 +371,18 @@ export default function AdminBlog() {
                     </div>
                   </div>
                   <div className="flex items-center space-x-2 ml-4">
-                    <button className="p-2 text-indigo-600 hover:text-indigo-900 hover:bg-indigo-50 rounded-md transition-colors">
+                    <button 
+                      onClick={() => handleEdit(artigo)}
+                      className="p-2 text-indigo-600 hover:text-indigo-900 hover:bg-indigo-50 rounded-md transition-colors"
+                      title="Editar artigo"
+                    >
                       <Edit className="w-4 h-4" />
                     </button>
-                    <button className="p-2 text-red-600 hover:text-red-900 hover:bg-red-50 rounded-md transition-colors">
+                    <button 
+                      onClick={() => handleDelete(artigo.id)}
+                      className="p-2 text-red-600 hover:text-red-900 hover:bg-red-50 rounded-md transition-colors"
+                      title="Excluir artigo"
+                    >
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
