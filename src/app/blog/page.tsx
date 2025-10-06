@@ -3,23 +3,20 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Calendar, User, Eye, Search } from 'lucide-react'
+import { Calendar, User, Eye, ChevronLeft, ChevronRight } from 'lucide-react'
 import { getAllArtigos } from '@/lib/blog'
 import { Artigo } from '@/types'
 
 export default function BlogPage() {
   const [artigos, setArtigos] = useState<Artigo[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const articlesPerPage = 6
 
   useEffect(() => {
     const loadArtigos = async () => {
       try {
-        console.log('Carregando artigos...')
         const artigosFirebase = await getAllArtigos()
-        console.log('Artigos carregados:', artigosFirebase.length)
-        console.log('Artigos:', artigosFirebase)
         setArtigos(artigosFirebase)
       } catch (error) {
         console.error('Erro ao carregar artigos:', error)
@@ -45,35 +42,15 @@ export default function BlogPage() {
     })
   }
 
-  // Filtrar artigos
-  const filteredArtigos = artigos.filter(artigo => {
-    const titulo = artigo.titulo || ''
-    const resumo = artigo.resumo || ''
-    const categoria = artigo.categoria || ''
-    
-    const matchesSearch = titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         resumo.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesCategory = !selectedCategory || categoria === selectedCategory
-    const isPublished = artigo.publicado === true
-    
-    console.log('Filtrando artigo:', {
-      titulo,
-      resumo,
-      categoria,
-      publicado: artigo.publicado,
-      matchesSearch,
-      matchesCategory,
-      isPublished,
-      final: matchesSearch && matchesCategory && isPublished
-    })
-    return matchesSearch && matchesCategory && isPublished
-  })
+  // Filtrar apenas artigos publicados
+  const publishedArtigos = artigos.filter(artigo => artigo.publicado === true)
+  
+  // Calcular paginação
+  const totalPages = Math.ceil(publishedArtigos.length / articlesPerPage)
+  const startIndex = (currentPage - 1) * articlesPerPage
+  const endIndex = startIndex + articlesPerPage
+  const currentArtigos = publishedArtigos.slice(startIndex, endIndex)
 
-  console.log('Total artigos:', artigos.length)
-  console.log('Artigos filtrados:', filteredArtigos.length)
-
-  // Obter categorias únicas
-  const categories = Array.from(new Set(artigos.map(artigo => artigo.categoria)))
 
   if (isLoading) {
     return (
@@ -117,75 +94,27 @@ export default function BlogPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Filtros */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-          <div className="flex flex-col md:flex-row gap-4">
-            {/* Busca */}
-            <div className="flex-1">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder="Buscar artigos..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                />
-              </div>
-            </div>
-
-            {/* Categoria */}
-            <div className="md:w-64">
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-              >
-                <option value="">Todas as categorias</option>
-                {categories.map(categoria => (
-                  <option key={categoria} value={categoria}>
-                    {categoria}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-        </div>
-
-        {/* Resultados */}
-        <div className="mb-6">
-          <p className="text-gray-600">
-            {filteredArtigos.length} artigo{filteredArtigos.length !== 1 ? 's' : ''} encontrado{filteredArtigos.length !== 1 ? 's' : ''}
-            {selectedCategory && ` em "${selectedCategory}"`}
-            {searchTerm && ` para "${searchTerm}"`}
+        {/* Informações da página */}
+        <div className="mb-8">
+          <p className="text-gray-600 text-center">
+            Mostrando {currentArtigos.length} de {publishedArtigos.length} artigos
+            {totalPages > 1 && ` • Página ${currentPage} de ${totalPages}`}
           </p>
         </div>
 
         {/* Grid de Artigos */}
-        {filteredArtigos.length === 0 ? (
+        {currentArtigos.length === 0 ? (
           <div className="text-center py-12">
-            <div className="text-gray-400 mb-4">
-              <Search className="w-16 h-16 mx-auto" />
-            </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
               Nenhum artigo encontrado
             </h3>
-            <p className="text-gray-600 mb-6">
-              Tente ajustar os filtros ou buscar por outros termos.
+            <p className="text-gray-600">
+              Em breve teremos artigos disponíveis.
             </p>
-            <button
-              onClick={() => {
-                setSearchTerm('')
-                setSelectedCategory('')
-              }}
-              className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors"
-            >
-              Limpar filtros
-            </button>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredArtigos.map((artigo) => {
+            {currentArtigos.map((artigo) => {
               const date = new Date(artigo.dataPublicacao)
               const day = date.getDate().toString().padStart(2, '0')
               const month = date.toLocaleDateString('pt-BR', { month: 'short' })
@@ -250,6 +179,48 @@ export default function BlogPage() {
                 </div>
               )
             })}
+          </div>
+        )}
+
+        {/* Paginação */}
+        {totalPages > 1 && (
+          <div className="mt-12 flex justify-center">
+            <nav className="flex items-center space-x-2">
+              {/* Botão Anterior */}
+              <button
+                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+                className="flex items-center px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ChevronLeft className="w-4 h-4 mr-1" />
+                Anterior
+              </button>
+
+              {/* Números das páginas */}
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`px-3 py-2 text-sm font-medium rounded-md ${
+                    page === currentPage
+                      ? 'bg-purple-600 text-white'
+                      : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
+
+              {/* Botão Próximo */}
+              <button
+                onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                disabled={currentPage === totalPages}
+                className="flex items-center px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Próximo
+                <ChevronRight className="w-4 h-4 ml-1" />
+              </button>
+            </nav>
           </div>
         )}
       </div>
