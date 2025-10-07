@@ -261,7 +261,9 @@ export default function AdminImagens() {
                         type="file"
                         accept="image/*"
                         className="hidden"
-                        ref={(el) => (fileInputRefs.current[image.id] = el)}
+                        ref={(el) => {
+                          fileInputRefs.current[image.id] = el
+                        }}
                         onChange={(e) => {
                           const file = e.target.files?.[0]
                           if (file) handleFileSelect(image.id, file)
