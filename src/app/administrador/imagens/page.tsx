@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useRef } from 'react'
-import { ArrowLeft, Upload, Image as ImageIcon, Save, RefreshCw } from 'lucide-react'
+import { useState, useRef, useEffect } from 'react'
+import { ArrowLeft, Upload, Image as ImageIcon, Save, RefreshCw, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getAllSiteImages, uploadSiteImage, siteImagesConfig, SiteImageData } from '@/lib/site-images'
 
 interface SiteImage {
   id: string
@@ -13,77 +14,54 @@ interface SiteImage {
   category: string
 }
 
-const siteImages: SiteImage[] = [
-  // Banners
-  { id: 'banner-home', description: 'Banner da Página Principal', currentPath: '/imagens/banners/banner-home.png', recommendedSize: '1920x600px', category: 'Banners' },
-  
-  // Logos
-  { id: 'logo', description: 'Logo Principal', currentPath: '/imagens/Logo.png', recommendedSize: '200x80px', category: 'Logo' },
-  { id: 'logo1', description: 'Logo Alternativo', currentPath: '/imagens/Logo1.png', recommendedSize: '200x80px', category: 'Logo' },
-  
-  // Como Comprar
-  { id: 'como-comprar-topico', description: 'Tópico Como Comprar', currentPath: '/imagens/Como Comprar/Topico Como Comprar.png', recommendedSize: '800x400px', category: 'Como Comprar' },
-  { id: 'como-comprar-1', description: 'Como Comprar - Passo 1', currentPath: '/imagens/Como Comprar/1.png', recommendedSize: '400x400px', category: 'Como Comprar' },
-  { id: 'como-comprar-2', description: 'Como Comprar - Passo 2', currentPath: '/imagens/Como Comprar/2.png', recommendedSize: '400x400px', category: 'Como Comprar' },
-  { id: 'como-comprar-3', description: 'Como Comprar - Passo 3', currentPath: '/imagens/Como Comprar/3.png', recommendedSize: '400x400px', category: 'Como Comprar' },
-  { id: 'como-comprar-4', description: 'Como Comprar - Passo 4', currentPath: '/imagens/Como Comprar/4.png', recommendedSize: '400x400px', category: 'Como Comprar' },
-  { id: 'como-comprar-5', description: 'Como Comprar - Passo 5', currentPath: '/imagens/Como Comprar/5.png', recommendedSize: '400x400px', category: 'Como Comprar' },
-  
-  // Anunciar Imóvel
-  { id: 'anunciar-imovel', description: 'Anunciar Imóvel', currentPath: '/imagens/Anunciar Imovel/Anunciar Imovel.png', recommendedSize: '1200x800px', category: 'Páginas' },
-  
-  // Anuncie Nox
-  { id: 'anuncie-nox-mulher', description: 'Anuncie Nox - Mulher', currentPath: '/imagens/Anuncie Nox/Mulher.png', recommendedSize: '800x1000px', category: 'Páginas' },
-  
-  // Contato
-  { id: 'contato', description: 'Página de Contato', currentPath: '/imagens/Contato/Contato.png', recommendedSize: '1200x800px', category: 'Páginas' },
-  
-  // Trabalhe Conosco
-  { id: 'trabalhe-conosco', description: 'Trabalhe Conosco', currentPath: '/imagens/Trabalhe Conosco/Trabalhe Conosco.png', recommendedSize: '1200x800px', category: 'Páginas' },
-  
-  // Encontre Meu Imóvel
-  { id: 'encontre-imovel-equipe', description: 'Encontre Imóvel - Equipe', currentPath: '/imagens/Encontre Meu Imovel/Equipe.png', recommendedSize: '1200x600px', category: 'Páginas' },
-  
-  // Corretores
-  { id: 'corretor-1', description: 'Corretor 1', currentPath: '/imagens/Corretores/1.png', recommendedSize: '400x400px', category: 'Corretores' },
-  { id: 'corretor-2', description: 'Corretor 2', currentPath: '/imagens/Corretores/2.png', recommendedSize: '400x400px', category: 'Corretores' },
-  { id: 'corretor-3', description: 'Corretor 3', currentPath: '/imagens/Corretores/3.png', recommendedSize: '400x400px', category: 'Corretores' },
-  { id: 'corretor-4', description: 'Corretor 4', currentPath: '/imagens/Corretores/4.png', recommendedSize: '400x400px', category: 'Corretores' },
-  
-  // Encontre Imóvel - Categorias
-  { id: 'apartamentos', description: 'Categoria - Apartamentos', currentPath: '/imagens/Encontre Imovel/Apartamentos.png', recommendedSize: '600x400px', category: 'Categorias' },
-  { id: 'frente-mar', description: 'Categoria - Frente Mar', currentPath: '/imagens/Encontre Imovel/Frente-Mar.png', recommendedSize: '600x400px', category: 'Categorias' },
-  { id: 'lancamentos-investidor', description: 'Categoria - Lançamentos Investidor', currentPath: '/imagens/Encontre Imovel/Lançamentos-Investidor.png', recommendedSize: '600x400px', category: 'Categorias' },
-  { id: 'mobiliados', description: 'Categoria - Mobiliados', currentPath: '/imagens/Encontre Imovel/Mobiliados.png', recommendedSize: '600x400px', category: 'Categorias' },
-  
-  // Barra Velha
-  { id: 'bv-em-construcao', description: 'Barra Velha - Em Construção', currentPath: '/imagens/Encontre Imovel/Barra Velha/Em Construção.png', recommendedSize: '600x400px', category: 'Barra Velha' },
-  { id: 'bv-imoveis-prontos', description: 'Barra Velha - Imóveis Prontos', currentPath: '/imagens/Encontre Imovel/Barra Velha/Imoveis Prontos.png', recommendedSize: '600x400px', category: 'Barra Velha' },
-  { id: 'bv-lancamentos-frente-mar', description: 'Barra Velha - Lançamentos Frente Mar', currentPath: '/imagens/Encontre Imovel/Barra Velha/Lançamentos Frente mar.png', recommendedSize: '600x400px', category: 'Barra Velha' },
-  
-  // Piçarras
-  { id: 'picarras-cobertura', description: 'Piçarras - Apartamento Cobertura', currentPath: '/imagens/Encontre Imovel/Piçarras/Apartamento-Cobertura.png', recommendedSize: '600x400px', category: 'Piçarras' },
-  { id: 'picarras-lancamentos', description: 'Piçarras - Lançamentos', currentPath: '/imagens/Encontre Imovel/Piçarras/Lançamentos.png', recommendedSize: '600x400px', category: 'Piçarras' },
-  { id: 'picarras-mobiliado', description: 'Piçarras - Mobiliado', currentPath: '/imagens/Encontre Imovel/Piçarras/Mobiliado.png', recommendedSize: '600x400px', category: 'Piçarras' },
-  { id: 'picarras-vista-mar', description: 'Piçarras - Vista Mar', currentPath: '/imagens/Encontre Imovel/Piçarras/Vista-Mar.png', recommendedSize: '600x400px', category: 'Piçarras' },
-  
-  // Imóveis na Planta
-  { id: 'imoveis-planta-1', description: 'Imóveis na Planta - Imagem 1', currentPath: '/imagens/Imoveis na Planta/1.png', recommendedSize: '800x600px', category: 'Imóveis na Planta' },
-  { id: 'imoveis-planta-2', description: 'Imóveis na Planta - Imagem 2', currentPath: '/imagens/Imoveis na Planta/2.png', recommendedSize: '800x600px', category: 'Imóveis na Planta' },
-  { id: 'imoveis-planta-3', description: 'Imóveis na Planta - Imagem 3', currentPath: '/imagens/Imoveis na Planta/3.png', recommendedSize: '800x600px', category: 'Imóveis na Planta' },
-  
-  // Seleção Nox
-  { id: 'selecao-nox-1', description: 'Seleção Nox - Imagem 1', currentPath: '/imagens/Seleção Nox/1.jpg', recommendedSize: '800x600px', category: 'Seleção Nox' },
-  { id: 'selecao-nox-2', description: 'Seleção Nox - Imagem 2', currentPath: '/imagens/Seleção Nox/2.jpg', recommendedSize: '800x600px', category: 'Seleção Nox' },
-  { id: 'selecao-nox-3', description: 'Seleção Nox - Imagem 3', currentPath: '/imagens/Seleção Nox/3.jpg', recommendedSize: '800x600px', category: 'Seleção Nox' },
-]
-
 export default function AdminImagens() {
   const [selectedCategory, setSelectedCategory] = useState('Todas')
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedFiles, setSelectedFiles] = useState<{ [key: string]: File }>({})
   const [previewUrls, setPreviewUrls] = useState<{ [key: string]: string }>({})
+  const [isLoading, setIsLoading] = useState<{ [key: string]: boolean }>({})
+  const [siteImages, setSiteImages] = useState<SiteImage[]>([])
+  const [firebaseImages, setFirebaseImages] = useState<{ [key: string]: string }>({})
   const fileInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({})
+
+  // Carregar imagens do Firebase
+  useEffect(() => {
+    loadImages()
+  }, [])
+
+  const loadImages = async () => {
+    try {
+      const fbImages = await getAllSiteImages()
+      const fbImagesMap: { [key: string]: string } = {}
+      
+      fbImages.forEach(img => {
+        fbImagesMap[img.id] = img.url
+      })
+      
+      setFirebaseImages(fbImagesMap)
+      
+      // Criar lista de imagens com URLs do Firebase ou local
+      const imagesWithUrls = siteImagesConfig.map(img => ({
+        id: img.id,
+        description: img.description,
+        currentPath: fbImagesMap[img.id] || img.localPath,
+        recommendedSize: img.recommendedSize,
+        category: img.category,
+      }))
+      
+      setSiteImages(imagesWithUrls)
+    } catch (error) {
+      console.error('Erro ao carregar imagens:', error)
+      // Fallback para imagens locais
+      setSiteImages(siteImagesConfig.map(img => ({
+        id: img.id,
+        description: img.description,
+        currentPath: img.localPath,
+        recommendedSize: img.recommendedSize,
+        category: img.category,
+      })))
+    }
+  }
 
   const categories = ['Todas', ...Array.from(new Set(siteImages.map(img => img.category)))]
 
@@ -110,8 +88,38 @@ export default function AdminImagens() {
       return
     }
 
-    // TODO: Implementar upload para o servidor
-    alert('Funcionalidade de upload será implementada em breve!')
+    const imageConfig = siteImagesConfig.find(img => img.id === imageId)
+    if (!imageConfig) {
+      alert('Configuração da imagem não encontrada')
+      return
+    }
+
+    setIsLoading(prev => ({ ...prev, [imageId]: true }))
+
+    try {
+      const downloadURL = await uploadSiteImage(
+        imageId,
+        file,
+        imageConfig.description,
+        imageConfig.category,
+        imageConfig.recommendedSize
+      )
+      
+      // Atualizar a lista de imagens
+      setSiteImages(prev => prev.map(img => 
+        img.id === imageId ? { ...img, currentPath: downloadURL } : img
+      ))
+      
+      // Limpar seleção
+      handleResetImage(imageId)
+      
+      alert('Imagem atualizada com sucesso!')
+    } catch (error) {
+      console.error('Erro ao salvar imagem:', error)
+      alert('Erro ao salvar imagem. Tente novamente.')
+    } finally {
+      setIsLoading(prev => ({ ...prev, [imageId]: false }))
+    }
   }
 
   const handleResetImage = (imageId: string) => {
@@ -281,14 +289,25 @@ export default function AdminImagens() {
                       <>
                         <button
                           onClick={() => handleSaveImage(image.id)}
-                          className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+                          disabled={isLoading[image.id]}
+                          className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
                         >
-                          <Save className="w-4 h-4" />
-                          <span className="text-sm font-medium">Salvar</span>
+                          {isLoading[image.id] ? (
+                            <>
+                              <Loader2 className="w-4 h-4 animate-spin" />
+                              <span className="text-sm font-medium">Salvando...</span>
+                            </>
+                          ) : (
+                            <>
+                              <Save className="w-4 h-4" />
+                              <span className="text-sm font-medium">Salvar</span>
+                            </>
+                          )}
                         </button>
                         <button
                           onClick={() => handleResetImage(image.id)}
-                          className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
+                          disabled={isLoading[image.id]}
+                          className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
                         >
                           <RefreshCw className="w-4 h-4" />
                           <span className="text-sm font-medium">Cancelar</span>
