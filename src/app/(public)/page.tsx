@@ -7,6 +7,7 @@ import { Search, Home, Building, MapPin, Star, Users, Award } from 'lucide-react
 import SearchForm from '@/components/SearchForm'
 import ImovelCard from '@/components/ImovelCard'
 import BlogSection from '@/components/BlogSection'
+import DynamicImage from '@/components/DynamicImage'
 import { getAllImoveis } from '@/lib/imoveis'
 
 export default function HomePage() {
@@ -18,12 +19,13 @@ export default function HomePage() {
       <section className="relative text-white py-20 min-h-[600px] flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/imagens/banners/banner-home.png"
+          <DynamicImage
+            imageId="banner-home"
             alt="Nox Imóveis - Encontre o Imóvel dos Seus Sonhos"
             fill
             className="object-cover"
             priority
+            fallbackSrc="/imagens/banners/banner-home.png"
           />
           {/* Overlay para melhorar legibilidade do texto */}
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
