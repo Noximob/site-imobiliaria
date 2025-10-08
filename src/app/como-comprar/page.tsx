@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { CheckCircle, Users, FileText, Home, Shield, CreditCard, Calculator, Phone, Mail, MapPin, Building, Award } from 'lucide-react'
-import ZeroFlickerImage from '@/components/ZeroFlickerImage'
 import { preloadAllImages } from '@/lib/preload-images'
 
 export const metadata: Metadata = {
@@ -37,24 +36,24 @@ export default async function ComoComprarPage() {
       {/* Hero Section */}
       <section className="relative text-white py-8 min-h-[350px] flex items-center">
         {/* Background Image - Zero flicker */}
-        <div className="absolute inset-0 z-0">
-          <ZeroFlickerImage
-            src={siteImages['como-comprar-banner']}
-            alt="Como Comprar - Nox Imóveis"
-            className="w-full h-full object-cover"
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover'
-            }}
-            priority={true}
-          />
-          {/* Overlay para melhorar legibilidade do texto */}
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-        </div>
+        {/* Background Image - Zero cinza */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url(${siteImages['como-comprar-banner']})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: 'transparent',
+            // Força renderização imediata
+            willChange: 'auto',
+            // Evita placeholder cinza
+            background: `transparent url(${siteImages['como-comprar-banner']}) center/cover no-repeat`
+          }}
+        />
+        
+        {/* Overlay para melhorar legibilidade do texto */}
+        <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
         
         {/* Content */}
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">

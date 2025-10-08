@@ -19,10 +19,10 @@ export default async function HomePage() {
       {/* Pré-carregar imagem crítica */}
       <link rel="preload" as="image" href={siteImages['banner-home']} />
       
-      <div className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative text-white py-20 min-h-[600px] flex items-center">
-        {/* Background Image - Força carregamento imediato */}
+        {/* Background Image - Zero cinza */}
         <div 
           className="absolute inset-0 z-0"
           style={{
@@ -30,11 +30,15 @@ export default async function HomePage() {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            backgroundColor: 'transparent'
+            backgroundColor: 'transparent',
+            // Força renderização imediata
+            willChange: 'auto',
+            // Evita placeholder cinza
+            background: `transparent url(${siteImages['banner-home']}) center/cover no-repeat`
           }}
         />
         
-        {/* Overlay para melhorar legibilidade do texto */}
+          {/* Overlay para melhorar legibilidade do texto */}
         <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
         
         {/* Content */}
@@ -715,15 +719,15 @@ export default async function HomePage() {
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                          </svg>
                        </a>
-                     </div>
-                   </div>
-          </div>
+              </div>
             </div>
+          </div>
+        </div>
       </section>
 
       {/* Seção Blog */}
       <BlogSection />
-      </div>
+                  </div>
     </>
   )
 }
