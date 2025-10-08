@@ -21,21 +21,23 @@ export default async function HomePage() {
       
       <div className="min-h-screen">
       {/* Hero Section */}
-      <section 
-        className="relative text-white py-20 min-h-[600px] flex items-center"
-        style={{
-          backgroundImage: `url(${siteImages['banner-home']})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          // Força renderização imediata
-          backgroundColor: 'transparent',
-          // Evita placeholder cinza
-          backgroundAttachment: 'fixed'
-        }}
-      >
+      <section className="relative text-white py-20 min-h-[600px] flex items-center">
+        {/* Background Image - Força carregamento imediato */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url(${siteImages['banner-home']})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: 'transparent',
+            // Força carregamento imediato
+            backgroundAttachment: 'fixed'
+          }}
+        />
+        
         {/* Overlay para melhorar legibilidade do texto */}
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
         
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
