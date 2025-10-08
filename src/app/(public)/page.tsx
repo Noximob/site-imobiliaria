@@ -4,7 +4,7 @@ import { Search, Home, Building, MapPin, Star, Users, Award } from 'lucide-react
 import SearchForm from '@/components/SearchForm'
 import ImovelCard from '@/components/ImovelCard'
 import BlogSection from '@/components/BlogSection'
-import InstantImage from '@/components/InstantImage'
+import ZeroFlickerImage from '@/components/ZeroFlickerImage'
 import { getAllImoveis } from '@/lib/imoveis'
 import { preloadAllImages } from '@/lib/preload-images'
 
@@ -23,9 +23,9 @@ export default async function HomePage() {
       <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative text-white py-20 min-h-[600px] flex items-center">
-        {/* Background Image - Componente instantâneo */}
+        {/* Background Image - Zero flicker */}
         <div className="absolute inset-0 z-0">
-          <InstantImage
+          <ZeroFlickerImage
             src={siteImages['banner-home']}
             alt="Nox Imóveis - Encontre o Imóvel dos Seus Sonhos"
             className="w-full h-full object-cover"

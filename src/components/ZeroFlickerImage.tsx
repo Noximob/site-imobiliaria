@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 
-interface InstantImageProps {
+interface ZeroFlickerImageProps {
   src: string
   alt: string
   className?: string
@@ -10,13 +10,13 @@ interface InstantImageProps {
   priority?: boolean
 }
 
-export default function InstantImage({ 
+export default function ZeroFlickerImage({ 
   src, 
   alt, 
   className = '', 
   style = {},
   priority = false 
-}: InstantImageProps) {
+}: ZeroFlickerImageProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [imageSrc, setImageSrc] = useState<string | null>(null)
   const imgRef = useRef<HTMLImageElement>(null)
@@ -66,7 +66,10 @@ export default function InstantImage({
           // Evita qualquer placeholder visual
           opacity: 0,
           // Força renderização imediata
-          visibility: 'hidden'
+          visibility: 'hidden',
+          // Força dimensões fixas
+          width: '100%',
+          height: '100%'
         }}
       />
     )
@@ -88,7 +91,10 @@ export default function InstantImage({
         display: 'block',
         // Transição suave
         opacity: 1,
-        transition: 'opacity 0.1s ease-in-out'
+        transition: 'opacity 0.1s ease-in-out',
+        // Força renderização imediata
+        backgroundColor: 'transparent',
+        backgroundImage: 'none'
       }}
       onLoad={() => {
         // Garante que não há reflow após carregar
