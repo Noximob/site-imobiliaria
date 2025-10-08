@@ -23,6 +23,8 @@ export default function AdminImagens() {
   const [isLoading, setIsLoading] = useState<{ [key: string]: boolean }>({})
   const [siteImages, setSiteImages] = useState<SiteImage[]>([])
   const [firebaseImages, setFirebaseImages] = useState<{ [key: string]: string }>({})
+  const [isPublishing, setIsPublishing] = useState(false)
+  const [hasChanges, setHasChanges] = useState(false)
   const fileInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({})
 
   // Carregar imagens do Firebase
@@ -104,12 +106,47 @@ export default function AdminImagens() {
       // Limpar seleção
       handleResetImage(imageId)
       
-      alert('Imagem atualizada com sucesso!')
+      // Marcar que há mudanças não publicadas
+      setHasChanges(true)
+      
+      alert('Imagem salva no Firebase! Clique em "Publicar Alterações" para atualizar o site.')
     } catch (error) {
       console.error('Erro ao salvar imagem:', error)
       alert('Erro ao salvar imagem. Tente novamente.')
     } finally {
       setIsLoading(prev => ({ ...prev, [imageId]: false }))
+    }
+  }
+
+  const handlePublishChanges = async () => {
+    if (!hasChanges) {
+      alert('Não há alterações para publicar.')
+      return
+    }
+
+    if (!confirm('Isso vai fazer um rebuild do site no Netlify (1-2 minutos). Deseja continuar?')) {
+      return
+    }
+
+    setIsPublishing(true)
+
+    try {
+      // Disparar webhook do Netlify
+      const response = await fetch('/api/trigger-deploy', {
+        method: 'POST'
+      })
+
+      if (response.ok) {
+        alert('Deploy iniciado com sucesso! O site será atualizado em 1-2 minutos.')
+        setHasChanges(false)
+      } else {
+        throw new Error('Erro ao disparar deploy')
+      }
+    } catch (error) {
+      console.error('Erro ao publicar alterações:', error)
+      alert('Erro ao publicar alterações. Tente novamente.')
+    } finally {
+      setIsPublishing(false)
     }
   }
 
@@ -152,12 +189,48 @@ export default function AdminImagens() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Botão Publicar Alterações - Fixo no topo */}
+        {hasChanges && (
+          <div className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-4 mb-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-semibold text-yellow-800 mb-1">
+                  ⚠️ Você tem alterações não publicadas
+                </p>
+                <p className="text-xs text-yellow-700">
+                  As imagens foram salvas no Firebase, mas o site ainda não foi atualizado. 
+                  Clique em "Publicar Alterações" para fazer o deploy.
+                </p>
+              </div>
+              <button
+                onClick={handlePublishChanges}
+                disabled={isPublishing}
+                className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {isPublishing ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span>Publicando...</span>
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Publicar Alterações</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Info Box */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
           <p className="text-sm text-blue-800">
             <strong>Instruções:</strong> Para cada imagem, você verá a versão atual em miniatura. 
             Clique em "Selecionar Nova Imagem" para escolher uma nova foto. 
-            Respeite os tamanhos recomendados para melhor qualidade.
+            Depois de salvar, clique em "Publicar Alterações" para atualizar o site.
           </p>
         </div>
 
