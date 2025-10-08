@@ -122,20 +122,26 @@ export default async function HomePage() {
       />
       
       <div className="min-h-screen">
-        {/* Hero Section - ZERO CINZA */}
-        <section className="relative text-white py-20 min-h-[600px] flex items-center">
-          {/* Background Image - CARREGAMENTO INSTANTÂNEO */}
-          <div 
-            className="absolute inset-0 z-0"
+        {/* Hero Section - ZERO CINZA COM IMG NATIVA */}
+        <section className="relative text-white py-20 min-h-[600px] flex items-center overflow-hidden">
+          {/* Background Image usando IMG NATIVA HTML - SEM Next.js Image */}
+          <img
+            src={siteImages['banner-home']}
+            alt="Banner Nox Imóveis"
+            loading="eager"
+            decoding="sync"
+            fetchPriority="high"
             style={{
-              backgroundImage: `url(${siteImages['banner-home']})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              zIndex: 0,
               backgroundColor: 'transparent',
-              // Remove backgroundAttachment para evitar delay
-              minHeight: '100%',
-              minWidth: '100%'
+              background: 'transparent',
             }}
           />
         

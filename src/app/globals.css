@@ -20,6 +20,18 @@
     background-color: transparent !important;
   }
   
+  /* Next.js Image - FORÇA TRANSPARENTE */
+  img[data-nimg] {
+    background-color: transparent !important;
+    background: transparent !important;
+  }
+  
+  /* Span wrapper do Next.js Image */
+  span[data-nimg-fill] {
+    background-color: transparent !important;
+    background: transparent !important;
+  }
+  
   /* Otimização de performance */
   * {
     -webkit-font-smoothing: antialiased;

@@ -9,6 +9,15 @@ const nextConfig = {
     minimumCacheTTL: 86400, // 24 horas
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Remove placeholder cinza
+    loader: 'default',
+    domains: [],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
   compress: true,
   poweredByHeader: false,
