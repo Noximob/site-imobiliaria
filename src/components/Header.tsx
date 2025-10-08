@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Menu, X, Phone, MapPin, ChevronDown, Instagram, Linkedin, Facebook } from 'lucide-react'
 import Image from 'next/image'
+import DynamicImage from '@/components/DynamicImage'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -20,12 +21,13 @@ export default function Header() {
           {/* Logo */}
             <Link href="/" className="flex items-center">
               <div className="relative w-32 h-12">
-                <Image
-                  src="/imagens/Logo.png"
+                <DynamicImage
+                  imageId="logo-header"
                   alt="Nox Imóveis"
                   fill
                   className="object-contain"
                   priority
+                  fallbackSrc="/imagens/Logo.png"
                 />
             </div>
           </Link>
