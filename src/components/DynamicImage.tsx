@@ -25,7 +25,7 @@ export default function DynamicImage({
   width,
   height,
 }: DynamicImageProps) {
-  const [imageSrc, setImageSrc] = useState<string>(fallbackSrc || '/imagens/placeholder.png')
+  const [imageSrc, setImageSrc] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -34,16 +34,17 @@ export default function DynamicImage({
         const allImages = await getAllSiteImages()
         const url = allImages[imageId]
         
+        // Define a imagem APENAS UMA VEZ
         if (url) {
           setImageSrc(url)
         } else if (fallbackSrc) {
           setImageSrc(fallbackSrc)
+        } else {
+          setImageSrc('/imagens/placeholder.png')
         }
       } catch (error) {
         console.error(`Erro ao carregar imagem ${imageId}:`, error)
-        if (fallbackSrc) {
-          setImageSrc(fallbackSrc)
-        }
+        setImageSrc(fallbackSrc || '/imagens/placeholder.png')
       } finally {
         setIsLoading(false)
       }
@@ -51,6 +52,11 @@ export default function DynamicImage({
 
     loadImage()
   }, [imageId, fallbackSrc])
+
+  // Não renderiza nada até ter a URL definida
+  if (!imageSrc) {
+    return null
+  }
 
   if (fill) {
     return (
