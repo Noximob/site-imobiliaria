@@ -716,7 +716,6 @@ export default async function HomePage() {
 
       {/* Seção Blog */}
       <BlogSection />
-                  </div>
-    </>
+    </div>
   )
 }
