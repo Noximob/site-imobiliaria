@@ -19,10 +19,25 @@ export default async function HomePage() {
       {/* Pré-carregar imagem crítica */}
       <link rel="preload" as="image" href={siteImages['banner-home']} />
       
-    <div className="min-h-screen">
+      {/* Imagem oculta para forçar carregamento */}
+      <img 
+        src={siteImages['banner-home']} 
+        alt="" 
+        style={{ 
+          position: 'absolute', 
+          top: '-9999px', 
+          left: '-9999px', 
+          width: '1px', 
+          height: '1px',
+          opacity: 0,
+          pointerEvents: 'none'
+        }} 
+      />
+      
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative text-white py-20 min-h-[600px] flex items-center">
-        {/* Background Image - Zero cinza */}
+        {/* Background Image - Zero cinza definitivo */}
         <div 
           className="absolute inset-0 z-0"
           style={{
@@ -33,8 +48,13 @@ export default async function HomePage() {
             backgroundColor: 'transparent',
             // Força renderização imediata
             willChange: 'auto',
-            // Evita placeholder cinza
-            background: `transparent url(${siteImages['banner-home']}) center/cover no-repeat`
+            // Evita placeholder cinza - múltiplas tentativas
+            background: `transparent url(${siteImages['banner-home']}) center/cover no-repeat`,
+            // Força carregamento imediato
+            backgroundAttachment: 'scroll',
+            // Evita qualquer placeholder
+            minHeight: '100%',
+            minWidth: '100%'
           }}
         />
         
