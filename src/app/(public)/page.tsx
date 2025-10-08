@@ -16,16 +16,40 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen">
+      {/* Imagem oculta para forçar carregamento ANTES do background */}
+      <img 
+        src={siteImages['banner-home']} 
+        alt="" 
+        style={{ 
+          position: 'absolute', 
+          top: '-9999px', 
+          left: '-9999px', 
+          width: '1px', 
+          height: '1px',
+          opacity: 0,
+          pointerEvents: 'none',
+          backgroundColor: 'transparent'
+        }} 
+      />
+      
       {/* Hero Section */}
-      <section 
-        className="relative text-white py-20 min-h-[600px] flex items-center"
-        style={{
-          backgroundImage: `url(${siteImages['banner-home']})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
+      <section className="relative text-white py-20 min-h-[600px] flex items-center">
+        {/* Background Image - Força carregamento imediato */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url(${siteImages['banner-home']})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: 'transparent',
+            // Força carregamento imediato
+            backgroundAttachment: 'scroll',
+            // Evita placeholder cinza
+            minHeight: '100%',
+            minWidth: '100%'
+          }}
+        />
         
           {/* Overlay para melhorar legibilidade do texto */}
         <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
