@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { CheckCircle, Users, FileText, Home, Shield, CreditCard, Calculator, Phone, Mail, MapPin, Building, Award } from 'lucide-react'
-import { getSiteImagesForSSR } from '@/lib/get-site-images'
+import { preloadAllImages } from '@/lib/preload-images'
 
 export const metadata: Metadata = {
   title: 'Como Comprar um Imóvel - Guia Completo | Nox Imóveis',
@@ -21,8 +21,11 @@ export const metadata: Metadata = {
   },
 }
 
+// Força revalidação a cada 24 horas
+export const revalidate = 86400
+
 export default async function ComoComprarPage() {
-  const siteImages = await getSiteImagesForSSR()
+  const siteImages = await preloadAllImages()
   
   return (
     <div className="min-h-screen bg-white">

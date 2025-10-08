@@ -5,11 +5,14 @@ import SearchForm from '@/components/SearchForm'
 import ImovelCard from '@/components/ImovelCard'
 import BlogSection from '@/components/BlogSection'
 import { getAllImoveis } from '@/lib/imoveis'
-import { getSiteImagesForSSR } from '@/lib/get-site-images'
+import { preloadAllImages } from '@/lib/preload-images'
+
+// Força revalidação a cada 24 horas
+export const revalidate = 86400
 
 export default async function HomePage() {
-  // Buscar imagens do Firebase durante o build (SSR)
-  const siteImages = await getSiteImagesForSSR()
+  // Pré-carregar todas as imagens durante o build
+  const siteImages = await preloadAllImages()
 
   return (
     <div className="min-h-screen">

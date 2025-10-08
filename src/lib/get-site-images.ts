@@ -1,12 +1,16 @@
 import { getAllSiteImagesSSR, siteImagesConfig } from './site-images'
 
-// Cache das imagens para evitar múltiplas chamadas ao Firebase
-let cachedImages: Record<string, string> | null = null
+// Cache global das imagens (persiste entre requests)
+const globalImageCache = new Map<string, string>()
 
 // Buscar todas as imagens com fallback para imagens locais
 export async function getSiteImagesForSSR(): Promise<Record<string, string>> {
-  // Se já temos cache, retorna
-  if (cachedImages) {
+  // Verifica se já temos todas as imagens no cache global
+  if (globalImageCache.size === siteImagesConfig.length) {
+    const cachedImages: Record<string, string> = {}
+    globalImageCache.forEach((value, key) => {
+      cachedImages[key] = value
+    })
     return cachedImages
   }
 
@@ -19,11 +23,12 @@ export async function getSiteImagesForSSR(): Promise<Record<string, string>> {
     
     siteImagesConfig.forEach(config => {
       // Usa imagem do Firebase se existir, senão usa a local
-      imagesMap[config.id] = firebaseImages[config.id] || config.localPath
+      const imageUrl = firebaseImages[config.id] || config.localPath
+      imagesMap[config.id] = imageUrl
+      
+      // Salva no cache global
+      globalImageCache.set(config.id, imageUrl)
     })
-    
-    // Salva no cache
-    cachedImages = imagesMap
     
     return imagesMap
   } catch (error) {
@@ -33,6 +38,7 @@ export async function getSiteImagesForSSR(): Promise<Record<string, string>> {
     const fallbackMap: Record<string, string> = {}
     siteImagesConfig.forEach(config => {
       fallbackMap[config.id] = config.localPath
+      globalImageCache.set(config.id, config.localPath)
     })
     
     return fallbackMap
@@ -41,5 +47,5 @@ export async function getSiteImagesForSSR(): Promise<Record<string, string>> {
 
 // Limpar cache (útil para desenvolvimento)
 export function clearSiteImagesCache() {
-  cachedImages = null
+  globalImageCache.clear()
 }
