@@ -15,49 +15,7 @@ export default async function HomePage() {
   const siteImages = await preloadAllImages()
 
   return (
-    <>
-      {/* Pré-carregar imagem crítica */}
-      <link rel="preload" as="image" href={siteImages['banner-home']} />
-      
-      {/* Script inline para eliminar cinza imediatamente */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            document.addEventListener('DOMContentLoaded', function() {
-              // Força transparência em todas as imagens
-              const images = document.querySelectorAll('img');
-              images.forEach(img => {
-                img.style.backgroundColor = 'transparent';
-                img.style.background = 'transparent';
-              });
-              
-              // Força transparência em backgrounds
-              const backgrounds = document.querySelectorAll('[style*="background-image"]');
-              backgrounds.forEach(bg => {
-                bg.style.backgroundColor = 'transparent';
-              });
-            });
-          `
-        }}
-      />
-      
-      {/* Imagem oculta para forçar carregamento */}
-      <img 
-        src={siteImages['banner-home']} 
-        alt="" 
-        style={{ 
-          position: 'absolute', 
-          top: '-9999px', 
-          left: '-9999px', 
-          width: '1px', 
-          height: '1px',
-          opacity: 0,
-          pointerEvents: 'none',
-          backgroundColor: 'transparent'
-        }} 
-      />
-      
-      <div className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section 
         className="relative text-white py-20 min-h-[600px] flex items-center"
@@ -65,8 +23,7 @@ export default async function HomePage() {
           backgroundImage: `url(${siteImages['banner-home']})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: 'transparent'
+          backgroundRepeat: 'no-repeat'
         }}
       >
         
