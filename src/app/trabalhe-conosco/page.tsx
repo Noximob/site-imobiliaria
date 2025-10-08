@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Upload, X } from 'lucide-react'
+import DynamicImage from '@/components/DynamicImage'
 
 export default function TrabalheConoscoPage() {
   const [formData, setFormData] = useState({
@@ -73,11 +74,12 @@ export default function TrabalheConoscoPage() {
 
           {/* Lado Direito - Imagem da Equipe */}
           <div className="flex-1 relative">
-            <Image
-              src="/imagens/Trabalhe Conosco/Trabalhe Conosco.png"
+            <DynamicImage
+              imageId="trabalhe-conosco-equipe"
               alt="Equipe Nox Imóveis"
               fill
               className="object-cover"
+              fallbackSrc="/imagens/Trabalhe Conosco/Trabalhe Conosco.png"
             />
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center text-white bg-black/50 px-4 py-2 rounded-lg">
               <p className="text-sm font-medium">Foto da equipe</p>

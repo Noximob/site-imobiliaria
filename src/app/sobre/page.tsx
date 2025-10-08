@@ -3,6 +3,7 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
+import DynamicImage from '@/components/DynamicImage'
 
 export default function SobrePage() {
   const [selectedMember, setSelectedMember] = useState<string | null>(null)
@@ -13,11 +14,12 @@ export default function SobrePage() {
       <section className="relative h-[70vh] flex items-end justify-start overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <Image 
-            src="/imagens/banners/quem-somos-hero.jpg" 
+          <DynamicImage 
+            imageId="quem-somos-banner"
             alt="Nox Imóveis - Quem Somos" 
             fill
             className="object-cover"
+            fallbackSrc="/imagens/banners/quem-somos-hero.jpg"
           />
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         </div>
@@ -42,12 +44,13 @@ export default function SobrePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Imagem da Equipe */}
             <div className="relative">
-              <Image 
-                src="/imagens/equipe/equipe-principal.jpg" 
+              <DynamicImage 
+                imageId="quem-somos-equipe"
                 alt="Equipe Nox Imóveis" 
                 width={600}
                 height={400}
                 className="rounded-lg shadow-lg"
+                fallbackSrc="/imagens/equipe/equipe-principal.jpg"
               />
             </div>
             

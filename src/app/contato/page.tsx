@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Phone } from 'lucide-react'
 import Image from 'next/image'
+import DynamicImage from '@/components/DynamicImage'
 
 export default function ContatoPage() {
   const [formData, setFormData] = useState({
@@ -51,12 +52,13 @@ export default function ContatoPage() {
     <div className="min-h-screen relative">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <Image 
-          src="/imagens/Contato/Contato.png" 
+        <DynamicImage 
+          imageId="contato-banner"
           alt="Contato Nox Imóveis" 
           fill
           className="object-cover"
           priority
+          fallbackSrc="/imagens/Contato/Contato.png"
         />
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>

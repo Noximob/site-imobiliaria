@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { DollarSign, TrendingUp, BarChart3, Camera } from 'lucide-react'
+import DynamicImage from '@/components/DynamicImage'
 
 export default function AnunciarPage() {
   const [formData, setFormData] = useState({
@@ -34,12 +35,13 @@ export default function AnunciarPage() {
       <section className="relative h-screen flex items-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <Image
-            src="/imagens/Anunciar Imovel/Anunciar Imovel.png"
+          <DynamicImage
+            imageId="anunciar-banner"
             alt="Anunciar Imóvel - Nox Imóveis"
             fill
             className="object-cover"
             priority
+            fallbackSrc="/imagens/Anunciar Imovel/Anunciar Imovel.png"
           />
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         </div>
