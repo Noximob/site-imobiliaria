@@ -1,7 +1,18 @@
 import { getAllSiteImagesSSR, siteImagesConfig } from './site-images'
 
-// Pré-carregar todas as imagens durante o build
+// Cache global para evitar múltiplas chamadas
+let imageCache: Record<string, string> | null = null
+let cacheTimestamp: number = 0
+const CACHE_DURATION = 5 * 60 * 1000 // 5 minutos
+
+// Pré-carregar todas as imagens durante o build com cache inteligente
 export async function preloadAllImages(): Promise<Record<string, string>> {
+  // Verifica se o cache ainda é válido
+  if (imageCache && Date.now() - cacheTimestamp < CACHE_DURATION) {
+    console.log('🚀 Usando cache de imagens')
+    return imageCache
+  }
+
   try {
     console.log('🔄 Pré-carregando imagens do Firebase...')
     
@@ -16,7 +27,11 @@ export async function preloadAllImages(): Promise<Record<string, string>> {
       imagesMap[config.id] = firebaseImages[config.id] || config.localPath
     })
     
-    console.log(`✅ ${Object.keys(imagesMap).length} imagens pré-carregadas`)
+    // Atualiza cache
+    imageCache = imagesMap
+    cacheTimestamp = Date.now()
+    
+    console.log(`✅ ${Object.keys(imagesMap).length} imagens pré-carregadas e cacheadas`)
     return imagesMap
   } catch (error) {
     console.error('❌ Erro ao pré-carregar imagens:', error)
@@ -27,7 +42,18 @@ export async function preloadAllImages(): Promise<Record<string, string>> {
       fallbackMap[config.id] = config.localPath
     })
     
+    // Atualiza cache com fallback
+    imageCache = fallbackMap
+    cacheTimestamp = Date.now()
+    
     console.log(`⚠️ Usando ${Object.keys(fallbackMap).length} imagens locais como fallback`)
     return fallbackMap
   }
+}
+
+// Função para limpar cache (útil para desenvolvimento)
+export function clearImageCache() {
+  imageCache = null
+  cacheTimestamp = 0
+  console.log('🗑️ Cache de imagens limpo')
 }

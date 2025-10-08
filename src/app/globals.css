@@ -10,6 +10,30 @@
   body {
     @apply text-gray-900 bg-white;
   }
+  
+  /* ELIMINA PLACEHOLDER CINZA - ZERO FLICKER */
+  img {
+    background-color: transparent !important;
+  }
+  
+  [style*="background-image"] {
+    background-color: transparent !important;
+  }
+  
+  /* Otimização de performance */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Preload de fontes críticas */
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Inter'), url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2') format('woff2');
+  }
 }
 
 @layer components {

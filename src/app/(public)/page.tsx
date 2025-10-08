@@ -6,50 +6,138 @@ import ImovelCard from '@/components/ImovelCard'
 import BlogSection from '@/components/BlogSection'
 import { getAllImoveis } from '@/lib/imoveis'
 import { preloadAllImages } from '@/lib/preload-images'
+import type { Metadata } from 'next'
 
 // Força revalidação a cada 24 horas
 export const revalidate = 86400
+
+// Metadata otimizada para SEO
+export const metadata: Metadata = {
+  title: 'Nox Imóveis - Imóveis em Penha, Balneário Piçarras e Barra Velha',
+  description: 'Encontre o imóvel dos seus sonhos em Penha, Balneário Piçarras e Barra Velha. Apartamentos, casas e terrenos com a melhor imobiliária da região.',
+  keywords: 'imóveis penha, imóveis balneário piçarras, imóveis barra velha, apartamentos, casas, terrenos, imobiliária, venda, aluguel',
+  authors: [{ name: 'Nox Imóveis' }],
+  openGraph: {
+    title: 'Nox Imóveis - Imóveis em Penha, Balneário Piçarras e Barra Velha',
+    description: 'Encontre o imóvel dos seus sonhos em Penha, Balneário Piçarras e Barra Velha. Apartamentos, casas e terrenos com a melhor imobiliária da região.',
+    type: 'website',
+    locale: 'pt_BR',
+    images: [
+      {
+        url: '/imagens/banners/banner-home.png',
+        width: 1920,
+        height: 1080,
+        alt: 'Nox Imóveis - Imóveis em Penha, Balneário Piçarras e Barra Velha',
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://noximoveis.com.br',
+  },
+}
 
 export default async function HomePage() {
   // Pré-carregar todas as imagens durante o build
   const siteImages = await preloadAllImages()
 
   return (
-    <div className="min-h-screen">
-      {/* Imagem oculta para forçar carregamento ANTES do background */}
-      <img 
-        src={siteImages['banner-home']} 
-        alt="" 
-        style={{ 
-          position: 'absolute', 
-          top: '-9999px', 
-          left: '-9999px', 
-          width: '1px', 
-          height: '1px',
-          opacity: 0,
-          pointerEvents: 'none',
-          backgroundColor: 'transparent'
-        }} 
+    <>
+      {/* Preload da imagem crítica para SEO */}
+      <link rel="preload" as="image" href={siteImages['banner-home']} />
+      
+      {/* Structured Data para SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "RealEstateAgent",
+            "name": "Nox Imóveis",
+            "description": "Imobiliária especializada em imóveis em Penha, Balneário Piçarras e Barra Velha",
+            "url": "https://noximoveis.com.br",
+            "logo": "https://noximoveis.com.br/imagens/Logo.png",
+            "image": "https://noximoveis.com.br/imagens/banners/banner-home.png",
+            "telephone": "+5547997530113",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Penha",
+              "addressRegion": "SC",
+              "addressCountry": "BR"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Penha"
+              },
+              {
+                "@type": "City", 
+                "name": "Balneário Piçarras"
+              },
+              {
+                "@type": "City",
+                "name": "Barra Velha"
+              }
+            ],
+            "serviceType": "Real Estate Services",
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Imóveis à Venda",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "RealEstateListing",
+                    "name": "Apartamentos em Penha"
+                  }
+                },
+                {
+                  "@type": "Offer", 
+                  "itemOffered": {
+                    "@type": "RealEstateListing",
+                    "name": "Casas em Balneário Piçarras"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "RealEstateListing", 
+                    "name": "Terrenos em Barra Velha"
+                  }
+                }
+              ]
+            }
+          })
+        }}
       />
       
-      {/* Hero Section */}
-      <section className="relative text-white py-20 min-h-[600px] flex items-center">
-        {/* Background Image - Força carregamento imediato */}
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${siteImages['banner-home']})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: 'transparent',
-            // Força carregamento imediato
-            backgroundAttachment: 'scroll',
-            // Evita placeholder cinza
-            minHeight: '100%',
-            minWidth: '100%'
-          }}
-        />
+      <div className="min-h-screen">
+        {/* Hero Section - ZERO CINZA */}
+        <section className="relative text-white py-20 min-h-[600px] flex items-center">
+          {/* Background Image - CARREGAMENTO INSTANTÂNEO */}
+          <div 
+            className="absolute inset-0 z-0"
+            style={{
+              backgroundImage: `url(${siteImages['banner-home']})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundColor: 'transparent',
+              // Remove backgroundAttachment para evitar delay
+              minHeight: '100%',
+              minWidth: '100%'
+            }}
+          />
         
           {/* Overlay para melhorar legibilidade do texto */}
         <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
@@ -120,6 +208,8 @@ export default async function HomePage() {
                     alt="Imóvel Seleção Nox 1" 
                     fill
                     className="object-cover"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
                 <div className="p-4">
@@ -143,6 +233,8 @@ export default async function HomePage() {
                     alt="Imóvel Seleção Nox 2" 
                     fill
                     className="object-cover"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
                 <div className="p-4">
@@ -166,6 +258,8 @@ export default async function HomePage() {
                     alt="Imóvel Seleção Nox 3" 
                     fill
                     className="object-cover"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
                 <div className="p-4">
@@ -217,6 +311,8 @@ export default async function HomePage() {
                     alt="Lançamentos Investidor" 
                     fill
                     className="object-cover"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -230,6 +326,8 @@ export default async function HomePage() {
                     alt="Frente Mar" 
                     fill
                     className="object-cover"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -740,6 +838,7 @@ export default async function HomePage() {
 
       {/* Seção Blog */}
       <BlogSection />
-    </div>
+      </div>
+    </>
   )
 }
