@@ -516,7 +516,7 @@ export default async function HomePage() {
                 {/* Ícone da chave */}
                 <div className="absolute bottom-4 right-4 lg:right-8 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
                   <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1721 9z" />
                   </svg>
                 </div>
               </div>
@@ -622,15 +622,15 @@ export default async function HomePage() {
                      <div className="p-4">
                        <h3 className="text-lg font-semibold text-gray-900 mb-1">Adriana Barbosa Campos</h3>
                        <p className="text-sm text-gray-600 mb-3">Corretora de imóveis</p>
-                       <button 
-                         onClick={() => setSelectedMember('adriana')}
+                       <a 
+                         href="/contato"
                          className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
                        >
                          <span>Ver contato</span>
                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                          </svg>
-                       </button>
+                       </a>
                      </div>
                    </div>
 
@@ -647,15 +647,15 @@ export default async function HomePage() {
                      <div className="p-4">
                        <h3 className="text-lg font-semibold text-gray-900 mb-1">Adriana Medeiros</h3>
                        <p className="text-sm text-gray-600 mb-3">Corretora de imóveis</p>
-                       <button 
-                         onClick={() => setSelectedMember('adriana-medeiros')}
+                       <a 
+                         href="/contato"
                          className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
                        >
                          <span>Ver contato</span>
                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                          </svg>
-                       </button>
+                       </a>
                      </div>
                    </div>
 
@@ -672,15 +672,15 @@ export default async function HomePage() {
                      <div className="p-4">
                        <h3 className="text-lg font-semibold text-gray-900 mb-1">Alan de Freitas Cordeiro</h3>
                        <p className="text-sm text-gray-600 mb-3">Corretor de imóveis</p>
-                       <button 
-                         onClick={() => setSelectedMember('alan')}
+                       <a 
+                         href="/contato"
                          className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
                        >
                          <span>Ver contato</span>
                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                          </svg>
-                       </button>
+                       </a>
                      </div>
                    </div>
 
@@ -697,285 +697,23 @@ export default async function HomePage() {
                      <div className="p-4">
                        <h3 className="text-lg font-semibold text-gray-900 mb-1">Alex Penha</h3>
                        <p className="text-sm text-gray-600 mb-3">Corretor de imóveis</p>
-                       <button 
-                         onClick={() => setSelectedMember('alex')}
+                       <a 
+                         href="/contato"
                          className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
                        >
                          <span>Ver contato</span>
                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                          </svg>
-                       </button>
+                       </a>
                      </div>
                    </div>
           </div>
             </div>
-      </section>
-
-             {/* Modal de Contato */}
-             {selectedMember && (
-               <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                 <div className="bg-white rounded-lg max-w-md w-full p-6">
-                   <div className="flex items-center justify-between mb-4">
-                     <h3 className="text-xl font-bold text-gray-900">
-                       {selectedMember === 'adriana' && 'Adriana Barbosa Campos'}
-                       {selectedMember === 'adriana-medeiros' && 'Adriana Medeiros'}
-                       {selectedMember === 'alan' && 'Alan de Freitas Cordeiro'}
-                       {selectedMember === 'alex' && 'Alex Penha'}
-              </h3>
-                     <button 
-                       onClick={() => setSelectedMember(null)}
-                       className="text-gray-400 hover:text-gray-600"
-                     >
-                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                       </svg>
-                     </button>
-                   </div>
-                   
-                   <div className="space-y-4">
-                     <div className="flex items-center space-x-3">
-                       <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                         <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                         </svg>
-                       </div>
-                       <div>
-                         <p className="text-sm text-gray-600">Telefone</p>
-                         <p className="font-medium text-gray-900">(47) 99955-0880</p>
-                       </div>
-                     </div>
-                     
-                     <div className="flex items-center space-x-3">
-                       <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                         <svg className="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
-                           <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
-                         </svg>
-                       </div>
-                       <div>
-                         <p className="text-sm text-gray-600">Instagram</p>
-                         <p className="font-medium text-gray-900">@adribcampos</p>
-                       </div>
-                     </div>
-                     
-                     <div className="flex items-center space-x-3">
-                       <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                         <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                         </svg>
-                       </div>
-                       <div>
-                         <p className="text-sm text-gray-600">Email</p>
-                         <p className="font-medium text-gray-900">adriana@noximoveis.com.br</p>
-                       </div>
-                     </div>
-                   </div>
-                 </div>
-            </div>
-          )}
-
-      {/* Seção Buscas Frequentes */}
-      <section className="py-16 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-12 text-center">
-            Buscas frequentes em Penha, Balneário Piçarras e Barra Velha
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Penha */}
-            <div>
-              <div className="flex items-center mb-4">
-                <Search className="w-5 h-5 text-white mr-2" />
-                <h3 className="text-lg font-bold text-white">Penha</h3>
-              </div>
-              <div className="grid grid-cols-1 gap-2">
-                <div className="space-y-2">
-                  <a href="/imoveis?cidade=penha&tipo=apartamento&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamento à venda
-                  </a>
-                  <a href="/imoveis?cidade=penha&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Imóveis à venda
-                  </a>
-                  <a href="/imoveis?cidade=penha&tipo=cobertura&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Coberturas à venda
-                  </a>
-                  <a href="/imoveis?cidade=penha&vista=mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamento Frente Mar
-                  </a>
-                  <a href="/imoveis?cidade=penha&vista=mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamento Vista para o Mar
-                  </a>
-                  <a href="/imoveis?cidade=penha&localizacao=quadra-mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamento Quadra Mar
-                  </a>
-                </div>
-                <div className="space-y-2 mt-4">
-                  <a href="/imoveis?cidade=penha&tipo=apartamento&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Comprar Apartamento
-                  </a>
-                  <a href="/imoveis?cidade=penha&status=na-planta" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamentos na planta
-                  </a>
-                  <a href="/imoveis?cidade=penha&status=lancamento" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Lançamentos
-                  </a>
-                  <a href="/imoveis?cidade=penha&tipo=casa&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Casas à venda
-                  </a>
-                  <a href="/imoveis?cidade=penha&tipo=casa&condominio=fechado" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Casas em Condomínio Fechado
-                  </a>
-                  <a href="/imoveis?cidade=penha&mobiliado=true" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamentos Mobiliados
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Balneário Piçarras */}
-            <div>
-              <div className="flex items-center mb-4">
-                <Search className="w-5 h-5 text-white mr-2" />
-                <h3 className="text-lg font-bold text-white">Balneário Piçarras</h3>
-              </div>
-              <div className="grid grid-cols-1 gap-2">
-                <div className="space-y-2">
-                  <a href="/imoveis?cidade=balneario-picarras&tipo=apartamento&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamento à venda
-                  </a>
-                  <a href="/imoveis?cidade=balneario-picarras&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Imóveis à venda
-                  </a>
-                  <a href="/imoveis?cidade=balneario-picarras&tipo=cobertura&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Coberturas à venda
-                  </a>
-                  <a href="/imoveis?cidade=balneario-picarras&vista=mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamento Frente Mar
-                  </a>
-                  <a href="/imoveis?cidade=balneario-picarras&vista=mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamento Vista para o Mar
-                  </a>
-                  <a href="/imoveis?cidade=balneario-picarras&localizacao=quadra-mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamento Quadra Mar
-                  </a>
-                </div>
-                <div className="space-y-2 mt-4">
-                  <a href="/imoveis?cidade=balneario-picarras&tipo=apartamento&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Comprar Apartamento
-                  </a>
-                  <a href="/imoveis?cidade=balneario-picarras&status=na-planta" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamentos na planta
-                  </a>
-                  <a href="/imoveis?cidade=balneario-picarras&status=lancamento" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Lançamentos
-                  </a>
-                  <a href="/imoveis?cidade=balneario-picarras&tipo=casa&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Casas à venda
-                  </a>
-                  <a href="/imoveis?cidade=balneario-picarras&tipo=casa&condominio=fechado" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Casas em Condomínio Fechado
-                  </a>
-                  <a href="/imoveis?cidade=balneario-picarras&mobiliado=true" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamentos Mobiliados
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Barra Velha */}
-            <div>
-              <div className="flex items-center mb-4">
-                <Search className="w-5 h-5 text-white mr-2" />
-                <h3 className="text-lg font-bold text-white">Barra Velha</h3>
-              </div>
-              <div className="grid grid-cols-1 gap-2">
-                <div className="space-y-2">
-                  <a href="/imoveis?cidade=barra-velha&tipo=apartamento&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamento à venda
-                  </a>
-                  <a href="/imoveis?cidade=barra-velha&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Imóveis à venda
-                  </a>
-                  <a href="/imoveis?cidade=barra-velha&tipo=cobertura&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Coberturas à venda
-                  </a>
-                  <a href="/imoveis?cidade=barra-velha&vista=mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamento Frente Mar
-                  </a>
-                  <a href="/imoveis?cidade=barra-velha&vista=mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamento Vista para o Mar
-                  </a>
-                  <a href="/imoveis?cidade=barra-velha&localizacao=quadra-mar&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamento Quadra Mar
-                  </a>
-                </div>
-                <div className="space-y-2 mt-4">
-                  <a href="/imoveis?cidade=barra-velha&tipo=apartamento&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Comprar Apartamento
-                  </a>
-                  <a href="/imoveis?cidade=barra-velha&status=na-planta" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamentos na planta
-                  </a>
-                  <a href="/imoveis?cidade=barra-velha&status=lancamento" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Lançamentos
-                  </a>
-                  <a href="/imoveis?cidade=barra-velha&tipo=casa&operacao=venda" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Casas à venda
-                  </a>
-                  <a href="/imoveis?cidade=barra-velha&tipo=casa&condominio=fechado" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Casas em Condomínio Fechado
-                  </a>
-                  <a href="/imoveis?cidade=barra-velha&mobiliado=true" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Apartamentos Mobiliados
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Construtoras */}
-            <div>
-              <div className="flex items-center mb-4">
-                <Search className="w-5 h-5 text-white mr-2" />
-                <h3 className="text-lg font-bold text-white">Construtoras</h3>
-              </div>
-              <div className="grid grid-cols-1 gap-2">
-                <div className="space-y-2">
-                  <a href="/imoveis?construtora=santer" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Santer
-                  </a>
-                  <a href="/imoveis?construtora=grupo-estrutura" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Grupo Estrutura
-                  </a>
-                  <a href="/imoveis?construtora=stein" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Stein
-                  </a>
-                  <a href="/imoveis?construtora=art-haus" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Art Haus
-                  </a>
-                  <a href="/imoveis?construtora=rogga" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Rogga
-                  </a>
-                  <a href="/imoveis?construtora=lmr" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    LMR
-                  </a>
-                </div>
-                <div className="space-y-2 mt-4">
-                  <a href="/imoveis?construtora=ox" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    OX
-                  </a>
-                  <a href="/imoveis?construtora=daxo" className="block text-gray-300 hover:text-white text-sm transition-colors">
-                    Daxo
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Seção Blog */}
       <BlogSection />
-
     </div>
   )
 }
