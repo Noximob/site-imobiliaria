@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Instagram, Facebook, Linkedin } from 'lucide-react'
-import DynamicImage from '@/components/DynamicImage'
 
 export default function Footer() {
   return (
@@ -145,13 +144,12 @@ image.png      {/* Rodapé Tradicional */}
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center">
             {/* Logo */}
             <div className="mb-6 lg:mb-0">
-              <DynamicImage 
-                imageId="logo-footer"
+              <Image 
+                src="/imagens/Logo1.png"
                 alt="Nox Imóveis" 
                 width={200} 
                 height={60}
                 className="h-12 w-auto"
-                fallbackSrc="/imagens/Logo1.png"
               />
             </div>
 

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { CheckCircle, Users, FileText, Home, Shield, CreditCard, Calculator, Phone, Mail, MapPin, Building, Award } from 'lucide-react'
-import DynamicImage from '@/components/DynamicImage'
+import { getSiteImagesForSSR } from '@/lib/get-site-images'
 
 export const metadata: Metadata = {
   title: 'Como Comprar um Imóvel - Guia Completo | Nox Imóveis',
@@ -21,20 +21,21 @@ export const metadata: Metadata = {
   },
 }
 
-export default function ComoComprarPage() {
+export default async function ComoComprarPage() {
+  const siteImages = await getSiteImagesForSSR()
+  
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative text-white py-8 min-h-[350px] flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <DynamicImage
-            imageId="como-comprar-banner"
+          <Image
+            src={siteImages['como-comprar-banner']}
             alt="Como Comprar - Nox Imóveis"
             fill
             className="object-cover"
             priority
-            fallbackSrc="/imagens/Como Comprar/Topico Como Comprar.png"
           />
           {/* Overlay para melhorar legibilidade do texto */}
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
@@ -193,12 +194,11 @@ export default function ComoComprarPage() {
             {/* Penha */}
             <div className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
-                <DynamicImage
-                  imageId="como-comprar-penha"
+                <Image
+                  src={siteImages['como-comprar-penha']}
                   alt="Imóveis em Penha"
                   fill
                   className="object-cover"
-                  fallbackSrc="/imagens/Como Comprar/1.png"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-all duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -213,12 +213,11 @@ export default function ComoComprarPage() {
             {/* Balneário Piçarras */}
             <div className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
-                <DynamicImage
-                  imageId="como-comprar-picarras"
+                <Image
+                  src={siteImages['como-comprar-picarras']}
                   alt="Imóveis em Balneário Piçarras"
                   fill
                   className="object-cover"
-                  fallbackSrc="/imagens/Como Comprar/2.png"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-all duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -233,12 +232,11 @@ export default function ComoComprarPage() {
             {/* Barra Velha */}
             <div className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
-                <DynamicImage
-                  imageId="como-comprar-bv"
+                <Image
+                  src={siteImages['como-comprar-bv']}
                   alt="Imóveis em Barra Velha"
                   fill
                   className="object-cover"
-                  fallbackSrc="/imagens/Como Comprar/3.png"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-all duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -309,12 +307,11 @@ export default function ComoComprarPage() {
             <div className="bg-white rounded-lg overflow-hidden shadow-sm">
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
-                <DynamicImage
-                  imageId="como-comprar-investimento"
+                <Image
+                  src={siteImages['como-comprar-investimento']}
                   alt="Praia - Investimento imobiliário"
                   fill
                   className="object-cover"
-                  fallbackSrc="/imagens/Como Comprar/4.png"
                 />
               </div>
               
@@ -336,12 +333,11 @@ export default function ComoComprarPage() {
             <div className="bg-white rounded-lg overflow-hidden shadow-sm">
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
-                <DynamicImage
-                  imageId="como-comprar-anuncie"
+                <Image
+                  src={siteImages['como-comprar-anuncie']}
                   alt="Equipe Nox Imóveis"
                   fill
                   className="object-cover"
-                  fallbackSrc="/imagens/Como Comprar/5.png"
                 />
               </div>
               

@@ -520,7 +520,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   },
 ]
 
-// Buscar todas as imagens do site
+// Buscar todas as imagens do site (client-side)
 export async function getAllSiteImages(): Promise<Record<string, string>> {
   try {
     const imagesDoc = await getDoc(doc(db, 'site-config', 'images'))
@@ -532,6 +532,39 @@ export async function getAllSiteImages(): Promise<Record<string, string>> {
     return {}
   } catch (error) {
     console.error('Erro ao buscar imagens do site:', error)
+    return {}
+  }
+}
+
+// Buscar URL de uma imagem específica (server-side - para SSR)
+export async function getSiteImageUrl(imageId: string): Promise<string | null> {
+  try {
+    const imagesDoc = await getDoc(doc(db, 'site-config', 'images'))
+    
+    if (imagesDoc.exists()) {
+      const data = imagesDoc.data() as Record<string, string>
+      return data[imageId] || null
+    }
+    
+    return null
+  } catch (error) {
+    console.error(`Erro ao buscar imagem ${imageId}:`, error)
+    return null
+  }
+}
+
+// Buscar todas as URLs de imagens (server-side - para SSR)
+export async function getAllSiteImagesSSR(): Promise<Record<string, string>> {
+  try {
+    const imagesDoc = await getDoc(doc(db, 'site-config', 'images'))
+    
+    if (imagesDoc.exists()) {
+      return imagesDoc.data() as Record<string, string>
+    }
+    
+    return {}
+  } catch (error) {
+    console.error('Erro ao buscar imagens do site (SSR):', error)
     return {}
   }
 }

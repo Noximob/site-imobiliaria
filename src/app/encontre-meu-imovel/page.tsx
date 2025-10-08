@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import DynamicImage from '@/components/DynamicImage'
 
 export default function EncontreMeuImovelPage() {
   const [formData, setFormData] = useState({
@@ -297,13 +296,12 @@ export default function EncontreMeuImovelPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Column - Team Photo */}
             <div className="relative w-full rounded-lg overflow-hidden">
-              <DynamicImage
-                imageId="encontre-imovel-equipe"
+              <Image
+                src="/imagens/Encontre Meu Imovel/Equipe.png"
                 alt="Equipe Nox Imóveis"
                 width={600}
                 height={400}
                 className="w-full h-auto object-contain"
-                fallbackSrc="/imagens/Encontre Meu Imovel/Equipe.png"
               />
             </div>
             {/* Right Column - CTA */}

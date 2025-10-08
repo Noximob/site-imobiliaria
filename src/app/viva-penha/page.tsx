@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import DynamicImage from '@/components/DynamicImage'
 
 export default function VivaPenhaPage() {
   return (
@@ -10,12 +9,11 @@ export default function VivaPenhaPage() {
       <section className="relative h-[70vh] flex items-start justify-start overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <DynamicImage 
-            imageId="viva-penha-banner"
+          <Image 
+            src="/imagens/banners/penha-hero.jpg"
             alt="Penha - Viva Penha" 
             fill
             className="object-cover"
-            fallbackSrc="/imagens/banners/penha-hero.jpg"
           />
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         </div>
@@ -38,25 +36,23 @@ export default function VivaPenhaPage() {
             <div className="relative">
               {/* Main Image */}
               <div className="relative rounded-lg overflow-hidden shadow-lg">
-                <DynamicImage 
-                  imageId="viva-penha-praia-principal"
+                <Image 
+                  src="/imagens/penha/praia-principal.jpg"
                   alt="Praia de Penha" 
                   width={600}
                   height={400}
                   className="w-full h-80 object-cover"
-                  fallbackSrc="/imagens/penha/praia-principal.jpg"
                 />
               </div>
               
               {/* Secondary Overlapping Image */}
               <div className="absolute -bottom-8 -left-8 rounded-lg overflow-hidden shadow-lg">
-                <DynamicImage 
-                  imageId="viva-penha-praia-secundaria"
+                <Image 
+                  src="/imagens/penha/praia-secundaria.jpg"
                   alt="Vista da praia de Penha" 
                   width={300}
                   height={200}
                   className="w-64 h-40 object-cover"
-                  fallbackSrc="/imagens/penha/praia-secundaria.jpg"
                 />
               </div>
             </div>
@@ -152,61 +148,55 @@ export default function VivaPenhaPage() {
             <div className="grid grid-cols-3 gap-4">
               <div className="space-y-4">
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
-                  <DynamicImage 
-                    imageId="viva-penha-oque-fazer-1"
+                  <Image 
+                    src="/imagens/penha/praia1.jpg"
                     alt="Praia de Penha" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/penha/praia1.jpg"
                   />
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
-                  <DynamicImage 
-                    imageId="viva-penha-oque-fazer-2"
+                  <Image 
+                    src="/imagens/penha/cristo-luz.jpg"
                     alt="Cristo Luz Penha" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/penha/cristo-luz.jpg"
                   />
                 </div>
               </div>
               <div className="space-y-4">
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
-                  <DynamicImage 
-                    imageId="viva-penha-oque-fazer-3"
+                  <Image 
+                    src="/imagens/penha/beto-carrero.jpg"
                     alt="Beto Carrero World" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/penha/beto-carrero.jpg"
                   />
                 </div>
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
-                  <DynamicImage 
-                    imageId="viva-penha-oque-fazer-4"
+                  <Image 
+                    src="/imagens/penha/jantar-romantico.jpg"
                     alt="Jantar Romântico" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/penha/jantar-romantico.jpg"
                   />
                 </div>
               </div>
               <div className="space-y-4">
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
-                  <DynamicImage 
-                    imageId="viva-penha-oque-fazer-1"
+                  <Image 
+                    src="/imagens/penha/praia2.jpg"
                     alt="Praia de Penha" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/penha/praia2.jpg"
                   />
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
-                  <DynamicImage 
-                    imageId="viva-penha-oque-fazer-5"
+                  <Image 
+                    src="/imagens/penha/skyline.jpg"
                     alt="Skyline Penha" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/penha/skyline.jpg"
                   />
                 </div>
               </div>
@@ -395,12 +385,11 @@ export default function VivaPenhaPage() {
             <div className="bg-white rounded-lg overflow-hidden shadow-sm">
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
-                <DynamicImage
-                  imageId="viva-penha-localizacao-praia"
+                <Image
+                  src="/imagens/Como Comprar/4.png"
                   alt="Praia - Investimento imobiliário"
                   fill
                   className="object-cover"
-                  fallbackSrc="/imagens/Como Comprar/4.png"
                 />
               </div>
               
@@ -422,12 +411,11 @@ export default function VivaPenhaPage() {
             <div className="bg-white rounded-lg overflow-hidden shadow-sm">
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
-                <DynamicImage
-                  imageId="viva-penha-localizacao-equipe"
+                <Image
+                  src="/imagens/Como Comprar/5.png"
                   alt="Equipe Nox Imóveis"
                   fill
                   className="object-cover"
-                  fallbackSrc="/imagens/Como Comprar/5.png"
                 />
               </div>
               

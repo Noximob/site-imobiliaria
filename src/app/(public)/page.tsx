@@ -1,17 +1,16 @@
-'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
 import { Search, Home, Building, MapPin, Star, Users, Award } from 'lucide-react'
 import SearchForm from '@/components/SearchForm'
 import ImovelCard from '@/components/ImovelCard'
 import BlogSection from '@/components/BlogSection'
-import DynamicImage from '@/components/DynamicImage'
 import { getAllImoveis } from '@/lib/imoveis'
+import { getSiteImagesForSSR } from '@/lib/get-site-images'
+import HomePageClient from '@/components/HomePageClient'
 
-export default function HomePage() {
-  const [selectedMember, setSelectedMember] = useState<string | null>(null)
+export default async function HomePage() {
+  // Buscar imagens do Firebase durante o build (SSR)
+  const siteImages = await getSiteImagesForSSR()
 
   return (
     <div className="min-h-screen">
@@ -19,13 +18,12 @@ export default function HomePage() {
       <section className="relative text-white py-20 min-h-[600px] flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <DynamicImage
-            imageId="banner-home"
+          <Image
+            src={siteImages['banner-home']}
             alt="Nox Imóveis - Encontre o Imóvel dos Seus Sonhos"
             fill
             className="object-cover"
             priority
-            fallbackSrc="/imagens/banners/banner-home.png"
           />
           {/* Overlay para melhorar legibilidade do texto */}
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
@@ -189,12 +187,11 @@ export default function HomePage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <DynamicImage 
-                    imageId="lancamentos-investidor"
+                  <Image 
+                    src={siteImages['lancamentos-investidor']}
                     alt="Lançamentos Investidor" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/Encontre Imovel/Lançamentos-Investidor.png"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -203,12 +200,11 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <DynamicImage 
-                    imageId="frente-mar"
+                  <Image 
+                    src={siteImages['frente-mar']}
                     alt="Frente Mar" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/Encontre Imovel/Frente-Mar.png"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -217,12 +213,11 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <DynamicImage 
-                    imageId="mobiliados"
+                  <Image 
+                    src={siteImages['mobiliados']}
                     alt="Mobiliados" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/Encontre Imovel/Mobiliados.png"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -231,12 +226,11 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <DynamicImage 
-                    imageId="apartamentos"
+                  <Image 
+                    src={siteImages['apartamentos']}
                     alt="Apartamentos" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/Encontre Imovel/Apartamentos.png"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -255,12 +249,11 @@ export default function HomePage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <DynamicImage 
-                    imageId="picarras-cobertura"
+                  <Image 
+                    src={siteImages['picarras-cobertura']}
                     alt="Apartamentos e Coberturas" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/Encontre Imovel/Piçarras/Apartamento-Cobertura.png"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -269,12 +262,11 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <DynamicImage 
-                    imageId="picarras-mobiliado"
+                  <Image 
+                    src={siteImages['picarras-mobiliado']}
                     alt="Mobiliados" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/Encontre Imovel/Piçarras/Mobiliado.png"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -283,12 +275,11 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <DynamicImage 
-                    imageId="picarras-vista-mar"
+                  <Image 
+                    src={siteImages['picarras-vista-mar']}
                     alt="Vista Mar" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/Encontre Imovel/Piçarras/Vista-Mar.png"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -297,12 +288,11 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <DynamicImage 
-                    imageId="picarras-lancamentos"
+                  <Image 
+                    src={siteImages['picarras-lancamentos']}
                     alt="Lançamentos" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/Encontre Imovel/Piçarras/Lançamentos.png"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -321,12 +311,11 @@ export default function HomePage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <DynamicImage 
-                    imageId="bv-lancamentos-frente-mar"
+                  <Image 
+                    src={siteImages['bv-lancamentos-frente-mar']}
                     alt="Lançamentos Frente Mar" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/Encontre Imovel/Barra Velha/Lançamentos Frente mar.png"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -335,12 +324,11 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <DynamicImage 
-                    imageId="bv-em-construcao"
+                  <Image 
+                    src={siteImages['bv-em-construcao']}
                     alt="Em Construção" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/Encontre Imovel/Barra Velha/Em Construção.png"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -349,12 +337,11 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <DynamicImage 
-                    imageId="bv-imoveis-prontos"
+                  <Image 
+                    src={siteImages['bv-imoveis-prontos']}
                     alt="Imóveis Prontos" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/Encontre Imovel/Barra Velha/Imoveis Prontos.png"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -449,12 +436,11 @@ export default function HomePage() {
               {/* Frame 1 - Penha */}
               <div className="bg-white rounded-lg shadow-sm overflow-hidden">
                 <div className="aspect-[3/4] relative">
-                  <DynamicImage 
-                    imageId="imoveis-planta-1"
+                  <Image 
+                    src={siteImages['imoveis-planta-1']}
                     alt="Imóveis na Planta - Penha" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/Imoveis na Planta/1.png"
                   />
                 </div>
               </div>
@@ -462,12 +448,11 @@ export default function HomePage() {
               {/* Frame 2 - Piçarras */}
               <div className="bg-white rounded-lg shadow-sm overflow-hidden">
                 <div className="aspect-[3/4] relative">
-                  <DynamicImage 
-                    imageId="imoveis-planta-2"
+                  <Image 
+                    src={siteImages['imoveis-planta-2']}
                     alt="Imóveis na Planta - Piçarras" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/Imoveis na Planta/2.png"
                   />
                 </div>
               </div>
@@ -475,12 +460,11 @@ export default function HomePage() {
               {/* Frame 3 - Barra Velha */}
               <div className="bg-white rounded-lg shadow-sm overflow-hidden">
                 <div className="aspect-[3/4] relative">
-                  <DynamicImage 
-                    imageId="imoveis-planta-3"
+                  <Image 
+                    src={siteImages['imoveis-planta-3']}
                     alt="Imóveis na Planta - Barra Velha" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/Imoveis na Planta/3.png"
                   />
                 </div>
               </div>
@@ -523,12 +507,11 @@ export default function HomePage() {
               {/* Lado Esquerdo - Foto da Corretora */}
               <div className="relative h-64 lg:h-auto">
                 <div className="absolute inset-0">
-                  <DynamicImage 
-                    imageId="anuncie-nox-mulher"
+                  <Image 
+                    src={siteImages['anuncie-nox-mulher']}
                     alt="Anuncie com a Nox" 
                     fill
                     className="object-cover"
-                    fallbackSrc="/imagens/Anuncie Nox/Mulher.png"
                   />
                 </div>
                 {/* Ícone da chave */}

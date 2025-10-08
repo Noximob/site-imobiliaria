@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import DynamicImage from '@/components/DynamicImage'
 
 export default function VivaBarraVelhaPage() {
   return (
@@ -10,12 +9,11 @@ export default function VivaBarraVelhaPage() {
       <section className="relative h-[70vh] flex items-start justify-start overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <DynamicImage 
-            imageId="viva-bv-banner"
+          <Image 
+            src="/imagens/banners/penha-hero.jpg"
             alt="Barra Velha - Viva Barra Velha" 
             fill
             className="object-cover"
-            fallbackSrc="/imagens/banners/barra-velha-hero.jpg"
           />
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         </div>
@@ -38,25 +36,23 @@ export default function VivaBarraVelhaPage() {
             <div className="relative">
               {/* Main Image */}
               <div className="relative rounded-lg overflow-hidden shadow-lg">
-                <DynamicImage 
-                  imageId="viva-bv-praia-principal"
+                <Image 
+                  src="/imagens/penha/praia-principal.jpg"
                   alt="Praia de Barra Velha" 
                   width={600}
                   height={400}
                   className="w-full h-80 object-cover"
-                  fallbackSrc="/imagens/barra-velha/praia-principal.jpg"
                 />
               </div>
               
               {/* Secondary Overlapping Image */}
               <div className="absolute -bottom-8 -left-8 rounded-lg overflow-hidden shadow-lg">
-                <DynamicImage 
-                  imageId="viva-bv-praia-secundaria"
+                <Image 
+                  src="/imagens/penha/praia-secundaria.jpg"
                   alt="Vista da praia de Barra Velha" 
                   width={300}
                   height={200}
                   className="w-64 h-40 object-cover"
-                  fallbackSrc="/imagens/barra-velha/praia-secundaria.jpg"
                 />
               </div>
             </div>
