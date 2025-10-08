@@ -10,6 +10,21 @@
   body {
     @apply text-gray-900 bg-white;
   }
+  
+  /* Elimina placeholder cinza do Next.js */
+  img[data-nimg] {
+    background-color: transparent !important;
+  }
+  
+  /* Elimina placeholder cinza de backgrounds */
+  [style*="background-image"] {
+    background-color: transparent !important;
+  }
+  
+  /* Força transparência em todas as imagens */
+  img {
+    background-color: transparent !important;
+  }
 }
 
 @layer components {
