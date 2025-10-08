@@ -6,7 +6,6 @@ import ImovelCard from '@/components/ImovelCard'
 import BlogSection from '@/components/BlogSection'
 import { getAllImoveis } from '@/lib/imoveis'
 import { getSiteImagesForSSR } from '@/lib/get-site-images'
-import HomePageClient from '@/components/HomePageClient'
 
 export default async function HomePage() {
   // Buscar imagens do Firebase durante o build (SSR)
