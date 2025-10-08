@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { CheckCircle, Users, FileText, Home, Shield, CreditCard, Calculator, Phone, Mail, MapPin, Building, Award } from 'lucide-react'
+import PreloadedImage from '@/components/PreloadedImage'
 import { preloadAllImages } from '@/lib/preload-images'
 
 export const metadata: Metadata = {
@@ -35,17 +36,21 @@ export default async function ComoComprarPage() {
       <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative text-white py-8 min-h-[350px] flex items-center">
-        {/* Background Image */}
+        {/* Background Image - Componente otimizado */}
         <div className="absolute inset-0 z-0">
-          <Image
+          <PreloadedImage
             src={siteImages['como-comprar-banner']}
             alt="Como Comprar - Nox Imóveis"
-            fill
-            className="object-cover"
-            priority
-            placeholder="empty"
-            sizes="100vw"
-            quality={90}
+            className="w-full h-full object-cover"
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover'
+            }}
+            priority={true}
           />
           {/* Overlay para melhorar legibilidade do texto */}
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
