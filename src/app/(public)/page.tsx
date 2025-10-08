@@ -30,9 +30,7 @@ export default async function HomePage() {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            backgroundColor: 'transparent',
-            // Força carregamento imediato
-            backgroundAttachment: 'fixed'
+            backgroundColor: 'transparent'
           }}
         />
         
