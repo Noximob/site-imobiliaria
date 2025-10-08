@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { getSiteImage } from '@/lib/site-images'
+import { getAllSiteImages } from '@/lib/site-images'
 
 interface DynamicImageProps {
   imageId: string
@@ -31,8 +31,14 @@ export default function DynamicImage({
   useEffect(() => {
     async function loadImage() {
       try {
-        const url = await getSiteImage(imageId)
-        setImageSrc(url)
+        const allImages = await getAllSiteImages()
+        const url = allImages[imageId]
+        
+        if (url) {
+          setImageSrc(url)
+        } else if (fallbackSrc) {
+          setImageSrc(fallbackSrc)
+        }
       } catch (error) {
         console.error(`Erro ao carregar imagem ${imageId}:`, error)
         if (fallbackSrc) {
