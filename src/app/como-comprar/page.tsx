@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { CheckCircle, Users, FileText, Home, Shield, CreditCard, Calculator, Phone, Mail, MapPin, Building, Award } from 'lucide-react'
-import PreloadedImage from '@/components/PreloadedImage'
+import InstantImage from '@/components/InstantImage'
 import { preloadAllImages } from '@/lib/preload-images'
 
 export const metadata: Metadata = {
@@ -36,9 +36,9 @@ export default async function ComoComprarPage() {
       <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative text-white py-8 min-h-[350px] flex items-center">
-        {/* Background Image - Componente otimizado */}
+        {/* Background Image - Componente instantâneo */}
         <div className="absolute inset-0 z-0">
-          <PreloadedImage
+          <InstantImage
             src={siteImages['como-comprar-banner']}
             alt="Como Comprar - Nox Imóveis"
             className="w-full h-full object-cover"

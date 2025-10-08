@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
-interface PreloadedImageProps {
+interface InstantImageProps {
   src: string
   alt: string
   className?: string
@@ -10,19 +10,20 @@ interface PreloadedImageProps {
   priority?: boolean
 }
 
-export default function PreloadedImage({ 
+export default function InstantImage({ 
   src, 
   alt, 
   className = '', 
   style = {},
   priority = false 
-}: PreloadedImageProps) {
-  const [isLoaded, setIsLoaded] = useState(priority) // Se é priority, já considera carregada
-  const [imageSrc, setImageSrc] = useState<string | null>(priority ? src : null)
+}: InstantImageProps) {
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [imageSrc, setImageSrc] = useState<string | null>(null)
+  const imgRef = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
     if (priority) {
-      // Para imagens prioritárias, pré-carrega imediatamente
+      // Para imagens prioritárias, carrega imediatamente
       const img = new Image()
       img.onload = () => {
         setImageSrc(src)
@@ -50,7 +51,7 @@ export default function PreloadedImage({
     }
   }, [src, priority])
 
-  // Se não carregou ainda, mostra div com dimensões exatas (sem placeholder cinza)
+  // Se não carregou ainda, mostra div com dimensões exatas
   if (!isLoaded || !imageSrc) {
     return (
       <div 
@@ -61,7 +62,9 @@ export default function PreloadedImage({
           backgroundImage: 'none',
           // Força as dimensões exatas para evitar reflow
           minHeight: '100%',
-          minWidth: '100%'
+          minWidth: '100%',
+          // Evita qualquer placeholder visual
+          opacity: 0
         }}
       />
     )
@@ -70,6 +73,7 @@ export default function PreloadedImage({
   // Imagem carregada - renderiza com dimensões fixas
   return (
     <img
+      ref={imgRef}
       src={imageSrc}
       alt={alt}
       className={className}
@@ -79,11 +83,17 @@ export default function PreloadedImage({
         width: '100%',
         height: '100%',
         objectFit: 'cover',
-        display: 'block'
+        display: 'block',
+        // Transição suave
+        opacity: 1,
+        transition: 'opacity 0.1s ease-in-out'
       }}
       onLoad={() => {
         // Garante que não há reflow após carregar
         setIsLoaded(true)
+        if (imgRef.current) {
+          imgRef.current.style.opacity = '1'
+        }
       }}
     />
   )
