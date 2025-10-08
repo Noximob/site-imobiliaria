@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { ArrowLeft, Upload, Image as ImageIcon, Save, RefreshCw, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getAllSiteImages, uploadSiteImage, siteImagesConfig, SiteImageData } from '@/lib/site-images'
+import { getAllSiteImages, uploadSiteImage, siteImagesConfig } from '@/lib/site-images'
 
 interface SiteImage {
   id: string
@@ -12,6 +12,7 @@ interface SiteImage {
   currentPath: string
   recommendedSize: string
   category: string
+  subcategory?: string
 }
 
 export default function AdminImagens() {
@@ -32,21 +33,16 @@ export default function AdminImagens() {
   const loadImages = async () => {
     try {
       const fbImages = await getAllSiteImages()
-      const fbImagesMap: { [key: string]: string } = {}
-      
-      fbImages.forEach(img => {
-        fbImagesMap[img.id] = img.url
-      })
-      
-      setFirebaseImages(fbImagesMap)
+      setFirebaseImages(fbImages)
       
       // Criar lista de imagens com URLs do Firebase ou local
       const imagesWithUrls = siteImagesConfig.map(img => ({
         id: img.id,
         description: img.description,
-        currentPath: fbImagesMap[img.id] || img.localPath,
+        currentPath: fbImages[img.id] || img.localPath,
         recommendedSize: img.recommendedSize,
         category: img.category,
+        subcategory: img.subcategory,
       }))
       
       setSiteImages(imagesWithUrls)
@@ -59,6 +55,7 @@ export default function AdminImagens() {
         currentPath: img.localPath,
         recommendedSize: img.recommendedSize,
         category: img.category,
+        subcategory: img.subcategory,
       })))
     }
   }
@@ -97,13 +94,7 @@ export default function AdminImagens() {
     setIsLoading(prev => ({ ...prev, [imageId]: true }))
 
     try {
-      const downloadURL = await uploadSiteImage(
-        imageId,
-        file,
-        imageConfig.description,
-        imageConfig.category,
-        imageConfig.recommendedSize
-      )
+      const downloadURL = await uploadSiteImage(imageId, file)
       
       // Atualizar a lista de imagens
       setSiteImages(prev => prev.map(img => 
@@ -237,6 +228,7 @@ export default function AdminImagens() {
                     </h2>
                     <p className="text-sm text-gray-600">
                       <strong>Categoria:</strong> {image.category}
+                      {image.subcategory && ` > ${image.subcategory}`}
                     </p>
                     <p className="text-sm text-purple-600 font-medium">
                       <strong>Tamanho Recomendado:</strong> {image.recommendedSize}
