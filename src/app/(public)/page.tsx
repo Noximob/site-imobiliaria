@@ -122,9 +122,9 @@ export default async function HomePage() {
       />
       
       <div className="min-h-screen">
-        {/* Hero Section - ZERO CINZA COM IMG NATIVA */}
+        {/* Hero Section - ZERO CINZA COM SISTEMA DE CARREGAMENTO */}
         <section className="relative text-white py-20 min-h-[600px] flex items-center overflow-hidden">
-          {/* Background Image usando IMG NATIVA HTML - SEM Next.js Image */}
+          {/* Background Image com SISTEMA ANTI-CINZA */}
           <img
             src={siteImages['banner-home']}
             alt="Banner Nox Imóveis"
@@ -140,8 +140,23 @@ export default async function HomePage() {
               objectFit: 'cover',
               objectPosition: 'center',
               zIndex: 0,
+              opacity: 0,
               backgroundColor: 'transparent',
               background: 'transparent',
+            }}
+            onLoad={(e) => {
+              // Quando carregar, mostra a imagem
+              e.currentTarget.style.opacity = '1'
+              e.currentTarget.style.transition = 'opacity 0.1s ease-in'
+            }}
+          />
+          
+          {/* Fundo branco enquanto carrega - SEM CINZA */}
+          <div 
+            className="absolute inset-0 z-0"
+            style={{
+              backgroundColor: 'white',
+              background: 'white'
             }}
           />
         
@@ -209,13 +224,11 @@ export default async function HomePage() {
               {/* Imóvel 1 */}
               <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
                 <div className="h-40 relative">
-                  <Image 
+                  <img 
                     src="/imagens/Seleção Nox/1.jpg" 
                     alt="Imóvel Seleção Nox 1" 
-                    fill
-                    className="object-cover"
-                    loading="lazy"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="w-full h-full object-cover"
+                    style={{ backgroundColor: 'transparent' }}
                   />
                 </div>
                 <div className="p-4">
@@ -234,13 +247,11 @@ export default async function HomePage() {
               {/* Imóvel 2 */}
               <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
                 <div className="h-40 relative">
-                  <Image 
+                  <img 
                     src="/imagens/Seleção Nox/2.jpg" 
                     alt="Imóvel Seleção Nox 2" 
-                    fill
-                    className="object-cover"
-                    loading="lazy"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="w-full h-full object-cover"
+                    style={{ backgroundColor: 'white' }}
                   />
                 </div>
                 <div className="p-4">
@@ -259,13 +270,11 @@ export default async function HomePage() {
               {/* Imóvel 3 */}
               <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
                 <div className="h-40 relative">
-                  <Image 
+                  <img 
                     src="/imagens/Seleção Nox/3.jpg" 
                     alt="Imóvel Seleção Nox 3" 
-                    fill
-                    className="object-cover"
-                    loading="lazy"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="w-full h-full object-cover"
+                    style={{ backgroundColor: 'white' }}
                   />
                 </div>
                 <div className="p-4">
@@ -312,13 +321,11 @@ export default async function HomePage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <Image 
+                  <img 
                     src={siteImages['lancamentos-investidor']}
                     alt="Lançamentos Investidor" 
-                    fill
-                    className="object-cover"
-                    loading="lazy"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    className="w-full h-full object-cover"
+                    style={{ backgroundColor: 'white' }}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
