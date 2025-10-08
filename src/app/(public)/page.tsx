@@ -15,7 +15,11 @@ export default async function HomePage() {
   const siteImages = await preloadAllImages()
 
   return (
-    <div className="min-h-screen">
+    <>
+      {/* Pré-carregar imagem crítica */}
+      <link rel="preload" as="image" href={siteImages['banner-home']} />
+      
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative text-white py-20 min-h-[600px] flex items-center">
         {/* Background Image */}
@@ -26,6 +30,9 @@ export default async function HomePage() {
             fill
             className="object-cover"
             priority
+            placeholder="empty"
+            sizes="100vw"
+            quality={90}
           />
           {/* Overlay para melhorar legibilidade do texto */}
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
@@ -717,6 +724,7 @@ export default async function HomePage() {
 
       {/* Seção Blog */}
       <BlogSection />
-    </div>
+      </div>
+    </>
   )
 }

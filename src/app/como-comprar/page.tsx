@@ -28,7 +28,11 @@ export default async function ComoComprarPage() {
   const siteImages = await preloadAllImages()
   
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      {/* Pré-carregar imagem crítica */}
+      <link rel="preload" as="image" href={siteImages['como-comprar-banner']} />
+      
+      <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative text-white py-8 min-h-[350px] flex items-center">
         {/* Background Image */}
@@ -39,6 +43,9 @@ export default async function ComoComprarPage() {
             fill
             className="object-cover"
             priority
+            placeholder="empty"
+            sizes="100vw"
+            quality={90}
           />
           {/* Overlay para melhorar legibilidade do texto */}
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
@@ -361,6 +368,7 @@ export default async function ComoComprarPage() {
         </div>
       </section>
 
-    </div>
+      </div>
+    </>
   )
 }
