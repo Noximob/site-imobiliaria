@@ -19,6 +19,28 @@ export default async function HomePage() {
       {/* Pré-carregar imagem crítica */}
       <link rel="preload" as="image" href={siteImages['banner-home']} />
       
+      {/* Script inline para eliminar cinza imediatamente */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            document.addEventListener('DOMContentLoaded', function() {
+              // Força transparência em todas as imagens
+              const images = document.querySelectorAll('img');
+              images.forEach(img => {
+                img.style.backgroundColor = 'transparent';
+                img.style.background = 'transparent';
+              });
+              
+              // Força transparência em backgrounds
+              const backgrounds = document.querySelectorAll('[style*="background-image"]');
+              backgrounds.forEach(bg => {
+                bg.style.backgroundColor = 'transparent';
+              });
+            });
+          `
+        }}
+      />
+      
       {/* Imagem oculta para forçar carregamento */}
       <img 
         src={siteImages['banner-home']} 
@@ -30,7 +52,8 @@ export default async function HomePage() {
           width: '1px', 
           height: '1px',
           opacity: 0,
-          pointerEvents: 'none'
+          pointerEvents: 'none',
+          backgroundColor: 'transparent'
         }} 
       />
       
