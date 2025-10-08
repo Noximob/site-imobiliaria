@@ -41,20 +41,22 @@ export default async function HomePage() {
         <div 
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: `url(${siteImages['banner-home']})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: 'transparent',
+            backgroundImage: `url(${siteImages['banner-home']}) !important`,
+            backgroundSize: 'cover !important',
+            backgroundPosition: 'center !important',
+            backgroundRepeat: 'no-repeat !important',
+            backgroundColor: 'transparent !important',
             // Força renderização imediata
             willChange: 'auto',
             // Evita placeholder cinza - múltiplas tentativas
-            background: `transparent url(${siteImages['banner-home']}) center/cover no-repeat`,
+            background: `transparent url(${siteImages['banner-home']}) center/cover no-repeat !important`,
             // Força carregamento imediato
-            backgroundAttachment: 'scroll',
+            backgroundAttachment: 'scroll !important',
             // Evita qualquer placeholder
-            minHeight: '100%',
-            minWidth: '100%'
+            minHeight: '100% !important',
+            minWidth: '100% !important',
+            // Força transparência
+            backgroundClip: 'padding-box !important'
           }}
         />
         
