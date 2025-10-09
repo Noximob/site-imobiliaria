@@ -17,27 +17,9 @@
     background-image: none !important;
   }
   
-  /* Remove qualquer background cinza de elementos com background-image */
-  [style*="background-image"] {
-    background-color: transparent !important;
-  }
-  
-  /* FADE-IN SUAVE para imagens que carregam */
-  img {
-    opacity: 0;
-    animation: fadeIn 0.3s ease-in forwards;
-  }
-  
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
-  }
-  
-  /* Background images já aparecem sem fade (são instantâneas) */
-  [style*="background-image"] {
-    opacity: 1 !important;
-    animation: none !important;
+  /* Fade-in suave para imagens Next.js */
+  img[data-nimg] {
+    transition: opacity 0.4s ease-in-out;
   }
 }
 
