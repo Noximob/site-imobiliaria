@@ -1,15 +1,8 @@
-import Link from 'next/link'
 import Image from 'next/image'
-import { Search, Home, Building, MapPin, Star, Users, Award } from 'lucide-react'
+import { Search } from 'lucide-react'
 import SearchForm from '@/components/SearchForm'
-import ImovelCard from '@/components/ImovelCard'
 import BlogSection from '@/components/BlogSection'
-import { getAllImoveis } from '@/lib/imoveis'
-import { preloadAllImages } from '@/lib/preload-images'
 import type { Metadata } from 'next'
-
-// Força revalidação a cada 24 horas
-export const revalidate = 86400
 
 // Metadata otimizada para SEO
 export const metadata: Metadata = {
@@ -47,14 +40,9 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function HomePage() {
-  // Pré-carregar todas as imagens durante o build
-  const siteImages = await preloadAllImages()
-
+export default function HomePage() {
   return (
     <>
-      {/* Preload da imagem crítica para SEO */}
-      <link rel="preload" as="image" href={siteImages['banner-home']} />
       
       {/* Structured Data para SEO */}
       <script
@@ -122,19 +110,16 @@ export default async function HomePage() {
       />
       
       <div className="min-h-screen">
-        {/* Hero Section - ZERO CINZA COM SISTEMA DE CARREGAMENTO */}
+        {/* Hero Section */}
         <section className="relative text-white py-20 min-h-[600px] flex items-center overflow-hidden">
-          {/* Background Image com SISTEMA ANTI-CINZA */}
-          <div
-            className="absolute inset-0 z-0"
-            style={{
-              backgroundImage: `url(${siteImages['banner-home']})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              backgroundColor: 'white',
-              background: `white url(${siteImages['banner-home']}) center/cover no-repeat`
-            }}
+          <Image
+            src="/imagens/banners/banner-home.png"
+            alt="Banner Nox Imóveis"
+            fill
+            priority
+            quality={100}
+            className="object-cover"
+            sizes="100vw"
           />
         
           {/* Overlay para melhorar legibilidade do texto */}
@@ -298,11 +283,12 @@ export default async function HomePage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
-                  <img 
-                    src={siteImages['lancamentos-investidor']}
+                  <Image 
+                    src="/imagens/Cidades/Penha/Lançamentos Investidor.jpg"
                     alt="Lançamentos Investidor" 
-                    className="w-full h-full object-cover"
-                    style={{ backgroundColor: 'white' }}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -312,11 +298,10 @@ export default async function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src={siteImages['frente-mar']}
+                    src="/imagens/Cidades/Penha/Frente Mar.jpg"
                     alt="Frente Mar" 
                     fill
                     className="object-cover"
-                    loading="lazy"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
@@ -327,10 +312,11 @@ export default async function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src={siteImages['mobiliados']}
+                    src="/imagens/Cidades/Penha/Mobiliados.jpg"
                     alt="Mobiliados" 
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -340,10 +326,11 @@ export default async function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src={siteImages['apartamentos']}
+                    src="/imagens/Cidades/Penha/Apartamentos.jpg"
                     alt="Apartamentos" 
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -363,10 +350,11 @@ export default async function HomePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src={siteImages['picarras-cobertura']}
+                    src="/imagens/Cidades/Piçarras/Apartamentos e Coberturas.jpg"
                     alt="Apartamentos e Coberturas" 
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -376,7 +364,8 @@ export default async function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src={siteImages['picarras-mobiliado']}
+                    src="/imagens/Cidades/Piçarras/Mobiliados.jpg"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     alt="Mobiliados" 
                     fill
                     className="object-cover"
@@ -389,7 +378,8 @@ export default async function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src={siteImages['picarras-vista-mar']}
+                    src="/imagens/Cidades/Piçarras/Vista Mar.jpg"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     alt="Vista Mar" 
                     fill
                     className="object-cover"
@@ -402,7 +392,8 @@ export default async function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src={siteImages['picarras-lancamentos']}
+                    src="/imagens/Cidades/Piçarras/Lançamentos.jpg"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     alt="Lançamentos" 
                     fill
                     className="object-cover"
@@ -425,7 +416,8 @@ export default async function HomePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src={siteImages['bv-lancamentos-frente-mar']}
+                    src="/imagens/Cidades/Barra Velha/Lançamentos Frente Mar.jpg"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     alt="Lançamentos Frente Mar" 
                     fill
                     className="object-cover"
@@ -438,7 +430,8 @@ export default async function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src={siteImages['bv-em-construcao']}
+                    src="/imagens/Cidades/Barra Velha/Em Construção.jpg"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     alt="Em Construção" 
                     fill
                     className="object-cover"
@@ -451,7 +444,8 @@ export default async function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src={siteImages['bv-imoveis-prontos']}
+                    src="/imagens/Cidades/Barra Velha/Imóveis Prontos.jpg"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     alt="Imóveis Prontos" 
                     fill
                     className="object-cover"
@@ -550,7 +544,8 @@ export default async function HomePage() {
               <div className="bg-white rounded-lg shadow-sm overflow-hidden">
                 <div className="aspect-[3/4] relative">
                   <Image 
-                    src={siteImages['imoveis-planta-1']}
+                    src="/imagens/Imóveis na Planta/1.jpg"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     alt="Imóveis na Planta - Penha" 
                     fill
                     className="object-cover"
@@ -562,7 +557,8 @@ export default async function HomePage() {
               <div className="bg-white rounded-lg shadow-sm overflow-hidden">
                 <div className="aspect-[3/4] relative">
                   <Image 
-                    src={siteImages['imoveis-planta-2']}
+                    src="/imagens/Imóveis na Planta/2.jpg"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     alt="Imóveis na Planta - Piçarras" 
                     fill
                     className="object-cover"
@@ -574,7 +570,8 @@ export default async function HomePage() {
               <div className="bg-white rounded-lg shadow-sm overflow-hidden">
                 <div className="aspect-[3/4] relative">
                   <Image 
-                    src={siteImages['imoveis-planta-3']}
+                    src="/imagens/Imóveis na Planta/3.jpg"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     alt="Imóveis na Planta - Barra Velha" 
                     fill
                     className="object-cover"
@@ -621,7 +618,8 @@ export default async function HomePage() {
               <div className="relative h-64 lg:h-auto">
                 <div className="absolute inset-0">
                   <Image 
-                    src={siteImages['anuncie-nox-mulher']}
+                    src="/imagens/Anuncie com a Nox/Mulher.jpg"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     alt="Anuncie com a Nox" 
                     fill
                     className="object-cover"
