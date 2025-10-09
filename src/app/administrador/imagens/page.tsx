@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { ArrowLeft, Upload, Image as ImageIcon, Save, RefreshCw, Loader2 } from 'lucide-react'
+import { ArrowLeft, Upload, Image as ImageIcon, Save, RefreshCw, Loader2, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { siteImagesConfig } from '@/lib/github-images'
@@ -15,25 +15,27 @@ interface SiteImage {
   subcategory?: string
 }
 
+interface PendingImage {
+  imageId: string
+  file: File
+  previewUrl: string
+}
+
 export default function AdminImagens() {
   const [selectedCategory, setSelectedCategory] = useState('Todas')
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedFiles, setSelectedFiles] = useState<{ [key: string]: File }>({})
-  const [previewUrls, setPreviewUrls] = useState<{ [key: string]: string }>({})
-  const [isLoading, setIsLoading] = useState<{ [key: string]: boolean }>({})
+  const [pendingImages, setPendingImages] = useState<PendingImage[]>([])
   const [siteImages, setSiteImages] = useState<SiteImage[]>([])
   const [isPublishing, setIsPublishing] = useState(false)
-  const [hasChanges, setHasChanges] = useState(false)
   const fileInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({})
 
-  // Carregar imagens locais
+  // Carregar imagens
   useEffect(() => {
     loadImages()
   }, [])
 
   const loadImages = async () => {
     try {
-      // Usar apenas imagens locais (GitHub)
       const imagesWithUrls = siteImagesConfig.map(img => ({
         id: img.id,
         description: img.description,
@@ -46,15 +48,6 @@ export default function AdminImagens() {
       setSiteImages(imagesWithUrls)
     } catch (error) {
       console.error('Erro ao carregar imagens:', error)
-      // Fallback para imagens locais
-      setSiteImages(siteImagesConfig.map(img => ({
-        id: img.id,
-        description: img.description,
-        currentPath: img.localPath,
-        recommendedSize: img.recommendedSize,
-        category: img.category,
-        subcategory: img.subcategory,
-      })))
     }
   }
 
@@ -67,99 +60,104 @@ export default function AdminImagens() {
   })
 
   const handleFileSelect = (imageId: string, file: File) => {
-    setSelectedFiles(prev => ({ ...prev, [imageId]: file }))
-    
     const reader = new FileReader()
     reader.onload = (e) => {
-      setPreviewUrls(prev => ({ ...prev, [imageId]: e.target?.result as string }))
+      const previewUrl = e.target?.result as string
+      
+      // Adicionar ou atualizar imagem pendente
+      setPendingImages(prev => {
+        const existing = prev.findIndex(p => p.imageId === imageId)
+        if (existing >= 0) {
+          const updated = [...prev]
+          updated[existing] = { imageId, file, previewUrl }
+          return updated
+        }
+        return [...prev, { imageId, file, previewUrl }]
+      })
     }
     reader.readAsDataURL(file)
   }
 
-  const handleSaveImage = async (imageId: string) => {
-    const file = selectedFiles[imageId]
-    if (!file) {
-      alert('Selecione uma imagem primeiro')
-      return
-    }
-
-    const imageConfig = siteImagesConfig.find(img => img.id === imageId)
-    if (!imageConfig) {
-      alert('Configuração da imagem não encontrada')
-      return
-    }
-
-    setIsLoading(prev => ({ ...prev, [imageId]: true }))
-
-    try {
-      // Upload para GitHub
-      const formData = new FormData()
-      formData.append('file', file)
-      formData.append('imageId', imageId)
-      formData.append('category', 'site')
-      
-      const response = await fetch('/api/upload-to-github', {
-        method: 'POST',
-        body: formData
-      })
-      
-      if (!response.ok) {
-        throw new Error('Erro no upload')
-      }
-      
-      const result = await response.json()
-      
-      // Atualizar a lista de imagens
-      setSiteImages(prev => prev.map(img => 
-        img.id === imageId ? { ...img, currentPath: result.imageUrl } : img
-      ))
-      
-      // Limpar seleção
-      handleResetImage(imageId)
-      
-      // Marcar que há mudanças não publicadas
-      setHasChanges(true)
-      
-      alert('Imagem enviada para GitHub! Aguarde o rebuild automático (~2min)...')
-    } catch (error) {
-      console.error('Erro ao salvar imagem:', error)
-      alert('Erro ao salvar imagem. Tente novamente.')
-    } finally {
-      setIsLoading(prev => ({ ...prev, [imageId]: false }))
-    }
-  }
-
-  // Função removida - não é mais necessária com GitHub (rebuild automático)
-
-  const handleResetImage = (imageId: string) => {
-    setSelectedFiles(prev => {
-      const newFiles = { ...prev }
-      delete newFiles[imageId]
-      return newFiles
-    })
-    setPreviewUrls(prev => {
-      const newUrls = { ...prev }
-      delete newUrls[imageId]
-      return newUrls
-    })
+  const handleRemovePending = (imageId: string) => {
+    setPendingImages(prev => prev.filter(p => p.imageId !== imageId))
+    
+    // Limpar input file
     if (fileInputRefs.current[imageId]) {
       fileInputRefs.current[imageId]!.value = ''
     }
   }
 
+  const handlePublishAll = async () => {
+    if (pendingImages.length === 0) {
+      alert('Nenhuma imagem para publicar')
+      return
+    }
+
+    if (!confirm(`Você vai publicar ${pendingImages.length} imagem(ns). O site será atualizado em ~2 minutos. Deseja continuar?`)) {
+      return
+    }
+
+    setIsPublishing(true)
+
+    try {
+      // Upload de todas as imagens em paralelo
+      const uploadPromises = pendingImages.map(async ({ imageId, file }) => {
+        const formData = new FormData()
+        formData.append('file', file)
+        formData.append('imageId', imageId)
+        formData.append('category', 'site')
+        
+        const response = await fetch('/api/upload-to-github', {
+          method: 'POST',
+          body: formData
+        })
+        
+        if (!response.ok) {
+          throw new Error(`Erro ao enviar ${imageId}`)
+        }
+        
+        return response.json()
+      })
+
+      await Promise.all(uploadPromises)
+
+      // Limpar imagens pendentes
+      setPendingImages([])
+      
+      // Limpar inputs
+      Object.values(fileInputRefs.current).forEach(input => {
+        if (input) input.value = ''
+      })
+
+      alert(`✅ ${pendingImages.length} imagem(ns) publicada(s) com sucesso!\n\n🔄 O site será atualizado automaticamente em ~2 minutos.`)
+      
+    } catch (error) {
+      console.error('Erro ao publicar imagens:', error)
+      alert('❌ Erro ao publicar algumas imagens. Tente novamente.')
+    } finally {
+      setIsPublishing(false)
+    }
+  }
+
+  const getPendingImage = (imageId: string) => {
+    return pendingImages.find(p => p.imageId === imageId)
+  }
+
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+      <header className="bg-white shadow-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            <Link
+              href="/administrador"
+              className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              <ArrowLeft className="w-5 h-5 mr-2" />
+              <span className="font-medium">Voltar</span>
+            </Link>
+            
             <div className="flex items-center">
-              <Link 
-                href="/administrador"
-                className="mr-4 p-2 text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                <ArrowLeft className="w-5 h-5" />
-              </Link>
               <ImageIcon className="w-8 h-8 text-purple-600 mr-3" />
               <h1 className="text-xl font-semibold text-gray-900">
                 Gerenciar Imagens do Site
@@ -170,23 +168,35 @@ export default function AdminImagens() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Status de Alterações */}
-        {hasChanges && (
-          <div className="bg-green-50 border-2 border-green-400 rounded-lg p-4 mb-6">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
-              <div className="ml-3">
-                <p className="text-sm font-semibold text-green-800">
-                  ✅ Imagem enviada com sucesso!
+        {/* Botão Publicar - Fixo no topo */}
+        {pendingImages.length > 0 && (
+          <div className="bg-purple-50 border-2 border-purple-400 rounded-lg p-4 mb-6 sticky top-4 z-10">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-semibold text-purple-800 mb-1">
+                  📸 {pendingImages.length} imagem(ns) pronta(s) para publicar
                 </p>
-                <p className="text-xs text-green-700">
-                  A imagem foi enviada para GitHub e o site será atualizado automaticamente em ~2 minutos.
+                <p className="text-xs text-purple-700">
+                  Clique em "Publicar Alterações" para enviar todas de uma vez (~2min de rebuild)
                 </p>
               </div>
+              <button
+                onClick={handlePublishAll}
+                disabled={isPublishing}
+                className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {isPublishing ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span>Publicando...</span>
+                  </>
+                ) : (
+                  <>
+                    <CheckCircle className="w-5 h-5" />
+                    <span>Publicar Alterações</span>
+                  </>
+                )}
+              </button>
             </div>
           </div>
         )}
@@ -194,9 +204,9 @@ export default function AdminImagens() {
         {/* Info Box */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
           <p className="text-sm text-blue-800">
-            <strong>Instruções:</strong> Para cada imagem, você verá a versão atual em miniatura. 
-            Clique em "Selecionar Nova Imagem" para escolher uma nova foto. 
-            Após salvar, a imagem será enviada para GitHub e o site será atualizado automaticamente (~2min).
+            <strong>📋 Como usar:</strong> Selecione as imagens que deseja trocar. 
+            Você pode escolher várias imagens de uma vez. 
+            Quando terminar, clique em "Publicar Alterações" para enviar todas de uma vez (1 único rebuild de ~2min).
           </p>
         </div>
 
@@ -210,154 +220,113 @@ export default function AdminImagens() {
               <input
                 type="text"
                 placeholder="Digite o nome da imagem..."
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               />
             </div>
             <div className="sm:w-64">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Filtrar por Categoria
+                Categoria
               </label>
               <select
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               >
-                {categories.map(category => (
-                  <option key={category} value={category}>
-                    {category}
-                  </option>
+                {categories.map(cat => (
+                  <option key={cat} value={cat}>{cat}</option>
                 ))}
               </select>
             </div>
           </div>
         </div>
 
-        {/* Images List */}
-        <div className="space-y-4">
-          {filteredImages.map((image) => (
-            <div key={image.id} className="bg-white rounded-lg shadow-md p-6">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Imagem Atual */}
-                <div className="space-y-2">
-                  <h3 className="text-sm font-semibold text-gray-700 uppercase">
-                    Imagem Atual
-                  </h3>
-                  <div className="border-2 border-gray-200 rounded-lg overflow-hidden bg-gray-50">
-                    <div className="relative w-full h-48">
-                      <Image
-                        src={image.currentPath}
-                        alt={image.description}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-                  <p className="text-xs text-gray-500 text-center">
-                    {image.description}
+        {/* Images Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredImages.map((image) => {
+            const pending = getPendingImage(image.id)
+            
+            return (
+              <div key={image.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+                <div className="p-4">
+                  <h3 className="font-semibold text-gray-900 mb-1">{image.description}</h3>
+                  <p className="text-xs text-gray-500 mb-2">
+                    {image.category} {image.subcategory && `• ${image.subcategory}`}
                   </p>
-                </div>
+                  <p className="text-xs text-gray-400 mb-3">
+                    Tamanho recomendado: {image.recommendedSize}
+                  </p>
 
-                {/* Informações e Nova Imagem */}
-                <div className="lg:col-span-2 space-y-4">
-                  <div>
-                    <h2 className="text-lg font-semibold text-gray-900 mb-1">
-                      {image.description}
-                    </h2>
-                    <p className="text-sm text-gray-600">
-                      <strong>Categoria:</strong> {image.category}
-                      {image.subcategory && ` > ${image.subcategory}`}
-                    </p>
-                    <p className="text-sm text-purple-600 font-medium">
-                      <strong>Tamanho Recomendado:</strong> {image.recommendedSize}
-                    </p>
+                  {/* Preview */}
+                  <div className="mb-4">
+                    <div className="relative w-full h-48 bg-gray-100 rounded-lg overflow-hidden">
+                      {pending ? (
+                        <>
+                          <Image
+                            src={pending.previewUrl}
+                            alt="Nova imagem"
+                            fill
+                            className="object-cover"
+                          />
+                          <div className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
+                            NOVA
+                          </div>
+                        </>
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-gray-400">
+                          <ImageIcon className="w-16 h-16" />
+                        </div>
+                      )}
+                    </div>
                   </div>
 
-                  {/* Preview da Nova Imagem */}
-                  {previewUrls[image.id] && (
-                    <div className="space-y-2">
-                      <h3 className="text-sm font-semibold text-gray-700 uppercase">
-                        Pré-visualização da Nova Imagem
-                      </h3>
-                      <div className="border-2 border-green-300 rounded-lg overflow-hidden bg-gray-50">
-                        <div className="relative w-full h-48">
-                          <Image
-                            src={previewUrls[image.id]}
-                            alt="Preview"
-                            fill
-                            className="object-contain"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Ações */}
-                  <div className="flex flex-wrap gap-3">
-                    <label className="flex-1 min-w-[200px]">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        ref={(el) => {
-                          fileInputRefs.current[image.id] = el
-                        }}
-                        onChange={(e) => {
-                          const file = e.target.files?.[0]
-                          if (file) handleFileSelect(image.id, file)
-                        }}
-                      />
-                      <div className="flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors cursor-pointer">
-                        <Upload className="w-4 h-4" />
-                        <span className="text-sm font-medium">
-                          {selectedFiles[image.id] ? 'Trocar Imagem' : 'Selecionar Nova Imagem'}
-                        </span>
-                      </div>
-                    </label>
-
-                    {selectedFiles[image.id] && (
+                  {/* Actions */}
+                  <div className="flex gap-2">
+                    {pending ? (
                       <>
                         <button
-                          onClick={() => handleSaveImage(image.id)}
-                          disabled={isLoading[image.id]}
-                          className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
-                        >
-                          {isLoading[image.id] ? (
-                            <>
-                              <Loader2 className="w-4 h-4 animate-spin" />
-                              <span className="text-sm font-medium">Salvando...</span>
-                            </>
-                          ) : (
-                            <>
-                              <Save className="w-4 h-4" />
-                              <span className="text-sm font-medium">Salvar</span>
-                            </>
-                          )}
-                        </button>
-                        <button
-                          onClick={() => handleResetImage(image.id)}
-                          disabled={isLoading[image.id]}
-                          className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                          onClick={() => handleRemovePending(image.id)}
+                          className="flex-1 bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
                         >
                           <RefreshCw className="w-4 h-4" />
-                          <span className="text-sm font-medium">Cancelar</span>
+                          Cancelar
                         </button>
                       </>
+                    ) : (
+                      <button
+                        onClick={() => fileInputRefs.current[image.id]?.click()}
+                        className="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                      >
+                        <Upload className="w-4 h-4" />
+                        Selecionar
+                      </button>
                     )}
                   </div>
+
+                  {/* Hidden File Input */}
+                  <input
+                    ref={(el) => (fileInputRefs.current[image.id] = el)}
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0]
+                      if (file) handleFileSelect(image.id, file)
+                    }}
+                    className="hidden"
+                  />
                 </div>
               </div>
-            </div>
-          ))}
-
-          {filteredImages.length === 0 && (
-            <div className="bg-white rounded-lg shadow-md p-12 text-center">
-              <ImageIcon className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <p className="text-gray-500">Nenhuma imagem encontrada com esses filtros</p>
-            </div>
-          )}
+            )
+          })}
         </div>
+
+        {filteredImages.length === 0 && (
+          <div className="text-center py-12">
+            <ImageIcon className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+            <p className="text-gray-500">Nenhuma imagem encontrada</p>
+          </div>
+        )}
       </main>
     </div>
   )

@@ -316,15 +316,15 @@ export const siteImagesConfig: SiteImageConfig[] = [
   }
 ]
 
-// Função para obter URL da imagem (GitHub ou local)
+// Função para obter URL da imagem (SOMENTE GitHub - sem fallback)
 export function getImageUrl(imageId: string): string {
   const config = siteImagesConfig.find(img => img.id === imageId)
   if (!config) {
     console.warn(`Imagem não encontrada: ${imageId}`)
-    return '/imagens/placeholder.png'
+    return ''
   }
   
-  // Retorna URL do GitHub (se existir) ou fallback local
+  // Retorna URL do GitHub (sem fallback local)
   return config.localPath
 }
 
