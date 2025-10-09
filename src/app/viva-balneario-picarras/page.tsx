@@ -6,7 +6,7 @@ export default function VivaBalnearioPicarrasPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-start justify-start overflow-hidden">
+      <section className="relative h-[70vh] flex items-start justify-start overflow-hidden bg-transparent">
         {/* Background Image */}
         <div className="absolute inset-0 bg-transparent">
           <Image 
