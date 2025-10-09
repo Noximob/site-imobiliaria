@@ -38,7 +38,7 @@ export default async function ComoComprarPage() {
   return (
     <>
       {/* Pré-carregar imagem crítica */}
-      <link rel="preload" as="image" href={siteImages['como-comprar-banner']} />
+      <link rel="preload" as="image" href={siteImages['topico-como-comprar']} />
       
       <div className="min-h-screen bg-white">
       {/* Hero Section */}
