@@ -8,12 +8,12 @@ export default function VivaBalnearioPicarrasPage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-start justify-start overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-transparent">
           <Image 
             src="/imagens/banners/penha-hero.jpg" 
             alt="Balneário Piçarras - Viva Balneário Piçarras" 
             fill
-            className="object-cover"
+            className="object-cover bg-transparent"
           />
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         </div>

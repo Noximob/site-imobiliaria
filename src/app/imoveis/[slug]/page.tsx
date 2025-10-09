@@ -117,12 +117,12 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
           <div className="lg:col-span-2">
             {/* Galeria de Fotos */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
-              <div className="relative h-96">
+              <div className="relative h-96 bg-transparent">
                 <Image
                   src={imovel.fotos[0] || '/placeholder-imovel.jpg'}
                   alt={imovel.titulo}
                   fill
-                  className="object-cover"
+                  className="object-cover bg-transparent"
                   priority
                 />
                 <div className="absolute top-4 left-4">

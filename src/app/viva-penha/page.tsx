@@ -8,12 +8,12 @@ export default function VivaPenhaPage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-start justify-start overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-transparent">
           <Image 
             src="/imagens/banners/penha-hero.jpg"
             alt="Penha - Viva Penha" 
             fill
-            className="object-cover"
+            className="object-cover bg-transparent"
           />
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         </div>
@@ -35,24 +35,24 @@ export default function VivaPenhaPage() {
             {/* Left Column - Images */}
             <div className="relative">
               {/* Main Image */}
-              <div className="relative rounded-lg overflow-hidden shadow-lg">
+              <div className="relative rounded-lg overflow-hidden shadow-lg bg-transparent">
                 <Image 
                   src="/imagens/penha/praia-principal.jpg"
                   alt="Praia de Penha" 
                   width={600}
                   height={400}
-                  className="w-full h-80 object-cover"
+                  className="w-full h-80 object-cover bg-transparent"
                 />
               </div>
               
               {/* Secondary Overlapping Image */}
-              <div className="absolute -bottom-8 -left-8 rounded-lg overflow-hidden shadow-lg">
+              <div className="absolute -bottom-8 -left-8 rounded-lg overflow-hidden shadow-lg bg-transparent">
                 <Image 
                   src="/imagens/penha/praia-secundaria.jpg"
                   alt="Vista da praia de Penha" 
                   width={300}
                   height={200}
-                  className="w-64 h-40 object-cover"
+                  className="w-64 h-40 object-cover bg-transparent"
                 />
               </div>
             </div>

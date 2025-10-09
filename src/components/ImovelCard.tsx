@@ -14,12 +14,12 @@ export default function ImovelCard({ imovel }: ImovelCardProps) {
   return (
     <div className="card hover:shadow-lg transition-shadow duration-300">
       <Link href={`/imoveis/${imovel.slug}`}>
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative h-48 overflow-hidden bg-transparent">
           <Image
             src={primeiraFoto}
             alt={imovel.titulo}
             fill
-            className="object-cover hover:scale-105 transition-transform duration-300"
+            className="object-cover hover:scale-105 transition-transform duration-300 bg-transparent"
           />
           <div className="absolute top-4 left-4">
             <span className={`px-3 py-1 rounded-full text-sm font-medium ${
