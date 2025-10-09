@@ -48,7 +48,7 @@ export default async function ComoComprarPage() {
         <div 
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: `url(${siteImages['como-comprar-banner']})`,
+            backgroundImage: `url(${siteImages['topico-como-comprar']})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -56,7 +56,7 @@ export default async function ComoComprarPage() {
             // Força renderização imediata
             willChange: 'auto',
             // Evita placeholder cinza
-            background: `transparent url(${siteImages['como-comprar-banner']}) center/cover no-repeat`
+            background: `transparent url(${siteImages['topico-como-comprar']}) center/cover no-repeat`
           }}
         />
         
