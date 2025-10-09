@@ -15,7 +15,7 @@ export default function VivaPenhaPage() {
             fill
             className="object-cover bg-transparent"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+          <div className="absolute inset-0 bg-transparent"></div>
         </div>
         
         <div className="relative z-10 text-left pl-8 pt-16">

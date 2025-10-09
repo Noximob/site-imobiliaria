@@ -19,7 +19,7 @@ export default function SobrePage() {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+          <div className="absolute inset-0 bg-transparent"></div>
         </div>
         
         {/* Content Overlay */}

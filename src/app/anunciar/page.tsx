@@ -41,7 +41,7 @@ export default function AnunciarPage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+          <div className="absolute inset-0 bg-transparent"></div>
         </div>
         
         <div className="relative z-10 container mx-auto px-6 w-full">

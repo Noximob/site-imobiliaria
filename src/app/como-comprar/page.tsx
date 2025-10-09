@@ -52,8 +52,7 @@ export default async function ComoComprarPage() {
           }}
         />
         
-        {/* Overlay para melhorar legibilidade do texto */}
-        <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
+        {/* Overlay removido - agora transparente */}
         
         {/* Content */}
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -214,7 +213,7 @@ export default async function ComoComprarPage() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                <div className="absolute inset-0 bg-transparent"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white">
                     <div className="text-xs font-medium mb-1">Imóveis em</div>
@@ -233,7 +232,7 @@ export default async function ComoComprarPage() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                <div className="absolute inset-0 bg-transparent"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white">
                     <div className="text-xs font-medium mb-1">Imóveis em</div>
@@ -252,7 +251,7 @@ export default async function ComoComprarPage() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                <div className="absolute inset-0 bg-transparent"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white">
                     <div className="text-xs font-medium mb-1">Imóveis em</div>
