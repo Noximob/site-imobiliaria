@@ -216,7 +216,7 @@ export default async function ComoComprarPage() {
             <div className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
                 <Image
-                  src={siteImages['como-comprar-penha']}
+                  src="/imagens/Encontre Imovel/Apartamentos.png"
                   alt="Imóveis em Penha"
                   fill
                   className="object-cover"
@@ -235,7 +235,7 @@ export default async function ComoComprarPage() {
             <div className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
                 <Image
-                  src={siteImages['como-comprar-picarras']}
+                  src="/imagens/Encontre Imovel/Piçarras/Apartamento-Cobertura.png"
                   alt="Imóveis em Balneário Piçarras"
                   fill
                   className="object-cover"
@@ -254,7 +254,7 @@ export default async function ComoComprarPage() {
             <div className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
                 <Image
-                  src={siteImages['como-comprar-bv']}
+                  src="/imagens/Encontre Imovel/Barra Velha/Lançamentos Frente mar.png"
                   alt="Imóveis em Barra Velha"
                   fill
                   className="object-cover"
@@ -329,7 +329,7 @@ export default async function ComoComprarPage() {
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
                 <Image
-                  src={siteImages['como-comprar-investimento']}
+                  src="/imagens/Encontre Imovel/Frente-Mar.png"
                   alt="Praia - Investimento imobiliário"
                   fill
                   className="object-cover"
@@ -355,7 +355,7 @@ export default async function ComoComprarPage() {
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
                 <Image
-                  src={siteImages['como-comprar-anuncie']}
+                  src="/imagens/Anuncie Nox/Mulher.png"
                   alt="Equipe Nox Imóveis"
                   fill
                   className="object-cover"
