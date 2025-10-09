@@ -100,26 +100,24 @@ export default function AdminImagens() {
     setIsPublishing(true)
 
     try {
-      // Upload de todas as imagens em paralelo
-      const uploadPromises = pendingImages.map(async ({ imageId, file }) => {
-        const formData = new FormData()
-        formData.append('file', file)
-        formData.append('imageId', imageId)
-        formData.append('category', 'site')
-        
-        const response = await fetch('/api/upload-to-github', {
-          method: 'POST',
-          body: formData
-        })
-        
-        if (!response.ok) {
-          throw new Error(`Erro ao enviar ${imageId}`)
-        }
-        
-        return response.json()
+      // Upload de todas as imagens em batch
+      const formData = new FormData()
+      
+      pendingImages.forEach(({ imageId, file }) => {
+        formData.append('files', file)
+        formData.append('imageIds', imageId)
       })
-
-      await Promise.all(uploadPromises)
+      
+      const response = await fetch('/api/upload-batch-github', {
+        method: 'POST',
+        body: formData
+      })
+      
+      if (!response.ok) {
+        throw new Error('Erro no upload em batch')
+      }
+      
+      const result = await response.json()
 
       // Limpar imagens pendentes
       setPendingImages([])
