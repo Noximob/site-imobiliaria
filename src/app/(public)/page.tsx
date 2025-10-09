@@ -2,7 +2,11 @@ import Image from 'next/image'
 import { Search } from 'lucide-react'
 import SearchForm from '@/components/SearchForm'
 import BlogSection from '@/components/BlogSection'
+import { preloadAllImages } from '@/lib/preload-images'
 import type { Metadata } from 'next'
+
+// Revalida a cada 24 horas
+export const revalidate = 86400
 
 // Metadata otimizada para SEO
 export const metadata: Metadata = {
@@ -40,7 +44,10 @@ export const metadata: Metadata = {
   },
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Busca imagens do Firebase no build
+  const siteImages = await preloadAllImages()
+  
   return (
     <>
       
@@ -113,7 +120,7 @@ export default function HomePage() {
         {/* Hero Section */}
         <section className="relative text-white py-20 min-h-[600px] flex items-center overflow-hidden">
           <Image
-            src="/imagens/banners/banner-home.png"
+            src={siteImages['banner-home'] || '/imagens/banners/banner-home.png'}
             alt="Banner Nox Imóveis"
             fill
             priority
@@ -284,7 +291,7 @@ export default function HomePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src="/imagens/Cidades/Penha/Lançamentos Investidor.jpg"
+                    src={siteImages['lancamentos-investidor'] || '/imagens/Cidades/Penha/Lançamentos Investidor.jpg'}
                     alt="Lançamentos Investidor" 
                     fill
                     className="object-cover"
@@ -298,7 +305,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src="/imagens/Cidades/Penha/Frente Mar.jpg"
+                    src={siteImages['frente-mar'] || '/imagens/Cidades/Penha/Frente Mar.jpg'}
                     alt="Frente Mar" 
                     fill
                     className="object-cover"
@@ -312,7 +319,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src="/imagens/Cidades/Penha/Mobiliados.jpg"
+                    src={siteImages['mobiliados'] || '/imagens/Cidades/Penha/Mobiliados.jpg'}
                     alt="Mobiliados" 
                     fill
                     className="object-cover"
@@ -326,7 +333,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src="/imagens/Cidades/Penha/Apartamentos.jpg"
+                    src={siteImages['apartamentos'] || '/imagens/Cidades/Penha/Apartamentos.jpg'}
                     alt="Apartamentos" 
                     fill
                     className="object-cover"
@@ -350,7 +357,7 @@ export default function HomePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src="/imagens/Cidades/Piçarras/Apartamentos e Coberturas.jpg"
+                    src={siteImages['picarras-cobertura'] || '/imagens/Cidades/Piçarras/Apartamentos e Coberturas.jpg'}
                     alt="Apartamentos e Coberturas" 
                     fill
                     className="object-cover"
@@ -364,7 +371,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src="/imagens/Cidades/Piçarras/Mobiliados.jpg"
+                    src={siteImages['picarras-mobiliado'] || '/imagens/Cidades/Piçarras/Mobiliados.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     alt="Mobiliados" 
                     fill
@@ -378,7 +385,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src="/imagens/Cidades/Piçarras/Vista Mar.jpg"
+                    src={siteImages['picarras-vista-mar'] || '/imagens/Cidades/Piçarras/Vista Mar.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     alt="Vista Mar" 
                     fill
@@ -392,7 +399,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src="/imagens/Cidades/Piçarras/Lançamentos.jpg"
+                    src={siteImages['picarras-lancamentos'] || '/imagens/Cidades/Piçarras/Lançamentos.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     alt="Lançamentos" 
                     fill
@@ -416,7 +423,7 @@ export default function HomePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src="/imagens/Cidades/Barra Velha/Lançamentos Frente Mar.jpg"
+                    src={siteImages['bv-lancamentos-frente-mar'] || '/imagens/Cidades/Barra Velha/Lançamentos Frente Mar.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     alt="Lançamentos Frente Mar" 
                     fill
@@ -430,7 +437,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src="/imagens/Cidades/Barra Velha/Em Construção.jpg"
+                    src={siteImages['bv-em-construcao'] || '/imagens/Cidades/Barra Velha/Em Construção.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     alt="Em Construção" 
                     fill
@@ -444,7 +451,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
-                    src="/imagens/Cidades/Barra Velha/Imóveis Prontos.jpg"
+                    src={siteImages['bv-imoveis-prontos'] || '/imagens/Cidades/Barra Velha/Imóveis Prontos.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     alt="Imóveis Prontos" 
                     fill
@@ -544,7 +551,7 @@ export default function HomePage() {
               <div className="bg-white rounded-lg shadow-sm overflow-hidden">
                 <div className="aspect-[3/4] relative">
                   <Image 
-                    src="/imagens/Imóveis na Planta/1.jpg"
+                    src={siteImages['imoveis-planta-1'] || '/imagens/Imóveis na Planta/1.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     alt="Imóveis na Planta - Penha" 
                     fill
@@ -557,7 +564,7 @@ export default function HomePage() {
               <div className="bg-white rounded-lg shadow-sm overflow-hidden">
                 <div className="aspect-[3/4] relative">
                   <Image 
-                    src="/imagens/Imóveis na Planta/2.jpg"
+                    src={siteImages['imoveis-planta-2'] || '/imagens/Imóveis na Planta/2.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     alt="Imóveis na Planta - Piçarras" 
                     fill
@@ -570,7 +577,7 @@ export default function HomePage() {
               <div className="bg-white rounded-lg shadow-sm overflow-hidden">
                 <div className="aspect-[3/4] relative">
                   <Image 
-                    src="/imagens/Imóveis na Planta/3.jpg"
+                    src={siteImages['imoveis-planta-3'] || '/imagens/Imóveis na Planta/3.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     alt="Imóveis na Planta - Barra Velha" 
                     fill
@@ -618,7 +625,7 @@ export default function HomePage() {
               <div className="relative h-64 lg:h-auto">
                 <div className="absolute inset-0">
                   <Image 
-                    src="/imagens/Anuncie com a Nox/Mulher.jpg"
+                    src={siteImages['anuncie-nox-mulher'] || '/imagens/Anuncie com a Nox/Mulher.jpg'}
                     sizes="(max-width: 768px) 100vw, 50vw"
                     alt="Anuncie com a Nox" 
                     fill
