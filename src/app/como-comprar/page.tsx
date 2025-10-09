@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { CheckCircle, Users, FileText, Home, Shield, CreditCard, Calculator, Phone, Mail, MapPin, Building, Award } from 'lucide-react'
-import { getAllImages } from '@/lib/github-images'
+import { getImageUrl } from '@/lib/github-images'
 
 export const metadata: Metadata = {
   title: 'Como Comprar um Imóvel - Guia Completo | Nox Imóveis',
@@ -25,7 +25,15 @@ export const metadata: Metadata = {
 export const revalidate = 86400
 
 export default async function ComoComprarPage() {
-  const siteImages = getAllImages()
+  // Carrega apenas as imagens necessárias para esta página (otimização de performance)
+  const siteImages = {
+    'topico-como-comprar': getImageUrl('topico-como-comprar'),
+    'como-comprar-1': getImageUrl('como-comprar-1'),
+    'como-comprar-2': getImageUrl('como-comprar-2'),
+    'como-comprar-3': getImageUrl('como-comprar-3'),
+    'como-comprar-4': getImageUrl('como-comprar-4'),
+    'como-comprar-5': getImageUrl('como-comprar-5'),
+  }
   
   return (
     <>

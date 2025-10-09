@@ -89,7 +89,7 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
       notFound()
     }
 
-  const tipoIcons = {
+    const tipoIcons = {
     casa: Home,
     apartamento: Building,
     terreno: TreePine,

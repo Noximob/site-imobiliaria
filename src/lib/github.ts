@@ -1,5 +1,11 @@
 import { Octokit } from '@octokit/rest'
 
+// Validação do GitHub Token
+if (!process.env.GITHUB_TOKEN) {
+  console.error('❌ ERRO: GITHUB_TOKEN não configurado nas variáveis de ambiente!')
+  throw new Error('GITHUB_TOKEN não configurado. Configure a variável de ambiente GITHUB_TOKEN.')
+}
+
 // Configuração do GitHub
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,

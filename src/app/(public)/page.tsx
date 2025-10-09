@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { Search } from 'lucide-react'
 import SearchForm from '@/components/SearchForm'
 import BlogSection from '@/components/BlogSection'
-import { getAllImages } from '@/lib/github-images'
+import { getImageUrl } from '@/lib/github-images'
 import type { Metadata } from 'next'
 
 // Revalida a cada 24 horas
@@ -45,8 +45,31 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  // Busca imagens do GitHub (locais)
-  const siteImages = getAllImages()
+  // Carrega apenas as imagens necessárias para esta página (otimização de performance)
+  const siteImages = {
+    'banner-home': getImageUrl('banner-home'),
+    'lancamentos-investidor': getImageUrl('lancamentos-investidor'),
+    'frente-mar': getImageUrl('frente-mar'),
+    'apartamentos': getImageUrl('apartamentos'),
+    'apartamento-cobertura-picarras': getImageUrl('apartamento-cobertura-picarras'),
+    'lancamentos-picarras': getImageUrl('lancamentos-picarras'),
+    'mobiliado-picarras': getImageUrl('mobiliado-picarras'),
+    'vista-mar-picarras': getImageUrl('vista-mar-picarras'),
+    'em-construcao-barra-velha': getImageUrl('em-construcao-barra-velha'),
+    'imoveis-prontos-barra-velha': getImageUrl('imoveis-prontos-barra-velha'),
+    'lancamentos-frente-mar-barra-velha': getImageUrl('lancamentos-frente-mar-barra-velha'),
+    'mobiliados': getImageUrl('mobiliados'),
+    'imoveis-na-planta-1': getImageUrl('imoveis-na-planta-1'),
+    'imoveis-na-planta-2': getImageUrl('imoveis-na-planta-2'),
+    'imoveis-na-planta-3': getImageUrl('imoveis-na-planta-3'),
+    'selecao-nox-1': getImageUrl('selecao-nox-1'),
+    'selecao-nox-2': getImageUrl('selecao-nox-2'),
+    'selecao-nox-3': getImageUrl('selecao-nox-3'),
+    'corretores-1': getImageUrl('corretores-1'),
+    'corretores-2': getImageUrl('corretores-2'),
+    'corretores-3': getImageUrl('corretores-3'),
+    'corretores-4': getImageUrl('corretores-4'),
+  }
 
   return (
     <>
