@@ -118,7 +118,7 @@ export default async function HomePage() {
       
     <div className="min-h-screen">
       {/* Hero Section */}
-        <section className="relative text-white py-20 min-h-[600px] flex items-center overflow-hidden">
+        <section className="relative text-white py-20 min-h-[600px] flex items-center overflow-hidden bg-transparent">
           <Image
             src={siteImages['banner-home'] || '/imagens/banners/banner-home.png'}
             alt="Banner principal - Imóveis em Penha, Balneário Piçarras e Barra Velha"
@@ -126,7 +126,7 @@ export default async function HomePage() {
             fill
             priority
             quality={90}
-            className="object-cover"
+            className="object-cover bg-transparent"
             sizes="100vw"
             placeholder="empty"
           />
@@ -291,13 +291,13 @@ export default async function HomePage() {
                 <h3 className="text-lg font-bold text-blue-500">Penha</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
+                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
                   <Image 
                     src={siteImages['lancamentos-investidor'] || '/imagens/Cidades/Penha/Lançamentos Investidor.jpg'}
                     alt="Lançamentos de imóveis para investidores em Penha - Apartamentos e casas na planta" 
                     title="Lançamentos Investidor - Penha SC"
                     fill
-                    className="object-cover"
+                    className="object-cover bg-transparent"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     placeholder="empty"
                   />
@@ -307,13 +307,13 @@ export default async function HomePage() {
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
+                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
                   <Image 
                     src={siteImages['frente-mar'] || '/imagens/Cidades/Penha/Frente Mar.jpg'}
                     alt="Apartamentos frente mar em Penha - Vista para o mar"
                     title="Frente Mar - Penha SC"
                     fill
-                    className="object-cover"
+                    className="object-cover bg-transparent"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     placeholder="empty"
                   />
@@ -323,13 +323,13 @@ export default async function HomePage() {
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
+                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
                   <Image 
                     src={siteImages['mobiliados'] || '/imagens/Cidades/Penha/Mobiliados.jpg'}
                     alt="Apartamentos mobiliados em Penha - Prontos para morar"
                     title="Mobiliados - Penha SC"
                     fill
-                    className="object-cover"
+                    className="object-cover bg-transparent"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     placeholder="empty"
                   />
@@ -339,13 +339,13 @@ export default async function HomePage() {
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
+                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
                   <Image 
                     src={siteImages['apartamentos'] || '/imagens/Cidades/Penha/Apartamentos.jpg'}
                     alt="Apartamentos à venda em Penha - Diversos tamanhos"
                     title="Apartamentos - Penha SC"
                     fill
-                    className="object-cover"
+                    className="object-cover bg-transparent"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     placeholder="empty"
                   />
@@ -365,13 +365,13 @@ export default async function HomePage() {
                 <h3 className="text-lg font-bold text-blue-500">Balneário Piçarras</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
+                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
                   <Image 
                     src={siteImages['picarras-cobertura'] || '/imagens/Cidades/Piçarras/Apartamentos e Coberturas.jpg'}
                     alt="Apartamentos e coberturas em Balneário Piçarras - Alto padrão"
                     title="Apartamentos e Coberturas - Piçarras SC"
                     fill
-                    className="object-cover"
+                    className="object-cover bg-transparent"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     placeholder="empty"
                   />
@@ -381,7 +381,7 @@ export default async function HomePage() {
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
+                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
                   <Image 
                     src={siteImages['picarras-mobiliado'] || '/imagens/Cidades/Piçarras/Mobiliados.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
@@ -395,7 +395,7 @@ export default async function HomePage() {
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
+                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
                   <Image 
                     src={siteImages['picarras-vista-mar'] || '/imagens/Cidades/Piçarras/Vista Mar.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
@@ -409,7 +409,7 @@ export default async function HomePage() {
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
+                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
                   <Image 
                     src={siteImages['picarras-lancamentos'] || '/imagens/Cidades/Piçarras/Lançamentos.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
@@ -433,7 +433,7 @@ export default async function HomePage() {
                 <h3 className="text-lg font-bold text-blue-500">Barra Velha</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
+                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
                   <Image 
                     src={siteImages['bv-lancamentos-frente-mar'] || '/imagens/Cidades/Barra Velha/Lançamentos Frente Mar.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -447,7 +447,7 @@ export default async function HomePage() {
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
+                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
                   <Image 
                     src={siteImages['bv-em-construcao'] || '/imagens/Cidades/Barra Velha/Em Construção.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -461,7 +461,7 @@ export default async function HomePage() {
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
+                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
                   <Image 
                     src={siteImages['bv-imoveis-prontos'] || '/imagens/Cidades/Barra Velha/Imóveis Prontos.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -634,14 +634,14 @@ export default async function HomePage() {
           <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2">
               {/* Lado Esquerdo - Foto da Corretora */}
-              <div className="relative h-64 lg:h-auto">
-                <div className="absolute inset-0">
+              <div className="relative h-64 lg:h-auto bg-transparent">
+                <div className="absolute inset-0 bg-transparent">
                   <Image 
                     src={siteImages['anuncie-nox-mulher'] || '/imagens/Anuncie com a Nox/Mulher.jpg'}
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    alt="Anuncie com a Nox" 
+                    alt="Anuncie com a Nox"
                     fill
-                    className="object-cover"
+                    className="object-cover bg-transparent"
                   />
                 </div>
                 {/* Ícone da chave */}
