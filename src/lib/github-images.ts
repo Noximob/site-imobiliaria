@@ -313,6 +313,246 @@ export const siteImagesConfig: SiteImageConfig[] = [
     recommendedSize: '800x600px',
     category: 'Trabalhe Conosco',
     subcategory: 'Principal'
+  },
+
+  // ==================== VIVA PENHA ====================
+  {
+    id: 'penha-hero',
+    description: 'Banner Hero - Viva Penha',
+    localPath: '/imagens/banners/penha-hero.jpg',
+    recommendedSize: '1920x1080px',
+    category: 'Viva Penha',
+    subcategory: 'Banner'
+  },
+  {
+    id: 'penha-praia-principal',
+    description: 'Praia Principal - Penha',
+    localPath: '/imagens/penha/praia-principal.jpg',
+    recommendedSize: '800x600px',
+    category: 'Viva Penha',
+    subcategory: 'Praias'
+  },
+  {
+    id: 'penha-praia-secundaria',
+    description: 'Praia Secundária - Penha',
+    localPath: '/imagens/penha/praia-secundaria.jpg',
+    recommendedSize: '800x600px',
+    category: 'Viva Penha',
+    subcategory: 'Praias'
+  },
+  {
+    id: 'penha-praia1',
+    description: 'Praia 1 - Penha',
+    localPath: '/imagens/penha/praia1.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Penha',
+    subcategory: 'Atrações'
+  },
+  {
+    id: 'penha-cristo-luz',
+    description: 'Cristo Luz - Penha',
+    localPath: '/imagens/penha/cristo-luz.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Penha',
+    subcategory: 'Atrações'
+  },
+  {
+    id: 'penha-beto-carrero',
+    description: 'Beto Carrero World - Penha',
+    localPath: '/imagens/penha/beto-carrero.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Penha',
+    subcategory: 'Atrações'
+  },
+  {
+    id: 'penha-jantar-romantico',
+    description: 'Jantar Romântico - Penha',
+    localPath: '/imagens/penha/jantar-romantico.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Penha',
+    subcategory: 'Atrações'
+  },
+  {
+    id: 'penha-praia2',
+    description: 'Praia 2 - Penha',
+    localPath: '/imagens/penha/praia2.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Penha',
+    subcategory: 'Atrações'
+  },
+  {
+    id: 'penha-skyline',
+    description: 'Skyline - Penha',
+    localPath: '/imagens/penha/skyline.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Penha',
+    subcategory: 'Atrações'
+  },
+
+  // ==================== VIVA PIÇARRAS ====================
+  {
+    id: 'picarras-hero',
+    description: 'Banner Hero - Viva Piçarras',
+    localPath: '/imagens/banners/picarras-hero.jpg',
+    recommendedSize: '1920x1080px',
+    category: 'Viva Piçarras',
+    subcategory: 'Banner'
+  },
+  {
+    id: 'picarras-praia-principal',
+    description: 'Praia Principal - Piçarras',
+    localPath: '/imagens/picarras/praia-principal.jpg',
+    recommendedSize: '800x600px',
+    category: 'Viva Piçarras',
+    subcategory: 'Praias'
+  },
+  {
+    id: 'picarras-praia-secundaria',
+    description: 'Praia Secundária - Piçarras',
+    localPath: '/imagens/picarras/praia-secundaria.jpg',
+    recommendedSize: '800x600px',
+    category: 'Viva Piçarras',
+    subcategory: 'Praias'
+  },
+  {
+    id: 'picarras-praia1',
+    description: 'Praia 1 - Piçarras',
+    localPath: '/imagens/picarras/praia1.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Piçarras',
+    subcategory: 'Atrações'
+  },
+  {
+    id: 'picarras-atracao1',
+    description: 'Atração 1 - Piçarras',
+    localPath: '/imagens/picarras/atracao1.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Piçarras',
+    subcategory: 'Atrações'
+  },
+  {
+    id: 'picarras-atracao2',
+    description: 'Atração 2 - Piçarras',
+    localPath: '/imagens/picarras/atracao2.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Piçarras',
+    subcategory: 'Atrações'
+  },
+  {
+    id: 'picarras-gastronomia',
+    description: 'Gastronomia - Piçarras',
+    localPath: '/imagens/picarras/gastronomia.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Piçarras',
+    subcategory: 'Atrações'
+  },
+  {
+    id: 'picarras-praia2',
+    description: 'Praia 2 - Piçarras',
+    localPath: '/imagens/picarras/praia2.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Piçarras',
+    subcategory: 'Atrações'
+  },
+  {
+    id: 'picarras-skyline',
+    description: 'Skyline - Piçarras',
+    localPath: '/imagens/picarras/skyline.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Piçarras',
+    subcategory: 'Atrações'
+  },
+
+  // ==================== VIVA BARRA VELHA ====================
+  {
+    id: 'barra-velha-hero',
+    description: 'Banner Hero - Viva Barra Velha',
+    localPath: '/imagens/banners/barra-velha-hero.jpg',
+    recommendedSize: '1920x1080px',
+    category: 'Viva Barra Velha',
+    subcategory: 'Banner'
+  },
+  {
+    id: 'barra-velha-praia-principal',
+    description: 'Praia Principal - Barra Velha',
+    localPath: '/imagens/barra-velha/praia-principal.jpg',
+    recommendedSize: '800x600px',
+    category: 'Viva Barra Velha',
+    subcategory: 'Praias'
+  },
+  {
+    id: 'barra-velha-praia-secundaria',
+    description: 'Praia Secundária - Barra Velha',
+    localPath: '/imagens/barra-velha/praia-secundaria.jpg',
+    recommendedSize: '800x600px',
+    category: 'Viva Barra Velha',
+    subcategory: 'Praias'
+  },
+  {
+    id: 'barra-velha-praia1',
+    description: 'Praia 1 - Barra Velha',
+    localPath: '/imagens/barra-velha/praia1.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Barra Velha',
+    subcategory: 'Atrações'
+  },
+  {
+    id: 'barra-velha-atracao1',
+    description: 'Atração 1 - Barra Velha',
+    localPath: '/imagens/barra-velha/atracao1.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Barra Velha',
+    subcategory: 'Atrações'
+  },
+  {
+    id: 'barra-velha-atracao2',
+    description: 'Atração 2 - Barra Velha',
+    localPath: '/imagens/barra-velha/atracao2.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Barra Velha',
+    subcategory: 'Atrações'
+  },
+  {
+    id: 'barra-velha-gastronomia',
+    description: 'Gastronomia - Barra Velha',
+    localPath: '/imagens/barra-velha/gastronomia.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Barra Velha',
+    subcategory: 'Atrações'
+  },
+  {
+    id: 'barra-velha-praia2',
+    description: 'Praia 2 - Barra Velha',
+    localPath: '/imagens/barra-velha/praia2.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Barra Velha',
+    subcategory: 'Atrações'
+  },
+  {
+    id: 'barra-velha-skyline',
+    description: 'Skyline - Barra Velha',
+    localPath: '/imagens/barra-velha/skyline.jpg',
+    recommendedSize: '400x300px',
+    category: 'Viva Barra Velha',
+    subcategory: 'Atrações'
+  },
+
+  // ==================== QUEM SOMOS / SOBRE ====================
+  {
+    id: 'quem-somos-hero',
+    description: 'Banner Hero - Quem Somos',
+    localPath: '/imagens/banners/quem-somos-hero.jpg',
+    recommendedSize: '1920x1080px',
+    category: 'Quem Somos',
+    subcategory: 'Banner'
+  },
+  {
+    id: 'equipe-principal',
+    description: 'Equipe Principal - Quem Somos',
+    localPath: '/imagens/equipe/equipe-principal.jpg',
+    recommendedSize: '800x600px',
+    category: 'Quem Somos',
+    subcategory: 'Equipe'
   }
 ]
 

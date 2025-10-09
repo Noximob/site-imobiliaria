@@ -10,7 +10,7 @@ export default function VivaBarraVelhaPage() {
         {/* Background Image */}
         <div className="absolute inset-0 bg-transparent">
           <Image 
-            src="/imagens/banners/penha-hero.jpg" 
+            src="/imagens/banners/barra-velha-hero.jpg" 
             alt="Barra Velha - Viva Barra Velha" 
             fill
             className="object-cover bg-transparent"
@@ -37,7 +37,7 @@ export default function VivaBarraVelhaPage() {
               {/* Main Image */}
               <div className="relative rounded-lg overflow-hidden shadow-lg">
                 <Image 
-                  src="/imagens/penha/praia-principal.jpg"
+                  src="/imagens/barra-velha/praia-principal.jpg"
                   alt="Praia de Barra Velha" 
                   width={600}
                   height={400}
@@ -48,7 +48,7 @@ export default function VivaBarraVelhaPage() {
               {/* Secondary Overlapping Image */}
               <div className="absolute -bottom-8 -left-8 rounded-lg overflow-hidden shadow-lg">
                 <Image 
-                  src="/imagens/penha/praia-secundaria.jpg"
+                  src="/imagens/barra-velha/praia-secundaria.jpg"
                   alt="Vista da praia de Barra Velha" 
                   width={300}
                   height={200}
@@ -149,7 +149,7 @@ export default function VivaBarraVelhaPage() {
               <div className="space-y-4">
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/penha/praia1.jpg" 
+                    src="/imagens/barra-velha/praia1.jpg" 
                     alt="Praia de Barra Velha" 
                     fill
                     className="object-cover"
@@ -157,7 +157,7 @@ export default function VivaBarraVelhaPage() {
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/penha/cristo-luz.jpg" 
+                    src="/imagens/barra-velha/cristo-luz.jpg" 
                     alt="Cristo Luz Barra Velha" 
                     fill
                     className="object-cover"
@@ -167,7 +167,7 @@ export default function VivaBarraVelhaPage() {
               <div className="space-y-4">
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/penha/beto-carrero.jpg" 
+                    src="/imagens/barra-velha/beto-carrero.jpg" 
                     alt="Beto Carrero World" 
                     fill
                     className="object-cover"
@@ -175,7 +175,7 @@ export default function VivaBarraVelhaPage() {
                 </div>
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/penha/jantar-romantico.jpg" 
+                    src="/imagens/barra-velha/jantar-romantico.jpg" 
                     alt="Jantar Romântico" 
                     fill
                     className="object-cover"
@@ -185,7 +185,7 @@ export default function VivaBarraVelhaPage() {
               <div className="space-y-4">
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/penha/praia2.jpg" 
+                    src="/imagens/barra-velha/praia2.jpg" 
                     alt="Praia de Barra Velha" 
                     fill
                     className="object-cover"
@@ -193,7 +193,7 @@ export default function VivaBarraVelhaPage() {
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/penha/skyline.jpg" 
+                    src="/imagens/barra-velha/skyline.jpg" 
                     alt="Skyline Barra Velha" 
                     fill
                     className="object-cover"
