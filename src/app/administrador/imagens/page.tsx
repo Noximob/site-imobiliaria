@@ -36,10 +36,18 @@ export default function AdminImagens() {
 
   const loadImages = async () => {
     try {
+      // Buscar imagens reais do GitHub
+      const response = await fetch('/api/list-github-images')
+      let githubImages: { [key: string]: string } = {}
+      
+      if (response.ok) {
+        githubImages = await response.json()
+      }
+      
       const imagesWithUrls = siteImagesConfig.map(img => ({
         id: img.id,
         description: img.description,
-        currentPath: img.localPath,
+        currentPath: githubImages[img.id] || img.localPath, // Usar imagem real se existir
         recommendedSize: img.recommendedSize,
         category: img.category,
         subcategory: img.subcategory,
@@ -48,6 +56,16 @@ export default function AdminImagens() {
       setSiteImages(imagesWithUrls)
     } catch (error) {
       console.error('Erro ao carregar imagens:', error)
+      // Fallback para configuração estática
+      const imagesWithUrls = siteImagesConfig.map(img => ({
+        id: img.id,
+        description: img.description,
+        currentPath: img.localPath,
+        recommendedSize: img.recommendedSize,
+        category: img.category,
+        subcategory: img.subcategory,
+      }))
+      setSiteImages(imagesWithUrls)
     }
   }
 
@@ -127,7 +145,10 @@ export default function AdminImagens() {
         if (input) input.value = ''
       })
 
-      alert(`✅ ${pendingImages.length} imagem(ns) publicada(s) com sucesso!\n\n🔄 O site será atualizado automaticamente em ~2 minutos.`)
+      // Recarregar imagens para mostrar as novas
+      await loadImages()
+
+      alert(`✅ ${pendingImages.length} imagem(ns) publicada(s) com sucesso!\n\n🔄 O site será atualizado automaticamente em ~2 minutos.\n\n🖼️ As imagens já aparecem no admin!`)
       
     } catch (error) {
       console.error('Erro ao publicar imagens:', error)
@@ -161,6 +182,14 @@ export default function AdminImagens() {
                 Gerenciar Imagens do Site
               </h1>
             </div>
+            
+            <button
+              onClick={loadImages}
+              className="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center gap-2"
+            >
+              <RefreshCw className="w-4 h-4" />
+              Atualizar
+            </button>
           </div>
         </div>
       </header>
@@ -269,6 +298,18 @@ export default function AdminImagens() {
                           />
                           <div className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
                             NOVA
+                          </div>
+                        </>
+                      ) : image.currentPath && image.currentPath !== '/imagens/placeholder.png' ? (
+                        <>
+                          <Image
+                            src={image.currentPath}
+                            alt={image.description}
+                            fill
+                            className="object-cover"
+                          />
+                          <div className="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
+                            ATUAL
                           </div>
                         </>
                       ) : (
