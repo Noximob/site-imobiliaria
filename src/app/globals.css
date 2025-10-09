@@ -11,9 +11,10 @@
     @apply text-gray-900 bg-white;
   }
   
-  /* REMOVE CINZA DAS IMAGENS - SIMPLES E DIRETO */
-  img {
-    background: none !important;
+  /* REMOVE CINZA - FORÇA TRANSPARENTE */
+  img, span[data-nimg-fill] {
+    background-color: transparent !important;
+    background-image: none !important;
   }
 }
 

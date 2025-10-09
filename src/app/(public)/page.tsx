@@ -119,14 +119,21 @@ export default async function HomePage() {
       <div className="min-h-screen">
         {/* Hero Section */}
         <section className="relative text-white py-20 min-h-[600px] flex items-center overflow-hidden">
-          <Image
+          <img
             src={siteImages['banner-home'] || '/imagens/banners/banner-home.png'}
             alt="Banner Nox Imóveis"
-            fill
-            priority
-            quality={100}
-            className="object-cover"
-            sizes="100vw"
+            loading="eager"
+            fetchPriority="high"
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              zIndex: 0
+            }}
           />
         
           {/* Overlay para melhorar legibilidade do texto */}
@@ -296,6 +303,7 @@ export default async function HomePage() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    placeholder="empty"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
