@@ -125,38 +125,15 @@ export default async function HomePage() {
         {/* Hero Section - ZERO CINZA COM SISTEMA DE CARREGAMENTO */}
         <section className="relative text-white py-20 min-h-[600px] flex items-center overflow-hidden">
           {/* Background Image com SISTEMA ANTI-CINZA */}
-          <img
-            src={siteImages['banner-home']}
-            alt="Banner Nox Imóveis"
-            loading="eager"
-            decoding="sync"
-            fetchPriority="high"
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center',
-              zIndex: 0,
-              opacity: 0,
-              backgroundColor: 'transparent',
-              background: 'transparent',
-            }}
-            onLoad={(e) => {
-              // Quando carregar, mostra a imagem
-              e.currentTarget.style.opacity = '1'
-              e.currentTarget.style.transition = 'opacity 0.1s ease-in'
-            }}
-          />
-          
-          {/* Fundo branco enquanto carrega - SEM CINZA */}
-          <div 
+          <div
             className="absolute inset-0 z-0"
             style={{
+              backgroundImage: `url(${siteImages['banner-home']})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
               backgroundColor: 'white',
-              background: 'white'
+              background: `white url(${siteImages['banner-home']}) center/cover no-repeat`
             }}
           />
         
