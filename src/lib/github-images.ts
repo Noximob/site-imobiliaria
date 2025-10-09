@@ -13,14 +13,14 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'logo-header',
     description: 'Logo da Nox Imóveis no cabeçalho',
-    localPath: '/imagens/Logo.png',
+    localPath: '/imagens/logo-nox-imoveis-penha-picarras-barra-velha.png',
     recommendedSize: '400x150px',
     category: 'Todas as Páginas'
   },
   {
     id: 'logo-footer',
     description: 'Logo da Nox Imóveis no rodapé',
-    localPath: '/imagens/Logo1.png',
+    localPath: '/imagens/logo-nox-imoveis-rodape.png',
     recommendedSize: '400x150px',
     category: 'Todas as Páginas'
   },
@@ -29,7 +29,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'banner-home',
     description: 'Banner principal da home',
-    localPath: '/imagens/banners/banner-home.png',
+    localPath: '/imagens/banner-principal-imoveis-penha-picarras-barra-velha.jpg',
     recommendedSize: '1920x1080px',
     category: 'Página Principal',
     subcategory: 'Banner'
@@ -39,7 +39,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'lancamentos-investidor',
     description: 'Lançamentos Investidor - Penha',
-    localPath: '/imagens/Encontre Imovel/Lançamentos-Investidor.png',
+    localPath: '/imagens/lancamentos-investidor-penha-sc-praia.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Encontre Imóvel - Penha'
@@ -47,7 +47,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'frente-mar',
     description: 'Frente-Mar - Penha',
-    localPath: '/imagens/Encontre Imovel/Frente-Mar.png',
+    localPath: '/imagens/apartamentos-frente-mar-penha-sc.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Encontre Imóvel - Penha'
@@ -55,7 +55,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'apartamentos',
     description: 'Apartamentos - Penha',
-    localPath: '/imagens/Encontre Imovel/Apartamentos.png',
+    localPath: '/imagens/apartamentos-venda-penha-sc.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Encontre Imóvel - Penha'
@@ -65,7 +65,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'apartamento-cobertura-picarras',
     description: 'Apartamento Cobertura - Piçarras',
-    localPath: '/imagens/Encontre Imovel/Piçarras/Apartamento-Cobertura.png',
+    localPath: '/imagens/apartamento-cobertura-picarras-sc.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Encontre Imóvel - Piçarras'
@@ -73,7 +73,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'lancamentos-picarras',
     description: 'Lançamentos - Piçarras',
-    localPath: '/imagens/Encontre Imovel/Piçarras/Lançamentos.png',
+    localPath: '/imagens/lancamentos-picarras-sc-praia.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Encontre Imóvel - Piçarras'
@@ -81,7 +81,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'mobiliado-picarras',
     description: 'Mobiliado - Piçarras',
-    localPath: '/imagens/Encontre Imovel/Piçarras/Mobiliado.png',
+    localPath: '/imagens/apartamento-mobiliado-picarras-sc.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Encontre Imóvel - Piçarras'
@@ -89,7 +89,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'vista-mar-picarras',
     description: 'Vista-Mar - Piçarras',
-    localPath: '/imagens/Encontre Imovel/Piçarras/Vista-Mar.png',
+    localPath: '/imagens/apartamento-vista-mar-picarras-sc.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Encontre Imóvel - Piçarras'
@@ -99,7 +99,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'em-construcao-barra-velha',
     description: 'Em Construção - Barra Velha',
-    localPath: '/imagens/Encontre Imovel/Barra Velha/Em Construção.png',
+    localPath: '/imagens/imoveis-em-construcao-barra-velha-sc.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Encontre Imóvel - Barra Velha'
@@ -107,7 +107,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'imoveis-prontos-barra-velha',
     description: 'Imóveis Prontos - Barra Velha',
-    localPath: '/imagens/Encontre Imovel/Barra Velha/Imoveis Prontos.png',
+    localPath: '/imagens/imoveis-prontos-barra-velha-sc.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Encontre Imóvel - Barra Velha'
@@ -115,7 +115,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'lancamentos-frente-mar-barra-velha',
     description: 'Lançamentos Frente-Mar - Barra Velha',
-    localPath: '/imagens/Encontre Imovel/Barra Velha/Lançamentos Frente mar.png',
+    localPath: '/imagens/lancamentos-frente-mar-barra-velha-sc.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Encontre Imóvel - Barra Velha'
@@ -125,7 +125,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'mobiliados',
     description: 'Mobiliados',
-    localPath: '/imagens/Encontre Imovel/Mobiliados.png',
+    localPath: '/imagens/apartamentos-mobiliados-praia-sc.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Outros Imóveis'
@@ -135,7 +135,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'imoveis-na-planta-1',
     description: 'Imóveis na Planta - Imagem 1',
-    localPath: '/imagens/Imoveis na Planta/1.png',
+    localPath: '/imagens/imoveis-na-planta-lancamento-praia-1.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Imóveis na Planta'
@@ -143,7 +143,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'imoveis-na-planta-2',
     description: 'Imóveis na Planta - Imagem 2',
-    localPath: '/imagens/Imoveis na Planta/2.png',
+    localPath: '/imagens/imoveis-na-planta-lancamento-praia-2.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Imóveis na Planta'
@@ -151,7 +151,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'imoveis-na-planta-3',
     description: 'Imóveis na Planta - Imagem 3',
-    localPath: '/imagens/Imoveis na Planta/3.png',
+    localPath: '/imagens/imoveis-na-planta-lancamento-praia-3.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Imóveis na Planta'
@@ -161,7 +161,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'selecao-nox-1',
     description: 'Seleção Nox - Imagem 1',
-    localPath: '/imagens/Seleção Nox/1.jpg',
+    localPath: '/imagens/imovel-destaque-nox-penha-picarras-1.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Seleção Nox'
@@ -169,7 +169,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'selecao-nox-2',
     description: 'Seleção Nox - Imagem 2',
-    localPath: '/imagens/Seleção Nox/2.jpg',
+    localPath: '/imagens/imovel-destaque-nox-penha-picarras-2.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Seleção Nox'
@@ -177,7 +177,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'selecao-nox-3',
     description: 'Seleção Nox - Imagem 3',
-    localPath: '/imagens/Seleção Nox/3.jpg',
+    localPath: '/imagens/imovel-destaque-nox-penha-picarras-3.jpg',
     recommendedSize: '800x600px',
     category: 'Página Principal',
     subcategory: 'Seleção Nox'
@@ -187,7 +187,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'topico-como-comprar',
     description: 'Tópico Como Comprar',
-    localPath: '/imagens/Como Comprar/Topico Como Comprar.png',
+    localPath: '/imagens/como-comprar-imovel-guia-completo.jpg',
     recommendedSize: '800x400px',
     category: 'Como Comprar',
     subcategory: 'Tópico'
@@ -195,7 +195,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'como-comprar-1',
     description: 'Como Comprar - Passo 1',
-    localPath: '/imagens/Como Comprar/1.png',
+    localPath: '/imagens/como-comprar-imovel-passo-1-pesquisa.jpg',
     recommendedSize: '400x300px',
     category: 'Como Comprar',
     subcategory: 'Passos'
@@ -203,7 +203,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'como-comprar-2',
     description: 'Como Comprar - Passo 2',
-    localPath: '/imagens/Como Comprar/2.png',
+    localPath: '/imagens/como-comprar-imovel-passo-2-visita.jpg',
     recommendedSize: '400x300px',
     category: 'Como Comprar',
     subcategory: 'Passos'
@@ -211,7 +211,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'como-comprar-3',
     description: 'Como Comprar - Passo 3',
-    localPath: '/imagens/Como Comprar/3.png',
+    localPath: '/imagens/como-comprar-imovel-passo-3-financiamento.jpg',
     recommendedSize: '400x300px',
     category: 'Como Comprar',
     subcategory: 'Passos'
@@ -219,7 +219,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'como-comprar-4',
     description: 'Como Comprar - Passo 4',
-    localPath: '/imagens/Como Comprar/4.png',
+    localPath: '/imagens/como-comprar-imovel-passo-4-documentacao.jpg',
     recommendedSize: '400x300px',
     category: 'Como Comprar',
     subcategory: 'Passos'
@@ -227,7 +227,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'como-comprar-5',
     description: 'Como Comprar - Passo 5',
-    localPath: '/imagens/Como Comprar/5.png',
+    localPath: '/imagens/como-comprar-imovel-passo-5-escritura.jpg',
     recommendedSize: '400x300px',
     category: 'Como Comprar',
     subcategory: 'Passos'
@@ -237,7 +237,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'equipe',
     description: 'Equipe - Encontre Meu Imóvel',
-    localPath: '/imagens/Encontre Meu Imovel/Equipe.png',
+    localPath: '/imagens/equipe-nox-imoveis-corretores.jpg',
     recommendedSize: '800x600px',
     category: 'Encontre Meu Imóvel',
     subcategory: 'Equipe'
@@ -247,7 +247,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'corretores-1',
     description: 'Corretores - Imagem 1',
-    localPath: '/imagens/Corretores/1.png',
+    localPath: '/imagens/corretor-imoveis-penha-picarras-1.jpg',
     recommendedSize: '400x400px',
     category: 'Corretores',
     subcategory: 'Fotos'
@@ -255,7 +255,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'corretores-2',
     description: 'Corretores - Imagem 2',
-    localPath: '/imagens/Corretores/2.png',
+    localPath: '/imagens/corretor-imoveis-penha-picarras-2.jpg',
     recommendedSize: '400x400px',
     category: 'Corretores',
     subcategory: 'Fotos'
@@ -263,7 +263,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'corretores-3',
     description: 'Corretores - Imagem 3',
-    localPath: '/imagens/Corretores/3.png',
+    localPath: '/imagens/corretor-imoveis-penha-picarras-3.jpg',
     recommendedSize: '400x400px',
     category: 'Corretores',
     subcategory: 'Fotos'
@@ -271,7 +271,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'corretores-4',
     description: 'Corretores - Imagem 4',
-    localPath: '/imagens/Corretores/4.png',
+    localPath: '/imagens/corretor-imoveis-penha-picarras-4.jpg',
     recommendedSize: '400x400px',
     category: 'Corretores',
     subcategory: 'Fotos'
@@ -281,7 +281,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'contato',
     description: 'Imagem de Contato',
-    localPath: '/imagens/Contato/Contato.png',
+    localPath: '/imagens/contato-nox-imoveis-penha-picarras.jpg',
     recommendedSize: '800x600px',
     category: 'Contato',
     subcategory: 'Principal'
@@ -291,7 +291,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'anunciar-imovel',
     description: 'Anunciar Imóvel',
-    localPath: '/imagens/Anunciar Imovel/Anunciar Imovel.png',
+    localPath: '/imagens/anunciar-imovel-nox-penha-picarras.jpg',
     recommendedSize: '800x600px',
     category: 'Anunciar',
     subcategory: 'Principal'
@@ -299,7 +299,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'anuncie-nox-mulher',
     description: 'Anuncie Nox - Mulher',
-    localPath: '/imagens/Anuncie Nox/Mulher.png',
+    localPath: '/imagens/anuncie-imovel-corretora-nox.jpg',
     recommendedSize: '400x600px',
     category: 'Anunciar',
     subcategory: 'Anuncie Nox'
@@ -309,7 +309,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'trabalhe-conosco',
     description: 'Trabalhe Conosco',
-    localPath: '/imagens/Trabalhe Conosco/Trabalhe Conosco.png',
+    localPath: '/imagens/trabalhe-conosco-nox-imoveis-corretor.jpg',
     recommendedSize: '800x600px',
     category: 'Trabalhe Conosco',
     subcategory: 'Principal'
@@ -319,7 +319,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'penha-hero',
     description: 'Banner Hero - Viva Penha',
-    localPath: '/imagens/banners/penha-hero.jpg',
+    localPath: '/imagens/banner-penha-sc-praia-turismo.jpg',
     recommendedSize: '1920x1080px',
     category: 'Viva Penha',
     subcategory: 'Banner'
@@ -327,7 +327,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'penha-praia-principal',
     description: 'Praia Principal - Penha',
-    localPath: '/imagens/penha/praia-principal.jpg',
+    localPath: '/imagens/praia-penha-sc-litoral-norte.jpg',
     recommendedSize: '800x600px',
     category: 'Viva Penha',
     subcategory: 'Praias'
@@ -335,7 +335,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'penha-praia-secundaria',
     description: 'Praia Secundária - Penha',
-    localPath: '/imagens/penha/praia-secundaria.jpg',
+    localPath: '/imagens/praia-armacao-penha-sc.jpg',
     recommendedSize: '800x600px',
     category: 'Viva Penha',
     subcategory: 'Praias'
@@ -343,7 +343,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'penha-praia1',
     description: 'Praia 1 - Penha',
-    localPath: '/imagens/penha/praia1.jpg',
+    localPath: '/imagens/praia-grande-penha-sc.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Penha',
     subcategory: 'Atrações'
@@ -351,7 +351,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'penha-cristo-luz',
     description: 'Cristo Luz - Penha',
-    localPath: '/imagens/penha/cristo-luz.jpg',
+    localPath: '/imagens/cristo-luz-penha-sc-ponto-turistico.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Penha',
     subcategory: 'Atrações'
@@ -359,7 +359,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'penha-beto-carrero',
     description: 'Beto Carrero World - Penha',
-    localPath: '/imagens/penha/beto-carrero.jpg',
+    localPath: '/imagens/beto-carrero-world-penha-sc.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Penha',
     subcategory: 'Atrações'
@@ -367,7 +367,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'penha-jantar-romantico',
     description: 'Jantar Romântico - Penha',
-    localPath: '/imagens/penha/jantar-romantico.jpg',
+    localPath: '/imagens/restaurante-penha-sc-gastronomia.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Penha',
     subcategory: 'Atrações'
@@ -375,7 +375,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'penha-praia2',
     description: 'Praia 2 - Penha',
-    localPath: '/imagens/penha/praia2.jpg',
+    localPath: '/imagens/praia-alegre-penha-sc.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Penha',
     subcategory: 'Atrações'
@@ -383,7 +383,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'penha-skyline',
     description: 'Skyline - Penha',
-    localPath: '/imagens/penha/skyline.jpg',
+    localPath: '/imagens/vista-aerea-penha-sc-litoral.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Penha',
     subcategory: 'Atrações'
@@ -393,7 +393,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'picarras-hero',
     description: 'Banner Hero - Viva Piçarras',
-    localPath: '/imagens/banners/picarras-hero.jpg',
+    localPath: '/imagens/banner-balneario-picarras-sc-praia.jpg',
     recommendedSize: '1920x1080px',
     category: 'Viva Piçarras',
     subcategory: 'Banner'
@@ -401,7 +401,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'picarras-praia-principal',
     description: 'Praia Principal - Piçarras',
-    localPath: '/imagens/picarras/praia-principal.jpg',
+    localPath: '/imagens/praia-balneario-picarras-sc.jpg',
     recommendedSize: '800x600px',
     category: 'Viva Piçarras',
     subcategory: 'Praias'
@@ -409,7 +409,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'picarras-praia-secundaria',
     description: 'Praia Secundária - Piçarras',
-    localPath: '/imagens/picarras/praia-secundaria.jpg',
+    localPath: '/imagens/praia-central-picarras-sc.jpg',
     recommendedSize: '800x600px',
     category: 'Viva Piçarras',
     subcategory: 'Praias'
@@ -417,7 +417,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'picarras-praia1',
     description: 'Praia 1 - Piçarras',
-    localPath: '/imagens/picarras/praia1.jpg',
+    localPath: '/imagens/orla-picarras-sc-litoral.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Piçarras',
     subcategory: 'Atrações'
@@ -425,7 +425,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'picarras-atracao1',
     description: 'Atração 1 - Piçarras',
-    localPath: '/imagens/picarras/atracao1.jpg',
+    localPath: '/imagens/ponto-turistico-picarras-sc-1.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Piçarras',
     subcategory: 'Atrações'
@@ -433,7 +433,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'picarras-atracao2',
     description: 'Atração 2 - Piçarras',
-    localPath: '/imagens/picarras/atracao2.jpg',
+    localPath: '/imagens/ponto-turistico-picarras-sc-2.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Piçarras',
     subcategory: 'Atrações'
@@ -441,7 +441,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'picarras-gastronomia',
     description: 'Gastronomia - Piçarras',
-    localPath: '/imagens/picarras/gastronomia.jpg',
+    localPath: '/imagens/restaurante-picarras-sc-gastronomia.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Piçarras',
     subcategory: 'Atrações'
@@ -449,7 +449,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'picarras-praia2',
     description: 'Praia 2 - Piçarras',
-    localPath: '/imagens/picarras/praia2.jpg',
+    localPath: '/imagens/beira-mar-picarras-sc.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Piçarras',
     subcategory: 'Atrações'
@@ -457,7 +457,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'picarras-skyline',
     description: 'Skyline - Piçarras',
-    localPath: '/imagens/picarras/skyline.jpg',
+    localPath: '/imagens/vista-aerea-picarras-sc-litoral.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Piçarras',
     subcategory: 'Atrações'
@@ -467,7 +467,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'barra-velha-hero',
     description: 'Banner Hero - Viva Barra Velha',
-    localPath: '/imagens/banners/barra-velha-hero.jpg',
+    localPath: '/imagens/banner-barra-velha-sc-praia.jpg',
     recommendedSize: '1920x1080px',
     category: 'Viva Barra Velha',
     subcategory: 'Banner'
@@ -475,7 +475,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'barra-velha-praia-principal',
     description: 'Praia Principal - Barra Velha',
-    localPath: '/imagens/barra-velha/praia-principal.jpg',
+    localPath: '/imagens/praia-barra-velha-sc-litoral.jpg',
     recommendedSize: '800x600px',
     category: 'Viva Barra Velha',
     subcategory: 'Praias'
@@ -483,7 +483,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'barra-velha-praia-secundaria',
     description: 'Praia Secundária - Barra Velha',
-    localPath: '/imagens/barra-velha/praia-secundaria.jpg',
+    localPath: '/imagens/praia-central-barra-velha-sc.jpg',
     recommendedSize: '800x600px',
     category: 'Viva Barra Velha',
     subcategory: 'Praias'
@@ -491,7 +491,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'barra-velha-praia1',
     description: 'Praia 1 - Barra Velha',
-    localPath: '/imagens/barra-velha/praia1.jpg',
+    localPath: '/imagens/orla-barra-velha-sc.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Barra Velha',
     subcategory: 'Atrações'
@@ -499,7 +499,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'barra-velha-atracao1',
     description: 'Atração 1 - Barra Velha',
-    localPath: '/imagens/barra-velha/atracao1.jpg',
+    localPath: '/imagens/ponto-turistico-barra-velha-sc-1.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Barra Velha',
     subcategory: 'Atrações'
@@ -507,7 +507,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'barra-velha-atracao2',
     description: 'Atração 2 - Barra Velha',
-    localPath: '/imagens/barra-velha/atracao2.jpg',
+    localPath: '/imagens/ponto-turistico-barra-velha-sc-2.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Barra Velha',
     subcategory: 'Atrações'
@@ -515,7 +515,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'barra-velha-gastronomia',
     description: 'Gastronomia - Barra Velha',
-    localPath: '/imagens/barra-velha/gastronomia.jpg',
+    localPath: '/imagens/restaurante-barra-velha-sc-gastronomia.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Barra Velha',
     subcategory: 'Atrações'
@@ -523,7 +523,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'barra-velha-praia2',
     description: 'Praia 2 - Barra Velha',
-    localPath: '/imagens/barra-velha/praia2.jpg',
+    localPath: '/imagens/beira-mar-barra-velha-sc.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Barra Velha',
     subcategory: 'Atrações'
@@ -531,7 +531,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'barra-velha-skyline',
     description: 'Skyline - Barra Velha',
-    localPath: '/imagens/barra-velha/skyline.jpg',
+    localPath: '/imagens/vista-aerea-barra-velha-sc-litoral.jpg',
     recommendedSize: '400x300px',
     category: 'Viva Barra Velha',
     subcategory: 'Atrações'
@@ -541,7 +541,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'quem-somos-hero',
     description: 'Banner Hero - Quem Somos',
-    localPath: '/imagens/banners/quem-somos-hero.jpg',
+    localPath: '/imagens/banner-quem-somos-nox-imoveis.jpg',
     recommendedSize: '1920x1080px',
     category: 'Quem Somos',
     subcategory: 'Banner'
@@ -549,7 +549,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'equipe-principal',
     description: 'Equipe Principal - Quem Somos',
-    localPath: '/imagens/equipe/equipe-principal.jpg',
+    localPath: '/imagens/equipe-nox-imoveis-penha-picarras.jpg',
     recommendedSize: '800x600px',
     category: 'Quem Somos',
     subcategory: 'Equipe'

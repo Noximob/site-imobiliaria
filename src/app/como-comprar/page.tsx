@@ -216,7 +216,7 @@ export default async function ComoComprarPage() {
             <div className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
                 <Image
-                  src="/imagens/Encontre Imovel/Apartamentos.png"
+                  src="/imagens/apartamentos-venda-penha-sc.jpg"
                   alt="Imóveis em Penha"
                   fill
                   className="object-cover"
@@ -235,7 +235,7 @@ export default async function ComoComprarPage() {
             <div className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
                 <Image
-                  src="/imagens/Encontre Imovel/Piçarras/Apartamento-Cobertura.png"
+                  src="/imagens/apartamento-cobertura-picarras-sc.jpg"
                   alt="Imóveis em Balneário Piçarras"
                   fill
                   className="object-cover"
@@ -254,7 +254,7 @@ export default async function ComoComprarPage() {
             <div className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
                 <Image
-                  src="/imagens/Encontre Imovel/Barra Velha/Lançamentos Frente mar.png"
+                  src="/imagens/lancamentos-frente-mar-barra-velha-sc.jpg"
                   alt="Imóveis em Barra Velha"
                   fill
                   className="object-cover"
@@ -329,7 +329,7 @@ export default async function ComoComprarPage() {
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
                 <Image
-                  src="/imagens/Encontre Imovel/Frente-Mar.png"
+                  src="/imagens/apartamentos-frente-mar-penha-sc.jpg"
                   alt="Praia - Investimento imobiliário"
                   fill
                   className="object-cover"
@@ -355,7 +355,7 @@ export default async function ComoComprarPage() {
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
                 <Image
-                  src="/imagens/Anuncie Nox/Mulher.png"
+                  src="/imagens/anuncie-imovel-corretora-nox.jpg"
                   alt="Equipe Nox Imóveis"
                   fill
                   className="object-cover"
