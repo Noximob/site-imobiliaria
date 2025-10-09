@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { ArrowLeft, Upload, Image as ImageIcon, Save, RefreshCw, Loader2, CheckCircle } from 'lucide-react'
+import { ArrowLeft, Upload, Image as ImageIcon, Save, RefreshCw, Loader2, CheckCircle, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { siteImagesConfig } from '@/lib/github-images'
@@ -160,6 +160,35 @@ export default function AdminImagens() {
 
   const getPendingImage = (imageId: string) => {
     return pendingImages.find(p => p.imageId === imageId)
+  }
+
+  const handleDeleteImage = async (imageId: string) => {
+    if (!confirm(`Tem certeza que deseja apagar a imagem "${imageId}"?`)) {
+      return
+    }
+
+    try {
+      const response = await fetch('/api/delete-github-image', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ imageId })
+      })
+
+      if (!response.ok) {
+        throw new Error('Erro ao apagar imagem')
+      }
+
+      alert(`✅ Imagem "${imageId}" apagada com sucesso!\n\n🔄 O site será atualizado automaticamente em ~2 minutos.`)
+      
+      // Recarregar imagens
+      await loadImages()
+      
+    } catch (error) {
+      console.error('Erro ao apagar imagem:', error)
+      alert('❌ Erro ao apagar imagem. Tente novamente.')
+    }
   }
 
   return (
@@ -333,13 +362,25 @@ export default function AdminImagens() {
                         </button>
                       </>
                     ) : (
-                      <button
-                        onClick={() => fileInputRefs.current[image.id]?.click()}
-                        className="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
-                      >
-                        <Upload className="w-4 h-4" />
-                        Selecionar
-                      </button>
+                      <>
+                        <button
+                          onClick={() => fileInputRefs.current[image.id]?.click()}
+                          className="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                        >
+                          <Upload className="w-4 h-4" />
+                          Selecionar
+                        </button>
+                        
+                        {image.currentPath && image.currentPath !== '/imagens/placeholder.png' && (
+                          <button
+                            onClick={() => handleDeleteImage(image.id)}
+                            className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-3 rounded-lg transition-colors flex items-center justify-center"
+                            title="Apagar imagem"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        )}
+                      </>
                     )}
                   </div>
 

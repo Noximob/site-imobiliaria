@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { uploadMultipleImages } from '@/lib/github'
+import { uploadImageToGitHub } from '@/lib/github'
 import { siteImagesConfig } from '@/lib/github-images'
 
 export async function POST(request: NextRequest) {
@@ -8,56 +8,49 @@ export async function POST(request: NextRequest) {
     const files = formData.getAll('files') as File[]
     const imageIds = formData.getAll('imageIds') as string[]
     
+    console.log('📦 Batch upload iniciado:', {
+      filesCount: files.length,
+      imageIdsCount: imageIds.length,
+      imageIds: imageIds
+    })
+    
     if (!files.length || !imageIds.length || files.length !== imageIds.length) {
+      console.error('❌ Validação falhou:', { files: files.length, imageIds: imageIds.length })
       return NextResponse.json(
         { error: 'Arquivos e IDs das imagens são obrigatórios' },
         { status: 400 }
       )
     }
     
-    // Validar cada arquivo
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i]
-      const imageId = imageIds[i]
-      
-      if (!file || !imageId) {
-        return NextResponse.json(
-          { error: `Arquivo ${i + 1} ou ID da imagem é obrigatório` },
-          { status: 400 }
-        )
-      }
-      
-      // Validar tipo de arquivo
-      if (!file.type.startsWith('image/')) {
-        return NextResponse.json(
-          { error: `Arquivo ${i + 1}: Apenas arquivos de imagem são permitidos` },
-          { status: 400 }
-        )
-      }
-      
-      // Validar tamanho (máximo 10MB)
-      if (file.size > 10 * 1024 * 1024) {
-        return NextResponse.json(
-          { error: `Arquivo ${i + 1}: Arquivo muito grande. Máximo 10MB` },
-          { status: 400 }
-        )
-      }
-      
-      // Buscar configuração da imagem
-      const imageConfig = siteImagesConfig.find(img => img.id === imageId)
-      if (!imageConfig) {
-        return NextResponse.json(
-          { error: `Imagem ${i + 1}: Configuração não encontrada` },
-          { status: 400 }
-        )
-      }
-    }
+    const results = []
     
-    // Preparar dados para upload em batch
-    const uploadData = await Promise.all(
-      files.map(async (file, index) => {
-        const imageId = imageIds[index]
-        const imageConfig = siteImagesConfig.find(img => img.id === imageId)!
+    // Processar cada arquivo individualmente
+    for (let i = 0; i < files.length; i++) {
+      try {
+        const file = files[i]
+        const imageId = imageIds[i]
+        
+        console.log(`📸 Processando imagem ${i + 1}/${files.length}:`, imageId)
+        
+        if (!file || !imageId) {
+          throw new Error(`Arquivo ${i + 1} ou ID da imagem é obrigatório`)
+        }
+        
+        // Validar tipo de arquivo
+        if (!file.type.startsWith('image/')) {
+          throw new Error(`Arquivo ${i + 1}: Apenas arquivos de imagem são permitidos`)
+        }
+        
+        // Validar tamanho (máximo 10MB)
+        if (file.size > 10 * 1024 * 1024) {
+          throw new Error(`Arquivo ${i + 1}: Arquivo muito grande. Máximo 10MB`)
+        }
+        
+        // Buscar configuração da imagem
+        const imageConfig = siteImagesConfig.find(img => img.id === imageId)
+        if (!imageConfig) {
+          throw new Error(`Imagem ${i + 1}: Configuração não encontrada para ID "${imageId}"`)
+        }
         
         // Converter File para Buffer
         const arrayBuffer = await file.arrayBuffer()
@@ -66,26 +59,55 @@ export async function POST(request: NextRequest) {
         // Caminho completo no GitHub
         const filePath = `public${imageConfig.localPath}`
         
-        return {
-          path: filePath,
-          buffer: buffer
-        }
-      })
-    )
+        console.log(`🚀 Uploading ${imageId} to ${filePath}`)
+        
+        // Fazer upload individual
+        const imageUrl = await uploadImageToGitHub(filePath, buffer)
+        
+        results.push({
+          imageId,
+          success: true,
+          url: imageUrl
+        })
+        
+        console.log(`✅ Sucesso: ${imageId}`)
+        
+      } catch (error) {
+        console.error(`❌ Erro na imagem ${i + 1}:`, error)
+        results.push({
+          imageId: imageIds[i] || `unknown_${i}`,
+          success: false,
+          error: error instanceof Error ? error.message : 'Erro desconhecido'
+        })
+      }
+    }
     
-    // Fazer upload em batch
-    const imageUrls = await uploadMultipleImages(uploadData)
+    const successCount = results.filter(r => r.success).length
+    const errorCount = results.filter(r => !r.success).length
+    
+    console.log(`📊 Resultado final: ${successCount} sucessos, ${errorCount} erros`)
+    
+    if (errorCount > 0) {
+      return NextResponse.json({
+        success: false,
+        message: `${successCount} imagem(ns) enviada(s), ${errorCount} erro(s)`,
+        results
+      }, { status: 207 }) // 207 = Multi-Status
+    }
     
     return NextResponse.json({
       success: true,
-      imageUrls: imageUrls,
-      message: `${files.length} imagem(ns) enviada(s) com sucesso! Aguarde o rebuild...`
+      message: `${files.length} imagem(ns) enviada(s) com sucesso! Aguarde o rebuild...`,
+      results
     })
     
   } catch (error) {
-    console.error('Erro no upload em batch:', error)
+    console.error('💥 Erro crítico no upload em batch:', error)
     return NextResponse.json(
-      { error: 'Erro interno do servidor' },
+      { 
+        error: 'Erro interno do servidor',
+        details: error instanceof Error ? error.message : 'Erro desconhecido'
+      },
       { status: 500 }
     )
   }
