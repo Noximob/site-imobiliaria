@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   // Busca imagens do Firebase no build
   const siteImages = await preloadAllImages()
-  
+
   return (
     <>
       
@@ -116,25 +116,17 @@ export default async function HomePage() {
         }}
       />
       
-      <div className="min-h-screen">
-        {/* Hero Section */}
-        <section className="relative text-white py-20 min-h-[600px] flex items-center overflow-hidden">
-          <img
-            src={siteImages['banner-home'] || '/imagens/banners/banner-home.png'}
-            alt="Banner Nox Imóveis"
-            loading="eager"
-            fetchPriority="high"
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center',
-              zIndex: 0
-            }}
-          />
+    <div className="min-h-screen">
+      {/* Hero Section */}
+        <section 
+          className="relative text-white py-20 min-h-[600px] flex items-center overflow-hidden"
+          style={{
+            backgroundImage: `url(${siteImages['banner-home'] || '/imagens/banners/banner-home.png'})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
         
           {/* Overlay para melhorar legibilidade do texto */}
         <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
@@ -841,7 +833,7 @@ export default async function HomePage() {
 
       {/* Seção Blog */}
       <BlogSection />
-      </div>
+                  </div>
     </>
   )
 }

@@ -16,6 +16,11 @@
     background-color: transparent !important;
     background-image: none !important;
   }
+  
+  /* Remove qualquer background cinza de elementos com background-image */
+  [style*="background-image"] {
+    background-color: transparent !important;
+  }
 }
 
 @layer components {
