@@ -8,70 +8,40 @@ const octokit = new Octokit({
 const REPO_OWNER = 'Noximob'
 const REPO_NAME = 'site-imobiliaria'
 
-// Função para otimizar imagem
-export async function optimizeImage(file: File): Promise<Buffer> {
-  return new Promise((resolve, reject) => {
-    const canvas = document.createElement('canvas')
-    const ctx = canvas.getContext('2d')
-    const img = new Image()
-    
-    img.onload = () => {
-      // Redimensionar para máximo 1200x800
-      const maxWidth = 1200
-      const maxHeight = 800
-      
-      let { width, height } = img
-      
-      if (width > maxWidth || height > maxHeight) {
-        const ratio = Math.min(maxWidth / width, maxHeight / height)
-        width *= ratio
-        height *= ratio
-      }
-      
-      canvas.width = width
-      canvas.height = height
-      
-      ctx?.drawImage(img, 0, 0, width, height)
-      
-      canvas.toBlob((blob) => {
-        if (blob) {
-          blob.arrayBuffer().then(buffer => {
-            resolve(Buffer.from(buffer))
-          })
-        } else {
-          reject(new Error('Erro ao otimizar imagem'))
-        }
-      }, 'image/webp', 0.9)
-    }
-    
-    img.onerror = () => reject(new Error('Erro ao carregar imagem'))
-    img.src = URL.createObjectURL(file)
-  })
-}
-
-// Função para fazer upload de imagem para o GitHub
+// Função para fazer upload de imagem para o GitHub (SEM OTIMIZAÇÃO)
 export async function uploadImageToGitHub(
-  imageId: string, 
-  file: File, 
-  category: string = 'site'
+  filePath: string,
+  fileBuffer: Buffer
 ): Promise<string> {
   try {
-    // Otimizar imagem
-    const optimizedImage = await optimizeImage(file)
-    const content = optimizedImage.toString('base64')
+    const content = fileBuffer.toString('base64')
     
-    // Determinar caminho baseado na categoria
-    const basePath = category === 'imoveis' ? 'public/imoveis' : 'public/imagens'
-    const filePath = `${basePath}/${imageId}.webp`
+    // Tentar pegar SHA do arquivo existente (para sobrescrever)
+    let sha: string | undefined
+    try {
+      const existingFile = await octokit.repos.getContent({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        path: filePath,
+        ref: 'main'
+      })
+      
+      if ('sha' in existingFile.data) {
+        sha = existingFile.data.sha
+      }
+    } catch (error) {
+      // Arquivo não existe, está ok
+    }
     
     // Fazer commit no GitHub
-    const response = await octokit.repos.createOrUpdateFileContents({
+    await octokit.repos.createOrUpdateFileContents({
       owner: REPO_OWNER,
       repo: REPO_NAME,
       path: filePath,
-      message: `Admin: Atualiza ${imageId}`,
+      message: `Admin: Atualiza ${filePath}`,
       content: content,
-      branch: 'main'
+      branch: 'main',
+      ...(sha && { sha })
     })
     
     // Retornar URL da imagem
@@ -83,49 +53,18 @@ export async function uploadImageToGitHub(
   }
 }
 
-// Função para listar imagens existentes
-export async function listImages(): Promise<string[]> {
+// Função para fazer upload em batch (múltiplas imagens)
+export async function uploadMultipleImages(
+  files: Array<{ path: string; buffer: Buffer }>
+): Promise<string[]> {
   try {
-    const response = await octokit.repos.getContent({
-      owner: REPO_OWNER,
-      repo: REPO_NAME,
-      path: 'public/imagens'
-    })
+    const uploadPromises = files.map(file => 
+      uploadImageToGitHub(file.path, file.buffer)
+    )
     
-    if (Array.isArray(response.data)) {
-      return response.data
-        .filter(item => item.type === 'file')
-        .map(item => item.name)
-    }
-    
-    return []
+    return await Promise.all(uploadPromises)
   } catch (error) {
-    console.error('Erro ao listar imagens:', error)
-    return []
-  }
-}
-
-// Função para deletar imagem
-export async function deleteImage(imagePath: string): Promise<void> {
-  try {
-    // Primeiro, buscar o SHA do arquivo
-    const fileResponse = await octokit.repos.getContent({
-      owner: REPO_OWNER,
-      repo: REPO_NAME,
-      path: imagePath
-    })
-    
-    if ('sha' in fileResponse.data) {
-      await octokit.repos.deleteFile({
-        owner: REPO_OWNER,
-        repo: REPO_NAME,
-        path: imagePath,
-        message: `Admin: Remove ${imagePath}`,
-        sha: fileResponse.data.sha
-      })
-    }
-  } catch (error) {
-    console.error('Erro ao deletar imagem:', error)
-    throw new Error('Erro ao deletar imagem')
+    console.error('Erro ao fazer upload em batch:', error)
+    throw new Error('Erro ao fazer upload das imagens')
   }
 }

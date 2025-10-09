@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { uploadImageToGitHub } from '@/lib/github'
+import { siteImagesConfig } from '@/lib/github-images'
 
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData()
     const file = formData.get('file') as File
     const imageId = formData.get('imageId') as string
-    const category = formData.get('category') as string || 'site'
     
     if (!file || !imageId) {
       return NextResponse.json(
@@ -31,8 +31,24 @@ export async function POST(request: NextRequest) {
       )
     }
     
-    // Fazer upload para GitHub
-    const imageUrl = await uploadImageToGitHub(imageId, file, category)
+    // Buscar configuração da imagem
+    const imageConfig = siteImagesConfig.find(img => img.id === imageId)
+    if (!imageConfig) {
+      return NextResponse.json(
+        { error: 'Configuração da imagem não encontrada' },
+        { status: 400 }
+      )
+    }
+    
+    // Converter File para Buffer
+    const arrayBuffer = await file.arrayBuffer()
+    const buffer = Buffer.from(arrayBuffer)
+    
+    // Caminho completo no GitHub (ex: public/imagens/Logo.png)
+    const filePath = `public${imageConfig.localPath}`
+    
+    // Fazer upload para GitHub (SEM OTIMIZAÇÃO)
+    const imageUrl = await uploadImageToGitHub(filePath, buffer)
     
     return NextResponse.json({
       success: true,
