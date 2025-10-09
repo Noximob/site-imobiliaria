@@ -291,7 +291,8 @@ export default async function HomePage() {
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
                   <Image 
                     src={siteImages['lancamentos-investidor'] || '/imagens/Cidades/Penha/Lançamentos Investidor.jpg'}
-                    alt="Lançamentos Investidor" 
+                    alt="Lançamentos de imóveis para investidores em Penha - Apartamentos e casas na planta" 
+                    title="Lançamentos Investidor - Penha SC"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"

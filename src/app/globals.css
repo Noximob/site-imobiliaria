@@ -21,6 +21,24 @@
   [style*="background-image"] {
     background-color: transparent !important;
   }
+  
+  /* FADE-IN SUAVE para imagens que carregam */
+  img {
+    opacity: 0;
+    animation: fadeIn 0.3s ease-in forwards;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Background images já aparecem sem fade (são instantâneas) */
+  [style*="background-image"] {
+    opacity: 1 !important;
+    animation: none !important;
+  }
 }
 
 @layer components {
