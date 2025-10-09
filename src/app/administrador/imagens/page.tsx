@@ -306,7 +306,9 @@ export default function AdminImagens() {
 
                   {/* Hidden File Input */}
                   <input
-                    ref={(el) => (fileInputRefs.current[image.id] = el)}
+                    ref={(el) => {
+                      fileInputRefs.current[image.id] = el
+                    }}
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
