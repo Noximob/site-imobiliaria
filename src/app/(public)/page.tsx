@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { Search } from 'lucide-react'
 import SearchForm from '@/components/SearchForm'
 import BlogSection from '@/components/BlogSection'
-import { preloadAllImages } from '@/lib/preload-images'
+import { getAllImages } from '@/lib/github-images'
 import type { Metadata } from 'next'
 
 // Revalida a cada 24 horas
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  // Busca imagens do Firebase no build
-  const siteImages = await preloadAllImages()
+  // Busca imagens do GitHub (locais)
+  const siteImages = getAllImages()
 
   return (
     <>

@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { ArrowLeft, Upload, Image as ImageIcon, Save, RefreshCw, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getAllSiteImages, uploadSiteImage, siteImagesConfig } from '@/lib/site-images'
+import { siteImagesConfig } from '@/lib/github-images'
 
 interface SiteImage {
   id: string
@@ -22,26 +22,22 @@ export default function AdminImagens() {
   const [previewUrls, setPreviewUrls] = useState<{ [key: string]: string }>({})
   const [isLoading, setIsLoading] = useState<{ [key: string]: boolean }>({})
   const [siteImages, setSiteImages] = useState<SiteImage[]>([])
-  const [firebaseImages, setFirebaseImages] = useState<{ [key: string]: string }>({})
   const [isPublishing, setIsPublishing] = useState(false)
   const [hasChanges, setHasChanges] = useState(false)
   const fileInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({})
 
-  // Carregar imagens do Firebase
+  // Carregar imagens locais
   useEffect(() => {
     loadImages()
   }, [])
 
   const loadImages = async () => {
     try {
-      const fbImages = await getAllSiteImages()
-      setFirebaseImages(fbImages)
-      
-      // Criar lista de imagens com URLs do Firebase ou local
+      // Usar apenas imagens locais (GitHub)
       const imagesWithUrls = siteImagesConfig.map(img => ({
         id: img.id,
         description: img.description,
-        currentPath: fbImages[img.id] || img.localPath,
+        currentPath: img.localPath,
         recommendedSize: img.recommendedSize,
         category: img.category,
         subcategory: img.subcategory,
@@ -96,11 +92,26 @@ export default function AdminImagens() {
     setIsLoading(prev => ({ ...prev, [imageId]: true }))
 
     try {
-      const downloadURL = await uploadSiteImage(imageId, file)
+      // Upload para GitHub
+      const formData = new FormData()
+      formData.append('file', file)
+      formData.append('imageId', imageId)
+      formData.append('category', 'site')
+      
+      const response = await fetch('/api/upload-to-github', {
+        method: 'POST',
+        body: formData
+      })
+      
+      if (!response.ok) {
+        throw new Error('Erro no upload')
+      }
+      
+      const result = await response.json()
       
       // Atualizar a lista de imagens
       setSiteImages(prev => prev.map(img => 
-        img.id === imageId ? { ...img, currentPath: downloadURL } : img
+        img.id === imageId ? { ...img, currentPath: result.imageUrl } : img
       ))
       
       // Limpar seleção
@@ -109,7 +120,7 @@ export default function AdminImagens() {
       // Marcar que há mudanças não publicadas
       setHasChanges(true)
       
-      alert('Imagem salva no Firebase! Clique em "Publicar Alterações" para atualizar o site.')
+      alert('Imagem enviada para GitHub! Aguarde o rebuild automático (~2min)...')
     } catch (error) {
       console.error('Erro ao salvar imagem:', error)
       alert('Erro ao salvar imagem. Tente novamente.')
@@ -118,37 +129,7 @@ export default function AdminImagens() {
     }
   }
 
-  const handlePublishChanges = async () => {
-    if (!hasChanges) {
-      alert('Não há alterações para publicar.')
-      return
-    }
-
-    if (!confirm('Isso vai fazer um rebuild do site no Netlify (1-2 minutos). Deseja continuar?')) {
-      return
-    }
-
-    setIsPublishing(true)
-
-    try {
-      // Disparar webhook do Netlify
-      const response = await fetch('/api/trigger-deploy', {
-        method: 'POST'
-      })
-
-      if (response.ok) {
-        alert('Deploy iniciado com sucesso! O site será atualizado em 1-2 minutos.')
-        setHasChanges(false)
-      } else {
-        throw new Error('Erro ao disparar deploy')
-      }
-    } catch (error) {
-      console.error('Erro ao publicar alterações:', error)
-      alert('Erro ao publicar alterações. Tente novamente.')
-    } finally {
-      setIsPublishing(false)
-    }
-  }
+  // Função removida - não é mais necessária com GitHub (rebuild automático)
 
   const handleResetImage = (imageId: string) => {
     setSelectedFiles(prev => {
@@ -189,38 +170,23 @@ export default function AdminImagens() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Botão Publicar Alterações - Fixo no topo */}
+        {/* Status de Alterações */}
         {hasChanges && (
-          <div className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-4 mb-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-semibold text-yellow-800 mb-1">
-                  ⚠️ Você tem alterações não publicadas
+          <div className="bg-green-50 border-2 border-green-400 rounded-lg p-4 mb-6">
+            <div className="flex items-center">
+              <div className="flex-shrink-0">
+                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div className="ml-3">
+                <p className="text-sm font-semibold text-green-800">
+                  ✅ Imagem enviada com sucesso!
                 </p>
-                <p className="text-xs text-yellow-700">
-                  As imagens foram salvas no Firebase, mas o site ainda não foi atualizado. 
-                  Clique em "Publicar Alterações" para fazer o deploy.
+                <p className="text-xs text-green-700">
+                  A imagem foi enviada para GitHub e o site será atualizado automaticamente em ~2 minutos.
                 </p>
               </div>
-              <button
-                onClick={handlePublishChanges}
-                disabled={isPublishing}
-                className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2"
-              >
-                {isPublishing ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    <span>Publicando...</span>
-                  </>
-                ) : (
-                  <>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Publicar Alterações</span>
-                  </>
-                )}
-              </button>
             </div>
           </div>
         )}
@@ -230,7 +196,7 @@ export default function AdminImagens() {
           <p className="text-sm text-blue-800">
             <strong>Instruções:</strong> Para cada imagem, você verá a versão atual em miniatura. 
             Clique em "Selecionar Nova Imagem" para escolher uma nova foto. 
-            Depois de salvar, clique em "Publicar Alterações" para atualizar o site.
+            Após salvar, a imagem será enviada para GitHub e o site será atualizado automaticamente (~2min).
           </p>
         </div>
 

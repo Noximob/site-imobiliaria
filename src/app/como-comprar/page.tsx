@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { CheckCircle, Users, FileText, Home, Shield, CreditCard, Calculator, Phone, Mail, MapPin, Building, Award } from 'lucide-react'
-import { preloadAllImages } from '@/lib/preload-images'
+import { getAllImages } from '@/lib/github-images'
 
 export const metadata: Metadata = {
   title: 'Como Comprar um Imóvel - Guia Completo | Nox Imóveis',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 export const revalidate = 86400
 
 export default async function ComoComprarPage() {
-  const siteImages = await preloadAllImages()
+  const siteImages = getAllImages()
   
   return (
     <>
