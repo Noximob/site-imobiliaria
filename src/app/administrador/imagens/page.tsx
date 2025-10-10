@@ -21,10 +21,16 @@ interface PendingImage {
   previewUrl: string
 }
 
+interface PendingDelete {
+  imageId: string
+  description: string
+}
+
 export default function AdminImagens() {
   const [selectedCategory, setSelectedCategory] = useState('Todas')
   const [searchTerm, setSearchTerm] = useState('')
   const [pendingImages, setPendingImages] = useState<PendingImage[]>([])
+  const [pendingDeletes, setPendingDeletes] = useState<PendingDelete[]>([])
   const [siteImages, setSiteImages] = useState<SiteImage[]>([])
   const [isPublishing, setIsPublishing] = useState(false)
   const fileInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({})
@@ -162,32 +168,66 @@ export default function AdminImagens() {
     return pendingImages.find(p => p.imageId === imageId)
   }
 
-  const handleDeleteImage = async (imageId: string) => {
-    if (!confirm(`Tem certeza que deseja apagar a imagem "${imageId}"?`)) {
+  const isPendingDelete = (imageId: string) => {
+    return pendingDeletes.some(p => p.imageId === imageId)
+  }
+
+  const handleMarkForDelete = (imageId: string, description: string) => {
+    // Adicionar à lista de pendentes para deletar
+    setPendingDeletes(prev => {
+      if (prev.find(p => p.imageId === imageId)) {
+        return prev // Já está na lista
+      }
+      return [...prev, { imageId, description }]
+    })
+  }
+
+  const handleCancelDelete = (imageId: string) => {
+    setPendingDeletes(prev => prev.filter(p => p.imageId !== imageId))
+  }
+
+  const handlePublishDeletes = async () => {
+    if (pendingDeletes.length === 0) {
+      alert('Nenhuma imagem para apagar')
       return
     }
 
+    if (!confirm(`Você vai apagar ${pendingDeletes.length} imagem(ns). O site será atualizado em ~2 minutos. Deseja continuar?`)) {
+      return
+    }
+
+    setIsPublishing(true)
+
     try {
-      const response = await fetch('/api/delete-github-image', {
+      const imageIds = pendingDeletes.map(d => d.imageId)
+      
+      const response = await fetch('/api/delete-batch-github', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ imageId })
+        body: JSON.stringify({ imageIds })
       })
 
       if (!response.ok) {
-        throw new Error('Erro ao apagar imagem')
+        throw new Error('Erro ao apagar imagens')
       }
 
-      alert(`✅ Imagem "${imageId}" apagada com sucesso!\n\n🔄 O site será atualizado automaticamente em ~2 minutos.`)
-      
+      const result = await response.json()
+
+      // Limpar lista de pendentes
+      setPendingDeletes([])
+
       // Recarregar imagens
       await loadImages()
+
+      alert(`✅ ${pendingDeletes.length} imagem(ns) apagada(s) com sucesso!\n\n🔄 O site será atualizado automaticamente em ~2 minutos.`)
       
     } catch (error) {
-      console.error('Erro ao apagar imagem:', error)
-      alert('❌ Erro ao apagar imagem. Tente novamente.')
+      console.error('Erro ao apagar imagens:', error)
+      alert('❌ Erro ao apagar algumas imagens. Tente novamente.')
+    } finally {
+      setIsPublishing(false)
     }
   }
 
@@ -224,7 +264,7 @@ export default function AdminImagens() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Botão Publicar - Fixo no topo */}
+        {/* Botão Publicar Uploads - Fixo no topo */}
         {pendingImages.length > 0 && (
           <div className="bg-purple-50 border-2 border-purple-400 rounded-lg p-4 mb-6 sticky top-4 z-10">
             <div className="flex items-center justify-between">
@@ -250,6 +290,39 @@ export default function AdminImagens() {
                   <>
                     <CheckCircle className="w-5 h-5" />
                     <span>Publicar Alterações</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Botão Publicar Deletes - Fixo no topo */}
+        {pendingDeletes.length > 0 && (
+          <div className="bg-red-50 border-2 border-red-400 rounded-lg p-4 mb-6 sticky top-4 z-10">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-semibold text-red-800 mb-1">
+                  🗑️ {pendingDeletes.length} imagem(ns) marcada(s) para apagar
+                </p>
+                <p className="text-xs text-red-700">
+                  Clique em "Apagar Selecionadas" para remover todas de uma vez (~2min de rebuild)
+                </p>
+              </div>
+              <button
+                onClick={handlePublishDeletes}
+                disabled={isPublishing}
+                className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {isPublishing ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span>Apagando...</span>
+                  </>
+                ) : (
+                  <>
+                    <Trash2 className="w-5 h-5" />
+                    <span>Apagar Selecionadas</span>
                   </>
                 )}
               </button>
@@ -302,9 +375,10 @@ export default function AdminImagens() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredImages.map((image) => {
             const pending = getPendingImage(image.id)
+            const markedForDelete = isPendingDelete(image.id)
             
             return (
-              <div key={image.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+              <div key={image.id} className={`bg-white rounded-lg shadow-md overflow-hidden ${markedForDelete ? 'ring-2 ring-red-500' : ''}`}>
                 <div className="p-4">
                   <h3 className="font-semibold text-gray-900 mb-1">{image.description}</h3>
                   <p className="text-xs text-gray-500 mb-2">
@@ -327,6 +401,20 @@ export default function AdminImagens() {
                           />
                           <div className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
                             NOVA
+                          </div>
+                        </>
+                      ) : markedForDelete ? (
+                        <>
+                          <Image
+                            src={image.currentPath}
+                            alt={image.description}
+                            fill
+                            className="object-cover opacity-50"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="bg-red-600 text-white text-sm font-bold px-4 py-2 rounded-lg">
+                              🗑️ SERÁ APAGADA
+                            </div>
                           </div>
                         </>
                       ) : image.currentPath && image.currentPath !== '/imagens/placeholder.png' ? (
@@ -361,6 +449,16 @@ export default function AdminImagens() {
                           Cancelar
                         </button>
                       </>
+                    ) : markedForDelete ? (
+                      <>
+                        <button
+                          onClick={() => handleCancelDelete(image.id)}
+                          className="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                        >
+                          <RefreshCw className="w-4 h-4" />
+                          Cancelar Exclusão
+                        </button>
+                      </>
                     ) : (
                       <>
                         <button
@@ -373,9 +471,9 @@ export default function AdminImagens() {
                         
                         {image.currentPath && image.currentPath !== '/imagens/placeholder.png' && (
                           <button
-                            onClick={() => handleDeleteImage(image.id)}
+                            onClick={() => handleMarkForDelete(image.id, image.description)}
                             className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-3 rounded-lg transition-colors flex items-center justify-center"
-                            title="Apagar imagem"
+                            title="Marcar para apagar"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
