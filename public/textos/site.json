@@ -105,7 +105,7 @@
           "section": "Encontre Imóvel - Penha"
         },
         "lancamentos_investidor": {
-          "value": "Lançamentos Investidor",
+          "value": "Lançamentos Investido",
           "type": "link",
           "label": "🏗️ Lançamentos Investidor",
           "hint": "Texto do link de lançamentos",
@@ -113,7 +113,7 @@
           "section": "Encontre Imóvel - Penha"
         },
         "frente_mar": {
-          "value": "Frente-Mar",
+          "value": "Frente-Marr",
           "type": "link",
           "label": "🌊 Frente-Mar",
           "hint": "Texto do link frente-mar",
