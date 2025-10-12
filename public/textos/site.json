@@ -1,0 +1,806 @@
+{
+  "header": {
+    "telefone": {
+      "value": "(47) 99753-0113",
+      "type": "contato",
+      "label": "📞 Telefone",
+      "hint": "Telefone principal para contato",
+      "maxLength": 20,
+      "section": "Header"
+    },
+    "menu_imoveis_penha": {
+      "value": "Imóveis em Penha",
+      "type": "link",
+      "label": "🔗 Menu - Penha",
+      "hint": "Texto do menu dropdown",
+      "maxLength": 30,
+      "section": "Header"
+    },
+    "menu_imoveis_picarras": {
+      "value": "Imóveis em Balneário Piçarras",
+      "type": "link",
+      "label": "🔗 Menu - Piçarras",
+      "hint": "Texto do menu dropdown",
+      "maxLength": 40,
+      "section": "Header"
+    },
+    "menu_imoveis_barra_velha": {
+      "value": "Imóveis em Barra Velha",
+      "type": "link",
+      "label": "🔗 Menu - Barra Velha",
+      "hint": "Texto do menu dropdown",
+      "maxLength": 40,
+      "section": "Header"
+    }
+  },
+  "footer": {
+    "telefone": {
+      "value": "(47) 99753-0113",
+      "type": "contato",
+      "label": "📞 Telefone",
+      "hint": "Telefone no rodapé",
+      "maxLength": 20,
+      "section": "Footer"
+    },
+    "texto_acompanhe": {
+      "value": "Acompanhe nossas redes sociais",
+      "type": "texto",
+      "label": "📱 Texto Acompanhe",
+      "hint": "Texto para redes sociais",
+      "maxLength": 50,
+      "section": "Footer"
+    },
+    "copyright": {
+      "value": "© 2024 Nox Imóveis. Todos os direitos reservados.",
+      "type": "texto",
+      "label": "© Copyright",
+      "hint": "Texto de copyright",
+      "maxLength": 60,
+      "section": "Footer"
+    }
+  },
+  "home": {
+    "banner": {
+      "titulo": {
+        "value": "Imóveis em Penha, Balneário Piçarras e Barra Velha",
+        "type": "titulo",
+        "label": "📌 Título (H1)",
+        "hint": "Título principal da página (50-60 caracteres)",
+        "maxLength": 60,
+        "section": "Banner Principal"
+      },
+      "subtitulo": {
+        "value": "Encontre o imóvel dos seus sonhos no litoral catarinense",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do banner",
+        "maxLength": 70,
+        "section": "Banner Principal"
+      },
+      "botao_principal": {
+        "value": "Ver Imóveis",
+        "type": "botao",
+        "label": "🔘 Botão Principal",
+        "hint": "Texto do botão principal",
+        "maxLength": 20,
+        "section": "Banner Principal"
+      }
+    },
+    "encontre_imovel": {
+      "titulo": {
+        "value": "Encontre seu Imóvel",
+        "type": "titulo",
+        "label": "📌 Título Seção",
+        "hint": "Título da seção de imóveis",
+        "maxLength": 30,
+        "section": "Encontre Imóvel"
+      },
+      "penha": {
+        "titulo": {
+          "value": "Penha",
+          "type": "titulo",
+          "label": "🏖️ Título Penha",
+          "hint": "Título da cidade Penha",
+          "maxLength": 20,
+          "section": "Encontre Imóvel - Penha"
+        },
+        "lancamentos_investidor": {
+          "value": "Lançamentos Investidor",
+          "type": "link",
+          "label": "🏗️ Lançamentos Investidor",
+          "hint": "Texto do link de lançamentos",
+          "maxLength": 30,
+          "section": "Encontre Imóvel - Penha"
+        },
+        "frente_mar": {
+          "value": "Frente-Mar",
+          "type": "link",
+          "label": "🌊 Frente-Mar",
+          "hint": "Texto do link frente-mar",
+          "maxLength": 20,
+          "section": "Encontre Imóvel - Penha"
+        },
+        "apartamentos": {
+          "value": "Apartamentos",
+          "type": "link",
+          "label": "🏢 Apartamentos",
+          "hint": "Texto do link apartamentos",
+          "maxLength": 20,
+          "section": "Encontre Imóvel - Penha"
+        }
+      },
+      "picarras": {
+        "titulo": {
+          "value": "Balneário Piçarras",
+          "type": "titulo",
+          "label": "🏖️ Título Piçarras",
+          "hint": "Título da cidade Piçarras",
+          "maxLength": 30,
+          "section": "Encontre Imóvel - Piçarras"
+        },
+        "apartamento_cobertura": {
+          "value": "Apartamento Cobertura",
+          "type": "link",
+          "label": "🏢 Apartamento Cobertura",
+          "hint": "Texto do link cobertura",
+          "maxLength": 30,
+          "section": "Encontre Imóvel - Piçarras"
+        },
+        "lancamentos": {
+          "value": "Lançamentos",
+          "type": "link",
+          "label": "🏗️ Lançamentos",
+          "hint": "Texto do link lançamentos",
+          "maxLength": 20,
+          "section": "Encontre Imóvel - Piçarras"
+        },
+        "mobiliado": {
+          "value": "Mobiliado",
+          "type": "link",
+          "label": "🛋️ Mobiliado",
+          "hint": "Texto do link mobiliado",
+          "maxLength": 20,
+          "section": "Encontre Imóvel - Piçarras"
+        },
+        "vista_mar": {
+          "value": "Vista-Mar",
+          "type": "link",
+          "label": "🌊 Vista-Mar",
+          "hint": "Texto do link vista-mar",
+          "maxLength": 20,
+          "section": "Encontre Imóvel - Piçarras"
+        }
+      },
+      "barra_velha": {
+        "titulo": {
+          "value": "Barra Velha",
+          "type": "titulo",
+          "label": "🏖️ Título Barra Velha",
+          "hint": "Título da cidade Barra Velha",
+          "maxLength": 20,
+          "section": "Encontre Imóvel - Barra Velha"
+        },
+        "em_construcao": {
+          "value": "Em Construção",
+          "type": "link",
+          "label": "🏗️ Em Construção",
+          "hint": "Texto do link em construção",
+          "maxLength": 20,
+          "section": "Encontre Imóvel - Barra Velha"
+        },
+        "imoveis_prontos": {
+          "value": "Imóveis Prontos",
+          "type": "link",
+          "label": "🏠 Imóveis Prontos",
+          "hint": "Texto do link imóveis prontos",
+          "maxLength": 20,
+          "section": "Encontre Imóvel - Barra Velha"
+        },
+        "lancamentos_frente_mar": {
+          "value": "Lançamentos Frente-Mar",
+          "type": "link",
+          "label": "🌊 Lançamentos Frente-Mar",
+          "hint": "Texto do link lançamentos frente-mar",
+          "maxLength": 30,
+          "section": "Encontre Imóvel - Barra Velha"
+        }
+      },
+      "outros": {
+        "mobiliados": {
+          "value": "Mobiliados",
+          "type": "link",
+          "label": "🛋️ Mobiliados",
+          "hint": "Texto do link mobiliados",
+          "maxLength": 20,
+          "section": "Outros Imóveis"
+        }
+      }
+    },
+    "imoveis_na_planta": {
+      "titulo": {
+        "value": "Imóveis na Planta",
+        "type": "titulo",
+        "label": "📌 Título Seção",
+        "hint": "Título da seção imóveis na planta",
+        "maxLength": 30,
+        "section": "Imóveis na Planta"
+      },
+      "descricao": {
+        "value": "Conheça nossos lançamentos e garante já o seu imóvel",
+        "type": "texto",
+        "label": "📝 Descrição",
+        "hint": "Descrição da seção",
+        "maxLength": 70,
+        "section": "Imóveis na Planta"
+      }
+    },
+    "selecao_nox": {
+      "titulo": {
+        "value": "Seleção Nox",
+        "type": "titulo",
+        "label": "📌 Título Seção",
+        "hint": "Título da seção seleção Nox",
+        "maxLength": 20,
+        "section": "Seleção Nox"
+      },
+      "descricao": {
+        "value": "Os melhores imóveis selecionados especialmente para você",
+        "type": "texto",
+        "label": "📝 Descrição",
+        "hint": "Descrição da seção",
+        "maxLength": 70,
+        "section": "Seleção Nox"
+      }
+    }
+  },
+  "anunciar": {
+    "hero": {
+      "titulo": {
+        "value": "Anuncie seu Imóvel",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página",
+        "maxLength": 30,
+        "section": "Banner"
+      },
+      "subtitulo": {
+        "value": "Venda ou alugue seu imóvel com a Nox Imóveis",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do banner",
+        "maxLength": 60,
+        "section": "Banner"
+      }
+    },
+    "anuncie_nox": {
+      "titulo": {
+        "value": "Anuncie na Nox",
+        "type": "titulo",
+        "label": "📌 Título Seção",
+        "hint": "Título da seção anuncie Nox",
+        "maxLength": 20,
+        "section": "Anuncie Nox"
+      },
+      "descricao": {
+        "value": "Nossa equipe especializada está pronta para te ajudar a vender ou alugar seu imóvel",
+        "type": "texto",
+        "label": "📝 Descrição",
+        "hint": "Descrição da seção",
+        "maxLength": 100,
+        "section": "Anuncie Nox"
+      }
+    }
+  },
+  "encontre_meu_imovel": {
+    "hero": {
+      "titulo": {
+        "value": "Encontre Meu Imóvel",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página",
+        "maxLength": 30,
+        "section": "Banner"
+      },
+      "subtitulo": {
+        "value": "Deixe que nossa equipe encontre o imóvel perfeito para você",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do banner",
+        "maxLength": 80,
+        "section": "Banner"
+      }
+    },
+    "equipe": {
+      "titulo": {
+        "value": "Nossa Equipe",
+        "type": "titulo",
+        "label": "📌 Título Seção",
+        "hint": "Título da seção equipe",
+        "maxLength": 20,
+        "section": "Equipe"
+      },
+      "descricao": {
+        "value": "Corretores especializados prontos para te atender",
+        "type": "texto",
+        "label": "📝 Descrição",
+        "hint": "Descrição da seção",
+        "maxLength": 70,
+        "section": "Equipe"
+      }
+    }
+  },
+  "como_comprar": {
+    "hero": {
+      "titulo": {
+        "value": "Como Comprar um Imóvel",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página",
+        "maxLength": 30,
+        "section": "Banner"
+      },
+      "subtitulo": {
+        "value": "Guia completo para realizar o sonho da casa própria",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do banner",
+        "maxLength": 70,
+        "section": "Banner"
+      }
+    },
+    "passos": {
+      "titulo": {
+        "value": "Passo a Passo",
+        "type": "titulo",
+        "label": "📌 Título Seção",
+        "hint": "Título da seção passos",
+        "maxLength": 20,
+        "section": "Passos"
+      },
+      "passo_1": {
+        "titulo": {
+          "value": "1. Pesquisa e Análise",
+          "type": "titulo",
+          "label": "🔍 Passo 1 - Título",
+          "hint": "Título do passo 1",
+          "maxLength": 30,
+          "section": "Passos"
+        },
+        "descricao": {
+          "value": "Defina suas necessidades e pesquise opções disponíveis",
+          "type": "texto",
+          "label": "📝 Passo 1 - Descrição",
+          "hint": "Descrição do passo 1",
+          "maxLength": 80,
+          "section": "Passos"
+        }
+      },
+      "passo_2": {
+        "titulo": {
+          "value": "2. Visita ao Imóvel",
+          "type": "titulo",
+          "label": "🏠 Passo 2 - Título",
+          "hint": "Título do passo 2",
+          "maxLength": 30,
+          "section": "Passos"
+        },
+        "descricao": {
+          "value": "Agende uma visita para conhecer o imóvel pessoalmente",
+          "type": "texto",
+          "label": "📝 Passo 2 - Descrição",
+          "hint": "Descrição do passo 2",
+          "maxLength": 80,
+          "section": "Passos"
+        }
+      },
+      "passo_3": {
+        "titulo": {
+          "value": "3. Financiamento",
+          "type": "titulo",
+          "label": "💰 Passo 3 - Título",
+          "hint": "Título do passo 3",
+          "maxLength": 30,
+          "section": "Passos"
+        },
+        "descricao": {
+          "value": "Analise as opções de financiamento disponíveis",
+          "type": "texto",
+          "label": "📝 Passo 3 - Descrição",
+          "hint": "Descrição do passo 3",
+          "maxLength": 80,
+          "section": "Passos"
+        }
+      },
+      "passo_4": {
+        "titulo": {
+          "value": "4. Documentação",
+          "type": "titulo",
+          "label": "📄 Passo 4 - Título",
+          "hint": "Título do passo 4",
+          "maxLength": 30,
+          "section": "Passos"
+        },
+        "descricao": {
+          "value": "Prepare toda a documentação necessária",
+          "type": "texto",
+          "label": "📝 Passo 4 - Descrição",
+          "hint": "Descrição do passo 4",
+          "maxLength": 80,
+          "section": "Passos"
+        }
+      },
+      "passo_5": {
+        "titulo": {
+          "value": "5. Escritura",
+          "type": "titulo",
+          "label": "📜 Passo 5 - Título",
+          "hint": "Título do passo 5",
+          "maxLength": 30,
+          "section": "Passos"
+        },
+        "descricao": {
+          "value": "Finalize a compra com a escritura do imóvel",
+          "type": "texto",
+          "label": "📝 Passo 5 - Descrição",
+          "hint": "Descrição do passo 5",
+          "maxLength": 80,
+          "section": "Passos"
+        }
+      }
+    }
+  },
+  "contato": {
+    "hero": {
+      "titulo": {
+        "value": "Entre em Contato",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página",
+        "maxLength": 30,
+        "section": "Banner"
+      },
+      "subtitulo": {
+        "value": "Estamos aqui para te ajudar com todas as suas necessidades imobiliárias",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do banner",
+        "maxLength": 90,
+        "section": "Banner"
+      }
+    }
+  },
+  "trabalhe_conosco": {
+    "hero": {
+      "titulo": {
+        "value": "Trabalhe Conosco",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página",
+        "maxLength": 30,
+        "section": "Banner"
+      },
+      "subtitulo": {
+        "value": "Faça parte da nossa equipe e construa sua carreira conosco",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do banner",
+        "maxLength": 80,
+        "section": "Banner"
+      }
+    }
+  },
+  "viva_penha": {
+    "hero": {
+      "titulo": {
+        "value": "Viva Penha",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página",
+        "maxLength": 20,
+        "section": "Banner"
+      },
+      "subtitulo": {
+        "value": "Descubra as belezas e oportunidades de Penha",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do banner",
+        "maxLength": 60,
+        "section": "Banner"
+      }
+    },
+    "praias": {
+      "titulo": {
+        "value": "Praias de Penha",
+        "type": "titulo",
+        "label": "🏖️ Título Seção",
+        "hint": "Título da seção praias",
+        "maxLength": 25,
+        "section": "Praias"
+      },
+      "praia_principal": {
+        "titulo": {
+          "value": "Praia Principal",
+          "type": "titulo",
+          "label": "🏖️ Praia Principal",
+          "hint": "Título da praia principal",
+          "maxLength": 20,
+          "section": "Praias"
+        },
+        "descricao": {
+          "value": "A praia mais movimentada de Penha, ideal para toda a família",
+          "type": "texto",
+          "label": "📝 Descrição Praia Principal",
+          "hint": "Descrição da praia principal",
+          "maxLength": 80,
+          "section": "Praias"
+        }
+      },
+      "praia_secundaria": {
+        "titulo": {
+          "value": "Praia Secundária",
+          "type": "titulo",
+          "label": "🏖️ Praia Secundária",
+          "hint": "Título da praia secundária",
+          "maxLength": 25,
+          "section": "Praias"
+        },
+        "descricao": {
+          "value": "Praia mais tranquila, perfeita para relaxar",
+          "type": "texto",
+          "label": "📝 Descrição Praia Secundária",
+          "hint": "Descrição da praia secundária",
+          "maxLength": 60,
+          "section": "Praias"
+        }
+      }
+    },
+    "atracoes": {
+      "titulo": {
+        "value": "Principais Atrações",
+        "type": "titulo",
+        "label": "🎯 Título Seção",
+        "hint": "Título da seção atrações",
+        "maxLength": 30,
+        "section": "Atrações"
+      },
+      "cristo_luz": {
+        "titulo": {
+          "value": "Cristo Luz",
+          "type": "titulo",
+          "label": "⛪ Cristo Luz",
+          "hint": "Título da atração Cristo Luz",
+          "maxLength": 15,
+          "section": "Atrações"
+        },
+        "descricao": {
+          "value": "Monumento religioso com vista panorâmica da cidade",
+          "type": "texto",
+          "label": "📝 Descrição Cristo Luz",
+          "hint": "Descrição do Cristo Luz",
+          "maxLength": 70,
+          "section": "Atrações"
+        }
+      },
+      "beto_carrero": {
+        "titulo": {
+          "value": "Beto Carrero World",
+          "type": "titulo",
+          "label": "🎢 Beto Carrero World",
+          "hint": "Título da atração Beto Carrero",
+          "maxLength": 25,
+          "section": "Atrações"
+        },
+        "descricao": {
+          "value": "O maior parque temático da América Latina",
+          "type": "texto",
+          "label": "📝 Descrição Beto Carrero",
+          "hint": "Descrição do Beto Carrero",
+          "maxLength": 60,
+          "section": "Atrações"
+        }
+      }
+    }
+  },
+  "viva_picarras": {
+    "hero": {
+      "titulo": {
+        "value": "Viva Balneário Piçarras",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página",
+        "maxLength": 35,
+        "section": "Banner"
+      },
+      "subtitulo": {
+        "value": "Descubra as belezas e oportunidades de Balneário Piçarras",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do banner",
+        "maxLength": 70,
+        "section": "Banner"
+      }
+    },
+    "praias": {
+      "titulo": {
+        "value": "Praias de Piçarras",
+        "type": "titulo",
+        "label": "🏖️ Título Seção",
+        "hint": "Título da seção praias",
+        "maxLength": 25,
+        "section": "Praias"
+      },
+      "praia_principal": {
+        "titulo": {
+          "value": "Praia Central",
+          "type": "titulo",
+          "label": "🏖️ Praia Central",
+          "hint": "Título da praia principal",
+          "maxLength": 20,
+          "section": "Praias"
+        },
+        "descricao": {
+          "value": "Praia central de Piçarras com fácil acesso e infraestrutura completa",
+          "type": "texto",
+          "label": "📝 Descrição Praia Central",
+          "hint": "Descrição da praia central",
+          "maxLength": 80,
+          "section": "Praias"
+        }
+      }
+    },
+    "atracoes": {
+      "titulo": {
+        "value": "Principais Atrações",
+        "type": "titulo",
+        "label": "🎯 Título Seção",
+        "hint": "Título da seção atrações",
+        "maxLength": 30,
+        "section": "Atrações"
+      },
+      "gastronomia": {
+        "titulo": {
+          "value": "Gastronomia Local",
+          "type": "titulo",
+          "label": "🍽️ Gastronomia Local",
+          "hint": "Título da atração gastronomia",
+          "maxLength": 25,
+          "section": "Atrações"
+        },
+        "descricao": {
+          "value": "Experimente a culinária local com frutos do mar frescos",
+          "type": "texto",
+          "label": "📝 Descrição Gastronomia",
+          "hint": "Descrição da gastronomia",
+          "maxLength": 70,
+          "section": "Atrações"
+        }
+      }
+    }
+  },
+  "viva_barra_velha": {
+    "hero": {
+      "titulo": {
+        "value": "Viva Barra Velha",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página",
+        "maxLength": 25,
+        "section": "Banner"
+      },
+      "subtitulo": {
+        "value": "Descubra as belezas e oportunidades de Barra Velha",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do banner",
+        "maxLength": 70,
+        "section": "Banner"
+      }
+    },
+    "praias": {
+      "titulo": {
+        "value": "Praias de Barra Velha",
+        "type": "titulo",
+        "label": "🏖️ Título Seção",
+        "hint": "Título da seção praias",
+        "maxLength": 30,
+        "section": "Praias"
+      },
+      "praia_principal": {
+        "titulo": {
+          "value": "Praia Central",
+          "type": "titulo",
+          "label": "🏖️ Praia Central",
+          "hint": "Título da praia principal",
+          "maxLength": 20,
+          "section": "Praias"
+        },
+        "descricao": {
+          "value": "Praia central de Barra Velha com orla completa e ciclovia",
+          "type": "texto",
+          "label": "📝 Descrição Praia Central",
+          "hint": "Descrição da praia central",
+          "maxLength": 70,
+          "section": "Praias"
+        }
+      }
+    },
+    "atracoes": {
+      "titulo": {
+        "value": "Principais Atrações",
+        "type": "titulo",
+        "label": "🎯 Título Seção",
+        "hint": "Título da seção atrações",
+        "maxLength": 30,
+        "section": "Atrações"
+      },
+      "gastronomia": {
+        "titulo": {
+          "value": "Gastronomia Local",
+          "type": "titulo",
+          "label": "🍽️ Gastronomia Local",
+          "hint": "Título da atração gastronomia",
+          "maxLength": 25,
+          "section": "Atrações"
+        },
+        "descricao": {
+          "value": "Experimente a culinária local com pratos típicos da região",
+          "type": "texto",
+          "label": "📝 Descrição Gastronomia",
+          "hint": "Descrição da gastronomia",
+          "maxLength": 70,
+          "section": "Atrações"
+        }
+      }
+    }
+  },
+  "quem_somos": {
+    "hero": {
+      "titulo": {
+        "value": "Quem Somos",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página",
+        "maxLength": 20,
+        "section": "Banner"
+      },
+      "subtitulo": {
+        "value": "Conheça a história e valores da Nox Imóveis",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do banner",
+        "maxLength": 60,
+        "section": "Banner"
+      }
+    },
+    "equipe": {
+      "titulo": {
+        "value": "Nossa Equipe",
+        "type": "titulo",
+        "label": "👥 Título Seção",
+        "hint": "Título da seção equipe",
+        "maxLength": 20,
+        "section": "Equipe"
+      },
+      "descricao": {
+        "value": "Profissionais experientes e dedicados para te atender",
+        "type": "texto",
+        "label": "📝 Descrição",
+        "hint": "Descrição da seção equipe",
+        "maxLength": 70,
+        "section": "Equipe"
+      }
+    }
+  },
+  "blog": {
+    "hero": {
+      "titulo": {
+        "value": "Blog",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página (apenas o título é editável)",
+        "maxLength": 20,
+        "section": "Banner"
+      }
+    }
+  }
+}
