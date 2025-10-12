@@ -3,6 +3,7 @@ import { Search } from 'lucide-react'
 import SearchForm from '@/components/SearchForm'
 import BlogSection from '@/components/BlogSection'
 import { getImageUrl } from '@/lib/github-images'
+import { getText } from '@/lib/site-texts'
 import type { Metadata } from 'next'
 
 // Revalida a cada 24 horas
@@ -145,7 +146,7 @@ export default async function HomePage() {
         <section className="relative text-white py-20 min-h-[600px] flex items-center overflow-hidden bg-transparent">
           <Image
             src={siteImages['banner-home'] || '/imagens/banners/banner-home.png'}
-            alt="Banner principal - Imóveis em Penha, Balneário Piçarras e Barra Velha"
+            alt={`Banner principal - ${getText('home.banner.titulo')}`}
             title="Nox Imóveis - Encontre seu imóvel dos sonhos"
             fill
             priority
@@ -161,8 +162,7 @@ export default async function HomePage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-8">
-              Imóveis em Penha, Balneário Piçarras e<br />
-              Barra Velha
+              {getText('home.banner.titulo')}
             </h1>
             
             {/* Search Form */}

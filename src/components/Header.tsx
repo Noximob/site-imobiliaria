@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Menu, X, Phone, MapPin, ChevronDown, Instagram, Linkedin, Facebook } from 'lucide-react'
 import Image from 'next/image'
 import { getImageUrl } from '@/lib/github-images'
+import { getText } from '@/lib/site-texts'
 
 export default function Header() {
   const logoUrl = getImageUrl('logo-header')
@@ -37,7 +38,7 @@ export default function Header() {
               {/* WhatsApp */}
               <div className="flex items-center space-x-2 text-sm text-green-600">
               <Phone className="w-4 h-4" />
-                <span className="font-medium">(47) 99753-0113</span>
+                <span className="font-medium">{getText('header.telefone')}</span>
               </div>
               
               {/* Redes Sociais */}
@@ -67,7 +68,7 @@ export default function Header() {
                       onMouseLeave={() => setIsPenhaOpen(false)}
                     >
                       <MapPin className="w-4 h-4" />
-                      <span>Imóveis em Penha</span>
+                      <span>{getText('header.menu_imoveis_penha')}</span>
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isPenhaOpen && (
@@ -93,7 +94,7 @@ export default function Header() {
                       onMouseLeave={() => setIsPicarrasOpen(false)}
                     >
                       <MapPin className="w-4 h-4" />
-                      <span>Imóveis em Balneário Piçarras</span>
+                      <span>{getText('header.menu_imoveis_picarras')}</span>
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isPicarrasOpen && (
@@ -119,7 +120,7 @@ export default function Header() {
                       onMouseLeave={() => setIsBarraVelhaOpen(false)}
                     >
                       <MapPin className="w-4 h-4" />
-                      <span>Imóveis em Barra Velha</span>
+                      <span>{getText('header.menu_imoveis_barra_velha')}</span>
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isBarraVelhaOpen && (
