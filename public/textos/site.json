@@ -62,7 +62,7 @@
   "home": {
     "banner": {
       "titulo": {
-        "value": "Imóveis em Penha, Balneário Piçarras e Barra Velha",
+        "value": "Imóveis em Penha, Balneário Piçarras e Barra Velhaaa",
         "type": "titulo",
         "label": "📌 Título (H1)",
         "hint": "Título principal da página (50-60 caracteres)",
@@ -70,7 +70,7 @@
         "section": "Banner Principal"
       },
       "subtitulo": {
-        "value": "Encontre o imóvel dos seus sonhos no litoral catarinense",
+        "value": "Encontre o imóvel dos seus sonhos no litoral catarinenseee",
         "type": "texto",
         "label": "📝 Subtítulo",
         "hint": "Subtítulo do banner",
