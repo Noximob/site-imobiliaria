@@ -17,6 +17,38 @@ export interface SiteTextsData {
   }
 }
 
+// Cache para textos do GitHub
+let githubTextsCache: any = null
+let cacheTimestamp = 0
+const CACHE_DURATION = 5 * 60 * 1000 // 5 minutos
+
+// Função para buscar textos do GitHub
+async function fetchTextsFromGitHub(): Promise<any> {
+  try {
+    const response = await fetch('/api/update-texts-github')
+    if (response.ok) {
+      return await response.json()
+    }
+    return siteTextsData
+  } catch (error) {
+    console.warn('Erro ao buscar textos do GitHub, usando cache local:', error)
+    return siteTextsData
+  }
+}
+
+// Função para obter textos (com cache)
+async function getTextsData(): Promise<any> {
+  const now = Date.now()
+  
+  // Se cache expirou ou não existe, buscar do GitHub
+  if (!githubTextsCache || (now - cacheTimestamp) > CACHE_DURATION) {
+    githubTextsCache = await fetchTextsFromGitHub()
+    cacheTimestamp = now
+  }
+  
+  return githubTextsCache
+}
+
 // Função para obter texto por caminho (ex: 'header.telefone')
 export function getText(path: string): string {
   const keys = path.split('.')
@@ -32,6 +64,29 @@ export function getText(path: string): string {
   }
   
   return value?.value || `[TEXTO VAZIO: ${path}]`
+}
+
+// Função assíncrona para obter texto (carrega do GitHub)
+export async function getTextAsync(path: string): Promise<string> {
+  try {
+    const textsData = await getTextsData()
+    const keys = path.split('.')
+    let value: any = textsData
+    
+    for (const key of keys) {
+      if (value && typeof value === 'object' && value.hasOwnProperty(key)) {
+        value = value[key]
+      } else {
+        console.warn(`Caminho de texto não encontrado: ${path}`)
+        return `[TEXTO NÃO ENCONTRADO: ${path}]`
+      }
+    }
+    
+    return value?.value || `[TEXTO VAZIO: ${path}]`
+  } catch (error) {
+    console.warn('Erro ao buscar texto do GitHub:', error)
+    return getText(path) // Fallback para função síncrona
+  }
 }
 
 // Função para obter todos os textos de uma seção

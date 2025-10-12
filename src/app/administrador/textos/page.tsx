@@ -25,6 +25,20 @@ export default function AdminTextos() {
     loadInitialData()
   }, [])
 
+  // Função para buscar textos do GitHub
+  const loadTextsFromGitHub = async () => {
+    try {
+      const response = await fetch('/api/update-texts-github')
+      if (response.ok) {
+        const githubTexts = await response.json()
+        // Atualizar dados locais com os do GitHub
+        setTexts(getTextsBySection(selectedSection))
+      }
+    } catch (error) {
+      console.error('Erro ao carregar textos do GitHub:', error)
+    }
+  }
+
   // Carregar textos quando a seção muda
   useEffect(() => {
     loadTexts(selectedSection)
@@ -154,11 +168,11 @@ export default function AdminTextos() {
             </div>
             
             <button
-              onClick={() => loadTexts(selectedSection)}
+              onClick={() => loadTextsFromGitHub()}
               className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center gap-2"
             >
               <RefreshCw className="w-4 h-4" />
-              Atualizar
+              Atualizar do GitHub
             </button>
           </div>
         </div>
