@@ -46,7 +46,7 @@ export function getTextsBySection(section: string): { [key: string]: SiteText } 
   
   // Percorrer todas as subseções
   Object.values(sectionData).forEach(subsection => {
-    if (typeof subsection === 'object') {
+    if (typeof subsection === 'object' && subsection !== null) {
       Object.entries(subsection).forEach(([key, text]) => {
         if (text && typeof text === 'object' && 'value' in text) {
           result[key] = text as SiteText
