@@ -3,8 +3,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Instagram, Facebook, Linkedin } from 'lucide-react'
+import { getImageUrl } from '@/lib/github-images'
 
 export default function Footer() {
+  const logoUrl = getImageUrl('logo-footer')
   return (
     <footer className="bg-gray-900 text-white">
 image.png      {/* Rodapé Tradicional */}
@@ -143,13 +145,13 @@ image.png      {/* Rodapé Tradicional */}
         <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 py-8">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center">
             {/* Logo */}
-            <div className="mb-6 lg:mb-0">
+            <div className="mb-6 lg:mb-0 bg-transparent">
               <Image 
-                src="/imagens/Logo1.png"
+                src={logoUrl}
                 alt="Nox Imóveis" 
                 width={200} 
                 height={60}
-                className="h-12 w-auto"
+                className="h-12 w-auto bg-transparent"
               />
             </div>
 

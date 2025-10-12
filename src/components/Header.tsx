@@ -4,8 +4,10 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Menu, X, Phone, MapPin, ChevronDown, Instagram, Linkedin, Facebook } from 'lucide-react'
 import Image from 'next/image'
+import { getImageUrl } from '@/lib/github-images'
 
 export default function Header() {
+  const logoUrl = getImageUrl('logo-header')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isPenhaOpen, setIsPenhaOpen] = useState(false)
   const [isPicarrasOpen, setIsPicarrasOpen] = useState(false)
@@ -19,12 +21,12 @@ export default function Header() {
           <div className="flex items-center space-x-6">
           {/* Logo */}
             <Link href="/" className="flex items-center">
-              <div className="relative w-32 h-12">
+              <div className="relative w-32 h-12 bg-transparent">
                 <Image
-                  src="/imagens/Logo.png"
+                  src={logoUrl}
                   alt="Nox Imóveis"
                   fill
-                  className="object-contain"
+                  className="object-contain bg-transparent"
                   priority
                 />
             </div>
