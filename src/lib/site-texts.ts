@@ -65,7 +65,7 @@ export function getAllSections(): string[] {
 
 // Função para obter estrutura completa dos textos
 export function getAllTexts(): SiteTextsData {
-  return siteTextsData as SiteTextsData
+  return siteTextsData as any
 }
 
 // Função para validar se um caminho existe
