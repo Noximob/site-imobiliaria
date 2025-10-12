@@ -38,7 +38,7 @@ export function getText(path: string): string {
 export function getTextsBySection(section: string): { [key: string]: SiteText } {
   const result: { [key: string]: SiteText } = {}
   
-  const sectionData = siteTextsData[section]
+  const sectionData = (siteTextsData as any)[section]
   if (!sectionData) {
     console.warn(`Seção não encontrada: ${section}`)
     return result
@@ -60,7 +60,7 @@ export function getTextsBySection(section: string): { [key: string]: SiteText } 
 
 // Função para obter todas as seções disponíveis
 export function getAllSections(): string[] {
-  return Object.keys(siteTextsData)
+  return Object.keys(siteTextsData as any)
 }
 
 // Função para obter estrutura completa dos textos
