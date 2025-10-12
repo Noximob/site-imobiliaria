@@ -89,6 +89,24 @@ export async function getTextAsync(path: string): Promise<string> {
   }
 }
 
+// Função recursiva para extrair textos com caminho completo
+function extractTextsRecursive(obj: any, parentPath: string = '', result: { [key: string]: SiteText } = {}): { [key: string]: SiteText } {
+  for (const [key, value] of Object.entries(obj)) {
+    if (value && typeof value === 'object') {
+      // Se tem 'value', é um texto final
+      if ('value' in value && typeof value.value === 'string') {
+        const fullPath = parentPath ? `${parentPath}.${key}` : key
+        result[fullPath] = value as SiteText
+      } else {
+        // Continuar navegando
+        const newPath = parentPath ? `${parentPath}.${key}` : key
+        extractTextsRecursive(value, newPath, result)
+      }
+    }
+  }
+  return result
+}
+
 // Função para obter todos os textos de uma seção
 export function getTextsBySection(section: string): { [key: string]: SiteText } {
   const result: { [key: string]: SiteText } = {}
@@ -99,18 +117,8 @@ export function getTextsBySection(section: string): { [key: string]: SiteText } 
     return result
   }
   
-  // Percorrer todas as subseções
-  Object.values(sectionData).forEach(subsection => {
-    if (typeof subsection === 'object' && subsection !== null) {
-      Object.entries(subsection).forEach(([key, text]) => {
-        if (text && typeof text === 'object' && 'value' in text) {
-          result[key] = text as SiteText
-        }
-      })
-    }
-  })
-  
-  return result
+  // Extrair todos os textos recursivamente
+  return extractTextsRecursive(sectionData, section)
 }
 
 // Função para obter todas as seções disponíveis
