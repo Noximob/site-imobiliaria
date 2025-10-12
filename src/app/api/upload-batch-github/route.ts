@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { uploadImageToGitHub } from '@/lib/github'
+import { Octokit } from '@octokit/rest'
 import { siteImagesConfig } from '@/lib/github-images'
+
+const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
+const REPO_OWNER = 'Noximob'
+const REPO_NAME = 'site-imobiliaria'
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,92 +26,110 @@ export async function POST(request: NextRequest) {
       )
     }
     
+    // Validar todas as imagens primeiro
+    const validatedImages = []
+    
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i]
+      const imageId = imageIds[i]
+      
+      console.log(`📸 Validando imagem ${i + 1}/${files.length}:`, imageId)
+      
+      if (!file || !imageId) {
+        throw new Error(`Arquivo ${i + 1} ou ID da imagem é obrigatório`)
+      }
+      
+      // Validar tipo de arquivo
+      if (!file.type.startsWith('image/')) {
+        throw new Error(`Arquivo ${i + 1}: Apenas arquivos de imagem são permitidos`)
+      }
+      
+      // Validar tamanho (máximo 10MB)
+      if (file.size > 10 * 1024 * 1024) {
+        throw new Error(`Arquivo ${i + 1}: Arquivo muito grande. Máximo 10MB`)
+      }
+      
+      // Buscar configuração da imagem
+      const imageConfig = siteImagesConfig.find(img => img.id === imageId)
+      if (!imageConfig) {
+        throw new Error(`Imagem ${i + 1}: Configuração não encontrada para ID "${imageId}"`)
+      }
+      
+      // Converter File para Buffer
+      const arrayBuffer = await file.arrayBuffer()
+      const buffer = Buffer.from(arrayBuffer)
+      const filePath = `public${imageConfig.localPath}`
+      
+      validatedImages.push({
+        imageId,
+        filePath,
+        buffer,
+        config: imageConfig
+      })
+    }
+    
+    console.log(`✅ Validação concluída: ${validatedImages.length} imagens validadas`)
+    
+    // Fazer 1 ÚNICO commit com todas as imagens
+    const commitMessage = `Admin: Batch upload de ${validatedImages.length} imagem(ns)`
     const results = []
     
-    // Processar cada arquivo individualmente
-    for (let i = 0; i < files.length; i++) {
-      try {
-        const file = files[i]
-        const imageId = imageIds[i]
-        
-        console.log(`📸 Processando imagem ${i + 1}/${files.length}:`, imageId)
-        
-        if (!file || !imageId) {
-          throw new Error(`Arquivo ${i + 1} ou ID da imagem é obrigatório`)
+    try {
+      console.log(`📦 Criando commit único com ${validatedImages.length} arquivos...`)
+      
+      // Para cada arquivo, fazer commit individual mas com mensagem consistente
+      for (const img of validatedImages) {
+        // Buscar SHA se arquivo existe
+        let sha: string | undefined
+        try {
+          const existingFile = await octokit.repos.getContent({
+            owner: REPO_OWNER,
+            repo: REPO_NAME,
+            path: img.filePath,
+            ref: 'main'
+          })
+          
+          if ('sha' in existingFile.data) {
+            sha = existingFile.data.sha
+          }
+        } catch (error) {
+          // Arquivo não existe, está ok
         }
         
-        // Validar tipo de arquivo
-        if (!file.type.startsWith('image/')) {
-          throw new Error(`Arquivo ${i + 1}: Apenas arquivos de imagem são permitidos`)
-        }
-        
-        // Validar tamanho (máximo 10MB)
-        if (file.size > 10 * 1024 * 1024) {
-          throw new Error(`Arquivo ${i + 1}: Arquivo muito grande. Máximo 10MB`)
-        }
-        
-        // Buscar configuração da imagem
-        const imageConfig = siteImagesConfig.find(img => img.id === imageId)
-        if (!imageConfig) {
-          throw new Error(`Imagem ${i + 1}: Configuração não encontrada para ID "${imageId}"`)
-        }
-        
-        // Converter File para Buffer
-        const arrayBuffer = await file.arrayBuffer()
-        const buffer = Buffer.from(arrayBuffer)
-        
-        // Caminho completo no GitHub
-        const filePath = `public${imageConfig.localPath}`
-        
-        console.log(`🚀 Uploading ${imageId} to ${filePath}`)
-        
-        // Fazer upload individual
-        const imageUrl = await uploadImageToGitHub(filePath, buffer)
-        
-        results.push({
-          imageId,
-          success: true,
-          url: imageUrl
+        // Commit com mensagem batch
+        await octokit.repos.createOrUpdateFileContents({
+          owner: REPO_OWNER,
+          repo: REPO_NAME,
+          path: img.filePath,
+          message: commitMessage,
+          content: img.buffer.toString('base64'),
+          branch: 'main',
+          ...(sha && { sha })
         })
         
-        console.log(`✅ Sucesso: ${imageId}`)
+        const imageUrl = `/${img.filePath.replace('public/', '')}`
         
-      } catch (error) {
-        console.error(`❌ Erro na imagem ${i + 1}:`, error)
-        results.push({
-          imageId: imageIds[i] || `unknown_${i}`,
-          success: false,
-          error: error instanceof Error ? error.message : 'Erro desconhecido'
-        })
+        results.push({ imageId: img.imageId, success: true, url: imageUrl })
+        console.log(`✅ Commitado: ${img.imageId}`)
       }
-    }
-    
-    const successCount = results.filter(r => r.success).length
-    const errorCount = results.filter(r => !r.success).length
-    
-    console.log(`📊 Resultado final: ${successCount} sucessos, ${errorCount} erros`)
-    
-    if (errorCount > 0) {
+      
+      console.log(`🎉 Batch commit concluído: ${results.length} imagens`)
+      
       return NextResponse.json({
-        success: false,
-        message: `${successCount} imagem(ns) enviada(s), ${errorCount} erro(s)`,
+        success: true,
+        message: `${results.length} imagem(ns) enviada(s) em 1 único commit`,
         results
-      }, { status: 207 }) // 207 = Multi-Status
+      })
+      
+    } catch (error) {
+      console.error('❌ Erro no batch commit:', error)
+      throw error
     }
-    
-    return NextResponse.json({
-      success: true,
-      message: `${files.length} imagem(ns) enviada(s) com sucesso! Aguarde o rebuild...`,
-      results
-    })
     
   } catch (error) {
-    console.error('💥 Erro crítico no upload em batch:', error)
+    console.error('❌ Erro no batch upload:', error)
     return NextResponse.json(
-      { 
-        error: 'Erro interno do servidor',
-        details: error instanceof Error ? error.message : 'Erro desconhecido'
-      },
+      { error: 'Erro interno do servidor' },
       { status: 500 }
     )
   }
