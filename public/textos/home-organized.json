@@ -1,0 +1,301 @@
+{
+  "home": {
+    "banner": {
+      "titulo": {
+        "value": "Imóveis em Penha, Balneário Piçarras e Barra Velha",
+        "type": "titulo",
+        "label": "📌 Título Banner Principal",
+        "hint": "Título H1 do banner (importante para SEO)",
+        "maxLength": 70,
+        "section": "Página Principal"
+      }
+    },
+    "selecao_nox": {
+      "titulo": {
+        "value": "Seleção Nox",
+        "type": "titulo",
+        "label": "📌 Título Seleção Nox",
+        "hint": "Título da seção de imóveis em destaque",
+        "maxLength": 30,
+        "section": "Página Principal"
+      },
+      "descricao": {
+        "value": "Confira a nossa curadoria dos melhores imóveis selecionados pela equipe da Nox Imóveis.",
+        "type": "texto",
+        "label": "📝 Descrição Seleção Nox",
+        "hint": "Descrição da seção",
+        "maxLength": 150,
+        "section": "Página Principal"
+      },
+      "botao": {
+        "value": "Buscar imóveis",
+        "type": "botao",
+        "label": "🔘 Botão Buscar",
+        "hint": "Texto do botão",
+        "maxLength": 20,
+        "section": "Página Principal"
+      }
+    },
+    "encontre_imovel": {
+      "titulo": {
+        "value": "Encontre o imóvel ideal para cada momento da sua vida",
+        "type": "titulo",
+        "label": "📌 Título Encontre Imóvel",
+        "hint": "Título da seção de busca por cidade",
+        "maxLength": 80,
+        "section": "Página Principal"
+      },
+      "penha": {
+        "titulo": {
+          "value": "Penha",
+          "type": "titulo",
+          "label": "🏖️ Título Penha",
+          "hint": "Nome da cidade",
+          "maxLength": 20,
+          "section": "Página Principal"
+        },
+        "lancamentos_investidor": {
+          "value": "Lançamentos Investidor",
+          "type": "link",
+          "label": "🏗️ Card - Lançamentos Investidor",
+          "hint": "Texto do card",
+          "maxLength": 30,
+          "section": "Página Principal"
+        },
+        "frente_mar": {
+          "value": "Frente Mar",
+          "type": "link",
+          "label": "🌊 Card - Frente Mar",
+          "hint": "Texto do card",
+          "maxLength": 20,
+          "section": "Página Principal"
+        },
+        "mobiliados": {
+          "value": "Mobiliados",
+          "type": "link",
+          "label": "🛋️ Card - Mobiliados",
+          "hint": "Texto do card",
+          "maxLength": 20,
+          "section": "Página Principal"
+        },
+        "apartamentos": {
+          "value": "Apartamentos",
+          "type": "link",
+          "label": "🏢 Card - Apartamentos",
+          "hint": "Texto do card",
+          "maxLength": 20,
+          "section": "Página Principal"
+        },
+        "link_ver_imoveis": {
+          "value": "Ver imóveis",
+          "type": "link",
+          "label": "🔗 Link Ver Imóveis",
+          "hint": "Texto do link ao passar o mouse",
+          "maxLength": 20,
+          "section": "Página Principal"
+        }
+      },
+      "picarras": {
+        "titulo": {
+          "value": "Balneário Piçarras",
+          "type": "titulo",
+          "label": "🏖️ Título Piçarras",
+          "hint": "Nome da cidade",
+          "maxLength": 30,
+          "section": "Página Principal"
+        },
+        "apartamentos_coberturas": {
+          "value": "Apartamentos e Coberturas",
+          "type": "link",
+          "label": "🏢 Card - Apartamentos e Coberturas",
+          "hint": "Texto do card",
+          "maxLength": 35,
+          "section": "Página Principal"
+        },
+        "mobiliados": {
+          "value": "Mobiliados",
+          "type": "link",
+          "label": "🛋️ Card - Mobiliados",
+          "hint": "Texto do card",
+          "maxLength": 20,
+          "section": "Página Principal"
+        },
+        "vista_mar": {
+          "value": "Vista Mar",
+          "type": "link",
+          "label": "🌊 Card - Vista Mar",
+          "hint": "Texto do card",
+          "maxLength": 20,
+          "section": "Página Principal"
+        },
+        "lancamentos": {
+          "value": "Lançamentos",
+          "type": "link",
+          "label": "🏗️ Card - Lançamentos",
+          "hint": "Texto do card",
+          "maxLength": 20,
+          "section": "Página Principal"
+        },
+        "link_ver_imoveis": {
+          "value": "Ver imóveis",
+          "type": "link",
+          "label": "🔗 Link Ver Imóveis",
+          "hint": "Texto do link ao passar o mouse",
+          "maxLength": 20,
+          "section": "Página Principal"
+        }
+      },
+      "barra_velha": {
+        "titulo": {
+          "value": "Barra Velha",
+          "type": "titulo",
+          "label": "🏖️ Título Barra Velha",
+          "hint": "Nome da cidade",
+          "maxLength": 20,
+          "section": "Página Principal"
+        },
+        "lancamentos_frente_mar": {
+          "value": "Lançamentos Frente Mar",
+          "type": "link",
+          "label": "🏗️ Card - Lançamentos Frente Mar",
+          "hint": "Texto do card",
+          "maxLength": 30,
+          "section": "Página Principal"
+        },
+        "em_construcao": {
+          "value": "Em Construção",
+          "type": "link",
+          "label": "🏗️ Card - Em Construção",
+          "hint": "Texto do card",
+          "maxLength": 20,
+          "section": "Página Principal"
+        },
+        "imoveis_prontos": {
+          "value": "Imóveis Prontos",
+          "type": "link",
+          "label": "🏠 Card - Imóveis Prontos",
+          "hint": "Texto do card",
+          "maxLength": 20,
+          "section": "Página Principal"
+        },
+        "link_ver_imoveis": {
+          "value": "Ver imóveis",
+          "type": "link",
+          "label": "🔗 Link Ver Imóveis",
+          "hint": "Texto do link ao passar o mouse",
+          "maxLength": 20,
+          "section": "Página Principal"
+        }
+      }
+    },
+    "cta_atendimento": {
+      "titulo": {
+        "value": "Procurando investir, morar ou veranear?",
+        "type": "titulo",
+        "label": "📌 Título CTA Atendimento",
+        "hint": "Pergunta do call-to-action",
+        "maxLength": 60,
+        "section": "Página Principal"
+      },
+      "botao": {
+        "value": "Receber atendimento",
+        "type": "botao",
+        "label": "🔘 Botão Atendimento",
+        "hint": "Texto do botão WhatsApp",
+        "maxLength": 30,
+        "section": "Página Principal"
+      },
+      "beneficio_1_titulo": {
+        "value": "Consultoria personalizada",
+        "type": "titulo",
+        "label": "✅ Benefício 1 - Título",
+        "hint": "Título do primeiro benefício",
+        "maxLength": 40,
+        "section": "Página Principal"
+      },
+      "beneficio_1_descricao": {
+        "value": "Atendimento exclusivo para suas necessidades",
+        "type": "texto",
+        "label": "✅ Benefício 1 - Descrição",
+        "hint": "Descrição do primeiro benefício",
+        "maxLength": 80,
+        "section": "Página Principal"
+      },
+      "beneficio_2_titulo": {
+        "value": "Especialistas em Penha, Balneário Piçarras e Barra Velha",
+        "type": "titulo",
+        "label": "✅ Benefício 2 - Título",
+        "hint": "Título do segundo benefício",
+        "maxLength": 80,
+        "section": "Página Principal"
+      },
+      "beneficio_2_descricao": {
+        "value": "Conhecemos cada detalhe da região",
+        "type": "texto",
+        "label": "✅ Benefício 2 - Descrição",
+        "hint": "Descrição do segundo benefício",
+        "maxLength": 80,
+        "section": "Página Principal"
+      },
+      "beneficio_3_titulo": {
+        "value": "Visite sem sair de casa",
+        "type": "titulo",
+        "label": "✅ Benefício 3 - Título",
+        "hint": "Título do terceiro benefício",
+        "maxLength": 40,
+        "section": "Página Principal"
+      },
+      "beneficio_3_descricao": {
+        "value": "Conheça o imóvel por videochamada",
+        "type": "texto",
+        "label": "✅ Benefício 3 - Descrição",
+        "hint": "Descrição do terceiro benefício",
+        "maxLength": 60,
+        "section": "Página Principal"
+      }
+    },
+    "imoveis_planta": {
+      "titulo": {
+        "value": "Imóveis na Planta",
+        "type": "titulo",
+        "label": "📌 Título Imóveis na Planta",
+        "hint": "Título da seção",
+        "maxLength": 30,
+        "section": "Página Principal"
+      },
+      "descricao": {
+        "value": "Invista em um empreendimento que combina com o seu estilo de vida. Tenha segurança e rentabilidade com imóveis na planta na região mais desejada do Brasil.",
+        "type": "texto",
+        "label": "📝 Descrição Imóveis na Planta",
+        "hint": "Descrição da seção",
+        "maxLength": 200,
+        "section": "Página Principal"
+      },
+      "botao_penha": {
+        "value": "Penha",
+        "type": "botao",
+        "label": "🔘 Botão Penha",
+        "hint": "Botão para filtrar Penha",
+        "maxLength": 20,
+        "section": "Página Principal"
+      },
+      "botao_picarras": {
+        "value": "Piçarras",
+        "type": "botao",
+        "label": "🔘 Botão Piçarras",
+        "hint": "Botão para filtrar Piçarras",
+        "maxLength": 20,
+        "section": "Página Principal"
+      },
+      "botao_barra_velha": {
+        "value": "Barra Velha",
+        "type": "botao",
+        "label": "🔘 Botão Barra Velha",
+        "hint": "Botão para filtrar Barra Velha",
+        "maxLength": 20,
+        "section": "Página Principal"
+      }
+    }
+  }
+}
+
