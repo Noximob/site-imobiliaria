@@ -5,6 +5,14 @@ import { CheckCircle, Users, FileText, Home, Shield, CreditCard, Calculator, Pho
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
 
+const comoComprarImages = {
+  apartamentoPenha: getImageUrl('apartamentos'),
+  coberturaPicarras: getImageUrl('apartamento-cobertura-picarras'),
+  lancamentosBarraVelha: getImageUrl('lancamentos-frente-mar-barra-velha'),
+  frenteMar: getImageUrl('frente-mar'),
+  anuncieImovel: getImageUrl('anuncie-nox-mulher')
+}
+
 export const metadata: Metadata = {
   title: 'Como Comprar um Imóvel - Guia Completo | Nox Imóveis',
   description: 'Aprenda como comprar um imóvel com segurança e tranquilidade. Guia completo com todos os passos, documentação necessária e dicas importantes.',
@@ -217,7 +225,7 @@ export default async function ComoComprarPage() {
             <div className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
                 <Image
-                  src="/imagens/apartamentos-venda-penha-sc.jpg"
+                  src={comoComprarImages.apartamentoPenha}
                   alt="Imóveis em Penha"
                   fill
                   className="object-cover"
@@ -236,7 +244,7 @@ export default async function ComoComprarPage() {
             <div className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
                 <Image
-                  src="/imagens/apartamento-cobertura-picarras-sc.jpg"
+                  src={comoComprarImages.coberturaPicarras}
                   alt="Imóveis em Balneário Piçarras"
                   fill
                   className="object-cover"
@@ -255,7 +263,7 @@ export default async function ComoComprarPage() {
             <div className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
                 <Image
-                  src="/imagens/lancamentos-frente-mar-barra-velha-sc.jpg"
+                  src={comoComprarImages.lancamentosBarraVelha}
                   alt="Imóveis em Barra Velha"
                   fill
                   className="object-cover"
@@ -330,7 +338,7 @@ export default async function ComoComprarPage() {
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
                 <Image
-                  src="/imagens/apartamentos-frente-mar-penha-sc.jpg"
+                  src={comoComprarImages.frenteMar}
                   alt="Praia - Investimento imobiliário"
                   fill
                   className="object-cover"
@@ -356,7 +364,7 @@ export default async function ComoComprarPage() {
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
                 <Image
-                  src="/imagens/anuncie-imovel-corretora-nox.jpg"
+                  src={comoComprarImages.anuncieImovel}
                   alt="Equipe Nox Imóveis"
                   fill
                   className="object-cover"
