@@ -5,10 +5,14 @@ import { useState } from 'react'
 import { Menu, X, Phone, MapPin, ChevronDown, Instagram, Linkedin, Facebook } from 'lucide-react'
 import Image from 'next/image'
 import { getImageUrl } from '@/lib/github-images'
-import DynamicText from './DynamicText'
+import { getText } from '@/lib/site-texts'
 
 export default function Header() {
   const logoUrl = getImageUrl('logo-header')
+  const telefone = getText('header.telefone')
+  const menuPenha = getText('header.menu_imoveis_penha')
+  const menuPicarras = getText('header.menu_imoveis_picarras')
+  const menuBarraVelha = getText('header.menu_imoveis_barra_velha')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isPenhaOpen, setIsPenhaOpen] = useState(false)
   const [isPicarrasOpen, setIsPicarrasOpen] = useState(false)
@@ -38,7 +42,7 @@ export default function Header() {
               {/* WhatsApp */}
               <div className="flex items-center space-x-2 text-sm text-green-600">
               <Phone className="w-4 h-4" />
-                <DynamicText path="header.telefone" fallback="(47) 99753-0113" className="font-medium" />
+                <span className="font-medium">{telefone}</span>
               </div>
               
               {/* Redes Sociais */}
@@ -68,7 +72,7 @@ export default function Header() {
                       onMouseLeave={() => setIsPenhaOpen(false)}
                     >
                       <MapPin className="w-4 h-4" />
-                      <DynamicText path="header.menu_imoveis_penha" fallback="Imóveis em Penha" />
+                      <span>{menuPenha}</span>
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isPenhaOpen && (
@@ -94,7 +98,7 @@ export default function Header() {
                       onMouseLeave={() => setIsPicarrasOpen(false)}
                     >
                       <MapPin className="w-4 h-4" />
-                      <DynamicText path="header.menu_imoveis_picarras" fallback="Imóveis em Balneário Piçarras" />
+                      <span>{menuPicarras}</span>
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isPicarrasOpen && (
@@ -120,7 +124,7 @@ export default function Header() {
                       onMouseLeave={() => setIsBarraVelhaOpen(false)}
                     >
                       <MapPin className="w-4 h-4" />
-                      <DynamicText path="header.menu_imoveis_barra_velha" fallback="Imóveis em Barra Velha" />
+                      <span>{menuBarraVelha}</span>
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isBarraVelhaOpen && (
