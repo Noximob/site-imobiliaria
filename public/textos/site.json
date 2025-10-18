@@ -57,6 +57,200 @@
       "hint": "Texto de copyright",
       "maxLength": 60,
       "section": "Footer"
+    },
+    "coluna_imoveis": {
+      "titulo": {
+        "value": "Imóveis",
+        "type": "titulo",
+        "label": "🏠 Título Coluna Imóveis",
+        "hint": "Título da coluna de imóveis",
+        "maxLength": 15,
+        "section": "Footer - Colunas"
+      },
+      "imoveis_venda": {
+        "value": "Imóveis à venda",
+        "type": "link",
+        "label": "🏠 Imóveis à Venda",
+        "hint": "Link para imóveis à venda",
+        "maxLength": 25,
+        "section": "Footer - Colunas"
+      },
+      "empreendimentos": {
+        "value": "Empreendimentos",
+        "type": "link",
+        "label": "🏗️ Empreendimentos",
+        "hint": "Link para empreendimentos",
+        "maxLength": 20,
+        "section": "Footer - Colunas"
+      },
+      "favoritos": {
+        "value": "Favoritos",
+        "type": "link",
+        "label": "❤️ Favoritos",
+        "hint": "Link para favoritos",
+        "maxLength": 15,
+        "section": "Footer - Colunas"
+      }
+    },
+    "coluna_servicos": {
+      "titulo": {
+        "value": "Serviços",
+        "type": "titulo",
+        "label": "⚙️ Título Coluna Serviços",
+        "hint": "Título da coluna de serviços",
+        "maxLength": 15,
+        "section": "Footer - Colunas"
+      },
+      "anunciar_imovel": {
+        "value": "Anunciar Imóvel",
+        "type": "link",
+        "label": "📢 Anunciar Imóvel",
+        "hint": "Link para anunciar imóvel",
+        "maxLength": 20,
+        "section": "Footer - Colunas"
+      },
+      "encontre_meu_imovel": {
+        "value": "Encontre meu Imóvel",
+        "type": "link",
+        "label": "🔍 Encontre meu Imóvel",
+        "hint": "Link para encontrar imóvel",
+        "maxLength": 25,
+        "section": "Footer - Colunas"
+      },
+      "como_comprar": {
+        "value": "Como comprar",
+        "type": "link",
+        "label": "💰 Como comprar",
+        "hint": "Link para como comprar",
+        "maxLength": 20,
+        "section": "Footer - Colunas"
+      },
+      "simular_financiamento": {
+        "value": "Simular Financiamento",
+        "type": "link",
+        "label": "💳 Simular Financiamento",
+        "hint": "Link para simular financiamento",
+        "maxLength": 25,
+        "section": "Footer - Colunas"
+      }
+    },
+    "coluna_institucional": {
+      "titulo": {
+        "value": "Institucional",
+        "type": "titulo",
+        "label": "🏢 Título Coluna Institucional",
+        "hint": "Título da coluna institucional",
+        "maxLength": 20,
+        "section": "Footer - Colunas"
+      },
+      "quem_somos": {
+        "value": "Quem somos",
+        "type": "link",
+        "label": "👥 Quem somos",
+        "hint": "Link para quem somos",
+        "maxLength": 20,
+        "section": "Footer - Colunas"
+      },
+      "contato": {
+        "value": "Contato",
+        "type": "link",
+        "label": "📞 Contato",
+        "hint": "Link para contato",
+        "maxLength": 15,
+        "section": "Footer - Colunas"
+      },
+      "trabalhe_conosco": {
+        "value": "Trabalhe Conosco",
+        "type": "link",
+        "label": "💼 Trabalhe Conosco",
+        "hint": "Link para trabalhe conosco",
+        "maxLength": 20,
+        "section": "Footer - Colunas"
+      }
+    },
+    "coluna_localizacao": {
+      "titulo": {
+        "value": "Localização",
+        "type": "titulo",
+        "label": "📍 Título Coluna Localização",
+        "hint": "Título da coluna de localização",
+        "maxLength": 20,
+        "section": "Footer - Colunas"
+      },
+      "viva_penha": {
+        "value": "Viva Penha",
+        "type": "link",
+        "label": "🏖️ Viva Penha",
+        "hint": "Link para Viva Penha",
+        "maxLength": 15,
+        "section": "Footer - Colunas"
+      },
+      "viva_picarras": {
+        "value": "Viva Piçarras",
+        "type": "link",
+        "label": "🏖️ Viva Piçarras",
+        "hint": "Link para Viva Piçarras",
+        "maxLength": 20,
+        "section": "Footer - Colunas"
+      },
+      "blog": {
+        "value": "Blog",
+        "type": "link",
+        "label": "📝 Blog",
+        "hint": "Link para blog",
+        "maxLength": 10,
+        "section": "Footer - Colunas"
+      }
+    },
+    "central_atendimento": {
+      "titulo": {
+        "value": "Central de Atendimento",
+        "type": "titulo",
+        "label": "📞 Central de Atendimento",
+        "hint": "Título da central de atendimento",
+        "maxLength": 30,
+        "section": "Footer - Central"
+      },
+      "creci": {
+        "value": "CRECI 9839-J",
+        "type": "texto",
+        "label": "📋 CRECI",
+        "hint": "Número do CRECI",
+        "maxLength": 15,
+        "section": "Footer - Central"
+      },
+      "endereco": {
+        "value": "Jordelina Florzina Flores, 154",
+        "type": "texto",
+        "label": "📍 Endereço",
+        "hint": "Endereço da empresa",
+        "maxLength": 40,
+        "section": "Footer - Central"
+      },
+      "cidade": {
+        "value": "Gravatá de Penha - SC",
+        "type": "texto",
+        "label": "🏙️ Cidade",
+        "hint": "Cidade e estado",
+        "maxLength": 25,
+        "section": "Footer - Central"
+      },
+      "telefone_central": {
+        "value": "(47) 99753-0113",
+        "type": "contato",
+        "label": "📞 Telefone Central",
+        "hint": "Telefone da central de atendimento",
+        "maxLength": 20,
+        "section": "Footer - Central"
+      },
+      "creci_sc": {
+        "value": "CRECI/SC 9839-J",
+        "type": "texto",
+        "label": "📋 CRECI/SC",
+        "hint": "CRECI completo",
+        "maxLength": 20,
+        "section": "Footer - Central"
+      }
     }
   },
   "home": {

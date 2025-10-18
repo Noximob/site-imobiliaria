@@ -11,6 +11,39 @@ export default function Footer() {
   const telefone = getText('footer.telefone')
   const textoAcompanhe = getText('footer.texto_acompanhe')
   const copyright = getText('footer.copyright')
+  
+  // Coluna Imóveis
+  const imoveisTitulo = getText('footer.coluna_imoveis.titulo')
+  const imoveisVenda = getText('footer.coluna_imoveis.imoveis_venda')
+  const empreendimentos = getText('footer.coluna_imoveis.empreendimentos')
+  const favoritos = getText('footer.coluna_imoveis.favoritos')
+  
+  // Coluna Serviços
+  const servicosTitulo = getText('footer.coluna_servicos.titulo')
+  const anunciarImovel = getText('footer.coluna_servicos.anunciar_imovel')
+  const encontreMeuImovel = getText('footer.coluna_servicos.encontre_meu_imovel')
+  const comoComprar = getText('footer.coluna_servicos.como_comprar')
+  const simularFinanciamento = getText('footer.coluna_servicos.simular_financiamento')
+  
+  // Coluna Institucional
+  const institucionalTitulo = getText('footer.coluna_institucional.titulo')
+  const quemSomos = getText('footer.coluna_institucional.quem_somos')
+  const contato = getText('footer.coluna_institucional.contato')
+  const trabalheConosco = getText('footer.coluna_institucional.trabalhe_conosco')
+  
+  // Coluna Localização
+  const localizacaoTitulo = getText('footer.coluna_localizacao.titulo')
+  const vivaPenha = getText('footer.coluna_localizacao.viva_penha')
+  const vivaPicarras = getText('footer.coluna_localizacao.viva_picarras')
+  const blog = getText('footer.coluna_localizacao.blog')
+  
+  // Central de Atendimento
+  const centralTitulo = getText('footer.central_atendimento.titulo')
+  const creci = getText('footer.central_atendimento.creci')
+  const endereco = getText('footer.central_atendimento.endereco')
+  const cidade = getText('footer.central_atendimento.cidade')
+  const telefoneCentral = getText('footer.central_atendimento.telefone_central')
+  const creciSc = getText('footer.central_atendimento.creci_sc')
   return (
     <footer className="bg-gray-900 text-white">
 image.png      {/* Rodapé Tradicional */}
@@ -50,21 +83,21 @@ image.png      {/* Rodapé Tradicional */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Imóveis */}
             <div>
-              <h3 className="text-white font-semibold mb-4 text-sm">Imóveis</h3>
+              <h3 className="text-white font-semibold mb-4 text-sm">{imoveisTitulo}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="/imoveis" className="text-gray-300 hover:text-white text-sm transition-colors">
-                    Imóveis à venda
+                    {imoveisVenda}
                   </Link>
                 </li>
                 <li>
                   <Link href="/imoveis?status=lancamento" className="text-gray-300 hover:text-white text-sm transition-colors">
-                    Empreendimentos
+                    {empreendimentos}
                   </Link>
                 </li>
                 <li>
                   <Link href="/favoritos" className="text-gray-300 hover:text-white text-sm transition-colors">
-                    Favoritos
+                    {favoritos}
                   </Link>
                 </li>
               </ul>
@@ -72,26 +105,26 @@ image.png      {/* Rodapé Tradicional */}
 
             {/* Serviços */}
           <div>
-              <h3 className="text-white font-semibold mb-4 text-sm">Serviços</h3>
+              <h3 className="text-white font-semibold mb-4 text-sm">{servicosTitulo}</h3>
             <ul className="space-y-2">
               <li>
                   <Link href="/anunciar" className="text-gray-300 hover:text-white text-sm transition-colors">
-                    Anunciar Imóvel
+                    {anunciarImovel}
                 </Link>
               </li>
               <li>
                   <Link href="/encontrar" className="text-gray-300 hover:text-white text-sm transition-colors">
-                    Encontre meu Imóvel
+                    {encontreMeuImovel}
                 </Link>
               </li>
               <li>
                   <Link href="/como-comprar" className="text-gray-300 hover:text-white text-sm transition-colors">
-                    Como comprar
+                    {comoComprar}
                 </Link>
               </li>
               <li>
                   <Link href="/simular-financiamento" className="text-gray-300 hover:text-white text-sm transition-colors">
-                    Simular Financiamento
+                    {simularFinanciamento}
                 </Link>
               </li>
             </ul>
@@ -99,21 +132,21 @@ image.png      {/* Rodapé Tradicional */}
 
             {/* Institucional */}
           <div>
-              <h3 className="text-white font-semibold mb-4 text-sm">Institucional</h3>
+              <h3 className="text-white font-semibold mb-4 text-sm">{institucionalTitulo}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="/sobre" className="text-gray-300 hover:text-white text-sm transition-colors">
-                    Quem somos
+                    {quemSomos}
                   </Link>
                 </li>
                 <li>
                   <Link href="/contato" className="text-gray-300 hover:text-white text-sm transition-colors">
-                    Contato
+                    {contato}
                   </Link>
                 </li>
                 <li>
                   <Link href="/trabalhe-conosco" className="text-gray-300 hover:text-white text-sm transition-colors">
-                    Trabalhe Conosco
+                    {trabalheConosco}
                   </Link>
                 </li>
               </ul>
@@ -121,20 +154,21 @@ image.png      {/* Rodapé Tradicional */}
 
             {/* Links Adicionais */}
             <div>
+              <h3 className="text-white font-semibold mb-4 text-sm">{localizacaoTitulo}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="/viva-penha" className="text-gray-300 hover:text-white text-sm transition-colors">
-                    Viva Penha
+                    {vivaPenha}
                   </Link>
                 </li>
                 <li>
                   <Link href="/viva-picarras" className="text-gray-300 hover:text-white text-sm transition-colors">
-                    Viva Piçarras
+                    {vivaPicarras}
                   </Link>
                 </li>
                 <li>
                   <Link href="/blog" className="text-gray-300 hover:text-white text-sm transition-colors">
-                    Blog
+                    {blog}
                   </Link>
                 </li>
               </ul>
@@ -161,11 +195,11 @@ image.png      {/* Rodapé Tradicional */}
 
             {/* Central de Atendimento */}
             <div className="text-center lg:text-right">
-              <h4 className="font-semibold text-purple-400 mb-2 text-lg">Central de Atendimento</h4>
-              <p className="text-gray-300 mb-1">CRECI 9839-J</p>
-              <p className="text-gray-300 mb-1">Jordelina Florzina Flores, 154</p>
-              <p className="text-gray-300 mb-2">Gravatá de Penha - SC</p>
-              <p className="text-purple-400 font-semibold">(47) 99753-0113</p>
+              <h4 className="font-semibold text-purple-400 mb-2 text-lg">{centralTitulo}</h4>
+              <p className="text-gray-300 mb-1">{creci}</p>
+              <p className="text-gray-300 mb-1">{endereco}</p>
+              <p className="text-gray-300 mb-2">{cidade}</p>
+              <p className="text-purple-400 font-semibold">{telefoneCentral}</p>
             </div>
           </div>
 
@@ -176,7 +210,7 @@ image.png      {/* Rodapé Tradicional */}
                 {copyright}
               </p>
               <p className="text-gray-400 text-sm mt-2 md:mt-0">
-                CRECI/SC 9839-J
+                {creciSc}
               </p>
             </div>
           </div>
