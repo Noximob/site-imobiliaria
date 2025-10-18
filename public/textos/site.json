@@ -590,5 +590,335 @@
         "section": "Blog"
       }
     }
+  },
+  "viva_penha": {
+    "hero": {
+      "titulo": {
+        "value": "Viva Penha",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página Viva Penha",
+        "maxLength": 30,
+        "section": "Hero"
+      },
+      "botao_vantagens": {
+        "value": "Ver as vantagens",
+        "type": "botao",
+        "label": "🔘 Botão Vantagens",
+        "hint": "Texto do botão Ver as vantagens",
+        "maxLength": 20,
+        "section": "Hero"
+      }
+    },
+    "introducao": {
+      "titulo": {
+        "value": "Descubra o paraíso catarinense",
+        "type": "titulo",
+        "label": "📌 Título Introdução",
+        "hint": "Título da seção de introdução",
+        "maxLength": 50,
+        "section": "Introdução"
+      },
+      "descricao": {
+        "value": "Seja bem-vindo à deslumbrante cidade de Penha, um dos destinos mais encantadores do Brasil. Com suas praias deslumbrantes, vida noturna animada e oportunidades de investimento incríveis, Penha é o local perfeito para viver, visitar e investir.",
+        "type": "texto",
+        "label": "📝 Descrição",
+        "hint": "Descrição da cidade de Penha",
+        "maxLength": 300,
+        "section": "Introdução"
+      },
+      "botao_imoveis": {
+        "value": "Ver imóveis",
+        "type": "botao",
+        "label": "🔘 Botão Ver Imóveis",
+        "hint": "Texto do botão Ver imóveis",
+        "maxLength": 20,
+        "section": "Introdução"
+      }
+    },
+    "o_que_fazer": {
+      "titulo": {
+        "value": "O que fazer em Penha?",
+        "type": "titulo",
+        "label": "📌 Título Seção",
+        "hint": "Título da seção O que fazer",
+        "maxLength": 30,
+        "section": "O que fazer"
+      },
+      "subtitulo": {
+        "value": "Aproveite tudo o que Penha tem a oferecer e viva o melhor da cidade!",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo da seção",
+        "maxLength": 100,
+        "section": "O que fazer"
+      },
+      "atracao_1": {
+        "value": "Praias de Areias Brancas",
+        "type": "texto",
+        "label": "🏖️ Atração 1",
+        "hint": "Primeira atração",
+        "maxLength": 40,
+        "section": "O que fazer"
+      },
+      "atracao_2": {
+        "value": "Parque Beto Carrero World",
+        "type": "texto",
+        "label": "🎢 Atração 2",
+        "hint": "Segunda atração",
+        "maxLength": 40,
+        "section": "O que fazer"
+      },
+      "atracao_3": {
+        "value": "Cristo Luz",
+        "type": "texto",
+        "label": "✨ Atração 3",
+        "hint": "Terceira atração",
+        "maxLength": 40,
+        "section": "O que fazer"
+      },
+      "atracao_4": {
+        "value": "Vida Noturna Vibrante",
+        "type": "texto",
+        "label": "🌙 Atração 4",
+        "hint": "Quarta atração",
+        "maxLength": 40,
+        "section": "O que fazer"
+      },
+      "atracao_5": {
+        "value": "Gastronomia Excepcional",
+        "type": "texto",
+        "label": "🍽️ Atração 5",
+        "hint": "Quinta atração",
+        "maxLength": 40,
+        "section": "O que fazer"
+      }
+    },
+    "beneficios": {
+      "infraestrutura": {
+        "titulo": {
+          "value": "Infraestrutura Urbana",
+          "type": "titulo",
+          "label": "📌 Infraestrutura Título",
+          "hint": "Título do benefício Infraestrutura",
+          "maxLength": 40,
+          "section": "Benefícios"
+        },
+        "descricao": {
+          "value": "Conforto e praticidade de sobra em uma cidade com infraestrutura completa e moderna.",
+          "type": "texto",
+          "label": "📝 Infraestrutura Descrição",
+          "hint": "Descrição do benefício",
+          "maxLength": 150,
+          "section": "Benefícios"
+        }
+      },
+      "atracoes": {
+        "titulo": {
+          "value": "Atrações Turísticas",
+          "type": "titulo",
+          "label": "📌 Atrações Título",
+          "hint": "Título do benefício Atrações",
+          "maxLength": 40,
+          "section": "Benefícios"
+        },
+        "descricao": {
+          "value": "A cidade é cheia de opções de lazer para moradores e visitantes, com paisagens de tirar o fôlego.",
+          "type": "texto",
+          "label": "📝 Atrações Descrição",
+          "hint": "Descrição do benefício",
+          "maxLength": 150,
+          "section": "Benefícios"
+        }
+      },
+      "seguranca": {
+        "titulo": {
+          "value": "Segurança",
+          "type": "titulo",
+          "label": "📌 Segurança Título",
+          "hint": "Título do benefício Segurança",
+          "maxLength": 40,
+          "section": "Benefícios"
+        },
+        "descricao": {
+          "value": "Aproveite a tranquilidade de viver em uma das cidades mais seguras do sul do país!",
+          "type": "texto",
+          "label": "📝 Segurança Descrição",
+          "hint": "Descrição do benefício",
+          "maxLength": 150,
+          "section": "Benefícios"
+        }
+      },
+      "diversidade": {
+        "titulo": {
+          "value": "Diversidade de Imóveis",
+          "type": "titulo",
+          "label": "📌 Diversidade Título",
+          "hint": "Título do benefício Diversidade",
+          "maxLength": 40,
+          "section": "Benefícios"
+        },
+        "descricao": {
+          "value": "Não faltam oportunidades de morar e investir na cidade, com opções para todos os gostos.",
+          "type": "texto",
+          "label": "📝 Diversidade Descrição",
+          "hint": "Descrição do benefício",
+          "maxLength": 150,
+          "section": "Benefícios"
+        }
+      }
+    },
+    "vantagens_investir": {
+      "mercado_imobiliario": {
+        "titulo": {
+          "value": "Mercado imobiliário em crescimento",
+          "type": "titulo",
+          "label": "📌 Mercado Título",
+          "hint": "Título da vantagem Mercado",
+          "maxLength": 50,
+          "section": "Vantagens de Investir"
+        },
+        "descricao": {
+          "value": "Penha é um dos destinos turísticos mais procurados do Brasil, o que torna o mercado imobiliário da cidade extremamente atraente para investidores.",
+          "type": "texto",
+          "label": "📝 Mercado Descrição",
+          "hint": "Descrição da vantagem",
+          "maxLength": 200,
+          "section": "Vantagens de Investir"
+        }
+      },
+      "localizacao": {
+        "titulo": {
+          "value": "Localização estratégica",
+          "type": "titulo",
+          "label": "📌 Localização Título",
+          "hint": "Título da vantagem Localização",
+          "maxLength": 50,
+          "section": "Vantagens de Investir"
+        },
+        "descricao": {
+          "value": "A cidade está estrategicamente localizada no estado de Santa Catarina, entre as cidades de Florianópolis e Curitiba, facilitando o acesso por terra, mar e ar. Isso a torna um centro logístico e de negócios em crescimento.",
+          "type": "texto",
+          "label": "📝 Localização Descrição",
+          "hint": "Descrição da vantagem",
+          "maxLength": 300,
+          "section": "Vantagens de Investir"
+        }
+      },
+      "qualidade_vida": {
+        "titulo": {
+          "value": "Qualidade de Vida",
+          "type": "titulo",
+          "label": "📌 Qualidade Título",
+          "hint": "Título da vantagem Qualidade",
+          "maxLength": 50,
+          "section": "Vantagens de Investir"
+        },
+        "descricao": {
+          "value": "Além do potencial econômico, Penha oferece uma qualidade de vida excepcional. Com infraestrutura de primeira classe, serviços públicos de alta qualidade e um ambiente seguro, é um lugar ideal para se viver e investir.",
+          "type": "texto",
+          "label": "📝 Qualidade Descrição",
+          "hint": "Descrição da vantagem",
+          "maxLength": 300,
+          "section": "Vantagens de Investir"
+        }
+      },
+      "turismo": {
+        "titulo": {
+          "value": "Turismo em Expansão",
+          "type": "titulo",
+          "label": "📌 Turismo Título",
+          "hint": "Título da vantagem Turismo",
+          "maxLength": 50,
+          "section": "Vantagens de Investir"
+        },
+        "descricao": {
+          "value": "O turismo é a espinha dorsal da economia de Penha. A cidade recebe milhões de turistas todos os anos, o que cria uma ampla oportunidade para investimentos no setor de hospitalidade, como hotéis, resorts e serviços relacionados.",
+          "type": "texto",
+          "label": "📝 Turismo Descrição",
+          "hint": "Descrição da vantagem",
+          "maxLength": 300,
+          "section": "Vantagens de Investir"
+        }
+      }
+    },
+    "invista": {
+      "titulo": {
+        "value": "Invista em Penha",
+        "type": "titulo",
+        "label": "📌 Título Seção",
+        "hint": "Título da seção Invista",
+        "maxLength": 30,
+        "section": "Invista"
+      },
+      "subtitulo": {
+        "value": "Você prefere qual localização?",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo da seção",
+        "maxLength": 50,
+        "section": "Invista"
+      },
+      "opcao_1": {
+        "value": "Frente mar",
+        "type": "texto",
+        "label": "🏷️ Opção 1",
+        "hint": "Primeira opção de localização",
+        "maxLength": 20,
+        "section": "Invista"
+      },
+      "opcao_2": {
+        "value": "Quadra Mar",
+        "type": "texto",
+        "label": "🏷️ Opção 2",
+        "hint": "Segunda opção de localização",
+        "maxLength": 20,
+        "section": "Invista"
+      },
+      "opcao_3": {
+        "value": "Vista Mar",
+        "type": "texto",
+        "label": "🏷️ Opção 3",
+        "hint": "Terceira opção de localização",
+        "maxLength": 20,
+        "section": "Invista"
+      }
+    },
+    "cta_investimento": {
+      "titulo": {
+        "value": "Procurando o melhor investimento?",
+        "type": "titulo",
+        "label": "📌 Título CTA",
+        "hint": "Título do CTA de investimento",
+        "maxLength": 50,
+        "section": "CTA Investimento"
+      },
+      "botao": {
+        "value": "Encontre o seu imóvel na praia!",
+        "type": "botao",
+        "label": "🔘 Botão CTA",
+        "hint": "Texto do botão CTA",
+        "maxLength": 50,
+        "section": "CTA Investimento"
+      }
+    },
+    "anuncie": {
+      "titulo": {
+        "value": "Anuncie com a Nox",
+        "type": "titulo",
+        "label": "📌 Título Anuncie",
+        "hint": "Título da seção Anuncie",
+        "maxLength": 30,
+        "section": "Anuncie"
+      },
+      "subtitulo": {
+        "value": "A melhor forma de anunciar seu imóvel!",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo da seção",
+        "maxLength": 50,
+        "section": "Anuncie"
+      }
+    }
   }
 }
