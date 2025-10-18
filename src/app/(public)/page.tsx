@@ -11,13 +11,13 @@ export const revalidate = 86400
 
 // Metadata otimizada para SEO
 export const metadata: Metadata = {
-  title: 'Nox Imóveis - Imóveis em Penha, Balneário Piçarras e Barra Velha',
-  description: 'Encontre o imóvel dos seus sonhos em Penha, Balneário Piçarras e Barra Velha. Apartamentos, casas e terrenos com a melhor imobiliária da região.',
-  keywords: 'imóveis penha, imóveis balneário piçarras, imóveis barra velha, apartamentos, casas, terrenos, imobiliária, venda, aluguel',
+  title: getText('home.metadata.title'),
+  description: getText('home.metadata.description'),
+  keywords: getText('home.metadata.keywords'),
   authors: [{ name: 'Nox Imóveis' }],
   openGraph: {
-    title: 'Nox Imóveis - Imóveis em Penha, Balneário Piçarras e Barra Velha',
-    description: 'Encontre o imóvel dos seus sonhos em Penha, Balneário Piçarras e Barra Velha. Apartamentos, casas e terrenos com a melhor imobiliária da região.',
+    title: getText('home.metadata.title'),
+    description: getText('home.metadata.description'),
     type: 'website',
     locale: 'pt_BR',
     images: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         url: '/imagens/banners/banner-home.png',
         width: 1920,
         height: 1080,
-        alt: 'Nox Imóveis - Imóveis em Penha, Balneário Piçarras e Barra Velha',
+        alt: getText('home.metadata.title'),
       },
     ],
   },
@@ -180,10 +180,10 @@ export default async function HomePage() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
             <div>
               <h2 className="text-2xl font-semibold text-gray-900 mb-3">
-                Seleção Nox
+                {getText('home.selecao_nox.titulo')}
             </h2>
               <p className="text-sm text-gray-500 max-w-xl">
-                Confira a nossa curadoria dos melhores imóveis selecionados pela equipe da Nox Imóveis.
+                {getText('home.selecao_nox.descricao')}
               </p>
             </div>
             <div className="mt-4 md:mt-0">
@@ -191,7 +191,7 @@ export default async function HomePage() {
                 href="/imoveis"
                 className="inline-flex items-center px-5 py-2 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors duration-200"
               >
-                Buscar imóveis
+                {getText('home.selecao_nox.botao_buscar')}
                 <svg className="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -300,7 +300,7 @@ export default async function HomePage() {
                 </svg>
               </div>
               <h2 className="text-2xl md:text-3xl font-semibold text-blue-500">
-                Encontre o imóvel ideal para cada momento da sua vida
+                {getText('home.encontre_imovel_principal.titulo')}
               </h2>
             </div>
           </div>
@@ -517,7 +517,7 @@ export default async function HomePage() {
                   </svg>
                 </div>
                 <h2 className="text-2xl md:text-3xl font-semibold text-gray-800">
-                  Procurando investir, morar ou veranear?
+                  {getText('home.cta_atendimento.titulo')}
                 </h2>
               </div>
               
@@ -530,7 +530,7 @@ export default async function HomePage() {
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
                 </svg>
-                <span>Receber atendimento</span>
+                <span>{getText('home.cta_atendimento.botao_atendimento')}</span>
               </a>
             </div>
             
@@ -543,8 +543,8 @@ export default async function HomePage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-1">Consultoria personalizada</h3>
-                  <p className="text-gray-600">Atendimento exclusivo para suas necessidades</p>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-1">{getText('home.cta_atendimento.beneficio_1.titulo')}</h3>
+                  <p className="text-gray-600">{getText('home.cta_atendimento.beneficio_1.descricao')}</p>
               </div>
             </div>
             
@@ -555,8 +555,8 @@ export default async function HomePage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-1">Especialistas em Penha, Balneário Piçarras e Barra Velha</h3>
-                  <p className="text-gray-600">Conhecemos cada detalhe da região</p>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-1">{getText('home.cta_atendimento.beneficio_2.titulo')}</h3>
+                  <p className="text-gray-600">{getText('home.cta_atendimento.beneficio_2.descricao')}</p>
               </div>
             </div>
             
@@ -567,8 +567,8 @@ export default async function HomePage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-1">Visite sem sair de casa</h3>
-                  <p className="text-gray-600">Conheça o imóvel por videochamada</p>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-1">{getText('home.cta_atendimento.beneficio_3.titulo')}</h3>
+                  <p className="text-gray-600">{getText('home.cta_atendimento.beneficio_3.descricao')}</p>
                 </div>
               </div>
             </div>
@@ -679,14 +679,14 @@ export default async function HomePage() {
               <div className="p-8 lg:p-12 flex flex-col justify-center">
                 <div className="text-white">
                   <p className="text-sm font-medium mb-2 opacity-90">
-                    Anuncie com a Nox
+                    {getText('home.anuncie_nox.titulo')}
                   </p>
                   <h2 className="text-2xl lg:text-3xl font-bold mb-6">
-                    A melhor forma de anunciar seu imóvel!
+                    {getText('home.anuncie_nox.subtitulo')}
                   </h2>
                   
                   <button className="inline-flex items-center px-6 py-3 bg-purple-500 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors duration-200">
-                    Avaliar meu imóvel
+                    {getText('home.anuncie_nox.botao_avaliar')}
                     <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
@@ -704,7 +704,7 @@ export default async function HomePage() {
           {/* Título da Seção */}
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              O que dizem nossos clientes
+              {getText('home.depoimentos.titulo')}
             </h2>
           </div>
 
@@ -714,16 +714,16 @@ export default async function HomePage() {
               {/* Nome e Cargo */}
               <div className="mb-4">
                 <h3 className="text-lg font-bold text-gray-900 mb-1">
-                  Octavio Deiroz Neto
+                  {getText('home.depoimentos.cliente_nome')}
               </h3>
                 <p className="text-sm text-gray-600">
-                  Comprador
+                  {getText('home.depoimentos.cliente_cargo')}
             </p>
           </div>
 
               {/* Depoimento */}
               <blockquote className="text-base text-gray-700 leading-relaxed italic">
-                "Atendimento impecável, principalmente do corretor Flávio. Comprei uma casa ano passado e foram muito prestativos e extremamente rápidos com todos os trâmites. Nota 10!"
+                "{getText('home.depoimentos.depoimento')}"
               </blockquote>
             </div>
             </div>
@@ -743,7 +743,7 @@ export default async function HomePage() {
                  {/* Header da Seção */}
                  <div className="flex items-center justify-between mb-12">
                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-                     Conheça nossa equipe
+                     {getText('home.equipe.titulo')}
           </h2>
                    
                    {/* Botões de Navegação */}
@@ -774,13 +774,13 @@ export default async function HomePage() {
                        />
                      </div>
                      <div className="p-4">
-                       <h3 className="text-lg font-semibold text-gray-900 mb-1">Adriana Barbosa Campos</h3>
-                       <p className="text-sm text-gray-600 mb-3">Corretora de imóveis</p>
+                       <h3 className="text-lg font-semibold text-gray-900 mb-1">{getText('home.equipe.membro_1.nome')}</h3>
+                       <p className="text-sm text-gray-600 mb-3">{getText('home.equipe.membro_1.cargo')}</p>
                        <a 
                          href="/contato"
                          className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
                        >
-                         <span>Ver contato</span>
+                         <span>{getText('home.equipe.botao_contato')}</span>
                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                          </svg>
@@ -799,13 +799,13 @@ export default async function HomePage() {
                        />
                      </div>
                      <div className="p-4">
-                       <h3 className="text-lg font-semibold text-gray-900 mb-1">Adriana Medeiros</h3>
-                       <p className="text-sm text-gray-600 mb-3">Corretora de imóveis</p>
+                       <h3 className="text-lg font-semibold text-gray-900 mb-1">{getText('home.equipe.membro_2.nome')}</h3>
+                       <p className="text-sm text-gray-600 mb-3">{getText('home.equipe.membro_2.cargo')}</p>
                        <a 
                          href="/contato"
                          className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
                        >
-                         <span>Ver contato</span>
+                         <span>{getText('home.equipe.botao_contato')}</span>
                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                          </svg>
@@ -824,13 +824,13 @@ export default async function HomePage() {
                        />
                      </div>
                      <div className="p-4">
-                       <h3 className="text-lg font-semibold text-gray-900 mb-1">Alan de Freitas Cordeiro</h3>
-                       <p className="text-sm text-gray-600 mb-3">Corretor de imóveis</p>
+                       <h3 className="text-lg font-semibold text-gray-900 mb-1">{getText('home.equipe.membro_3.nome')}</h3>
+                       <p className="text-sm text-gray-600 mb-3">{getText('home.equipe.membro_3.cargo')}</p>
                        <a 
                          href="/contato"
                          className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
                        >
-                         <span>Ver contato</span>
+                         <span>{getText('home.equipe.botao_contato')}</span>
                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                          </svg>
@@ -849,13 +849,13 @@ export default async function HomePage() {
                        />
                      </div>
                      <div className="p-4">
-                       <h3 className="text-lg font-semibold text-gray-900 mb-1">Alex Penha</h3>
-                       <p className="text-sm text-gray-600 mb-3">Corretor de imóveis</p>
+                       <h3 className="text-lg font-semibold text-gray-900 mb-1">{getText('home.equipe.membro_4.nome')}</h3>
+                       <p className="text-sm text-gray-600 mb-3">{getText('home.equipe.membro_4.cargo')}</p>
                        <a 
                          href="/contato"
                          className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
                        >
-                         <span>Ver contato</span>
+                         <span>{getText('home.equipe.botao_contato')}</span>
                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                          </svg>
