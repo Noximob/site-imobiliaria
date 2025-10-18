@@ -299,9 +299,9 @@ export default async function HomePage() {
                   <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
                 </svg>
               </div>
-              <h2 className="text-2xl md:text-3xl font-semibold text-blue-500">
-                {getText('home.encontre_imovel_principal.titulo')}
-              </h2>
+            <h2 className="text-2xl md:text-3xl font-semibold text-blue-500">
+              {getText('home.encontre_imovel.titulo')}
+            </h2>
             </div>
           </div>
 
@@ -311,7 +311,7 @@ export default async function HomePage() {
             <div>
               <div className="flex items-center mb-4">
                 <Search className="w-4 h-4 text-blue-500 mr-2 font-bold" />
-                <h3 className="text-lg font-bold text-blue-500">{getText('home.encontre_imovel_principal.penha.label_cidade')}</h3>
+                <h3 className="text-lg font-bold text-blue-500">{getText('home.encontre_imovel.penha.titulo')}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
@@ -326,7 +326,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.penha.card_1')}</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.penha.lancamentos_investidor')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
@@ -342,7 +342,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.penha.card_2')}</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.penha.frente_mar')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
@@ -358,7 +358,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.penha.card_3_subtitulo')}</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.penha.mobiliados')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
@@ -374,7 +374,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.penha.card_4')}</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.penha.apartamentos')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
@@ -385,7 +385,7 @@ export default async function HomePage() {
             <div>
               <div className="flex items-center mb-4">
                 <Search className="w-4 h-4 text-blue-500 mr-2 font-bold" />
-                <h3 className="text-lg font-bold text-blue-500">{getText('home.encontre_imovel_principal.balneario_picarras.label_cidade')}</h3>
+                <h3 className="text-lg font-bold text-blue-500">{getText('home.encontre_imovel.picarras.titulo')}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
@@ -400,7 +400,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.balneario_picarras.card_1')}</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.picarras.apartamentos_coberturas')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
@@ -414,7 +414,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.balneario_picarras.card_2')}</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.picarras.mobiliados')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
@@ -428,7 +428,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.balneario_picarras.card_3')}</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.picarras.vista_mar')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
@@ -442,7 +442,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.balneario_picarras.card_4')}</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.picarras.lancamentos')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
