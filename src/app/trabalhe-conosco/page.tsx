@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Upload, X } from 'lucide-react'
+import { getImageUrl } from '@/lib/github-images'
+
+const trabalheImage = getImageUrl('trabalhe-conosco')
 
 export default function TrabalheConoscoPage() {
   const [formData, setFormData] = useState({
@@ -74,7 +77,7 @@ export default function TrabalheConoscoPage() {
           {/* Lado Direito - Imagem da Equipe */}
           <div className="flex-1 relative">
             <Image
-              src="/imagens/Trabalhe Conosco/Trabalhe Conosco.png"
+              src={trabalheImage}
               alt="Equipe Nox Imóveis"
               fill
               className="object-cover"

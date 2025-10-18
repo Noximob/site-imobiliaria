@@ -3,6 +3,16 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
+import { getImageUrl } from '@/lib/github-images'
+
+const sobreImages = {
+  hero: getImageUrl('quem-somos-hero'),
+  equipePrincipal: getImageUrl('equipe-principal'),
+  corretor1: getImageUrl('corretores-1'),
+  corretor2: getImageUrl('corretores-2'),
+  corretor3: getImageUrl('corretores-3'),
+  corretor4: getImageUrl('corretores-4')
+}
 
 export default function SobrePage() {
   const [selectedMember, setSelectedMember] = useState<string | null>(null)
@@ -14,7 +24,7 @@ export default function SobrePage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image 
-            src="/imagens/banners/quem-somos-hero.jpg"
+            src={sobreImages.hero}
             alt="Nox Imóveis - Quem Somos" 
             fill
             className="object-cover"
@@ -43,7 +53,7 @@ export default function SobrePage() {
             {/* Imagem da Equipe */}
             <div className="relative">
               <Image 
-                src="/imagens/equipe/equipe-principal.jpg"
+                src={sobreImages.equipePrincipal}
                 alt="Equipe Nox Imóveis" 
                 width={600}
                 height={400}
@@ -180,7 +190,7 @@ export default function SobrePage() {
             <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
               <div className="h-64 relative">
                 <Image 
-                  src="/imagens/Corretores/1.png" 
+                  src={sobreImages.corretor1} 
                   alt="Adriana Barbosa Campos" 
                   fill
                   className="object-cover"
@@ -205,7 +215,7 @@ export default function SobrePage() {
             <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
               <div className="h-64 relative">
                 <Image 
-                  src="/imagens/Corretores/2.png" 
+                  src={sobreImages.corretor2} 
                   alt="Adriana Medeiros" 
                   fill
                   className="object-cover"
@@ -230,7 +240,7 @@ export default function SobrePage() {
             <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
               <div className="h-64 relative">
                 <Image 
-                  src="/imagens/Corretores/3.png" 
+                  src={sobreImages.corretor3} 
                   alt="Alan de Freitas Cordeiro" 
                   fill
                   className="object-cover"
@@ -255,7 +265,7 @@ export default function SobrePage() {
             <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
               <div className="h-64 relative">
                 <Image 
-                  src="/imagens/Corretores/4.png" 
+                  src={sobreImages.corretor4} 
                   alt="Alex Penha" 
                   fill
                   className="object-cover"

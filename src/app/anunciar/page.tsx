@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { DollarSign, TrendingUp, BarChart3, Camera } from 'lucide-react'
+import { getImageUrl } from '@/lib/github-images'
+
+const anunciarImage = getImageUrl('anunciar-imovel')
 
 export default function AnunciarPage() {
   const [formData, setFormData] = useState({
@@ -35,7 +38,7 @@ export default function AnunciarPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/imagens/Anunciar Imovel/Anunciar Imovel.png"
+            src={anunciarImage}
             alt="Anunciar Imóvel - Nox Imóveis"
             fill
             className="object-cover"

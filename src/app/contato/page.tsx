@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import { Phone } from 'lucide-react'
 import Image from 'next/image'
+import { getImageUrl } from '@/lib/github-images'
+
+const contatoImage = getImageUrl('contato')
 
 export default function ContatoPage() {
   const [formData, setFormData] = useState({
@@ -52,7 +55,7 @@ export default function ContatoPage() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="/imagens/Contato/Contato.png"
+          src={contatoImage}
           alt="Contato Nox Imóveis" 
           fill
           className="object-cover"
