@@ -1,7 +1,7 @@
 {
   "header": {
     "telefone": {
-      "value": "(47) 99753-0113",
+      "value": "(47) 99753-01131",
       "type": "contato",
       "label": "📞 Telefone",
       "hint": "Telefone principal para contato",
@@ -9,7 +9,7 @@
       "section": "Header"
     },
     "menu_imoveis_penha": {
-      "value": "Imóveis em Penha",
+      "value": "Imóveis em Penhaa",
       "type": "link",
       "label": "🔗 Menu - Penha",
       "hint": "Texto do menu dropdown",
@@ -17,7 +17,7 @@
       "section": "Header"
     },
     "menu_imoveis_picarras": {
-      "value": "Imóveis em Balneário Piçarras",
+      "value": "Imóveis em Balneário Piçarrasa",
       "type": "link",
       "label": "🔗 Menu - Piçarras",
       "hint": "Texto do menu dropdown",
@@ -25,7 +25,7 @@
       "section": "Header"
     },
     "menu_imoveis_barra_velha": {
-      "value": "Imóveis em Barra Velha",
+      "value": "Imóveis em Barra Velhaa",
       "type": "link",
       "label": "🔗 Menu - Barra Velha",
       "hint": "Texto do menu dropdown",
