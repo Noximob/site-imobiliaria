@@ -11,13 +11,13 @@ export const revalidate = 86400
 
 // Metadata otimizada para SEO
 export const metadata: Metadata = {
-  title: getText('home.metadata.title'),
-  description: getText('home.metadata.description'),
-  keywords: getText('home.metadata.keywords'),
+  title: "Nox Imóveis - Imóveis em Penha, Balneário Piçarras e Barra Velha",
+  description: "Encontre o imóvel dos seus sonhos em Penha, Balneário Piçarras e Barra Velha. Apartamentos, casas e terrenos com a melhor imobiliária da região.",
+  keywords: "imóveis penha, imóveis balneário piçarras, imóveis barra velha, apartamentos, casas, terrenos, imobiliária, venda, aluguel",
   authors: [{ name: 'Nox Imóveis' }],
   openGraph: {
-    title: getText('home.metadata.title'),
-    description: getText('home.metadata.description'),
+    title: "Nox Imóveis - Imóveis em Penha, Balneário Piçarras e Barra Velha",
+    description: "Encontre o imóvel dos seus sonhos em Penha, Balneário Piçarras e Barra Velha. Apartamentos, casas e terrenos com a melhor imobiliária da região.",
     type: 'website',
     locale: 'pt_BR',
     images: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         url: '/imagens/banners/banner-home.png',
         width: 1920,
         height: 1080,
-        alt: getText('home.metadata.title'),
+        alt: "Nox Imóveis - Imóveis em Penha, Balneário Piçarras e Barra Velha",
       },
     ],
   },
@@ -227,13 +227,13 @@ export default async function HomePage() {
                 </div>
                 <div className="p-4">
                   <h3 className="text-base font-bold text-gray-900 mb-1">
-                    Apartamento 4 Quartos
+                    {getText('home.selecao_nox.imovel_1.titulo')}
                   </h3>
                   <p className="text-blue-600 text-xs font-medium mb-2">
-                    Praia Brava, Itajaí
+                    {getText('home.selecao_nox.imovel_1.localizacao')}
                   </p>
                   <p className="text-lg font-bold text-gray-900">
-                    R$ 7.500.000,00
+                    {getText('home.selecao_nox.imovel_1.preco')}
                   </p>
                 </div>
               </div>
@@ -250,13 +250,13 @@ export default async function HomePage() {
                 </div>
                 <div className="p-4">
                   <h3 className="text-base font-bold text-gray-900 mb-1">
-                    Apartamento 4 Quartos
+                    {getText('home.selecao_nox.imovel_2.titulo')}
                   </h3>
                   <p className="text-blue-600 text-xs font-medium mb-2">
-                    Pioneiros, Balneário Camboriú
+                    {getText('home.selecao_nox.imovel_2.localizacao')}
                   </p>
                   <p className="text-lg font-bold text-gray-900">
-                    R$ 6.400.000,00
+                    {getText('home.selecao_nox.imovel_2.preco')}
                   </p>
                 </div>
           </div>
@@ -273,13 +273,13 @@ export default async function HomePage() {
                 </div>
                 <div className="p-4">
                   <h3 className="text-base font-bold text-gray-900 mb-1">
-                    Apartamento 3 Quartos
+                    {getText('home.selecao_nox.imovel_3.titulo')}
               </h3>
                   <p className="text-blue-600 text-xs font-medium mb-2">
-                    Pioneiros, Balneário Camboriú
+                    {getText('home.selecao_nox.imovel_3.localizacao')}
                   </p>
                   <p className="text-lg font-bold text-gray-900">
-                    R$ 8.300.000,00
+                    {getText('home.selecao_nox.imovel_3.preco')}
               </p>
             </div>
               </div>
@@ -311,7 +311,7 @@ export default async function HomePage() {
             <div>
               <div className="flex items-center mb-4">
                 <Search className="w-4 h-4 text-blue-500 mr-2 font-bold" />
-                <h3 className="text-lg font-bold text-blue-500">Penha</h3>
+                <h3 className="text-lg font-bold text-blue-500">{getText('home.encontre_imovel_principal.penha.label_cidade')}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
@@ -326,7 +326,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Lançamentos Investidor</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.penha.card_1')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
@@ -342,7 +342,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Frente Mar</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.penha.card_2')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
@@ -358,7 +358,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Mobiliados</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.penha.card_3_subtitulo')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
@@ -374,7 +374,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Apartamentos</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.penha.card_4')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
@@ -385,7 +385,7 @@ export default async function HomePage() {
             <div>
               <div className="flex items-center mb-4">
                 <Search className="w-4 h-4 text-blue-500 mr-2 font-bold" />
-                <h3 className="text-lg font-bold text-blue-500">Balneário Piçarras</h3>
+                <h3 className="text-lg font-bold text-blue-500">{getText('home.encontre_imovel_principal.balneario_picarras.label_cidade')}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
@@ -400,7 +400,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Apartamentos e Coberturas</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.balneario_picarras.card_1')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
@@ -414,7 +414,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Mobiliados</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.balneario_picarras.card_2')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
@@ -428,7 +428,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Vista Mar</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.balneario_picarras.card_3')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
@@ -442,7 +442,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
-                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Lançamentos</span>
+                    <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel_principal.balneario_picarras.card_4')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
                 </div>
@@ -625,24 +625,24 @@ export default async function HomePage() {
             {/* Lado Direito - Texto e Botões */}
             <div className="text-center lg:text-left">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-                Imóveis na Planta
+                {getText('home.imoveis_na_planta.titulo')}
               </h2>
               
               <p className="text-base text-gray-600 mb-8 max-w-md mx-auto lg:mx-0 leading-relaxed">
-                Invista em um empreendimento que combina com o seu estilo de vida. Tenha segurança e rentabilidade com imóveis na planta na região mais desejada do Brasil.
+                {getText('home.imoveis_na_planta.descricao')}
               </p>
               
               <div className="flex flex-col lg:flex-row gap-3">
                 <button className="px-4 py-2 border border-purple-600 text-purple-600 font-medium rounded-lg hover:bg-purple-600 hover:text-white transition-colors duration-200 text-sm">
-                  Penha
+                  {getText('home.imoveis_na_planta.botao_penha')}
                 </button>
                 
                 <button className="px-4 py-2 border border-purple-600 text-purple-600 font-medium rounded-lg hover:bg-purple-600 hover:text-white transition-colors duration-200 text-sm">
-                  Piçarras
+                  {getText('home.imoveis_na_planta.botao_picarras')}
                 </button>
                 
                 <button className="px-4 py-2 border border-purple-600 text-purple-600 font-medium rounded-lg hover:bg-purple-600 hover:text-white transition-colors duration-200 text-sm">
-                  Barra Velha
+                  {getText('home.imoveis_na_planta.botao_barra_velha')}
                 </button>
               </div>
             </div>
@@ -662,7 +662,7 @@ export default async function HomePage() {
                   <Image 
                     src={siteImages['anuncie-nox-mulher'] || '/imagens/Anuncie com a Nox/Mulher.jpg'}
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    alt="Anuncie com a Nox"
+                    alt="Anuncie com a Nox" 
                     fill
                     className="object-cover bg-transparent"
                   />
