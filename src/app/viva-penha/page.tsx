@@ -1,8 +1,20 @@
 'use client'
 
 import Image from 'next/image'
+import { getImageUrl } from '@/lib/github-images'
 
 export default function VivaPenhaPage() {
+  const penhaImages = {
+    hero: getImageUrl('penha-hero'),
+    praiaPrincipal: getImageUrl('penha-praia-principal'),
+    praiaSecundaria: getImageUrl('penha-praia-secundaria'),
+    praia1: getImageUrl('penha-praia1'),
+    cristoLuz: getImageUrl('penha-cristo-luz'),
+    betoCarrero: getImageUrl('penha-beto-carrero'),
+    jantarRomantico: getImageUrl('penha-jantar-romantico'),
+    praia2: getImageUrl('penha-praia2'),
+    skyline: getImageUrl('penha-skyline')
+  }
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -10,7 +22,7 @@ export default function VivaPenhaPage() {
         {/* Background Image */}
         <div className="absolute inset-0 bg-transparent">
           <Image 
-            src="/imagens/banners/penha-hero.jpg"
+            src={penhaImages.hero}
             alt="Penha - Viva Penha" 
             fill
             className="object-cover bg-transparent"
@@ -37,7 +49,7 @@ export default function VivaPenhaPage() {
               {/* Main Image */}
               <div className="relative rounded-lg overflow-hidden shadow-lg bg-transparent">
                 <Image 
-                  src="/imagens/penha/praia-principal.jpg"
+                  src={penhaImages.praiaPrincipal}
                   alt="Praia de Penha" 
                   width={600}
                   height={400}
@@ -48,7 +60,7 @@ export default function VivaPenhaPage() {
               {/* Secondary Overlapping Image */}
               <div className="absolute -bottom-8 -left-8 rounded-lg overflow-hidden shadow-lg bg-transparent">
                 <Image 
-                  src="/imagens/penha/praia-secundaria.jpg"
+                  src={penhaImages.praiaSecundaria}
                   alt="Vista da praia de Penha" 
                   width={300}
                   height={200}
@@ -149,7 +161,7 @@ export default function VivaPenhaPage() {
               <div className="space-y-4">
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/penha/praia1.jpg"
+                    src={penhaImages.praia1}
                     alt="Praia de Penha" 
                     fill
                     className="object-cover"
@@ -157,7 +169,7 @@ export default function VivaPenhaPage() {
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/penha/cristo-luz.jpg"
+                    src={penhaImages.cristoLuz}
                     alt="Cristo Luz Penha" 
                     fill
                     className="object-cover"
@@ -167,7 +179,7 @@ export default function VivaPenhaPage() {
               <div className="space-y-4">
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/penha/beto-carrero.jpg"
+                    src={penhaImages.betoCarrero}
                     alt="Beto Carrero World" 
                     fill
                     className="object-cover"
@@ -175,7 +187,7 @@ export default function VivaPenhaPage() {
                 </div>
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/penha/jantar-romantico.jpg"
+                    src={penhaImages.jantarRomantico}
                     alt="Jantar Romântico" 
                     fill
                     className="object-cover"
@@ -185,7 +197,7 @@ export default function VivaPenhaPage() {
               <div className="space-y-4">
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/penha/praia2.jpg"
+                    src={penhaImages.praia2}
                     alt="Praia de Penha" 
                     fill
                     className="object-cover"
@@ -193,7 +205,7 @@ export default function VivaPenhaPage() {
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/penha/skyline.jpg"
+                    src={penhaImages.skyline}
                     alt="Skyline Penha" 
                     fill
                     className="object-cover"

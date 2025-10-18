@@ -1,8 +1,20 @@
 'use client'
 
 import Image from 'next/image'
+import { getImageUrl } from '@/lib/github-images'
 
 export default function VivaBarraVelhaPage() {
+  const barraVelhaImages = {
+    hero: getImageUrl('barra-velha-hero'),
+    praiaPrincipal: getImageUrl('barra-velha-praia-principal'),
+    praiaSecundaria: getImageUrl('barra-velha-praia-secundaria'),
+    praia1: getImageUrl('barra-velha-praia1'),
+    atracao1: getImageUrl('barra-velha-atracao1'),
+    atracao2: getImageUrl('barra-velha-atracao2'),
+    gastronomia: getImageUrl('barra-velha-gastronomia'),
+    praia2: getImageUrl('barra-velha-praia2'),
+    skyline: getImageUrl('barra-velha-skyline')
+  }
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -37,7 +49,7 @@ export default function VivaBarraVelhaPage() {
               {/* Main Image */}
               <div className="relative rounded-lg overflow-hidden shadow-lg">
                 <Image 
-                  src="/imagens/barra-velha/praia-principal.jpg"
+                  src={barraVelhaImages.praiaPrincipal}
                   alt="Praia de Barra Velha" 
                   width={600}
                   height={400}
@@ -48,7 +60,7 @@ export default function VivaBarraVelhaPage() {
               {/* Secondary Overlapping Image */}
               <div className="absolute -bottom-8 -left-8 rounded-lg overflow-hidden shadow-lg">
                 <Image 
-                  src="/imagens/barra-velha/praia-secundaria.jpg"
+                  src={barraVelhaImages.praiaSecundaria}
                   alt="Vista da praia de Barra Velha" 
                   width={300}
                   height={200}
@@ -149,7 +161,7 @@ export default function VivaBarraVelhaPage() {
               <div className="space-y-4">
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/barra-velha/praia1.jpg" 
+                    src={barraVelhaImages.praia1} 
                     alt="Praia de Barra Velha" 
                     fill
                     className="object-cover"
@@ -157,7 +169,7 @@ export default function VivaBarraVelhaPage() {
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/barra-velha/cristo-luz.jpg" 
+                    src={barraVelhaImages.atracao1} 
                     alt="Cristo Luz Barra Velha" 
                     fill
                     className="object-cover"
@@ -167,7 +179,7 @@ export default function VivaBarraVelhaPage() {
               <div className="space-y-4">
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/barra-velha/beto-carrero.jpg" 
+                    src={barraVelhaImages.atracao2} 
                     alt="Beto Carrero World" 
                     fill
                     className="object-cover"
@@ -175,7 +187,7 @@ export default function VivaBarraVelhaPage() {
                 </div>
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/barra-velha/jantar-romantico.jpg" 
+                    src={barraVelhaImages.gastronomia} 
                     alt="Jantar Romântico" 
                     fill
                     className="object-cover"
@@ -185,7 +197,7 @@ export default function VivaBarraVelhaPage() {
               <div className="space-y-4">
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/barra-velha/praia2.jpg" 
+                    src={barraVelhaImages.praia2} 
                     alt="Praia de Barra Velha" 
                     fill
                     className="object-cover"
@@ -193,7 +205,7 @@ export default function VivaBarraVelhaPage() {
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/barra-velha/skyline.jpg" 
+                    src={barraVelhaImages.skyline} 
                     alt="Skyline Barra Velha" 
                     fill
                     className="object-cover"

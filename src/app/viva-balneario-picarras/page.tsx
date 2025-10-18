@@ -1,8 +1,20 @@
 'use client'
 
 import Image from 'next/image'
+import { getImageUrl } from '@/lib/github-images'
 
 export default function VivaBalnearioPicarrasPage() {
+  const picarrasImages = {
+    hero: getImageUrl('picarras-hero'),
+    praiaPrincipal: getImageUrl('picarras-praia-principal'),
+    praiaSecundaria: getImageUrl('picarras-praia-secundaria'),
+    praia1: getImageUrl('picarras-praia1'),
+    atracao1: getImageUrl('picarras-atracao1'),
+    atracao2: getImageUrl('picarras-atracao2'),
+    gastronomia: getImageUrl('picarras-gastronomia'),
+    praia2: getImageUrl('picarras-praia2'),
+    skyline: getImageUrl('picarras-skyline')
+  }
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -37,7 +49,7 @@ export default function VivaBalnearioPicarrasPage() {
               {/* Main Image */}
               <div className="relative rounded-lg overflow-hidden shadow-lg">
                 <Image 
-                  src="/imagens/picarras/praia-principal.jpg" 
+                  src={picarrasImages.praiaPrincipal} 
                   alt="Praia de Balneário Piçarras" 
                   width={600}
                   height={400}
@@ -48,7 +60,7 @@ export default function VivaBalnearioPicarrasPage() {
               {/* Secondary Overlapping Image */}
               <div className="absolute -bottom-8 -left-8 rounded-lg overflow-hidden shadow-lg">
                 <Image 
-                  src="/imagens/picarras/praia-secundaria.jpg" 
+                  src={picarrasImages.praiaSecundaria} 
                   alt="Vista da praia de Penha" 
                   width={300}
                   height={200}
@@ -149,7 +161,7 @@ export default function VivaBalnearioPicarrasPage() {
               <div className="space-y-4">
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/picarras/praia1.jpg" 
+                    src={picarrasImages.praia1} 
                     alt="Praia de Balneário Piçarras" 
                     fill
                     className="object-cover"
@@ -157,7 +169,7 @@ export default function VivaBalnearioPicarrasPage() {
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/picarras/cristo-luz.jpg" 
+                    src={picarrasImages.atracao1} 
                     alt="Cristo Luz Balneário Piçarras" 
                     fill
                     className="object-cover"
@@ -167,7 +179,7 @@ export default function VivaBalnearioPicarrasPage() {
               <div className="space-y-4">
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/picarras/beto-carrero.jpg" 
+                    src={picarrasImages.atracao2} 
                     alt="Beto Carrero World" 
                     fill
                     className="object-cover"
@@ -175,7 +187,7 @@ export default function VivaBalnearioPicarrasPage() {
                 </div>
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/picarras/jantar-romantico.jpg" 
+                    src={picarrasImages.gastronomia} 
                     alt="Jantar Romântico" 
                     fill
                     className="object-cover"
@@ -185,7 +197,7 @@ export default function VivaBalnearioPicarrasPage() {
               <div className="space-y-4">
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/picarras/praia2.jpg" 
+                    src={picarrasImages.praia2} 
                     alt="Praia de Balneário Piçarras" 
                     fill
                     className="object-cover"
@@ -193,7 +205,7 @@ export default function VivaBalnearioPicarrasPage() {
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
                   <Image 
-                    src="/imagens/picarras/skyline.jpg" 
+                    src={picarrasImages.skyline} 
                     alt="Skyline Balneário Piçarras" 
                     fill
                     className="object-cover"
