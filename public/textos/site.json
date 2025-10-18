@@ -594,7 +594,7 @@
   "viva_penha": {
     "hero": {
       "titulo": {
-        "value": "Viva Penha",
+        "value": "Viva Penhaa",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página Viva Penha",
@@ -602,7 +602,7 @@
         "section": "Hero"
       },
       "botao_vantagens": {
-        "value": "Ver as vantagens",
+        "value": "Ver as vantagenss",
         "type": "botao",
         "label": "🔘 Botão Vantagens",
         "hint": "Texto do botão Ver as vantagens",
@@ -612,7 +612,7 @@
     },
     "introducao": {
       "titulo": {
-        "value": "Descubra o paraíso catarinense",
+        "value": "Descubra o paraíso catarinensee",
         "type": "titulo",
         "label": "📌 Título Introdução",
         "hint": "Título da seção de introdução",
