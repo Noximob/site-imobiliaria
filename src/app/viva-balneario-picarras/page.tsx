@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { getImageUrl } from '@/lib/github-images'
+import { getText } from '@/lib/site-texts'
 
 export default function VivaBalnearioPicarrasPage() {
   const picarrasImages = {
@@ -32,10 +33,10 @@ export default function VivaBalnearioPicarrasPage() {
         
         <div className="relative z-10 text-left pl-8 pt-16">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-8">
-            Viva Balneário Piçarras
+            {getText('viva_balneario_picarras.hero.titulo')}
           </h1>
           <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-5 rounded-lg text-base transition-colors duration-300 shadow-2xl">
-            Ver as vantagens
+            {getText('viva_balneario_picarras.hero.botao_vantagens')}
           </button>
         </div>
       </section>
@@ -72,13 +73,13 @@ export default function VivaBalnearioPicarrasPage() {
             {/* Right Column - Text */}
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Descubra o paraíso catarinense
+                {getText('viva_balneario_picarras.introducao.titulo')}
               </h2>
               <p className="text-base text-gray-600 mb-6 leading-relaxed">
-                Seja bem-vindo à deslumbrante cidade de Balneário Piçarras, um dos destinos mais encantadores do Brasil. Com suas praias deslumbrantes, vida noturna animada e oportunidades de investimento incríveis, Balneário Piçarras é o local perfeito para viver, visitar e investir.
+                {getText('viva_balneario_picarras.introducao.descricao')}
               </p>
               <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-5 rounded-lg text-sm transition-colors duration-300">
-                Ver imóveis
+                {getText('viva_balneario_picarras.introducao.botao_imoveis')}
               </button>
             </div>
           </div>
@@ -92,10 +93,10 @@ export default function VivaBalnearioPicarrasPage() {
             {/* Left Column - Text and List */}
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                O que fazer em Balneário Piçarras?
+                {getText('viva_balneario_picarras.o_que_fazer.titulo')}
               </h2>
               <p className="text-base text-gray-600 mb-6 leading-relaxed">
-                Aproveite tudo o que Balneário Piçarras tem a oferecer e viva o melhor da cidade!
+                {getText('viva_balneario_picarras.o_que_fazer.subtitulo')}
               </p>
               
               <div className="space-y-4">
@@ -106,7 +107,7 @@ export default function VivaBalnearioPicarrasPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900">Praias de Areias Brancas</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">{getText('viva_balneario_picarras.o_que_fazer.atracao_1')}</h3>
                   </div>
                 </div>
                 
@@ -117,7 +118,7 @@ export default function VivaBalnearioPicarrasPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900">Parque Beto Carrero World</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">{getText('viva_balneario_picarras.o_que_fazer.atracao_2')}</h3>
                   </div>
                 </div>
                 
@@ -128,7 +129,7 @@ export default function VivaBalnearioPicarrasPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900">Cristo Luz</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">{getText('viva_balneario_picarras.o_que_fazer.atracao_3')}</h3>
                   </div>
                 </div>
                 
@@ -139,7 +140,7 @@ export default function VivaBalnearioPicarrasPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900">Vida Noturna Vibrante</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">{getText('viva_balneario_picarras.o_que_fazer.atracao_4')}</h3>
                   </div>
                 </div>
                 
@@ -150,7 +151,7 @@ export default function VivaBalnearioPicarrasPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900">Gastronomia Excepcional</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">{getText('viva_balneario_picarras.o_que_fazer.atracao_5')}</h3>
                   </div>
                 </div>
               </div>
@@ -228,9 +229,9 @@ export default function VivaBalnearioPicarrasPage() {
                   <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Infraestrutura Urbana</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{getText('viva_balneario_picarras.beneficios.infraestrutura.titulo')}</h3>
               <p className="text-gray-600 text-sm">
-                Conforto e praticidade de sobra em uma cidade com infraestrutura completa e moderna.
+                {getText('viva_balneario_picarras.beneficios.infraestrutura.descricao')}
               </p>
             </div>
 
@@ -241,9 +242,9 @@ export default function VivaBalnearioPicarrasPage() {
                   <path d="M10 2L3 7v11a1 1 0 001 1h12a1 1 0 001-1V7l-7-5zM8 15v-3a2 2 0 114 0v3H8z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Atrações Turísticas</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{getText('viva_balneario_picarras.beneficios.atracoes.titulo')}</h3>
               <p className="text-gray-600 text-sm">
-                A cidade é cheia de opções de lazer para moradores e visitantes, com paisagens de tirar o fôlego.
+                {getText('viva_balneario_picarras.beneficios.atracoes.descricao')}
               </p>
             </div>
 
@@ -254,9 +255,9 @@ export default function VivaBalnearioPicarrasPage() {
                   <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Segurança</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{getText('viva_balneario_picarras.beneficios.seguranca.titulo')}</h3>
               <p className="text-gray-600 text-sm">
-                Aproveite a tranquilidade de viver em uma das cidades mais seguras do sul do país!
+                {getText('viva_balneario_picarras.beneficios.seguranca.descricao')}
               </p>
             </div>
 
@@ -267,9 +268,9 @@ export default function VivaBalnearioPicarrasPage() {
                   <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Diversidade de Imóveis</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{getText('viva_balneario_picarras.beneficios.diversidade.titulo')}</h3>
               <p className="text-gray-600 text-sm">
-                Não faltam oportunidades de morar e investir na cidade, com opções para todos os gostos.
+                {getText('viva_balneario_picarras.beneficios.diversidade.descricao')}
               </p>
             </div>
           </div>
@@ -303,9 +304,9 @@ export default function VivaBalnearioPicarrasPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold mb-1 text-white">Mercado imobiliário em crescimento</h3>
+                    <h3 className="text-sm font-semibold mb-1 text-white">{getText('viva_balneario_picarras.vantagens_investir.mercado_imobiliario.titulo')}</h3>
                     <p className="text-gray-300 text-xs leading-relaxed">
-                      Balneário Piçarras é um dos destinos turísticos mais procurados do Brasil, o que torna o mercado imobiliário da cidade extremamente atraente para investidores.
+                      {getText('viva_balneario_picarras.vantagens_investir.mercado_imobiliario.descricao')}
                     </p>
                   </div>
                 </div>
@@ -317,9 +318,9 @@ export default function VivaBalnearioPicarrasPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold mb-1 text-white">Localização estratégica</h3>
+                    <h3 className="text-sm font-semibold mb-1 text-white">{getText('viva_balneario_picarras.vantagens_investir.localizacao.titulo')}</h3>
                     <p className="text-gray-300 text-xs leading-relaxed">
-                      A cidade está estrategicamente localizada no estado de Santa Catarina, entre as cidades de Florianópolis e Curitiba, facilitando o acesso por terra, mar e ar. Isso a torna um centro logístico e de negócios em crescimento.
+                      {getText('viva_balneario_picarras.vantagens_investir.localizacao.descricao')}
                     </p>
                   </div>
                 </div>
@@ -331,9 +332,9 @@ export default function VivaBalnearioPicarrasPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold mb-1 text-white">Qualidade de Vida</h3>
+                    <h3 className="text-sm font-semibold mb-1 text-white">{getText('viva_balneario_picarras.vantagens_investir.qualidade_vida.titulo')}</h3>
                     <p className="text-gray-300 text-xs leading-relaxed">
-                      Além do potencial econômico, Balneário Piçarras oferece uma qualidade de vida excepcional. Com infraestrutura de primeira classe, serviços públicos de alta qualidade e um ambiente seguro, é um lugar ideal para se viver e investir.
+                      {getText('viva_balneario_picarras.vantagens_investir.qualidade_vida.descricao')}
                     </p>
                   </div>
                 </div>
@@ -345,9 +346,9 @@ export default function VivaBalnearioPicarrasPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold mb-1 text-white">Turismo em Expansão</h3>
+                    <h3 className="text-sm font-semibold mb-1 text-white">{getText('viva_balneario_picarras.vantagens_investir.turismo.titulo')}</h3>
                     <p className="text-gray-300 text-xs leading-relaxed">
-                      O turismo é a espinha dorsal da economia de Balneário Piçarras. A cidade recebe milhões de turistas todos os anos, o que cria uma ampla oportunidade para investimentos no setor de hospitalidade, como hotéis, resorts e serviços relacionados.
+                      {getText('viva_balneario_picarras.vantagens_investir.turismo.descricao')}
                     </p>
                   </div>
                 </div>
@@ -363,7 +364,7 @@ export default function VivaBalnearioPicarrasPage() {
           {/* Pergunta */}
           <div className="text-center mb-6">
             <h2 className="text-lg font-medium text-gray-700">
-              Você prefere qual localização?
+              {getText('viva_balneario_picarras.invista.subtitulo')}
             </h2>
           </div>
 
@@ -373,21 +374,21 @@ export default function VivaBalnearioPicarrasPage() {
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
               </svg>
-              Frente mar
+              {getText('viva_balneario_picarras.invista.opcao_1')}
             </button>
             
             <button className="bg-purple-500 hover:bg-purple-600 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
-              Quadra Mar
+              {getText('viva_balneario_picarras.invista.opcao_2')}
             </button>
             
             <button className="bg-purple-700 hover:bg-purple-800 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
-              Vista Mar
+              {getText('viva_balneario_picarras.invista.opcao_3')}
             </button>
           </div>
 
@@ -408,10 +409,10 @@ export default function VivaBalnearioPicarrasPage() {
               {/* Conteúdo */}
               <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6">
                 <h3 className="text-white text-sm font-normal mb-1">
-                  Procurando o melhor investimento?
+                  {getText('viva_balneario_picarras.cta_investimento.titulo')}
                 </h3>
                 <h3 className="text-white text-lg font-bold mb-4">
-                  Encontre o seu imóvel na praia!
+                  {getText('viva_balneario_picarras.cta_investimento.botao')}
                 </h3>
                 <button className="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
                   Buscar imóveis
@@ -434,10 +435,10 @@ export default function VivaBalnearioPicarrasPage() {
               {/* Conteúdo */}
               <div className="bg-gradient-to-br from-purple-800 to-purple-900 p-6">
                 <h3 className="text-white text-sm font-normal mb-1">
-                  Anuncie com a Nox
+                  {getText('viva_balneario_picarras.anuncie.titulo')}
                 </h3>
                 <h3 className="text-white text-lg font-bold mb-4">
-                  A melhor forma de anunciar seu imóvel!
+                  {getText('viva_balneario_picarras.anuncie.subtitulo')}
                 </h3>
                 <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
                   Avaliar meu imóvel
