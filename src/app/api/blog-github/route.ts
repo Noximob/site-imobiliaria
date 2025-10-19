@@ -2,20 +2,19 @@ import { NextRequest, NextResponse } from 'next/server'
 import { Octokit } from '@octokit/rest'
 
 const octokit = new Octokit({
-  auth: process.env.GITHUB_TOKEN
+  auth: process.env.GITHUB_TOKEN,
 })
 
-const owner = 'Noximob'
-const repo = 'site-imobiliaria'
-const artigosPath = 'public/blog/artigos.json'
+const REPO_OWNER = 'Noximob'
+const REPO_NAME = 'site-imobiliaria'
+const ARTIGOS_PATH = 'public/blog/artigos.json'
 
-// GET - Buscar todos os artigos
 export async function GET() {
   try {
     const { data } = await octokit.repos.getContent({
-      owner,
-      repo,
-      path: artigosPath,
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      path: ARTIGOS_PATH,
     })
 
     if ('content' in data) {
@@ -25,164 +24,122 @@ export async function GET() {
     }
 
     return NextResponse.json([])
-  } catch (error: any) {
-    if (error.status === 404) {
-      return NextResponse.json([])
-    }
+  } catch (error) {
     console.error('Erro ao buscar artigos:', error)
-    return NextResponse.json({ error: 'Erro ao buscar artigos' }, { status: 500 })
+    return NextResponse.json([])
   }
 }
 
-// POST - Criar novo artigo
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { artigo, imagem } = body
-
-    // Buscar artigos atuais
-    let artigos: any[] = []
-    let sha: string | undefined
-
-    try {
-      const { data } = await octokit.repos.getContent({
-        owner,
-        repo,
-        path: artigosPath,
-      })
-
-      if ('content' in data) {
-        const content = Buffer.from(data.content, 'base64').toString('utf-8')
-        artigos = JSON.parse(content)
-        sha = data.sha
-      }
-    } catch (error: any) {
-      if (error.status !== 404) throw error
-    }
-
+    const { artigo, imagem } = await request.json()
+    
     // Gerar ID único
-    const id = `artigo-${Date.now()}`
+    const id = Date.now().toString()
     
     // Upload da imagem se fornecida
-    let imagemUrl = artigo.imagem
+    let imagemUrl = ''
     if (imagem) {
-      const imagemPath = `public/imagens/blog/${id}.jpg`
-      const imagemBuffer = Buffer.from(imagem.split(',')[1], 'base64')
-      
-      await octokit.repos.createOrUpdateFileContents({
-        owner,
-        repo,
-        path: imagemPath,
-        message: `Admin: Upload imagem do artigo ${artigo.titulo}`,
-        content: imagemBuffer.toString('base64'),
+      const imageResponse = await octokit.repos.createOrUpdateFileContents({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        path: `public/blog/imagens/${id}.jpg`,
+        message: `Adicionar imagem do artigo ${artigo.titulo}`,
+        content: imagem.split(',')[1], // Remove data:image/jpeg;base64,
       })
-
-      imagemUrl = `/imagens/blog/${id}.jpg`
+      imagemUrl = imageResponse.data.content.download_url
     }
 
-    // Criar novo artigo
+    // Buscar artigos existentes
+    const { data } = await octokit.repos.getContent({
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      path: ARTIGOS_PATH,
+    })
+
+    let artigos = []
+    if ('content' in data) {
+      const content = Buffer.from(data.content, 'base64').toString('utf-8')
+      artigos = JSON.parse(content)
+    }
+
+    // Adicionar novo artigo
     const novoArtigo = {
-      id,
       ...artigo,
+      id,
       imagem: imagemUrl,
-      visualizacoes: 0,
-      dataPublicacao: new Date().toISOString(),
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
+      visualizacoes: 0,
     }
 
     artigos.push(novoArtigo)
 
-    // Salvar artigos atualizados
+    // Salvar no GitHub
     await octokit.repos.createOrUpdateFileContents({
-      owner,
-      repo,
-      path: artigosPath,
-      message: `Admin: Criar artigo "${artigo.titulo}"`,
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      path: ARTIGOS_PATH,
+      message: `Adicionar artigo: ${artigo.titulo}`,
       content: Buffer.from(JSON.stringify(artigos, null, 2)).toString('base64'),
-      sha,
+      sha: 'content' in data ? data.sha : undefined,
     })
 
-    return NextResponse.json({ success: true, id })
+    return NextResponse.json({ id })
   } catch (error) {
     console.error('Erro ao criar artigo:', error)
-    return NextResponse.json({ error: 'Erro ao criar artigo' }, { status: 500 })
+    return NextResponse.status(500).json({ error: 'Erro ao criar artigo' })
   }
 }
 
-// PUT - Atualizar artigo existente
 export async function PUT(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { id, artigo, imagem } = body
-
-    // Buscar artigos atuais
+    const { id, artigo, imagem } = await request.json()
+    
+    // Buscar artigos existentes
     const { data } = await octokit.repos.getContent({
-      owner,
-      repo,
-      path: artigosPath,
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      path: ARTIGOS_PATH,
     })
 
     if (!('content' in data)) {
-      return NextResponse.json({ error: 'Arquivo não encontrado' }, { status: 404 })
+      return NextResponse.status(404).json({ error: 'Arquivo não encontrado' })
     }
 
     const content = Buffer.from(data.content, 'base64').toString('utf-8')
-    let artigos = JSON.parse(content)
-
-    // Encontrar índice do artigo
+    const artigos = JSON.parse(content)
+    
     const index = artigos.findIndex((a: any) => a.id === id)
     if (index === -1) {
-      return NextResponse.json({ error: 'Artigo não encontrado' }, { status: 404 })
+      return NextResponse.status(404).json({ error: 'Artigo não encontrado' })
     }
 
     // Upload da nova imagem se fornecida
-    let imagemUrl = artigos[index].imagem
     if (imagem) {
-      const imagemPath = `public/imagens/blog/${id}.jpg`
-      const imagemBuffer = Buffer.from(imagem.split(',')[1], 'base64')
-      
-      // Buscar SHA da imagem existente se houver
-      let imagemSha: string | undefined
-      try {
-        const { data: imagemData } = await octokit.repos.getContent({
-          owner,
-          repo,
-          path: imagemPath,
-        })
-        if ('sha' in imagemData) {
-          imagemSha = imagemData.sha
-        }
-      } catch (error: any) {
-        if (error.status !== 404) throw error
-      }
-
-      await octokit.repos.createOrUpdateFileContents({
-        owner,
-        repo,
-        path: imagemPath,
-        message: `Admin: Atualizar imagem do artigo ${artigo.titulo || artigos[index].titulo}`,
-        content: imagemBuffer.toString('base64'),
-        sha: imagemSha,
+      const imageResponse = await octokit.repos.createOrUpdateFileContents({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        path: `public/blog/imagens/${id}.jpg`,
+        message: `Atualizar imagem do artigo ${artigo.titulo}`,
+        content: imagem.split(',')[1],
       })
-
-      imagemUrl = `/imagens/blog/${id}.jpg`
+      artigo.imagem = imageResponse.data.content.download_url
     }
 
     // Atualizar artigo
     artigos[index] = {
       ...artigos[index],
       ...artigo,
-      imagem: imagemUrl,
       updatedAt: new Date().toISOString(),
     }
 
-    // Salvar artigos atualizados
+    // Salvar no GitHub
     await octokit.repos.createOrUpdateFileContents({
-      owner,
-      repo,
-      path: artigosPath,
-      message: `Admin: Atualizar artigo "${artigos[index].titulo}"`,
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      path: ARTIGOS_PATH,
+      message: `Atualizar artigo: ${artigo.titulo}`,
       content: Buffer.from(JSON.stringify(artigos, null, 2)).toString('base64'),
       sha: data.sha,
     })
@@ -190,74 +147,63 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Erro ao atualizar artigo:', error)
-    return NextResponse.json({ error: 'Erro ao atualizar artigo' }, { status: 500 })
+    return NextResponse.status(500).json({ error: 'Erro ao atualizar artigo' })
   }
 }
 
-// DELETE - Deletar artigo
 export async function DELETE(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
     const id = searchParams.get('id')
-
+    
     if (!id) {
-      return NextResponse.json({ error: 'ID não fornecido' }, { status: 400 })
+      return NextResponse.status(400).json({ error: 'ID do artigo é obrigatório' })
     }
 
-    // Buscar artigos atuais
+    // Buscar artigos existentes
     const { data } = await octokit.repos.getContent({
-      owner,
-      repo,
-      path: artigosPath,
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      path: ARTIGOS_PATH,
     })
 
     if (!('content' in data)) {
-      return NextResponse.json({ error: 'Arquivo não encontrado' }, { status: 404 })
+      return NextResponse.status(404).json({ error: 'Arquivo não encontrado' })
     }
 
     const content = Buffer.from(data.content, 'base64').toString('utf-8')
-    let artigos = JSON.parse(content)
-
-    // Encontrar artigo
-    const artigo = artigos.find((a: any) => a.id === id)
-    if (!artigo) {
-      return NextResponse.json({ error: 'Artigo não encontrado' }, { status: 404 })
+    const artigos = JSON.parse(content)
+    
+    const index = artigos.findIndex((a: any) => a.id === id)
+    if (index === -1) {
+      return NextResponse.status(404).json({ error: 'Artigo não encontrado' })
     }
 
-    // Tentar deletar imagem se existir
-    if (artigo.imagem && artigo.imagem.startsWith('/imagens/blog/')) {
+    const artigo = artigos[index]
+    
+    // Deletar imagem se existir
+    if (artigo.imagem) {
       try {
-        const imagemPath = artigo.imagem.replace('/', '')
-        const { data: imagemData } = await octokit.repos.getContent({
-          owner,
-          repo,
-          path: imagemPath,
+        await octokit.repos.deleteFile({
+          owner: REPO_OWNER,
+          repo: REPO_NAME,
+          path: `public/blog/imagens/${id}.jpg`,
+          message: `Deletar imagem do artigo ${artigo.titulo}`,
         })
-
-        if ('sha' in imagemData) {
-          await octokit.repos.deleteFile({
-            owner,
-            repo,
-            path: imagemPath,
-            message: `Admin: Deletar imagem do artigo ${artigo.titulo}`,
-            sha: imagemData.sha,
-          })
-        }
       } catch (error) {
-        console.warn('Erro ao deletar imagem:', error)
-        // Continuar mesmo se não conseguir deletar a imagem
+        console.log('Imagem não encontrada para deletar')
       }
     }
 
     // Remover artigo da lista
-    artigos = artigos.filter((a: any) => a.id !== id)
+    artigos.splice(index, 1)
 
-    // Salvar artigos atualizados
+    // Salvar no GitHub
     await octokit.repos.createOrUpdateFileContents({
-      owner,
-      repo,
-      path: artigosPath,
-      message: `Admin: Deletar artigo "${artigo.titulo}"`,
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      path: ARTIGOS_PATH,
+      message: `Deletar artigo: ${artigo.titulo}`,
       content: Buffer.from(JSON.stringify(artigos, null, 2)).toString('base64'),
       sha: data.sha,
     })
@@ -265,7 +211,6 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Erro ao deletar artigo:', error)
-    return NextResponse.json({ error: 'Erro ao deletar artigo' }, { status: 500 })
+    return NextResponse.status(500).json({ error: 'Erro ao deletar artigo' })
   }
 }
-

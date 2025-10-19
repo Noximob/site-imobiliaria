@@ -3,7 +3,7 @@ import { Artigo } from '@/types'
 // Cache dos artigos
 let artigosCache: Artigo[] | null = null
 let cacheTimestamp = 0
-const CACHE_DURATION = 5 * 60 * 1000 // 5 minutos
+const CACHE_DURATION = 0 // Desabilitar cache temporariamente
 
 export async function getAllArtigos(): Promise<Artigo[]> {
   // Verificar cache
