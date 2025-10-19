@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { Upload, X } from 'lucide-react'
 import { getImageUrl } from '@/lib/github-images'
+import { getText } from '@/lib/site-texts'
 
 const trabalheImage = getImageUrl('trabalhe-conosco')
 
@@ -60,16 +61,16 @@ export default function TrabalheConoscoPage() {
           <div className="flex-1 flex items-center justify-center bg-purple-900">
             <div className="text-white max-w-lg px-8">
               <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-                Venha para o nosso time!
+                {getText('trabalhe_conosco.hero.titulo')}
               </h1>
               <p className="text-lg md:text-xl text-purple-100 leading-relaxed mb-8">
-                Faça parte da imobiliária que mais cresce em Santa Catarina!
+                {getText('trabalhe_conosco.hero.subtitulo')}
               </p>
               <button
                 onClick={() => document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300"
               >
-                Enviar currículo
+                {getText('trabalhe_conosco.hero.botao')}
               </button>
             </div>
           </div>
@@ -101,9 +102,9 @@ export default function TrabalheConoscoPage() {
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold mb-2">Cultura de aprendizado</h3>
+              <h3 className="text-lg font-bold mb-2">{getText('trabalhe_conosco.valores.valor_1.titulo')}</h3>
               <p className="text-gray-200 leading-relaxed text-xs">
-                Procuramos inspiração e aprendizado em todos os lugares e instantes.
+                {getText('trabalhe_conosco.valores.valor_1.descricao')}
               </p>
             </div>
 
@@ -114,9 +115,9 @@ export default function TrabalheConoscoPage() {
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold mb-2">Desenvolvimento Constante</h3>
+              <h3 className="text-lg font-bold mb-2">{getText('trabalhe_conosco.valores.valor_2.titulo')}</h3>
               <p className="text-gray-200 leading-relaxed text-xs">
-                Focamos no desenvolvimento de cada colaborador. Queremos que você evolua.
+                {getText('trabalhe_conosco.valores.valor_2.descricao')}
               </p>
             </div>
 
@@ -127,9 +128,9 @@ export default function TrabalheConoscoPage() {
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold mb-2">Time unido</h3>
+              <h3 className="text-lg font-bold mb-2">{getText('trabalhe_conosco.valores.valor_3.titulo')}</h3>
               <p className="text-gray-200 leading-relaxed text-xs">
-                Juntos, nos empenhamos para oferecer o melhor serviço para a nossa comunidade.
+                {getText('trabalhe_conosco.valores.valor_3.descricao')}
               </p>
             </div>
           </div>
@@ -143,10 +144,10 @@ export default function TrabalheConoscoPage() {
             {/* Lado Esquerdo - Texto */}
             <div className="space-y-6">
               <h2 className="text-3xl md:text-4xl font-bold text-purple-600">
-                Venha para a Nox Imóveis
+                {getText('trabalhe_conosco.formulario.titulo')}
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed">
-                Está buscando uma oportunidade de trabalho no mercado imobiliário? Envie seu CV e, assim que surgir uma oportunidade, entraremos em contato com você.
+                {getText('trabalhe_conosco.formulario.descricao')}
               </p>
             </div>
 

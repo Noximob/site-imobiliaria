@@ -2346,5 +2346,107 @@
         "section": "Hero"
       }
     }
+  },
+  "trabalhe_conosco": {
+    "hero": {
+      "titulo": {
+        "value": "Venha para o nosso time!",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página",
+        "maxLength": 40,
+        "section": "Hero"
+      },
+      "subtitulo": {
+        "value": "Faça parte da imobiliária que mais cresce em Santa Catarina!",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do hero",
+        "maxLength": 80,
+        "section": "Hero"
+      },
+      "botao": {
+        "value": "Enviar currículo",
+        "type": "botao",
+        "label": "🔘 Botão Enviar Currículo",
+        "hint": "Texto do botão Enviar currículo",
+        "maxLength": 30,
+        "section": "Hero"
+      }
+    },
+    "valores": {
+      "valor_1": {
+        "titulo": {
+          "value": "Cultura de aprendizado",
+          "type": "titulo",
+          "label": "📌 Valor 1 Título",
+          "hint": "Título do valor 1",
+          "maxLength": 40,
+          "section": "Valores"
+        },
+        "descricao": {
+          "value": "Procuramos inspiração e aprendizado em todos os lugares e instantes.",
+          "type": "texto",
+          "label": "📝 Valor 1 Descrição",
+          "hint": "Descrição do valor 1",
+          "maxLength": 100,
+          "section": "Valores"
+        }
+      },
+      "valor_2": {
+        "titulo": {
+          "value": "Desenvolvimento Constante",
+          "type": "titulo",
+          "label": "📌 Valor 2 Título",
+          "hint": "Título do valor 2",
+          "maxLength": 40,
+          "section": "Valores"
+        },
+        "descricao": {
+          "value": "Focamos no desenvolvimento de cada colaborador. Queremos que você evolua.",
+          "type": "texto",
+          "label": "📝 Valor 2 Descrição",
+          "hint": "Descrição do valor 2",
+          "maxLength": 100,
+          "section": "Valores"
+        }
+      },
+      "valor_3": {
+        "titulo": {
+          "value": "Time unido",
+          "type": "titulo",
+          "label": "📌 Valor 3 Título",
+          "hint": "Título do valor 3",
+          "maxLength": 40,
+          "section": "Valores"
+        },
+        "descricao": {
+          "value": "Juntos, nos empenhamos para oferecer o melhor serviço para a nossa comunidade.",
+          "type": "texto",
+          "label": "📝 Valor 3 Descrição",
+          "hint": "Descrição do valor 3",
+          "maxLength": 120,
+          "section": "Valores"
+        }
+      }
+    },
+    "formulario": {
+      "titulo": {
+        "value": "Venha para a Nox Imóveis",
+        "type": "titulo",
+        "label": "📌 Título Formulário",
+        "hint": "Título da seção do formulário",
+        "maxLength": 40,
+        "section": "Formulário"
+      },
+      "descricao": {
+        "value": "Está buscando uma oportunidade de trabalho no mercado imobiliário? Envie seu CV e, assim que surgir uma oportunidade, entraremos em contato com você.",
+        "type": "texto",
+        "label": "📝 Descrição",
+        "hint": "Descrição da seção do formulário",
+        "maxLength": 200,
+        "section": "Formulário"
+      }
+    }
   }
 }
