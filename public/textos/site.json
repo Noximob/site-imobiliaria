@@ -2160,5 +2160,171 @@
         "section": "Anuncie"
       }
     }
+  },
+  "quem_somos": {
+    "hero": {
+      "titulo": {
+        "value": "A imobiliária mais alto-astral do litoral catarinense",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página",
+        "maxLength": 70,
+        "section": "Hero"
+      },
+      "subtitulo": {
+        "value": "Conheça a história da Nox.",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do hero",
+        "maxLength": 50,
+        "section": "Hero"
+      },
+      "botao": {
+        "value": "Saiba mais",
+        "type": "botao",
+        "label": "🔘 Botão Saiba Mais",
+        "hint": "Texto do botão Saiba mais",
+        "maxLength": 20,
+        "section": "Hero"
+      }
+    },
+    "nossa_historia": {
+      "titulo": {
+        "value": "Conheça a maior imobiliária de Santa Catarina!",
+        "type": "titulo",
+        "label": "📌 Título História",
+        "hint": "Título da seção Nossa História",
+        "maxLength": 60,
+        "section": "Nossa História"
+      },
+      "paragrafo_1": {
+        "value": "A história da Nox começa com uma parceria de sucesso: Brayann Germano – referência em Gestão de Equipes no Mercado Imobiliário – e Jeferson Tilchlher – corretor experiente e amplamente reconhecido.",
+        "type": "texto",
+        "label": "📝 Parágrafo 1",
+        "hint": "Primeiro parágrafo da história",
+        "maxLength": 250,
+        "section": "Nossa História"
+      },
+      "paragrafo_2": {
+        "value": "Pouco tempo depois, a chegada de Fernando Menon – especialista em Gestão de tráfego e estratégias de marketing imobiliário – e Bruna Eleutério – corretora de imóveis especialista em lançamentos, permitiu que a Nox desse um grande passo para o sucesso, a abertura de uma sala em um dos melhores locais de BC.",
+        "type": "texto",
+        "label": "📝 Parágrafo 2",
+        "hint": "Segundo parágrafo da história",
+        "maxLength": 350,
+        "section": "Nossa História"
+      },
+      "paragrafo_3": {
+        "value": "A partir desse momento, nossa imobiliária passou a crescer de forma exponencial, tornando-sereferência no mercado de Santa Catarina. Atualmente, funcionamos com três lojas – duas em BC e uma em Itajaí – para atender cada vez melhor às suas necessidades.",
+        "type": "texto",
+        "label": "📝 Parágrafo 3",
+        "hint": "Terceiro parágrafo da história",
+        "maxLength": 300,
+        "section": "Nossa História"
+      }
+    },
+    "servicos": {
+      "titulo": {
+        "value": "Nossos serviços",
+        "type": "titulo",
+        "label": "📌 Título Serviços",
+        "hint": "Título da seção Serviços",
+        "maxLength": 30,
+        "section": "Serviços"
+      }
+    },
+    "missao_visao_valores": {
+      "missao": {
+        "titulo": {
+          "value": "Missão",
+          "type": "titulo",
+          "label": "📌 Missão Título",
+          "hint": "Título da Missão",
+          "maxLength": 20,
+          "section": "Missão, Visão e Valores"
+        },
+        "descricao": {
+          "value": "Surpreender nossos clientes desde o primeiro contato até a escritura. Garantir financeiramente e juridicamente nossas intermediações imobiliárias.",
+          "type": "texto",
+          "label": "📝 Missão Descrição",
+          "hint": "Descrição da Missão",
+          "maxLength": 200,
+          "section": "Missão, Visão e Valores"
+        }
+      },
+      "visao": {
+        "titulo": {
+          "value": "Visão",
+          "type": "titulo",
+          "label": "📌 Visão Título",
+          "hint": "Título da Visão",
+          "maxLength": 20,
+          "section": "Missão, Visão e Valores"
+        },
+        "descricao": {
+          "value": "Intermediar 1 bilhão em valor líquido entre janeiro e dezembro de 2026.",
+          "type": "texto",
+          "label": "📝 Visão Descrição",
+          "hint": "Descrição da Visão",
+          "maxLength": 150,
+          "section": "Missão, Visão e Valores"
+        }
+      },
+      "valores": {
+        "titulo": {
+          "value": "Valores",
+          "type": "titulo",
+          "label": "📌 Valores Título",
+          "hint": "Título dos Valores",
+          "maxLength": 20,
+          "section": "Missão, Visão e Valores"
+        },
+        "descricao": {
+          "value": "Leves, alegres, loucos e autênticos. Obstinados, comprometidos, ousados e intensos.",
+          "type": "texto",
+          "label": "📝 Valores Descrição",
+          "hint": "Descrição dos Valores",
+          "maxLength": 150,
+          "section": "Missão, Visão e Valores"
+        }
+      }
+    },
+    "depoimentos": {
+      "titulo": {
+        "value": "O que dizem nossos clientes",
+        "type": "titulo",
+        "label": "📌 Título Depoimentos",
+        "hint": "Título da seção Depoimentos",
+        "maxLength": 40,
+        "section": "Depoimentos"
+      }
+    },
+    "equipe": {
+      "titulo": {
+        "value": "Conheça nossa equipe",
+        "type": "titulo",
+        "label": "📌 Título Equipe",
+        "hint": "Título da seção Equipe",
+        "maxLength": 40,
+        "section": "Equipe"
+      }
+    },
+    "cta_trabalhe": {
+      "titulo": {
+        "value": "Faça parte da Nox",
+        "type": "titulo",
+        "label": "📌 Título CTA",
+        "hint": "Título do CTA Trabalhe Conosco",
+        "maxLength": 30,
+        "section": "CTA Trabalhe Conosco"
+      },
+      "botao": {
+        "value": "Saiba mais",
+        "type": "botao",
+        "label": "🔘 Botão Saiba Mais",
+        "hint": "Texto do botão Saiba mais",
+        "maxLength": 20,
+        "section": "CTA Trabalhe Conosco"
+      }
+    }
   }
 }

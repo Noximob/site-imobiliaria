@@ -4,6 +4,7 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
 import { getImageUrl } from '@/lib/github-images'
+import { getText } from '@/lib/site-texts'
 
 const sobreImages = {
   hero: getImageUrl('quem-somos-hero'),
@@ -35,13 +36,13 @@ export default function SobrePage() {
         {/* Content Overlay */}
         <div className="relative z-10 text-white p-6 pb-12 max-w-xl">
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
-            A imobiliária mais alto-astral do litoral catarinense
+            {getText('quem_somos.hero.titulo')}
           </h1>
           <p className="text-base md:text-lg mb-6 text-white/90">
-            Conheça a história da Nox.
+            {getText('quem_somos.hero.subtitulo')}
           </p>
           <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg text-sm transition-colors duration-300 shadow-lg">
-            Saiba mais
+            {getText('quem_somos.hero.botao')}
           </button>
         </div>
       </section>
@@ -64,33 +65,25 @@ export default function SobrePage() {
             {/* Texto da História */}
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Conheça a maior imobiliária de Santa Catarina!
+                {getText('quem_somos.nossa_historia.titulo')}
               </h2>
               
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p className="text-base">
-                  A história da Nox começa com uma <span className="text-blue-600 font-semibold">parceria de sucesso</span>: 
-                  Brayann Germano – referência em Gestão de Equipes no Mercado Imobiliário – e Jeferson Tilchlher – 
-                  corretor experiente e amplamente reconhecido.
+                  {getText('quem_somos.nossa_historia.paragrafo_1')}
                 </p>
                 
                 <p className="text-base">
-                  Pouco tempo depois, a chegada de Fernando Menon – especialista em Gestão de tráfego e estratégias 
-                  de marketing imobiliário – e Bruna Eleutério – corretora de imóveis especialista em lançamentos, 
-                  permitiu que a Nox desse um grande passo para o sucesso, a abertura de uma sala em um dos melhores 
-                  locais de BC.
+                  {getText('quem_somos.nossa_historia.paragrafo_2')}
                 </p>
                 
                 <p className="text-base">
-                  A partir desse momento, nossa imobiliária passou a crescer de forma exponencial, tornando-se 
-                  <span className="text-blue-600 font-semibold">referência no mercado de Santa Catarina</span>. 
-                  Atualmente, funcionamos com três lojas – duas em BC e uma em Itajaí – para atender cada vez 
-                  melhor às suas necessidades.
+                  {getText('quem_somos.nossa_historia.paragrafo_3')}
                 </p>
               </div>
               
               <button className="mt-8 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
-                Nossos serviços
+                {getText('quem_somos.servicos.titulo')}
               </button>
             </div>
           </div>
@@ -103,26 +96,25 @@ export default function SobrePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Missão */}
             <div className="bg-purple-100 rounded-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Missão</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{getText('quem_somos.missao_visao_valores.missao.titulo')}</h3>
               <p className="text-gray-700 leading-relaxed">
-                Surpreender nossos clientes desde o primeiro contato até a escritura. 
-                Garantir financeiramente e juridicamente nossas intermediações imobiliárias.
+                {getText('quem_somos.missao_visao_valores.missao.descricao')}
               </p>
             </div>
             
             {/* Visão */}
             <div className="bg-purple-100 rounded-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Visão</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{getText('quem_somos.missao_visao_valores.visao.titulo')}</h3>
               <p className="text-gray-700 leading-relaxed">
-                Intermediar 1 bilhão em valor líquido entre janeiro e dezembro de 2026.
+                {getText('quem_somos.missao_visao_valores.visao.descricao')}
               </p>
             </div>
             
             {/* Valores */}
             <div className="bg-purple-100 rounded-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Valores</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{getText('quem_somos.missao_visao_valores.valores.titulo')}</h3>
               <p className="text-gray-700 leading-relaxed">
-                Leves, alegres, loucos e autênticos. Obstinados, comprometidos, ousados e intensos.
+                {getText('quem_somos.missao_visao_valores.valores.descricao')}
               </p>
             </div>
           </div>
@@ -134,7 +126,7 @@ export default function SobrePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              O que dizem nossos clientes
+              {getText('quem_somos.depoimentos.titulo')}
             </h2>
           </div>
 
@@ -166,7 +158,7 @@ export default function SobrePage() {
           {/* Header da Seção */}
           <div className="flex items-center justify-between mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              Conheça nossa equipe
+              {getText('quem_somos.equipe.titulo')}
             </h2>
             
             {/* Botões de Navegação */}
@@ -301,13 +293,13 @@ export default function SobrePage() {
             {/* Texto */}
             <div className="flex-1">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-                Faça parte da <span className="text-purple-600">Nox</span>
+                {getText('quem_somos.cta_trabalhe.titulo')}
               </h2>
             </div>
             
             {/* Botão */}
             <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
-              Saiba mais
+              {getText('quem_somos.cta_trabalhe.botao')}
             </button>
           </div>
         </div>
