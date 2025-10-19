@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "titulo": "teste 1",
+    "slug": "teste-1",
+    "resumo": "hhh",
+    "conteudo": "hhhh",
+    "autor": "Equipe Nox",
+    "categoria": "hhh",
+    "tags": [],
+    "publicado": true,
+    "dataPublicacao": "2025-10-19T11:48:19.254Z",
+    "id": "1760874503289",
+    "imagem": "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/blog/imagens/1760874503289.jpg",
+    "createdAt": "2025-10-19T11:48:24.382Z",
+    "updatedAt": "2025-10-19T11:48:24.382Z",
+    "visualizacoes": 0
+  }
+]
