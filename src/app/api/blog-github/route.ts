@@ -88,7 +88,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ id })
   } catch (error) {
     console.error('Erro ao criar artigo:', error)
-    return NextResponse.status(500).json({ error: 'Erro ao criar artigo' })
+    return new Response(JSON.stringify({ error: 'Erro ao criar artigo' }), { 
+      status: 500, 
+      headers: { 'Content-Type': 'application/json' } 
+    })
   }
 }
 
@@ -104,7 +107,10 @@ export async function PUT(request: NextRequest) {
     })
 
     if (!('content' in data)) {
-      return NextResponse.status(404).json({ error: 'Arquivo não encontrado' })
+      return new Response(JSON.stringify({ error: 'Arquivo não encontrado' }), { 
+      status: 404, 
+      headers: { 'Content-Type': 'application/json' } 
+    })
     }
 
     const content = Buffer.from(data.content, 'base64').toString('utf-8')
@@ -112,7 +118,10 @@ export async function PUT(request: NextRequest) {
     
     const index = artigos.findIndex((a: any) => a.id === id)
     if (index === -1) {
-      return NextResponse.status(404).json({ error: 'Artigo não encontrado' })
+      return new Response(JSON.stringify({ error: 'Artigo não encontrado' }), { 
+      status: 404, 
+      headers: { 'Content-Type': 'application/json' } 
+    })
     }
 
     // Upload da nova imagem se fornecida
@@ -147,7 +156,10 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Erro ao atualizar artigo:', error)
-    return NextResponse.status(500).json({ error: 'Erro ao atualizar artigo' })
+    return new Response(JSON.stringify({ error: 'Erro ao atualizar artigo' }), { 
+      status: 500, 
+      headers: { 'Content-Type': 'application/json' } 
+    })
   }
 }
 
@@ -157,7 +169,10 @@ export async function DELETE(request: NextRequest) {
     const id = searchParams.get('id')
     
     if (!id) {
-      return NextResponse.status(400).json({ error: 'ID do artigo é obrigatório' })
+      return new Response(JSON.stringify({ error: 'ID do artigo é obrigatório' }), { 
+      status: 400, 
+      headers: { 'Content-Type': 'application/json' } 
+    })
     }
 
     // Buscar artigos existentes
@@ -168,7 +183,10 @@ export async function DELETE(request: NextRequest) {
     })
 
     if (!('content' in data)) {
-      return NextResponse.status(404).json({ error: 'Arquivo não encontrado' })
+      return new Response(JSON.stringify({ error: 'Arquivo não encontrado' }), { 
+      status: 404, 
+      headers: { 'Content-Type': 'application/json' } 
+    })
     }
 
     const content = Buffer.from(data.content, 'base64').toString('utf-8')
@@ -176,7 +194,10 @@ export async function DELETE(request: NextRequest) {
     
     const index = artigos.findIndex((a: any) => a.id === id)
     if (index === -1) {
-      return NextResponse.status(404).json({ error: 'Artigo não encontrado' })
+      return new Response(JSON.stringify({ error: 'Artigo não encontrado' }), { 
+      status: 404, 
+      headers: { 'Content-Type': 'application/json' } 
+    })
     }
 
     const artigo = artigos[index]
@@ -211,6 +232,9 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Erro ao deletar artigo:', error)
-    return NextResponse.status(500).json({ error: 'Erro ao deletar artigo' })
+    return new Response(JSON.stringify({ error: 'Erro ao deletar artigo' }), { 
+      status: 500, 
+      headers: { 'Content-Type': 'application/json' } 
+    })
   }
 }
