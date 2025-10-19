@@ -1872,5 +1872,293 @@
         "section": "CTA Contato"
       }
     }
+  },
+  "como_comprar": {
+    "hero": {
+      "titulo": {
+        "value": "A experiência de quem entende o mercado ao seu lado!",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página",
+        "maxLength": 70,
+        "section": "Hero"
+      },
+      "botao_vantagens": {
+        "value": "Ver as vantagens",
+        "type": "botao",
+        "label": "🔘 Botão Vantagens",
+        "hint": "Texto do botão Ver as vantagens",
+        "maxLength": 20,
+        "section": "Hero"
+      }
+    },
+    "como_funciona": {
+      "titulo": {
+        "value": "Como é comprar com a Nox?",
+        "type": "titulo",
+        "label": "📌 Título Como Funciona",
+        "hint": "Título da seção Como Funciona",
+        "maxLength": 40,
+        "section": "Como Funciona"
+      },
+      "botao_buscar": {
+        "value": "Buscar imóveis",
+        "type": "botao",
+        "label": "🔘 Botão Buscar",
+        "hint": "Texto do botão Buscar imóveis",
+        "maxLength": 20,
+        "section": "Como Funciona"
+      },
+      "passo_1": {
+        "numero": {
+          "value": "01.",
+          "type": "texto",
+          "label": "🔢 Passo 1 Número",
+          "hint": "Número do passo 1",
+          "maxLength": 5,
+          "section": "Como Funciona"
+        },
+        "titulo": {
+          "value": "Busque o imóvel ideal em nosso site",
+          "type": "titulo",
+          "label": "📌 Passo 1 Título",
+          "hint": "Título do passo 1",
+          "maxLength": 50,
+          "section": "Como Funciona"
+        },
+        "descricao": {
+          "value": "Utilize nossos filtros para otimizar seus resultados",
+          "type": "texto",
+          "label": "📝 Passo 1 Descrição",
+          "hint": "Descrição do passo 1",
+          "maxLength": 100,
+          "section": "Como Funciona"
+        }
+      },
+      "passo_2": {
+        "numero": {
+          "value": "02.",
+          "type": "texto",
+          "label": "🔢 Passo 2 Número",
+          "hint": "Número do passo 2",
+          "maxLength": 5,
+          "section": "Como Funciona"
+        },
+        "titulo": {
+          "value": "Entre em contato e agende suas visitas",
+          "type": "titulo",
+          "label": "📌 Passo 2 Título",
+          "hint": "Título do passo 2",
+          "maxLength": 50,
+          "section": "Como Funciona"
+        },
+        "descricao": {
+          "value": "Aproveite para tirar todas as suas dúvidas com o corretor",
+          "type": "texto",
+          "label": "📝 Passo 2 Descrição",
+          "hint": "Descrição do passo 2",
+          "maxLength": 100,
+          "section": "Como Funciona"
+        }
+      },
+      "passo_3": {
+        "numero": {
+          "value": "03.",
+          "type": "texto",
+          "label": "🔢 Passo 3 Número",
+          "hint": "Número do passo 3",
+          "maxLength": 5,
+          "section": "Como Funciona"
+        },
+        "titulo": {
+          "value": "Faça suas propostas",
+          "type": "titulo",
+          "label": "📌 Passo 3 Título",
+          "hint": "Título do passo 3",
+          "maxLength": 50,
+          "section": "Como Funciona"
+        },
+        "descricao": {
+          "value": "Nossos especialistas ajudam você com a negociação e documentação",
+          "type": "texto",
+          "label": "📝 Passo 3 Descrição",
+          "hint": "Descrição do passo 3",
+          "maxLength": 100,
+          "section": "Como Funciona"
+        }
+      },
+      "passo_4": {
+        "numero": {
+          "value": "04.",
+          "type": "texto",
+          "label": "🔢 Passo 4 Número",
+          "hint": "Número do passo 4",
+          "maxLength": 5,
+          "section": "Como Funciona"
+        },
+        "titulo": {
+          "value": "Assine digitalmente e receba as chaves",
+          "type": "titulo",
+          "label": "📌 Passo 4 Título",
+          "hint": "Título do passo 4",
+          "maxLength": 50,
+          "section": "Como Funciona"
+        },
+        "descricao": {
+          "value": "Todo o processo digital para maior comodidade",
+          "type": "texto",
+          "label": "📝 Passo 4 Descrição",
+          "hint": "Descrição do passo 4",
+          "maxLength": 100,
+          "section": "Como Funciona"
+        }
+      }
+    },
+    "imovel_praia": {
+      "titulo": {
+        "value": "Seu imóvel na praia",
+        "type": "titulo",
+        "label": "📌 Título Seção",
+        "hint": "Título da seção Imóvel na Praia",
+        "maxLength": 30,
+        "section": "Imóvel na Praia"
+      },
+      "subtitulo": {
+        "value": "Faça a busca pela praia que você mais curte:",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo da seção",
+        "maxLength": 60,
+        "section": "Imóvel na Praia"
+      },
+      "botao_penha": {
+        "value": "Penha",
+        "type": "botao",
+        "label": "🔘 Botão Penha",
+        "hint": "Texto do botão Penha",
+        "maxLength": 20,
+        "section": "Imóvel na Praia"
+      },
+      "botao_picarras": {
+        "value": "Balneário Piçarras",
+        "type": "botao",
+        "label": "🔘 Botão Piçarras",
+        "hint": "Texto do botão Piçarras",
+        "maxLength": 30,
+        "section": "Imóvel na Praia"
+      },
+      "botao_barra_velha": {
+        "value": "Barra Velha",
+        "type": "botao",
+        "label": "🔘 Botão Barra Velha",
+        "hint": "Texto do botão Barra Velha",
+        "maxLength": 20,
+        "section": "Imóvel na Praia"
+      }
+    },
+    "consultoria": {
+      "descricao": {
+        "value": "Solicite nossa consultoria individualizada para conhecer as melhores opções de financiamento e escolher a mais adequada.",
+        "type": "texto",
+        "label": "📝 Descrição Consultoria",
+        "hint": "Descrição da consultoria",
+        "maxLength": 150,
+        "section": "Consultoria"
+      },
+      "botao": {
+        "value": "Receber atendimento",
+        "type": "botao",
+        "label": "🔘 Botão Atendimento",
+        "hint": "Texto do botão Receber atendimento",
+        "maxLength": 30,
+        "section": "Consultoria"
+      }
+    },
+    "localizacao": {
+      "titulo": {
+        "value": "Você prefere qual localização?",
+        "type": "titulo",
+        "label": "📌 Título Localização",
+        "hint": "Título da seção de localização",
+        "maxLength": 50,
+        "section": "Localização"
+      },
+      "opcao_1": {
+        "value": "Frente mar",
+        "type": "texto",
+        "label": "🏷️ Opção 1",
+        "hint": "Primeira opção de localização",
+        "maxLength": 20,
+        "section": "Localização"
+      },
+      "opcao_2": {
+        "value": "Quadra Mar",
+        "type": "texto",
+        "label": "🏷️ Opção 2",
+        "hint": "Segunda opção de localização",
+        "maxLength": 20,
+        "section": "Localização"
+      },
+      "opcao_3": {
+        "value": "Vista Mar",
+        "type": "texto",
+        "label": "🏷️ Opção 3",
+        "hint": "Terceira opção de localização",
+        "maxLength": 20,
+        "section": "Localização"
+      }
+    },
+    "cta_investimento": {
+      "titulo": {
+        "value": "Procurando o melhor investimento?",
+        "type": "titulo",
+        "label": "📌 Título CTA",
+        "hint": "Título do CTA de investimento",
+        "maxLength": 50,
+        "section": "CTA Investimento"
+      },
+      "subtitulo": {
+        "value": "Encontre o seu imóvel na praia!",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do CTA",
+        "maxLength": 50,
+        "section": "CTA Investimento"
+      },
+      "botao": {
+        "value": "Buscar imóveis",
+        "type": "botao",
+        "label": "🔘 Botão Buscar",
+        "hint": "Texto do botão Buscar imóveis",
+        "maxLength": 20,
+        "section": "CTA Investimento"
+      }
+    },
+    "anuncie": {
+      "titulo": {
+        "value": "Anuncie com a Nox",
+        "type": "titulo",
+        "label": "📌 Título Anuncie",
+        "hint": "Título da seção Anuncie",
+        "maxLength": 30,
+        "section": "Anuncie"
+      },
+      "subtitulo": {
+        "value": "A melhor forma de anunciar seu imóvel!",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo da seção",
+        "maxLength": 50,
+        "section": "Anuncie"
+      },
+      "botao": {
+        "value": "Avaliar meu imóvel",
+        "type": "botao",
+        "label": "🔘 Botão Avaliar",
+        "hint": "Texto do botão Avaliar",
+        "maxLength": 30,
+        "section": "Anuncie"
+      }
+    }
   }
 }
