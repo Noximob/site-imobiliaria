@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Phone } from 'lucide-react'
 import Image from 'next/image'
 import { getImageUrl } from '@/lib/github-images'
+import { getText } from '@/lib/site-texts'
 
 const contatoImage = getImageUrl('contato')
 
@@ -70,10 +71,10 @@ export default function ContatoPage() {
           <div className="flex flex-col justify-center items-center text-center space-y-6 py-8">
             <div className="space-y-4">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-                Fale com a nossa <span className="text-purple-300">equipe</span>
+                {getText('contato.hero.titulo')}
               </h1>
               <p className="text-white/90 text-lg md:text-xl max-w-md mx-auto leading-relaxed">
-                Preencha o formulário ou entre em contato por um de nossos canais de atendimento.
+                {getText('contato.hero.subtitulo')}
               </p>
             </div>
             

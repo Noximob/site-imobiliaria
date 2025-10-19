@@ -2326,5 +2326,25 @@
         "section": "CTA Trabalhe Conosco"
       }
     }
+  },
+  "contato": {
+    "hero": {
+      "titulo": {
+        "value": "Fale com a nossa equipe",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página",
+        "maxLength": 40,
+        "section": "Hero"
+      },
+      "subtitulo": {
+        "value": "Preencha o formulário ou entre em contato por um de nossos canais de atendimento.",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do hero",
+        "maxLength": 100,
+        "section": "Hero"
+      }
+    }
   }
 }
