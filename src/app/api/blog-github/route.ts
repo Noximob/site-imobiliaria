@@ -133,7 +133,7 @@ export async function PUT(request: NextRequest) {
         message: `Atualizar imagem do artigo ${artigo.titulo}`,
         content: imagem.split(',')[1],
       })
-      artigo.imagem = imageResponse.data.content.download_url
+      artigo.imagem = imageResponse.data.content?.download_url || ''
     }
 
     // Atualizar artigo
