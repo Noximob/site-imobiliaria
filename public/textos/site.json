@@ -1710,5 +1710,167 @@
         "section": "Depoimentos"
       }
     }
+  },
+  "encontre_meu_imovel": {
+    "hero": {
+      "titulo": {
+        "value": "Sem tempo para procurar? A Nox encontra seu imóvel dos sonhos!",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página",
+        "maxLength": 80,
+        "section": "Hero"
+      },
+      "subtitulo": {
+        "value": "Conte-nos como é o imóvel que você procura e deixe com a equipe Nox Imóveis que encontraremos rapidamente para você.",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do hero",
+        "maxLength": 150,
+        "section": "Hero"
+      }
+    },
+    "como_funciona": {
+      "passo_1": {
+        "numero": {
+          "value": "01.",
+          "type": "texto",
+          "label": "🔢 Passo 1 Número",
+          "hint": "Número do passo 1",
+          "maxLength": 5,
+          "section": "Como Funciona"
+        },
+        "titulo": {
+          "value": "Preencha o formulário",
+          "type": "titulo",
+          "label": "📌 Passo 1 Título",
+          "hint": "Título do passo 1",
+          "maxLength": 40,
+          "section": "Como Funciona"
+        },
+        "descricao": {
+          "value": "Envie seus dados pelo formulário e mostre como é o imóvel que você está buscando.",
+          "type": "texto",
+          "label": "📝 Passo 1 Descrição",
+          "hint": "Descrição do passo 1",
+          "maxLength": 120,
+          "section": "Como Funciona"
+        }
+      },
+      "passo_2": {
+        "numero": {
+          "value": "02.",
+          "type": "texto",
+          "label": "🔢 Passo 2 Número",
+          "hint": "Número do passo 2",
+          "maxLength": 5,
+          "section": "Como Funciona"
+        },
+        "titulo": {
+          "value": "Receba os melhores imóveis",
+          "type": "titulo",
+          "label": "📌 Passo 2 Título",
+          "hint": "Título do passo 2",
+          "maxLength": 40,
+          "section": "Como Funciona"
+        },
+        "descricao": {
+          "value": "Nossa equipe irá realizar uma busca minuciosa e apresentar as melhores opções para você escolher.",
+          "type": "texto",
+          "label": "📝 Passo 2 Descrição",
+          "hint": "Descrição do passo 2",
+          "maxLength": 150,
+          "section": "Como Funciona"
+        }
+      },
+      "passo_3": {
+        "numero": {
+          "value": "03.",
+          "type": "texto",
+          "label": "🔢 Passo 3 Número",
+          "hint": "Número do passo 3",
+          "maxLength": 5,
+          "section": "Como Funciona"
+        },
+        "titulo": {
+          "value": "Agende sua visita",
+          "type": "titulo",
+          "label": "📌 Passo 3 Título",
+          "hint": "Título do passo 3",
+          "maxLength": 40,
+          "section": "Como Funciona"
+        },
+        "descricao": {
+          "value": "Agende visitas nos imóveis que mais chamaram sua atenção e conheça pessoalmente.",
+          "type": "texto",
+          "label": "📝 Passo 3 Descrição",
+          "hint": "Descrição do passo 3",
+          "maxLength": 120,
+          "section": "Como Funciona"
+        }
+      },
+      "passo_4": {
+        "numero": {
+          "value": "04.",
+          "type": "texto",
+          "label": "🔢 Passo 4 Número",
+          "hint": "Número do passo 4",
+          "maxLength": 5,
+          "section": "Como Funciona"
+        },
+        "titulo": {
+          "value": "Feche o negócio",
+          "type": "titulo",
+          "label": "📌 Passo 4 Título",
+          "hint": "Título do passo 4",
+          "maxLength": 40,
+          "section": "Como Funciona"
+        },
+        "descricao": {
+          "value": "Nossa equipe te acompanha em todo o processo até a assinatura do contrato.",
+          "type": "texto",
+          "label": "📝 Passo 4 Descrição",
+          "hint": "Descrição do passo 4",
+          "maxLength": 120,
+          "section": "Como Funciona"
+        }
+      }
+    },
+    "equipe": {
+      "titulo": {
+        "value": "Conheça nossa equipe",
+        "type": "titulo",
+        "label": "📌 Título Equipe",
+        "hint": "Título da seção Equipe",
+        "maxLength": 40,
+        "section": "Equipe"
+      }
+    },
+    "cta_contato": {
+      "titulo": {
+        "value": "Ficou com alguma dúvida?",
+        "type": "titulo",
+        "label": "📌 Título CTA",
+        "hint": "Título do CTA de contato",
+        "maxLength": 40,
+        "section": "CTA Contato"
+      },
+      "subtitulo": {
+        "value": "Fale com um de nossos especialistas",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do CTA",
+        "maxLength": 60,
+        "section": "CTA Contato"
+      },
+      "botao": {
+        "value": "Entre em contato",
+        "type": "botao",
+        "label": "🔘 Botão Contato",
+        "hint": "Texto do botão de contato",
+        "maxLength": 30,
+        "section": "CTA Contato"
+      }
+    }
   }
 }
