@@ -205,12 +205,22 @@ export async function DELETE(request: NextRequest) {
     // Deletar imagem se existir
     if (artigo.imagem) {
       try {
-        await octokit.repos.deleteFile({
+        // Buscar SHA da imagem para deletar
+        const imageData = await octokit.repos.getContent({
           owner: REPO_OWNER,
           repo: REPO_NAME,
           path: `public/blog/imagens/${id}.jpg`,
-          message: `Deletar imagem do artigo ${artigo.titulo}`,
         })
+        
+        if ('sha' in imageData.data) {
+          await octokit.repos.deleteFile({
+            owner: REPO_OWNER,
+            repo: REPO_NAME,
+            path: `public/blog/imagens/${id}.jpg`,
+            message: `Deletar imagem do artigo ${artigo.titulo}`,
+            sha: imageData.data.sha,
+          })
+        }
       } catch (error) {
         console.log('Imagem não encontrada para deletar')
       }
