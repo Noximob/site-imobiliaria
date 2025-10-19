@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getAllArtigos } from '@/lib/blog'
+import { getAllArtigos } from '@/lib/blog-github'
 import { Artigo } from '@/types'
 
 export default function BlogSection() {
