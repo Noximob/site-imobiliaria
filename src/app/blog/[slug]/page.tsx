@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, Calendar, User, Eye, Share2 } from 'lucide-react'
-import { getArtigoBySlug } from '@/lib/blog'
+import { getArtigoBySlug } from '@/lib/blog-github'
 import { Artigo } from '@/types'
 
 export default function ArtigoPage() {

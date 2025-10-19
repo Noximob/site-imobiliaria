@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { ArrowLeft, BookOpen, Plus, X, Edit, Trash2 } from 'lucide-react'
 import Link from 'next/link'
-import { createArtigo, createArtigoWithImage, getAllArtigos, generateSlug, updateArtigoWithImage, deleteArtigo } from '@/lib/blog'
+import { createArtigoWithImage, getAllArtigos, generateSlug, updateArtigoWithImage, deleteArtigo } from '@/lib/blog-github'
 import { Artigo } from '@/types'
 
 export default function AdminBlog() {
@@ -22,12 +22,12 @@ export default function AdminBlog() {
   const [imagemFile, setImagemFile] = useState<File | null>(null)
   const [imagemPreview, setImagemPreview] = useState<string | null>(null)
 
-  // Carregar artigos do Firebase
+  // Carregar artigos do GitHub
   useEffect(() => {
     const loadArtigos = async () => {
       try {
-        const artigosFirebase = await getAllArtigos()
-        setArtigos(artigosFirebase)
+        const artigosGithub = await getAllArtigos()
+        setArtigos(artigosGithub)
       } catch (error) {
         console.error('Erro ao carregar artigos:', error)
       }

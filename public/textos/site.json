@@ -2448,5 +2448,25 @@
         "section": "Formulário"
       }
     }
+  },
+  "blog": {
+    "hero": {
+      "titulo": {
+        "value": "Blog Nox Imóveis",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página do blog",
+        "maxLength": 40,
+        "section": "Hero"
+      },
+      "subtitulo": {
+        "value": "Dicas, novidades e informações sobre o mercado imobiliário para você tomar as melhores decisões.",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do hero",
+        "maxLength": 150,
+        "section": "Hero"
+      }
+    }
   }
 }

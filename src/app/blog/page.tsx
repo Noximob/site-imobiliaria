@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Calendar, User, Eye, ChevronLeft, ChevronRight } from 'lucide-react'
-import { getAllArtigos } from '@/lib/blog'
+import { getAllArtigos } from '@/lib/blog-github'
 import { Artigo } from '@/types'
+import { getText } from '@/lib/site-texts'
 
 export default function BlogPage() {
   const [artigos, setArtigos] = useState<Artigo[]>([])
@@ -84,10 +85,10 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Blog Nox Imóveis
+              {getText('blog.hero.titulo')}
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Dicas, novidades e informações sobre o mercado imobiliário para você tomar as melhores decisões.
+              {getText('blog.hero.subtitulo')}
             </p>
           </div>
         </div>
