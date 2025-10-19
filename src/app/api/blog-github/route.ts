@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
         message: `Adicionar imagem do artigo ${artigo.titulo}`,
         content: imagem.split(',')[1], // Remove data:image/jpeg;base64,
       })
-      imagemUrl = imageResponse.data.content.download_url
+      imagemUrl = imageResponse.data.content.download_url || ''
     }
 
     // Buscar artigos existentes
