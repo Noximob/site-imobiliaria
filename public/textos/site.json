@@ -1580,5 +1580,135 @@
         "section": "Anuncie"
       }
     }
+  },
+  "anunciar": {
+    "hero": {
+      "titulo": {
+        "value": "Anuncie com Especialistas",
+        "type": "titulo",
+        "label": "📌 Título Principal",
+        "hint": "Título principal da página Anunciar",
+        "maxLength": 40,
+        "section": "Hero"
+      },
+      "subtitulo": {
+        "value": "Venda rápido, sem custo e sem complicação.",
+        "type": "texto",
+        "label": "📝 Subtítulo",
+        "hint": "Subtítulo do hero",
+        "maxLength": 60,
+        "section": "Hero"
+      },
+      "botao_vantagens": {
+        "value": "Ver Vantagens",
+        "type": "botao",
+        "label": "🔘 Botão Vantagens",
+        "hint": "Texto do botão Ver Vantagens",
+        "maxLength": 20,
+        "section": "Hero"
+      }
+    },
+    "introducao": {
+      "titulo": {
+        "value": "Anuncie seu imóvel com a Nox",
+        "type": "titulo",
+        "label": "📌 Título Introdução",
+        "hint": "Título da seção de introdução",
+        "maxLength": 50,
+        "section": "Introdução"
+      }
+    },
+    "vantagens": {
+      "titulo": {
+        "value": "Vantagens exclusivas de anunciar com a Nox Imóveis",
+        "type": "titulo",
+        "label": "📌 Título Vantagens",
+        "hint": "Título da seção de vantagens",
+        "maxLength": 70,
+        "section": "Vantagens"
+      },
+      "vantagem_1": {
+        "titulo": {
+          "value": "Anúncio 100% gratuito",
+          "type": "titulo",
+          "label": "📌 Vantagem 1 Título",
+          "hint": "Título da vantagem 1",
+          "maxLength": 40,
+          "section": "Vantagens"
+        },
+        "descricao": {
+          "value": "Você não paga nada para divulgar seu imóvel conosco.",
+          "type": "texto",
+          "label": "📝 Vantagem 1 Descrição",
+          "hint": "Descrição da vantagem 1",
+          "maxLength": 100,
+          "section": "Vantagens"
+        }
+      },
+      "vantagem_2": {
+        "titulo": {
+          "value": "Máxima visibilidade",
+          "type": "titulo",
+          "label": "📌 Vantagem 2 Título",
+          "hint": "Título da vantagem 2",
+          "maxLength": 40,
+          "section": "Vantagens"
+        },
+        "descricao": {
+          "value": "Seu imóvel será promovido nos principais canais e portais do mercado.",
+          "type": "texto",
+          "label": "📝 Vantagem 2 Descrição",
+          "hint": "Descrição da vantagem 2",
+          "maxLength": 100,
+          "section": "Vantagens"
+        }
+      },
+      "vantagem_3": {
+        "titulo": {
+          "value": "Avaliação especializada",
+          "type": "titulo",
+          "label": "📌 Vantagem 3 Título",
+          "hint": "Título da vantagem 3",
+          "maxLength": 40,
+          "section": "Vantagens"
+        },
+        "descricao": {
+          "value": "Garantimos o melhor preço para o seu imóvel com base em uma análise criteriosa.",
+          "type": "texto",
+          "label": "📝 Vantagem 3 Descrição",
+          "hint": "Descrição da vantagem 3",
+          "maxLength": 120,
+          "section": "Vantagens"
+        }
+      },
+      "vantagem_4": {
+        "titulo": {
+          "value": "Fotografia profissional",
+          "type": "titulo",
+          "label": "📌 Vantagem 4 Título",
+          "hint": "Título da vantagem 4",
+          "maxLength": 40,
+          "section": "Vantagens"
+        },
+        "descricao": {
+          "value": "Destaque seu imóvel com fotos de alta qualidade feitas por nossa equipe.",
+          "type": "texto",
+          "label": "📝 Vantagem 4 Descrição",
+          "hint": "Descrição da vantagem 4",
+          "maxLength": 120,
+          "section": "Vantagens"
+        }
+      }
+    },
+    "depoimentos": {
+      "titulo": {
+        "value": "O que dizem nossos clientes",
+        "type": "titulo",
+        "label": "📌 Título Depoimentos",
+        "hint": "Título da seção de depoimentos",
+        "maxLength": 40,
+        "section": "Depoimentos"
+      }
+    }
   }
 }

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { DollarSign, TrendingUp, BarChart3, Camera } from 'lucide-react'
 import { getImageUrl } from '@/lib/github-images'
+import { getText } from '@/lib/site-texts'
 
 const anunciarImage = getImageUrl('anunciar-imovel')
 
@@ -53,11 +54,11 @@ export default function AnunciarPage() {
             {/* Coluna Esquerda - Marketing */}
             <div className="text-white space-y-3">
               <div className="inline-block bg-purple-600 text-white px-3 py-2 rounded-lg font-bold text-xs uppercase tracking-wider">
-                Anuncie com Especialistas
+                {getText('anunciar.hero.titulo')}
               </div>
               
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
-                Venda rápido, sem custo e sem complicação.
+                {getText('anunciar.hero.subtitulo')}
               </h1>
               
               <div className="pt-2">
@@ -65,7 +66,7 @@ export default function AnunciarPage() {
                   onClick={() => document.getElementById('vantagens')?.scrollIntoView({ behavior: 'smooth' })}
                   className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-lg font-bold text-sm transition-all duration-300 transform hover:scale-105"
                 >
-                  Ver Vantagens
+                  {getText('anunciar.hero.botao_vantagens')}
                 </button>
               </div>
             </div>
@@ -74,7 +75,7 @@ export default function AnunciarPage() {
             <div className="relative flex justify-center items-center h-full">
               <div className="bg-white rounded-2xl shadow-2xl p-5 sticky top-8 max-w-xs w-full">
                 <h2 className="text-lg font-bold text-gray-900 mb-3">
-                  Anuncie seu imóvel com a Nox
+                  {getText('anunciar.introducao.titulo')}
                 </h2>
                 
                 <form onSubmit={handleSubmit} className="space-y-2">
@@ -201,7 +202,7 @@ export default function AnunciarPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-16">
-              Vantagens exclusivas de anunciar com a Nox Imóveis
+              {getText('anunciar.vantagens.titulo')}
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -211,10 +212,10 @@ export default function AnunciarPage() {
                   <DollarSign className="w-8 h-8 text-green-600" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Anúncio 100% gratuito
+                  {getText('anunciar.vantagens.vantagem_1.titulo')}
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Você não paga nada para divulgar seu imóvel conosco.
+                  {getText('anunciar.vantagens.vantagem_1.descricao')}
                 </p>
               </div>
 
@@ -224,10 +225,10 @@ export default function AnunciarPage() {
                   <TrendingUp className="w-8 h-8 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Máxima visibilidade
+                  {getText('anunciar.vantagens.vantagem_2.titulo')}
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Seu imóvel será promovido nos principais canais e portais do mercado.
+                  {getText('anunciar.vantagens.vantagem_2.descricao')}
                 </p>
               </div>
 
@@ -237,10 +238,10 @@ export default function AnunciarPage() {
                   <BarChart3 className="w-8 h-8 text-purple-600" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Avaliação especializada
+                  {getText('anunciar.vantagens.vantagem_3.titulo')}
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Garantimos o melhor preço para o seu imóvel com base em uma análise criteriosa.
+                  {getText('anunciar.vantagens.vantagem_3.descricao')}
                 </p>
               </div>
 
@@ -250,10 +251,10 @@ export default function AnunciarPage() {
                   <Camera className="w-8 h-8 text-orange-600" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Fotografia profissional
+                  {getText('anunciar.vantagens.vantagem_4.titulo')}
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Destaque seu imóvel com fotos de alta qualidade feitas por nossa equipe.
+                  {getText('anunciar.vantagens.vantagem_4.descricao')}
                 </p>
               </div>
             </div>
@@ -267,7 +268,7 @@ export default function AnunciarPage() {
           {/* Título da Seção */}
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              O que dizem nossos clientes
+              {getText('anunciar.depoimentos.titulo')}
           </h2>
           </div>
 
