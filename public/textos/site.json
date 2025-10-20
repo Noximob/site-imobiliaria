@@ -306,6 +306,14 @@
         "hint": "Descrição da seção",
         "maxLength": 100,
         "section": "Seleção Nox"
+      },
+      "botao_buscar": {
+        "value": "Buscar Imóveis",
+        "type": "botao",
+        "label": "🔘 Botão Buscar",
+        "hint": "Texto do botão para buscar todos os imóveis",
+        "maxLength": 30,
+        "section": "Seleção Nox"
       }
     },
     "encontre_imovel": {
@@ -498,6 +506,14 @@
           "maxLength": 60,
           "section": "CTA Atendimento"
         }
+      },
+      "botao_atendimento": {
+        "value": "Fale Conosco",
+        "type": "botao",
+        "label": "🔘 Botão Atendimento",
+        "hint": "Texto do botão para falar com atendimento",
+        "maxLength": 30,
+        "section": "CTA Atendimento"
       }
     },
     "imoveis_na_planta": {
@@ -557,6 +573,14 @@
         "label": "📝 Subtítulo",
         "hint": "Subtítulo da seção",
         "maxLength": 50,
+        "section": "Anuncie com a Nox"
+      },
+      "botao_avaliar": {
+        "value": "Avaliar Imóvel",
+        "type": "botao",
+        "label": "🔘 Botão Avaliar",
+        "hint": "Texto do botão para avaliar imóvel",
+        "maxLength": 30,
         "section": "Anuncie com a Nox"
       }
     },
