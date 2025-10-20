@@ -112,53 +112,93 @@ export default function AdminImagens() {
   }
 
   const handlePublishAll = async () => {
-    if (pendingImages.length === 0) {
-      alert('Nenhuma imagem para publicar')
+    if (pendingImages.length === 0 && pendingDeletes.length === 0) {
+      alert('Nenhuma alteração para publicar')
       return
     }
 
-    if (!confirm(`Você vai publicar ${pendingImages.length} imagem(ns). O site será atualizado em ~2 minutos. Deseja continuar?`)) {
+    const uploadCount = pendingImages.length
+    const deleteCount = pendingDeletes.length
+    let confirmMessage = ''
+    
+    if (uploadCount > 0 && deleteCount > 0) {
+      confirmMessage = `Você vai publicar ${uploadCount} imagem(ns) nova(s) e apagar ${deleteCount} imagem(ns). O site será atualizado em ~2 minutos. Deseja continuar?`
+    } else if (uploadCount > 0) {
+      confirmMessage = `Você vai publicar ${uploadCount} imagem(ns). O site será atualizado em ~2 minutos. Deseja continuar?`
+    } else {
+      confirmMessage = `Você vai apagar ${deleteCount} imagem(ns). O site será atualizado em ~2 minutos. Deseja continuar?`
+    }
+
+    if (!confirm(confirmMessage)) {
       return
     }
 
     setIsPublishing(true)
 
     try {
-      // Upload de todas as imagens em batch
-      const formData = new FormData()
-      
-      pendingImages.forEach(({ imageId, file }) => {
-        formData.append('files', file)
-        formData.append('imageIds', imageId)
-      })
-      
-      const response = await fetch('/api/upload-batch-github', {
-        method: 'POST',
-        body: formData
-      })
-      
-      if (!response.ok) {
-        throw new Error('Erro no upload em batch')
+      // Primeiro fazer uploads se houver
+      if (pendingImages.length > 0) {
+        const formData = new FormData()
+        
+        pendingImages.forEach(({ imageId, file }) => {
+          formData.append('files', file)
+          formData.append('imageIds', imageId)
+        })
+        
+        const uploadResponse = await fetch('/api/upload-batch-github', {
+          method: 'POST',
+          body: formData
+        })
+        
+        if (!uploadResponse.ok) {
+          throw new Error('Erro no upload em batch')
+        }
       }
-      
-      const result = await response.json()
 
-      // Limpar imagens pendentes
+      // Depois fazer deletes se houver
+      if (pendingDeletes.length > 0) {
+        const imageIds = pendingDeletes.map(d => d.imageId)
+        
+        const deleteResponse = await fetch('/api/delete-batch-github', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ imageIds })
+        })
+
+        if (!deleteResponse.ok) {
+          throw new Error('Erro ao apagar imagens')
+        }
+      }
+
+      // Limpar tudo
       setPendingImages([])
+      setPendingDeletes([])
       
       // Limpar inputs
       Object.values(fileInputRefs.current).forEach(input => {
         if (input) input.value = ''
       })
 
-      // Recarregar imagens para mostrar as novas
+      // Recarregar imagens
       await loadImages()
 
-      alert(`✅ ${pendingImages.length} imagem(ns) publicada(s) com sucesso!\n\n🔄 O site será atualizado automaticamente em ~2 minutos.\n\n🖼️ As imagens já aparecem no admin!`)
+      let successMessage = '✅ Alterações publicadas com sucesso!\n\n🔄 O site será atualizado automaticamente em ~2 minutos.'
+      
+      if (uploadCount > 0 && deleteCount > 0) {
+        successMessage = `✅ ${uploadCount} imagem(ns) publicada(s) e ${deleteCount} imagem(ns) apagada(s) com sucesso!\n\n🔄 O site será atualizado automaticamente em ~2 minutos.`
+      } else if (uploadCount > 0) {
+        successMessage = `✅ ${uploadCount} imagem(ns) publicada(s) com sucesso!\n\n🔄 O site será atualizado automaticamente em ~2 minutos.`
+      } else {
+        successMessage = `✅ ${deleteCount} imagem(ns) apagada(s) com sucesso!\n\n🔄 O site será atualizado automaticamente em ~2 minutos.`
+      }
+
+      alert(successMessage)
       
     } catch (error) {
-      console.error('Erro ao publicar imagens:', error)
-      alert('❌ Erro ao publicar algumas imagens. Tente novamente.')
+      console.error('Erro ao publicar alterações:', error)
+      alert('❌ Erro ao publicar algumas alterações. Tente novamente.')
     } finally {
       setIsPublishing(false)
     }
@@ -186,50 +226,6 @@ export default function AdminImagens() {
     setPendingDeletes(prev => prev.filter(p => p.imageId !== imageId))
   }
 
-  const handlePublishDeletes = async () => {
-    if (pendingDeletes.length === 0) {
-      alert('Nenhuma imagem para apagar')
-      return
-    }
-
-    if (!confirm(`Você vai apagar ${pendingDeletes.length} imagem(ns). O site será atualizado em ~2 minutos. Deseja continuar?`)) {
-      return
-    }
-
-    setIsPublishing(true)
-
-    try {
-      const imageIds = pendingDeletes.map(d => d.imageId)
-      
-      const response = await fetch('/api/delete-batch-github', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ imageIds })
-      })
-
-      if (!response.ok) {
-        throw new Error('Erro ao apagar imagens')
-      }
-
-      const result = await response.json()
-
-      // Limpar lista de pendentes
-      setPendingDeletes([])
-
-      // Recarregar imagens
-      await loadImages()
-
-      alert(`✅ ${pendingDeletes.length} imagem(ns) apagada(s) com sucesso!\n\n🔄 O site será atualizado automaticamente em ~2 minutos.`)
-      
-    } catch (error) {
-      console.error('Erro ao apagar imagens:', error)
-      alert('❌ Erro ao apagar algumas imagens. Tente novamente.')
-    } finally {
-      setIsPublishing(false)
-    }
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -264,16 +260,31 @@ export default function AdminImagens() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Botão Publicar Uploads - Fixo no topo */}
-        {pendingImages.length > 0 && (
-          <div className="bg-purple-50 border-2 border-purple-400 rounded-lg p-4 mb-6 sticky top-4 z-10">
+        {/* Botão Unificado para Todas as Alterações */}
+        {(pendingImages.length > 0 || pendingDeletes.length > 0) && (
+          <div className="bg-gradient-to-r from-purple-50 to-blue-50 border-2 border-purple-400 rounded-lg p-4 mb-6 sticky top-4 z-10">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-semibold text-purple-800 mb-1">
-                  📸 {pendingImages.length} imagem(ns) pronta(s) para publicar
+                  📝 Alterações Pendentes
                 </p>
                 <p className="text-xs text-purple-700">
-                  Clique em "Publicar Alterações" para enviar todas de uma vez (~2min de rebuild)
+                  {pendingImages.length > 0 && pendingDeletes.length > 0 ? (
+                    <>
+                      📸 {pendingImages.length} imagem(ns) para publicar • 🗑️ {pendingDeletes.length} imagem(ns) para apagar
+                    </>
+                  ) : pendingImages.length > 0 ? (
+                    <>
+                      📸 {pendingImages.length} imagem(ns) pronta(s) para publicar
+                    </>
+                  ) : (
+                    <>
+                      🗑️ {pendingDeletes.length} imagem(ns) marcada(s) para apagar
+                    </>
+                  )}
+                </p>
+                <p className="text-xs text-purple-600 mt-1">
+                  Clique em "Publicar Todas as Alterações" para enviar tudo de uma vez (1 único rebuild de ~2min)
                 </p>
               </div>
               <button
@@ -289,40 +300,7 @@ export default function AdminImagens() {
                 ) : (
                   <>
                     <CheckCircle className="w-5 h-5" />
-                    <span>Publicar Alterações</span>
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Botão Publicar Deletes - Fixo no topo */}
-        {pendingDeletes.length > 0 && (
-          <div className="bg-red-50 border-2 border-red-400 rounded-lg p-4 mb-6 sticky top-4 z-10">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-semibold text-red-800 mb-1">
-                  🗑️ {pendingDeletes.length} imagem(ns) marcada(s) para apagar
-                </p>
-                <p className="text-xs text-red-700">
-                  Clique em "Apagar Selecionadas" para remover todas de uma vez (~2min de rebuild)
-                </p>
-              </div>
-              <button
-                onClick={handlePublishDeletes}
-                disabled={isPublishing}
-                className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2"
-              >
-                {isPublishing ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    <span>Apagando...</span>
-                  </>
-                ) : (
-                  <>
-                    <Trash2 className="w-5 h-5" />
-                    <span>Apagar Selecionadas</span>
+                    <span>Publicar Todas as Alterações</span>
                   </>
                 )}
               </button>
@@ -333,9 +311,9 @@ export default function AdminImagens() {
         {/* Info Box */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
           <p className="text-sm text-blue-800">
-            <strong>📋 Como usar:</strong> Selecione as imagens que deseja trocar. 
-            Você pode escolher várias imagens de uma vez. 
-            Quando terminar, clique em "Publicar Alterações" para enviar todas de uma vez (1 único rebuild de ~2min).
+            <strong>📋 Como usar:</strong> Selecione as imagens que deseja trocar ou apagar. 
+            Você pode escolher várias imagens de uma vez e fazer uploads e exclusões juntos. 
+            Quando terminar, clique em "Publicar Todas as Alterações" para enviar tudo de uma vez (1 único rebuild de ~2min).
           </p>
         </div>
 
