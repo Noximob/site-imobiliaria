@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { Search } from 'lucide-react'
 import SearchForm from '@/components/SearchForm'
 import BlogSection from '@/components/BlogSection'
+import TeamSection from '@/components/TeamSection'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
 import type { Metadata } from 'next'
@@ -46,6 +47,19 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
+  // Buscar corretores dinamicamente
+  let corretores = []
+  try {
+    const corretoresResponse = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/corretores`, {
+      cache: 'no-store' // Sempre buscar dados atualizados
+    })
+    if (corretoresResponse.ok) {
+      corretores = await corretoresResponse.json()
+    }
+  } catch (error) {
+    console.error('Erro ao carregar corretores:', error)
+  }
+
   // Carrega apenas as imagens necessárias para esta página (otimização de performance)
   const siteImages = {
     'banner-home': getImageUrl('banner-home'),
@@ -737,134 +751,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-             {/* Seção Conheça nossa equipe */}
-             <section className="py-16 bg-white">
-               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                 {/* Header da Seção */}
-                 <div className="flex items-center justify-between mb-12">
-                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-                     {getText('home.equipe.titulo')}
-          </h2>
-                   
-                   {/* Botões de Navegação */}
-                   <div className="flex space-x-2">
-                     <button className="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors duration-200">
-                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                       </svg>
-                     </button>
-                     <button className="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors duration-200">
-                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                       </svg>
-                     </button>
-                   </div>
-                 </div>
-
-                 {/* Grid da Equipe */}
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                   {/* Membro 1 - Adriana Barbosa Campos */}
-                   <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-                     <div className="h-64 relative">
-                       <Image 
-                         src="/imagens/Corretores/1.png" 
-                         alt="Adriana Barbosa Campos" 
-                         fill
-                         className="object-cover"
-                       />
-                     </div>
-                     <div className="p-4">
-                       <h3 className="text-lg font-semibold text-gray-900 mb-1">{getText('home.equipe.membro_1.nome')}</h3>
-                       <p className="text-sm text-gray-600 mb-3">{getText('home.equipe.membro_1.cargo')}</p>
-                       <a 
-                         href="/contato"
-                         className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
-                       >
-                         <span>{getText('home.equipe.botao_contato')}</span>
-                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                         </svg>
-                       </a>
-                     </div>
-                   </div>
-
-                   {/* Membro 2 - Adriana Medeiros */}
-                   <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-                     <div className="h-64 relative">
-                       <Image 
-                         src="/imagens/Corretores/2.png" 
-                         alt="Adriana Medeiros" 
-                         fill
-                         className="object-cover"
-                       />
-                     </div>
-                     <div className="p-4">
-                       <h3 className="text-lg font-semibold text-gray-900 mb-1">{getText('home.equipe.membro_2.nome')}</h3>
-                       <p className="text-sm text-gray-600 mb-3">{getText('home.equipe.membro_2.cargo')}</p>
-                       <a 
-                         href="/contato"
-                         className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
-                       >
-                         <span>{getText('home.equipe.botao_contato')}</span>
-                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                         </svg>
-                       </a>
-                     </div>
-                   </div>
-
-                   {/* Membro 3 - Alan de Freitas Cordeiro */}
-                   <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-                     <div className="h-64 relative">
-                       <Image 
-                         src="/imagens/Corretores/3.png" 
-                         alt="Alan de Freitas Cordeiro" 
-                         fill
-                         className="object-cover"
-                       />
-                     </div>
-                     <div className="p-4">
-                       <h3 className="text-lg font-semibold text-gray-900 mb-1">{getText('home.equipe.membro_3.nome')}</h3>
-                       <p className="text-sm text-gray-600 mb-3">{getText('home.equipe.membro_3.cargo')}</p>
-                       <a 
-                         href="/contato"
-                         className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
-                       >
-                         <span>{getText('home.equipe.botao_contato')}</span>
-                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                         </svg>
-                       </a>
-                     </div>
-                   </div>
-
-                   {/* Membro 4 - Alex Penha */}
-                   <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-                     <div className="h-64 relative">
-                       <Image 
-                         src="/imagens/Corretores/4.png" 
-                         alt="Alex Penha" 
-                         fill
-                         className="object-cover"
-                       />
-                     </div>
-                     <div className="p-4">
-                       <h3 className="text-lg font-semibold text-gray-900 mb-1">{getText('home.equipe.membro_4.nome')}</h3>
-                       <p className="text-sm text-gray-600 mb-3">{getText('home.equipe.membro_4.cargo')}</p>
-                       <a 
-                         href="/contato"
-                         className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2"
-                       >
-                         <span>{getText('home.equipe.botao_contato')}</span>
-                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                         </svg>
-                       </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+             {/* Seção Conheça nossa equipe - Dinâmica */}
+             <TeamSection corretores={corretores} />
 
       {/* Seção Blog */}
       <BlogSection />

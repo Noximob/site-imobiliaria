@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Lock, User, Key, Home, Image, FileText, Building, BookOpen } from 'lucide-react'
+import { Lock, User, Key, Home, Image, FileText, Building, BookOpen, Users } from 'lucide-react'
 
 export default function AdminLogin() {
   const [username, setUsername] = useState('')
@@ -82,7 +82,7 @@ export default function AdminLogin() {
           </div>
 
           {/* Dashboard Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
             <div 
               className="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow"
               onClick={() => router.push('/administrador/imagens')}
@@ -139,6 +139,21 @@ export default function AdminLogin() {
                 <div className="ml-4">
                   <h3 className="text-lg font-semibold text-gray-900">Blog</h3>
                   <p className="text-sm text-gray-500">Gerenciar artigos</p>
+                </div>
+              </div>
+            </div>
+
+            <div 
+              className="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow"
+              onClick={() => router.push('/administrador/corretores')}
+            >
+              <div className="flex items-center">
+                <div className="p-3 bg-indigo-100 rounded-lg">
+                  <Users className="w-6 h-6 text-indigo-600" />
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold text-gray-900">Corretores</h3>
+                  <p className="text-sm text-gray-500">Gerenciar equipe</p>
                 </div>
               </div>
             </div>

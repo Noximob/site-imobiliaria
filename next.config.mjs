@@ -7,7 +7,13 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000, // 1 ano
-    // remotePatterns removido - todas as imagens são locais via GitHub
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
+        pathname: '/Noximob/site-imobiliaria/**',
+      },
+    ],
   },
   compress: true,
   poweredByHeader: false,
