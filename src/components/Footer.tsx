@@ -190,6 +190,7 @@ image.png      {/* Rodapé Tradicional */}
                 width={200} 
                 height={60}
                 className="h-12 w-auto bg-transparent"
+                loading="lazy"
               />
             </div>
 

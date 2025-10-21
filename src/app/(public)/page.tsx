@@ -326,6 +326,8 @@ export default async function HomePage() {
                     title="Lançamentos Investidor - Penha SC"
                     fill
                     className="object-cover bg-transparent"
+                    loading="lazy"
+                    loading="lazy"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     placeholder="empty"
                   />
@@ -342,6 +344,7 @@ export default async function HomePage() {
                     title="Frente Mar - Penha SC"
                     fill
                     className="object-cover bg-transparent"
+                    loading="lazy"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     placeholder="empty"
                   />
@@ -358,6 +361,7 @@ export default async function HomePage() {
                     title="Mobiliados - Penha SC"
                     fill
                     className="object-cover bg-transparent"
+                    loading="lazy"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     placeholder="empty"
                   />
@@ -374,6 +378,7 @@ export default async function HomePage() {
                     title="Apartamentos - Penha SC"
                     fill
                     className="object-cover bg-transparent"
+                    loading="lazy"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     placeholder="empty"
                   />
@@ -400,6 +405,7 @@ export default async function HomePage() {
                     title="Apartamentos e Coberturas - Piçarras SC"
                     fill
                     className="object-cover bg-transparent"
+                    loading="lazy"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     placeholder="empty"
                   />
@@ -416,6 +422,7 @@ export default async function HomePage() {
                     alt="Mobiliados" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -430,6 +437,7 @@ export default async function HomePage() {
                     alt="Vista Mar" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -444,6 +452,7 @@ export default async function HomePage() {
                     alt="Lançamentos" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -468,6 +477,7 @@ export default async function HomePage() {
                     alt="Lançamentos Frente Mar" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -482,6 +492,7 @@ export default async function HomePage() {
                     alt="Em Construção" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -496,6 +507,7 @@ export default async function HomePage() {
                     alt="Imóveis Prontos" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-transparent"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:justify-start group-hover:pt-8 transition-all duration-300">
@@ -596,6 +608,7 @@ export default async function HomePage() {
                     alt="Imóveis na Planta - Penha" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -609,6 +622,7 @@ export default async function HomePage() {
                     alt="Imóveis na Planta - Piçarras" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -622,6 +636,7 @@ export default async function HomePage() {
                     alt="Imóveis na Planta - Barra Velha" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -670,6 +685,7 @@ export default async function HomePage() {
                     alt="Anuncie com a Nox" 
                     fill
                     className="object-cover bg-transparent"
+                    loading="lazy"
                   />
                 </div>
                 {/* Ícone da chave */}

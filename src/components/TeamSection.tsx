@@ -59,6 +59,7 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
                   src={corretor.foto || '/placeholder-corretor.jpg'}
                   alt={corretor.nome}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 
                 {/* Overlay com informações (quando expandido) */}
