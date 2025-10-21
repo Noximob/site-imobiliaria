@@ -16,6 +16,7 @@ export default function DepoimentosAdminPage() {
   const { depoimentos, loading, error, refreshDepoimentos } = useDepoimentos()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [currentDepoimento, setCurrentDepoimento] = useState<DepoimentoFormData | null>(null)
+  const [editingId, setEditingId] = useState<string | null>(null)
   const [formErrors, setFormErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
@@ -54,14 +55,18 @@ export default function DepoimentosAdminPage() {
 
     try {
       const url = '/api/depoimentos'
-      const method = currentDepoimento.nome ? 'PUT' : 'POST'
+      const method = editingId ? 'PUT' : 'POST'
+      
+      const requestBody = editingId 
+        ? { id: editingId, ...currentDepoimento }
+        : currentDepoimento
       
       const response = await fetch(url, {
         method,
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(currentDepoimento),
+        body: JSON.stringify(requestBody),
       })
 
       if (!response.ok) {
@@ -71,6 +76,7 @@ export default function DepoimentosAdminPage() {
       await refreshDepoimentos()
       setIsModalOpen(false)
       setCurrentDepoimento(null)
+      setEditingId(null)
       setFormErrors({})
     } catch (error) {
       console.error('Erro ao salvar depoimento:', error)
@@ -86,6 +92,7 @@ export default function DepoimentosAdminPage() {
       comentario: depoimento.comentario,
       ativo: depoimento.ativo
     })
+    setEditingId(depoimento.id) // Adicionar ID para edição
     setIsModalOpen(true)
   }
 
@@ -116,6 +123,7 @@ export default function DepoimentosAdminPage() {
       comentario: '',
       ativo: true
     })
+    setEditingId(null)
     setIsModalOpen(true)
   }
 
@@ -239,7 +247,7 @@ export default function DepoimentosAdminPage() {
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              {currentDepoimento?.nome ? 'Editar Depoimento' : 'Adicionar Novo Depoimento'}
+              {editingId ? 'Editar Depoimento' : 'Adicionar Novo Depoimento'}
             </h2>
             
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -311,6 +319,7 @@ export default function DepoimentosAdminPage() {
                   onClick={() => {
                     setIsModalOpen(false)
                     setCurrentDepoimento(null)
+                    setEditingId(null)
                     setFormErrors({})
                   }}
                   className="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors"
@@ -327,7 +336,7 @@ export default function DepoimentosAdminPage() {
                   ) : (
                     <CheckCircle className="w-5 h-5 mr-2" />
                   )}
-                  {currentDepoimento?.nome ? 'Salvar Alterações' : 'Adicionar Depoimento'}
+                  {editingId ? 'Salvar Alterações' : 'Adicionar Depoimento'}
                 </button>
               </div>
             </form>
