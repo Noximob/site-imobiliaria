@@ -22,92 +22,105 @@ export async function POST(request: NextRequest) {
     const deleteCount = deleteIds.length
     const commitMessage = `Admin: Batch completo - ${uploadCount} upload(s) e ${deleteCount} delete(s)`
     
-    // Fazer uploads primeiro (se houver)
-    if (files.length > 0 && imageIds.length > 0) {
-      console.log('📸 Processando uploads...')
+    // Usar Tree API para fazer 1 ÚNICO commit com todas as alterações
+    const { data: refData } = await octokit.git.getRef({
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      ref: 'heads/main'
+    })
+    
+    const latestCommitSha = refData.object.sha
+    const { data: commitData } = await octokit.git.getCommit({
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      commit_sha: latestCommitSha
+    })
+    
+    const baseTreeSha = commitData.tree.sha
+    
+    // Buscar tree atual
+    const { data: currentTreeData } = await octokit.git.getTree({
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      tree_sha: baseTreeSha,
+      recursive: 'true'
+    })
+    
+    // Filtrar arquivos que devem ser deletados
+    const filesToDelete = deleteIds.map(imageId => {
+      const imageConfig = siteImagesConfig.find(img => img.id === imageId)
+      return imageConfig ? `public${imageConfig.localPath}` : null
+    }).filter(Boolean)
+    
+    // Manter apenas arquivos que NÃO devem ser deletados
+    const filteredTreeItems = currentTreeData.tree.filter(item => 
+      !filesToDelete.includes(item.path)
+    )
+    
+    // Adicionar novos uploads
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i]
+      const imageId = imageIds[i]
       
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i]
-        const imageId = imageIds[i]
-        
-        if (!file || !imageId) continue
-        
-        const imageConfig = siteImagesConfig.find(img => img.id === imageId)
-        if (!imageConfig) continue
-        
-        const arrayBuffer = await file.arrayBuffer()
-        const buffer = Buffer.from(arrayBuffer)
-        const filePath = `public${imageConfig.localPath}`
-        
-        // Buscar SHA se arquivo existe
-        let sha: string | undefined
-        try {
-          const existingFile = await octokit.repos.getContent({
-            owner: REPO_OWNER,
-            repo: REPO_NAME,
-            path: filePath,
-            ref: 'main'
-          })
-          
-          if ('sha' in existingFile.data) {
-            sha = existingFile.data.sha
-          }
-        } catch (error) {
-          // Arquivo não existe, está ok
-        }
-        
-        // Fazer upload
-        await octokit.repos.createOrUpdateFileContents({
-          owner: REPO_OWNER,
-          repo: REPO_NAME,
-          path: filePath,
-          message: commitMessage,
-          content: buffer.toString('base64'),
-          branch: 'main',
-          ...(sha && { sha })
-        })
-        
-        console.log(`✅ Upload: ${imageId}`)
-      }
+      if (!file || !imageId) continue
+      
+      const imageConfig = siteImagesConfig.find(img => img.id === imageId)
+      if (!imageConfig) continue
+      
+      const arrayBuffer = await file.arrayBuffer()
+      const buffer = Buffer.from(arrayBuffer)
+      const filePath = `public${imageConfig.localPath}`
+      
+      // Criar blob
+      const { data: blobData } = await octokit.git.createBlob({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        content: buffer.toString('base64'),
+        encoding: 'base64'
+      })
+      
+      // Adicionar à tree
+      filteredTreeItems.push({
+        path: filePath,
+        mode: '100644' as const,
+        type: 'blob' as const,
+        sha: blobData.sha
+      })
+      
+      console.log(`✅ Upload preparado: ${imageId}`)
     }
     
-    // Fazer deletes depois (se houver)
-    if (deleteIds.length > 0) {
-      console.log('🗑️ Processando deletes...')
-      
-      for (const imageId of deleteIds) {
-        try {
-          const imageConfig = siteImagesConfig.find(img => img.id === imageId)
-          if (!imageConfig) continue
-          
-          const filePath = `public${imageConfig.localPath}`
-          
-          const fileResponse = await octokit.repos.getContent({
-            owner: REPO_OWNER,
-            repo: REPO_NAME,
-            path: filePath,
-            ref: 'main'
-          })
-          
-          if ('sha' in fileResponse.data) {
-            await octokit.repos.deleteFile({
-              owner: REPO_OWNER,
-              repo: REPO_NAME,
-              path: filePath,
-              message: commitMessage,
-              sha: fileResponse.data.sha,
-              branch: 'main'
-            })
-            
-            console.log(`✅ Delete: ${imageId}`)
-          }
-        } catch (error) {
-          console.error(`❌ Erro ao deletar ${imageId}:`, error)
-        }
-      }
-    }
+    // Criar nova tree
+    const { data: newTreeData } = await octokit.git.createTree({
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      base_tree: baseTreeSha,
+      tree: filteredTreeItems.map(item => ({
+        path: item.path,
+        mode: item.mode as any,
+        type: item.type as any,
+        sha: item.sha
+      }))
+    })
     
-    console.log(`🎉 Batch completo: ${uploadCount} uploads, ${deleteCount} deletes`)
+    // Criar commit único
+    const { data: newCommitData } = await octokit.git.createCommit({
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      message: commitMessage,
+      tree: newTreeData.sha,
+      parents: [latestCommitSha]
+    })
+    
+    // Atualizar referência do branch
+    await octokit.git.updateRef({
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      ref: 'heads/main',
+      sha: newCommitData.sha
+    })
+    
+    console.log(`🎉 Commit único criado: ${commitMessage}`)
     
     return NextResponse.json({
       success: true,
