@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
     
     // Fazer 1 ÚNICO commit com todas as imagens usando Tree API
     const commitMessage = `Admin: Batch upload de ${validatedImages.length} imagem(ns)`
-    const results = []
+    const results: Array<{ imageId: string; success: boolean; url: string }> = []
     
     try {
       console.log(`📦 Criando commit único com ${validatedImages.length} arquivos...`)

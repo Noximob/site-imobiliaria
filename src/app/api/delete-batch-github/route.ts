@@ -16,8 +16,8 @@ export async function DELETE(request: NextRequest) {
 
     console.log(`🗑️ Iniciando deleção de ${imageIds.length} imagem(ns)...`)
 
-    const results = []
-    const filesToDelete = []
+    const results: Array<{ imageId: string; success: boolean; error?: string }> = []
+    const filesToDelete: Array<{ imageId: string; filePath: string; sha: string }> = []
 
     // Primeiro, validar e coletar informações dos arquivos
     for (const imageId of imageIds) {
