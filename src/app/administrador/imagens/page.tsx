@@ -136,41 +136,30 @@ export default function AdminImagens() {
     setIsPublishing(true)
 
     try {
-      // Primeiro fazer uploads se houver
-      if (pendingImages.length > 0) {
-        const formData = new FormData()
-        
-        pendingImages.forEach(({ imageId, file }) => {
-          formData.append('files', file)
-          formData.append('imageIds', imageId)
-        })
-        
-        const uploadResponse = await fetch('/api/upload-batch-github', {
-          method: 'POST',
-          body: formData
-        })
-        
-        if (!uploadResponse.ok) {
-          throw new Error('Erro no upload em batch')
-        }
+      // Usar API unificada que faz tudo em 1 único commit
+      const formData = new FormData()
+      
+      // Adicionar uploads
+      pendingImages.forEach(({ imageId, file }) => {
+        formData.append('files', file)
+        formData.append('imageIds', imageId)
+      })
+      
+      // Adicionar deletes
+      pendingDeletes.forEach(({ imageId }) => {
+        formData.append('deleteIds', imageId)
+      })
+      
+      const response = await fetch('/api/batch-images-github', {
+        method: 'POST',
+        body: formData
+      })
+      
+      if (!response.ok) {
+        throw new Error('Erro no batch unificado')
       }
-
-      // Depois fazer deletes se houver
-      if (pendingDeletes.length > 0) {
-        const imageIds = pendingDeletes.map(d => d.imageId)
-        
-        const deleteResponse = await fetch('/api/delete-batch-github', {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ imageIds })
-        })
-
-        if (!deleteResponse.ok) {
-          throw new Error('Erro ao apagar imagens')
-        }
-      }
+      
+      const result = await response.json()
 
       // Limpar tudo
       setPendingImages([])
