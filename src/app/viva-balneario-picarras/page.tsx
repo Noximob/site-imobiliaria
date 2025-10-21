@@ -166,6 +166,7 @@ export default function VivaBalnearioPicarrasPage() {
                     alt="Praia de Balneário Piçarras" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
@@ -174,6 +175,7 @@ export default function VivaBalnearioPicarrasPage() {
                     alt="Cristo Luz Balneário Piçarras" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -184,6 +186,7 @@ export default function VivaBalnearioPicarrasPage() {
                     alt="Beto Carrero World" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
@@ -192,6 +195,7 @@ export default function VivaBalnearioPicarrasPage() {
                     alt="Jantar Romântico" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -202,6 +206,7 @@ export default function VivaBalnearioPicarrasPage() {
                     alt="Praia de Balneário Piçarras" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
@@ -210,6 +215,7 @@ export default function VivaBalnearioPicarrasPage() {
                     alt="Skyline Balneário Piçarras" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
               </div>

@@ -157,6 +157,7 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
                           alt={`${imovel.titulo} - Foto ${index + 2}`}
                           fill
                           className="object-cover"
+                          loading="lazy"
                         />
                       </div>
                     ))}

@@ -152,6 +152,7 @@ export default function ArtigoPage() {
             alt={artigo.titulo} 
             fill
             className="object-cover"
+            loading="lazy"
           />
           {/* Data Overlay */}
           <div className="absolute top-6 left-6">

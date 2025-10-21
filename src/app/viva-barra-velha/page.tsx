@@ -166,6 +166,7 @@ export default function VivaBarraVelhaPage() {
                     alt="Praia de Barra Velha" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
@@ -174,6 +175,7 @@ export default function VivaBarraVelhaPage() {
                     alt="Cristo Luz Barra Velha" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -184,6 +186,7 @@ export default function VivaBarraVelhaPage() {
                     alt="Beto Carrero World" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
@@ -192,6 +195,7 @@ export default function VivaBarraVelhaPage() {
                     alt="Jantar Romântico" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -202,6 +206,7 @@ export default function VivaBarraVelhaPage() {
                     alt="Praia de Barra Velha" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
@@ -210,6 +215,7 @@ export default function VivaBarraVelhaPage() {
                     alt="Skyline Barra Velha" 
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
               </div>

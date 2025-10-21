@@ -226,6 +226,7 @@ export default async function ComoComprarPage() {
                   alt="Imóveis em Penha"
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-transparent"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -245,6 +246,7 @@ export default async function ComoComprarPage() {
                   alt="Imóveis em Balneário Piçarras"
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-transparent"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -264,6 +266,7 @@ export default async function ComoComprarPage() {
                   alt="Imóveis em Barra Velha"
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-transparent"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -339,6 +342,7 @@ export default async function ComoComprarPage() {
                   alt="Praia - Investimento imobiliário"
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
               </div>
               
@@ -365,6 +369,7 @@ export default async function ComoComprarPage() {
                   alt="Equipe Nox Imóveis"
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
               </div>
               

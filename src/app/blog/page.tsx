@@ -128,6 +128,7 @@ export default function BlogPage() {
                       alt={artigo.titulo} 
                       fill
                       className="object-cover"
+                      loading="lazy"
                     />
                     {/* Data Overlay */}
                     <div className="absolute top-4 left-4">

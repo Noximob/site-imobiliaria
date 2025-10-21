@@ -20,6 +20,7 @@ export default function ImovelCard({ imovel }: ImovelCardProps) {
             alt={imovel.titulo}
             fill
             className="object-cover hover:scale-105 transition-transform duration-300 bg-transparent"
+            loading="lazy"
           />
           <div className="absolute top-4 left-4">
             <span className={`px-3 py-1 rounded-full text-sm font-medium ${

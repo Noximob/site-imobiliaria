@@ -82,6 +82,7 @@ export default function TrabalheConoscoPage() {
               alt="Equipe Nox Imóveis"
               fill
               className="object-cover"
+              loading="lazy"
             />
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center text-white bg-black/50 px-4 py-2 rounded-lg">
               <p className="text-sm font-medium">Foto da equipe</p>

@@ -29,6 +29,7 @@ export default function SobrePage() {
             alt="Nox Imóveis - Quem Somos" 
             fill
             className="object-cover"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-transparent"></div>
         </div>
@@ -186,6 +187,7 @@ export default function SobrePage() {
                   alt="Adriana Barbosa Campos" 
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="p-4">
@@ -211,6 +213,7 @@ export default function SobrePage() {
                   alt="Adriana Medeiros" 
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="p-4">
@@ -236,6 +239,7 @@ export default function SobrePage() {
                   alt="Alan de Freitas Cordeiro" 
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="p-4">
@@ -261,6 +265,7 @@ export default function SobrePage() {
                   alt="Alex Penha" 
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="p-4">

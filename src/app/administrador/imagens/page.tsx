@@ -365,6 +365,7 @@ export default function AdminImagens() {
                             alt="Nova imagem"
                             fill
                             className="object-cover"
+                            loading="lazy"
                           />
                           <div className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
                             NOVA
@@ -391,6 +392,7 @@ export default function AdminImagens() {
                             alt={image.description}
                             fill
                             className="object-cover"
+                            loading="lazy"
                           />
                           <div className="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
                             ATUAL

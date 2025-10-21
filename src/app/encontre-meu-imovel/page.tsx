@@ -217,6 +217,7 @@ export default function EncontreMeuImovelPage() {
                   alt="Adriana Barbosa Campos" 
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="p-4">
@@ -239,6 +240,7 @@ export default function EncontreMeuImovelPage() {
                   alt="Adriana Medeiros" 
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="p-4">
@@ -261,6 +263,7 @@ export default function EncontreMeuImovelPage() {
                   alt="Alan de Freitas Cordeiro" 
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="p-4">
@@ -283,6 +286,7 @@ export default function EncontreMeuImovelPage() {
                   alt="Alex Penha" 
                   fill
                   className="object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="p-4">
