@@ -33,7 +33,7 @@ export async function GET() {
     
     if ('content' in response.data) {
       const content = Buffer.from(response.data.content, 'base64').toString('utf-8')
-      const data = JSON.parse(content)
+      const data: { corretores: Corretor[] } = JSON.parse(content)
       return NextResponse.json(data.corretores || [])
     }
     
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     
     // Buscar dados atuais
     const filePath = 'public/dados/corretores.json'
-    let currentData = { corretores: [] }
+    let currentData: { corretores: Corretor[] } = { corretores: [] }
     let sha: string | undefined
     
     try {
@@ -120,7 +120,7 @@ export async function PUT(request: NextRequest) {
     }
     
     const content = Buffer.from(response.data.content, 'base64').toString('utf-8')
-    const data = JSON.parse(content)
+    const data: { corretores: Corretor[] } = JSON.parse(content)
     
     // Encontrar e atualizar corretor
     const corretorIndex = data.corretores.findIndex((c: Corretor) => c.id === id)
@@ -177,7 +177,7 @@ export async function DELETE(request: NextRequest) {
     }
     
     const content = Buffer.from(response.data.content, 'base64').toString('utf-8')
-    const data = JSON.parse(content)
+    const data: { corretores: Corretor[] } = JSON.parse(content)
     
     // Encontrar e remover corretor
     const corretorIndex = data.corretores.findIndex((c: Corretor) => c.id === id)
