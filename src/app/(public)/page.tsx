@@ -327,7 +327,6 @@ export default async function HomePage() {
                     fill
                     className="object-cover bg-transparent"
                     loading="lazy"
-                    loading="lazy"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     placeholder="empty"
                   />
