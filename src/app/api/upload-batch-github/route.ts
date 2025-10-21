@@ -70,50 +70,87 @@ export async function POST(request: NextRequest) {
     
     console.log(`✅ Validação concluída: ${validatedImages.length} imagens validadas`)
     
-    // Fazer 1 ÚNICO commit com todas as imagens
+    // Fazer 1 ÚNICO commit com todas as imagens usando Tree API
     const commitMessage = `Admin: Batch upload de ${validatedImages.length} imagem(ns)`
     const results = []
     
     try {
       console.log(`📦 Criando commit único com ${validatedImages.length} arquivos...`)
       
-      // Para cada arquivo, fazer commit individual mas com mensagem consistente
+      // Buscar SHA do branch atual
+      const { data: refData } = await octokit.git.getRef({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        ref: 'heads/main'
+      })
+      
+      const latestCommitSha = refData.object.sha
+      console.log(`📋 SHA do commit atual: ${latestCommitSha}`)
+      
+      // Buscar tree do commit atual
+      const { data: commitData } = await octokit.git.getCommit({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        commit_sha: latestCommitSha
+      })
+      
+      const baseTreeSha = commitData.tree.sha
+      console.log(`🌳 SHA da tree atual: ${baseTreeSha}`)
+      
+      // Criar blobs para todas as imagens
+      const treeItems = []
+      
       for (const img of validatedImages) {
-        // Buscar SHA se arquivo existe
-        let sha: string | undefined
-        try {
-          const existingFile = await octokit.repos.getContent({
-            owner: REPO_OWNER,
-            repo: REPO_NAME,
-            path: img.filePath,
-            ref: 'main'
-          })
-          
-          if ('sha' in existingFile.data) {
-            sha = existingFile.data.sha
-          }
-        } catch (error) {
-          // Arquivo não existe, está ok
-        }
+        console.log(`📸 Criando blob para: ${img.imageId}`)
         
-        // Commit com mensagem batch
-        await octokit.repos.createOrUpdateFileContents({
+        const { data: blobData } = await octokit.git.createBlob({
           owner: REPO_OWNER,
           repo: REPO_NAME,
-          path: img.filePath,
-          message: commitMessage,
           content: img.buffer.toString('base64'),
-          branch: 'main',
-          ...(sha && { sha })
+          encoding: 'base64'
+        })
+        
+        treeItems.push({
+          path: img.filePath,
+          mode: '100644' as const,
+          type: 'blob' as const,
+          sha: blobData.sha
         })
         
         const imageUrl = `/${img.filePath.replace('public/', '')}`
-        
         results.push({ imageId: img.imageId, success: true, url: imageUrl })
-        console.log(`✅ Commitado: ${img.imageId}`)
       }
       
-      console.log(`🎉 Batch commit concluído: ${results.length} imagens`)
+      // Criar nova tree com todas as alterações
+      const { data: newTreeData } = await octokit.git.createTree({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        base_tree: baseTreeSha,
+        tree: treeItems
+      })
+      
+      console.log(`🌳 Nova tree criada: ${newTreeData.sha}`)
+      
+      // Criar commit único
+      const { data: newCommitData } = await octokit.git.createCommit({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        message: commitMessage,
+        tree: newTreeData.sha,
+        parents: [latestCommitSha]
+      })
+      
+      console.log(`📝 Commit criado: ${newCommitData.sha}`)
+      
+      // Atualizar referência do branch
+      await octokit.git.updateRef({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        ref: 'heads/main',
+        sha: newCommitData.sha
+      })
+      
+      console.log(`🎉 Batch commit concluído: ${results.length} imagens em 1 único commit`)
       
       return NextResponse.json({
         success: true,

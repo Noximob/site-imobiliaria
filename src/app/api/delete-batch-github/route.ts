@@ -17,7 +17,9 @@ export async function DELETE(request: NextRequest) {
     console.log(`🗑️ Iniciando deleção de ${imageIds.length} imagem(ns)...`)
 
     const results = []
+    const filesToDelete = []
 
+    // Primeiro, validar e coletar informações dos arquivos
     for (const imageId of imageIds) {
       try {
         const imageConfig = siteImagesConfig.find(img => img.id === imageId)
@@ -40,18 +42,11 @@ export async function DELETE(request: NextRequest) {
         })
 
         if ('sha' in fileResponse.data) {
-          console.log(`🗑️ Deletando: ${filePath}`)
-          
-          await octokit.repos.deleteFile({
-            owner: REPO_OWNER,
-            repo: REPO_NAME,
-            path: filePath,
-            message: `Admin: Batch delete ${imageId}`,
-            sha: fileResponse.data.sha,
-            branch: 'main'
+          filesToDelete.push({
+            imageId,
+            filePath,
+            sha: fileResponse.data.sha
           })
-
-          console.log(`✅ Deletado com sucesso: ${imageId}`)
           results.push({ imageId, success: true })
         } else {
           console.error(`❌ Arquivo não é um file: ${filePath}`)
@@ -59,7 +54,7 @@ export async function DELETE(request: NextRequest) {
         }
 
       } catch (error) {
-        console.error(`❌ Erro ao deletar ${imageId}:`, error)
+        console.error(`❌ Erro ao validar ${imageId}:`, error)
         results.push({ 
           imageId, 
           success: false, 
@@ -68,16 +63,105 @@ export async function DELETE(request: NextRequest) {
       }
     }
 
-    const successCount = results.filter(r => r.success).length
-    const failCount = results.filter(r => !r.success).length
+    // Se não há arquivos para deletar, retornar
+    if (filesToDelete.length === 0) {
+      return NextResponse.json({
+        success: true,
+        message: 'Nenhum arquivo válido para deletar',
+        results
+      })
+    }
 
-    console.log(`✅ Deleção concluída: ${successCount} sucesso, ${failCount} falhas`)
+    // Fazer 1 ÚNICO commit com todas as deleções usando Tree API
+    const commitMessage = `Admin: Batch delete de ${filesToDelete.length} imagem(ns)`
+    
+    try {
+      console.log(`📦 Criando commit único para deletar ${filesToDelete.length} arquivos...`)
+      
+      // Buscar SHA do branch atual
+      const { data: refData } = await octokit.git.getRef({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        ref: 'heads/main'
+      })
+      
+      const latestCommitSha = refData.object.sha
+      console.log(`📋 SHA do commit atual: ${latestCommitSha}`)
+      
+      // Buscar tree do commit atual
+      const { data: commitData } = await octokit.git.getCommit({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        commit_sha: latestCommitSha
+      })
+      
+      const baseTreeSha = commitData.tree.sha
+      console.log(`🌳 SHA da tree atual: ${baseTreeSha}`)
+      
+      // Buscar tree atual para remover os arquivos
+      const { data: currentTreeData } = await octokit.git.getTree({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        tree_sha: baseTreeSha,
+        recursive: true
+      })
+      
+      // Filtrar arquivos que NÃO devem ser deletados
+      const filteredTreeItems = currentTreeData.tree.filter(item => 
+        !filesToDelete.some(file => item.path === file.filePath)
+      )
+      
+      console.log(`🗑️ Removendo ${filesToDelete.length} arquivos da tree`)
+      
+      // Criar nova tree sem os arquivos deletados
+      const { data: newTreeData } = await octokit.git.createTree({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        base_tree: baseTreeSha,
+        tree: filteredTreeItems.map(item => ({
+          path: item.path,
+          mode: item.mode,
+          type: item.type,
+          sha: item.sha
+        }))
+      })
+      
+      console.log(`🌳 Nova tree criada: ${newTreeData.sha}`)
+      
+      // Criar commit único
+      const { data: newCommitData } = await octokit.git.createCommit({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        message: commitMessage,
+        tree: newTreeData.sha,
+        parents: [latestCommitSha]
+      })
+      
+      console.log(`📝 Commit criado: ${newCommitData.sha}`)
+      
+      // Atualizar referência do branch
+      await octokit.git.updateRef({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        ref: 'heads/main',
+        sha: newCommitData.sha
+      })
+      
+      const successCount = results.filter(r => r.success).length
+      const failCount = results.filter(r => !r.success).length
 
-    return NextResponse.json({
-      success: true,
-      message: `${successCount} imagem(ns) deletada(s) com sucesso`,
-      results
-    })
+      console.log(`✅ Deleção concluída: ${successCount} sucesso, ${failCount} falhas em 1 único commit`)
+
+      return NextResponse.json({
+        success: true,
+        message: `${successCount} imagem(ns) deletada(s) com sucesso em 1 único commit`,
+        results
+      })
+      
+    } catch (error) {
+      console.error('❌ Erro no batch delete commit:', error)
+      throw error
+    }
 
   } catch (error) {
     console.error('❌ Erro no batch delete:', error)
