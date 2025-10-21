@@ -2,18 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { Phone, Mail, Instagram, X } from 'lucide-react'
-
-interface Corretor {
-  id: string
-  nome: string
-  cargo: string
-  creci: string
-  telefone: string
-  instagram?: string
-  email: string
-  foto: string
-  ativo: boolean
-}
+import type { Corretor } from '@/lib/corretores-data'
 
 interface TeamSectionProps {
   corretores: Corretor[]

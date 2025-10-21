@@ -5,6 +5,7 @@ import BlogSection from '@/components/BlogSection'
 import TeamSection from '@/components/TeamSection'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
+import { getCorretoresAtivos } from '@/lib/corretores-data'
 import type { Metadata } from 'next'
 
 // Revalida a cada 24 horas
@@ -47,18 +48,8 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  // Buscar corretores dinamicamente
-  let corretores = []
-  try {
-    const corretoresResponse = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/corretores`, {
-      cache: 'no-store' // Sempre buscar dados atualizados
-    })
-    if (corretoresResponse.ok) {
-      corretores = await corretoresResponse.json()
-    }
-  } catch (error) {
-    console.error('Erro ao carregar corretores:', error)
-  }
+  // Buscar corretores ativos
+  const corretores = await getCorretoresAtivos()
 
   // Carrega apenas as imagens necessárias para esta página (otimização de performance)
   const siteImages = {

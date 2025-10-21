@@ -1,18 +1,5 @@
 import { useState, useEffect } from 'react'
-
-interface Corretor {
-  id: string
-  nome: string
-  cargo: string
-  creci: string
-  telefone: string
-  instagram?: string
-  email: string
-  foto: string
-  ativo: boolean
-  createdAt: string
-  updatedAt: string
-}
+import { getCorretores, type Corretor } from './corretores-data'
 
 export function useCorretores() {
   const [corretores, setCorretores] = useState<Corretor[]>([])
@@ -23,13 +10,7 @@ export function useCorretores() {
     const fetchCorretores = async () => {
       try {
         setLoading(true)
-        const response = await fetch('/api/corretores')
-        
-        if (!response.ok) {
-          throw new Error('Erro ao carregar corretores')
-        }
-        
-        const data = await response.json()
+        const data = await getCorretores()
         setCorretores(data)
         setError(null)
       } catch (err) {
