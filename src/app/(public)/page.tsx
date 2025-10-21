@@ -3,9 +3,11 @@ import { Search } from 'lucide-react'
 import SearchForm from '@/components/SearchForm'
 import BlogSection from '@/components/BlogSection'
 import TeamSection from '@/components/TeamSection'
+import DepoimentosSection from '@/components/DepoimentosSection'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
 import { getCorretoresAtivos } from '@/lib/corretores-data'
+import { getDepoimentosAtivos } from '@/lib/depoimentos-data'
 import type { Metadata } from 'next'
 
 // Revalida a cada 24 horas
@@ -48,8 +50,9 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  // Buscar corretores ativos
+  // Buscar corretores ativos e depoimentos ativos
   const corretores = await getCorretoresAtivos()
+  const depoimentos = await getDepoimentosAtivos()
 
   // Carrega apenas as imagens necessárias para esta página (otimização de performance)
   const siteImages = {
@@ -718,44 +721,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Seção Depoimentos/Prova Social */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Título da Seção */}
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              {getText('home.depoimentos.titulo')}
-            </h2>
-          </div>
-
-          {/* Card de Depoimento */}
-          <div className="bg-white rounded-lg shadow-sm border-t-2 border-purple-600 p-6 max-w-2xl mx-auto">
-            <div className="text-center">
-              {/* Nome e Cargo */}
-              <div className="mb-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-1">
-                  {getText('home.depoimentos.cliente_nome')}
-              </h3>
-                <p className="text-sm text-gray-600">
-                  {getText('home.depoimentos.cliente_cargo')}
-            </p>
-          </div>
-
-              {/* Depoimento */}
-              <blockquote className="text-base text-gray-700 leading-relaxed italic">
-                "{getText('home.depoimentos.depoimento')}"
-              </blockquote>
-            </div>
-            </div>
-
-          {/* Indicadores de Navegação */}
-          <div className="flex justify-center mt-6 space-x-2">
-            <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-            <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-            <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-          </div>
-        </div>
-      </section>
+      {/* Seção Depoimentos - Dinâmica */}
+      <DepoimentosSection depoimentos={depoimentos} />
 
              {/* Seção Conheça nossa equipe - Dinâmica */}
              <TeamSection corretores={corretores} />

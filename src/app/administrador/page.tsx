@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Lock, User, Key, Home, Image, FileText, Building, BookOpen, Users } from 'lucide-react'
+import { Lock, User, Key, Home, Image, FileText, Building, BookOpen, Users, MessageSquare } from 'lucide-react'
 
 export default function AdminLogin() {
   const [username, setUsername] = useState('')
@@ -154,6 +154,21 @@ export default function AdminLogin() {
                 <div className="ml-4">
                   <h3 className="text-lg font-semibold text-gray-900">Corretores</h3>
                   <p className="text-sm text-gray-500">Gerenciar equipe</p>
+                </div>
+              </div>
+            </div>
+
+            <div 
+              className="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow"
+              onClick={() => router.push('/administrador/depoimentos')}
+            >
+              <div className="flex items-center">
+                <div className="p-3 bg-pink-100 rounded-lg">
+                  <MessageSquare className="w-6 h-6 text-pink-600" />
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold text-gray-900">Depoimentos</h3>
+                  <p className="text-sm text-gray-500">Gerenciar avaliações</p>
                 </div>
               </div>
             </div>
