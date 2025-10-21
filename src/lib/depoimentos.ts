@@ -6,22 +6,22 @@ export function useDepoimentos() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    const fetchDepoimentos = async () => {
-      try {
-        setLoading(true)
-        const data = await getDepoimentos()
-        setDepoimentos(data)
-        setError(null)
-      } catch (err) {
-        console.error('Erro ao buscar depoimentos:', err)
-        setError(err instanceof Error ? err.message : 'Erro desconhecido')
-        setDepoimentos([])
-      } finally {
-        setLoading(false)
-      }
+  const fetchDepoimentos = async () => {
+    try {
+      setLoading(true)
+      const data = await getDepoimentos()
+      setDepoimentos(data)
+      setError(null)
+    } catch (err) {
+      console.error('Erro ao buscar depoimentos:', err)
+      setError(err instanceof Error ? err.message : 'Erro desconhecido')
+      setDepoimentos([])
+    } finally {
+      setLoading(false)
     }
+  }
 
+  useEffect(() => {
     fetchDepoimentos()
   }, [])
 
