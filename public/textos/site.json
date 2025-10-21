@@ -1,7 +1,7 @@
 {
   "header": {
     "telefone": {
-      "value": "(47) 99753-0113",
+      "value": "(47) 99753-01133",
       "type": "contato",
       "label": "📞 Telefone",
       "hint": "Telefone no cabeçalho",
@@ -9,7 +9,7 @@
       "section": "Header"
     },
     "menu_imoveis_penha": {
-      "value": "Imóveis em Penha",
+      "value": "Imóveis em Penhaa",
       "type": "texto",
       "label": "🏠 Menu Penha",
       "hint": "Texto do menu para imóveis em Penha",
