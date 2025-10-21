@@ -103,7 +103,7 @@ export async function DELETE(request: NextRequest) {
         owner: REPO_OWNER,
         repo: REPO_NAME,
         tree_sha: baseTreeSha,
-        recursive: true
+        recursive: 'true'
       })
       
       // Filtrar arquivos que NÃO devem ser deletados
