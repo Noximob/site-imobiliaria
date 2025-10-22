@@ -11,6 +11,7 @@ export default function ConditionalLayout({
 }) {
   const pathname = usePathname()
   const isAdminRoute = pathname.startsWith('/administrador')
+  const isImoveisPage = pathname === '/imoveis'
 
   if (isAdminRoute) {
     return <>{children}</>
@@ -22,7 +23,7 @@ export default function ConditionalLayout({
       <main className="min-h-screen">
         {children}
       </main>
-      <Footer />
+      {!isImoveisPage && <Footer />}
     </>
   )
 }
