@@ -1,10 +1,8 @@
 import { Suspense } from 'react'
 import { Metadata } from 'next'
-import { searchImoveis } from '@/lib/imoveis'
 import { FiltrosImovel } from '@/types'
-import ImovelCard from '@/components/ImovelCard'
 import FiltrosImoveis from '@/components/FiltrosImoveis'
-import { Building, Search } from 'lucide-react'
+import { Building } from 'lucide-react'
 
 interface PageProps {
   searchParams: {
@@ -71,10 +69,6 @@ export default async function ImoveisPage({ searchParams }: PageProps) {
     areaMax: searchParams.areaMax ? Number(searchParams.areaMax) : undefined,
   }
 
-  // Buscar imóveis com filtros
-  const imoveis = await searchImoveis(filtros)
-  const temFiltros = Object.values(filtros).some(value => value !== undefined && value !== '')
-  
   // Para demonstração, sempre mostrar os mockups
   const mostrarMockups = true
 
