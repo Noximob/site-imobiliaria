@@ -179,6 +179,7 @@ export default function ImoveisPage() {
                   </div>
                 </div>
               </div>
+            </div>
           </div>
         </div>
       </div>
