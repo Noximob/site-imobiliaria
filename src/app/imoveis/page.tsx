@@ -20,7 +20,7 @@ export default function ImoveisPage() {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h1 className="text-3xl font-bold text-gray-900">Imóveis à Venda</h1>
-                <p className="text-sm text-gray-600 mt-1">Home > Imóveis à Venda</p>
+                <p className="text-sm text-gray-600 mt-1">Home &gt; Imóveis à Venda</p>
               </div>
               <div className="flex items-center gap-4">
                 <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
