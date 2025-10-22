@@ -4,42 +4,45 @@ import FiltrosImoveis from '@/components/FiltrosImoveis'
 
 export default function ImoveisPage() {
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      {/* Sidebar de Filtros - Lado Esquerdo */}
-      <div className="w-80 bg-white shadow-lg overflow-y-auto h-screen sticky top-0">
-        <FiltrosImoveis onFiltrosChange={(filtros) => {
-          console.log('Filtros aplicados:', filtros)
-        }} />
+    <div className="h-screen bg-gray-50 flex flex-col">
+      {/* Header Fixo */}
+      <div className="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Imóveis à Venda</h1>
+            <p className="text-sm text-gray-600 mt-1">Home &gt; Imóveis à Venda</p>
+          </div>
+          <div className="flex items-center gap-4">
+            <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              </svg>
+              Ordenar
+            </button>
+            <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <p className="text-lg text-gray-600 mt-4">
+          Encontramos 2 imóveis com seus critérios de busca
+        </p>
       </div>
 
-      {/* Área Principal - Lado Direito */}
-      <div className="flex-1 overflow-y-auto">
-        <div className="max-w-6xl mx-auto px-6 py-8">
-          {/* Header */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900">Imóveis à Venda</h1>
-                <p className="text-sm text-gray-600 mt-1">Home &gt; Imóveis à Venda</p>
-              </div>
-              <div className="flex items-center gap-4">
-                <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                  </svg>
-                  Ordenar
-                </button>
-                <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <p className="text-lg text-gray-600">
-              Encontramos 2 imóveis com seus critérios de busca
-            </p>
-          </div>
+      {/* Conteúdo Principal com Duas Colunas */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* Sidebar de Filtros - Lado Esquerdo */}
+        <div className="w-80 bg-white shadow-lg overflow-y-auto">
+          <FiltrosImoveis onFiltrosChange={(filtros) => {
+            console.log('Filtros aplicados:', filtros)
+          }} />
+        </div>
+
+        {/* Área Principal - Lado Direito */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="max-w-6xl mx-auto px-6 py-8">
 
           {/* Lista de Imóveis */}
           <div className="space-y-6">
@@ -180,6 +183,7 @@ export default function ImoveisPage() {
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>
