@@ -74,6 +74,9 @@ export default async function ImoveisPage({ searchParams }: PageProps) {
   // Buscar imóveis com filtros
   const imoveis = await searchImoveis(filtros)
   const temFiltros = Object.values(filtros).some(value => value !== undefined && value !== '')
+  
+  // Para demonstração, sempre mostrar os mockups
+  const mostrarMockups = true
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -100,7 +103,8 @@ export default async function ImoveisPage({ searchParams }: PageProps) {
           {/* Lista de Imóveis */}
           <div className="lg:col-span-3">
             <Suspense fallback={<ImoveisLoading />}>
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {mostrarMockups ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {/* Mockup 1 */}
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                   <div className="h-48 bg-gray-300 flex items-center justify-center">
@@ -174,7 +178,17 @@ export default async function ImoveisPage({ searchParams }: PageProps) {
                     </button>
                   </div>
                 </div>
-              </div>
+              ) : (
+                <div className="text-center py-12">
+                  <Building className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-gray-600 mb-2">
+                    Nenhum imóvel encontrado
+                  </h3>
+                  <p className="text-gray-500 mb-6">
+                    Em breve teremos imóveis disponíveis para você.
+                  </p>
+                </div>
+              )}
             </Suspense>
           </div>
         </div>
