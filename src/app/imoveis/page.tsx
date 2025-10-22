@@ -1,3 +1,5 @@
+'use client'
+
 import FiltrosImoveis from '@/components/FiltrosImoveis'
 
 export default function ImoveisPage() {
