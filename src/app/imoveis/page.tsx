@@ -33,14 +33,14 @@ export default function ImoveisPage() {
 
       {/* Conteúdo Principal com Duas Colunas */}
       <div className="flex h-[calc(100vh-200px)]">
-        {/* Sidebar de Filtros - Lado Esquerdo */}
-        <div className="w-80 bg-white shadow-lg overflow-y-auto">
+        {/* Sidebar de Filtros - Lado Esquerdo - SEM SCROLL */}
+        <div className="w-80 bg-white shadow-lg">
           <FiltrosImoveis onFiltrosChange={(filtros) => {
             console.log('Filtros aplicados:', filtros)
           }} />
         </div>
 
-        {/* Área Principal - Lado Direito */}
+        {/* Área Principal - Lado Direito - COM SCROLL */}
         <div className="flex-1 overflow-y-auto">
           <div className="max-w-6xl mx-auto px-6 py-8">
             {/* Lista de Imóveis */}
