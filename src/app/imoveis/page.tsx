@@ -38,7 +38,7 @@ export default function ImoveisPage() {
               </div>
             </div>
             <p className="text-sm text-gray-600">
-              Encontramos 2 imóveis com seus critérios de busca
+              Encontramos 4 imóveis com seus critérios de busca
             </p>
           </div>
 
