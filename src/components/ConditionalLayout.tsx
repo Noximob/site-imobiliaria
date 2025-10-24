@@ -18,12 +18,12 @@ export default function ConditionalLayout({
   }
 
   return (
-    <>
+    <div className="h-full flex flex-col">
       <Header />
-      <main className={isImoveisPage ? "h-screen overflow-hidden" : "min-h-screen"}>
+      <main className={isImoveisPage ? "flex-1 overflow-hidden" : "flex-1"}>
         {children}
       </main>
       {!isImoveisPage && <Footer />}
-    </>
+    </div>
   )
 }
