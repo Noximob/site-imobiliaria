@@ -101,7 +101,7 @@ export default function ImoveisPage() {
                     </div>
                   </div>
                   
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mt-3">
                     <div>
                       <p className="text-lg font-bold text-yellow-600">Venda R$ 6.800.000,00</p>
                     </div>
@@ -128,7 +128,7 @@ export default function ImoveisPage() {
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
                       Apartamento frente mar à venda no Ed. Ibiza Towers em Balneário Camboriú
-                    </h3>
+                  </h3>
                     <p className="text-gray-600 text-xs mb-1">
                       Avenida Atlântica, 5720, Centro - Balneário Camboriú/SC
                     </p>
@@ -166,7 +166,7 @@ export default function ImoveisPage() {
                     </div>
                   </div>
                   
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mt-3">
                     <div>
                       <p className="text-lg font-bold text-yellow-600">Venda R$ 12.800.000,00</p>
                       <p className="text-xs text-gray-500">Condomínio R$ 1.842,37</p>
@@ -239,7 +239,7 @@ export default function ImoveisPage() {
                     </div>
                   </div>
                   
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mt-3">
                     <div>
                       <p className="text-lg font-bold text-yellow-600">Venda R$ 3.200.000,00</p>
                     </div>
@@ -254,8 +254,8 @@ export default function ImoveisPage() {
                       </button>
                     </div>
                   </div>
-                </div>
-              </div>
+      </div>
+    </div>
 
               {/* Mockup 4 */}
               <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-48">
@@ -311,7 +311,7 @@ export default function ImoveisPage() {
                     </div>
                   </div>
                   
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mt-3">
                     <div>
                       <p className="text-lg font-bold text-yellow-600">Venda R$ 8.500.000,00</p>
                       <p className="text-xs text-gray-500">Condomínio R$ 2.500,00</p>
