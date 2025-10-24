@@ -4,7 +4,7 @@ import FiltrosImoveis from '@/components/FiltrosImoveis'
 
 export default function ImoveisPage() {
   return (
-    <div className="fixed inset-0 bg-gray-50 flex">
+    <div className="h-screen bg-gray-50 flex">
       {/* Sidebar de Filtros - Lado Esquerdo */}
       <div className="w-80 bg-white shadow-lg overflow-y-auto">
         <FiltrosImoveis onFiltrosChange={(filtros) => {
