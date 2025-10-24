@@ -58,7 +58,7 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+    <div className="p-6 w-full">
       <h3 className="text-xl font-bold text-gray-800 mb-6">Filtros</h3>
       
       {/* Dropdowns */}
