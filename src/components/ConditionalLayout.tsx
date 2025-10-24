@@ -20,7 +20,7 @@ export default function ConditionalLayout({
   return (
     <>
       <Header />
-      <main className="min-h-screen">
+      <main className={isImoveisPage ? "h-screen overflow-hidden" : "min-h-screen"}>
         {children}
       </main>
       {!isImoveisPage && <Footer />}

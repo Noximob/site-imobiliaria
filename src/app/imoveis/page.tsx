@@ -4,7 +4,7 @@ import FiltrosImoveis from '@/components/FiltrosImoveis'
 
 export default function ImoveisPage() {
   return (
-    <div className="h-screen bg-gray-50 flex flex-col overflow-hidden">
+    <div className="h-full bg-gray-50 flex flex-col">
       {/* Header Fixo dos Imóveis - VAI ATÉ O FINAL */}
       <div className="bg-white shadow-sm border-b border-gray-200 px-6 py-4 flex-shrink-0">
         <div className="flex items-center justify-between mb-4">
@@ -26,7 +26,7 @@ export default function ImoveisPage() {
             </button>
           </div>
         </div>
-        <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-600">
           Encontramos 2 imóveis com seus critérios de busca
         </p>
       </div>
@@ -114,8 +114,8 @@ export default function ImoveisPage() {
                       </button>
                     </div>
                   </div>
-                </div>
-              </div>
+            </div>
+          </div>
 
               {/* Mockup 2 */}
               <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-64">
@@ -126,7 +126,7 @@ export default function ImoveisPage() {
                   <div>
                     <h3 className="text-xl font-semibold text-gray-800 mb-2">
                       Apartamento frente mar à venda no Ed. Ibiza Towers em Balneário Camboriú
-                    </h3>
+                  </h3>
                     <p className="text-gray-600 text-sm mb-1">
                       Avenida Atlântica, 5720, Centro - Balneário Camboriú/SC
                     </p>
