@@ -14,9 +14,9 @@ export default function ImoveisPage() {
           }} />
         </div>
 
-        {/* Área Principal - Lado Direito - COM SCROLL */}
-        <div className="flex-1 overflow-y-auto">
-          {/* Header Fixo dos Imóveis - SÓ EM CIMA DOS IMÓVEIS */}
+        {/* Área Principal - Lado Direito */}
+        <div className="flex-1 flex flex-col">
+          {/* Header Fixo dos Imóveis - FIXO COMO HEADER */}
           <div className="bg-white shadow-sm border-b border-gray-200 px-6 py-3 flex-shrink-0">
             <div className="flex items-center justify-between mb-2">
               <div>
@@ -42,7 +42,9 @@ export default function ImoveisPage() {
             </p>
           </div>
 
-          <div className="max-w-6xl mx-auto px-6 py-8">
+          {/* Lista de Imóveis - COM SCROLL */}
+          <div className="flex-1 overflow-y-auto">
+            <div className="max-w-6xl mx-auto px-6 py-8">
             {/* Lista de Imóveis */}
             <div className="space-y-6">
               {/* Mockup 1 */}
