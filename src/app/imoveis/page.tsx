@@ -104,6 +104,7 @@ export default function ImoveisPage() {
                   <div className="flex items-center justify-between mt-3">
                     <div>
                       <p className="text-lg font-bold text-yellow-600">Venda R$ 6.800.000,00</p>
+                      <p className="text-xs text-gray-500">Condomínio R$ 1.200,00</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <button className="text-gray-400 hover:text-red-500">
