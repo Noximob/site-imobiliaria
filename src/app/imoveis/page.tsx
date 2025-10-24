@@ -4,7 +4,7 @@ import FiltrosImoveis from '@/components/FiltrosImoveis'
 
 export default function ImoveisPage() {
   return (
-    <div className="h-screen bg-gray-50 flex overflow-hidden">
+    <div className="fixed inset-0 bg-gray-50 flex">
       {/* Sidebar de Filtros - Lado Esquerdo */}
       <div className="w-80 bg-white shadow-lg overflow-y-auto">
         <FiltrosImoveis onFiltrosChange={(filtros) => {
@@ -13,7 +13,7 @@ export default function ImoveisPage() {
       </div>
 
       {/* Área Principal - Lado Direito */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col">
         {/* Header Fixo dos Imóveis - SÓ EM CIMA DOS IMÓVEIS */}
         <div className="bg-white shadow-sm border-b border-gray-200 px-6 py-4 flex-shrink-0">
           <div className="flex items-center justify-between mb-4">
