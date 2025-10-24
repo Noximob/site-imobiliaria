@@ -5,10 +5,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    height: 100%;
+    overflow: hidden;
   }
   
   body {
     @apply text-gray-900 bg-white;
+    height: 100%;
+    overflow: hidden;
   }
   
   /* REMOVE CINZA - FORÇA TRANSPARENTE */
