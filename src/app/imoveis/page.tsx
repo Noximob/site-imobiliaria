@@ -44,11 +44,11 @@ export default function ImoveisPage() {
 
           {/* Lista de Imóveis - COM SCROLL */}
           <div className="flex-1 overflow-y-auto">
-            <div className="max-w-6xl mx-auto px-6 py-8 pb-20">
+            <div className="max-w-6xl mx-auto px-6 py-8 pb-24">
           {/* Lista de Imóveis */}
-              <div className="space-y-6">
+              <div className="space-y-8">
               {/* Mockup 1 */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-60">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-64">
                 <div className="w-64 h-full bg-gray-300 flex items-center justify-center">
                   <span className="text-gray-500 text-sm">Imagem do Imóvel</span>
                 </div>
@@ -121,7 +121,7 @@ export default function ImoveisPage() {
               </div>
 
               {/* Mockup 2 */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-60">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-64">
                 <div className="w-64 h-full bg-gray-300 flex items-center justify-center">
                   <span className="text-gray-500 text-sm">Imagem do Imóvel</span>
                 </div>
@@ -187,7 +187,7 @@ export default function ImoveisPage() {
               </div>
 
               {/* Mockup 3 */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-60">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-64">
                 <div className="w-64 h-full bg-gray-300 flex items-center justify-center">
                   <span className="text-gray-500 text-sm">Imagem do Imóvel</span>
                 </div>
@@ -259,7 +259,7 @@ export default function ImoveisPage() {
     </div>
 
               {/* Mockup 4 */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-60">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-64">
                 <div className="w-64 h-full bg-gray-300 flex items-center justify-center">
                   <span className="text-gray-500 text-sm">Imagem do Imóvel</span>
                 </div>
