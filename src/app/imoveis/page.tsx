@@ -48,13 +48,13 @@ export default function ImoveisPage() {
           {/* Lista de Imóveis */}
               <div className="space-y-6">
               {/* Mockup 1 */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-52">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-60">
                 <div className="w-64 h-full bg-gray-300 flex items-center justify-center">
                   <span className="text-gray-500 text-sm">Imagem do Imóvel</span>
                 </div>
-                <div className="flex-1 p-4 flex flex-col justify-between">
+                <div className="flex-1 p-5 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
                       Apartamento 4 quartos frente mar à venda no Edifício Mediterranne em Balneário Camboriú
                     </h3>
                     <p className="text-gray-600 text-xs mb-1">
@@ -63,16 +63,16 @@ export default function ImoveisPage() {
                     <p className="text-gray-500 text-xs mb-1">
                       Residencial Mediterranne
                     </p>
-                    <p className="text-gray-500 text-xs mb-2">
+                    <p className="text-gray-500 text-xs mb-3">
                       Cód.: 2678
                     </p>
                     
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-center gap-2 mb-3">
                       <span className="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded">Estuda Permuta</span>
                       <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded">Mobiliado</span>
                     </div>
                     
-                    <div className="flex items-center gap-3 text-xs text-gray-600 mb-2">
+                    <div className="flex items-center gap-3 text-xs text-gray-600 mb-3">
                       <div className="flex items-center gap-1">
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
@@ -120,13 +120,13 @@ export default function ImoveisPage() {
               </div>
 
               {/* Mockup 2 */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-52">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-60">
                 <div className="w-64 h-full bg-gray-300 flex items-center justify-center">
                   <span className="text-gray-500 text-sm">Imagem do Imóvel</span>
                 </div>
-                <div className="flex-1 p-4 flex flex-col justify-between">
+                <div className="flex-1 p-5 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
                       Apartamento frente mar à venda no Ed. Ibiza Towers em Balneário Camboriú
                   </h3>
                     <p className="text-gray-600 text-xs mb-1">
@@ -135,15 +135,15 @@ export default function ImoveisPage() {
                     <p className="text-gray-500 text-xs mb-1">
                       Ibiza Towers
                     </p>
-                    <p className="text-gray-500 text-xs mb-2">
+                    <p className="text-gray-500 text-xs mb-3">
                       Cód.: 3367
                     </p>
                     
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-center gap-2 mb-3">
                       <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded">Mobiliado</span>
                     </div>
                     
-                    <div className="flex items-center gap-3 text-xs text-gray-600 mb-2">
+                    <div className="flex items-center gap-3 text-xs text-gray-600 mb-3">
                       <div className="flex items-center gap-1">
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
@@ -186,13 +186,13 @@ export default function ImoveisPage() {
               </div>
 
               {/* Mockup 3 */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-52">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-60">
                 <div className="w-64 h-full bg-gray-300 flex items-center justify-center">
                   <span className="text-gray-500 text-sm">Imagem do Imóvel</span>
                 </div>
-                <div className="flex-1 p-4 flex flex-col justify-between">
+                <div className="flex-1 p-5 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
                       Apartamento 3 quartos com vista para o mar em Balneário Camboriú
                     </h3>
                     <p className="text-gray-600 text-xs mb-1">
@@ -201,16 +201,16 @@ export default function ImoveisPage() {
                     <p className="text-gray-500 text-xs mb-1">
                       Edifício Ocean View
                     </p>
-                    <p className="text-gray-500 text-xs mb-2">
+                    <p className="text-gray-500 text-xs mb-3">
                       Cód.: 4456
                     </p>
                     
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-center gap-2 mb-3">
                       <span className="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded">Vista Mar</span>
                       <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded">Mobiliado</span>
                     </div>
                     
-                    <div className="flex items-center gap-3 text-xs text-gray-600 mb-2">
+                    <div className="flex items-center gap-3 text-xs text-gray-600 mb-3">
                       <div className="flex items-center gap-1">
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
@@ -252,19 +252,19 @@ export default function ImoveisPage() {
                       <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-5 rounded-md transition-colors duration-200 text-sm">
                         SABER MAIS
                       </button>
-                    </div>
-                  </div>
+          </div>
+        </div>
       </div>
     </div>
 
               {/* Mockup 4 */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-52">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-60">
                 <div className="w-64 h-full bg-gray-300 flex items-center justify-center">
                   <span className="text-gray-500 text-sm">Imagem do Imóvel</span>
                 </div>
-                <div className="flex-1 p-4 flex flex-col justify-between">
+                <div className="flex-1 p-5 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
                       Cobertura duplex com piscina privativa em Balneário Camboriú
                     </h3>
                     <p className="text-gray-600 text-xs mb-1">
@@ -273,16 +273,16 @@ export default function ImoveisPage() {
                     <p className="text-gray-500 text-xs mb-1">
                       Residencial Sky Tower
                     </p>
-                    <p className="text-gray-500 text-xs mb-2">
+                    <p className="text-gray-500 text-xs mb-3">
                       Cód.: 7890
                     </p>
                     
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-center gap-2 mb-3">
                       <span className="bg-purple-100 text-purple-800 text-xs px-2 py-0.5 rounded">Cobertura</span>
                       <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded">Mobiliado</span>
                     </div>
                     
-                    <div className="flex items-center gap-3 text-xs text-gray-600 mb-2">
+                    <div className="flex items-center gap-3 text-xs text-gray-600 mb-3">
                       <div className="flex items-center gap-1">
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
