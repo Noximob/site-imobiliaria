@@ -33,6 +33,17 @@
     height: 100vh;
     overflow: hidden;
   }
+  
+  /* Força overflow hidden apenas na página de imóveis */
+  body:has(.imoveis-page) {
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  html:has(.imoveis-page) {
+    height: 100vh;
+    overflow: hidden;
+  }
 }
 
 @layer components {

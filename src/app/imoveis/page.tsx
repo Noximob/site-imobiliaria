@@ -1,10 +1,22 @@
 'use client'
 
+import { useEffect } from 'react'
 import FiltrosImoveis from '@/components/FiltrosImoveis'
 
 export default function ImoveisPage() {
+  useEffect(() => {
+    // Força overflow hidden no body apenas nesta página
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+    
+    // Cleanup: restaura overflow quando sair da página
+    return () => {
+      document.body.style.overflow = 'auto'
+      document.documentElement.style.overflow = 'auto'
+    }
+  }, [])
   return (
-    <div className="imoveis-page h-screen bg-gray-50 flex flex-col overflow-hidden">
+    <div className="h-screen bg-gray-50 flex flex-col overflow-hidden" style={{ height: '100vh', overflow: 'hidden' }}>
       {/* Conteúdo Principal com Duas Colunas */}
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar de Filtros - Lado Esquerdo - COM SCROLL */}
