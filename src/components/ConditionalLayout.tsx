@@ -13,7 +13,6 @@ export default function ConditionalLayout({
   const isAdminRoute = pathname.startsWith('/administrador')
   const isImoveisPage = pathname === '/imoveis'
 
-  console.log('pathname:', pathname, 'isImoveisPage:', isImoveisPage)
 
   if (isAdminRoute) {
     return <>{children}</>

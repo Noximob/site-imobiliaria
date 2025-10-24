@@ -4,7 +4,7 @@ import FiltrosImoveis from '@/components/FiltrosImoveis'
 
 export default function ImoveisPage() {
   return (
-    <div className="h-full bg-gray-50 flex flex-col">
+    <div className="fixed inset-0 bg-gray-50 flex flex-col">
       {/* Header Fixo dos Imóveis - VAI ATÉ O FINAL */}
       <div className="bg-white shadow-sm border-b border-gray-200 px-6 py-4 flex-shrink-0">
         <div className="flex items-center justify-between mb-4">
@@ -26,14 +26,14 @@ export default function ImoveisPage() {
             </button>
           </div>
         </div>
-          <p className="text-lg text-gray-600">
+        <p className="text-lg text-gray-600">
           Encontramos 2 imóveis com seus critérios de busca
         </p>
       </div>
 
       {/* Conteúdo Principal com Duas Colunas */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar de Filtros - Lado Esquerdo - SEM SCROLL */}
+        {/* Sidebar de Filtros - Lado Esquerdo - COM SCROLL */}
         <div className="w-80 bg-white shadow-lg overflow-y-auto">
           <FiltrosImoveis onFiltrosChange={(filtros) => {
             console.log('Filtros aplicados:', filtros)
