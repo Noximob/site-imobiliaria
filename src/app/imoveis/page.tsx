@@ -44,74 +44,74 @@ export default function ImoveisPage() {
 
           {/* Lista de Imóveis - COM SCROLL */}
           <div className="flex-1 overflow-y-auto">
-            <div className="max-w-6xl mx-auto px-6 py-8">
-              {/* Lista de Imóveis */}
+            <div className="max-w-6xl mx-auto px-6 py-8 pb-16">
+          {/* Lista de Imóveis */}
               <div className="space-y-6">
               {/* Mockup 1 */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-64">
-                <div className="w-80 h-full bg-gray-300 flex items-center justify-center">
-                  <span className="text-gray-500">Imagem do Imóvel</span>
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-48">
+                <div className="w-64 h-full bg-gray-300 flex items-center justify-center">
+                  <span className="text-gray-500 text-sm">Imagem do Imóvel</span>
                 </div>
-                <div className="flex-1 p-6 flex flex-col justify-between">
+                <div className="flex-1 p-4 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
                       Apartamento 4 quartos frente mar à venda no Edifício Mediterranne em Balneário Camboriú
                     </h3>
-                    <p className="text-gray-600 text-sm mb-1">
+                    <p className="text-gray-600 text-xs mb-1">
                       Avenida Atlântica, 2898, Centro - Balneário Camboriú/SC
                     </p>
-                    <p className="text-gray-500 text-sm mb-2">
+                    <p className="text-gray-500 text-xs mb-1">
                       Residencial Mediterranne
                     </p>
-                    <p className="text-gray-500 text-sm mb-4">
+                    <p className="text-gray-500 text-xs mb-2">
                       Cód.: 2678
                     </p>
                     
-                    <div className="flex items-center gap-4 mb-4">
-                      <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Estuda Permuta</span>
-                      <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Mobiliado</span>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded">Estuda Permuta</span>
+                      <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded">Mobiliado</span>
                     </div>
                     
-                    <div className="flex items-center gap-6 text-sm text-gray-600 mb-4">
+                    <div className="flex items-center gap-3 text-xs text-gray-600 mb-2">
                       <div className="flex items-center gap-1">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z" />
                         </svg>
                         <span>4 Quartos</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                         </svg>
                         <span>4 Suítes</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M10.5 3L12 2l1.5 1H21v6H3V3h7.5z" />
                         </svg>
                         <span>2 Vagas</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4a2 2 0 012-2h12a2 2 0 012 2v4M4 8v8a2 2 0 002 2h12a2 2 0 002-2V8M4 8h16" />
                         </svg>
-                        <span>328m² Privat.</span>
+                        <span>328m²</span>
                       </div>
                     </div>
                   </div>
                   
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-2xl font-bold text-yellow-600">Venda R$ 6.800.000,00</p>
+                      <p className="text-lg font-bold text-yellow-600">Venda R$ 6.800.000,00</p>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2">
                       <button className="text-gray-400 hover:text-red-500">
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                       </button>
-                      <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200">
+                      <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-1.5 px-4 rounded-lg transition-colors duration-200 text-sm">
                         SABER MAIS
                       </button>
                     </div>
@@ -120,45 +120,45 @@ export default function ImoveisPage() {
               </div>
 
               {/* Mockup 2 */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-64">
-                <div className="w-80 h-full bg-gray-300 flex items-center justify-center">
-                  <span className="text-gray-500">Imagem do Imóvel</span>
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-48">
+                <div className="w-64 h-full bg-gray-300 flex items-center justify-center">
+                  <span className="text-gray-500 text-sm">Imagem do Imóvel</span>
                 </div>
-                <div className="flex-1 p-6 flex flex-col justify-between">
+                <div className="flex-1 p-4 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
                       Apartamento frente mar à venda no Ed. Ibiza Towers em Balneário Camboriú
-                  </h3>
-                    <p className="text-gray-600 text-sm mb-1">
+                    </h3>
+                    <p className="text-gray-600 text-xs mb-1">
                       Avenida Atlântica, 5720, Centro - Balneário Camboriú/SC
                     </p>
-                    <p className="text-gray-500 text-sm mb-2">
+                    <p className="text-gray-500 text-xs mb-1">
                       Ibiza Towers
                     </p>
-                    <p className="text-gray-500 text-sm mb-4">
+                    <p className="text-gray-500 text-xs mb-2">
                       Cód.: 3367
                     </p>
                     
-                    <div className="flex items-center gap-4 mb-4">
-                      <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Mobiliado</span>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded">Mobiliado</span>
                     </div>
                     
-                    <div className="flex items-center gap-6 text-sm text-gray-600 mb-4">
+                    <div className="flex items-center gap-3 text-xs text-gray-600 mb-2">
                       <div className="flex items-center gap-1">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z" />
                         </svg>
                         <span>4 Quartos</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                         </svg>
                         <span>3 Suítes</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M10.5 3L12 2l1.5 1H21v6H3V3h7.5z" />
                         </svg>
                         <span>3 Vagas</span>
@@ -168,16 +168,16 @@ export default function ImoveisPage() {
                   
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-2xl font-bold text-yellow-600">Venda R$ 12.800.000,00</p>
-                      <p className="text-sm text-gray-500">Condomínio R$ 1.842,37</p>
+                      <p className="text-lg font-bold text-yellow-600">Venda R$ 12.800.000,00</p>
+                      <p className="text-xs text-gray-500">Condomínio R$ 1.842,37</p>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2">
                       <button className="text-gray-400 hover:text-red-500">
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                       </button>
-                      <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200">
+                      <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-1.5 px-4 rounded-lg transition-colors duration-200 text-sm">
                         SABER MAIS
                       </button>
                     </div>
