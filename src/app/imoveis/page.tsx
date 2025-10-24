@@ -111,7 +111,7 @@ export default function ImoveisPage() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                       </button>
-                      <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-1.5 px-4 rounded-lg transition-colors duration-200 text-sm">
+                      <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-5 rounded-md transition-colors duration-200 text-sm">
                         SABER MAIS
                       </button>
                     </div>
@@ -177,7 +177,152 @@ export default function ImoveisPage() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                       </button>
-                      <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-1.5 px-4 rounded-lg transition-colors duration-200 text-sm">
+                      <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-5 rounded-md transition-colors duration-200 text-sm">
+                        SABER MAIS
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mockup 3 */}
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-48">
+                <div className="w-64 h-full bg-gray-300 flex items-center justify-center">
+                  <span className="text-gray-500 text-sm">Imagem do Imóvel</span>
+                </div>
+                <div className="flex-1 p-4 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+                      Apartamento 3 quartos com vista para o mar em Balneário Camboriú
+                    </h3>
+                    <p className="text-gray-600 text-xs mb-1">
+                      Rua 1000, 500, Centro - Balneário Camboriú/SC
+                    </p>
+                    <p className="text-gray-500 text-xs mb-1">
+                      Edifício Ocean View
+                    </p>
+                    <p className="text-gray-500 text-xs mb-2">
+                      Cód.: 4456
+                    </p>
+                    
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded">Vista Mar</span>
+                      <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded">Mobiliado</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-3 text-xs text-gray-600 mb-2">
+                      <div className="flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z" />
+                        </svg>
+                        <span>3 Quartos</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                        <span>2 Suítes</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M10.5 3L12 2l1.5 1H21v6H3V3h7.5z" />
+                        </svg>
+                        <span>1 Vaga</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4a2 2 0 012-2h12a2 2 0 012 2v4M4 8v8a2 2 0 002 2h12a2 2 0 002-2V8M4 8h16" />
+                        </svg>
+                        <span>120m²</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-lg font-bold text-yellow-600">Venda R$ 3.200.000,00</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button className="text-gray-400 hover:text-red-500">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                      </button>
+                      <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-5 rounded-md transition-colors duration-200 text-sm">
+                        SABER MAIS
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mockup 4 */}
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-48">
+                <div className="w-64 h-full bg-gray-300 flex items-center justify-center">
+                  <span className="text-gray-500 text-sm">Imagem do Imóvel</span>
+                </div>
+                <div className="flex-1 p-4 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+                      Cobertura duplex com piscina privativa em Balneário Camboriú
+                    </h3>
+                    <p className="text-gray-600 text-xs mb-1">
+                      Avenida Beira Mar, 2000, Centro - Balneário Camboriú/SC
+                    </p>
+                    <p className="text-gray-500 text-xs mb-1">
+                      Residencial Sky Tower
+                    </p>
+                    <p className="text-gray-500 text-xs mb-2">
+                      Cód.: 7890
+                    </p>
+                    
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="bg-purple-100 text-purple-800 text-xs px-2 py-0.5 rounded">Cobertura</span>
+                      <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded">Mobiliado</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-3 text-xs text-gray-600 mb-2">
+                      <div className="flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z" />
+                        </svg>
+                        <span>5 Quartos</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                        <span>5 Suítes</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M10.5 3L12 2l1.5 1H21v6H3V3h7.5z" />
+                        </svg>
+                        <span>4 Vagas</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4a2 2 0 012-2h12a2 2 0 012 2v4M4 8v8a2 2 0 002 2h12a2 2 0 002-2V8M4 8h16" />
+                        </svg>
+                        <span>450m²</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-lg font-bold text-yellow-600">Venda R$ 8.500.000,00</p>
+                      <p className="text-xs text-gray-500">Condomínio R$ 2.500,00</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button className="text-gray-400 hover:text-red-500">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                      </button>
+                      <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-5 rounded-md transition-colors duration-200 text-sm">
                         SABER MAIS
                       </button>
                     </div>
