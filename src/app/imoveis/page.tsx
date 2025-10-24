@@ -5,8 +5,8 @@ import FiltrosImoveis from '@/components/FiltrosImoveis'
 export default function ImoveisPage() {
   return (
     <div className="h-screen bg-gray-50 flex flex-col overflow-hidden">
-      {/* Header Fixo dos Imóveis - VAI ATÉ O FINAL */}
-      <div className="bg-white shadow-sm border-b border-gray-200 px-6 py-4 flex-shrink-0">
+      {/* Header Fixo dos Imóveis - VAI ATÉ O FINAL DA LARGURA */}
+      <div className="bg-white shadow-sm border-b border-gray-200 px-6 py-4 flex-shrink-0 w-full">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Imóveis à Venda</h1>
@@ -26,7 +26,7 @@ export default function ImoveisPage() {
             </button>
           </div>
         </div>
-          <p className="text-lg text-gray-600">
+        <p className="text-lg text-gray-600">
           Encontramos 2 imóveis com seus critérios de busca
         </p>
       </div>
