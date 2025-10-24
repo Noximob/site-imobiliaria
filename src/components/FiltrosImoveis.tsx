@@ -59,7 +59,6 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
 
   return (
     <div className="p-6 w-full">
-      <h3 className="text-xl font-bold text-gray-800 mb-6">Filtros</h3>
       
       {/* Dropdowns */}
       <div className="space-y-4 mb-6">
@@ -68,7 +67,7 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
           <select 
             value={filtros.status}
             onChange={(e) => handleInputChange('status', e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           >
             <option value="">Selecione</option>
             <option value="prontos">Imóveis Prontos</option>
@@ -81,7 +80,7 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
           <select 
             value={filtros.tipo}
             onChange={(e) => handleInputChange('tipo', e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           >
             <option value="">Selecione</option>
             <option value="apartamento">Apartamento</option>
@@ -95,7 +94,7 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
           <select 
             value={filtros.cidade}
             onChange={(e) => handleInputChange('cidade', e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           >
             <option value="">Selecione</option>
             <option value="penha">Penha</option>
@@ -116,8 +115,8 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
                 onClick={() => handleInputChange('quartos', filtros.quartos === qtd ? '' : qtd)}
                 className={`px-4 py-2 rounded-lg border ${
                   filtros.quartos === qtd 
-                    ? 'bg-yellow-500 text-white border-yellow-500' 
-                    : 'bg-white text-gray-700 border-gray-300 hover:border-yellow-500'
+                    ? 'bg-purple-500 text-white border-purple-500' 
+                    : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
                 }`}
               >
                 {qtd}
@@ -135,8 +134,8 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
                 onClick={() => handleInputChange('suites', filtros.suites === qtd ? '' : qtd)}
                 className={`px-4 py-2 rounded-lg border ${
                   filtros.suites === qtd 
-                    ? 'bg-yellow-500 text-white border-yellow-500' 
-                    : 'bg-white text-gray-700 border-gray-300 hover:border-yellow-500'
+                    ? 'bg-purple-500 text-white border-purple-500' 
+                    : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
                 }`}
               >
                 {qtd}
@@ -154,8 +153,8 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
                 onClick={() => handleInputChange('banheiros', filtros.banheiros === qtd ? '' : qtd)}
                 className={`px-4 py-2 rounded-lg border ${
                   filtros.banheiros === qtd 
-                    ? 'bg-yellow-500 text-white border-yellow-500' 
-                    : 'bg-white text-gray-700 border-gray-300 hover:border-yellow-500'
+                    ? 'bg-purple-500 text-white border-purple-500' 
+                    : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
                 }`}
               >
                 {qtd}
@@ -173,8 +172,8 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
                 onClick={() => handleInputChange('vagas', filtros.vagas === qtd ? '' : qtd)}
                 className={`px-4 py-2 rounded-lg border ${
                   filtros.vagas === qtd 
-                    ? 'bg-yellow-500 text-white border-yellow-500' 
-                    : 'bg-white text-gray-700 border-gray-300 hover:border-yellow-500'
+                    ? 'bg-purple-500 text-white border-purple-500' 
+                    : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
                 }`}
               >
                 {qtd}
@@ -195,7 +194,7 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
               value={filtros.valorMin}
               onChange={(e) => handleInputChange('valorMin', e.target.value)}
               placeholder="R$ 0"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
             />
           </div>
           <div>
@@ -205,7 +204,7 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
               value={filtros.valorMax}
               onChange={(e) => handleInputChange('valorMax', e.target.value)}
               placeholder="R$ 0"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
             />
           </div>
         </div>
@@ -227,7 +226,7 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
                 type="checkbox"
                 checked={filtros[key as keyof typeof filtros] as boolean}
                 onChange={() => handleToggle(key)}
-                className="w-4 h-4 text-yellow-600 bg-gray-100 border-gray-300 rounded focus:ring-yellow-500 focus:ring-2"
+                className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 focus:ring-2"
               />
               <span className="ml-2 text-sm text-gray-700">{label}</span>
             </label>
@@ -239,7 +238,7 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
       <div className="space-y-3">
         <button
           onClick={() => onFiltrosChange?.(filtros)}
-          className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+          className="w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
