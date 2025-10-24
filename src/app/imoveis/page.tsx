@@ -96,7 +96,7 @@ export default function ImoveisPage() {
                   
                   <div className="flex items-center justify-between mt-3">
                     <div>
-                      <p className="text-lg font-bold text-yellow-600">Venda R$ 12.800.000,00</p>
+                      <p className="text-lg font-bold text-purple-600">Venda R$ 12.800.000,00</p>
                       <p className="text-xs text-gray-500">Condomínio R$ 1.842,37</p>
                     </div>
                     <div className="flex items-center gap-2">
@@ -105,7 +105,7 @@ export default function ImoveisPage() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                       </button>
-                      <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-5 rounded-md transition-colors duration-200 text-sm">
+                      <button className="bg-purple-500 hover:bg-purple-600 text-white font-medium py-2 px-5 rounded-md transition-colors duration-200 text-sm">
                         SABER MAIS
                       </button>
                     </div>
@@ -169,7 +169,7 @@ export default function ImoveisPage() {
                   
                   <div className="flex items-center justify-between mt-3">
                     <div>
-                      <p className="text-lg font-bold text-yellow-600">Venda R$ 3.200.000,00</p>
+                      <p className="text-lg font-bold text-purple-600">Venda R$ 3.200.000,00</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <button className="text-gray-400 hover:text-red-500">
@@ -177,7 +177,7 @@ export default function ImoveisPage() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                       </button>
-                      <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-5 rounded-md transition-colors duration-200 text-sm">
+                      <button className="bg-purple-500 hover:bg-purple-600 text-white font-medium py-2 px-5 rounded-md transition-colors duration-200 text-sm">
                         SABER MAIS
                       </button>
           </div>
@@ -241,7 +241,7 @@ export default function ImoveisPage() {
                   
                   <div className="flex items-center justify-between mt-3">
                     <div>
-                      <p className="text-lg font-bold text-yellow-600">Venda R$ 8.500.000,00</p>
+                      <p className="text-lg font-bold text-purple-600">Venda R$ 8.500.000,00</p>
                       <p className="text-xs text-gray-500">Condomínio R$ 2.500,00</p>
                     </div>
                     <div className="flex items-center gap-2">
@@ -250,7 +250,7 @@ export default function ImoveisPage() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                       </button>
-                      <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-5 rounded-md transition-colors duration-200 text-sm">
+                      <button className="bg-purple-500 hover:bg-purple-600 text-white font-medium py-2 px-5 rounded-md transition-colors duration-200 text-sm">
                         SABER MAIS
                       </button>
                     </div>
