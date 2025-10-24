@@ -4,7 +4,7 @@ import FiltrosImoveis from '@/components/FiltrosImoveis'
 
 export default function ImoveisPage() {
   return (
-    <div className="h-screen bg-gray-50 flex flex-col overflow-hidden">
+    <div className="imoveis-page h-screen bg-gray-50 flex flex-col overflow-hidden">
       {/* Conteúdo Principal com Duas Colunas */}
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar de Filtros - Lado Esquerdo - COM SCROLL */}

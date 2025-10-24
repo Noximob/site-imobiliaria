@@ -5,14 +5,10 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    height: 100%;
-    overflow: hidden;
   }
   
   body {
     @apply text-gray-900 bg-white;
-    height: 100%;
-    overflow: hidden;
   }
   
   /* REMOVE CINZA - FORÇA TRANSPARENTE */
@@ -24,6 +20,18 @@
   /* Fade-in suave para imagens Next.js */
   img[data-nimg] {
     transition: opacity 0.4s ease-in-out;
+  }
+  
+  /* Estilos específicos para página de imóveis */
+  .imoveis-page {
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .imoveis-page html,
+  .imoveis-page body {
+    height: 100vh;
+    overflow: hidden;
   }
 }
 
