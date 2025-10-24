@@ -45,8 +45,8 @@ export default function ImoveisPage() {
           {/* Lista de Imóveis - COM SCROLL */}
           <div className="flex-1 overflow-y-auto">
             <div className="max-w-6xl mx-auto px-6 py-8">
-            {/* Lista de Imóveis */}
-            <div className="space-y-6">
+              {/* Lista de Imóveis */}
+              <div className="space-y-6">
               {/* Mockup 1 */}
               <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-64">
                 <div className="w-80 h-full bg-gray-300 flex items-center justify-center">
@@ -116,8 +116,8 @@ export default function ImoveisPage() {
                       </button>
                     </div>
                   </div>
-            </div>
-          </div>
+                </div>
+              </div>
 
               {/* Mockup 2 */}
               <div className="bg-white rounded-lg shadow-lg overflow-hidden flex h-64">
@@ -183,6 +183,7 @@ export default function ImoveisPage() {
                     </div>
                   </div>
                 </div>
+              </div>
               </div>
             </div>
           </div>
