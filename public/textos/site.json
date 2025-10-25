@@ -193,6 +193,14 @@
         "maxLength": 20,
         "section": "Footer - Colunas"
       },
+      "viva_barra_velha": {
+        "value": "Viva Barra Velha",
+        "type": "link",
+        "label": "🔗 Link Viva Barra Velha",
+        "hint": "Texto do link 'Viva Barra Velha'",
+        "maxLength": 20,
+        "section": "Footer - Colunas"
+      },
       "blog": {
         "value": "Blog",
         "type": "link",
