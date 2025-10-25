@@ -234,13 +234,13 @@ export default function Header() {
                 {/* Contatos */}
                 <div className="pt-4 border-t border-gray-700">
                   <a 
-                    href={getWhatsAppLink('(47) 99753-0113')}
+                    href={getWhatsAppLink(telefone)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center space-x-2 text-white text-sm hover:text-green-400 transition-colors"
                   >
                     <Phone className="w-4 h-4 text-purple-400" />
-                    <span>(47) 99753-0113</span>
+                    <span>{telefone}</span>
                   </a>
                 </div>
               </div>
