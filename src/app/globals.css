@@ -22,28 +22,7 @@
     transition: opacity 0.4s ease-in-out;
   }
   
-  /* Estilos específicos para página de imóveis */
-  .imoveis-page {
-    height: 100vh;
-    overflow: hidden;
-  }
-  
-  .imoveis-page html,
-  .imoveis-page body {
-    height: 100vh;
-    overflow: hidden;
-  }
-  
-  /* Força overflow hidden apenas na página de imóveis */
-  body:has(.imoveis-page) {
-    height: 100vh;
-    overflow: hidden;
-  }
-  
-  html:has(.imoveis-page) {
-    height: 100vh;
-    overflow: hidden;
-  }
+  /* Estilos específicos para página de imóveis - removidos para evitar conflitos */
 }
 
 @layer components {

@@ -11,8 +11,8 @@ export default function ImoveisPage() {
     
     // Cleanup: restaura overflow quando sair da página
     return () => {
-      document.body.style.overflow = 'auto'
-      document.documentElement.style.overflow = 'auto'
+      document.body.style.overflow = 'unset'
+      document.documentElement.style.overflow = 'unset'
     }
   }, [])
   return (
