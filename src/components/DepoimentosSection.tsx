@@ -52,22 +52,22 @@ export default function DepoimentosSection({ depoimentos }: DepoimentosSectionPr
         </div>
 
         {/* Card do Depoimento */}
-        <div className="relative">
-          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 border border-purple-200 relative overflow-hidden">
+        <div className="relative max-w-4xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 border border-purple-200 relative">
             {/* Ícone de aspas decorativo */}
             <div className="absolute top-6 right-6 text-purple-100">
-              <Quote className="w-12 h-12" />
+              <Quote className="w-16 h-16" />
             </div>
 
-            {/* Conteúdo do depoimento */}
-            <div className="relative z-10">
+            {/* Conteúdo do depoimento - Centralizado */}
+            <div className="text-center px-8 md:px-16">
               {/* Nome do cliente */}
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-6">
                 {currentDepoimento.nome}
               </h3>
 
               {/* Comentário */}
-              <blockquote className="text-gray-700 text-lg md:text-xl leading-relaxed italic">
+              <blockquote className="text-gray-700 text-lg md:text-xl leading-relaxed italic mb-8">
                 "{currentDepoimento.comentario}"
               </blockquote>
             </div>
@@ -77,18 +77,18 @@ export default function DepoimentosSection({ depoimentos }: DepoimentosSectionPr
               <>
                 <button
                   onClick={goToPrevious}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-purple-600 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white hover:bg-purple-50 text-purple-600 p-3 rounded-full shadow-lg border border-purple-200 transition-all duration-200 hover:scale-110"
                   aria-label="Depoimento anterior"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-5 h-5" />
                 </button>
 
                 <button
                   onClick={goToNext}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-purple-600 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white hover:bg-purple-50 text-purple-600 p-3 rounded-full shadow-lg border border-purple-200 transition-all duration-200 hover:scale-110"
                   aria-label="Próximo depoimento"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="w-5 h-5" />
                 </button>
               </>
             )}
