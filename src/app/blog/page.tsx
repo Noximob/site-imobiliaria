@@ -81,7 +81,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section - Blog */}
-      <section className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700 py-20">
+      <section className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700 py-10">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-transparent"></div>
