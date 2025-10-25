@@ -5,10 +5,19 @@ import Image from 'next/image'
 import { DollarSign, TrendingUp, BarChart3, Camera } from 'lucide-react'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
+import DepoimentosSection from '@/components/DepoimentosSection'
+import { getDepoimentosAtivos } from '@/lib/depoimentos-data'
 
 const anunciarImage = getImageUrl('anunciar-imovel')
 
-export default function AnunciarPage() {
+export default async function AnunciarPage() {
+  // Buscar depoimentos ativos
+  const depoimentos = await getDepoimentosAtivos()
+  
+  return <AnunciarPageClient depoimentos={depoimentos} />
+}
+
+function AnunciarPageClient({ depoimentos }: { depoimentos: any[] }) {
   const [formData, setFormData] = useState({
     telefone: '',
     email: '',
@@ -262,44 +271,8 @@ export default function AnunciarPage() {
         </div>
       </section>
 
-      {/* Seção Depoimentos/Prova Social */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Título da Seção */}
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              {getText('anunciar.depoimentos.titulo')}
-          </h2>
-          </div>
-
-          {/* Card de Depoimento */}
-          <div className="bg-white rounded-lg shadow-sm border-t-2 border-purple-600 p-6 max-w-2xl mx-auto">
-            <div className="text-center">
-              {/* Nome e Cargo */}
-              <div className="mb-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-1">
-                  Octavio Deiroz Neto
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Comprador
-                </p>
-              </div>
-
-              {/* Depoimento */}
-              <blockquote className="text-base text-gray-700 leading-relaxed italic">
-                "Atendimento impecável, principalmente do corretor Flávio. Comprei uma casa ano passado e foram muito prestativos e extremamente rápidos com todos os trâmites. Nota 10!"
-              </blockquote>
-            </div>
-          </div>
-
-          {/* Indicadores de Navegação */}
-          <div className="flex justify-center mt-6 space-x-2">
-            <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-            <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-            <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-          </div>
-        </div>
-      </section>
+      {/* Seção Depoimentos - Dinâmica */}
+      <DepoimentosSection depoimentos={depoimentos} />
     </div>
   )
 }
