@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
+import TeamSection from '@/components/TeamSection'
+import { getCorretoresAtivos } from '@/lib/corretores-data'
 
 const encontreImages = {
   corretor1: getImageUrl('corretores-1'),
@@ -13,7 +15,14 @@ const encontreImages = {
   equipe: getImageUrl('equipe')
 }
 
-export default function EncontreMeuImovelPage() {
+export default async function EncontreMeuImovelPage() {
+  // Buscar corretores ativos
+  const corretores = await getCorretoresAtivos()
+  
+  return <EncontreMeuImovelPageClient corretores={corretores} />
+}
+
+function EncontreMeuImovelPageClient({ corretores }: { corretores: any[] }) {
   const [formData, setFormData] = useState({
     nome: '',
     telefone: '',
@@ -183,126 +192,8 @@ export default function EncontreMeuImovelPage() {
         </div>
       </section>
 
-      {/* Segunda Seção - Conheça nossa equipe */}
-      <section id="equipe" className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header da Seção */}
-          <div className="flex items-center justify-between mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              {getText('encontre_meu_imovel.equipe.titulo')}
-            </h2>
-            
-            {/* Botões de Navegação */}
-            <div className="flex space-x-2">
-              <button className="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors duration-200">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button className="w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors duration-200">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Grid da Equipe */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Membro 1 - Adriana Barbosa Campos */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="h-64 relative">
-                <Image 
-                  src={encontreImages.corretor1} 
-                  alt="Adriana Barbosa Campos" 
-                  fill
-                  className="object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">Adriana Barbosa Campos</h3>
-                <p className="text-sm text-gray-600 mb-3">Corretora de imóveis</p>
-                <button className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2">
-                  <span>Ver contato</span>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            {/* Membro 2 - Adriana Medeiros */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="h-64 relative">
-                <Image 
-                  src={encontreImages.corretor2} 
-                  alt="Adriana Medeiros" 
-                  fill
-                  className="object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">Adriana Medeiros</h3>
-                <p className="text-sm text-gray-600 mb-3">Corretora de imóveis</p>
-                <button className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2">
-                  <span>Ver contato</span>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            {/* Membro 3 - Alan de Freitas Cordeiro */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="h-64 relative">
-                <Image 
-                  src={encontreImages.corretor3} 
-                  alt="Alan de Freitas Cordeiro" 
-                  fill
-                  className="object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">Alan de Freitas Cordeiro</h3>
-                <p className="text-sm text-gray-600 mb-3">Corretor de imóveis</p>
-                <button className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2">
-                  <span>Ver contato</span>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            {/* Membro 4 - Alex Penha */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="h-64 relative">
-                <Image 
-                  src={encontreImages.corretor4} 
-                  alt="Alex Penha" 
-                  fill
-                  className="object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">Alex Penha</h3>
-                <p className="text-sm text-gray-600 mb-3">Corretor de imóveis</p>
-                <button className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-200 flex items-center justify-center space-x-2">
-                  <span>Ver contato</span>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Seção Conheça nossa equipe - Dinâmica */}
+      <TeamSection corretores={corretores} />
 
       {/* Seção CTA Final */}
       <section className="py-16 bg-purple-900 text-white">
