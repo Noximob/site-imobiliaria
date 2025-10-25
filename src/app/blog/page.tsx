@@ -80,27 +80,61 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+      {/* Hero Section - Blog */}
+      <section className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700 py-20">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-transparent"></div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center text-white">
+            {/* Badge */}
+            <div className="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+              📝 Blog Nox Imóveis
+            </div>
+            
+            {/* Título Principal */}
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               {getText('blog.hero.titulo')}
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            
+            {/* Subtítulo */}
+            <p className="text-xl md:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed mb-8">
               {getText('blog.hero.subtitulo')}
             </p>
+            
+            {/* Linha decorativa */}
+            <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-green-400 mx-auto rounded-full"></div>
           </div>
         </div>
-      </div>
+        
+        {/* Elementos decorativos */}
+        <div className="absolute top-10 right-10 w-20 h-20 bg-purple-400/20 rounded-full blur-xl"></div>
+        <div className="absolute bottom-10 left-10 w-32 h-32 bg-green-400/20 rounded-full blur-2xl"></div>
+      </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Informações da página */}
-        <div className="mb-8">
-          <p className="text-gray-600 text-center">
-            Mostrando {currentArtigos.length} de {publishedArtigos.length} artigos
-            {totalPages > 1 && ` • Página ${currentPage} de ${totalPages}`}
-          </p>
+        <div className="mb-12">
+          <div className="bg-white rounded-2xl shadow-lg border border-purple-100 p-6 text-center">
+            <div className="flex items-center justify-center space-x-2 mb-2">
+              <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+              <span className="text-gray-600 font-medium">
+                Mostrando {currentArtigos.length} de {publishedArtigos.length} artigos
+              </span>
+              {totalPages > 1 && (
+                <>
+                  <div className="w-1 h-1 bg-gray-300 rounded-full"></div>
+                  <span className="text-gray-500">
+                    Página {currentPage} de {totalPages}
+                  </span>
+                </>
+              )}
+            </div>
+            <p className="text-sm text-gray-500">
+              Dicas e novidades do mercado imobiliário
+            </p>
+          </div>
         </div>
 
         {/* Grid de Artigos */}
