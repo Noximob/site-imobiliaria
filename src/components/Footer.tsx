@@ -35,6 +35,7 @@ export default function Footer() {
   const localizacaoTitulo = getText('footer.coluna_localizacao.titulo')
   const vivaPenha = getText('footer.coluna_localizacao.viva_penha')
   const vivaPicarras = getText('footer.coluna_localizacao.viva_picarras')
+  const vivaBarraVelha = getText('footer.coluna_localizacao.viva_barra_velha')
   const blog = getText('footer.coluna_localizacao.blog')
   
   // Central de Atendimento
@@ -164,6 +165,11 @@ image.png      {/* Rodapé Tradicional */}
                 <li>
                   <Link href="/viva-picarras" className="text-gray-300 hover:text-white text-sm transition-colors">
                     {vivaPicarras}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/viva-barra-velha" className="text-gray-300 hover:text-white text-sm transition-colors">
+                    {vivaBarraVelha}
                   </Link>
                 </li>
                 <li>
