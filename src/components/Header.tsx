@@ -6,6 +6,7 @@ import { Menu, X, Phone, MapPin, ChevronDown, Instagram, Linkedin, Facebook } fr
 import Image from 'next/image'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
+import { getWhatsAppLink } from '@/lib/whatsapp'
 
 export default function Header() {
   const logoUrl = getImageUrl('logo-header')
@@ -232,10 +233,15 @@ export default function Header() {
 
                 {/* Contatos */}
                 <div className="pt-4 border-t border-gray-700">
-                  <div className="flex items-center space-x-2 text-white text-sm">
+                  <a 
+                    href={getWhatsAppLink('(47) 99753-0113')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-white text-sm hover:text-green-400 transition-colors"
+                  >
                     <Phone className="w-4 h-4 text-purple-400" />
                     <span>(47) 99753-0113</span>
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>

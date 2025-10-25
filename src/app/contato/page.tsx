@@ -5,6 +5,7 @@ import { Phone } from 'lucide-react'
 import Image from 'next/image'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
+import { getWhatsAppLink } from '@/lib/whatsapp'
 
 const contatoImage = getImageUrl('contato')
 
@@ -92,10 +93,15 @@ export default function ContatoPage() {
             </div>
 
             {/* Telefone */}
-            <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
+            <a 
+              href={getWhatsAppLink('(47) 99753-0113')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 hover:bg-white/20 transition-colors"
+            >
               <Phone className="w-5 h-5 text-purple-300" />
               <span className="text-white font-semibold text-lg">(47) 99753-0113</span>
-            </div>
+            </a>
           </div>
 
           {/* Lado Direito - Formulário */}
