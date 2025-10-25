@@ -109,7 +109,7 @@
         "maxLength": 30,
         "section": "Footer - Colunas"
       },
-      "encontre_imovel": {
+      "encontre_meu_imovel": {
         "value": "Encontre meu Imóvel",
         "type": "link",
         "label": "🔗 Link Encontre meu Imóvel",
@@ -242,15 +242,15 @@
         "hint": "Telefone da central de atendimento",
         "maxLength": 20,
         "section": "Footer - Central"
+      },
+      "creci_sc": {
+        "value": "CRECI/SC 9839-J",
+        "type": "texto",
+        "label": "📝 CRECI/SC Rodapé",
+        "hint": "Texto do CRECI/SC no rodapé inferior",
+        "maxLength": 20,
+        "section": "Footer - Central"
       }
-    },
-    "creci_sc": {
-      "value": "CRECI/SC 9839-J",
-      "type": "texto",
-      "label": "📝 CRECI/SC Rodapé",
-      "hint": "Texto do CRECI/SC no rodapé inferior",
-      "maxLength": 20,
-      "section": "Footer - Copyright"
     }
   },
   "home": {
