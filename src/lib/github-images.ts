@@ -559,7 +559,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'viva-investimento-imovel',
     description: 'Praia - Investimento Imobiliário',
-    localPath: '/imagens/Como Comprar/4.png',
+    localPath: '/imagens/viva-investimento-imovel.jpg',
     recommendedSize: '800x600px',
     category: 'Viva Penha / Piçarras / Barra Velha',
     subcategory: 'Bloco Investimento'
@@ -567,7 +567,7 @@ export const siteImagesConfig: SiteImageConfig[] = [
   {
     id: 'viva-anuncie-equipe',
     description: 'Equipe Nox Imóveis - Anuncie',
-    localPath: '/imagens/Como Comprar/5.png',
+    localPath: '/imagens/viva-anuncie-equipe.jpg',
     recommendedSize: '800x600px',
     category: 'Viva Penha / Piçarras / Barra Velha',
     subcategory: 'Bloco Anuncie'
