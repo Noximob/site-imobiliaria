@@ -626,7 +626,7 @@
   "viva_penha": {
     "hero": {
       "titulo": {
-        "value": "Viva Penhaa",
+        "value": "Sobre Penha",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página Viva Penha",
@@ -634,7 +634,7 @@
         "section": "Hero"
       },
       "botao_vantagens": {
-        "value": "Ver as vantagenss",
+        "value": "Ver as vantagens",
         "type": "botao",
         "label": "🔘 Botão Vantagens",
         "hint": "Texto do botão Ver as vantagens",
@@ -644,7 +644,7 @@
     },
     "introducao": {
       "titulo": {
-        "value": "Descubra o paraíso catarinensee",
+        "value": "Descubra Penha, o refúgio do litoral catarinense\n",
         "type": "titulo",
         "label": "📌 Título Introdução",
         "hint": "Título da seção de introdução",
@@ -652,7 +652,7 @@
         "section": "Introdução"
       },
       "descricao": {
-        "value": "Seja bem-vindo à deslumbrante cidade de Penha, um dos destinos mais encantadores do Brasil. Com suas praias deslumbrantes, vida noturna animada e oportunidades de investimento incríveis, Penha é o local perfeito para viver, visitar e investir.",
+        "value": "Seja bem-vindo à cidade de Penha, um destino que une tranquilidade e diversão em um só lugar. Conhecida por suas 19 praias deslumbrantes e pelo famoso parque temático Beto Carrero World, Penha é um polo em crescimento, atraindo cada vez mais turistas e investidores. Com infraestrutura em expansão e ",
         "type": "texto",
         "label": "📝 Descrição",
         "hint": "Descrição da cidade de Penha",
@@ -678,7 +678,7 @@
         "section": "O que fazer"
       },
       "subtitulo": {
-        "value": "Aproveite tudo o que Penha tem a oferecer e viva o melhor da cidade!",
+        "value": "Aproveite tudo o que Penha tem a oferecer, o equilíbrio perfeito entre lazer, natureza e diversão!",
         "type": "texto",
         "label": "📝 Subtítulo",
         "hint": "Subtítulo da seção",
@@ -686,7 +686,7 @@
         "section": "O que fazer"
       },
       "atracao_1": {
-        "value": "Praias de Areias Brancas",
+        "value": "Beto Carrero World",
         "type": "texto",
         "label": "🏖️ Atração 1",
         "hint": "Primeira atração",
@@ -694,7 +694,7 @@
         "section": "O que fazer"
       },
       "atracao_2": {
-        "value": "Parque Beto Carrero World",
+        "value": "19 Praias incríveis",
         "type": "texto",
         "label": "🎢 Atração 2",
         "hint": "Segunda atração",
@@ -702,7 +702,7 @@
         "section": "O que fazer"
       },
       "atracao_3": {
-        "value": "Cristo Luz",
+        "value": "Passeios de barco e mergulho",
         "type": "texto",
         "label": "✨ Atração 3",
         "hint": "Terceira atração",
@@ -710,7 +710,7 @@
         "section": "O que fazer"
       },
       "atracao_4": {
-        "value": "Vida Noturna Vibrante",
+        "value": "Trilhas ecológicas",
         "type": "texto",
         "label": "🌙 Atração 4",
         "hint": "Quarta atração",
@@ -718,7 +718,7 @@
         "section": "O que fazer"
       },
       "atracao_5": {
-        "value": "Gastronomia Excepcional",
+        "value": "Gastronomia típica",
         "type": "texto",
         "label": "🍽️ Atração 5",
         "hint": "Quinta atração",
@@ -729,7 +729,7 @@
     "beneficios": {
       "infraestrutura": {
         "titulo": {
-          "value": "Infraestrutura Urbana",
+          "value": "Infraestrutura em Penha\n",
           "type": "titulo",
           "label": "📌 Infraestrutura Título",
           "hint": "Título do benefício Infraestrutura",
@@ -737,7 +737,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "Conforto e praticidade de sobra em uma cidade com infraestrutura completa e moderna.",
+          "value": "Qualidade de vida à beira-mar em uma cidade que cresce com planejamento e recebe constantes investimentos em mobilidade, saúde e educação.",
           "type": "texto",
           "label": "📝 Infraestrutura Descrição",
           "hint": "Descrição do benefício",
@@ -755,7 +755,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "A cidade é cheia de opções de lazer para moradores e visitantes, com paisagens de tirar o fôlego.",
+          "value": "De praias paradisíacas ao Beto Carrero World, Penha é referência em lazer e turismo, atraindo visitantes do Brasil inteiro.\n",
           "type": "texto",
           "label": "📝 Atrações Descrição",
           "hint": "Descrição do benefício",
@@ -765,7 +765,7 @@
       },
       "seguranca": {
         "titulo": {
-          "value": "Segurança",
+          "value": "Segurança e Tranquilidade",
           "type": "titulo",
           "label": "📌 Segurança Título",
           "hint": "Título do benefício Segurança",
@@ -773,7 +773,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "Aproveite a tranquilidade de viver em uma das cidades mais seguras do sul do país!",
+          "value": "More em um lugar onde o clima de cidade pequena se une à hospitalidade dos moradores, proporcionando paz e bem-estar para famílias.\n",
           "type": "texto",
           "label": "📝 Segurança Descrição",
           "hint": "Descrição do benefício",
@@ -783,7 +783,7 @@
       },
       "diversidade": {
         "titulo": {
-          "value": "Diversidade de Imóveis",
+          "value": "Oportunidades Imobiliárias\n",
           "type": "titulo",
           "label": "📌 Diversidade Título",
           "hint": "Título do benefício Diversidade",
@@ -791,7 +791,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "Não faltam oportunidades de morar e investir na cidade, com opções para todos os gostos.",
+          "value": "Um mercado em plena valorização, com imóveis que unem vista para o mar, localização estratégica e potencial de investimento.\n",
           "type": "texto",
           "label": "📝 Diversidade Descrição",
           "hint": "Descrição do benefício",
@@ -803,7 +803,7 @@
     "vantagens_investir": {
       "mercado_imobiliario": {
         "titulo": {
-          "value": "Mercado imobiliário em crescimento",
+          "value": "Capital do Entretenimento Familiar\n",
           "type": "titulo",
           "label": "📌 Mercado Título",
           "hint": "Título da vantagem Mercado",
@@ -811,7 +811,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "Penha é um dos destinos turísticos mais procurados do Brasil, o que torna o mercado imobiliário da cidade extremamente atraente para investidores.",
+          "value": "Invista em uma cidade que une lazer, natureza e qualidade de vida. Penha é conhecida por suas praias encantadoras e por abrigar o maior parque temático da América Latina.",
           "type": "texto",
           "label": "📝 Mercado Descrição",
           "hint": "Descrição da vantagem",
@@ -829,7 +829,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "A cidade está estrategicamente localizada no estado de Santa Catarina, entre as cidades de Florianópolis e Curitiba, facilitando o acesso por terra, mar e ar. Isso a torna um centro logístico e de negócios em crescimento.",
+          "value": "A cidade está próxima a Balneário Piçarras, Barra Velha e a menos de 30 km do Aeroporto Internacional de Navegantes, facilitando o acesso por terra, mar e ar.\n",
           "type": "texto",
           "label": "📝 Localização Descrição",
           "hint": "Descrição da vantagem",
@@ -847,7 +847,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "Além do potencial econômico, Penha oferece uma qualidade de vida excepcional. Com infraestrutura de primeira classe, serviços públicos de alta qualidade e um ambiente seguro, é um lugar ideal para se viver e investir.",
+          "value": "Com 19 praias encantadoras, clima acolhedor e infraestrutura em expansão, Penha oferece tranquilidade e bem-estar para quem deseja viver ou investir.\n",
           "type": "texto",
           "label": "📝 Qualidade Descrição",
           "hint": "Descrição da vantagem",
@@ -865,7 +865,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "O turismo é a espinha dorsal da economia de Penha. A cidade recebe milhões de turistas todos os anos, o que cria uma ampla oportunidade para investimentos no setor de hospitalidade, como hotéis, resorts e serviços relacionados.",
+          "value": "Sede do Beto Carrero World, o maior parque temático da América Latina, Penha recebe milhões de visitantes todos os anos, impulsionando o comércio, serviços e o mercado imobiliário local.",
           "type": "texto",
           "label": "📝 Turismo Descrição",
           "hint": "Descrição da vantagem",
