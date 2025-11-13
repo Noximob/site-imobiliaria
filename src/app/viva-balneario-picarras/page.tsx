@@ -23,7 +23,7 @@ export default function VivaBalnearioPicarrasPage() {
         {/* Background Image */}
         <div className="absolute inset-0 bg-transparent">
           <Image 
-            src="/imagens/banners/picarras-hero.jpg" 
+            src={picarrasImages.hero} 
             alt="Balneário Piçarras - Viva Balneário Piçarras" 
             fill
             className="object-cover bg-transparent"
