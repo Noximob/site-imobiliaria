@@ -23,7 +23,7 @@ export default function VivaBarraVelhaPage() {
         {/* Background Image */}
         <div className="absolute inset-0 bg-transparent">
           <Image 
-            src="/imagens/banners/barra-velha-hero.jpg" 
+            src={barraVelhaImages.hero} 
             alt="Barra Velha - Viva Barra Velha" 
             fill
             className="object-cover bg-transparent"
