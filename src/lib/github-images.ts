@@ -553,6 +553,24 @@ export const siteImagesConfig: SiteImageConfig[] = [
     recommendedSize: '800x600px',
     category: 'Quem Somos',
     subcategory: 'Equipe'
+  },
+
+  // ==================== VIVA PENHA / PIÇARRAS / BARRA VELHA - BLOCO INVESTIMENTO ====================
+  {
+    id: 'viva-investimento-imovel',
+    description: 'Praia - Investimento Imobiliário',
+    localPath: '/imagens/Como Comprar/4.png',
+    recommendedSize: '800x600px',
+    category: 'Viva Penha / Piçarras / Barra Velha',
+    subcategory: 'Bloco Investimento'
+  },
+  {
+    id: 'viva-anuncie-equipe',
+    description: 'Equipe Nox Imóveis - Anuncie',
+    localPath: '/imagens/Como Comprar/5.png',
+    recommendedSize: '800x600px',
+    category: 'Viva Penha / Piçarras / Barra Velha',
+    subcategory: 'Bloco Anuncie'
   }
 ]
 

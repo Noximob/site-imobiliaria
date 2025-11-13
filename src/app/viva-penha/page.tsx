@@ -14,7 +14,9 @@ export default function VivaPenhaPage() {
     betoCarrero: getImageUrl('penha-beto-carrero'),
     jantarRomantico: getImageUrl('penha-jantar-romantico'),
     praia2: getImageUrl('penha-praia2'),
-    skyline: getImageUrl('penha-skyline')
+    skyline: getImageUrl('penha-skyline'),
+    investimento: getImageUrl('viva-investimento-imovel'),
+    anuncie: getImageUrl('viva-anuncie-equipe')
   }
   return (
     <div className="min-h-screen bg-white">
@@ -405,7 +407,7 @@ export default function VivaPenhaPage() {
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
                 <Image
-                  src="/imagens/Como Comprar/4.png"
+                  src={penhaImages.investimento}
                   alt="Praia - Investimento imobiliário"
                   fill
                   className="object-cover"
@@ -431,7 +433,7 @@ export default function VivaPenhaPage() {
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
                 <Image
-                  src="/imagens/Como Comprar/5.png"
+                  src={penhaImages.anuncie}
                   alt="Equipe Nox Imóveis"
                   fill
                   className="object-cover"

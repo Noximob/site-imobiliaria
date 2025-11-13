@@ -14,7 +14,9 @@ export default function VivaBalnearioPicarrasPage() {
     atracao2: getImageUrl('picarras-atracao2'),
     gastronomia: getImageUrl('picarras-gastronomia'),
     praia2: getImageUrl('picarras-praia2'),
-    skyline: getImageUrl('picarras-skyline')
+    skyline: getImageUrl('picarras-skyline'),
+    investimento: getImageUrl('viva-investimento-imovel'),
+    anuncie: getImageUrl('viva-anuncie-equipe')
   }
   return (
     <div className="min-h-screen bg-white">
@@ -405,7 +407,7 @@ export default function VivaBalnearioPicarrasPage() {
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
                 <Image
-                  src="/imagens/Como Comprar/4.png"
+                  src={picarrasImages.investimento}
                   alt="Praia - Investimento imobiliário"
                   fill
                   className="object-cover"
@@ -431,7 +433,7 @@ export default function VivaBalnearioPicarrasPage() {
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
                 <Image
-                  src="/imagens/Como Comprar/5.png"
+                  src={picarrasImages.anuncie}
                   alt="Equipe Nox Imóveis"
                   fill
                   className="object-cover"

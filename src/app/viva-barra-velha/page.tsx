@@ -14,7 +14,9 @@ export default function VivaBarraVelhaPage() {
     atracao2: getImageUrl('barra-velha-atracao2'),
     gastronomia: getImageUrl('barra-velha-gastronomia'),
     praia2: getImageUrl('barra-velha-praia2'),
-    skyline: getImageUrl('barra-velha-skyline')
+    skyline: getImageUrl('barra-velha-skyline'),
+    investimento: getImageUrl('viva-investimento-imovel'),
+    anuncie: getImageUrl('viva-anuncie-equipe')
   }
   return (
     <div className="min-h-screen bg-white">
@@ -405,7 +407,7 @@ export default function VivaBarraVelhaPage() {
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
                 <Image
-                  src="/imagens/Como Comprar/4.png"
+                  src={barraVelhaImages.investimento}
                   alt="Praia - Investimento imobiliário"
                   fill
                   className="object-cover"
@@ -431,7 +433,7 @@ export default function VivaBarraVelhaPage() {
               {/* Imagem */}
               <div className="h-48 relative overflow-hidden">
                 <Image
-                  src="/imagens/Como Comprar/5.png"
+                  src={barraVelhaImages.anuncie}
                   alt="Equipe Nox Imóveis"
                   fill
                   className="object-cover"
