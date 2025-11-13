@@ -393,6 +393,7 @@ export default function AdminImagens() {
                             fill
                             className="object-cover"
                             loading="lazy"
+                            unoptimized
                           />
                           <div className="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
                             ATUAL
