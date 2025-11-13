@@ -12,6 +12,19 @@
       "id": "1761070427201",
       "createdAt": "2025-10-21T18:13:47.201Z",
       "updatedAt": "2025-11-13T18:17:08.351Z"
+    },
+    {
+      "nome": "beto",
+      "cargo": "Corretor(a) de imóveis",
+      "creci": "1234",
+      "telefone": "12324",
+      "instagram": "12312312",
+      "email": "12312312",
+      "foto": "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imagens/corretores/corretor-1763057981903.jpg",
+      "ativo": true,
+      "id": "1763058000609",
+      "createdAt": "2025-11-13T18:20:00.609Z",
+      "updatedAt": "2025-11-13T18:20:00.609Z"
     }
   ]
 }
