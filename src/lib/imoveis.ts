@@ -1,19 +1,42 @@
-import { collection, getDocs, doc, getDoc, query, where, orderBy, limit } from 'firebase/firestore';
-import { db } from './firebase';
 import { Imovel, FiltrosImovel } from '@/types';
+
+const CACHE_DURATION = 0; // Sem cache para desenvolvimento
+let cachedImoveis: Imovel[] | null = null;
+let cacheTimestamp: number | null = null;
 
 export async function getAllImoveis(): Promise<Imovel[]> {
   try {
-    const imoveisRef = collection(db, 'imoveis');
-    const q = query(imoveisRef, where('publicado', '==', true), orderBy('createdAt', 'desc'));
-    const querySnapshot = await getDocs(q);
+    // Verificar cache
+    if (cachedImoveis && cacheTimestamp && Date.now() - cacheTimestamp < CACHE_DURATION) {
+      return cachedImoveis;
+    }
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/imoveis-github`, {
+      cache: 'no-store'
+    });
+
+    if (!response.ok) {
+      console.error('Erro ao buscar imóveis do GitHub');
+      return [];
+    }
+
+    const imoveis = await response.json();
     
-    return querySnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data(),
-      createdAt: doc.data().createdAt?.toDate() || new Date(),
-      updatedAt: doc.data().updatedAt?.toDate() || new Date(),
+    // Converter datas de string para Date
+    const imoveisFormatados = imoveis.map((imovel: any) => ({
+      ...imovel,
+      createdAt: imovel.createdAt ? new Date(imovel.createdAt) : new Date(),
+      updatedAt: imovel.updatedAt ? new Date(imovel.updatedAt) : new Date(),
     })) as Imovel[];
+
+    // Filtrar apenas publicados
+    const imoveisPublicados = imoveisFormatados.filter(imovel => imovel.publicado);
+
+    // Atualizar cache
+    cachedImoveis = imoveisPublicados;
+    cacheTimestamp = Date.now();
+
+    return imoveisPublicados;
   } catch (error) {
     console.error('Erro ao buscar imóveis:', error);
     return [];
@@ -22,21 +45,9 @@ export async function getAllImoveis(): Promise<Imovel[]> {
 
 export async function getImovelBySlug(slug: string): Promise<Imovel | null> {
   try {
-    const imoveisRef = collection(db, 'imoveis');
-    const q = query(imoveisRef, where('slug', '==', slug), where('publicado', '==', true));
-    const querySnapshot = await getDocs(q);
-    
-    if (querySnapshot.empty) {
-      return null;
-    }
-    
-    const doc = querySnapshot.docs[0];
-    return {
-      id: doc.id,
-      ...doc.data(),
-      createdAt: doc.data().createdAt?.toDate() || new Date(),
-      updatedAt: doc.data().updatedAt?.toDate() || new Date(),
-    } as Imovel;
+    const imoveis = await getAllImoveis();
+    const imovel = imoveis.find(i => i.slug === slug);
+    return imovel || null;
   } catch (error) {
     console.error('Erro ao buscar imóvel:', error);
     return null;
@@ -45,64 +56,79 @@ export async function getImovelBySlug(slug: string): Promise<Imovel | null> {
 
 export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
   try {
-    const imoveisRef = collection(db, 'imoveis');
-    let q = query(imoveisRef, where('publicado', '==', true));
+    const imoveis = await getAllImoveis();
     
-    // Aplicar filtros
-    if (filtros.cidade) {
-      q = query(q, where('endereco.cidade', '==', filtros.cidade));
-    }
-    
-    if (filtros.bairro) {
-      q = query(q, where('endereco.bairro', '==', filtros.bairro));
-    }
-    
-    if (filtros.tipo) {
-      q = query(q, where('tipo', '==', filtros.tipo));
-    }
-    
-    if (filtros.status) {
-      q = query(q, where('status', '==', filtros.status));
-    }
-    
-    if (filtros.quartos) {
-      q = query(q, where('caracteristicas.quartos', '>=', filtros.quartos));
-    }
-    
-    if (filtros.banheiros) {
-      q = query(q, where('caracteristicas.banheiros', '>=', filtros.banheiros));
-    }
-    
-    if (filtros.vagas) {
-      q = query(q, where('caracteristicas.vagas', '>=', filtros.vagas));
-    }
-    
-    if (filtros.precoMin) {
-      q = query(q, where('preco', '>=', filtros.precoMin));
-    }
-    
-    if (filtros.precoMax) {
-      q = query(q, where('preco', '<=', filtros.precoMax));
-    }
-    
-    if (filtros.frenteMar) {
-      q = query(q, where('caracteristicas.frenteMar', '==', true));
-    }
-    
-    if (filtros.piscina) {
-      q = query(q, where('caracteristicas.piscina', '==', true));
-    }
-    
-    q = query(q, orderBy('createdAt', 'desc'));
-    
-    const querySnapshot = await getDocs(q);
-    
-    return querySnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data(),
-      createdAt: doc.data().createdAt?.toDate() || new Date(),
-      updatedAt: doc.data().updatedAt?.toDate() || new Date(),
-    })) as Imovel[];
+    return imoveis.filter(imovel => {
+      // Filtro por cidade
+      if (filtros.cidade && imovel.endereco.cidade !== filtros.cidade) {
+        return false;
+      }
+      
+      // Filtro por bairro
+      if (filtros.bairro && imovel.endereco.bairro !== filtros.bairro) {
+        return false;
+      }
+      
+      // Filtro por tipo
+      if (filtros.tipo && imovel.tipo !== filtros.tipo) {
+        return false;
+      }
+      
+      // Filtro por status
+      if (filtros.status && imovel.status !== filtros.status) {
+        return false;
+      }
+      
+      // Filtro por quartos
+      if (filtros.quartos && imovel.caracteristicas.quartos < filtros.quartos) {
+        return false;
+      }
+      
+      // Filtro por banheiros
+      if (filtros.banheiros && imovel.caracteristicas.banheiros < filtros.banheiros) {
+        return false;
+      }
+      
+      // Filtro por vagas
+      if (filtros.vagas && imovel.caracteristicas.vagas < filtros.vagas) {
+        return false;
+      }
+      
+      // Filtro por preço mínimo
+      if (filtros.precoMin && imovel.preco < filtros.precoMin) {
+        return false;
+      }
+      
+      // Filtro por preço máximo
+      if (filtros.precoMax && imovel.preco > filtros.precoMax) {
+        return false;
+      }
+      
+      // Filtro por frente mar
+      if (filtros.frenteMar && !imovel.caracteristicas.frenteMar) {
+        return false;
+      }
+      
+      // Filtro por piscina
+      if (filtros.piscina && !imovel.caracteristicas.piscina) {
+        return false;
+      }
+      
+      // Filtro por área mínima
+      if (filtros.areaMin && imovel.caracteristicas.area < filtros.areaMin) {
+        return false;
+      }
+      
+      // Filtro por área máxima
+      if (filtros.areaMax && imovel.caracteristicas.area > filtros.areaMax) {
+        return false;
+      }
+      
+      return true;
+    }).sort((a, b) => {
+      // Ordenar por data de criação (mais recente primeiro)
+      return b.createdAt.getTime() - a.createdAt.getTime();
+    });
   } catch (error) {
     console.error('Erro ao buscar imóveis:', error);
     return [];

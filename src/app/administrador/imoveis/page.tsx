@@ -1,61 +1,240 @@
 'use client'
 
-import { useState } from 'react'
-import { ArrowLeft, Building, Plus, Edit, Trash2, Eye, Search, Filter } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { ArrowLeft, Building, Plus, X, Edit, Trash2, Image as ImageIcon } from 'lucide-react'
 import Link from 'next/link'
+import { createImovelWithFotos, getAllImoveis, generateSlug, updateImovelWithFotos, deleteImovel } from '@/lib/imoveis-github'
+import { Imovel } from '@/types'
+import { formatPrice } from '@/lib/imoveis'
 
 export default function AdminImoveis() {
-  const [imoveis, setImoveis] = useState([
-    {
-      id: '1',
-      titulo: 'Apartamento Frente Mar - Balneário Camboriú',
-      preco: 850000,
-      tipo: 'apartamento',
-      status: 'venda',
-      cidade: 'Balneário Camboriú',
-      bairro: 'Centro',
-      quartos: 3,
-      banheiros: 2,
-      vagas: 2,
-      area: 120,
-      publicado: true,
-      createdAt: '2024-01-15'
+  const [imoveis, setImoveis] = useState<Imovel[]>([])
+  const [showCreateForm, setShowCreateForm] = useState(false)
+  const [editingImovel, setEditingImovel] = useState<Imovel | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [novoImovel, setNovoImovel] = useState({
+    titulo: '',
+    descricao: '',
+    preco: 0,
+    tipo: 'apartamento' as 'casa' | 'apartamento' | 'terreno' | 'comercial',
+    status: 'venda' as 'venda' | 'aluguel' | 'venda-aluguel',
+    endereco: {
+      cidade: '',
+      bairro: '',
+      rua: '',
+      numero: '',
+      cep: '',
+      estado: 'SC'
     },
-    {
-      id: '2',
-      titulo: 'Casa com Piscina - Itapema',
-      preco: 1200000,
-      tipo: 'casa',
-      status: 'venda',
-      cidade: 'Itapema',
-      bairro: 'Meia Praia',
-      quartos: 4,
-      banheiros: 3,
-      vagas: 3,
-      area: 200,
-      publicado: true,
-      createdAt: '2024-01-14'
-    }
-  ])
-
+    caracteristicas: {
+      quartos: 0,
+      banheiros: 0,
+      vagas: 0,
+      area: 0,
+      areaTerreno: 0,
+      frenteMar: false,
+      piscina: false,
+      churrasqueira: false,
+      academia: false,
+      portaria: false,
+      elevador: false,
+      varanda: false,
+      sacada: false
+    },
+    contato: {
+      whatsapp: '(47) 99753-0113',
+      telefone: '',
+      email: '',
+      corretor: ''
+    },
+    publicado: true
+  })
+  const [fotosFiles, setFotosFiles] = useState<File[]>([])
+  const [fotosPreviews, setFotosPreviews] = useState<string[]>([])
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('todos')
   const [tipoFilter, setTipoFilter] = useState('todos')
 
+  // Carregar imóveis do GitHub
+  useEffect(() => {
+    const loadImoveis = async () => {
+      try {
+        const imoveisGithub = await getAllImoveis()
+        setImoveis(imoveisGithub)
+      } catch (error) {
+        console.error('Erro ao carregar imóveis:', error)
+      }
+    }
+    loadImoveis()
+  }, [])
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString('pt-BR')
+  }
+
+  const handleFotosChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || [])
+    if (files.length > 0) {
+      setFotosFiles(files)
+      const readers = files.map(file => {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        return new Promise<string>((resolve) => {
+          reader.onload = (e) => resolve(e.target?.result as string)
+        })
+      })
+      
+      Promise.all(readers).then(previews => {
+        setFotosPreviews(previews)
+      })
+    }
+  }
+
+  const removeFoto = (index: number) => {
+    const newFotos = [...fotosFiles]
+    const newPreviews = [...fotosPreviews]
+    newFotos.splice(index, 1)
+    newPreviews.splice(index, 1)
+    setFotosFiles(newFotos)
+    setFotosPreviews(newPreviews)
+  }
+
+  const handleEdit = (imovel: Imovel) => {
+    setEditingImovel(imovel)
+    setNovoImovel({
+      titulo: imovel.titulo,
+      descricao: imovel.descricao,
+      preco: imovel.preco,
+      tipo: imovel.tipo,
+      status: imovel.status,
+      endereco: { ...imovel.endereco },
+      caracteristicas: { ...imovel.caracteristicas },
+      contato: { ...imovel.contato },
+      publicado: imovel.publicado
+    })
+    setFotosFiles([])
+    setFotosPreviews(imovel.fotos || [])
+    setShowCreateForm(true)
+  }
+
+  const handleDelete = async (id: string) => {
+    if (confirm('Tem certeza que deseja excluir este imóvel?')) {
+      try {
+        await deleteImovel(id)
+        const imoveisAtualizados = await getAllImoveis()
+        setImoveis(imoveisAtualizados)
+        alert('Imóvel excluído com sucesso!')
+      } catch (error: any) {
+        console.error('Erro ao excluir imóvel:', error)
+        alert('Erro ao excluir imóvel: ' + (error.message || error))
+      }
+    }
+  }
+
+  const resetForm = () => {
+    setNovoImovel({
+      titulo: '',
+      descricao: '',
+      preco: 0,
+      tipo: 'apartamento',
+      status: 'venda',
+      endereco: {
+        cidade: '',
+        bairro: '',
+        rua: '',
+        numero: '',
+        cep: '',
+        estado: 'SC'
+      },
+      caracteristicas: {
+        quartos: 0,
+        banheiros: 0,
+        vagas: 0,
+        area: 0,
+        areaTerreno: 0,
+        frenteMar: false,
+        piscina: false,
+        churrasqueira: false,
+        academia: false,
+        portaria: false,
+        elevador: false,
+        varanda: false,
+        sacada: false
+      },
+      contato: {
+        whatsapp: '(47) 99753-0113',
+        telefone: '',
+        email: '',
+        corretor: ''
+      },
+      publicado: true
+    })
+    setFotosFiles([])
+    setFotosPreviews([])
+    setEditingImovel(null)
+    setShowCreateForm(false)
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!novoImovel.titulo || !novoImovel.descricao || !novoImovel.endereco.cidade) {
+      alert('Preencha todos os campos obrigatórios')
+      return
+    }
+
+    // Para criação, pelo menos uma foto é obrigatória
+    if (!editingImovel && fotosFiles.length === 0) {
+      alert('Selecione pelo menos uma foto')
+      return
+    }
+
+    setIsLoading(true)
+    try {
+      const imovelData = {
+        titulo: novoImovel.titulo,
+        slug: generateSlug(novoImovel.titulo),
+        descricao: novoImovel.descricao,
+        preco: novoImovel.preco,
+        tipo: novoImovel.tipo,
+        status: novoImovel.status,
+        endereco: novoImovel.endereco,
+        caracteristicas: novoImovel.caracteristicas,
+        contato: novoImovel.contato,
+        publicado: novoImovel.publicado,
+      }
+
+      if (editingImovel) {
+        // Editar imóvel existente
+        await updateImovelWithFotos(editingImovel.id, imovelData, fotosFiles.length > 0 ? fotosFiles : undefined)
+        alert('Imóvel atualizado com sucesso!')
+      } else {
+        // Criar novo imóvel
+        await createImovelWithFotos(imovelData, fotosFiles)
+        alert('Imóvel criado com sucesso!')
+      }
+      
+      // Recarregar imóveis do GitHub
+      const imoveisAtualizados = await getAllImoveis()
+      setImoveis(imoveisAtualizados)
+      
+      // Resetar formulário
+      resetForm()
+    } catch (error: any) {
+      console.error('Erro ao salvar imóvel:', error)
+      alert('Erro ao salvar imóvel: ' + (error.message || error))
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const filteredImoveis = imoveis.filter(imovel => {
     const matchesSearch = imovel.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         imovel.cidade.toLowerCase().includes(searchTerm.toLowerCase())
+                         imovel.endereco.cidade.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesStatus = statusFilter === 'todos' || imovel.status === statusFilter
     const matchesTipo = tipoFilter === 'todos' || imovel.tipo === tipoFilter
     return matchesSearch && matchesStatus && matchesTipo
   })
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    }).format(price)
-  }
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -75,7 +254,10 @@ export default function AdminImoveis() {
                 Gerenciar Imóveis
               </h1>
             </div>
-            <button className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors flex items-center">
+            <button 
+              onClick={() => setShowCreateForm(true)}
+              className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors flex items-center"
+            >
               <Plus className="w-4 h-4 mr-2" />
               Novo Imóvel
             </button>
@@ -145,16 +327,13 @@ export default function AdminImoveis() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Buscar
               </label>
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <input
                   type="text"
                   placeholder="Título, cidade..."
-                  className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
-              </div>
             </div>
             <div className="sm:w-48">
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -190,7 +369,458 @@ export default function AdminImoveis() {
           </div>
         </div>
 
-        {/* Imóveis List */}
+        {/* Formulário de Criação */}
+        {showCreateForm && (
+          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-lg font-semibold text-gray-900">
+                {editingImovel ? 'Editar Imóvel' : 'Criar Novo Imóvel'}
+              </h2>
+              <button
+                onClick={resetForm}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Informações Básicas */}
+              <div className="border-b border-gray-200 pb-6">
+                <h3 className="text-md font-semibold text-gray-900 mb-4">Informações Básicas</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Título *
+                    </label>
+                    <input
+                      type="text"
+                      value={novoImovel.titulo}
+                      onChange={(e) => setNovoImovel({...novoImovel, titulo: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="Ex: Apartamento Frente Mar"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Preço (R$) *
+                    </label>
+                    <input
+                      type="number"
+                      value={novoImovel.preco || ''}
+                      onChange={(e) => setNovoImovel({...novoImovel, preco: Number(e.target.value)})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="0"
+                      required
+                      min="0"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Tipo *
+                    </label>
+                    <select
+                      value={novoImovel.tipo}
+                      onChange={(e) => setNovoImovel({...novoImovel, tipo: e.target.value as any})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      required
+                    >
+                      <option value="apartamento">Apartamento</option>
+                      <option value="casa">Casa</option>
+                      <option value="terreno">Terreno</option>
+                      <option value="comercial">Comercial</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Status *
+                    </label>
+                    <select
+                      value={novoImovel.status}
+                      onChange={(e) => setNovoImovel({...novoImovel, status: e.target.value as any})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      required
+                    >
+                      <option value="venda">Venda</option>
+                      <option value="aluguel">Aluguel</option>
+                      <option value="venda-aluguel">Venda/Aluguel</option>
+                    </select>
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Descrição *
+                    </label>
+                    <textarea
+                      value={novoImovel.descricao}
+                      onChange={(e) => setNovoImovel({...novoImovel, descricao: e.target.value})}
+                      rows={4}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="Descrição completa do imóvel"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Endereço */}
+              <div className="border-b border-gray-200 pb-6">
+                <h3 className="text-md font-semibold text-gray-900 mb-4">Endereço</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Cidade *
+                    </label>
+                    <input
+                      type="text"
+                      value={novoImovel.endereco.cidade}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        endereco: {...novoImovel.endereco, cidade: e.target.value}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="Ex: Penha"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Bairro
+                    </label>
+                    <input
+                      type="text"
+                      value={novoImovel.endereco.bairro}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        endereco: {...novoImovel.endereco, bairro: e.target.value}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="Ex: Centro"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Rua
+                    </label>
+                    <input
+                      type="text"
+                      value={novoImovel.endereco.rua}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        endereco: {...novoImovel.endereco, rua: e.target.value}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="Nome da rua"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Número
+                    </label>
+                    <input
+                      type="text"
+                      value={novoImovel.endereco.numero}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        endereco: {...novoImovel.endereco, numero: e.target.value}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="Número"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      CEP
+                    </label>
+                    <input
+                      type="text"
+                      value={novoImovel.endereco.cep}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        endereco: {...novoImovel.endereco, cep: e.target.value}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="00000-000"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Estado
+                    </label>
+                    <input
+                      type="text"
+                      value={novoImovel.endereco.estado}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        endereco: {...novoImovel.endereco, estado: e.target.value}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="SC"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Características */}
+              <div className="border-b border-gray-200 pb-6">
+                <h3 className="text-md font-semibold text-gray-900 mb-4">Características</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Quartos
+                    </label>
+                    <input
+                      type="number"
+                      value={novoImovel.caracteristicas.quartos || ''}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        caracteristicas: {...novoImovel.caracteristicas, quartos: Number(e.target.value)}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      min="0"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Banheiros
+                    </label>
+                    <input
+                      type="number"
+                      value={novoImovel.caracteristicas.banheiros || ''}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        caracteristicas: {...novoImovel.caracteristicas, banheiros: Number(e.target.value)}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      min="0"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Vagas
+                    </label>
+                    <input
+                      type="number"
+                      value={novoImovel.caracteristicas.vagas || ''}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        caracteristicas: {...novoImovel.caracteristicas, vagas: Number(e.target.value)}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      min="0"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Área (m²)
+                    </label>
+                    <input
+                      type="number"
+                      value={novoImovel.caracteristicas.area || ''}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        caracteristicas: {...novoImovel.caracteristicas, area: Number(e.target.value)}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      min="0"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Área do Terreno (m²)
+                    </label>
+                    <input
+                      type="number"
+                      value={novoImovel.caracteristicas.areaTerreno || ''}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        caracteristicas: {...novoImovel.caracteristicas, areaTerreno: Number(e.target.value)}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      min="0"
+                    />
+                  </div>
+                  <div className="md:col-span-2">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {[
+                        { key: 'frenteMar', label: 'Frente Mar' },
+                        { key: 'piscina', label: 'Piscina' },
+                        { key: 'churrasqueira', label: 'Churrasqueira' },
+                        { key: 'academia', label: 'Academia' },
+                        { key: 'portaria', label: 'Portaria' },
+                        { key: 'elevador', label: 'Elevador' },
+                        { key: 'varanda', label: 'Varanda' },
+                        { key: 'sacada', label: 'Sacada' }
+                      ].map(({ key, label }) => (
+                        <label key={key} className="flex items-center">
+                          <input
+                            type="checkbox"
+                            checked={(novoImovel.caracteristicas as any)[key] || false}
+                            onChange={(e) => setNovoImovel({
+                              ...novoImovel, 
+                              caracteristicas: {
+                                ...novoImovel.caracteristicas, 
+                                [key]: e.target.checked
+                              }
+                            })}
+                            className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                          />
+                          <span className="ml-2 text-sm text-gray-700">{label}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contato */}
+              <div className="border-b border-gray-200 pb-6">
+                <h3 className="text-md font-semibold text-gray-900 mb-4">Contato</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      WhatsApp *
+                    </label>
+                    <input
+                      type="text"
+                      value={novoImovel.contato.whatsapp}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        contato: {...novoImovel.contato, whatsapp: e.target.value}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="(47) 99753-0113"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Telefone
+                    </label>
+                    <input
+                      type="text"
+                      value={novoImovel.contato.telefone}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        contato: {...novoImovel.contato, telefone: e.target.value}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="Telefone"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      value={novoImovel.contato.email}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        contato: {...novoImovel.contato, email: e.target.value}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="email@exemplo.com"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Corretor
+                    </label>
+                    <input
+                      type="text"
+                      value={novoImovel.contato.corretor}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        contato: {...novoImovel.contato, corretor: e.target.value}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="Nome do corretor"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Fotos */}
+              <div className="border-b border-gray-200 pb-6">
+                <h3 className="text-md font-semibold text-gray-900 mb-4">Fotos</h3>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Selecionar Fotos {!editingImovel && '*'}
+                  </label>
+                  <p className="text-xs text-gray-500 mb-2">
+                    {editingImovel 
+                      ? 'Selecione novas fotos para substituir as atuais. Deixe em branco para manter as fotos atuais.'
+                      : 'Selecione uma ou mais fotos do imóvel. Tamanho recomendado: 1920 x 1080px'}
+                  </p>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handleFotosChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    required={!editingImovel && fotosPreviews.length === 0}
+                  />
+                  {(fotosPreviews.length > 0 || (editingImovel && editingImovel.fotos && editingImovel.fotos.length > 0)) && (
+                    <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {(fotosPreviews.length > 0 ? fotosPreviews : (editingImovel?.fotos || [])).map((preview, index) => (
+                        <div key={index} className="relative group">
+                          <img
+                            src={preview}
+                            alt={`Foto ${index + 1}`}
+                            className="w-full h-32 object-cover rounded-md"
+                          />
+                          {fotosPreviews.length > 0 && index < fotosPreviews.length && (
+                            <button
+                              type="button"
+                              onClick={() => removeFoto(index)}
+                              className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              <X className="w-4 h-4" />
+                            </button>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Publicação */}
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="publicado"
+                  checked={novoImovel.publicado}
+                  onChange={(e) => setNovoImovel({...novoImovel, publicado: e.target.checked})}
+                  className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                />
+                <label htmlFor="publicado" className="ml-2 block text-sm text-gray-900">
+                  Publicar imediatamente
+                </label>
+              </div>
+
+              <div className="flex justify-end space-x-4 pt-4 border-t border-gray-200">
+                <button
+                  type="button"
+                  onClick={resetForm}
+                  className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors disabled:opacity-50"
+                >
+                  {isLoading ? 'Salvando...' : (editingImovel ? 'Atualizar Imóvel' : 'Salvar Imóvel')}
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+
+        {/* Lista de Imóveis */}
         <div className="bg-white rounded-lg shadow-md">
           <div className="p-6 border-b border-gray-200">
             <h3 className="text-lg font-semibold text-gray-900">
@@ -198,65 +828,20 @@ export default function AdminImoveis() {
             </h3>
           </div>
           
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Imóvel
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Localização
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Características
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Preço
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Ações
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {filteredImoveis.map((imovel) => (
-                  <tr key={imovel.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div>
-                        <div className="text-sm font-medium text-gray-900">
+          <div className="divide-y divide-gray-200">
+            {filteredImoveis.length === 0 ? (
+              <div className="p-6 text-center text-gray-500">
+                Nenhum imóvel encontrado.
+              </div>
+            ) : (
+              filteredImoveis.map((imovel) => (
+                <div key={imovel.id} className="p-6 hover:bg-gray-50">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-2 mb-2">
+                        <h4 className="text-lg font-semibold text-gray-900">
                           {imovel.titulo}
-                        </div>
-                        <div className="text-sm text-gray-500 capitalize">
-                          {imovel.tipo}
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">
-                        {imovel.bairro}
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        {imovel.cidade}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">
-                        {imovel.quartos} quartos • {imovel.banheiros} banheiros
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        {imovel.area}m² • {imovel.vagas} vagas
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900">
-                        {formatPrice(imovel.preco)}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                        </h4>
                       <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                         imovel.publicado 
                           ? 'bg-green-100 text-green-800' 
@@ -264,24 +849,61 @@ export default function AdminImoveis() {
                       }`}>
                         {imovel.publicado ? 'Publicado' : 'Rascunho'}
                       </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <div className="flex space-x-2">
-                        <button className="text-blue-600 hover:text-blue-900">
-                          <Eye className="w-4 h-4" />
-                        </button>
-                        <button className="text-indigo-600 hover:text-indigo-900">
+                        <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                          {imovel.status}
+                        </span>
+                        <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">
+                          {imovel.tipo}
+                        </span>
+                      </div>
+                      <p className="text-gray-600 mb-2">
+                        {imovel.descricao}
+                      </p>
+                      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-2">
+                        <span>{imovel.endereco.cidade}, {imovel.endereco.bairro}</span>
+                        <span>{imovel.caracteristicas.quartos} quartos</span>
+                        <span>{imovel.caracteristicas.banheiros} banheiros</span>
+                        <span>{imovel.caracteristicas.area}m²</span>
+                        <span className="font-semibold text-primary-600">{formatPrice(imovel.preco)}</span>
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        {formatDate(imovel.createdAt)}
+                        {imovel.fotos && imovel.fotos.length > 0 && (
+                          <span className="ml-2">
+                            • {imovel.fotos.length} {imovel.fotos.length === 1 ? 'foto' : 'fotos'}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-2 ml-4">
+                      {imovel.fotos && imovel.fotos.length > 0 && (
+                        <img
+                          src={imovel.fotos[0]}
+                          alt={imovel.titulo}
+                          className="w-24 h-24 object-cover rounded-md"
+                        />
+                      )}
+                      <div className="flex flex-col space-y-2">
+                        <button 
+                          onClick={() => handleEdit(imovel)}
+                          className="p-2 text-indigo-600 hover:text-indigo-900 hover:bg-indigo-50 rounded-md transition-colors"
+                          title="Editar imóvel"
+                        >
                           <Edit className="w-4 h-4" />
                         </button>
-                        <button className="text-red-600 hover:text-red-900">
+                        <button 
+                          onClick={() => handleDelete(imovel.id)}
+                          className="p-2 text-red-600 hover:text-red-900 hover:bg-red-50 rounded-md transition-colors"
+                          title="Excluir imóvel"
+                        >
                           <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </main>
