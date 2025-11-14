@@ -2196,7 +2196,7 @@
   "quem_somos": {
     "hero": {
       "titulo": {
-        "value": "A imobiliária mais alto-astral do litoral catarinense",
+        "value": "Mais do que imóveis, entregamos estratégia de investimento e visão",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página",
@@ -2204,7 +2204,7 @@
         "section": "Hero"
       },
       "subtitulo": {
-        "value": "Conheça a história da Nox.",
+        "value": "Somos especialistas em identificar oportunidades",
         "type": "texto",
         "label": "📝 Subtítulo",
         "hint": "Subtítulo do hero",
@@ -2275,7 +2275,7 @@
           "section": "Missão, Visão e Valores"
         },
         "descricao": {
-          "value": "Surpreender nossos clientes desde o primeiro contato até a escritura. Garantir financeiramente e juridicamente nossas intermediações imobiliárias.",
+          "value": "Oferecer soluções imobiliárias inteligentes e seguras, conectando clientes às melhores oportunidades de investimento e moradia, com transparência e acompanhamento em cada etapa.",
           "type": "texto",
           "label": "📝 Missão Descrição",
           "hint": "Descrição da Missão",
@@ -2293,7 +2293,7 @@
           "section": "Missão, Visão e Valores"
         },
         "descricao": {
-          "value": "Intermediar 1 bilhão em valor líquido entre janeiro e dezembro de 2026.",
+          "value": "Ser referência no mercado imobiliário do litoral catarinense, reconhecida por transformar imóveis em patrimônio sólido e rentável para nosso cliente.",
           "type": "texto",
           "label": "📝 Visão Descrição",
           "hint": "Descrição da Visão",
@@ -2311,7 +2311,7 @@
           "section": "Missão, Visão e Valores"
         },
         "descricao": {
-          "value": "Leves, alegres, loucos e autênticos. Obstinados, comprometidos, ousados e intensos.",
+          "value": "Transparência: clareza em todas as negociações.\n\nCompromisso: dedicação total ao sucesso e à segurança de cada cliente.\n\nInovação: uso de tecnologia e",
           "type": "texto",
           "label": "📝 Valores Descrição",
           "hint": "Descrição dos Valores",
