@@ -956,7 +956,7 @@
   "viva_barra_velha": {
     "hero": {
       "titulo": {
-        "value": "Viva Barra Velhaa",
+        "value": "Sobre Barra Velha",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página Viva Barra Velha",
@@ -964,7 +964,7 @@
         "section": "Hero"
       },
       "botao_vantagens": {
-        "value": "Ver as vantagenss",
+        "value": "Ver as vantagens",
         "type": "botao",
         "label": "🔘 Botão Vantagens",
         "hint": "Texto do botão Ver as vantagens",
@@ -974,7 +974,7 @@
     },
     "introducao": {
       "titulo": {
-        "value": "Descubra o paraíso catarinense",
+        "value": "Descubra o Tabuleiro,cartão postal de Barra Velha ",
         "type": "titulo",
         "label": "📌 Título Introdução",
         "hint": "Título da seção de introdução",
@@ -982,7 +982,7 @@
         "section": "Introdução"
       },
       "descricao": {
-        "value": "Seja bem-vindo à deslumbrante cidade de Barra Velha, um dos destinos mais encantadores do Brasil. Com suas praias deslumbrantes, vida noturna animada e oportunidades de investimento incríveis, Barra Velha é o local perfeito para viver, visitar e investir.",
+        "value": "Com uma das praias mais belas e valorizadas de Barra Velha, a Praia do Tabuleiro oferece tranquilidade, natureza preservada e ótimas oportunidades de investimento. Um destino perfeito para viver bem, relaxar e prosperar.\n",
         "type": "texto",
         "label": "📝 Descrição",
         "hint": "Descrição da cidade de Barra Velha",
@@ -1016,7 +1016,7 @@
         "section": "O que fazer"
       },
       "atracao_1": {
-        "value": "Praias de Areias Brancas",
+        "value": "Praia do Tabuleiro",
         "type": "texto",
         "label": "🏖️ Atração 1",
         "hint": "Primeira atração",
@@ -1024,7 +1024,7 @@
         "section": "O que fazer"
       },
       "atracao_2": {
-        "value": "Parque Beto Carrero World",
+        "value": "Lagoa de Barra Velha",
         "type": "texto",
         "label": "🎢 Atração 2",
         "hint": "Segunda atração",
@@ -1032,7 +1032,7 @@
         "section": "O que fazer"
       },
       "atracao_3": {
-        "value": "Cristo Luz",
+        "value": "Festa Nacional do Pirão",
         "type": "texto",
         "label": "✨ Atração 3",
         "hint": "Terceira atração",
@@ -1040,7 +1040,7 @@
         "section": "O que fazer"
       },
       "atracao_4": {
-        "value": "Vida Noturna Vibrante",
+        "value": "Morro do Cristo",
         "type": "texto",
         "label": "🌙 Atração 4",
         "hint": "Quarta atração",
@@ -1048,7 +1048,7 @@
         "section": "O que fazer"
       },
       "atracao_5": {
-        "value": "Gastronomia Excepcional",
+        "value": "Centro e orla revitalizada",
         "type": "texto",
         "label": "🍽️ Atração 5",
         "hint": "Quinta atração",
@@ -1067,7 +1067,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "Conforto e praticidade de sobra em uma cidade com infraestrutura completa e moderna.",
+          "value": "A Praia do Tabuleiro conta com orla revitalizada, fácil acesso pela BR-101 e infraestrutura em crescimento, garantindo conforto e praticidade.",
           "type": "texto",
           "label": "📝 Infraestrutura Descrição",
           "hint": "Descrição do benefício",
@@ -1085,7 +1085,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "A cidade é cheia de opções de lazer para moradores e visitantes, com paisagens de tirar o fôlego.",
+          "value": "Além das belas praias, Barra Velha se destaca por suas lagoas, eventos tradicionais e a proximidade com destinos turísticos do litoral catarinense.",
           "type": "texto",
           "label": "📝 Atrações Descrição",
           "hint": "Descrição do benefício",
@@ -1103,7 +1103,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "Aproveite a tranquilidade de viver em uma das cidades mais seguras do sul do país!",
+          "value": "Com clima acolhedor e ambiente familiar, a Praia do Tabuleiro é um lugar tranquilo e seguro para viver, aproveitar momentos de lazer e investir.",
           "type": "texto",
           "label": "📝 Segurança Descrição",
           "hint": "Descrição do benefício",
@@ -1121,7 +1121,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "Não faltam oportunidades de morar e investir na cidade, com opções para todos os gostos.",
+          "value": "O mercado imobiliário está em expansão, oferecendo apartamentos modernos próximos à praia, com opções para todos os perfis de investidores.\n",
           "type": "texto",
           "label": "📝 Diversidade Descrição",
           "hint": "Descrição do benefício",
@@ -1133,7 +1133,7 @@
     "vantagens_investir": {
       "mercado_imobiliario": {
         "titulo": {
-          "value": "Mercado imobiliário em crescimento",
+          "value": "Desenvolvimento imobiliário",
           "type": "titulo",
           "label": "📌 Mercado Título",
           "hint": "Título da vantagem Mercado",
@@ -1141,7 +1141,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "Barra Velha é um dos destinos turísticos mais procurados do Brasil, o que torna o mercado imobiliário da cidade extremamente atraente para investidores.",
+          "value": "A região está em constante expansão, com novos empreendimentos modernos e valorização contínua, atraindo cada vez mais investidores.\n",
           "type": "texto",
           "label": "📝 Mercado Descrição",
           "hint": "Descrição da vantagem",
@@ -1159,7 +1159,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "A cidade está estrategicamente localizada no estado de Santa Catarina, entre as cidades de Florianópolis e Curitiba, facilitando o acesso por terra, mar e ar. Isso a torna um centro logístico e de negócios em crescimento.",
+          "value": "Situada em Barra Velha, próxima a Joinville, Balneário Camboriú e ao Aeroporto Internacional de Navegantes, a região tem fácil acesso pela BR-101, conectando-se rapidamente aos principais polos do litoral catarinense.",
           "type": "texto",
           "label": "📝 Localização Descrição",
           "hint": "Descrição da vantagem",
@@ -1177,7 +1177,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "Além do potencial econômico, Barra Velha oferece uma qualidade de vida excepcional. Com infraestrutura de primeira classe, serviços públicos de alta qualidade e um ambiente seguro, é um lugar ideal para se viver e investir.",
+          "value": "A Praia do Tabuleiro oferece tranquilidade, contato com a natureza e um ambiente familiar, ideal para quem busca morar ou veranear com qualidade de vida.\n",
           "type": "texto",
           "label": "📝 Qualidade Descrição",
           "hint": "Descrição da vantagem",
@@ -1187,7 +1187,7 @@
       },
       "turismo": {
         "titulo": {
-          "value": "Turismo em Expansão",
+          "value": "Potencial de valorização",
           "type": "titulo",
           "label": "📌 Turismo Título",
           "hint": "Título da vantagem Turismo",
@@ -1195,7 +1195,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "O turismo é a espinha dorsal da economia de Barra Velha. A cidade recebe milhões de turistas todos os anos, o que cria uma ampla oportunidade para investimentos no setor de hospitalidade, como hotéis, resorts e serviços relacionados.",
+          "value": "Com localização privilegiada e crescente procura, a Praia do Tabuleiro vem registrando forte valorização imobiliária, garantindo excelentes oportunidades de retorno.\n",
           "type": "texto",
           "label": "📝 Turismo Descrição",
           "hint": "Descrição da vantagem",
