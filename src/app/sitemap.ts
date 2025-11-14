@@ -33,13 +33,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]
 
   // Páginas dinâmicas de imóveis
-  const imoveis = await getAllImoveis()
-  const imovelPages = imoveis.map((imovel) => ({
-    url: `${baseUrl}/imoveis/${imovel.slug}`,
-    lastModified: imovel.updatedAt,
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }))
+  let imovelPages = []
+  try {
+    const imoveis = await getAllImoveis()
+    imovelPages = imoveis.map((imovel) => ({
+      url: `${baseUrl}/imoveis/${imovel.slug}`,
+      lastModified: imovel.updatedAt,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    }))
+  } catch (error) {
+    // Se falhar ao carregar imóveis durante o build, continuar sem eles
+    console.error('Erro ao carregar imóveis para sitemap:', error)
+  }
 
   return [...staticPages, ...imovelPages]
 }

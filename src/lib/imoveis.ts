@@ -11,7 +11,19 @@ export async function getAllImoveis(): Promise<Imovel[]> {
       return cachedImoveis;
     }
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/imoveis-github`, {
+    // Durante o build, usar URL absoluta ou retornar vazio se não disponível
+    const apiUrl = typeof window !== 'undefined' 
+      ? '/api/imoveis-github'
+      : process.env.NEXT_PUBLIC_SITE_URL 
+        ? `${process.env.NEXT_PUBLIC_SITE_URL}/api/imoveis-github`
+        : null;
+
+    if (!apiUrl) {
+      // Durante o build sem URL configurada, retornar vazio
+      return [];
+    }
+
+    const response = await fetch(apiUrl, {
       cache: 'no-store'
     });
 
