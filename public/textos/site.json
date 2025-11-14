@@ -178,7 +178,7 @@
         "section": "Footer - Colunas"
       },
       "viva_penha": {
-        "value": "Viva Penha",
+        "value": "Sobre Penha",
         "type": "link",
         "label": "🔗 Link Viva Penha",
         "hint": "Texto do link 'Viva Penha'",
@@ -186,7 +186,7 @@
         "section": "Footer - Colunas"
       },
       "viva_picarras": {
-        "value": "Viva Piçarras",
+        "value": "Sobre Piçarras",
         "type": "link",
         "label": "🔗 Link Viva Piçarras",
         "hint": "Texto do link 'Viva Piçarras'",
@@ -194,7 +194,7 @@
         "section": "Footer - Colunas"
       },
       "viva_barra_velha": {
-        "value": "Viva Barra Velha",
+        "value": "Sobre Barra Velha",
         "type": "link",
         "label": "🔗 Link Viva Barra Velha",
         "hint": "Texto do link 'Viva Barra Velha'",
