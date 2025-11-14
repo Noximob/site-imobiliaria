@@ -1908,7 +1908,7 @@
   "como_comprar": {
     "hero": {
       "titulo": {
-        "value": "A experiência de quem entende o mercado ao seu lado!",
+        "value": "Mais que imóveis, entregamos estratégia de investimento e visão",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página",
@@ -1951,7 +1951,7 @@
           "section": "Como Funciona"
         },
         "titulo": {
-          "value": "Busque o imóvel ideal em nosso site",
+          "value": "Descubra a melhor oportunidade",
           "type": "titulo",
           "label": "📌 Passo 1 Título",
           "hint": "Título do passo 1",
@@ -1959,7 +1959,7 @@
           "section": "Como Funciona"
         },
         "descricao": {
-          "value": "Utilize nossos filtros para otimizar seus resultados",
+          "value": "Use nossos filtros e análises de mercado para identificar imóveis alinhados ao seu perfil.",
           "type": "texto",
           "label": "📝 Passo 1 Descrição",
           "hint": "Descrição do passo 1",
@@ -1977,7 +1977,7 @@
           "section": "Como Funciona"
         },
         "titulo": {
-          "value": "Entre em contato e agende suas visitas",
+          "value": "Agende sua visita ou reunião estratégica",
           "type": "titulo",
           "label": "📌 Passo 2 Título",
           "hint": "Título do passo 2",
@@ -1985,7 +1985,7 @@
           "section": "Como Funciona"
         },
         "descricao": {
-          "value": "Aproveite para tirar todas as suas dúvidas com o corretor",
+          "value": "Tire suas dúvidas diretamente com nossos especialistas e entenda os diferenciais de cada imóvel.",
           "type": "texto",
           "label": "📝 Passo 2 Descrição",
           "hint": "Descrição do passo 2",
@@ -2003,7 +2003,7 @@
           "section": "Como Funciona"
         },
         "titulo": {
-          "value": "Faça suas propostas",
+          "value": "Negocie com segurança",
           "type": "titulo",
           "label": "📌 Passo 3 Título",
           "hint": "Título do passo 3",
@@ -2011,7 +2011,7 @@
           "section": "Como Funciona"
         },
         "descricao": {
-          "value": "Nossos especialistas ajudam você com a negociação e documentação",
+          "value": "Com apoio da Nox, você apresenta suas propostas com clareza e confiança. Nós cuidamos da burocracia.",
           "type": "texto",
           "label": "📝 Passo 3 Descrição",
           "hint": "Descrição do passo 3",
@@ -2029,7 +2029,7 @@
           "section": "Como Funciona"
         },
         "titulo": {
-          "value": "Assine digitalmente e receba as chaves",
+          "value": "Assine digitalmente",
           "type": "titulo",
           "label": "📌 Passo 4 Título",
           "hint": "Título do passo 4",
@@ -2037,7 +2037,7 @@
           "section": "Como Funciona"
         },
         "descricao": {
-          "value": "Todo o processo digital para maior comodidade",
+          "value": "Finalize o processo de forma rápida e segura, com suporte do corretor até a entrega das chaves.",
           "type": "texto",
           "label": "📝 Passo 4 Descrição",
           "hint": "Descrição do passo 4",
