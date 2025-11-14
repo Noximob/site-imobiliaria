@@ -112,7 +112,11 @@ export default function AdminImoveis() {
         ...imovel.caracteristicas,
         areaTerreno: imovel.caracteristicas.areaTerreno || 0
       },
-      contato: { ...imovel.contato },
+      contato: {
+        ...imovel.contato,
+        telefone: imovel.contato.telefone || '',
+        email: imovel.contato.email || ''
+      },
       publicado: imovel.publicado
     })
     setFotosFiles([])
