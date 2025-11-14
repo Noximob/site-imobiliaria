@@ -33,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]
 
   // Páginas dinâmicas de imóveis
-  let imovelPages = []
+  let imovelPages: MetadataRoute.Sitemap = []
   try {
     const imoveis = await getAllImoveis()
     imovelPages = imoveis.map((imovel) => ({
