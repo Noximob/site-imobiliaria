@@ -1286,7 +1286,7 @@
   "viva_balneario_picarras": {
     "hero": {
       "titulo": {
-        "value": "Viva Balneário Piçarras",
+        "value": "Sobre Balneário Piçarras",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página Viva Balneário Piçarras",
@@ -1304,7 +1304,7 @@
     },
     "introducao": {
       "titulo": {
-        "value": "Descubra o paraíso catarinense",
+        "value": "Descubra Balneário Piçarras, a joia do litoral",
         "type": "titulo",
         "label": "📌 Título Introdução",
         "hint": "Título da seção de introdução",
@@ -1312,7 +1312,7 @@
         "section": "Introdução"
       },
       "descricao": {
-        "value": "Seja bem-vindo à deslumbrante cidade de Balneário Piçarras, um dos destinos mais encantadores do Brasil. Com suas praias deslumbrantes, vida noturna animada e oportunidades de investimento incríveis, Balneário Piçarras é o local perfeito para viver, visitar e investir.",
+        "value": "Seja bem-vindo à cidade de Balneário Piçarras, um destino que une qualidade de vida e valorização imobiliária em constante crescimento. Reconhecida por suas praias limpas e tranquilas, premiadas com a Bandeira Azul, Piçarras atrai famílias em busca de bem-estar e investidores atentos.",
         "type": "texto",
         "label": "📝 Descrição",
         "hint": "Descrição da cidade de Balneário Piçarras",
@@ -1338,7 +1338,7 @@
         "section": "O que fazer"
       },
       "subtitulo": {
-        "value": "Aproveite tudo o que Balneário Piçarras tem a oferecer e viva o melhor da cidade!",
+        "value": "Aproveite tudo o que Balneário Piçarras tem a oferecer e viva momentos inesquecíveis à beira-mar!",
         "type": "texto",
         "label": "📝 Subtítulo",
         "hint": "Subtítulo da seção",
@@ -1346,7 +1346,7 @@
         "section": "O que fazer"
       },
       "atracao_1": {
-        "value": "Praias de Areias Brancas",
+        "value": "Praias tranquilas e premiadas",
         "type": "texto",
         "label": "🏖️ Atração 1",
         "hint": "Primeira atração",
@@ -1354,7 +1354,7 @@
         "section": "O que fazer"
       },
       "atracao_2": {
-        "value": "Parque Beto Carrero World",
+        "value": "Museu Oceanográfico da Univali",
         "type": "texto",
         "label": "🎢 Atração 2",
         "hint": "Segunda atração",
@@ -1362,7 +1362,7 @@
         "section": "O que fazer"
       },
       "atracao_3": {
-        "value": "Cristo Luz",
+        "value": "Passeios de barco e esportes náuticos",
         "type": "texto",
         "label": "✨ Atração 3",
         "hint": "Terceira atração",
@@ -1370,7 +1370,7 @@
         "section": "O que fazer"
       },
       "atracao_4": {
-        "value": "Vida Noturna Vibrante",
+        "value": "Orla ideal para caminhadas e lazer",
         "type": "texto",
         "label": "🌙 Atração 4",
         "hint": "Quarta atração",
@@ -1378,7 +1378,7 @@
         "section": "O que fazer"
       },
       "atracao_5": {
-        "value": "Gastronomia Excepcional",
+        "value": "Gastronomia típica",
         "type": "texto",
         "label": "🍽️ Atração 5",
         "hint": "Quinta atração",
@@ -1397,7 +1397,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "Conforto e praticidade de sobra em uma cidade com infraestrutura completa e moderna.",
+          "value": "Balneário Piçarras vem se modernizando com orla revitalizada, ciclovias, áreas de lazer e serviços que garantem conforto e praticidade no dia a dia.",
           "type": "texto",
           "label": "📝 Infraestrutura Descrição",
           "hint": "Descrição do benefício",
@@ -1415,7 +1415,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "A cidade é cheia de opções de lazer para moradores e visitantes, com paisagens de tirar o fôlego.",
+          "value": "Com praias tranquilas e premiadas com Bandeira Azul, passeios náuticos e natureza preservada, a cidade encanta moradores e visitantes o ano inteiro.",
           "type": "texto",
           "label": "📝 Atrações Descrição",
           "hint": "Descrição do benefício",
@@ -1433,7 +1433,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "Aproveite a tranquilidade de viver em uma das cidades mais seguras do sul do país!",
+          "value": "Reconhecida pelo ambiente acolhedor e familiar, Piçarras oferece tranquilidade e qualidade de vida em uma das cidades mais seguras do litoral.",
           "type": "texto",
           "label": "📝 Segurança Descrição",
           "hint": "Descrição do benefício",
@@ -1451,7 +1451,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "Não faltam oportunidades de morar e investir na cidade, com opções para todos os gostos.",
+          "value": "O mercado imobiliário está em expansão, com opções que vão desde apartamentos modernos próximos à orla até empreendimentos ideais para investir.",
           "type": "texto",
           "label": "📝 Diversidade Descrição",
           "hint": "Descrição do benefício",
@@ -1463,7 +1463,7 @@
     "vantagens_investir": {
       "mercado_imobiliario": {
         "titulo": {
-          "value": "Mercado imobiliário em crescimento",
+          "value": "Capital da Bandeira Azul",
           "type": "titulo",
           "label": "📌 Mercado Título",
           "hint": "Título da vantagem Mercado",
@@ -1471,7 +1471,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "Balneário Piçarras é um dos destinos turísticos mais procurados do Brasil, o que torna o mercado imobiliário da cidade extremamente atraente para investidores.",
+          "value": "Invista em uma cidade que une qualidade de vida, segurança e valorização. Balneário Piçarras se destaca com praias premiadas, orla revitalizada e um mercado imobiliário em constante crescimento.",
           "type": "texto",
           "label": "📝 Mercado Descrição",
           "hint": "Descrição da vantagem",
@@ -1481,7 +1481,7 @@
       },
       "localizacao": {
         "titulo": {
-          "value": "Localização estratégica",
+          "value": "Localização Privilegiada",
           "type": "titulo",
           "label": "📌 Localização Título",
           "hint": "Título da vantagem Localização",
@@ -1489,7 +1489,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "A cidade está estrategicamente localizada no estado de Santa Catarina, entre as cidades de Florianópolis e Curitiba, facilitando o acesso por terra, mar e ar. Isso a torna um centro logístico e de negócios em crescimento.",
+          "value": "Situada entre Penha e Barra Velha, e a poucos minutos do Aeroporto Internacional de Navegantes, Piçarras é de fácil acesso para quem vem de diferentes regiões do Brasil.\n",
           "type": "texto",
           "label": "📝 Localização Descrição",
           "hint": "Descrição da vantagem",
@@ -1507,7 +1507,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "Além do potencial econômico, Balneário Piçarras oferece uma qualidade de vida excepcional. Com infraestrutura de primeira classe, serviços públicos de alta qualidade e um ambiente seguro, é um lugar ideal para se viver e investir.",
+          "value": "Com praias limpas e certificadas pela Bandeira Azul, além de uma orla revitalizada, a cidade é sinônimo de bem-estar, tranquilidade e contato com a natureza.\n",
           "type": "texto",
           "label": "📝 Qualidade Descrição",
           "hint": "Descrição da vantagem",
@@ -1517,7 +1517,7 @@
       },
       "turismo": {
         "titulo": {
-          "value": "Turismo em Expansão",
+          "value": "Turismo em Evolução",
           "type": "titulo",
           "label": "📌 Turismo Título",
           "hint": "Título da vantagem Turismo",
@@ -1525,7 +1525,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "O turismo é a espinha dorsal da economia de Balneário Piçarras. A cidade recebe milhões de turistas todos os anos, o que cria uma ampla oportunidade para investimentos no setor de hospitalidade, como hotéis, resorts e serviços relacionados.",
+          "value": "Combinando charme de cidade pequena e estrutura turística em expansão, Balneário Piçarras se destaca como destino para lazer, esportes náuticos e eventos culturais.",
           "type": "texto",
           "label": "📝 Turismo Descrição",
           "hint": "Descrição da vantagem",
