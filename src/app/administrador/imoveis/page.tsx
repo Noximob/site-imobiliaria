@@ -108,7 +108,10 @@ export default function AdminImoveis() {
       tipo: imovel.tipo,
       status: imovel.status,
       endereco: { ...imovel.endereco },
-      caracteristicas: { ...imovel.caracteristicas },
+      caracteristicas: { 
+        ...imovel.caracteristicas,
+        areaTerreno: imovel.caracteristicas.areaTerreno || 0
+      },
       contato: { ...imovel.contato },
       publicado: imovel.publicado
     })
