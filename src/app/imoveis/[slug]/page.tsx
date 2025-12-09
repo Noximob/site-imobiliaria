@@ -289,7 +289,7 @@ export default function ImovelDetalhePage() {
                   <div className="w-64 grid grid-cols-2 gap-2">
                     {fotosParaThumbnails.map((foto: string, index: number) => {
                       // Encontrar o índice original da foto no array todasFotos
-                      const fotoIndex = todasFotos.findIndex(f => f === foto)
+                      const fotoIndex = todasFotos.findIndex((f: string) => f === foto)
                       return (
                         <button
                           key={index}
