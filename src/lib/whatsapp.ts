@@ -1,16 +1,24 @@
 /**
  * Gera link do WhatsApp a partir de um número de telefone
  * @param phoneNumber - Número de telefone no formato (47) 99999-9999
+ * @param message - Mensagem opcional para pré-preencher
  * @returns Link do WhatsApp
  */
-export function getWhatsAppLink(phoneNumber: string): string {
+export function getWhatsAppLink(phoneNumber: string, message?: string): string {
   // Remove todos os caracteres não numéricos
   const cleanNumber = phoneNumber.replace(/\D/g, '')
   
   // Se o número não começar com 55 (código do Brasil), adiciona
   const formattedNumber = cleanNumber.startsWith('55') ? cleanNumber : `55${cleanNumber}`
   
-  return `https://wa.me/${formattedNumber}`
+  let url = `https://wa.me/${formattedNumber}`
+  
+  // Adiciona mensagem se fornecida
+  if (message) {
+    url += `?text=${encodeURIComponent(message)}`
+  }
+  
+  return url
 }
 
 /**
