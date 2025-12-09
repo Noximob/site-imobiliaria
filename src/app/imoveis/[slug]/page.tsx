@@ -131,9 +131,10 @@ export default function ImovelDetalhePage() {
     ? imovel.precoOriginal - imovel.preco
     : 0
 
-  const fotosPrincipais = imovel.fotos?.slice(0, 5) || []
-  const fotoPrincipal = fotosPrincipais[selectedImageIndex] || fotosPrincipais[0]
-  const fotosGrid = fotosPrincipais.slice(1, 5)
+  const todasFotos = imovel.fotos || []
+  const fotoPrincipal = todasFotos[selectedImageIndex] || todasFotos[0] || ''
+  // Thumbnails: as 4 fotos seguintes, excluindo a foto principal atual
+  const fotosParaThumbnails = todasFotos.filter((_, index) => index !== selectedImageIndex).slice(0, 4)
 
   // Características extras (combinando booleanas e array de extras)
   const caracteristicasList = [
@@ -263,59 +264,9 @@ export default function ImovelDetalhePage() {
           {/* Conteúdo Principal */}
           <div className="lg:col-span-2 space-y-6">
             {/* Galeria de Fotos */}
-            <div className="bg-white rounded-lg shadow-sm overflow-hidden relative">
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <div className="relative flex gap-2">
-                {/* Barra de Compartilhamento Social - Lateral Esquerda DENTRO da Galeria */}
-                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 bg-white rounded-r-lg shadow-lg p-2 space-y-2">
-                  <button
-                    onClick={() => handleShare('facebook')}
-                    className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
-                    title="Compartilhar no Facebook"
-                  >
-                    <Facebook className="w-5 h-5 text-blue-600" />
-                  </button>
-                  <button
-                    onClick={() => handleShare('twitter')}
-                    className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
-                    title="Compartilhar no Twitter"
-                  >
-                    <Twitter className="w-5 h-5 text-blue-400" />
-                  </button>
-                  <button
-                    onClick={() => handleShare('linkedin')}
-                    className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
-                    title="Compartilhar no LinkedIn"
-                  >
-                    <Linkedin className="w-5 h-5 text-blue-700" />
-                  </button>
-                  <button
-                    onClick={() => handleShare('whatsapp')}
-                    className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
-                    title="Compartilhar no WhatsApp"
-                  >
-                    <MessageCircle className="w-5 h-5 text-green-600" />
-                  </button>
-                  <button
-                    onClick={() => handleShare('email')}
-                    className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
-                    title="Compartilhar por Email"
-                  >
-                    <Mail className="w-5 h-5 text-gray-600" />
-                  </button>
-                  <button
-                    onClick={() => handleShare('copy')}
-                    className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
-                    title="Copiar link"
-                  >
-                    {linkCopied ? (
-                      <Check className="w-5 h-5 text-green-600" />
-                    ) : (
-                      <Copy className="w-5 h-5 text-gray-600" />
-                    )}
-                  </button>
-                </div>
-
-                {/* Foto Principal - Lado Esquerdo */}
+                {/* Foto Principal - Lado Esquerdo (Grande) */}
                 <div className="flex-1 relative h-[600px]">
                   {fotoPrincipal ? (
                     <Image
@@ -333,24 +284,28 @@ export default function ImovelDetalhePage() {
                   )}
                 </div>
 
-                {/* Grid de Fotos - Lado Direito */}
-                {fotosGrid.length > 0 && (
+                {/* Grid de 4 Fotos - Lado Direito */}
+                {fotosParaThumbnails.length > 0 && (
                   <div className="w-64 grid grid-cols-2 gap-2">
-                    {fotosGrid.map((foto: string, index: number) => (
-                      <button
-                        key={index}
-                        onClick={() => setSelectedImageIndex(index + 1)}
-                        className="relative h-[294px] rounded-lg overflow-hidden hover:opacity-90 transition-opacity border-2 border-transparent hover:border-purple-500"
-                      >
-                        <Image
-                          src={foto}
-                          alt={`${imovel.titulo} - Foto ${index + 2}`}
-                          fill
-                          className="object-cover"
-                          unoptimized
-                        />
-                      </button>
-                    ))}
+                    {fotosParaThumbnails.map((foto: string, index: number) => {
+                      // Encontrar o índice original da foto no array todasFotos
+                      const fotoIndex = todasFotos.findIndex(f => f === foto)
+                      return (
+                        <button
+                          key={index}
+                          onClick={() => setSelectedImageIndex(fotoIndex)}
+                          className="relative h-[294px] rounded-lg overflow-hidden hover:opacity-90 transition-opacity border-2 border-transparent hover:border-purple-500"
+                        >
+                          <Image
+                            src={foto}
+                            alt={`${imovel.titulo} - Foto ${index + 2}`}
+                            fill
+                            className="object-cover"
+                            unoptimized
+                          />
+                        </button>
+                      )
+                    })}
                   </div>
                 )}
               </div>
