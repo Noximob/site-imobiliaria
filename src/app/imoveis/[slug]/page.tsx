@@ -166,50 +166,74 @@ export default function ImovelDetalhePage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Barra de Informações do Imóvel */}
-        <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
-          <div className="flex flex-wrap items-center gap-6 text-sm">
-            <div className="flex items-center gap-2">
-              <Key className="w-4 h-4 text-orange-500" />
-              <span className="font-medium text-gray-900">Código:</span>
-              <span className="text-gray-600">{imovel.id}</span>
+        {/* Informações do Imóvel - ACIMA da Galeria */}
+        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+          {/* Título Principal */}
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+            {imovel.titulo}
+          </h1>
+          
+          {/* Subtítulo (Nome do Edifício) - Extraído do título */}
+          {(() => {
+            const edMatch = imovel.titulo.match(/Ed\.\s*([^,em]+)/i);
+            const edificioMatch = imovel.titulo.match(/Edifício\s+([^,em]+)/i);
+            const residenciaMatch = imovel.titulo.match(/([A-Z][A-Z\s]+(?:RESIDENCE|APARTAMENTO|CONDOMINIO|VILLAGE|TOWER|SUITE|CLUB|PARK|GARDEN|LIFE|HOME|PLACE|HOUSE))/);
+            
+            const subtitulo = edMatch?.[1]?.trim() || 
+                            edificioMatch?.[1]?.trim() || 
+                            residenciaMatch?.[1]?.trim() || 
+                            null;
+            
+            return subtitulo ? (
+              <h2 className="text-lg font-semibold text-gray-700 mb-3 uppercase">
+                {subtitulo}
+              </h2>
+            ) : null;
+          })()}
+          
+          {/* Endereço */}
+          <div className="flex items-center text-gray-600 mb-4">
+            <MapPin className="w-4 h-4 mr-1" />
+            <span>
+              {imovel.endereco.rua}, {imovel.endereco.numero}, {imovel.endereco.bairro} - {imovel.endereco.cidade}/{imovel.endereco.estado}
+            </span>
+          </div>
+          
+          {/* Código */}
+          <div className="flex items-center gap-2 mb-4">
+            <Key className="w-4 h-4 text-orange-500" />
+            <span className="font-medium text-gray-900">CÓDIGO: {imovel.id}</span>
+          </div>
+          
+          {/* Preço */}
+          <div className="border-t border-gray-200 pt-4">
+            {precoDesconto > 0 && (
+              <div className="mb-2">
+                <span className="text-green-600 font-semibold">
+                  Economize {formatPrice(precoDesconto)}
+                </span>
+              </div>
+            )}
+            <div className="flex items-baseline gap-3 flex-wrap">
+              {precoDesconto > 0 && (
+                <span className="text-xl text-gray-400 line-through">
+                  {imovel.status === 'venda' ? 'VENDA' : imovel.status === 'aluguel' ? 'ALUGUEL' : 'VENDA/ALUGUEL'}. DE {formatPrice(imovel.precoOriginal || 0)}
+                </span>
+              )}
+              <div className="flex items-baseline gap-2">
+                {!precoDesconto && (
+                  <span className="text-sm text-gray-600 font-medium">
+                    {imovel.status === 'venda' ? 'VENDA' : imovel.status === 'aluguel' ? 'ALUGUEL' : 'VENDA/ALUGUEL'}.
+                  </span>
+                )}
+                {precoDesconto > 0 && (
+                  <span className="text-sm text-gray-600 font-medium">POR:</span>
+                )}
+                <span className="text-3xl font-bold text-purple-600">
+                  {formatPrice(imovel.preco)}
+                </span>
+              </div>
             </div>
-            {imovel.caracteristicas?.quartos > 0 && (
-              <div className="flex items-center gap-2">
-                <Bed className="w-4 h-4 text-orange-500" />
-                <span className="text-gray-600">{imovel.caracteristicas.quartos} {imovel.caracteristicas.quartos === 1 ? 'Quarto' : 'Quartos'}</span>
-              </div>
-            )}
-            {imovel.caracteristicas?.suite && imovel.caracteristicas.suite > 0 && (
-              <div className="flex items-center gap-2">
-                <Bed className="w-4 h-4 text-orange-500" />
-                <span className="text-gray-600">{imovel.caracteristicas.suite} {imovel.caracteristicas.suite === 1 ? 'Suíte' : 'Suítes'}</span>
-              </div>
-            )}
-            {imovel.caracteristicas?.banheiros > 0 && (
-              <div className="flex items-center gap-2">
-                <Bath className="w-4 h-4 text-orange-500" />
-                <span className="text-gray-600">{imovel.caracteristicas.banheiros} {imovel.caracteristicas.banheiros === 1 ? 'Banheiro' : 'Banheiros'}</span>
-              </div>
-            )}
-            {imovel.caracteristicas?.vagas > 0 && (
-              <div className="flex items-center gap-2">
-                <Car className="w-4 h-4 text-orange-500" />
-                <span className="text-gray-600">{imovel.caracteristicas.vagas} {imovel.caracteristicas.vagas === 1 ? 'Vaga' : 'Vagas'}</span>
-              </div>
-            )}
-            {imovel.caracteristicas?.area > 0 && (
-              <div className="flex items-center gap-2">
-                <Ruler className="w-4 h-4 text-orange-500" />
-                <span className="text-gray-600">{imovel.caracteristicas.area} m² Privativos</span>
-              </div>
-            )}
-            {imovel.visualizacoes !== undefined && (
-              <div className="flex items-center gap-2 ml-auto">
-                <Eye className="w-4 h-4 text-orange-500" />
-                <span className="text-gray-600">{imovel.visualizacoes} Visualizações</span>
-              </div>
-            )}
           </div>
         </div>
 
@@ -225,10 +249,60 @@ export default function ImovelDetalhePage() {
           {/* Conteúdo Principal */}
           <div className="lg:col-span-2 space-y-6">
             {/* Galeria de Fotos */}
-            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden relative">
               <div className="relative flex gap-2">
+                {/* Barra de Compartilhamento Social - Lateral Esquerda DENTRO da Galeria */}
+                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 backdrop-blur-sm rounded-r-lg shadow-lg p-2 space-y-2">
+                  <button
+                    onClick={() => handleShare('facebook')}
+                    className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
+                    title="Compartilhar no Facebook"
+                  >
+                    <Facebook className="w-5 h-5 text-blue-600" />
+                  </button>
+                  <button
+                    onClick={() => handleShare('twitter')}
+                    className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
+                    title="Compartilhar no Twitter"
+                  >
+                    <Twitter className="w-5 h-5 text-blue-400" />
+                  </button>
+                  <button
+                    onClick={() => handleShare('linkedin')}
+                    className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
+                    title="Compartilhar no LinkedIn"
+                  >
+                    <Linkedin className="w-5 h-5 text-blue-700" />
+                  </button>
+                  <button
+                    onClick={() => handleShare('whatsapp')}
+                    className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
+                    title="Compartilhar no WhatsApp"
+                  >
+                    <MessageCircle className="w-5 h-5 text-green-600" />
+                  </button>
+                  <button
+                    onClick={() => handleShare('email')}
+                    className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
+                    title="Compartilhar por Email"
+                  >
+                    <Mail className="w-5 h-5 text-gray-600" />
+                  </button>
+                  <button
+                    onClick={() => handleShare('copy')}
+                    className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
+                    title="Copiar link"
+                  >
+                    {linkCopied ? (
+                      <Check className="w-5 h-5 text-green-600" />
+                    ) : (
+                      <Copy className="w-5 h-5 text-gray-600" />
+                    )}
+                  </button>
+                </div>
+
                 {/* Foto Principal - Lado Esquerdo */}
-                <div className="flex-1 relative h-[500px]">
+                <div className="flex-1 relative h-[600px]">
                   {fotoPrincipal ? (
                     <Image
                       src={fotoPrincipal}
@@ -245,7 +319,7 @@ export default function ImovelDetalhePage() {
                   )}
                   
                   {/* Botão Favorito */}
-                  <button className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-3 hover:bg-white transition-colors shadow-lg">
+                  <button className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-3 hover:bg-white transition-colors shadow-lg z-10">
                     <Heart className="w-5 h-5 text-gray-600" />
                   </button>
                 </div>
@@ -257,7 +331,7 @@ export default function ImovelDetalhePage() {
                       <button
                         key={index}
                         onClick={() => setSelectedImageIndex(index + 1)}
-                        className="relative h-[244px] rounded-lg overflow-hidden hover:opacity-90 transition-opacity"
+                        className="relative h-[294px] rounded-lg overflow-hidden hover:opacity-90 transition-opacity border-2 border-transparent hover:border-purple-500"
                       >
                         <Image
                           src={foto}
@@ -270,68 +344,6 @@ export default function ImovelDetalhePage() {
                     ))}
                   </div>
                 )}
-              </div>
-            </div>
-
-            {/* Título e Preço */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex-1">
-                  <h1 className="text-2xl font-bold text-gray-900 mb-2">
-                    {imovel.titulo}
-                  </h1>
-                  <div className="flex items-center text-gray-600 mb-3">
-                    <MapPin className="w-4 h-4 mr-1" />
-                    <span>
-                      {imovel.endereco.rua}, {imovel.endereco.numero}, {imovel.endereco.bairro} - {imovel.endereco.cidade}/{imovel.endereco.estado}
-                    </span>
-                  </div>
-                  
-                  {/* Tags */}
-                  {imovel.tags && imovel.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {imovel.tags.map((tag: string, index: number) => (
-                        <span
-                          key={index}
-                          className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1"
-                        >
-                          <Check className="w-3 h-3" />
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Preço */}
-              <div className="border-t border-gray-200 pt-4">
-                {precoDesconto > 0 && (
-                  <div className="mb-2">
-                    <span className="text-green-600 font-semibold">
-                      Economize {formatPrice(precoDesconto)}
-                    </span>
-                  </div>
-                )}
-                <div className="flex items-baseline gap-3">
-                  {precoDesconto > 0 && (
-                    <span className="text-xl text-gray-400 line-through">
-                      {formatPrice(imovel.precoOriginal)}
-                    </span>
-                  )}
-                  <div>
-                    <span className="text-sm text-gray-600 font-medium">
-                      {imovel.status === 'venda' ? 'VENDA' : imovel.status === 'aluguel' ? 'ALUGUEL' : 'VENDA/ALUGUEL'}. 
-                      {precoDesconto > 0 ? ' DE' : ''}
-                    </span>
-                    {precoDesconto > 0 && (
-                      <span className="text-sm text-gray-600 font-medium ml-1">POR:</span>
-                    )}
-                    <div className="text-3xl font-bold text-purple-600">
-                      {formatPrice(imovel.preco)}
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -404,58 +416,6 @@ export default function ImovelDetalhePage() {
 
           {/* Sidebar Direita */}
           <div className="lg:col-span-1 space-y-6">
-            {/* Compartilhamento Social - Lateral Esquerda */}
-            <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-10 hidden lg:block">
-              <div className="bg-white rounded-lg shadow-lg p-2 space-y-2">
-                <button
-                  onClick={() => handleShare('facebook')}
-                  className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
-                  title="Compartilhar no Facebook"
-                >
-                  <Facebook className="w-5 h-5 text-blue-600" />
-                </button>
-                <button
-                  onClick={() => handleShare('twitter')}
-                  className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
-                  title="Compartilhar no Twitter"
-                >
-                  <Twitter className="w-5 h-5 text-blue-400" />
-                </button>
-                <button
-                  onClick={() => handleShare('linkedin')}
-                  className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
-                  title="Compartilhar no LinkedIn"
-                >
-                  <Linkedin className="w-5 h-5 text-blue-700" />
-                </button>
-                <button
-                  onClick={() => handleShare('whatsapp')}
-                  className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
-                  title="Compartilhar no WhatsApp"
-                >
-                  <MessageCircle className="w-5 h-5 text-green-600" />
-                </button>
-                <button
-                  onClick={() => handleShare('email')}
-                  className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
-                  title="Compartilhar por Email"
-                >
-                  <Mail className="w-5 h-5 text-gray-600" />
-                </button>
-                <button
-                  onClick={() => handleShare('copy')}
-                  className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
-                  title="Copiar link"
-                >
-                  {linkCopied ? (
-                    <Check className="w-5 h-5 text-green-600" />
-                  ) : (
-                    <Copy className="w-5 h-5 text-gray-600" />
-                  )}
-                </button>
-              </div>
-            </div>
-
             {/* Formulário de Contato */}
             <div className="bg-gray-900 rounded-lg shadow-lg p-6 sticky top-6">
               <h3 className="text-white text-lg font-semibold mb-4">RECEBER CONTATO POR:</h3>
