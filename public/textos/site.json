@@ -1,7 +1,7 @@
 {
   "header": {
     "telefone": {
-      "value": "(47) 99753-01133",
+      "value": "(47) 99753-0113",
       "type": "contato",
       "label": "📞 Telefone",
       "hint": "Telefone no cabeçalho",
@@ -9,7 +9,7 @@
       "section": "Header"
     },
     "menu_imoveis_penha": {
-      "value": "Imóveis em Penhaa",
+      "value": "Imóveis em Penha",
       "type": "texto",
       "label": "🏠 Menu Penha",
       "hint": "Texto do menu para imóveis em Penha",
@@ -178,7 +178,7 @@
         "section": "Footer - Colunas"
       },
       "viva_penha": {
-        "value": "Viva Penha",
+        "value": "Sobre Penha",
         "type": "link",
         "label": "🔗 Link Viva Penha",
         "hint": "Texto do link 'Viva Penha'",
@@ -186,7 +186,7 @@
         "section": "Footer - Colunas"
       },
       "viva_picarras": {
-        "value": "Viva Piçarras",
+        "value": "Sobre Piçarras",
         "type": "link",
         "label": "🔗 Link Viva Piçarras",
         "hint": "Texto do link 'Viva Piçarras'",
@@ -194,7 +194,7 @@
         "section": "Footer - Colunas"
       },
       "viva_barra_velha": {
-        "value": "Viva Barra Velha",
+        "value": "Sobre Barra Velha",
         "type": "link",
         "label": "🔗 Link Viva Barra Velha",
         "hint": "Texto do link 'Viva Barra Velha'",
@@ -264,7 +264,7 @@
   "home": {
     "banner": {
       "titulo": {
-        "value": "Imóveis em Penha, Balneário Piçarras e Barra Velhaaa",
+        "value": "Imóveis em Penha, Balneário Piçarras e Barra Velha",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página",
@@ -652,7 +652,7 @@
         "section": "Introdução"
       },
       "descricao": {
-        "value": "Seja bem-vindo à cidade de Penha, um destino que une tranquilidade e diversão em um só lugar. Conhecida por suas 19 praias deslumbrantes e pelo famoso parque temático Beto Carrero World, Penha é um polo em crescimento, atraindo cada vez mais turistas e investidores. Com infraestrutura em expansão e ",
+        "value": "Seja bem-vindo à cidade de Penha, um destino que une tranquilidade e diversão em um só lugar. Conhecida por suas 19 praias deslumbrantes e pelo famoso parque temático Beto Carrero World, Penha é um polo em crescimento, atraindo cada vez mais turistas e investidores. ",
         "type": "texto",
         "label": "📝 Descrição",
         "hint": "Descrição da cidade de Penha",
@@ -956,7 +956,7 @@
   "viva_barra_velha": {
     "hero": {
       "titulo": {
-        "value": "Viva Barra Velhaa",
+        "value": "Sobre Barra Velha",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página Viva Barra Velha",
@@ -964,7 +964,7 @@
         "section": "Hero"
       },
       "botao_vantagens": {
-        "value": "Ver as vantagenss",
+        "value": "Ver as vantagens",
         "type": "botao",
         "label": "🔘 Botão Vantagens",
         "hint": "Texto do botão Ver as vantagens",
@@ -974,7 +974,7 @@
     },
     "introducao": {
       "titulo": {
-        "value": "Descubra o paraíso catarinense",
+        "value": "Descubra o Tabuleiro,cartão postal de Barra Velha ",
         "type": "titulo",
         "label": "📌 Título Introdução",
         "hint": "Título da seção de introdução",
@@ -982,7 +982,7 @@
         "section": "Introdução"
       },
       "descricao": {
-        "value": "Seja bem-vindo à deslumbrante cidade de Barra Velha, um dos destinos mais encantadores do Brasil. Com suas praias deslumbrantes, vida noturna animada e oportunidades de investimento incríveis, Barra Velha é o local perfeito para viver, visitar e investir.",
+        "value": "Com uma das praias mais belas e valorizadas de Barra Velha, a Praia do Tabuleiro oferece tranquilidade, natureza preservada e ótimas oportunidades de investimento. Um destino perfeito para viver bem, relaxar e prosperar.\n",
         "type": "texto",
         "label": "📝 Descrição",
         "hint": "Descrição da cidade de Barra Velha",
@@ -1016,7 +1016,7 @@
         "section": "O que fazer"
       },
       "atracao_1": {
-        "value": "Praias de Areias Brancas",
+        "value": "Praia do Tabuleiro",
         "type": "texto",
         "label": "🏖️ Atração 1",
         "hint": "Primeira atração",
@@ -1024,7 +1024,7 @@
         "section": "O que fazer"
       },
       "atracao_2": {
-        "value": "Parque Beto Carrero World",
+        "value": "Lagoa de Barra Velha",
         "type": "texto",
         "label": "🎢 Atração 2",
         "hint": "Segunda atração",
@@ -1032,7 +1032,7 @@
         "section": "O que fazer"
       },
       "atracao_3": {
-        "value": "Cristo Luz",
+        "value": "Festa Nacional do Pirão",
         "type": "texto",
         "label": "✨ Atração 3",
         "hint": "Terceira atração",
@@ -1040,7 +1040,7 @@
         "section": "O que fazer"
       },
       "atracao_4": {
-        "value": "Vida Noturna Vibrante",
+        "value": "Morro do Cristo",
         "type": "texto",
         "label": "🌙 Atração 4",
         "hint": "Quarta atração",
@@ -1048,7 +1048,7 @@
         "section": "O que fazer"
       },
       "atracao_5": {
-        "value": "Gastronomia Excepcional",
+        "value": "Centro e orla revitalizada",
         "type": "texto",
         "label": "🍽️ Atração 5",
         "hint": "Quinta atração",
@@ -1067,7 +1067,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "Conforto e praticidade de sobra em uma cidade com infraestrutura completa e moderna.",
+          "value": "A Praia do Tabuleiro conta com orla revitalizada, fácil acesso pela BR-101 e infraestrutura em crescimento, garantindo conforto e praticidade.",
           "type": "texto",
           "label": "📝 Infraestrutura Descrição",
           "hint": "Descrição do benefício",
@@ -1085,7 +1085,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "A cidade é cheia de opções de lazer para moradores e visitantes, com paisagens de tirar o fôlego.",
+          "value": "Além das belas praias, Barra Velha se destaca por suas lagoas, eventos tradicionais e a proximidade com destinos turísticos do litoral catarinense.",
           "type": "texto",
           "label": "📝 Atrações Descrição",
           "hint": "Descrição do benefício",
@@ -1103,7 +1103,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "Aproveite a tranquilidade de viver em uma das cidades mais seguras do sul do país!",
+          "value": "Com clima acolhedor e ambiente familiar, a Praia do Tabuleiro é um lugar tranquilo e seguro para viver, aproveitar momentos de lazer e investir.",
           "type": "texto",
           "label": "📝 Segurança Descrição",
           "hint": "Descrição do benefício",
@@ -1121,7 +1121,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "Não faltam oportunidades de morar e investir na cidade, com opções para todos os gostos.",
+          "value": "O mercado imobiliário está em expansão, oferecendo apartamentos modernos próximos à praia, com opções para todos os perfis de investidores.\n",
           "type": "texto",
           "label": "📝 Diversidade Descrição",
           "hint": "Descrição do benefício",
@@ -1133,7 +1133,7 @@
     "vantagens_investir": {
       "mercado_imobiliario": {
         "titulo": {
-          "value": "Mercado imobiliário em crescimento",
+          "value": "Desenvolvimento imobiliário",
           "type": "titulo",
           "label": "📌 Mercado Título",
           "hint": "Título da vantagem Mercado",
@@ -1141,7 +1141,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "Barra Velha é um dos destinos turísticos mais procurados do Brasil, o que torna o mercado imobiliário da cidade extremamente atraente para investidores.",
+          "value": "A região está em constante expansão, com novos empreendimentos modernos e valorização contínua, atraindo cada vez mais investidores.\n",
           "type": "texto",
           "label": "📝 Mercado Descrição",
           "hint": "Descrição da vantagem",
@@ -1159,7 +1159,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "A cidade está estrategicamente localizada no estado de Santa Catarina, entre as cidades de Florianópolis e Curitiba, facilitando o acesso por terra, mar e ar. Isso a torna um centro logístico e de negócios em crescimento.",
+          "value": "Situada em Barra Velha, próxima a Joinville, Balneário Camboriú e ao Aeroporto Internacional de Navegantes, a região tem fácil acesso pela BR-101, conectando-se rapidamente aos principais polos do litoral catarinense.",
           "type": "texto",
           "label": "📝 Localização Descrição",
           "hint": "Descrição da vantagem",
@@ -1177,7 +1177,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "Além do potencial econômico, Barra Velha oferece uma qualidade de vida excepcional. Com infraestrutura de primeira classe, serviços públicos de alta qualidade e um ambiente seguro, é um lugar ideal para se viver e investir.",
+          "value": "A Praia do Tabuleiro oferece tranquilidade, contato com a natureza e um ambiente familiar, ideal para quem busca morar ou veranear com qualidade de vida.\n",
           "type": "texto",
           "label": "📝 Qualidade Descrição",
           "hint": "Descrição da vantagem",
@@ -1187,7 +1187,7 @@
       },
       "turismo": {
         "titulo": {
-          "value": "Turismo em Expansão",
+          "value": "Potencial de valorização",
           "type": "titulo",
           "label": "📌 Turismo Título",
           "hint": "Título da vantagem Turismo",
@@ -1195,7 +1195,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "O turismo é a espinha dorsal da economia de Barra Velha. A cidade recebe milhões de turistas todos os anos, o que cria uma ampla oportunidade para investimentos no setor de hospitalidade, como hotéis, resorts e serviços relacionados.",
+          "value": "Com localização privilegiada e crescente procura, a Praia do Tabuleiro vem registrando forte valorização imobiliária, garantindo excelentes oportunidades de retorno.\n",
           "type": "texto",
           "label": "📝 Turismo Descrição",
           "hint": "Descrição da vantagem",
@@ -1286,7 +1286,7 @@
   "viva_balneario_picarras": {
     "hero": {
       "titulo": {
-        "value": "Viva Balneário Piçarras",
+        "value": "Sobre Balneário Piçarras",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página Viva Balneário Piçarras",
@@ -1304,7 +1304,7 @@
     },
     "introducao": {
       "titulo": {
-        "value": "Descubra o paraíso catarinense",
+        "value": "Descubra Balneário Piçarras, a joia do litoral",
         "type": "titulo",
         "label": "📌 Título Introdução",
         "hint": "Título da seção de introdução",
@@ -1312,7 +1312,7 @@
         "section": "Introdução"
       },
       "descricao": {
-        "value": "Seja bem-vindo à deslumbrante cidade de Balneário Piçarras, um dos destinos mais encantadores do Brasil. Com suas praias deslumbrantes, vida noturna animada e oportunidades de investimento incríveis, Balneário Piçarras é o local perfeito para viver, visitar e investir.",
+        "value": "Seja bem-vindo à cidade de Balneário Piçarras, um destino que une qualidade de vida e valorização imobiliária em constante crescimento. Reconhecida por suas praias limpas e tranquilas, premiadas com a Bandeira Azul, Piçarras atrai famílias em busca de bem-estar e investidores atentos.",
         "type": "texto",
         "label": "📝 Descrição",
         "hint": "Descrição da cidade de Balneário Piçarras",
@@ -1338,7 +1338,7 @@
         "section": "O que fazer"
       },
       "subtitulo": {
-        "value": "Aproveite tudo o que Balneário Piçarras tem a oferecer e viva o melhor da cidade!",
+        "value": "Aproveite tudo o que Balneário Piçarras tem a oferecer e viva momentos inesquecíveis à beira-mar!",
         "type": "texto",
         "label": "📝 Subtítulo",
         "hint": "Subtítulo da seção",
@@ -1346,7 +1346,7 @@
         "section": "O que fazer"
       },
       "atracao_1": {
-        "value": "Praias de Areias Brancas",
+        "value": "Praias tranquilas e premiadas",
         "type": "texto",
         "label": "🏖️ Atração 1",
         "hint": "Primeira atração",
@@ -1354,7 +1354,7 @@
         "section": "O que fazer"
       },
       "atracao_2": {
-        "value": "Parque Beto Carrero World",
+        "value": "Museu Oceanográfico da Univali",
         "type": "texto",
         "label": "🎢 Atração 2",
         "hint": "Segunda atração",
@@ -1362,7 +1362,7 @@
         "section": "O que fazer"
       },
       "atracao_3": {
-        "value": "Cristo Luz",
+        "value": "Passeios de barco e esportes náuticos",
         "type": "texto",
         "label": "✨ Atração 3",
         "hint": "Terceira atração",
@@ -1370,7 +1370,7 @@
         "section": "O que fazer"
       },
       "atracao_4": {
-        "value": "Vida Noturna Vibrante",
+        "value": "Orla ideal para caminhadas e lazer",
         "type": "texto",
         "label": "🌙 Atração 4",
         "hint": "Quarta atração",
@@ -1378,7 +1378,7 @@
         "section": "O que fazer"
       },
       "atracao_5": {
-        "value": "Gastronomia Excepcional",
+        "value": "Gastronomia típica",
         "type": "texto",
         "label": "🍽️ Atração 5",
         "hint": "Quinta atração",
@@ -1397,7 +1397,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "Conforto e praticidade de sobra em uma cidade com infraestrutura completa e moderna.",
+          "value": "Balneário Piçarras vem se modernizando com orla revitalizada, ciclovias, áreas de lazer e serviços que garantem conforto e praticidade no dia a dia.",
           "type": "texto",
           "label": "📝 Infraestrutura Descrição",
           "hint": "Descrição do benefício",
@@ -1415,7 +1415,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "A cidade é cheia de opções de lazer para moradores e visitantes, com paisagens de tirar o fôlego.",
+          "value": "Com praias tranquilas e premiadas com Bandeira Azul, passeios náuticos e natureza preservada, a cidade encanta moradores e visitantes o ano inteiro.",
           "type": "texto",
           "label": "📝 Atrações Descrição",
           "hint": "Descrição do benefício",
@@ -1433,7 +1433,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "Aproveite a tranquilidade de viver em uma das cidades mais seguras do sul do país!",
+          "value": "Reconhecida pelo ambiente acolhedor e familiar, Piçarras oferece tranquilidade e qualidade de vida em uma das cidades mais seguras do litoral.",
           "type": "texto",
           "label": "📝 Segurança Descrição",
           "hint": "Descrição do benefício",
@@ -1451,7 +1451,7 @@
           "section": "Benefícios"
         },
         "descricao": {
-          "value": "Não faltam oportunidades de morar e investir na cidade, com opções para todos os gostos.",
+          "value": "O mercado imobiliário está em expansão, com opções que vão desde apartamentos modernos próximos à orla até empreendimentos ideais para investir.",
           "type": "texto",
           "label": "📝 Diversidade Descrição",
           "hint": "Descrição do benefício",
@@ -1463,7 +1463,7 @@
     "vantagens_investir": {
       "mercado_imobiliario": {
         "titulo": {
-          "value": "Mercado imobiliário em crescimento",
+          "value": "Capital da Bandeira Azul",
           "type": "titulo",
           "label": "📌 Mercado Título",
           "hint": "Título da vantagem Mercado",
@@ -1471,7 +1471,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "Balneário Piçarras é um dos destinos turísticos mais procurados do Brasil, o que torna o mercado imobiliário da cidade extremamente atraente para investidores.",
+          "value": "Invista em uma cidade que une qualidade de vida, segurança e valorização. Balneário Piçarras se destaca com praias premiadas, orla revitalizada e um mercado imobiliário em constante crescimento.",
           "type": "texto",
           "label": "📝 Mercado Descrição",
           "hint": "Descrição da vantagem",
@@ -1481,7 +1481,7 @@
       },
       "localizacao": {
         "titulo": {
-          "value": "Localização estratégica",
+          "value": "Localização Privilegiada",
           "type": "titulo",
           "label": "📌 Localização Título",
           "hint": "Título da vantagem Localização",
@@ -1489,7 +1489,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "A cidade está estrategicamente localizada no estado de Santa Catarina, entre as cidades de Florianópolis e Curitiba, facilitando o acesso por terra, mar e ar. Isso a torna um centro logístico e de negócios em crescimento.",
+          "value": "Situada entre Penha e Barra Velha, e a poucos minutos do Aeroporto Internacional de Navegantes, Piçarras é de fácil acesso para quem vem de diferentes regiões do Brasil.\n",
           "type": "texto",
           "label": "📝 Localização Descrição",
           "hint": "Descrição da vantagem",
@@ -1507,7 +1507,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "Além do potencial econômico, Balneário Piçarras oferece uma qualidade de vida excepcional. Com infraestrutura de primeira classe, serviços públicos de alta qualidade e um ambiente seguro, é um lugar ideal para se viver e investir.",
+          "value": "Com praias limpas e certificadas pela Bandeira Azul, além de uma orla revitalizada, a cidade é sinônimo de bem-estar, tranquilidade e contato com a natureza.\n",
           "type": "texto",
           "label": "📝 Qualidade Descrição",
           "hint": "Descrição da vantagem",
@@ -1517,7 +1517,7 @@
       },
       "turismo": {
         "titulo": {
-          "value": "Turismo em Expansão",
+          "value": "Turismo em Evolução",
           "type": "titulo",
           "label": "📌 Turismo Título",
           "hint": "Título da vantagem Turismo",
@@ -1525,7 +1525,7 @@
           "section": "Vantagens de Investir"
         },
         "descricao": {
-          "value": "O turismo é a espinha dorsal da economia de Balneário Piçarras. A cidade recebe milhões de turistas todos os anos, o que cria uma ampla oportunidade para investimentos no setor de hospitalidade, como hotéis, resorts e serviços relacionados.",
+          "value": "Combinando charme de cidade pequena e estrutura turística em expansão, Balneário Piçarras se destaca como destino para lazer, esportes náuticos e eventos culturais.",
           "type": "texto",
           "label": "📝 Turismo Descrição",
           "hint": "Descrição da vantagem",
@@ -1908,7 +1908,7 @@
   "como_comprar": {
     "hero": {
       "titulo": {
-        "value": "A experiência de quem entende o mercado ao seu lado!",
+        "value": "Mais que imóveis, entregamos estratégia de investimento e visão",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página",
@@ -1951,7 +1951,7 @@
           "section": "Como Funciona"
         },
         "titulo": {
-          "value": "Busque o imóvel ideal em nosso site",
+          "value": "Descubra a melhor oportunidade",
           "type": "titulo",
           "label": "📌 Passo 1 Título",
           "hint": "Título do passo 1",
@@ -1959,7 +1959,7 @@
           "section": "Como Funciona"
         },
         "descricao": {
-          "value": "Utilize nossos filtros para otimizar seus resultados",
+          "value": "Use nossos filtros e análises de mercado para identificar imóveis alinhados ao seu perfil.",
           "type": "texto",
           "label": "📝 Passo 1 Descrição",
           "hint": "Descrição do passo 1",
@@ -1977,7 +1977,7 @@
           "section": "Como Funciona"
         },
         "titulo": {
-          "value": "Entre em contato e agende suas visitas",
+          "value": "Agende sua visita ou reunião estratégica",
           "type": "titulo",
           "label": "📌 Passo 2 Título",
           "hint": "Título do passo 2",
@@ -1985,7 +1985,7 @@
           "section": "Como Funciona"
         },
         "descricao": {
-          "value": "Aproveite para tirar todas as suas dúvidas com o corretor",
+          "value": "Tire suas dúvidas diretamente com nossos especialistas e entenda os diferenciais de cada imóvel.",
           "type": "texto",
           "label": "📝 Passo 2 Descrição",
           "hint": "Descrição do passo 2",
@@ -2003,7 +2003,7 @@
           "section": "Como Funciona"
         },
         "titulo": {
-          "value": "Faça suas propostas",
+          "value": "Negocie com segurança",
           "type": "titulo",
           "label": "📌 Passo 3 Título",
           "hint": "Título do passo 3",
@@ -2011,7 +2011,7 @@
           "section": "Como Funciona"
         },
         "descricao": {
-          "value": "Nossos especialistas ajudam você com a negociação e documentação",
+          "value": "Com apoio da Nox, você apresenta suas propostas com clareza e confiança. Nós cuidamos da burocracia.",
           "type": "texto",
           "label": "📝 Passo 3 Descrição",
           "hint": "Descrição do passo 3",
@@ -2029,7 +2029,7 @@
           "section": "Como Funciona"
         },
         "titulo": {
-          "value": "Assine digitalmente e receba as chaves",
+          "value": "Assine digitalmente",
           "type": "titulo",
           "label": "📌 Passo 4 Título",
           "hint": "Título do passo 4",
@@ -2037,7 +2037,7 @@
           "section": "Como Funciona"
         },
         "descricao": {
-          "value": "Todo o processo digital para maior comodidade",
+          "value": "Finalize o processo de forma rápida e segura, com suporte do corretor até a entrega das chaves.",
           "type": "texto",
           "label": "📝 Passo 4 Descrição",
           "hint": "Descrição do passo 4",
@@ -2196,7 +2196,7 @@
   "quem_somos": {
     "hero": {
       "titulo": {
-        "value": "A imobiliária mais alto-astral do litoral catarinense",
+        "value": "Mais do que imóveis, entregamos estratégia de investimento e visão",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página",
@@ -2204,7 +2204,7 @@
         "section": "Hero"
       },
       "subtitulo": {
-        "value": "Conheça a história da Nox.",
+        "value": "Somos especialistas em identificar oportunidades",
         "type": "texto",
         "label": "📝 Subtítulo",
         "hint": "Subtítulo do hero",
@@ -2275,7 +2275,7 @@
           "section": "Missão, Visão e Valores"
         },
         "descricao": {
-          "value": "Surpreender nossos clientes desde o primeiro contato até a escritura. Garantir financeiramente e juridicamente nossas intermediações imobiliárias.",
+          "value": "Oferecer soluções imobiliárias inteligentes e seguras, conectando clientes às melhores oportunidades de investimento e moradia, com transparência e acompanhamento em cada etapa.",
           "type": "texto",
           "label": "📝 Missão Descrição",
           "hint": "Descrição da Missão",
@@ -2293,7 +2293,7 @@
           "section": "Missão, Visão e Valores"
         },
         "descricao": {
-          "value": "Intermediar 1 bilhão em valor líquido entre janeiro e dezembro de 2026.",
+          "value": "Ser referência no mercado imobiliário do litoral catarinense, reconhecida por transformar imóveis em patrimônio sólido e rentável para nosso cliente.",
           "type": "texto",
           "label": "📝 Visão Descrição",
           "hint": "Descrição da Visão",
@@ -2311,7 +2311,7 @@
           "section": "Missão, Visão e Valores"
         },
         "descricao": {
-          "value": "Leves, alegres, loucos e autênticos. Obstinados, comprometidos, ousados e intensos.",
+          "value": "Transparência: clareza em todas as negociações.\n\nCompromisso: dedicação total ao sucesso e à segurança de cada cliente.\n\nInovação: uso de tecnologia e",
           "type": "texto",
           "label": "📝 Valores Descrição",
           "hint": "Descrição dos Valores",

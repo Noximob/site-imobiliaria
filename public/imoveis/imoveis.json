@@ -1,2 +1,48 @@
-[]
-
+[
+  {
+    "titulo": "Apartamento Beira Mar - Piçarras",
+    "slug": "apartamento-beira-mar-picarras",
+    "descricao": "Testandos somente",
+    "preco": 500000,
+    "tipo": "apartamento",
+    "status": "venda",
+    "endereco": {
+      "cidade": "Penha",
+      "bairro": "Gravata",
+      "rua": "Jordelina flores",
+      "numero": "154",
+      "cep": "88385000",
+      "estado": "Santa Catarina"
+    },
+    "caracteristicas": {
+      "quartos": 2,
+      "banheiros": 1,
+      "vagas": 1,
+      "area": 57,
+      "areaTerreno": 0,
+      "frenteMar": true,
+      "piscina": true,
+      "churrasqueira": false,
+      "academia": false,
+      "portaria": false,
+      "elevador": true,
+      "varanda": false,
+      "sacada": false
+    },
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "telefone": "",
+      "email": "",
+      "corretor": ""
+    },
+    "publicado": true,
+    "id": "1763079386442",
+    "fotos": [
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/1763079386442_0.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/1763079386442_1.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/1763079386442_2.jpg"
+    ],
+    "createdAt": "2025-11-14T00:16:28.592Z",
+    "updatedAt": "2025-11-14T00:16:28.592Z"
+  }
+]
