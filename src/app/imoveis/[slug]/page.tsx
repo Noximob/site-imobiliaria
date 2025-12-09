@@ -260,56 +260,158 @@ export default function ImovelDetalhePage() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Conteúdo Principal */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Galeria de Fotos */}
-            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-              <div className="relative flex gap-2">
-                {/* Foto Principal - Lado Esquerdo (Grande) */}
-                <div className="flex-1 relative h-[600px]">
-                  {fotoPrincipal ? (
-                    <Image
-                      src={fotoPrincipal}
-                      alt={imovel.titulo}
-                      fill
-                      className="object-cover"
-                      priority
-                      unoptimized
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                      <span className="text-gray-500">Sem imagem</span>
-                    </div>
-                  )}
+        {/* Galeria de Fotos - Logo abaixo das informações */}
+        <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
+          <div className="relative flex gap-2">
+            {/* Foto Principal - Lado Esquerdo (Grande) */}
+            <div className="flex-1 relative h-[600px]">
+              {fotoPrincipal ? (
+                <Image
+                  src={fotoPrincipal}
+                  alt={imovel.titulo}
+                  fill
+                  className="object-cover"
+                  priority
+                  unoptimized
+                />
+              ) : (
+                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                  <span className="text-gray-500">Sem imagem</span>
                 </div>
+              )}
+            </div>
 
-                {/* Grid de 4 Fotos - Lado Direito */}
-                {fotosParaThumbnails.length > 0 && (
-                  <div className="w-64 grid grid-cols-2 gap-2">
-                    {fotosParaThumbnails.map((foto: string, index: number) => {
-                      // Encontrar o índice original da foto no array todasFotos
-                      const fotoIndex = todasFotos.findIndex((f: string) => f === foto)
-                      return (
-                        <button
-                          key={index}
-                          onClick={() => setSelectedImageIndex(fotoIndex)}
-                          className="relative h-[294px] rounded-lg overflow-hidden hover:opacity-90 transition-opacity border-2 border-transparent hover:border-purple-500"
-                        >
-                          <Image
-                            src={foto}
-                            alt={`${imovel.titulo} - Foto ${index + 2}`}
-                            fill
-                            className="object-cover"
-                            unoptimized
-                          />
-                        </button>
-                      )
-                    })}
-                  </div>
-                )}
+            {/* Grid de 4 Fotos - Lado Direito */}
+            {fotosParaThumbnails.length > 0 && (
+              <div className="w-64 grid grid-cols-2 gap-2">
+                {fotosParaThumbnails.map((foto: string, index: number) => {
+                  // Encontrar o índice original da foto no array todasFotos
+                  const fotoIndex = todasFotos.findIndex((f: string) => f === foto)
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedImageIndex(fotoIndex)}
+                      className="relative h-[294px] rounded-lg overflow-hidden hover:opacity-90 transition-opacity border-2 border-transparent hover:border-purple-500"
+                    >
+                      <Image
+                        src={foto}
+                        alt={`${imovel.titulo} - Foto ${index + 2}`}
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                    </button>
+                  )
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Formulário de Contato - Abaixo da Galeria */}
+        <div className="bg-gray-900 rounded-lg shadow-lg p-6 mb-6">
+          <h3 className="text-white text-lg font-semibold mb-4">RECEBER CONTATO POR:</h3>
+          
+          {/* Opções de Contato */}
+          <div className="flex gap-2 mb-6">
+            <button
+              onClick={() => setContatoTipo('telefone')}
+              className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                contatoTipo === 'telefone'
+                  ? 'bg-orange-500 text-white'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              }`}
+            >
+              Telefone
+            </button>
+            <button
+              onClick={() => setContatoTipo('email')}
+              className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                contatoTipo === 'email'
+                  ? 'bg-orange-500 text-white'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              }`}
+            >
+              Email
+            </button>
+            <button
+              onClick={() => setContatoTipo('whatsapp')}
+              className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                contatoTipo === 'whatsapp'
+                  ? 'bg-orange-500 text-white'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              }`}
+            >
+              WhatsApp
+            </button>
+          </div>
+
+          <form onSubmit={handleSubmitForm} className="space-y-4">
+            <textarea
+              value={formData.mensagem}
+              onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
+              className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm resize-none"
+              rows={4}
+              required
+            />
+
+            <input
+              type="text"
+              placeholder="Nome"
+              value={formData.nome}
+              onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+              className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
+              required
+            />
+
+            <input
+              type="email"
+              placeholder="E-mail"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
+              required
+            />
+
+            <input
+              type="tel"
+              placeholder="Celular / WhatsApp"
+              value={formData.telefone}
+              onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+              className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
+              required
+            />
+
+            <button
+              type="submit"
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors"
+            >
+              ENVIAR
+            </button>
+
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-700"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-gray-900 text-gray-400">OU</span>
               </div>
             </div>
+
+            <a
+              href={getWhatsAppLink(imovel.contato?.whatsapp || '', `Olá, gostaria de receber mais informações sobre este imóvel: ${imovel.titulo}`)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Fale pelo WhatsApp
+            </a>
+          </form>
+        </div>
+
+        {/* Conteúdo Principal - Abaixo do Formulário */}
+        <div className="space-y-6">
 
             {/* Descrição */}
             <div className="bg-white rounded-lg shadow-sm p-6">
@@ -376,112 +478,6 @@ export default function ImovelDetalhePage() {
                 </div>
               </div>
             )}
-          </div>
-
-          {/* Sidebar Direita */}
-          <div className="lg:col-span-1 space-y-6">
-            {/* Formulário de Contato */}
-            <div className="bg-gray-900 rounded-lg shadow-lg p-6 sticky top-6">
-              <h3 className="text-white text-lg font-semibold mb-4">RECEBER CONTATO POR:</h3>
-              
-              {/* Opções de Contato */}
-              <div className="flex gap-2 mb-6">
-                <button
-                  onClick={() => setContatoTipo('telefone')}
-                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
-                    contatoTipo === 'telefone'
-                      ? 'bg-orange-500 text-white'
-                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                  }`}
-                >
-                  Telefone
-                </button>
-                <button
-                  onClick={() => setContatoTipo('email')}
-                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
-                    contatoTipo === 'email'
-                      ? 'bg-orange-500 text-white'
-                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                  }`}
-                >
-                  Email
-                </button>
-                <button
-                  onClick={() => setContatoTipo('whatsapp')}
-                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
-                    contatoTipo === 'whatsapp'
-                      ? 'bg-orange-500 text-white'
-                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                  }`}
-                >
-                  WhatsApp
-                </button>
-              </div>
-
-              <form onSubmit={handleSubmitForm} className="space-y-4">
-                <textarea
-                  value={formData.mensagem}
-                  onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
-                  className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm resize-none"
-                  rows={4}
-                  required
-                />
-
-                <input
-                  type="text"
-                  placeholder="Nome"
-                  value={formData.nome}
-                  onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                  className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
-                  required
-                />
-
-                <input
-                  type="email"
-                  placeholder="E-mail"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
-                  required
-                />
-
-                <input
-                  type="tel"
-                  placeholder="Celular / WhatsApp"
-                  value={formData.telefone}
-                  onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
-                  className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
-                  required
-                />
-
-                <button
-                  type="submit"
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors"
-                >
-                  ENVIAR
-                </button>
-
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-700"></div>
-                  </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-gray-900 text-gray-400">OU</span>
-                  </div>
-                </div>
-
-                <a
-                  href={getWhatsAppLink(imovel.contato?.whatsapp || '', `Olá, gostaria de receber mais informações sobre este imóvel: ${imovel.titulo}`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
-                >
-                  <MessageCircle className="w-5 h-5" />
-                  Fale pelo WhatsApp
-                </a>
-              </form>
-            </div>
-          </div>
         </div>
       </div>
     </div>
