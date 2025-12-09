@@ -294,7 +294,12 @@ export async function PUT(request: NextRequest) {
         sha: fotosCommit.sha
       })
 
-      imovel.fotos = fotosUrls
+      // Adicionar novas fotos às existentes (não substituir)
+      const fotosExistentes = imoveis[index].fotos || []
+      imovel.fotos = [...fotosExistentes, ...fotosUrls]
+    } else {
+      // Se não houver novas fotos, manter as existentes
+      imovel.fotos = imoveis[index].fotos || []
     }
 
     // Atualizar imóvel
