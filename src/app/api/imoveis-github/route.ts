@@ -246,9 +246,15 @@ export async function PUT(request: NextRequest) {
 
       const treeItems = []
 
+      // Contar fotos existentes para não sobrescrever
+      const fotosExistentes = imoveis[index].fotos || []
+      const numeroFotosExistentes = fotosExistentes.length
+      
       for (let i = 0; i < fotos.length; i++) {
         const foto = fotos[i]
-        const fotoPath = `public/imoveis/imagens/${id}_${i}.jpg`
+        // Usar timestamp para garantir nome único e não sobrescrever
+        const timestamp = Date.now()
+        const fotoPath = `public/imoveis/imagens/${id}_${timestamp}_${i}.jpg`
         
         const base64Content = foto.split(',')[1] || foto
         

@@ -132,9 +132,6 @@ export default function ImovelDetalhePage() {
     : 0
 
   const todasFotos = imovel.fotos || []
-  const fotoPrincipal = todasFotos[selectedImageIndex] || todasFotos[0] || ''
-  // Thumbnails: as 4 fotos seguintes, excluindo a foto principal atual
-  const fotosParaThumbnails = todasFotos.filter((_: string, index: number) => index !== selectedImageIndex).slice(0, 4)
 
   // Características extras (combinando booleanas e array de extras)
   const caracteristicasList = [
@@ -260,52 +257,33 @@ export default function ImovelDetalhePage() {
           </div>
         )}
 
-        {/* Galeria de Fotos - Logo abaixo das informações */}
+        {/* Galeria de Fotos - Grid igual ao site de referência */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
-          <div className="relative flex gap-2">
-            {/* Foto Principal - Lado Esquerdo (Grande) */}
-            <div className="flex-1 relative h-[600px]">
-              {fotoPrincipal ? (
-                <Image
-                  src={fotoPrincipal}
-                  alt={imovel.titulo}
-                  fill
-                  className="object-cover"
-                  priority
-                  unoptimized
-                />
-              ) : (
-                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                  <span className="text-gray-500">Sem imagem</span>
-                </div>
-              )}
+          {todasFotos.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2">
+              {todasFotos.map((foto: string, index: number) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedImageIndex(index)}
+                  className={`relative aspect-video rounded-lg overflow-hidden hover:opacity-90 transition-opacity ${
+                    selectedImageIndex === index ? 'ring-4 ring-purple-500' : 'border-2 border-transparent hover:border-purple-500'
+                  }`}
+                >
+                  <Image
+                    src={foto}
+                    alt={`${imovel.titulo} - Foto ${index + 1}`}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </button>
+              ))}
             </div>
-
-            {/* Grid de 4 Fotos - Lado Direito */}
-            {fotosParaThumbnails.length > 0 && (
-              <div className="w-64 grid grid-cols-2 gap-2">
-                {fotosParaThumbnails.map((foto: string, index: number) => {
-                  // Encontrar o índice original da foto no array todasFotos
-                  const fotoIndex = todasFotos.findIndex((f: string) => f === foto)
-                  return (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedImageIndex(fotoIndex)}
-                      className="relative h-[294px] rounded-lg overflow-hidden hover:opacity-90 transition-opacity border-2 border-transparent hover:border-purple-500"
-                    >
-                      <Image
-                        src={foto}
-                        alt={`${imovel.titulo} - Foto ${index + 2}`}
-                        fill
-                        className="object-cover"
-                        unoptimized
-                      />
-                    </button>
-                  )
-                })}
-              </div>
-            )}
-          </div>
+          ) : (
+            <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
+              <span className="text-gray-500">Sem imagens</span>
+            </div>
+          )}
         </div>
 
         {/* Formulário de Contato - Abaixo da Galeria */}
