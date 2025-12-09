@@ -27,7 +27,9 @@
       "portaria": false,
       "elevador": true,
       "varanda": false,
-      "sacada": false
+      "sacada": false,
+      "suite": 0,
+      "extras": []
     },
     "contato": {
       "whatsapp": "(47) 99753-0113",
@@ -39,10 +41,10 @@
     "id": "1763079386442",
     "fotos": [
       "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/1763079386442_0.jpg",
-      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/1763079386442_1.jpg",
-      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/1763079386442_2.jpg"
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/1763079386442_1.jpg"
     ],
     "createdAt": "2025-11-14T00:16:28.592Z",
-    "updatedAt": "2025-11-14T00:16:28.592Z"
+    "updatedAt": "2025-12-09T16:53:24.477Z",
+    "visualizacoes": 0
   }
 ]
