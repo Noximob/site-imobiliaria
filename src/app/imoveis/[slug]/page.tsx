@@ -348,7 +348,7 @@ export default function ImovelDetalhePage() {
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">Características</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {caracteristicasList.map((caracteristica, index) => (
+                  {caracteristicasList.map((caracteristica: string, index: number) => (
                     <div key={index} className="flex items-center gap-2 text-gray-700">
                       <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
                         <Check className="w-3 h-3 text-white" />
@@ -365,7 +365,7 @@ export default function ImovelDetalhePage() {
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">Infraestrutura</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {infraestruturaList.map((item, index) => (
+                  {infraestruturaList.map((item: string, index: number) => (
                     <div key={index} className="flex items-center gap-2 text-gray-700">
                       <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
                         <Check className="w-3 h-3 text-white" />
