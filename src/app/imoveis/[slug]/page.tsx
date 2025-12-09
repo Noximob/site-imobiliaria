@@ -166,73 +166,87 @@ export default function ImovelDetalhePage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Informações do Imóvel - ACIMA da Galeria */}
+        {/* Informações do Imóvel - ACIMA da Galeria - Igual ao site de referência */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          {/* Título Principal */}
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
-            {imovel.titulo}
-          </h1>
-          
-          {/* Subtítulo (Nome do Edifício) - Extraído do título */}
-          {(() => {
-            const edMatch = imovel.titulo.match(/Ed\.\s*([^,em]+)/i);
-            const edificioMatch = imovel.titulo.match(/Edifício\s+([^,em]+)/i);
-            const residenciaMatch = imovel.titulo.match(/([A-Z][A-Z\s]+(?:RESIDENCE|APARTAMENTO|CONDOMINIO|VILLAGE|TOWER|SUITE|CLUB|PARK|GARDEN|LIFE|HOME|PLACE|HOUSE))/);
-            
-            const subtitulo = edMatch?.[1]?.trim() || 
-                            edificioMatch?.[1]?.trim() || 
-                            residenciaMatch?.[1]?.trim() || 
-                            null;
-            
-            return subtitulo ? (
-              <h2 className="text-lg font-semibold text-gray-700 mb-3 uppercase">
-                {subtitulo}
-              </h2>
-            ) : null;
-          })()}
-          
-          {/* Endereço */}
-          <div className="flex items-center text-gray-600 mb-4">
-            <MapPin className="w-4 h-4 mr-1" />
-            <span>
-              {imovel.endereco.rua}, {imovel.endereco.numero}, {imovel.endereco.bairro} - {imovel.endereco.cidade}/{imovel.endereco.estado}
-            </span>
-          </div>
-          
-          {/* Código */}
-          <div className="flex items-center gap-2 mb-4">
-            <Key className="w-4 h-4 text-orange-500" />
-            <span className="font-medium text-gray-900">CÓDIGO: {imovel.id}</span>
-          </div>
-          
-          {/* Preço */}
-          <div className="border-t border-gray-200 pt-4">
-            {precoDesconto > 0 && (
-              <div className="mb-2">
-                <span className="text-green-600 font-semibold">
-                  Economize {formatPrice(precoDesconto)}
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+            {/* Coluna Esquerda - Título, Subtítulo, Endereço, Código */}
+            <div className="flex-1">
+              {/* Título Principal */}
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                {imovel.titulo}
+              </h1>
+              
+              {/* Subtítulo (Nome do Edifício) - Extraído do título */}
+              {(() => {
+                const edMatch = imovel.titulo.match(/Ed\.\s*([^,em]+)/i);
+                const edificioMatch = imovel.titulo.match(/Edifício\s+([^,em]+)/i);
+                const residenciaMatch = imovel.titulo.match(/([A-Z][A-Z\s]+(?:RESIDENCE|APARTAMENTO|CONDOMINIO|VILLAGE|TOWER|SUITE|CLUB|PARK|GARDEN|LIFE|HOME|PLACE|HOUSE))/);
+                
+                const subtitulo = edMatch?.[1]?.trim() || 
+                                edificioMatch?.[1]?.trim() || 
+                                residenciaMatch?.[1]?.trim() || 
+                                null;
+                
+                return subtitulo ? (
+                  <h2 className="text-lg font-semibold text-gray-700 mb-3 uppercase">
+                    {subtitulo}
+                  </h2>
+                ) : null;
+              })()}
+              
+              {/* Endereço */}
+              <div className="flex items-center text-gray-600 mb-3">
+                <MapPin className="w-4 h-4 mr-1" />
+                <span>
+                  {imovel.endereco.rua}, {imovel.endereco.numero}, {imovel.endereco.bairro} - {imovel.endereco.cidade}/{imovel.endereco.estado}
                 </span>
               </div>
-            )}
-            <div className="flex items-baseline gap-3 flex-wrap">
-              {precoDesconto > 0 && (
-                <span className="text-xl text-gray-400 line-through">
-                  {imovel.status === 'venda' ? 'VENDA' : imovel.status === 'aluguel' ? 'ALUGUEL' : 'VENDA/ALUGUEL'}. DE {formatPrice(imovel.precoOriginal || 0)}
-                </span>
-              )}
-              <div className="flex items-baseline gap-2">
-                {!precoDesconto && (
-                  <span className="text-sm text-gray-600 font-medium">
-                    {imovel.status === 'venda' ? 'VENDA' : imovel.status === 'aluguel' ? 'ALUGUEL' : 'VENDA/ALUGUEL'}.
-                  </span>
-                )}
+              
+              {/* Código */}
+              <div className="flex items-center gap-2">
+                <Key className="w-4 h-4 text-orange-500" />
+                <span className="font-medium text-gray-900">CÓDIGO: {imovel.id}</span>
+              </div>
+            </div>
+            
+            {/* Coluna Direita - Preço e Botão Favorito */}
+            <div className="flex flex-col items-end gap-4">
+              {/* Preço */}
+              <div className="text-right">
                 {precoDesconto > 0 && (
-                  <span className="text-sm text-gray-600 font-medium">POR:</span>
+                  <div className="mb-2">
+                    <span className="text-green-600 font-semibold text-sm">
+                      Economize {formatPrice(precoDesconto)}
+                    </span>
+                  </div>
                 )}
-                <span className="text-3xl font-bold text-purple-600">
-                  {formatPrice(imovel.preco)}
-                </span>
+                <div className="flex flex-col items-end gap-1">
+                  {precoDesconto > 0 && (
+                    <span className="text-lg text-gray-400 line-through">
+                      {imovel.status === 'venda' ? 'VENDA' : imovel.status === 'aluguel' ? 'ALUGUEL' : 'VENDA/ALUGUEL'}. DE {formatPrice(imovel.precoOriginal || 0)}
+                    </span>
+                  )}
+                  <div className="flex items-baseline gap-2">
+                    {!precoDesconto && (
+                      <span className="text-sm text-gray-600 font-medium">
+                        {imovel.status === 'venda' ? 'VENDA' : imovel.status === 'aluguel' ? 'ALUGUEL' : 'VENDA/ALUGUEL'}.
+                      </span>
+                    )}
+                    {precoDesconto > 0 && (
+                      <span className="text-sm text-gray-600 font-medium">POR:</span>
+                    )}
+                    <span className="text-3xl font-bold text-red-600">
+                      {formatPrice(imovel.preco)}
+                    </span>
+                  </div>
+                </div>
               </div>
+              
+              {/* Botão Favorito */}
+              <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                <Heart className="w-5 h-5 text-gray-600" />
+                <span className="text-sm text-gray-700 font-medium">Favorito</span>
+              </button>
             </div>
           </div>
         </div>
@@ -252,7 +266,7 @@ export default function ImovelDetalhePage() {
             <div className="bg-white rounded-lg shadow-sm overflow-hidden relative">
               <div className="relative flex gap-2">
                 {/* Barra de Compartilhamento Social - Lateral Esquerda DENTRO da Galeria */}
-                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 backdrop-blur-sm rounded-r-lg shadow-lg p-2 space-y-2">
+                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 bg-white rounded-r-lg shadow-lg p-2 space-y-2">
                   <button
                     onClick={() => handleShare('facebook')}
                     className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
@@ -317,11 +331,6 @@ export default function ImovelDetalhePage() {
                       <span className="text-gray-500">Sem imagem</span>
                     </div>
                   )}
-                  
-                  {/* Botão Favorito */}
-                  <button className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-3 hover:bg-white transition-colors shadow-lg z-10">
-                    <Heart className="w-5 h-5 text-gray-600" />
-                  </button>
                 </div>
 
                 {/* Grid de Fotos - Lado Direito */}
