@@ -4,6 +4,7 @@ export interface Imovel {
   slug: string;
   descricao: string;
   preco: number;
+  precoOriginal?: number; // Preço original antes do desconto
   tipo: 'casa' | 'apartamento' | 'terreno' | 'comercial';
   status: 'venda' | 'aluguel' | 'venda-aluguel';
   endereco: {
@@ -20,6 +21,7 @@ export interface Imovel {
     vagas: number;
     area: number;
     areaTerreno?: number;
+    suite?: number; // Número de suítes
     frenteMar: boolean;
     piscina: boolean;
     churrasqueira: boolean;
@@ -28,7 +30,11 @@ export interface Imovel {
     elevador: boolean;
     varanda: boolean;
     sacada: boolean;
+    // Características adicionais (lista de strings para flexibilidade)
+    extras?: string[]; // Ex: "Vista para o Mar", "Área de Serviço", "Cozinha com Armário", etc.
   };
+  infraestrutura?: string[]; // Ex: "Água Individual", "Interfone", "Churrasqueira", "Salão de Festas", etc.
+  tags?: string[]; // Ex: "Mobiliado", "Novo", "Reformado", etc.
   fotos: string[];
   coordenadas?: {
     lat: number;
@@ -40,6 +46,7 @@ export interface Imovel {
     email?: string;
     corretor: string;
   };
+  visualizacoes?: number; // Contador de visualizações
   createdAt: Date;
   updatedAt: Date;
   publicado: boolean;

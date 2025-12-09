@@ -16,6 +16,7 @@ export default function AdminImoveis() {
     titulo: '',
     descricao: '',
     preco: 0,
+    precoOriginal: 0,
     tipo: 'apartamento' as 'casa' | 'apartamento' | 'terreno' | 'comercial',
     status: 'venda' as 'venda' | 'aluguel' | 'venda-aluguel',
     endereco: {
@@ -32,6 +33,7 @@ export default function AdminImoveis() {
       vagas: 0,
       area: 0,
       areaTerreno: 0,
+      suite: 0,
       frenteMar: false,
       piscina: false,
       churrasqueira: false,
@@ -39,8 +41,16 @@ export default function AdminImoveis() {
       portaria: false,
       elevador: false,
       varanda: false,
-      sacada: false
+      sacada: false,
+      extras: [] as string[]
     },
+    infraestrutura: [] as string[],
+    tags: [] as string[],
+    coordenadas: {
+      lat: 0,
+      lng: 0
+    },
+    visualizacoes: 0,
     contato: {
       whatsapp: '(47) 99753-0113',
       telefone: '',
@@ -49,6 +59,9 @@ export default function AdminImoveis() {
     },
     publicado: true
   })
+  const [caracteristicasExtrasText, setCaracteristicasExtrasText] = useState('')
+  const [infraestruturaText, setInfraestruturaText] = useState('')
+  const [tagsText, setTagsText] = useState('')
   const [fotosFiles, setFotosFiles] = useState<File[]>([])
   const [fotosPreviews, setFotosPreviews] = useState<string[]>([])
   const [searchTerm, setSearchTerm] = useState('')
@@ -105,13 +118,20 @@ export default function AdminImoveis() {
       titulo: imovel.titulo,
       descricao: imovel.descricao,
       preco: imovel.preco,
+      precoOriginal: (imovel as any).precoOriginal || 0,
       tipo: imovel.tipo,
       status: imovel.status,
       endereco: { ...imovel.endereco },
       caracteristicas: { 
         ...imovel.caracteristicas,
-        areaTerreno: imovel.caracteristicas.areaTerreno || 0
+        areaTerreno: imovel.caracteristicas.areaTerreno || 0,
+        suite: (imovel.caracteristicas as any).suite || 0,
+        extras: (imovel.caracteristicas as any).extras || []
       },
+      infraestrutura: (imovel as any).infraestrutura || [],
+      tags: (imovel as any).tags || [],
+      coordenadas: imovel.coordenadas || { lat: 0, lng: 0 },
+      visualizacoes: (imovel as any).visualizacoes || 0,
       contato: {
         ...imovel.contato,
         telefone: imovel.contato.telefone || '',
@@ -119,6 +139,9 @@ export default function AdminImoveis() {
       },
       publicado: imovel.publicado
     })
+    setCaracteristicasExtrasText(((imovel.caracteristicas as any).extras || []).join(', '))
+    setInfraestruturaText(((imovel as any).infraestrutura || []).join(', '))
+    setTagsText(((imovel as any).tags || []).join(', '))
     setFotosFiles([])
     setFotosPreviews(imovel.fotos || [])
     setShowCreateForm(true)
@@ -143,6 +166,7 @@ export default function AdminImoveis() {
       titulo: '',
       descricao: '',
       preco: 0,
+      precoOriginal: 0,
       tipo: 'apartamento',
       status: 'venda',
       endereco: {
@@ -159,6 +183,7 @@ export default function AdminImoveis() {
         vagas: 0,
         area: 0,
         areaTerreno: 0,
+        suite: 0,
         frenteMar: false,
         piscina: false,
         churrasqueira: false,
@@ -166,8 +191,13 @@ export default function AdminImoveis() {
         portaria: false,
         elevador: false,
         varanda: false,
-        sacada: false
+        sacada: false,
+        extras: []
       },
+      infraestrutura: [],
+      tags: [],
+      coordenadas: { lat: 0, lng: 0 },
+      visualizacoes: 0,
       contato: {
         whatsapp: '(47) 99753-0113',
         telefone: '',
@@ -176,6 +206,9 @@ export default function AdminImoveis() {
       },
       publicado: true
     })
+    setCaracteristicasExtrasText('')
+    setInfraestruturaText('')
+    setTagsText('')
     setFotosFiles([])
     setFotosPreviews([])
     setEditingImovel(null)
@@ -198,15 +231,39 @@ export default function AdminImoveis() {
 
     setIsLoading(true)
     try {
+      // Processar arrays de strings
+      const caracteristicasExtras = caracteristicasExtrasText
+        .split(',')
+        .map(s => s.trim())
+        .filter(s => s.length > 0)
+      const infraestruturaList = infraestruturaText
+        .split(',')
+        .map(s => s.trim())
+        .filter(s => s.length > 0)
+      const tagsList = tagsText
+        .split(',')
+        .map(s => s.trim())
+        .filter(s => s.length > 0)
+
       const imovelData = {
         titulo: novoImovel.titulo,
         slug: generateSlug(novoImovel.titulo),
         descricao: novoImovel.descricao,
         preco: novoImovel.preco,
+        precoOriginal: novoImovel.precoOriginal > 0 ? novoImovel.precoOriginal : undefined,
         tipo: novoImovel.tipo,
         status: novoImovel.status,
         endereco: novoImovel.endereco,
-        caracteristicas: novoImovel.caracteristicas,
+        caracteristicas: {
+          ...novoImovel.caracteristicas,
+          extras: caracteristicasExtras
+        },
+        infraestrutura: infraestruturaList.length > 0 ? infraestruturaList : undefined,
+        tags: tagsList.length > 0 ? tagsList : undefined,
+        coordenadas: novoImovel.coordenadas.lat !== 0 && novoImovel.coordenadas.lng !== 0 
+          ? novoImovel.coordenadas 
+          : undefined,
+        visualizacoes: novoImovel.visualizacoes || 0,
         contato: novoImovel.contato,
         publicado: novoImovel.publicado,
       }
@@ -422,6 +479,20 @@ export default function AdminImoveis() {
                       required
                       min="0"
                     />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Preço Original (R$) - Para desconto
+                    </label>
+                    <input
+                      type="number"
+                      value={novoImovel.precoOriginal || ''}
+                      onChange={(e) => setNovoImovel({...novoImovel, precoOriginal: Number(e.target.value)})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="0 (opcional)"
+                      min="0"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Deixe em branco se não houver desconto</p>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -647,6 +718,60 @@ export default function AdminImoveis() {
                       min="0"
                     />
                   </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Suítes
+                    </label>
+                    <input
+                      type="number"
+                      value={novoImovel.caracteristicas.suite || ''}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel, 
+                        caracteristicas: {...novoImovel.caracteristicas, suite: Number(e.target.value)}
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      min="0"
+                    />
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Características Extras (separadas por vírgula)
+                    </label>
+                    <input
+                      type="text"
+                      value={caracteristicasExtrasText}
+                      onChange={(e) => setCaracteristicasExtrasText(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="Ex: Vista para o Mar, Área de Serviço, Cozinha com Armário"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Separe cada característica com vírgula</p>
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Infraestrutura (separadas por vírgula)
+                    </label>
+                    <input
+                      type="text"
+                      value={infraestruturaText}
+                      onChange={(e) => setInfraestruturaText(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="Ex: Água Individual, Interfone, Churrasqueira, Salão de Festas"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Separe cada item com vírgula</p>
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Tags (separadas por vírgula)
+                    </label>
+                    <input
+                      type="text"
+                      value={tagsText}
+                      onChange={(e) => setTagsText(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="Ex: Mobiliado, Novo, Reformado"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Separe cada tag com vírgula</p>
+                  </div>
                   <div className="md:col-span-2">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       {[
@@ -676,6 +801,47 @@ export default function AdminImoveis() {
                         </label>
                       ))}
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Coordenadas para Mapa */}
+              <div className="border-b border-gray-200 pb-6">
+                <h3 className="text-md font-semibold text-gray-900 mb-4">Localização no Mapa</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Latitude
+                    </label>
+                    <input
+                      type="number"
+                      step="any"
+                      value={novoImovel.coordenadas.lat || ''}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel,
+                        coordenadas: { ...novoImovel.coordenadas, lat: Number(e.target.value) }
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="Ex: -26.7700"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Coordenada para exibir no mapa</p>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Longitude
+                    </label>
+                    <input
+                      type="number"
+                      step="any"
+                      value={novoImovel.coordenadas.lng || ''}
+                      onChange={(e) => setNovoImovel({
+                        ...novoImovel,
+                        coordenadas: { ...novoImovel.coordenadas, lng: Number(e.target.value) }
+                      })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="Ex: -48.6800"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Coordenada para exibir no mapa</p>
                   </div>
                 </div>
               </div>
@@ -793,18 +959,36 @@ export default function AdminImoveis() {
                 </div>
               </div>
 
-              {/* Publicação */}
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  id="publicado"
-                  checked={novoImovel.publicado}
-                  onChange={(e) => setNovoImovel({...novoImovel, publicado: e.target.checked})}
-                  className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
-                />
-                <label htmlFor="publicado" className="ml-2 block text-sm text-gray-900">
-                  Publicar imediatamente
-                </label>
+              {/* Visualizações e Publicação */}
+              <div className="border-b border-gray-200 pb-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Visualizações (inicial)
+                    </label>
+                    <input
+                      type="number"
+                      value={novoImovel.visualizacoes || ''}
+                      onChange={(e) => setNovoImovel({...novoImovel, visualizacoes: Number(e.target.value)})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      placeholder="0"
+                      min="0"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Número inicial de visualizações</p>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="publicado"
+                      checked={novoImovel.publicado}
+                      onChange={(e) => setNovoImovel({...novoImovel, publicado: e.target.checked})}
+                      className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                    />
+                    <label htmlFor="publicado" className="ml-2 block text-sm text-gray-900">
+                      Publicar imediatamente
+                    </label>
+                  </div>
+                </div>
               </div>
 
               <div className="flex justify-end space-x-4 pt-4 border-t border-gray-200">
