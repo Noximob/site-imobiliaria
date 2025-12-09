@@ -134,7 +134,7 @@ export default function ImovelDetalhePage() {
   const todasFotos = imovel.fotos || []
   const fotoPrincipal = todasFotos[selectedImageIndex] || todasFotos[0] || ''
   // Thumbnails: as 4 fotos seguintes, excluindo a foto principal atual
-  const fotosParaThumbnails = todasFotos.filter((_, index) => index !== selectedImageIndex).slice(0, 4)
+  const fotosParaThumbnails = todasFotos.filter((_: string, index: number) => index !== selectedImageIndex).slice(0, 4)
 
   // Características extras (combinando booleanas e array de extras)
   const caracteristicasList = [
