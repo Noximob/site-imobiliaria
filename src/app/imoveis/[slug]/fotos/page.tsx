@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo } from 'react'
 import { notFound, useParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { getImovelBySlug } from '@/lib/imoveis'
-import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Maximize } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Maximize, Grid } from 'lucide-react'
 
 export default function FotosPage() {
   const params = useParams()
@@ -149,29 +149,29 @@ export default function FotosPage() {
             )}
 
             {/* Contador no canto superior esquerdo */}
-            <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1.5 rounded text-sm font-medium">
+            <div className="absolute top-4 left-4 text-white text-sm font-medium z-20">
               {fotoAtualValida + 1} / {fotosOrdenadas.length}
             </div>
 
             {/* Controles no canto superior direito */}
-            <div className="absolute top-4 right-4 flex gap-2">
+            <div className="absolute top-4 right-4 flex gap-2 z-20">
               <button
                 onClick={toggleZoom}
-                className="bg-black/70 hover:bg-black/90 text-white p-2 rounded transition-colors"
+                className="text-white hover:opacity-80 transition-opacity"
                 aria-label={zoom === 1 ? 'Ampliar' : 'Reduzir'}
               >
                 {zoom === 1 ? <ZoomIn className="w-5 h-5" /> : <ZoomOut className="w-5 h-5" />}
               </button>
               <button
                 onClick={toggleFullscreen}
-                className="bg-black/70 hover:bg-black/90 text-white p-2 rounded transition-colors"
+                className="text-white hover:opacity-80 transition-opacity"
                 aria-label="Tela cheia"
               >
                 <Maximize className="w-5 h-5" />
               </button>
               <button
                 onClick={() => router.back()}
-                className="bg-black/70 hover:bg-black/90 text-white p-2 rounded transition-colors"
+                className="text-white hover:opacity-80 transition-opacity"
                 aria-label="Fechar"
               >
                 <X className="w-5 h-5" />
@@ -183,27 +183,32 @@ export default function FotosPage() {
               <>
                 <button
                   onClick={fotoAnterior}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-colors z-10"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:opacity-80 transition-opacity z-10"
                   aria-label="Foto anterior"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-8 h-8" />
                 </button>
                 <button
                   onClick={proximaFoto}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-colors z-10"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:opacity-80 transition-opacity z-10"
                   aria-label="Próxima foto"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="w-8 h-8" />
                 </button>
               </>
             )}
 
             {/* Texto na parte inferior da foto */}
             {localizacao && (
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/95 text-gray-900 px-4 py-2 rounded text-sm font-medium">
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/95 text-gray-900 px-4 py-2 rounded text-sm font-medium whitespace-nowrap">
                 {tipoImovel} à venda {localizacao ? `no ${localizacao}` : ''}:
               </div>
             )}
+
+            {/* Grid icon no canto inferior direito */}
+            <div className="absolute bottom-4 right-4">
+              <Grid className="w-5 h-5 text-white/80" />
+            </div>
           </div>
         </div>
       </div>
