@@ -22,14 +22,13 @@
       "areaTerreno": 0,
       "suite": 1,
       "frenteMar": true,
-      "piscina": true,
-      "churrasqueira": true,
+      "piscina": false,
+      "churrasqueira": false,
       "academia": false,
       "portaria": false,
-      "elevador": true,
-      "varanda": true,
-      "sacada": true,
-      "extras": []
+      "elevador": false,
+      "varanda": false,
+      "sacada": false
     },
     "visualizacoes": 0,
     "contato": {
@@ -49,6 +48,15 @@
     ],
     "id": "1765388090477",
     "createdAt": "2025-12-10T17:34:52.744Z",
-    "updatedAt": "2025-12-10T18:03:11.083Z"
+    "updatedAt": "2025-12-10T22:08:16.867Z",
+    "tags": [
+      "Frente Mar",
+      "Mobiliado",
+      "Vista Mar",
+      "Quadra Mar",
+      "Área de Lazer",
+      "Home Club completo"
+    ],
+    "statusImovel": "lancamento"
   }
 ]
