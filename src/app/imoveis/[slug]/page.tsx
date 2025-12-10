@@ -11,8 +11,7 @@ import {
   Key,
   Heart,
   Check,
-  MessageCircle,
-  ArrowLeft
+  MessageCircle
 } from 'lucide-react'
 
 export default function ImovelDetalhePage() {
@@ -113,62 +112,49 @@ export default function ImovelDetalhePage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header com Breadcrumb */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link 
-            href="/imoveis" 
-            className="inline-flex items-center text-purple-600 hover:text-purple-700 transition-colors text-sm"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Voltar para Imóveis
-          </Link>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2">
         {/* Informações do Imóvel - ACIMA da Galeria - Textos elegantes e menores */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-sm p-4 mb-3">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
             {/* Coluna Esquerda - Título, Endereço, Código */}
             <div className="flex-1">
               {/* Título Principal - Elegante e menor */}
-              <h1 className="text-2xl md:text-3xl font-light text-gray-900 mb-3 tracking-tight">
+              <h1 className="text-xl md:text-2xl font-light text-gray-900 mb-2 tracking-tight">
                 {imovel.titulo}
               </h1>
               
               {/* Endereço - Texto fino e elegante */}
-              <div className="flex items-center text-gray-500 mb-2">
-                <MapPin className="w-4 h-4 mr-1.5 text-purple-600" />
-                <span className="text-sm font-light">
+              <div className="flex items-center text-gray-500 mb-1.5">
+                <MapPin className="w-3.5 h-3.5 mr-1.5 text-purple-600" />
+                <span className="text-xs font-light">
                   {imovel.endereco.rua}, {imovel.endereco.numero}, {imovel.endereco.bairro} - {imovel.endereco.cidade}/{imovel.endereco.estado}
                 </span>
               </div>
               
               {/* Código - Texto fino */}
               <div className="flex items-center gap-1.5">
-                <Key className="w-4 h-4 text-purple-600" />
-                <span className="font-light text-gray-700 text-sm">CÓDIGO: {imovel.id}</span>
+                <Key className="w-3.5 h-3.5 text-purple-600" />
+                <span className="font-light text-gray-700 text-xs">CÓDIGO: {imovel.id}</span>
               </div>
             </div>
             
             {/* Coluna Direita - Preço e Botão Favorito */}
-            <div className="flex flex-col items-end gap-3">
+            <div className="flex flex-col items-end gap-2">
               {/* Preço - Elegante */}
               <div className="text-right">
                 <div className="flex items-baseline gap-1.5">
-                  <span className="text-sm font-light text-gray-600">
-                    {imovel.status === 'venda' ? 'VENDA' : imovel.status === 'aluguel' ? 'ALUGUEL' : 'VENDA/ALUGUEL'}.
+                  <span className="text-xs font-light text-gray-600">
+                    {imovel.status === 'venda' ? 'VENDA' : imovel.status === 'aluguel' ? 'ALUGUEL' : 'VENDA/ALUGUEL'}
                   </span>
-                  <span className="text-2xl md:text-3xl font-light text-red-600 tracking-tight">
+                  <span className="text-xl md:text-2xl font-light text-red-600 tracking-tight">
                     {formatPrice(imovel.preco)}
                   </span>
                 </div>
               </div>
               
               {/* Botão Favorito - Elegante */}
-              <button className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-md hover:bg-gray-50 transition-colors">
-                <Heart className="w-4 h-4 text-gray-500" />
+              <button className="flex items-center gap-1.5 px-2.5 py-1 bg-white border border-gray-200 rounded-md hover:bg-gray-50 transition-colors">
+                <Heart className="w-3.5 h-3.5 text-gray-500" />
                 <span className="text-xs text-gray-600 font-light">Favorito</span>
               </button>
             </div>
@@ -176,9 +162,9 @@ export default function ImovelDetalhePage() {
         </div>
 
         {/* Galeria de Fotos - Layout: 1 foto grande à esquerda, 4 fotos menores à direita (2x2) */}
-        <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
+        <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-3">
           {fotosOrdenadas.length > 0 ? (
-            <div className="grid grid-cols-2 gap-2 p-2" style={{ height: '600px' }}>
+            <div className="grid grid-cols-2 gap-1.5 p-1.5" style={{ height: '400px' }}>
               {/* Coluna Esquerda - Foto Principal (grande) */}
               <div className="relative rounded-lg overflow-hidden h-full">
                 <Image
