@@ -133,22 +133,19 @@ export default function FotosPage() {
 
   return (
     <div className="h-screen bg-gray-900 flex flex-col overflow-hidden">
-      {/* Foto Principal - Horizontal em cima, menor para caber thumbnails */}
-      <div className="relative bg-gray-950" style={{ height: 'calc(100vh - 96px)' }}>
-        <div className="absolute inset-0 flex items-center justify-center">
-          {fotosOrdenadas[fotoAtualValida] && (
-            <div className="relative w-full h-full">
-              <Image
-                src={fotosOrdenadas[fotoAtualValida]}
-                alt={`${imovel.titulo} - Foto ${fotoAtualValida + 1}`}
-                fill
-                className="object-contain"
-                style={{ transform: `scale(${zoom})` }}
-                unoptimized
-                priority
-              />
-            </div>
-          )}
+      {/* Foto Principal - Horizontal em cima, menor e mais horizontal */}
+      <div className="relative bg-gray-950 flex items-center justify-center" style={{ height: 'calc(100vh - 96px)' }}>
+        {fotosOrdenadas[fotoAtualValida] && (
+          <div className="relative w-full" style={{ aspectRatio: '16/9', maxHeight: 'calc(100vh - 96px)' }}>
+            <Image
+              src={fotosOrdenadas[fotoAtualValida]}
+              alt={`${imovel.titulo} - Foto ${fotoAtualValida + 1}`}
+              fill
+              className="object-contain"
+              style={{ transform: `scale(${zoom})` }}
+              unoptimized
+              priority
+            />
 
           {/* Contador no canto superior esquerdo */}
           <div className="absolute top-4 left-4 text-white text-sm font-medium z-20">
