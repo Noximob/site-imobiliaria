@@ -133,8 +133,8 @@ export default function FotosPage() {
 
   return (
     <div className="h-screen bg-gray-900 flex flex-col overflow-hidden">
-      {/* Foto Principal - Horizontal em cima */}
-      <div className="flex-1 relative bg-gray-950">
+      {/* Foto Principal - Horizontal em cima, menor para caber thumbnails */}
+      <div className="relative bg-gray-950" style={{ height: 'calc(100vh - 96px)' }}>
         <div className="absolute inset-0 flex items-center justify-center">
           {fotosOrdenadas[fotoAtualValida] && (
             <div className="relative w-full h-full">
@@ -198,13 +198,6 @@ export default function FotosPage() {
                 <ChevronRight className="w-8 h-8" />
               </button>
             </>
-          )}
-
-          {/* Texto na parte inferior da foto */}
-          {localizacao && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white text-gray-900 px-4 py-2 rounded text-sm font-medium whitespace-nowrap z-20">
-              {tipoImovel} à venda {localizacao ? `no ${localizacao}` : ''}:
-            </div>
           )}
 
           {/* Grid icon no canto inferior direito */}
