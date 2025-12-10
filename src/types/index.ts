@@ -64,7 +64,11 @@ export interface FiltrosImovel {
   tipo?: string;
   status?: string;
   frenteMar?: boolean;
-  piscina?: boolean;
+  mobiliado?: boolean;
+  vistaMar?: boolean;
+  quadraMar?: boolean;
+  areaLazer?: boolean;
+  homeClub?: boolean;
   areaMin?: number;
   areaMax?: number;
 }

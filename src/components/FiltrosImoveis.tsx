@@ -51,7 +51,8 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
       frenteMar: false,
       vistaMar: false,
       quadraMar: false,
-      areaLazer: false
+      areaLazer: false,
+      homeClub: false
     }
     setFiltros(filtrosLimpos)
     onFiltrosChange?.(filtrosLimpos)
@@ -219,7 +220,8 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
             { key: 'frenteMar', label: 'Frente Mar' },
             { key: 'vistaMar', label: 'Vista Mar' },
             { key: 'quadraMar', label: 'Quadra Mar' },
-            { key: 'areaLazer', label: 'Área de Lazer' }
+            { key: 'areaLazer', label: 'Área de Lazer' },
+            { key: 'homeClub', label: 'Home Club completo' }
           ].map(({ key, label }) => (
             <label key={key} className="flex items-center">
               <input

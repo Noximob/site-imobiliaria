@@ -116,13 +116,30 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
         return false;
       }
       
-      // Filtro por frente mar
-      if (filtros.frenteMar && !imovel.caracteristicas.frenteMar) {
+      // Filtro por comodidades (buscar nas tags)
+      const tags = imovel.tags || []
+      
+      if (filtros.frenteMar && !tags.includes('Frente Mar')) {
         return false;
       }
       
-      // Filtro por piscina
-      if (filtros.piscina && !imovel.caracteristicas.piscina) {
+      if (filtros.mobiliado && !tags.includes('Mobiliado')) {
+        return false;
+      }
+      
+      if (filtros.vistaMar && !tags.includes('Vista Mar')) {
+        return false;
+      }
+      
+      if (filtros.quadraMar && !tags.includes('Quadra Mar')) {
+        return false;
+      }
+      
+      if (filtros.areaLazer && !tags.includes('Área de Lazer')) {
+        return false;
+      }
+      
+      if (filtros.homeClub && !tags.includes('Home Club completo')) {
         return false;
       }
       

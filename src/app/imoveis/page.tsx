@@ -60,8 +60,12 @@ export default function ImoveisPage() {
       vagas: novosFiltros.vagas ? Number(novosFiltros.vagas) : undefined,
       precoMin: novosFiltros.valorMin ? Number(novosFiltros.valorMin) : undefined,
       precoMax: novosFiltros.valorMax ? Number(novosFiltros.valorMax) : undefined,
-      frenteMar: novosFiltros.frenteMar || novosFiltros.vistaMar || undefined,
-      piscina: novosFiltros.areaLazer || undefined,
+      frenteMar: novosFiltros.frenteMar || undefined,
+      mobiliado: novosFiltros.mobiliado || undefined,
+      vistaMar: novosFiltros.vistaMar || undefined,
+      quadraMar: novosFiltros.quadraMar || undefined,
+      areaLazer: novosFiltros.areaLazer || undefined,
+      homeClub: novosFiltros.homeClub || undefined,
     }
     
     setFiltros(filtrosFormatados)

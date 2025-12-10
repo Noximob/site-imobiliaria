@@ -99,18 +99,9 @@ export default function ImovelDetalhePage() {
     fotosOrdenadas.unshift(fotoPrincipal)
   }
 
-  // Características extras (combinando booleanas e array de extras)
-  const caracteristicasList = [
-    ...(imovel.caracteristicas?.extras || []),
-    imovel.caracteristicas?.frenteMar && 'Vista para o Mar',
-    imovel.caracteristicas?.varanda && 'Varanda',
-    imovel.caracteristicas?.sacada && 'Sacada',
-    imovel.caracteristicas?.piscina && 'Piscina',
-    imovel.caracteristicas?.churrasqueira && 'Churrasqueira',
-    imovel.caracteristicas?.academia && 'Academia',
-    imovel.caracteristicas?.portaria && 'Portaria 24h',
-    imovel.caracteristicas?.elevador && 'Elevador',
-  ].filter(Boolean) as string[]
+  // Características vêm apenas das tags/comodidades (interligadas com o filtro)
+  // Não incluir outras características booleanas, apenas as tags
+  const caracteristicasList: string[] = []
 
   const infraestruturaList = imovel.infraestrutura || []
 
@@ -317,28 +308,17 @@ export default function ImovelDetalhePage() {
               </p>
             </div>
 
-            {/* Características */}
-            {((caracteristicasList.length > 0) || (imovel.tags && imovel.tags.length > 0)) && (
+            {/* Características - Apenas tags/comodidades (interligadas com o filtro) */}
+            {imovel.tags && imovel.tags.length > 0 && (
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">Características</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {/* Tags/Comodidades (mesmo formato das outras características) */}
-                  {imovel.tags && imovel.tags.map((tag: string, index: number) => (
-                    <div key={`tag-${index}`} className="flex items-center gap-2 text-gray-700">
+                  {imovel.tags.map((tag: string, index: number) => (
+                    <div key={index} className="flex items-center gap-2 text-gray-700">
                       <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
                         <Check className="w-3 h-3 text-white" />
                       </div>
                       <span>{tag}</span>
-                    </div>
-                  ))}
-                  
-                  {/* Outras Características */}
-                  {caracteristicasList.map((caracteristica: string, index: number) => (
-                    <div key={`car-${index}`} className="flex items-center gap-2 text-gray-700">
-                      <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-3 h-3 text-white" />
-                      </div>
-                      <span>{caracteristica}</span>
                     </div>
                   ))}
                 </div>
