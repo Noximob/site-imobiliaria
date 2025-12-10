@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { notFound, useParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { getImovelBySlug } from '@/lib/imoveis'
-import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Maximize, Grid3x3 } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Maximize, Grid } from 'lucide-react'
 
 export default function FotosPage() {
   const params = useParams()
@@ -198,7 +198,7 @@ export default function FotosPage() {
 
             {/* Grid icon no canto inferior direito */}
             <div className="absolute bottom-4 right-4">
-              <Grid3x3 className="w-5 h-5 text-white/80" />
+              <Grid className="w-5 h-5 text-white/80" />
             </div>
           </div>
         </div>
