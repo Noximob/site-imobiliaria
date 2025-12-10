@@ -15,8 +15,7 @@ import {
   BedDouble,
   Droplet,
   Car,
-  Maximize2,
-  Eye
+  Maximize2
 } from 'lucide-react'
 
 export default function ImovelDetalhePage() {
@@ -284,120 +283,49 @@ export default function ImovelDetalhePage() {
               </div>
             )}
             
-            {/* Visualizações */}
-            {imovel.visualizacoes && imovel.visualizacoes > 0 && (
-              <div className="flex items-center gap-2 text-gray-700">
-                <Eye className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
-                <span className="font-light">{imovel.visualizacoes} Visualizações</span>
-              </div>
-            )}
           </div>
         </div>
 
-        {/* Formulário de Contato - Abaixo da Galeria */}
-        <div className="bg-gray-900 rounded-lg shadow-lg p-6 mb-6">
-          <h3 className="text-white text-lg font-semibold mb-4">RECEBER CONTATO POR:</h3>
-          
-          {/* Opções de Contato */}
-          <div className="flex gap-2 mb-6">
-            <button
-              onClick={() => setContatoTipo('telefone')}
-              className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
-                contatoTipo === 'telefone'
-                  ? 'bg-orange-500 text-white'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-              }`}
-            >
-              Telefone
-            </button>
-            <button
-              onClick={() => setContatoTipo('email')}
-              className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
-                contatoTipo === 'email'
-                  ? 'bg-orange-500 text-white'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-              }`}
-            >
-              Email
-            </button>
-            <button
-              onClick={() => setContatoTipo('whatsapp')}
-              className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
-                contatoTipo === 'whatsapp'
-                  ? 'bg-orange-500 text-white'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-              }`}
-            >
-              WhatsApp
-            </button>
-          </div>
-
-          <form onSubmit={handleSubmitForm} className="space-y-4">
-            <textarea
-              value={formData.mensagem}
-              onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
-              className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm resize-none"
-              rows={4}
-              required
-            />
-
-            <input
-              type="text"
-              placeholder="Nome"
-              value={formData.nome}
-              onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-              className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
-              required
-            />
-
-            <input
-              type="email"
-              placeholder="E-mail"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
-              required
-            />
-
-            <input
-              type="tel"
-              placeholder="Celular / WhatsApp"
-              value={formData.telefone}
-              onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
-              className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
-              required
-            />
-
-            <button
-              type="submit"
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors"
-            >
-              ENVIAR
-            </button>
-
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-700"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-gray-900 text-gray-400">OU</span>
-              </div>
+        {/* Conteúdo Principal - Layout com Título, Características, Descrição à Esquerda e Formulário à Direita */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Coluna Esquerda - Conteúdo Principal */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Título Completo */}
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <h1 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4">
+                {(() => {
+                  const tipoTexto = imovel.tipo === 'apartamento' ? 'Apartamento' : 
+                                   imovel.tipo === 'cobertura' ? 'Cobertura diferenciado' : 
+                                   imovel.tipo === 'comercial' ? 'Sala Comercial' : 'Imóvel'
+                  const statusTexto = imovel.status === 'venda' ? 'à venda' : 
+                                    imovel.status === 'aluguel' ? 'para aluguel' : 
+                                    'à venda/aluguel'
+                  const frenteMarTexto = imovel.caracteristicas.frenteMar ? 'Frente Mar' : ''
+                  const cidadeTexto = `em ${imovel.endereco.cidade}`
+                  const suiteTexto = imovel.caracteristicas.suite ? `com ${imovel.caracteristicas.suite} ${imovel.caracteristicas.suite === 1 ? 'suíte' : 'suítes'}` : ''
+                  const quartosTexto = imovel.caracteristicas.quartos ? `${imovel.caracteristicas.quartos} ${imovel.caracteristicas.quartos === 1 ? 'quarto' : 'quartos'}` : ''
+                  
+                  return `${tipoTexto} ${statusTexto} ${frenteMarTexto} ${cidadeTexto} ${suiteTexto ? suiteTexto : quartosTexto}`.replace(/\s+/g, ' ').trim()
+                })()}
+              </h1>
             </div>
 
-            <a
-              href={getWhatsAppLink(imovel.contato?.whatsapp || '', `Olá, gostaria de receber mais informações sobre este imóvel: ${imovel.titulo}`)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
-            >
-              <MessageCircle className="w-5 h-5" />
-              Fale pelo WhatsApp
-            </a>
-          </form>
-        </div>
-
-        {/* Conteúdo Principal - Abaixo do Formulário */}
-        <div className="space-y-6">
+            {/* Características Diferenciais (Tags/Comodidades) */}
+            {imovel.tags && imovel.tags.length > 0 && (
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <div className="flex flex-wrap gap-3">
+                  {imovel.tags.map((tag: string, index: number) => (
+                    <div 
+                      key={index}
+                      className="inline-flex items-center gap-2 bg-yellow-100 text-yellow-800 px-4 py-2 rounded-lg text-sm font-medium"
+                    >
+                      {tag === 'Mobiliado' && <BedDouble className="w-4 h-4" />}
+                      {tag}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Descrição */}
             <div className="bg-white rounded-lg shadow-sm p-6">
@@ -440,6 +368,112 @@ export default function ImovelDetalhePage() {
                 </div>
               </div>
             )}
+          </div>
+
+          {/* Coluna Direita - Formulário de Contato */}
+          <div className="lg:col-span-1">
+            <div className="bg-gray-900 rounded-lg shadow-lg p-6 sticky top-4">
+              <h3 className="text-white text-lg font-semibold mb-4">RECEBER CONTATO POR:</h3>
+              
+              {/* Opções de Contato */}
+              <div className="flex gap-2 mb-6">
+                <button
+                  onClick={() => setContatoTipo('telefone')}
+                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                    contatoTipo === 'telefone'
+                      ? 'bg-orange-500 text-white'
+                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                  }`}
+                >
+                  Telefone
+                </button>
+                <button
+                  onClick={() => setContatoTipo('email')}
+                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                    contatoTipo === 'email'
+                      ? 'bg-orange-500 text-white'
+                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                  }`}
+                >
+                  Email
+                </button>
+                <button
+                  onClick={() => setContatoTipo('whatsapp')}
+                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                    contatoTipo === 'whatsapp'
+                      ? 'bg-orange-500 text-white'
+                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                  }`}
+                >
+                  WhatsApp
+                </button>
+              </div>
+
+              <form onSubmit={handleSubmitForm} className="space-y-4">
+                <textarea
+                  value={formData.mensagem}
+                  onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
+                  className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm resize-none"
+                  rows={4}
+                  required
+                />
+
+                <input
+                  type="text"
+                  placeholder="Nome"
+                  value={formData.nome}
+                  onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                  className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
+                  required
+                />
+
+                <input
+                  type="email"
+                  placeholder="E-mail"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
+                  required
+                />
+
+                <input
+                  type="tel"
+                  placeholder="Celular / WhatsApp"
+                  value={formData.telefone}
+                  onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+                  className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
+                  required
+                />
+
+                <button
+                  type="submit"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors"
+                >
+                  ENVIAR
+                </button>
+
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-700"></div>
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 bg-gray-900 text-gray-400">OU</span>
+                  </div>
+                </div>
+
+                <a
+                  href={getWhatsAppLink(imovel.contato?.whatsapp || '', `Olá, gostaria de receber mais informações sobre este imóvel: ${imovel.titulo}`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  Fale pelo WhatsApp
+                </a>
+              </form>
+            </div>
+          </div>
+        </div>
 
             {/* Localização - Mapa */}
             {imovel.coordenadas && (
