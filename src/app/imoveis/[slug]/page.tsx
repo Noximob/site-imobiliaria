@@ -127,60 +127,60 @@ export default function ImovelDetalhePage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Informações do Imóvel - ACIMA da Galeria - Igual ao modelo */}
+        {/* Informações do Imóvel - ACIMA da Galeria - Textos elegantes e menores */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
             {/* Coluna Esquerda - Título, Endereço, Código */}
             <div className="flex-1">
-              {/* Título Principal - Grande e Destacado */}
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {/* Título Principal - Elegante e menor */}
+              <h1 className="text-2xl md:text-3xl font-light text-gray-900 mb-3 tracking-tight">
                 {imovel.titulo}
               </h1>
               
-              {/* Endereço */}
-              <div className="flex items-center text-gray-600 mb-3">
-                <MapPin className="w-5 h-5 mr-2 text-purple-600" />
-                <span className="text-base">
+              {/* Endereço - Texto fino e elegante */}
+              <div className="flex items-center text-gray-500 mb-2">
+                <MapPin className="w-4 h-4 mr-1.5 text-purple-600" />
+                <span className="text-sm font-light">
                   {imovel.endereco.rua}, {imovel.endereco.numero}, {imovel.endereco.bairro} - {imovel.endereco.cidade}/{imovel.endereco.estado}
                 </span>
               </div>
               
-              {/* Código */}
-              <div className="flex items-center gap-2">
-                <Key className="w-5 h-5 text-purple-600" />
-                <span className="font-semibold text-gray-900 text-base">CÓDIGO: {imovel.id}</span>
+              {/* Código - Texto fino */}
+              <div className="flex items-center gap-1.5">
+                <Key className="w-4 h-4 text-purple-600" />
+                <span className="font-light text-gray-700 text-sm">CÓDIGO: {imovel.id}</span>
               </div>
             </div>
             
             {/* Coluna Direita - Preço e Botão Favorito */}
-            <div className="flex flex-col items-end gap-4">
-              {/* Preço - Igual ao modelo */}
+            <div className="flex flex-col items-end gap-3">
+              {/* Preço - Elegante */}
               <div className="text-right">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-base font-semibold text-gray-700">
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-sm font-light text-gray-600">
                     {imovel.status === 'venda' ? 'VENDA' : imovel.status === 'aluguel' ? 'ALUGUEL' : 'VENDA/ALUGUEL'}.
                   </span>
-                  <span className="text-3xl md:text-4xl font-bold text-red-600">
+                  <span className="text-2xl md:text-3xl font-light text-red-600 tracking-tight">
                     {formatPrice(imovel.preco)}
                   </span>
                 </div>
               </div>
               
-              {/* Botão Favorito */}
-              <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                <Heart className="w-5 h-5 text-gray-600" />
-                <span className="text-sm text-gray-700 font-medium">Favorito</span>
+              {/* Botão Favorito - Elegante */}
+              <button className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-md hover:bg-gray-50 transition-colors">
+                <Heart className="w-4 h-4 text-gray-500" />
+                <span className="text-xs text-gray-600 font-light">Favorito</span>
               </button>
             </div>
           </div>
         </div>
 
-        {/* Galeria de Fotos - Grid 3x3 igual ao modelo (primeira imagem maior) */}
+        {/* Galeria de Fotos - Layout: 1 foto grande à esquerda, 4 fotos menores à direita (2x2) */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
           {fotosOrdenadas.length > 0 ? (
-            <div className="grid grid-cols-3 gap-2 p-2" style={{ gridAutoRows: '200px' }}>
-              {/* Primeira imagem - ocupa 2 colunas e 2 linhas (maior) */}
-              <div className="col-span-2 row-span-2 relative rounded-lg overflow-hidden">
+            <div className="grid grid-cols-2 gap-2 p-2" style={{ height: '600px' }}>
+              {/* Coluna Esquerda - Foto Principal (grande) */}
+              <div className="relative rounded-lg overflow-hidden h-full">
                 <Image
                   src={fotosOrdenadas[0]}
                   alt={`${imovel.titulo} - Foto principal`}
@@ -190,70 +190,60 @@ export default function ImovelDetalhePage() {
                 />
               </div>
               
-              {/* Segunda imagem - canto superior direito */}
-              {fotosOrdenadas[1] && (
-                <div className="relative rounded-lg overflow-hidden">
-                  <Image
-                    src={fotosOrdenadas[1]}
-                    alt={`${imovel.titulo} - Foto 2`}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </div>
-              )}
-              
-              {/* Terceira imagem - abaixo da segunda */}
-              {fotosOrdenadas[2] && (
-                <div className="relative rounded-lg overflow-hidden">
-                  <Image
-                    src={fotosOrdenadas[2]}
-                    alt={`${imovel.titulo} - Foto 3`}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </div>
-              )}
-              
-              {/* Quarta imagem - abaixo da primeira (esquerda) */}
-              {fotosOrdenadas[3] && (
-                <div className="relative rounded-lg overflow-hidden">
-                  <Image
-                    src={fotosOrdenadas[3]}
-                    alt={`${imovel.titulo} - Foto 4`}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </div>
-              )}
-              
-              {/* Quinta imagem - ao lado da quarta */}
-              {fotosOrdenadas[4] && (
-                <div className="relative rounded-lg overflow-hidden">
-                  <Image
-                    src={fotosOrdenadas[4]}
-                    alt={`${imovel.titulo} - Foto 5`}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </div>
-              )}
-              
-              {/* Sexta imagem - última */}
-              {fotosOrdenadas[5] && (
-                <div className="relative rounded-lg overflow-hidden">
-                  <Image
-                    src={fotosOrdenadas[5]}
-                    alt={`${imovel.titulo} - Foto 6`}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </div>
-              )}
+              {/* Coluna Direita - Grid 2x2 com 4 fotos menores */}
+              <div className="grid grid-cols-2 grid-rows-2 gap-2 h-full">
+                {/* Foto 2 - Superior esquerda */}
+                {fotosOrdenadas[1] && (
+                  <div className="relative rounded-lg overflow-hidden">
+                    <Image
+                      src={fotosOrdenadas[1]}
+                      alt={`${imovel.titulo} - Foto 2`}
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
+                )}
+                
+                {/* Foto 3 - Superior direita */}
+                {fotosOrdenadas[2] && (
+                  <div className="relative rounded-lg overflow-hidden">
+                    <Image
+                      src={fotosOrdenadas[2]}
+                      alt={`${imovel.titulo} - Foto 3`}
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
+                )}
+                
+                {/* Foto 4 - Inferior esquerda */}
+                {fotosOrdenadas[3] && (
+                  <div className="relative rounded-lg overflow-hidden">
+                    <Image
+                      src={fotosOrdenadas[3]}
+                      alt={`${imovel.titulo} - Foto 4`}
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
+                )}
+                
+                {/* Foto 5 - Inferior direita */}
+                {fotosOrdenadas[4] && (
+                  <div className="relative rounded-lg overflow-hidden">
+                    <Image
+                      src={fotosOrdenadas[4]}
+                      alt={`${imovel.titulo} - Foto 5`}
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           ) : (
             <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
