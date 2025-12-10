@@ -992,8 +992,8 @@ export default function AdminImoveis() {
                   </label>
                   <p className="text-xs text-gray-500 mb-2">
                     {editingImovel 
-                      ? 'Selecione novas fotos para adicionar às existentes. As fotos antigas serão preservadas.'
-                      : 'Selecione uma ou mais fotos do imóvel. A primeira foto será a principal.'}
+                      ? 'Selecione novas fotos para adicionar às existentes. As fotos antigas serão preservadas. As primeiras 5 fotos aparecem na página principal, todas aparecem na galeria completa.'
+                      : 'Selecione uma ou mais fotos do imóvel. A primeira foto será a principal. As primeiras 5 fotos aparecem na página principal, todas aparecem na galeria completa.'}
                   </p>
                   <input
                     type="file"

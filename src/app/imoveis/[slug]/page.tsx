@@ -212,9 +212,9 @@ export default function ImovelDetalhePage() {
                   </div>
                 )}
                 
-                {/* Foto 5 - Inferior direita */}
-                {fotosOrdenadas[4] && (
-                  <div className="relative rounded-lg overflow-hidden">
+                {/* Foto 5 - Inferior direita com botão Visualizar Fotos */}
+                {fotosOrdenadas[4] ? (
+                  <Link href={`/imoveis/${imovel.slug}/fotos`} className="relative rounded-lg overflow-hidden group cursor-pointer">
                     <Image
                       src={fotosOrdenadas[4]}
                       alt={`${imovel.titulo} - Foto 5`}
@@ -222,8 +222,33 @@ export default function ImovelDetalhePage() {
                       className="object-cover"
                       unoptimized
                     />
-                  </div>
-                )}
+                    {/* Botão Visualizar Fotos */}
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors flex items-center justify-center">
+                      <div className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium text-sm transition-colors flex items-center gap-2">
+                        <span>Visualizar Fotos</span>
+                        {fotosOrdenadas.length > 5 && (
+                          <span className="text-xs text-gray-600">({fotosOrdenadas.length})</span>
+                        )}
+                      </div>
+                    </div>
+                  </Link>
+                ) : fotosOrdenadas.length > 0 && fotosOrdenadas.length < 5 ? (
+                  // Se tiver menos de 5 fotos mas mais de 0, mostrar botão na última foto disponível
+                  <Link href={`/imoveis/${imovel.slug}/fotos`} className="relative rounded-lg overflow-hidden group cursor-pointer">
+                    <Image
+                      src={fotosOrdenadas[fotosOrdenadas.length - 1]}
+                      alt={`${imovel.titulo} - Última foto`}
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors flex items-center justify-center">
+                      <div className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium text-sm transition-colors">
+                        <span>Visualizar Fotos</span>
+                      </div>
+                    </div>
+                  </Link>
+                ) : null}
               </div>
             </div>
           ) : (
