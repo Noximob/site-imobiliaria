@@ -368,6 +368,30 @@ export default function ImovelDetalhePage() {
                 </div>
               </div>
             )}
+
+            {/* Localização - Mapa */}
+            {imovel.coordenadas && (
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <h2 className="text-xl font-semibold text-gray-900 mb-4">Localização</h2>
+                <div className="mb-3">
+                  <p className="text-gray-700">
+                    {imovel.endereco.rua}, {imovel.endereco.numero}, {imovel.endereco.bairro} - {imovel.endereco.cidade}/{imovel.endereco.estado}
+                  </p>
+                </div>
+                <div className="relative h-96 rounded-lg overflow-hidden bg-gray-200">
+                  <iframe
+                    src={`https://maps.google.com/maps?q=${imovel.coordenadas.lat},${imovel.coordenadas.lng}&hl=pt-BR&z=15&output=embed`}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="absolute inset-0 w-full h-full"
+                  />
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Coluna Direita - Formulário de Contato */}
@@ -473,31 +497,6 @@ export default function ImovelDetalhePage() {
               </form>
             </div>
           </div>
-        </div>
-
-            {/* Localização - Mapa */}
-            {imovel.coordenadas && (
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Localização</h2>
-                <div className="mb-3">
-                  <p className="text-gray-700">
-                    {imovel.endereco.rua}, {imovel.endereco.numero}, {imovel.endereco.bairro} - {imovel.endereco.cidade}/{imovel.endereco.estado}
-                  </p>
-                </div>
-                <div className="relative h-96 rounded-lg overflow-hidden bg-gray-200">
-                  <iframe
-                    src={`https://maps.google.com/maps?q=${imovel.coordenadas.lat},${imovel.coordenadas.lng}&hl=pt-BR&z=15&output=embed`}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="absolute inset-0 w-full h-full"
-                  />
-                </div>
-              </div>
-            )}
         </div>
       </div>
     </div>
