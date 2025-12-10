@@ -222,9 +222,9 @@ export default function ImovelDetalhePage() {
                       className="object-cover"
                       unoptimized
                     />
-                    {/* Botão Visualizar Fotos */}
-                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors flex items-center justify-center">
-                      <div className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium text-sm transition-colors flex items-center gap-2">
+                    {/* Botão Visualizar Fotos - Canto inferior direito */}
+                    <div className="absolute bottom-2 right-2">
+                      <div className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium text-sm transition-colors flex items-center gap-2 shadow-lg">
                         <span>Visualizar Fotos</span>
                         {fotosOrdenadas.length > 5 && (
                           <span className="text-xs text-gray-600">({fotosOrdenadas.length})</span>
@@ -242,8 +242,8 @@ export default function ImovelDetalhePage() {
                       className="object-cover"
                       unoptimized
                     />
-                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors flex items-center justify-center">
-                      <div className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium text-sm transition-colors">
+                    <div className="absolute bottom-2 right-2">
+                      <div className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium text-sm transition-colors shadow-lg">
                         <span>Visualizar Fotos</span>
                       </div>
                     </div>
