@@ -132,11 +132,11 @@ export default function FotosPage() {
   const localizacao = imovel.endereco?.bairro || imovel.endereco?.cidade || ''
 
   return (
-    <div className="min-h-screen bg-gray-900 flex flex-col">
+    <div className="h-screen bg-gray-900 flex flex-col overflow-hidden">
       {/* Foto Principal - Em cima */}
-      <div className="flex-1 flex items-center justify-center p-4">
-        <div className="relative w-full max-w-7xl">
-          <div className="relative w-full bg-black rounded-lg overflow-hidden" style={{ aspectRatio: '16/9', minHeight: '60vh' }}>
+      <div className="flex-1 flex items-center justify-center p-4 pb-20">
+        <div className="relative w-full max-w-7xl h-full">
+          <div className="relative w-full h-full bg-black rounded-lg overflow-hidden">
             {fotosOrdenadas[fotoAtualValida] && (
               <Image
                 src={fotosOrdenadas[fotoAtualValida]}
@@ -210,7 +210,7 @@ export default function FotosPage() {
 
       {/* Thumbnails na parte inferior - Barra de rolagem */}
       {fotosOrdenadas.length > 1 && (
-        <div className="bg-black/90 p-4">
+        <div className="bg-black/90 p-4 flex-shrink-0">
           <div className="max-w-7xl mx-auto">
             <div className="flex gap-2 overflow-x-auto pb-2" style={{ scrollbarWidth: 'thin', scrollbarColor: '#666 #333' }}>
               {fotosOrdenadas.map((foto: string, index: number) => (
