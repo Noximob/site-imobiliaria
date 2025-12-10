@@ -17,7 +17,7 @@ export default function AdminImoveis() {
     descricao: '',
     preco: 0,
     precoOriginal: 0,
-    tipo: 'apartamento' as 'casa' | 'apartamento' | 'terreno' | 'comercial',
+    tipo: 'apartamento' as 'apartamento' | 'cobertura' | 'comercial',
     status: 'venda' as 'venda' | 'aluguel' | 'venda-aluguel',
     endereco: {
       cidade: '',
@@ -59,44 +59,18 @@ export default function AdminImoveis() {
     },
     publicado: true
   })
-  // Lista fixa de diferenciais disponíveis
-  const diferenciaisDisponiveis = [
-    'Frente Mar',
-    'Vista para o Mar',
-    'Piscina',
-    'Churrasqueira',
-    'Academia',
-    'Portaria 24h',
-    'Elevador',
-    'Varanda',
-    'Sacada',
+  // Lista fixa de comodidades (exatamente como no filtro + Home Club completo)
+  const comodidadesDisponiveis = [
     'Mobiliado',
-    'Novo',
-    'Reformado',
-    'Home Club',
-    'Área de Serviço',
-    'Cozinha com Armário',
-    'Água Individual',
-    'Interfone',
-    'Salão de Festas',
-    'Playground',
-    'Quadra Esportiva',
-    'Espaço Gourmet',
-    'Lavanderia',
-    'Depósito',
-    'Garagem Coberta',
-    'Segurança 24h',
-    'Câmeras de Segurança',
-    'Jardim',
+    'Frente Mar',
+    'Vista Mar',
+    'Quadra Mar',
     'Área de Lazer',
-    'Piscina Aquecida',
-    'Sauna',
-    'Spa',
-    'Cinema',
-    'Pet Friendly'
+    'Home Club completo'
   ]
   
-  const [diferenciaisSelecionados, setDiferenciaisSelecionados] = useState<string[]>([])
+  const [comodidadesSelecionadas, setComodidadesSelecionadas] = useState<string[]>([])
+  const [statusImovel, setStatusImovel] = useState<'prontos' | 'lancamento' | ''>('')
   const [fotosFiles, setFotosFiles] = useState<File[]>([])
   const [fotosPreviews, setFotosPreviews] = useState<string[]>([])
   const [fotosExistentes, setFotosExistentes] = useState<string[]>([]) // Fotos já salvas
@@ -220,25 +194,25 @@ export default function AdminImoveis() {
       },
       publicado: imovel.publicado
     })
-    // Unificar todos os diferenciais em uma lista
-    const extras = ((imovel.caracteristicas as any).extras || [])
-    const infraestrutura = ((imovel as any).infraestrutura || [])
-    const tags = ((imovel as any).tags || [])
+    // Carregar comodidades do imóvel
+    const comodidadesCarregadas: string[] = []
+    if ((imovel as any).tags) {
+      // Verificar quais comodidades estão nas tags
+      comodidadesDisponiveis.forEach(comodidade => {
+        if ((imovel as any).tags.includes(comodidade)) {
+          comodidadesCarregadas.push(comodidade)
+        }
+      })
+    }
+    // Verificar também nas características booleanas (compatibilidade)
+    if (imovel.caracteristicas.frenteMar && !comodidadesCarregadas.includes('Frente Mar')) {
+      comodidadesCarregadas.push('Frente Mar')
+    }
+    setComodidadesSelecionadas(comodidadesCarregadas)
     
-    // Adicionar recursos adicionais marcados como tags
-    const recursosAdicionais = []
-    if (imovel.caracteristicas.frenteMar) recursosAdicionais.push('Frente Mar')
-    if (imovel.caracteristicas.piscina) recursosAdicionais.push('Piscina')
-    if (imovel.caracteristicas.churrasqueira) recursosAdicionais.push('Churrasqueira')
-    if (imovel.caracteristicas.academia) recursosAdicionais.push('Academia')
-    if (imovel.caracteristicas.portaria) recursosAdicionais.push('Portaria 24h')
-    if (imovel.caracteristicas.elevador) recursosAdicionais.push('Elevador')
-    if (imovel.caracteristicas.varanda) recursosAdicionais.push('Varanda')
-    if (imovel.caracteristicas.sacada) recursosAdicionais.push('Sacada')
-    
-    // Juntar tudo em uma única lista de diferenciais selecionados
-    const todasTags = [...extras, ...infraestrutura, ...tags, ...recursosAdicionais]
-    setDiferenciaisSelecionados(todasTags)
+    // Carregar status do imóvel (prontos/lancamento)
+    const statusImovelValue = (imovel as any).statusImovel || ''
+    setStatusImovel(statusImovelValue)
     setFotosFiles([])
     setFotosPreviews([])
     setFotosExistentes(imovel.fotos || [])
@@ -305,7 +279,8 @@ export default function AdminImoveis() {
       },
       publicado: true
     })
-    setDiferenciaisSelecionados([])
+    setComodidadesSelecionadas([])
+    setStatusImovel('')
     setFotosFiles([])
     setFotosPreviews([])
     setFotosExistentes([])
@@ -330,28 +305,16 @@ export default function AdminImoveis() {
 
     setIsLoading(true)
     try {
-      // Processar diferenciais selecionados (já é um array)
-      const tagsList = diferenciaisSelecionados.filter(tag => tag.length > 0)
+      // Processar comodidades selecionadas
+      const tagsList = comodidadesSelecionadas.filter(tag => tag.length > 0)
 
-      // Mapear diferenciais conhecidos para booleanas (compatibilidade com site principal)
+      // Mapear comodidades para booleanas (compatibilidade com site principal)
       const frenteMar = tagsList.includes('Frente Mar')
-      const piscina = tagsList.includes('Piscina')
-      const churrasqueira = tagsList.includes('Churrasqueira')
-      const academia = tagsList.includes('Academia')
-      const portaria = tagsList.includes('Portaria 24h')
-      const elevador = tagsList.includes('Elevador')
-      const varanda = tagsList.includes('Varanda')
-      const sacada = tagsList.includes('Sacada')
-      
-      // Separar diferenciais em categorias para compatibilidade
-      const caracteristicasExtras = tagsList.filter(tag => 
-        !['Frente Mar', 'Piscina', 'Churrasqueira', 'Academia', 'Portaria 24h', 'Elevador', 'Varanda', 'Sacada'].includes(tag) &&
-        !['Água Individual', 'Interfone', 'Salão de Festas', 'Playground', 'Quadra Esportiva', 'Espaço Gourmet', 'Lavanderia', 'Depósito', 'Garagem Coberta', 'Segurança 24h', 'Câmeras de Segurança', 'Jardim', 'Área de Lazer', 'Piscina Aquecida', 'Sauna', 'Spa', 'Cinema', 'Pet Friendly'].includes(tag)
-      )
-      
-      const infraestruturaList = tagsList.filter(tag => 
-        ['Água Individual', 'Interfone', 'Salão de Festas', 'Playground', 'Quadra Esportiva', 'Espaço Gourmet', 'Lavanderia', 'Depósito', 'Garagem Coberta', 'Segurança 24h', 'Câmeras de Segurança', 'Jardim', 'Área de Lazer', 'Piscina Aquecida', 'Sauna', 'Spa', 'Cinema', 'Pet Friendly'].includes(tag)
-      )
+      const mobiliado = tagsList.includes('Mobiliado')
+      const vistaMar = tagsList.includes('Vista Mar')
+      const quadraMar = tagsList.includes('Quadra Mar')
+      const areaLazer = tagsList.includes('Área de Lazer')
+      const homeClub = tagsList.includes('Home Club completo')
 
       // Organizar fotos: foto principal primeiro, depois as outras
       const todasFotos = [...fotosExistentes, ...fotosPreviews]
@@ -376,17 +339,19 @@ export default function AdminImoveis() {
         caracteristicas: {
           ...novoImovel.caracteristicas,
           frenteMar,
-          piscina,
-          churrasqueira,
-          academia,
-          portaria,
-          elevador,
-          varanda,
-          sacada,
-          extras: caracteristicasExtras.length > 0 ? caracteristicasExtras : undefined
+          // Manter outras booleanas como false para compatibilidade
+          piscina: false,
+          churrasqueira: false,
+          academia: false,
+          portaria: false,
+          elevador: false,
+          varanda: false,
+          sacada: false,
+          extras: undefined
         },
-        infraestrutura: infraestruturaList.length > 0 ? infraestruturaList : undefined,
+        infraestrutura: undefined,
         tags: tagsList.length > 0 ? tagsList : undefined,
+        statusImovel: statusImovel || undefined,
         coordenadas: novoImovel.coordenadas.lat !== 0 && novoImovel.coordenadas.lng !== 0 
           ? novoImovel.coordenadas 
           : undefined,
@@ -635,14 +600,13 @@ export default function AdminImoveis() {
                       required
                     >
                       <option value="apartamento">Apartamento</option>
-                      <option value="casa">Casa</option>
-                      <option value="terreno">Terreno</option>
-                      <option value="comercial">Comercial</option>
+                      <option value="cobertura">Cobertura/Diferenciado</option>
+                      <option value="comercial">Salas Comerciais</option>
                     </select>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Status *
+                      Status (Venda/Aluguel) *
                     </label>
                     <select
                       value={novoImovel.status}
@@ -653,6 +617,21 @@ export default function AdminImoveis() {
                       <option value="venda">Venda</option>
                       <option value="aluguel">Aluguel</option>
                       <option value="venda-aluguel">Venda/Aluguel</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Status do Imóvel *
+                    </label>
+                    <select
+                      value={statusImovel}
+                      onChange={(e) => setStatusImovel(e.target.value as 'prontos' | 'lancamento' | '')}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      required
+                    >
+                      <option value="">Selecione</option>
+                      <option value="prontos">Imóveis Prontos</option>
+                      <option value="lancamento">Lançamento/em construção</option>
                     </select>
                   </div>
                   <div className="md:col-span-2">
@@ -679,17 +658,20 @@ export default function AdminImoveis() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Cidade *
                     </label>
-                    <input
-                      type="text"
+                    <select
                       value={novoImovel.endereco.cidade}
                       onChange={(e) => setNovoImovel({
                         ...novoImovel, 
                         endereco: {...novoImovel.endereco, cidade: e.target.value}
                       })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                      placeholder="Ex: Penha"
                       required
-                    />
+                    >
+                      <option value="">Selecione</option>
+                      <option value="Penha">Penha</option>
+                      <option value="Barra Velha">Barra Velha</option>
+                      <option value="Balneário Piçarras">Balneário Piçarras</option>
+                    </select>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -866,25 +848,25 @@ export default function AdminImoveis() {
                 </div>
               </div>
 
-              {/* Diferenciais */}
+              {/* Comodidades */}
               <div className="border-b border-gray-200 pb-6">
-                <h3 className="text-md font-semibold text-gray-900 mb-4">Diferenciais</h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                  {diferenciaisDisponiveis.map((diferencial) => (
-                    <label key={diferencial} className="flex items-center cursor-pointer">
+                <h3 className="text-md font-semibold text-gray-900 mb-4">Comodidades</h3>
+                <div className="space-y-3">
+                  {comodidadesDisponiveis.map((comodidade) => (
+                    <label key={comodidade} className="flex items-center cursor-pointer">
                       <input
                         type="checkbox"
-                        checked={diferenciaisSelecionados.includes(diferencial)}
+                        checked={comodidadesSelecionadas.includes(comodidade)}
                         onChange={(e) => {
                           if (e.target.checked) {
-                            setDiferenciaisSelecionados([...diferenciaisSelecionados, diferencial])
+                            setComodidadesSelecionadas([...comodidadesSelecionadas, comodidade])
                           } else {
-                            setDiferenciaisSelecionados(diferenciaisSelecionados.filter(d => d !== diferencial))
+                            setComodidadesSelecionadas(comodidadesSelecionadas.filter(c => c !== comodidade))
                           }
                         }}
-                        className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                        className="w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500 focus:ring-2"
                       />
-                      <span className="ml-2 text-sm text-gray-700">{diferencial}</span>
+                      <span className="ml-2 text-sm text-gray-700">{comodidade}</span>
                     </label>
                   ))}
                 </div>
