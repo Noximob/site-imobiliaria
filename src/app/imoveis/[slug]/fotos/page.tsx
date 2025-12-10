@@ -132,19 +132,22 @@ export default function FotosPage() {
   const localizacao = imovel.endereco?.bairro || imovel.endereco?.cidade || ''
 
   return (
-    <div className="h-screen bg-black flex flex-col overflow-hidden">
+    <div className="h-screen bg-gray-900 flex flex-col overflow-hidden">
       {/* Foto Principal - Horizontal em cima */}
-      <div className="flex-1 relative">
-        <div className="absolute inset-0">
+      <div className="flex-1 relative bg-gray-950">
+        <div className="absolute inset-0 flex items-center justify-center">
           {fotosOrdenadas[fotoAtualValida] && (
-            <Image
-              src={fotosOrdenadas[fotoAtualValida]}
-              alt={`${imovel.titulo} - Foto ${fotoAtualValida + 1}`}
-              fill
-              className="object-contain"
-              style={{ transform: `scale(${zoom})` }}
-              unoptimized
-            />
+            <div className="relative w-full h-full">
+              <Image
+                src={fotosOrdenadas[fotoAtualValida]}
+                alt={`${imovel.titulo} - Foto ${fotoAtualValida + 1}`}
+                fill
+                className="object-contain"
+                style={{ transform: `scale(${zoom})` }}
+                unoptimized
+                priority
+              />
+            </div>
           )}
 
           {/* Contador no canto superior esquerdo */}
@@ -213,8 +216,8 @@ export default function FotosPage() {
 
       {/* Thumbnails - Logo abaixo, sem espaçamento */}
       {fotosOrdenadas.length > 1 && (
-        <div className="bg-black flex-shrink-0 h-24">
-          <div className="flex gap-2 overflow-x-auto h-full px-4 items-center" style={{ scrollbarWidth: 'thin', scrollbarColor: '#444 #000' }}>
+        <div className="bg-gray-950 flex-shrink-0 h-24 border-t border-gray-800">
+          <div className="flex gap-2 overflow-x-auto h-full px-4 items-center" style={{ scrollbarWidth: 'thin', scrollbarColor: '#444 #1a1a1a' }}>
             {fotosOrdenadas.map((foto: string, index: number) => (
               <button
                 key={index}
