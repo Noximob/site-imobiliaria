@@ -174,7 +174,9 @@ export default function AdminImoveis() {
       descricao: imovel.descricao,
       preco: imovel.preco,
       precoOriginal: (imovel as any).precoOriginal || 0,
-      tipo: imovel.tipo,
+      tipo: (imovel.tipo === 'apartamento' || imovel.tipo === 'cobertura' || imovel.tipo === 'comercial') 
+        ? imovel.tipo 
+        : 'apartamento' as 'apartamento' | 'cobertura' | 'comercial',
       status: imovel.status,
       endereco: { ...imovel.endereco },
       caracteristicas: { 
