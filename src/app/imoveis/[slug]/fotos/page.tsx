@@ -111,7 +111,7 @@ export default function FotosPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      <div className="h-screen bg-black flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
           <p className="mt-4 text-white">Carregando fotos...</p>
@@ -132,112 +132,108 @@ export default function FotosPage() {
   const localizacao = imovel.endereco?.bairro || imovel.endereco?.cidade || ''
 
   return (
-    <div className="h-screen bg-gray-900 flex flex-col overflow-hidden">
-      {/* Foto Principal - Em cima */}
-      <div className="flex-1 flex items-center justify-center p-4 pb-20">
-        <div className="relative w-full max-w-7xl h-full">
-          <div className="relative w-full h-full bg-black rounded-lg overflow-hidden">
-            {fotosOrdenadas[fotoAtualValida] && (
-              <Image
-                src={fotosOrdenadas[fotoAtualValida]}
-                alt={`${imovel.titulo} - Foto ${fotoAtualValida + 1}`}
-                fill
-                className="object-contain"
-                style={{ transform: `scale(${zoom})` }}
-                unoptimized
-              />
-            )}
+    <div className="h-screen bg-black flex flex-col overflow-hidden">
+      {/* Foto Principal - Horizontal em cima */}
+      <div className="flex-1 relative">
+        <div className="absolute inset-0">
+          {fotosOrdenadas[fotoAtualValida] && (
+            <Image
+              src={fotosOrdenadas[fotoAtualValida]}
+              alt={`${imovel.titulo} - Foto ${fotoAtualValida + 1}`}
+              fill
+              className="object-contain"
+              style={{ transform: `scale(${zoom})` }}
+              unoptimized
+            />
+          )}
 
-            {/* Contador no canto superior esquerdo */}
-            <div className="absolute top-4 left-4 text-white text-sm font-medium z-20">
-              {fotoAtualValida + 1} / {fotosOrdenadas.length}
-            </div>
+          {/* Contador no canto superior esquerdo */}
+          <div className="absolute top-4 left-4 text-white text-sm font-medium z-20">
+            {fotoAtualValida + 1} / {fotosOrdenadas.length}
+          </div>
 
-            {/* Controles no canto superior direito */}
-            <div className="absolute top-4 right-4 flex gap-2 z-20">
+          {/* Controles no canto superior direito */}
+          <div className="absolute top-4 right-4 flex gap-3 z-20">
+            <button
+              onClick={toggleZoom}
+              className="text-white hover:opacity-70 transition-opacity"
+              aria-label={zoom === 1 ? 'Ampliar' : 'Reduzir'}
+            >
+              {zoom === 1 ? <ZoomIn className="w-5 h-5" /> : <ZoomOut className="w-5 h-5" />}
+            </button>
+            <button
+              onClick={toggleFullscreen}
+              className="text-white hover:opacity-70 transition-opacity"
+              aria-label="Tela cheia"
+            >
+              <Maximize className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => router.back()}
+              className="text-white hover:opacity-70 transition-opacity"
+              aria-label="Fechar"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Botões de navegação laterais */}
+          {fotosOrdenadas.length > 1 && (
+            <>
               <button
-                onClick={toggleZoom}
-                className="text-white hover:opacity-80 transition-opacity"
-                aria-label={zoom === 1 ? 'Ampliar' : 'Reduzir'}
+                onClick={fotoAnterior}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:opacity-70 transition-opacity z-20"
+                aria-label="Foto anterior"
               >
-                {zoom === 1 ? <ZoomIn className="w-5 h-5" /> : <ZoomOut className="w-5 h-5" />}
+                <ChevronLeft className="w-8 h-8" />
               </button>
               <button
-                onClick={toggleFullscreen}
-                className="text-white hover:opacity-80 transition-opacity"
-                aria-label="Tela cheia"
+                onClick={proximaFoto}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:opacity-70 transition-opacity z-20"
+                aria-label="Próxima foto"
               >
-                <Maximize className="w-5 h-5" />
+                <ChevronRight className="w-8 h-8" />
               </button>
-              <button
-                onClick={() => router.back()}
-                className="text-white hover:opacity-80 transition-opacity"
-                aria-label="Fechar"
-              >
-                <X className="w-5 h-5" />
-              </button>
+            </>
+          )}
+
+          {/* Texto na parte inferior da foto */}
+          {localizacao && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white text-gray-900 px-4 py-2 rounded text-sm font-medium whitespace-nowrap z-20">
+              {tipoImovel} à venda {localizacao ? `no ${localizacao}` : ''}:
             </div>
+          )}
 
-            {/* Botões de navegação laterais */}
-            {fotosOrdenadas.length > 1 && (
-              <>
-                <button
-                  onClick={fotoAnterior}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:opacity-80 transition-opacity z-10"
-                  aria-label="Foto anterior"
-                >
-                  <ChevronLeft className="w-8 h-8" />
-                </button>
-                <button
-                  onClick={proximaFoto}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:opacity-80 transition-opacity z-10"
-                  aria-label="Próxima foto"
-                >
-                  <ChevronRight className="w-8 h-8" />
-                </button>
-              </>
-            )}
-
-            {/* Texto na parte inferior da foto */}
-            {localizacao && (
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/95 text-gray-900 px-4 py-2 rounded text-sm font-medium whitespace-nowrap">
-                {tipoImovel} à venda {localizacao ? `no ${localizacao}` : ''}:
-              </div>
-            )}
-
-            {/* Grid icon no canto inferior direito */}
-            <div className="absolute bottom-4 right-4">
-              <Grid className="w-5 h-5 text-white/80" />
-            </div>
+          {/* Grid icon no canto inferior direito */}
+          <div className="absolute bottom-4 right-4 z-20">
+            <Grid className="w-5 h-5 text-white/80" />
           </div>
         </div>
       </div>
 
-      {/* Thumbnails na parte inferior - Barra de rolagem */}
+      {/* Thumbnails - Logo abaixo, sem espaçamento */}
       {fotosOrdenadas.length > 1 && (
-        <div className="bg-black/90 p-4 flex-shrink-0">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex gap-2 overflow-x-auto pb-2" style={{ scrollbarWidth: 'thin', scrollbarColor: '#666 #333' }}>
-              {fotosOrdenadas.map((foto: string, index: number) => (
-                <button
-                  key={index}
-                  onClick={() => irParaFoto(index)}
-                  className={`flex-shrink-0 relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                    index === fotoAtualValida
-                      ? 'border-red-500'
-                      : 'border-transparent opacity-70 hover:opacity-100'
-                  }`}
-                >
-                  <Image
-                    src={foto}
-                    alt={`Thumbnail ${index + 1}`}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </button>
-              ))}
-            </div>
+        <div className="bg-black flex-shrink-0 h-24">
+          <div className="flex gap-2 overflow-x-auto h-full px-4 items-center" style={{ scrollbarWidth: 'thin', scrollbarColor: '#444 #000' }}>
+            {fotosOrdenadas.map((foto: string, index: number) => (
+              <button
+                key={index}
+                onClick={() => irParaFoto(index)}
+                className={`flex-shrink-0 relative w-20 h-20 rounded overflow-hidden border-2 transition-all ${
+                  index === fotoAtualValida
+                    ? 'border-red-500'
+                    : 'border-transparent opacity-70 hover:opacity-100'
+                }`}
+              >
+                <Image
+                  src={foto}
+                  alt={`Thumbnail ${index + 1}`}
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </button>
+            ))}
           </div>
         </div>
       )}
