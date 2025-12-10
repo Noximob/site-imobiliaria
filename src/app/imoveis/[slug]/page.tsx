@@ -11,7 +11,12 @@ import {
   Key,
   Heart,
   Check,
-  MessageCircle
+  MessageCircle,
+  Bed,
+  Bath,
+  Car,
+  Square,
+  Eye
 } from 'lucide-react'
 
 export default function ImovelDetalhePage() {
@@ -236,6 +241,57 @@ export default function ImovelDetalhePage() {
               <span className="text-gray-500">Sem imagens</span>
             </div>
           )}
+        </div>
+
+        {/* Características do Imóvel - Abaixo das Fotos */}
+        <div className="bg-white rounded-lg shadow-sm p-4 mb-3">
+          <div className="flex flex-wrap items-center gap-6 text-sm">
+            {/* Código */}
+            <div className="flex items-center gap-2 text-gray-700">
+              <Key className="w-4 h-4 text-purple-600" />
+              <span className="font-light">{imovel.id} Código</span>
+            </div>
+            
+            {/* Quartos */}
+            {imovel.caracteristicas.quartos > 0 && (
+              <div className="flex items-center gap-2 text-gray-700">
+                <Bed className="w-4 h-4 text-purple-600" />
+                <span className="font-light">{imovel.caracteristicas.quartos} {imovel.caracteristicas.quartos === 1 ? 'Quarto' : 'Quartos'}</span>
+              </div>
+            )}
+            
+            {/* Banheiros */}
+            {imovel.caracteristicas.banheiros > 0 && (
+              <div className="flex items-center gap-2 text-gray-700">
+                <Bath className="w-4 h-4 text-purple-600" />
+                <span className="font-light">{imovel.caracteristicas.banheiros} {imovel.caracteristicas.banheiros === 1 ? 'Banheiro' : 'Banheiros'}</span>
+              </div>
+            )}
+            
+            {/* Vagas */}
+            {imovel.caracteristicas.vagas > 0 && (
+              <div className="flex items-center gap-2 text-gray-700">
+                <Car className="w-4 h-4 text-purple-600" />
+                <span className="font-light">{imovel.caracteristicas.vagas} {imovel.caracteristicas.vagas === 1 ? 'Vaga' : 'Vagas'}</span>
+              </div>
+            )}
+            
+            {/* Área */}
+            {imovel.caracteristicas.area > 0 && (
+              <div className="flex items-center gap-2 text-gray-700">
+                <Square className="w-4 h-4 text-purple-600" />
+                <span className="font-light">{imovel.caracteristicas.area} M² Privativos</span>
+              </div>
+            )}
+            
+            {/* Visualizações */}
+            {imovel.visualizacoes && imovel.visualizacoes > 0 && (
+              <div className="flex items-center gap-2 text-gray-700">
+                <Eye className="w-4 h-4 text-purple-600" />
+                <span className="font-light">{imovel.visualizacoes} Visualizações</span>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Formulário de Contato - Abaixo da Galeria */}
