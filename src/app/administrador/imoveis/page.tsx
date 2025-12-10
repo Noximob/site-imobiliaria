@@ -59,7 +59,44 @@ export default function AdminImoveis() {
     },
     publicado: true
   })
-  const [tagsText, setTagsText] = useState('')
+  // Lista fixa de diferenciais disponíveis
+  const diferenciaisDisponiveis = [
+    'Frente Mar',
+    'Vista para o Mar',
+    'Piscina',
+    'Churrasqueira',
+    'Academia',
+    'Portaria 24h',
+    'Elevador',
+    'Varanda',
+    'Sacada',
+    'Mobiliado',
+    'Novo',
+    'Reformado',
+    'Home Club',
+    'Área de Serviço',
+    'Cozinha com Armário',
+    'Água Individual',
+    'Interfone',
+    'Salão de Festas',
+    'Playground',
+    'Quadra Esportiva',
+    'Espaço Gourmet',
+    'Lavanderia',
+    'Depósito',
+    'Garagem Coberta',
+    'Segurança 24h',
+    'Câmeras de Segurança',
+    'Jardim',
+    'Área de Lazer',
+    'Piscina Aquecida',
+    'Sauna',
+    'Spa',
+    'Cinema',
+    'Pet Friendly'
+  ]
+  
+  const [diferenciaisSelecionados, setDiferenciaisSelecionados] = useState<string[]>([])
   const [fotosFiles, setFotosFiles] = useState<File[]>([])
   const [fotosPreviews, setFotosPreviews] = useState<string[]>([])
   const [fotosExistentes, setFotosExistentes] = useState<string[]>([]) // Fotos já salvas
@@ -183,7 +220,7 @@ export default function AdminImoveis() {
       },
       publicado: imovel.publicado
     })
-    // Unificar todos os diferenciais em tags
+    // Unificar todos os diferenciais em uma lista
     const extras = ((imovel.caracteristicas as any).extras || [])
     const infraestrutura = ((imovel as any).infraestrutura || [])
     const tags = ((imovel as any).tags || [])
@@ -194,14 +231,14 @@ export default function AdminImoveis() {
     if (imovel.caracteristicas.piscina) recursosAdicionais.push('Piscina')
     if (imovel.caracteristicas.churrasqueira) recursosAdicionais.push('Churrasqueira')
     if (imovel.caracteristicas.academia) recursosAdicionais.push('Academia')
-    if (imovel.caracteristicas.portaria) recursosAdicionais.push('Portaria')
+    if (imovel.caracteristicas.portaria) recursosAdicionais.push('Portaria 24h')
     if (imovel.caracteristicas.elevador) recursosAdicionais.push('Elevador')
     if (imovel.caracteristicas.varanda) recursosAdicionais.push('Varanda')
     if (imovel.caracteristicas.sacada) recursosAdicionais.push('Sacada')
     
-    // Juntar tudo em uma única lista de tags
+    // Juntar tudo em uma única lista de diferenciais selecionados
     const todasTags = [...extras, ...infraestrutura, ...tags, ...recursosAdicionais]
-    setTagsText(todasTags.join(', '))
+    setDiferenciaisSelecionados(todasTags)
     setFotosFiles([])
     setFotosPreviews([])
     setFotosExistentes(imovel.fotos || [])
@@ -268,7 +305,7 @@ export default function AdminImoveis() {
       },
       publicado: true
     })
-    setTagsText('')
+    setDiferenciaisSelecionados([])
     setFotosFiles([])
     setFotosPreviews([])
     setFotosExistentes([])
@@ -293,11 +330,28 @@ export default function AdminImoveis() {
 
     setIsLoading(true)
     try {
-      // Processar tags (todos os diferenciais unificados)
-      const tagsList = tagsText
-        .split(',')
-        .map(s => s.trim())
-        .filter(s => s.length > 0)
+      // Processar diferenciais selecionados (já é um array)
+      const tagsList = diferenciaisSelecionados.filter(tag => tag.length > 0)
+
+      // Mapear diferenciais conhecidos para booleanas (compatibilidade com site principal)
+      const frenteMar = tagsList.includes('Frente Mar')
+      const piscina = tagsList.includes('Piscina')
+      const churrasqueira = tagsList.includes('Churrasqueira')
+      const academia = tagsList.includes('Academia')
+      const portaria = tagsList.includes('Portaria 24h')
+      const elevador = tagsList.includes('Elevador')
+      const varanda = tagsList.includes('Varanda')
+      const sacada = tagsList.includes('Sacada')
+      
+      // Separar diferenciais em categorias para compatibilidade
+      const caracteristicasExtras = tagsList.filter(tag => 
+        !['Frente Mar', 'Piscina', 'Churrasqueira', 'Academia', 'Portaria 24h', 'Elevador', 'Varanda', 'Sacada'].includes(tag) &&
+        !['Água Individual', 'Interfone', 'Salão de Festas', 'Playground', 'Quadra Esportiva', 'Espaço Gourmet', 'Lavanderia', 'Depósito', 'Garagem Coberta', 'Segurança 24h', 'Câmeras de Segurança', 'Jardim', 'Área de Lazer', 'Piscina Aquecida', 'Sauna', 'Spa', 'Cinema', 'Pet Friendly'].includes(tag)
+      )
+      
+      const infraestruturaList = tagsList.filter(tag => 
+        ['Água Individual', 'Interfone', 'Salão de Festas', 'Playground', 'Quadra Esportiva', 'Espaço Gourmet', 'Lavanderia', 'Depósito', 'Garagem Coberta', 'Segurança 24h', 'Câmeras de Segurança', 'Jardim', 'Área de Lazer', 'Piscina Aquecida', 'Sauna', 'Spa', 'Cinema', 'Pet Friendly'].includes(tag)
+      )
 
       // Organizar fotos: foto principal primeiro, depois as outras
       const todasFotos = [...fotosExistentes, ...fotosPreviews]
@@ -321,18 +375,17 @@ export default function AdminImoveis() {
         endereco: novoImovel.endereco,
         caracteristicas: {
           ...novoImovel.caracteristicas,
-          // Remover recursos adicionais dos checkboxes, pois agora são tags
-          frenteMar: false,
-          piscina: false,
-          churrasqueira: false,
-          academia: false,
-          portaria: false,
-          elevador: false,
-          varanda: false,
-          sacada: false,
-          extras: undefined
+          frenteMar,
+          piscina,
+          churrasqueira,
+          academia,
+          portaria,
+          elevador,
+          varanda,
+          sacada,
+          extras: caracteristicasExtras.length > 0 ? caracteristicasExtras : undefined
         },
-        infraestrutura: undefined,
+        infraestrutura: infraestruturaList.length > 0 ? infraestruturaList : undefined,
         tags: tagsList.length > 0 ? tagsList : undefined,
         coordenadas: novoImovel.coordenadas.lat !== 0 && novoImovel.coordenadas.lng !== 0 
           ? novoImovel.coordenadas 
@@ -816,20 +869,24 @@ export default function AdminImoveis() {
               {/* Diferenciais */}
               <div className="border-b border-gray-200 pb-6">
                 <h3 className="text-md font-semibold text-gray-900 mb-4">Diferenciais</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Tags (separadas por vírgula)
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {diferenciaisDisponiveis.map((diferencial) => (
+                    <label key={diferencial} className="flex items-center cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={diferenciaisSelecionados.includes(diferencial)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setDiferenciaisSelecionados([...diferenciaisSelecionados, diferencial])
+                          } else {
+                            setDiferenciaisSelecionados(diferenciaisSelecionados.filter(d => d !== diferencial))
+                          }
+                        }}
+                        className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                      />
+                      <span className="ml-2 text-sm text-gray-700">{diferencial}</span>
                     </label>
-                    <input
-                      type="text"
-                      value={tagsText}
-                      onChange={(e) => setTagsText(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                      placeholder="Ex: Mobiliado, Novo, Reformado, Home Club, Frente Mar, Piscina, Churrasqueira, Vista para o Mar, Área de Serviço"
-                    />
-                    <p className="text-xs text-gray-500 mt-1">Separe cada tag com vírgula. Exemplos: Mobiliado, Novo, Reformado, Home Club, Frente Mar, Piscina, Churrasqueira, Academia, Portaria, Elevador, Varanda, Sacada, Vista para o Mar, Área de Serviço, etc.</p>
-                  </div>
+                  ))}
                 </div>
               </div>
 
