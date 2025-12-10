@@ -84,7 +84,17 @@ export default function ImovelDetalhePage() {
     ? imovel.precoOriginal - imovel.preco
     : 0
 
+  // Organizar fotos: foto principal primeiro
   const todasFotos = imovel.fotos || []
+  const fotoPrincipalIndex = (imovel as any).fotoPrincipalIndex ?? 0
+  
+  // Se há foto principal definida e não está na primeira posição, reorganizar
+  let fotosOrdenadas = [...todasFotos]
+  if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < fotosOrdenadas.length) {
+    const fotoPrincipal = fotosOrdenadas[fotoPrincipalIndex]
+    fotosOrdenadas.splice(fotoPrincipalIndex, 1)
+    fotosOrdenadas.unshift(fotoPrincipal)
+  }
 
   // Características extras (combinando booleanas e array de extras)
   const caracteristicasList = [
@@ -167,12 +177,12 @@ export default function ImovelDetalhePage() {
 
         {/* Galeria de Fotos - Grid 3x3 igual ao modelo (primeira imagem maior) */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
-          {todasFotos.length > 0 ? (
-            <div className="grid grid-cols-3 grid-rows-3 gap-2 p-2" style={{ gridAutoRows: 'minmax(200px, auto)' }}>
+          {fotosOrdenadas.length > 0 ? (
+            <div className="grid grid-cols-3 gap-2 p-2" style={{ gridAutoRows: '200px' }}>
               {/* Primeira imagem - ocupa 2 colunas e 2 linhas (maior) */}
-              <div className="col-span-2 row-span-2 relative rounded-lg overflow-hidden min-h-[400px]">
+              <div className="col-span-2 row-span-2 relative rounded-lg overflow-hidden">
                 <Image
-                  src={todasFotos[0]}
+                  src={fotosOrdenadas[0]}
                   alt={`${imovel.titulo} - Foto principal`}
                   fill
                   className="object-cover"
@@ -180,11 +190,11 @@ export default function ImovelDetalhePage() {
                 />
               </div>
               
-              {/* Segunda imagem - canto superior direito (col 3, row 1) */}
-              {todasFotos[1] && (
-                <div className="relative rounded-lg overflow-hidden min-h-[200px]">
+              {/* Segunda imagem - canto superior direito */}
+              {fotosOrdenadas[1] && (
+                <div className="relative rounded-lg overflow-hidden">
                   <Image
-                    src={todasFotos[1]}
+                    src={fotosOrdenadas[1]}
                     alt={`${imovel.titulo} - Foto 2`}
                     fill
                     className="object-cover"
@@ -193,11 +203,11 @@ export default function ImovelDetalhePage() {
                 </div>
               )}
               
-              {/* Terceira imagem - abaixo da segunda (col 3, row 2) */}
-              {todasFotos[2] && (
-                <div className="relative rounded-lg overflow-hidden min-h-[200px]">
+              {/* Terceira imagem - abaixo da segunda */}
+              {fotosOrdenadas[2] && (
+                <div className="relative rounded-lg overflow-hidden">
                   <Image
-                    src={todasFotos[2]}
+                    src={fotosOrdenadas[2]}
                     alt={`${imovel.titulo} - Foto 3`}
                     fill
                     className="object-cover"
@@ -206,11 +216,11 @@ export default function ImovelDetalhePage() {
                 </div>
               )}
               
-              {/* Quarta imagem - abaixo da primeira (col 1, row 3) */}
-              {todasFotos[3] && (
-                <div className="relative rounded-lg overflow-hidden min-h-[200px]">
+              {/* Quarta imagem - abaixo da primeira (esquerda) */}
+              {fotosOrdenadas[3] && (
+                <div className="relative rounded-lg overflow-hidden">
                   <Image
-                    src={todasFotos[3]}
+                    src={fotosOrdenadas[3]}
                     alt={`${imovel.titulo} - Foto 4`}
                     fill
                     className="object-cover"
@@ -219,11 +229,11 @@ export default function ImovelDetalhePage() {
                 </div>
               )}
               
-              {/* Quinta imagem - ao lado da quarta (col 2, row 3) */}
-              {todasFotos[4] && (
-                <div className="relative rounded-lg overflow-hidden min-h-[200px]">
+              {/* Quinta imagem - ao lado da quarta */}
+              {fotosOrdenadas[4] && (
+                <div className="relative rounded-lg overflow-hidden">
                   <Image
-                    src={todasFotos[4]}
+                    src={fotosOrdenadas[4]}
                     alt={`${imovel.titulo} - Foto 5`}
                     fill
                     className="object-cover"
@@ -232,11 +242,11 @@ export default function ImovelDetalhePage() {
                 </div>
               )}
               
-              {/* Sexta imagem - última (col 3, row 3) */}
-              {todasFotos[5] && (
-                <div className="relative rounded-lg overflow-hidden min-h-[200px]">
+              {/* Sexta imagem - última */}
+              {fotosOrdenadas[5] && (
+                <div className="relative rounded-lg overflow-hidden">
                   <Image
-                    src={todasFotos[5]}
+                    src={fotosOrdenadas[5]}
                     alt={`${imovel.titulo} - Foto 6`}
                     fill
                     className="object-cover"

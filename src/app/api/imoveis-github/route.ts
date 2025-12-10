@@ -169,11 +169,16 @@ export async function POST(request: NextRequest) {
     const slug = generateSlug(imovel.titulo)
 
     // Adicionar novo imóvel
+    // Se imovel.fotos já estiver definido (fotos ordenadas do admin), usar essas
+    // Caso contrário, usar fotosUrls das novas fotos enviadas
+    const fotosFinais = imovel.fotos && imovel.fotos.length > 0 ? imovel.fotos : fotosUrls
+    
     const novoImovel = {
       ...imovel,
       id,
       slug,
-      fotos: fotosUrls,
+      fotos: fotosFinais,
+      fotoPrincipalIndex: imovel.fotoPrincipalIndex ?? 0,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     }
@@ -300,17 +305,28 @@ export async function PUT(request: NextRequest) {
         sha: fotosCommit.sha
       })
 
-      // Adicionar novas fotos às existentes (não substituir)
-      imovel.fotos = [...fotosExistentes, ...fotosUrls]
+      // Se imovel.fotos já estiver definido (fotos ordenadas do admin), usar essas
+      // Caso contrário, adicionar novas fotos às existentes
+      if (imovel.fotos && imovel.fotos.length > 0) {
+        // Usar fotos ordenadas do admin
+        // Fazer upload apenas das novas fotos que ainda não existem
+        const novasFotosParaUpload = fotosUrls.filter(url => !fotosExistentes.includes(url))
+        // Se houver novas fotos para upload, já foram feitas acima
+        imovel.fotos = imovel.fotos // Manter ordem do admin
+      } else {
+        // Adicionar novas fotos às existentes (não substituir)
+        imovel.fotos = [...fotosExistentes, ...fotosUrls]
+      }
     } else {
-      // Se não houver novas fotos, manter as existentes
-      imovel.fotos = imoveis[index].fotos || []
+      // Se não houver novas fotos, usar as fotos ordenadas do admin ou manter as existentes
+      imovel.fotos = imovel.fotos && imovel.fotos.length > 0 ? imovel.fotos : (imoveis[index].fotos || [])
     }
 
     // Atualizar imóvel
     imoveis[index] = {
       ...imoveis[index],
       ...imovel,
+      fotoPrincipalIndex: imovel.fotoPrincipalIndex ?? 0,
       updatedAt: new Date().toISOString(),
     }
 

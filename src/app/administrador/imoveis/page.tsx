@@ -64,6 +64,8 @@ export default function AdminImoveis() {
   const [tagsText, setTagsText] = useState('')
   const [fotosFiles, setFotosFiles] = useState<File[]>([])
   const [fotosPreviews, setFotosPreviews] = useState<string[]>([])
+  const [fotosExistentes, setFotosExistentes] = useState<string[]>([]) // Fotos já salvas
+  const [fotoPrincipalIndex, setFotoPrincipalIndex] = useState<number>(0)
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('todos')
   const [tipoFilter, setTipoFilter] = useState('todos')
@@ -88,7 +90,8 @@ export default function AdminImoveis() {
   const handleFotosChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || [])
     if (files.length > 0) {
-      setFotosFiles(files)
+      // Adicionar novas fotos às existentes (não substituir)
+      setFotosFiles(prev => [...prev, ...files])
       const readers = files.map(file => {
         const reader = new FileReader()
         reader.readAsDataURL(file)
@@ -98,18 +101,61 @@ export default function AdminImoveis() {
       })
       
       Promise.all(readers).then(previews => {
-        setFotosPreviews(previews)
+        setFotosPreviews(prev => [...prev, ...previews])
       })
     }
   }
 
-  const removeFoto = (index: number) => {
-    const newFotos = [...fotosFiles]
-    const newPreviews = [...fotosPreviews]
-    newFotos.splice(index, 1)
-    newPreviews.splice(index, 1)
-    setFotosFiles(newFotos)
-    setFotosPreviews(newPreviews)
+  const removeFoto = (index: number, isExistente: boolean) => {
+    if (isExistente) {
+      // Remover foto existente
+      const novasFotos = [...fotosExistentes]
+      novasFotos.splice(index, 1)
+      setFotosExistentes(novasFotos)
+      // Ajustar índice da foto principal se necessário
+      if (fotoPrincipalIndex === index) {
+        setFotoPrincipalIndex(0)
+      } else if (fotoPrincipalIndex > index) {
+        setFotoPrincipalIndex(fotoPrincipalIndex - 1)
+      }
+    } else {
+      // Remover foto nova (preview)
+      const indexNovo = index - fotosExistentes.length
+      const newFotos = [...fotosFiles]
+      const newPreviews = [...fotosPreviews]
+      newFotos.splice(indexNovo, 1)
+      newPreviews.splice(indexNovo, 1)
+      setFotosFiles(newFotos)
+      setFotosPreviews(newPreviews)
+    }
+  }
+
+  const definirFotoPrincipal = (index: number) => {
+    setFotoPrincipalIndex(index)
+  }
+
+  const reordenarFoto = (indexAtual: number, novaPosicao: number) => {
+    const todasFotos = [...fotosExistentes, ...fotosPreviews]
+    if (indexAtual === novaPosicao) return
+    
+    const fotoMovida = todasFotos[indexAtual]
+    const novasFotos = [...todasFotos]
+    novasFotos.splice(indexAtual, 1)
+    novasFotos.splice(novaPosicao, 0, fotoMovida)
+    
+    // Separar novamente entre existentes e novas
+    const novasExistentes = novasFotos.filter(f => fotosExistentes.includes(f))
+    const novasPreviews = novasFotos.filter(f => !fotosExistentes.includes(f))
+    
+    setFotosExistentes(novasExistentes)
+    setFotosPreviews(novasPreviews)
+    
+    // Ajustar índice da foto principal
+    if (fotoPrincipalIndex === indexAtual) {
+      setFotoPrincipalIndex(novaPosicao)
+    } else if (fotoPrincipalIndex === novaPosicao) {
+      setFotoPrincipalIndex(indexAtual)
+    }
   }
 
   const handleEdit = (imovel: Imovel) => {
@@ -143,7 +189,9 @@ export default function AdminImoveis() {
     setInfraestruturaText(((imovel as any).infraestrutura || []).join(', '))
     setTagsText(((imovel as any).tags || []).join(', '))
     setFotosFiles([])
-    setFotosPreviews(imovel.fotos || [])
+    setFotosPreviews([])
+    setFotosExistentes(imovel.fotos || [])
+    setFotoPrincipalIndex((imovel as any).fotoPrincipalIndex || 0)
     setShowCreateForm(true)
   }
 
@@ -211,6 +259,8 @@ export default function AdminImoveis() {
     setTagsText('')
     setFotosFiles([])
     setFotosPreviews([])
+    setFotosExistentes([])
+    setFotoPrincipalIndex(0)
     setEditingImovel(null)
     setShowCreateForm(false)
   }
@@ -245,6 +295,17 @@ export default function AdminImoveis() {
         .map(s => s.trim())
         .filter(s => s.length > 0)
 
+      // Organizar fotos: foto principal primeiro, depois as outras
+      const todasFotos = [...fotosExistentes, ...fotosPreviews]
+      let fotosOrdenadas = [...todasFotos]
+      
+      // Se há foto principal definida e não está na primeira posição, mover para o início
+      if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < fotosOrdenadas.length) {
+        const fotoPrincipal = fotosOrdenadas[fotoPrincipalIndex]
+        fotosOrdenadas.splice(fotoPrincipalIndex, 1)
+        fotosOrdenadas.unshift(fotoPrincipal)
+      }
+
       const imovelData = {
         titulo: novoImovel.titulo,
         slug: generateSlug(novoImovel.titulo),
@@ -266,14 +327,17 @@ export default function AdminImoveis() {
         visualizacoes: novoImovel.visualizacoes || 0,
         contato: novoImovel.contato,
         publicado: novoImovel.publicado,
+        fotoPrincipalIndex: 0, // Sempre 0 porque já movemos para o início
+        fotos: fotosOrdenadas // Enviar todas as fotos ordenadas
       }
 
       if (editingImovel) {
-        // Editar imóvel existente
+        // Editar imóvel existente - enviar apenas novas fotos (fotosFiles)
+        // As fotos ordenadas já estão em imovelData.fotos
         await updateImovelWithFotos(editingImovel.id, imovelData, fotosFiles.length > 0 ? fotosFiles : undefined)
         alert('Imóvel atualizado com sucesso!')
       } else {
-        // Criar novo imóvel
+        // Criar novo imóvel - todas as fotos são novas
         await createImovelWithFotos(imovelData, fotosFiles)
         alert('Imóvel criado com sucesso!')
       }
@@ -919,11 +983,11 @@ export default function AdminImoveis() {
                 <h3 className="text-md font-semibold text-gray-900 mb-4">Fotos</h3>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Selecionar Fotos {!editingImovel && '*'}
+                    Adicionar Novas Fotos {!editingImovel && '*'}
                   </label>
                   <p className="text-xs text-gray-500 mb-2">
                     {editingImovel 
-                      ? 'Selecione novas fotos para substituir as atuais. Deixe em branco para manter as fotos atuais.'
+                      ? 'Selecione novas fotos para adicionar às existentes. As fotos antigas serão preservadas.'
                       : 'Selecione uma ou mais fotos do imóvel. Tamanho recomendado: 1920 x 1080px'}
                   </p>
                   <input
@@ -932,28 +996,61 @@ export default function AdminImoveis() {
                     multiple
                     onChange={handleFotosChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                    required={!editingImovel && fotosPreviews.length === 0}
+                    required={!editingImovel && fotosExistentes.length === 0 && fotosPreviews.length === 0}
                   />
-                  {(fotosPreviews.length > 0 || (editingImovel && editingImovel.fotos && editingImovel.fotos.length > 0)) && (
-                    <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-                      {(fotosPreviews.length > 0 ? fotosPreviews : (editingImovel?.fotos || [])).map((preview, index) => (
-                        <div key={index} className="relative group">
-                          <img
-                            src={preview}
-                            alt={`Foto ${index + 1}`}
-                            className="w-full h-32 object-cover rounded-md"
-                          />
-                          {fotosPreviews.length > 0 && index < fotosPreviews.length && (
-                            <button
-                              type="button"
-                              onClick={() => removeFoto(index)}
-                              className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  
+                  {/* Grid de todas as fotos (existentes + novas) */}
+                  {(fotosExistentes.length > 0 || fotosPreviews.length > 0) && (
+                    <div className="mt-4">
+                      <p className="text-sm font-medium text-gray-700 mb-3">
+                        Todas as Fotos ({fotosExistentes.length + fotosPreviews.length})
+                      </p>
+                      <p className="text-xs text-gray-500 mb-3">
+                        Clique em uma foto para definir como principal (aparecerá maior na página). Arraste para reordenar.
+                      </p>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {[...fotosExistentes, ...fotosPreviews].map((foto, index) => {
+                          const isPrincipal = index === fotoPrincipalIndex
+                          const isExistente = index < fotosExistentes.length
+                          return (
+                            <div 
+                              key={index} 
+                              className={`relative group border-2 rounded-md overflow-hidden ${
+                                isPrincipal ? 'border-purple-600 ring-2 ring-purple-300' : 'border-gray-200'
+                              }`}
                             >
-                              <X className="w-4 h-4" />
-                            </button>
-                          )}
-                        </div>
-                      ))}
+                              <img
+                                src={foto}
+                                alt={`Foto ${index + 1}`}
+                                className="w-full h-32 object-cover"
+                              />
+                              {isPrincipal && (
+                                <div className="absolute top-2 left-2 bg-purple-600 text-white text-xs px-2 py-1 rounded">
+                                  Principal
+                                </div>
+                              )}
+                              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center gap-2">
+                                <button
+                                  type="button"
+                                  onClick={() => definirFotoPrincipal(index)}
+                                  className="opacity-0 group-hover:opacity-100 bg-purple-600 text-white px-3 py-1 rounded text-xs font-medium hover:bg-purple-700 transition-opacity"
+                                  title="Definir como foto principal"
+                                >
+                                  {isPrincipal ? '✓ Principal' : 'Definir Principal'}
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => removeFoto(index, isExistente)}
+                                  className="opacity-0 group-hover:opacity-100 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-opacity"
+                                  title="Remover foto"
+                                >
+                                  <X className="w-4 h-4" />
+                                </button>
+                              </div>
+                            </div>
+                          )
+                        })}
+                      </div>
                     </div>
                   )}
                 </div>

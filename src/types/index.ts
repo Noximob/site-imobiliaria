@@ -36,6 +36,7 @@ export interface Imovel {
   infraestrutura?: string[]; // Ex: "Água Individual", "Interfone", "Churrasqueira", "Salão de Festas", etc.
   tags?: string[]; // Ex: "Mobiliado", "Novo", "Reformado", etc.
   fotos: string[];
+  fotoPrincipalIndex?: number; // Índice da foto principal (padrão: 0)
   coordenadas?: {
     lat: number;
     lng: number;
