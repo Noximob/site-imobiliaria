@@ -85,7 +85,7 @@ export async function updateImovelWithFotos(id: string, imovelData: any, fotosFi
       fotosBase64 = []
       
       for (const foto of fotosFiles) {
-        const base64 = await resizeFotoPrincipal(foto)
+        const base64 = await resizeFoto(foto)
         fotosBase64.push(base64)
       }
     }
