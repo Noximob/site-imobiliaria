@@ -146,61 +146,62 @@ export default function FotosPage() {
               unoptimized
               priority
             />
-
-          {/* Contador no canto superior esquerdo */}
-          <div className="absolute top-4 left-4 text-white text-sm font-medium z-20">
-            {fotoAtualValida + 1} / {fotosOrdenadas.length}
           </div>
+        )}
 
-          {/* Controles no canto superior direito */}
-          <div className="absolute top-4 right-4 flex gap-3 z-20">
+        {/* Contador no canto superior esquerdo */}
+        <div className="absolute top-4 left-4 text-white text-sm font-medium z-20">
+          {fotoAtualValida + 1} / {fotosOrdenadas.length}
+        </div>
+
+        {/* Controles no canto superior direito */}
+        <div className="absolute top-4 right-4 flex gap-3 z-20">
+          <button
+            onClick={toggleZoom}
+            className="text-white hover:opacity-70 transition-opacity"
+            aria-label={zoom === 1 ? 'Ampliar' : 'Reduzir'}
+          >
+            {zoom === 1 ? <ZoomIn className="w-5 h-5" /> : <ZoomOut className="w-5 h-5" />}
+          </button>
+          <button
+            onClick={toggleFullscreen}
+            className="text-white hover:opacity-70 transition-opacity"
+            aria-label="Tela cheia"
+          >
+            <Maximize className="w-5 h-5" />
+          </button>
+          <button
+            onClick={() => router.back()}
+            className="text-white hover:opacity-70 transition-opacity"
+            aria-label="Fechar"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Botões de navegação laterais */}
+        {fotosOrdenadas.length > 1 && (
+          <>
             <button
-              onClick={toggleZoom}
-              className="text-white hover:opacity-70 transition-opacity"
-              aria-label={zoom === 1 ? 'Ampliar' : 'Reduzir'}
+              onClick={fotoAnterior}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:opacity-70 transition-opacity z-20"
+              aria-label="Foto anterior"
             >
-              {zoom === 1 ? <ZoomIn className="w-5 h-5" /> : <ZoomOut className="w-5 h-5" />}
+              <ChevronLeft className="w-8 h-8" />
             </button>
             <button
-              onClick={toggleFullscreen}
-              className="text-white hover:opacity-70 transition-opacity"
-              aria-label="Tela cheia"
+              onClick={proximaFoto}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:opacity-70 transition-opacity z-20"
+              aria-label="Próxima foto"
             >
-              <Maximize className="w-5 h-5" />
+              <ChevronRight className="w-8 h-8" />
             </button>
-            <button
-              onClick={() => router.back()}
-              className="text-white hover:opacity-70 transition-opacity"
-              aria-label="Fechar"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
+          </>
+        )}
 
-          {/* Botões de navegação laterais */}
-          {fotosOrdenadas.length > 1 && (
-            <>
-              <button
-                onClick={fotoAnterior}
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:opacity-70 transition-opacity z-20"
-                aria-label="Foto anterior"
-              >
-                <ChevronLeft className="w-8 h-8" />
-              </button>
-              <button
-                onClick={proximaFoto}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:opacity-70 transition-opacity z-20"
-                aria-label="Próxima foto"
-              >
-                <ChevronRight className="w-8 h-8" />
-              </button>
-            </>
-          )}
-
-          {/* Grid icon no canto inferior direito */}
-          <div className="absolute bottom-4 right-4 z-20">
-            <Grid className="w-5 h-5 text-white/80" />
-          </div>
+        {/* Grid icon no canto inferior direito */}
+        <div className="absolute bottom-4 right-4 z-20">
+          <Grid className="w-5 h-5 text-white/80" />
         </div>
       </div>
 
