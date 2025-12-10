@@ -703,9 +703,9 @@ export default function AdminImoveis() {
                 </div>
               </div>
 
-              {/* Características */}
+              {/* Características do Imóvel */}
               <div className="border-b border-gray-200 pb-6">
-                <h3 className="text-md font-semibold text-gray-900 mb-4">Características</h3>
+                <h3 className="text-md font-semibold text-gray-900 mb-4">Características do Imóvel</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -797,6 +797,13 @@ export default function AdminImoveis() {
                       min="0"
                     />
                   </div>
+                </div>
+              </div>
+
+              {/* Diferenciais */}
+              <div className="border-b border-gray-200 pb-6">
+                <h3 className="text-md font-semibold text-gray-900 mb-4">Diferenciais</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="md:col-span-2">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Características Extras (separadas por vírgula)
@@ -832,11 +839,14 @@ export default function AdminImoveis() {
                       value={tagsText}
                       onChange={(e) => setTagsText(e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                      placeholder="Ex: Mobiliado, Novo, Reformado"
+                      placeholder="Ex: Mobiliado, Novo, Reformado, Home Club"
                     />
                     <p className="text-xs text-gray-500 mt-1">Separe cada tag com vírgula</p>
                   </div>
                   <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2 mb-3">
+                      Recursos Adicionais
+                    </label>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       {[
                         { key: 'frenteMar', label: 'Frente Mar' },
@@ -985,23 +995,11 @@ export default function AdminImoveis() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Adicionar Novas Fotos {!editingImovel && '*'}
                   </label>
-                  
-                  {/* Informações sobre dimensões */}
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
-                    <p className="text-xs font-semibold text-blue-800 mb-2">
-                      📐 Dimensões Recomendadas:
-                    </p>
-                    <ul className="text-xs text-blue-700 space-y-1">
-                      <li>• <strong>Foto Principal</strong> (aparece maior à esquerda): <strong>800 x 400px</strong></li>
-                      <li>• <strong>Fotos Menores</strong> (aparecem à direita em grid 2x2): <strong>400 x 200px</strong> cada</li>
-                    </ul>
-                    <p className="text-xs text-blue-600 mt-2">
-                      {editingImovel 
-                        ? 'Selecione novas fotos para adicionar às existentes. As fotos antigas serão preservadas.'
-                        : 'Selecione uma ou mais fotos do imóvel. A primeira foto será a principal.'}
-                    </p>
-                  </div>
-                  
+                  <p className="text-xs text-gray-500 mb-2">
+                    {editingImovel 
+                      ? 'Selecione novas fotos para adicionar às existentes. As fotos antigas serão preservadas.'
+                      : 'Selecione uma ou mais fotos do imóvel. A primeira foto será a principal.'}
+                  </p>
                   <input
                     type="file"
                     accept="image/*"
@@ -1041,9 +1039,6 @@ export default function AdminImoveis() {
                                   Principal
                                 </div>
                               )}
-                              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white text-xs px-2 py-1">
-                                {isPrincipal ? '800 x 400px' : '400 x 200px'}
-                              </div>
                               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center gap-2">
                                 <button
                                   type="button"
