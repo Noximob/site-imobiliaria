@@ -1,1 +1,53 @@
-[]
+[
+  {
+    "titulo": "Feel Residence",
+    "slug": "feel-residence",
+    "descricao": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n",
+    "preco": 500000,
+    "tipo": "apartamento",
+    "status": "venda",
+    "endereco": {
+      "cidade": "Penha",
+      "bairro": "Gravata",
+      "rua": "Jordelina flores",
+      "numero": "154",
+      "cep": "88385000",
+      "estado": "Santa Catarina"
+    },
+    "caracteristicas": {
+      "quartos": 2,
+      "banheiros": 2,
+      "vagas": 2,
+      "area": 2,
+      "areaTerreno": 0,
+      "suite": 1,
+      "frenteMar": true,
+      "piscina": false,
+      "churrasqueira": true,
+      "academia": true,
+      "portaria": false,
+      "elevador": false,
+      "varanda": true,
+      "sacada": true,
+      "extras": []
+    },
+    "visualizacoes": 0,
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "telefone": "",
+      "email": "",
+      "corretor": ""
+    },
+    "publicado": true,
+    "id": "1765377429396",
+    "fotos": [
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/1765377429396_0.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/1765377429396_1.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/1765377429396_2.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/1765377429396_3.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/1765377429396_4.jpg"
+    ],
+    "createdAt": "2025-12-10T14:37:12.050Z",
+    "updatedAt": "2025-12-10T14:37:12.050Z"
+  }
+]
