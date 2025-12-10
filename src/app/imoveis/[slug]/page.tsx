@@ -8,24 +8,11 @@ import { getImovelBySlug, getAllImoveis, formatPrice } from '@/lib/imoveis'
 import { getWhatsAppLink } from '@/lib/whatsapp'
 import { 
   MapPin, 
-  Bed, 
-  Bath, 
-  Car, 
-  Ruler,
   Key,
-  Eye,
   Heart,
-  Share2,
-  Facebook,
-  Twitter,
-  Linkedin,
-  Mail,
-  Copy,
   Check,
-  Phone,
   MessageCircle,
-  ArrowLeft,
-  Flame
+  ArrowLeft
 } from 'lucide-react'
 
 export default function ImovelDetalhePage() {
@@ -33,7 +20,6 @@ export default function ImovelDetalhePage() {
   const slug = params.slug as string
   const [imovel, setImovel] = useState<any>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [contatoTipo, setContatoTipo] = useState<'telefone' | 'email' | 'whatsapp'>('email')
   const [formData, setFormData] = useState({
     nome: '',
@@ -41,7 +27,6 @@ export default function ImovelDetalhePage() {
     telefone: '',
     mensagem: 'Olá, gostaria de receber mais informações sobre este imóvel. Aguardo contato, obrigado.'
   })
-  const [linkCopied, setLinkCopied] = useState(false)
 
   useEffect(() => {
     const loadImovel = async () => {
@@ -53,10 +38,6 @@ export default function ImovelDetalhePage() {
         }
         setImovel(imovelData)
         
-        // Incrementar visualizações (opcional - pode ser feito via API)
-        if (imovelData.visualizacoes !== undefined) {
-          // Aqui você pode fazer uma chamada à API para incrementar
-        }
       } catch (error) {
         console.error('Erro ao carregar imóvel:', error)
         notFound()
@@ -67,34 +48,6 @@ export default function ImovelDetalhePage() {
     
     loadImovel()
   }, [slug])
-
-  const handleShare = async (platform: string) => {
-    const url = typeof window !== 'undefined' ? window.location.href : ''
-    const title = imovel?.titulo || ''
-    
-    switch (platform) {
-      case 'facebook':
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank')
-        break
-      case 'twitter':
-        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank')
-        break
-      case 'linkedin':
-        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank')
-        break
-      case 'whatsapp':
-        window.open(`https://wa.me/?text=${encodeURIComponent(`${title} - ${url}`)}`, '_blank')
-        break
-      case 'email':
-        window.location.href = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}`
-        break
-      case 'copy':
-        navigator.clipboard.writeText(url)
-        setLinkCopied(true)
-        setTimeout(() => setLinkCopied(false), 2000)
-        break
-    }
-  }
 
   const handleSubmitForm = (e: React.FormEvent) => {
     e.preventDefault()
@@ -164,79 +117,42 @@ export default function ImovelDetalhePage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Informações do Imóvel - ACIMA da Galeria - Igual ao site de referência */}
+        {/* Informações do Imóvel - ACIMA da Galeria - Igual ao modelo */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
-            {/* Coluna Esquerda - Título, Subtítulo, Endereço, Código */}
+            {/* Coluna Esquerda - Título, Endereço, Código */}
             <div className="flex-1">
-              {/* Título Principal */}
-              <h1 className="text-2xl font-bold text-gray-900 mb-2">
+              {/* Título Principal - Grande e Destacado */}
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 {imovel.titulo}
               </h1>
               
-              {/* Subtítulo (Nome do Edifício) - Extraído do título */}
-              {(() => {
-                const edMatch = imovel.titulo.match(/Ed\.\s*([^,em]+)/i);
-                const edificioMatch = imovel.titulo.match(/Edifício\s+([^,em]+)/i);
-                const residenciaMatch = imovel.titulo.match(/([A-Z][A-Z\s]+(?:RESIDENCE|APARTAMENTO|CONDOMINIO|VILLAGE|TOWER|SUITE|CLUB|PARK|GARDEN|LIFE|HOME|PLACE|HOUSE))/);
-                
-                const subtitulo = edMatch?.[1]?.trim() || 
-                                edificioMatch?.[1]?.trim() || 
-                                residenciaMatch?.[1]?.trim() || 
-                                null;
-                
-                return subtitulo ? (
-                  <h2 className="text-lg font-semibold text-gray-700 mb-3 uppercase">
-                    {subtitulo}
-                  </h2>
-                ) : null;
-              })()}
-              
               {/* Endereço */}
               <div className="flex items-center text-gray-600 mb-3">
-                <MapPin className="w-4 h-4 mr-1" />
-                <span>
+                <MapPin className="w-5 h-5 mr-2 text-purple-600" />
+                <span className="text-base">
                   {imovel.endereco.rua}, {imovel.endereco.numero}, {imovel.endereco.bairro} - {imovel.endereco.cidade}/{imovel.endereco.estado}
                 </span>
               </div>
               
               {/* Código */}
               <div className="flex items-center gap-2">
-                <Key className="w-4 h-4 text-orange-500" />
-                <span className="font-medium text-gray-900">CÓDIGO: {imovel.id}</span>
+                <Key className="w-5 h-5 text-purple-600" />
+                <span className="font-semibold text-gray-900 text-base">CÓDIGO: {imovel.id}</span>
               </div>
             </div>
             
             {/* Coluna Direita - Preço e Botão Favorito */}
             <div className="flex flex-col items-end gap-4">
-              {/* Preço */}
+              {/* Preço - Igual ao modelo */}
               <div className="text-right">
-                {precoDesconto > 0 && (
-                  <div className="mb-2">
-                    <span className="text-green-600 font-semibold text-sm">
-                      Economize {formatPrice(precoDesconto)}
-                    </span>
-                  </div>
-                )}
-                <div className="flex flex-col items-end gap-1">
-                  {precoDesconto > 0 && (
-                    <span className="text-lg text-gray-400 line-through">
-                      {imovel.status === 'venda' ? 'VENDA' : imovel.status === 'aluguel' ? 'ALUGUEL' : 'VENDA/ALUGUEL'}. DE {formatPrice(imovel.precoOriginal || 0)}
-                    </span>
-                  )}
-                  <div className="flex items-baseline gap-2">
-                    {!precoDesconto && (
-                      <span className="text-sm text-gray-600 font-medium">
-                        {imovel.status === 'venda' ? 'VENDA' : imovel.status === 'aluguel' ? 'ALUGUEL' : 'VENDA/ALUGUEL'}.
-                      </span>
-                    )}
-                    {precoDesconto > 0 && (
-                      <span className="text-sm text-gray-600 font-medium">POR:</span>
-                    )}
-                    <span className="text-3xl font-bold text-red-600">
-                      {formatPrice(imovel.preco)}
-                    </span>
-                  </div>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-base font-semibold text-gray-700">
+                    {imovel.status === 'venda' ? 'VENDA' : imovel.status === 'aluguel' ? 'ALUGUEL' : 'VENDA/ALUGUEL'}.
+                  </span>
+                  <span className="text-3xl md:text-4xl font-bold text-red-600">
+                    {formatPrice(imovel.preco)}
+                  </span>
                 </div>
               </div>
               
@@ -249,35 +165,85 @@ export default function ImovelDetalhePage() {
           </div>
         </div>
 
-        {/* Banner de Muito Visualizado */}
-        {imovel.visualizacoes && imovel.visualizacoes > 1000 && (
-          <div className="bg-red-500 text-white rounded-lg p-3 mb-6 flex items-center gap-2">
-            <Flame className="w-5 h-5" />
-            <span className="font-medium">Muito visualizado! Já foram {imovel.visualizacoes} acessos.</span>
-          </div>
-        )}
-
-        {/* Galeria de Fotos - Grid igual ao site de referência */}
+        {/* Galeria de Fotos - Grid 3x3 igual ao modelo (primeira imagem maior) */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
           {todasFotos.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2">
-              {todasFotos.map((foto: string, index: number) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedImageIndex(index)}
-                  className={`relative aspect-video rounded-lg overflow-hidden hover:opacity-90 transition-opacity ${
-                    selectedImageIndex === index ? 'ring-4 ring-purple-500' : 'border-2 border-transparent hover:border-purple-500'
-                  }`}
-                >
+            <div className="grid grid-cols-3 grid-rows-3 gap-2 p-2" style={{ gridAutoRows: 'minmax(200px, auto)' }}>
+              {/* Primeira imagem - ocupa 2 colunas e 2 linhas (maior) */}
+              <div className="col-span-2 row-span-2 relative rounded-lg overflow-hidden min-h-[400px]">
+                <Image
+                  src={todasFotos[0]}
+                  alt={`${imovel.titulo} - Foto principal`}
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+              
+              {/* Segunda imagem - canto superior direito (col 3, row 1) */}
+              {todasFotos[1] && (
+                <div className="relative rounded-lg overflow-hidden min-h-[200px]">
                   <Image
-                    src={foto}
-                    alt={`${imovel.titulo} - Foto ${index + 1}`}
+                    src={todasFotos[1]}
+                    alt={`${imovel.titulo} - Foto 2`}
                     fill
                     className="object-cover"
                     unoptimized
                   />
-                </button>
-              ))}
+                </div>
+              )}
+              
+              {/* Terceira imagem - abaixo da segunda (col 3, row 2) */}
+              {todasFotos[2] && (
+                <div className="relative rounded-lg overflow-hidden min-h-[200px]">
+                  <Image
+                    src={todasFotos[2]}
+                    alt={`${imovel.titulo} - Foto 3`}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+              )}
+              
+              {/* Quarta imagem - abaixo da primeira (col 1, row 3) */}
+              {todasFotos[3] && (
+                <div className="relative rounded-lg overflow-hidden min-h-[200px]">
+                  <Image
+                    src={todasFotos[3]}
+                    alt={`${imovel.titulo} - Foto 4`}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+              )}
+              
+              {/* Quinta imagem - ao lado da quarta (col 2, row 3) */}
+              {todasFotos[4] && (
+                <div className="relative rounded-lg overflow-hidden min-h-[200px]">
+                  <Image
+                    src={todasFotos[4]}
+                    alt={`${imovel.titulo} - Foto 5`}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+              )}
+              
+              {/* Sexta imagem - última (col 3, row 3) */}
+              {todasFotos[5] && (
+                <div className="relative rounded-lg overflow-hidden min-h-[200px]">
+                  <Image
+                    src={todasFotos[5]}
+                    alt={`${imovel.titulo} - Foto 6`}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+              )}
             </div>
           ) : (
             <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
