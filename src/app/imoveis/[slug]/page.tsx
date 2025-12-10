@@ -12,10 +12,10 @@ import {
   Heart,
   Check,
   MessageCircle,
-  Bed,
-  Bath,
+  BedDouble,
+  Droplet,
   Car,
-  Square,
+  Maximize2,
   Eye
 } from 'lucide-react'
 
@@ -248,14 +248,14 @@ export default function ImovelDetalhePage() {
           <div className="flex flex-wrap items-center gap-6 text-sm">
             {/* Código */}
             <div className="flex items-center gap-2 text-gray-700">
-              <Key className="w-4 h-4 text-purple-600" />
-              <span className="font-light">{imovel.id} Código</span>
+              <Key className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
+              <span className="font-light">{imovel.id.slice(-5).padStart(5, '0')} Código</span>
             </div>
             
             {/* Quartos */}
             {imovel.caracteristicas.quartos > 0 && (
               <div className="flex items-center gap-2 text-gray-700">
-                <Bed className="w-4 h-4 text-purple-600" />
+                <BedDouble className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
                 <span className="font-light">{imovel.caracteristicas.quartos} {imovel.caracteristicas.quartos === 1 ? 'Quarto' : 'Quartos'}</span>
               </div>
             )}
@@ -263,7 +263,7 @@ export default function ImovelDetalhePage() {
             {/* Banheiros */}
             {imovel.caracteristicas.banheiros > 0 && (
               <div className="flex items-center gap-2 text-gray-700">
-                <Bath className="w-4 h-4 text-purple-600" />
+                <Droplet className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
                 <span className="font-light">{imovel.caracteristicas.banheiros} {imovel.caracteristicas.banheiros === 1 ? 'Banheiro' : 'Banheiros'}</span>
               </div>
             )}
@@ -271,7 +271,7 @@ export default function ImovelDetalhePage() {
             {/* Vagas */}
             {imovel.caracteristicas.vagas > 0 && (
               <div className="flex items-center gap-2 text-gray-700">
-                <Car className="w-4 h-4 text-purple-600" />
+                <Car className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
                 <span className="font-light">{imovel.caracteristicas.vagas} {imovel.caracteristicas.vagas === 1 ? 'Vaga' : 'Vagas'}</span>
               </div>
             )}
@@ -279,7 +279,7 @@ export default function ImovelDetalhePage() {
             {/* Área */}
             {imovel.caracteristicas.area > 0 && (
               <div className="flex items-center gap-2 text-gray-700">
-                <Square className="w-4 h-4 text-purple-600" />
+                <Maximize2 className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
                 <span className="font-light">{imovel.caracteristicas.area} M² Privativos</span>
               </div>
             )}
@@ -287,7 +287,7 @@ export default function ImovelDetalhePage() {
             {/* Visualizações */}
             {imovel.visualizacoes && imovel.visualizacoes > 0 && (
               <div className="flex items-center gap-2 text-gray-700">
-                <Eye className="w-4 h-4 text-purple-600" />
+                <Eye className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
                 <span className="font-light">{imovel.visualizacoes} Visualizações</span>
               </div>
             )}

@@ -46,8 +46,10 @@ export async function POST(request: NextRequest) {
 
     const { imovel, fotos } = await request.json()
 
-    // Gerar ID único
-    const id = Date.now().toString()
+    // Gerar ID único de 5 dígitos
+    // Usa timestamp e pega os últimos 5 dígitos, garantindo que seja sempre 5 dígitos
+    const timestamp = Date.now().toString()
+    const id = timestamp.slice(-5).padStart(5, '0')
 
     // Upload das fotos para GitHub
     const fotosUrls: string[] = []
