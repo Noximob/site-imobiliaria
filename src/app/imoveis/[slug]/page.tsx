@@ -310,45 +310,46 @@ export default function ImovelDetalhePage() {
               </h1>
             </div>
 
-            {/* Características Diferenciais (Tags/Comodidades) */}
-            {imovel.tags && imovel.tags.length > 0 && (
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <div className="flex flex-wrap gap-3">
-                  {imovel.tags.map((tag: string, index: number) => (
-                    <div 
-                      key={index}
-                      className="inline-flex items-center gap-2 bg-yellow-100 text-yellow-800 px-4 py-2 rounded-lg text-sm font-medium"
-                    >
-                      {tag === 'Mobiliado' && <BedDouble className="w-4 h-4" />}
-                      {tag}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
             {/* Descrição */}
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Descrição</h2>
               <p className="text-gray-700 leading-relaxed whitespace-pre-line">
                 {imovel.descricao}
               </p>
             </div>
 
             {/* Características */}
-            {caracteristicasList.length > 0 && (
+            {(caracteristicasList.length > 0 || (imovel.tags && imovel.tags.length > 0)) && (
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">Características</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {caracteristicasList.map((caracteristica: string, index: number) => (
-                    <div key={index} className="flex items-center gap-2 text-gray-700">
-                      <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-3 h-3 text-white" />
+                
+                {/* Tags/Comodidades (em bege) */}
+                {imovel.tags && imovel.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-3 mb-4">
+                    {imovel.tags.map((tag: string, index: number) => (
+                      <div 
+                        key={index}
+                        className="inline-flex items-center gap-2 bg-yellow-100 text-yellow-800 px-4 py-2 rounded-lg text-sm font-medium"
+                      >
+                        {tag === 'Mobiliado' && <BedDouble className="w-4 h-4" />}
+                        {tag}
                       </div>
-                      <span>{caracteristica}</span>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Outras Características */}
+                {caracteristicasList.length > 0 && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {caracteristicasList.map((caracteristica: string, index: number) => (
+                      <div key={index} className="flex items-center gap-2 text-gray-700">
+                        <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
+                          <Check className="w-3 h-3 text-white" />
+                        </div>
+                        <span>{caracteristica}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
 
