@@ -59,8 +59,6 @@ export default function AdminImoveis() {
     },
     publicado: true
   })
-  const [caracteristicasExtrasText, setCaracteristicasExtrasText] = useState('')
-  const [infraestruturaText, setInfraestruturaText] = useState('')
   const [tagsText, setTagsText] = useState('')
   const [fotosFiles, setFotosFiles] = useState<File[]>([])
   const [fotosPreviews, setFotosPreviews] = useState<string[]>([])
@@ -185,9 +183,25 @@ export default function AdminImoveis() {
       },
       publicado: imovel.publicado
     })
-    setCaracteristicasExtrasText(((imovel.caracteristicas as any).extras || []).join(', '))
-    setInfraestruturaText(((imovel as any).infraestrutura || []).join(', '))
-    setTagsText(((imovel as any).tags || []).join(', '))
+    // Unificar todos os diferenciais em tags
+    const extras = ((imovel.caracteristicas as any).extras || [])
+    const infraestrutura = ((imovel as any).infraestrutura || [])
+    const tags = ((imovel as any).tags || [])
+    
+    // Adicionar recursos adicionais marcados como tags
+    const recursosAdicionais = []
+    if (imovel.caracteristicas.frenteMar) recursosAdicionais.push('Frente Mar')
+    if (imovel.caracteristicas.piscina) recursosAdicionais.push('Piscina')
+    if (imovel.caracteristicas.churrasqueira) recursosAdicionais.push('Churrasqueira')
+    if (imovel.caracteristicas.academia) recursosAdicionais.push('Academia')
+    if (imovel.caracteristicas.portaria) recursosAdicionais.push('Portaria')
+    if (imovel.caracteristicas.elevador) recursosAdicionais.push('Elevador')
+    if (imovel.caracteristicas.varanda) recursosAdicionais.push('Varanda')
+    if (imovel.caracteristicas.sacada) recursosAdicionais.push('Sacada')
+    
+    // Juntar tudo em uma única lista de tags
+    const todasTags = [...extras, ...infraestrutura, ...tags, ...recursosAdicionais]
+    setTagsText(todasTags.join(', '))
     setFotosFiles([])
     setFotosPreviews([])
     setFotosExistentes(imovel.fotos || [])
@@ -254,8 +268,6 @@ export default function AdminImoveis() {
       },
       publicado: true
     })
-    setCaracteristicasExtrasText('')
-    setInfraestruturaText('')
     setTagsText('')
     setFotosFiles([])
     setFotosPreviews([])
@@ -281,15 +293,7 @@ export default function AdminImoveis() {
 
     setIsLoading(true)
     try {
-      // Processar arrays de strings
-      const caracteristicasExtras = caracteristicasExtrasText
-        .split(',')
-        .map(s => s.trim())
-        .filter(s => s.length > 0)
-      const infraestruturaList = infraestruturaText
-        .split(',')
-        .map(s => s.trim())
-        .filter(s => s.length > 0)
+      // Processar tags (todos os diferenciais unificados)
       const tagsList = tagsText
         .split(',')
         .map(s => s.trim())
@@ -317,9 +321,18 @@ export default function AdminImoveis() {
         endereco: novoImovel.endereco,
         caracteristicas: {
           ...novoImovel.caracteristicas,
-          extras: caracteristicasExtras
+          // Remover recursos adicionais dos checkboxes, pois agora são tags
+          frenteMar: false,
+          piscina: false,
+          churrasqueira: false,
+          academia: false,
+          portaria: false,
+          elevador: false,
+          varanda: false,
+          sacada: false,
+          extras: undefined
         },
-        infraestrutura: infraestruturaList.length > 0 ? infraestruturaList : undefined,
+        infraestrutura: undefined,
         tags: tagsList.length > 0 ? tagsList : undefined,
         coordenadas: novoImovel.coordenadas.lat !== 0 && novoImovel.coordenadas.lng !== 0 
           ? novoImovel.coordenadas 
@@ -806,32 +819,6 @@ export default function AdminImoveis() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="md:col-span-2">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Características Extras (separadas por vírgula)
-                    </label>
-                    <input
-                      type="text"
-                      value={caracteristicasExtrasText}
-                      onChange={(e) => setCaracteristicasExtrasText(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                      placeholder="Ex: Vista para o Mar, Área de Serviço, Cozinha com Armário"
-                    />
-                    <p className="text-xs text-gray-500 mt-1">Separe cada característica com vírgula</p>
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Infraestrutura (separadas por vírgula)
-                    </label>
-                    <input
-                      type="text"
-                      value={infraestruturaText}
-                      onChange={(e) => setInfraestruturaText(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                      placeholder="Ex: Água Individual, Interfone, Churrasqueira, Salão de Festas"
-                    />
-                    <p className="text-xs text-gray-500 mt-1">Separe cada item com vírgula</p>
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       Tags (separadas por vírgula)
                     </label>
                     <input
@@ -839,42 +826,9 @@ export default function AdminImoveis() {
                       value={tagsText}
                       onChange={(e) => setTagsText(e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                      placeholder="Ex: Mobiliado, Novo, Reformado, Home Club"
+                      placeholder="Ex: Mobiliado, Novo, Reformado, Home Club, Frente Mar, Piscina, Churrasqueira, Vista para o Mar, Área de Serviço"
                     />
-                    <p className="text-xs text-gray-500 mt-1">Separe cada tag com vírgula</p>
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2 mb-3">
-                      Recursos Adicionais
-                    </label>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                      {[
-                        { key: 'frenteMar', label: 'Frente Mar' },
-                        { key: 'piscina', label: 'Piscina' },
-                        { key: 'churrasqueira', label: 'Churrasqueira' },
-                        { key: 'academia', label: 'Academia' },
-                        { key: 'portaria', label: 'Portaria' },
-                        { key: 'elevador', label: 'Elevador' },
-                        { key: 'varanda', label: 'Varanda' },
-                        { key: 'sacada', label: 'Sacada' }
-                      ].map(({ key, label }) => (
-                        <label key={key} className="flex items-center">
-                          <input
-                            type="checkbox"
-                            checked={(novoImovel.caracteristicas as any)[key] || false}
-                            onChange={(e) => setNovoImovel({
-                              ...novoImovel, 
-                              caracteristicas: {
-                                ...novoImovel.caracteristicas, 
-                                [key]: e.target.checked
-                              }
-                            })}
-                            className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
-                          />
-                          <span className="ml-2 text-sm text-gray-700">{label}</span>
-                        </label>
-                      ))}
-                    </div>
+                    <p className="text-xs text-gray-500 mt-1">Separe cada tag com vírgula. Exemplos: Mobiliado, Novo, Reformado, Home Club, Frente Mar, Piscina, Churrasqueira, Academia, Portaria, Elevador, Varanda, Sacada, Vista para o Mar, Área de Serviço, etc.</p>
                   </div>
                 </div>
               </div>
