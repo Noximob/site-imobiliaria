@@ -985,11 +985,23 @@ export default function AdminImoveis() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Adicionar Novas Fotos {!editingImovel && '*'}
                   </label>
-                  <p className="text-xs text-gray-500 mb-2">
-                    {editingImovel 
-                      ? 'Selecione novas fotos para adicionar às existentes. As fotos antigas serão preservadas.'
-                      : 'Selecione uma ou mais fotos do imóvel. Tamanho recomendado: 1920 x 1080px'}
-                  </p>
+                  
+                  {/* Informações sobre dimensões */}
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
+                    <p className="text-xs font-semibold text-blue-800 mb-2">
+                      📐 Dimensões Recomendadas:
+                    </p>
+                    <ul className="text-xs text-blue-700 space-y-1">
+                      <li>• <strong>Foto Principal</strong> (aparece maior à esquerda): <strong>800 x 400px</strong></li>
+                      <li>• <strong>Fotos Menores</strong> (aparecem à direita em grid 2x2): <strong>400 x 200px</strong> cada</li>
+                    </ul>
+                    <p className="text-xs text-blue-600 mt-2">
+                      {editingImovel 
+                        ? 'Selecione novas fotos para adicionar às existentes. As fotos antigas serão preservadas.'
+                        : 'Selecione uma ou mais fotos do imóvel. A primeira foto será a principal.'}
+                    </p>
+                  </div>
+                  
                   <input
                     type="file"
                     accept="image/*"
@@ -1006,7 +1018,7 @@ export default function AdminImoveis() {
                         Todas as Fotos ({fotosExistentes.length + fotosPreviews.length})
                       </p>
                       <p className="text-xs text-gray-500 mb-3">
-                        Clique em uma foto para definir como principal (aparecerá maior na página). Arraste para reordenar.
+                        Clique em uma foto para definir como principal (aparecerá maior na página).
                       </p>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {[...fotosExistentes, ...fotosPreviews].map((foto, index) => {
@@ -1029,6 +1041,9 @@ export default function AdminImoveis() {
                                   Principal
                                 </div>
                               )}
+                              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white text-xs px-2 py-1">
+                                {isPrincipal ? '800 x 400px' : '400 x 200px'}
+                              </div>
                               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center gap-2">
                                 <button
                                   type="button"
