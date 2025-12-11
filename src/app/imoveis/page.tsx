@@ -16,16 +16,25 @@ function ImoveisPageContent() {
   const [filtros, setFiltros] = useState<FiltrosImovel>({})
   const [filtrosIniciais, setFiltrosIniciais] = useState<any>({})
   const [isLoading, setIsLoading] = useState(true)
+  const [, setFavoritosUpdate] = useState(0) // Para forçar re-render quando favoritos mudarem
 
   useEffect(() => {
     // Força overflow hidden no body apenas nesta página
     document.body.style.overflow = 'hidden'
     document.documentElement.style.overflow = 'hidden'
     
+    // Listener para atualizar quando favoritos mudarem
+    const handleFavoritosChange = () => {
+      setFavoritosUpdate(prev => prev + 1)
+    }
+    
+    window.addEventListener('favoritos-changed', handleFavoritosChange)
+    
     // Cleanup: restaura overflow quando sair da página
     return () => {
       document.body.style.overflow = 'unset'
       document.documentElement.style.overflow = 'unset'
+      window.removeEventListener('favoritos-changed', handleFavoritosChange)
     }
   }, [])
 
@@ -271,8 +280,6 @@ function ImoveisPageContent() {
                                 e.preventDefault()
                                 e.stopPropagation()
                                 toggleFavorito(imovel.id)
-                                // Forçar re-render
-                                setImoveis([...imoveis])
                               }}
                               className={`transition-colors ${
                                 isFavorito(imovel.id) 

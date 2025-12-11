@@ -13,59 +13,69 @@ export default function FavoritosPage() {
   const [imoveisFavoritos, setImoveisFavoritos] = useState<Imovel[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    const loadFavoritos = async () => {
-      try {
-        setIsLoading(true)
-        const todosImoveis = await getAllImoveis()
-        const favoritosIds = getFavoritos()
-        const favoritos = todosImoveis.filter(imovel => favoritosIds.includes(imovel.id))
-        setImoveisFavoritos(favoritos)
-      } catch (error) {
-        console.error('Erro ao carregar favoritos:', error)
-        setImoveisFavoritos([])
-      } finally {
-        setIsLoading(false)
-      }
+  const loadFavoritos = async () => {
+    try {
+      setIsLoading(true)
+      const todosImoveis = await getAllImoveis()
+      const favoritosIds = getFavoritos()
+      const favoritos = todosImoveis.filter(imovel => favoritosIds.includes(imovel.id))
+      setImoveisFavoritos(favoritos)
+    } catch (error) {
+      console.error('Erro ao carregar favoritos:', error)
+      setImoveisFavoritos([])
+    } finally {
+      setIsLoading(false)
     }
-    
+  }
+
+  useEffect(() => {
     loadFavoritos()
     
-    // Listener para atualizar quando favoritos mudarem
+    // Listener para atualizar quando favoritos mudarem em outra aba
     const handleStorageChange = () => {
       loadFavoritos()
     }
     
     window.addEventListener('storage', handleStorageChange)
     
-    // Verificar mudanças no localStorage periodicamente (para mesma aba)
-    const interval = setInterval(() => {
+    // Listener customizado para mudanças na mesma aba
+    const handleFavoritosChange = () => {
       loadFavoritos()
-    }, 1000)
+    }
+    
+    window.addEventListener('favoritos-changed', handleFavoritosChange)
     
     return () => {
       window.removeEventListener('storage', handleStorageChange)
-      clearInterval(interval)
+      window.removeEventListener('favoritos-changed', handleFavoritosChange)
     }
   }, [])
 
   const handleToggleFavorito = (imovelId: string) => {
     toggleFavorito(imovelId)
+    // Atualizar lista imediatamente
     setImoveisFavoritos(prev => prev.filter(imovel => imovel.id !== imovelId))
+    // Disparar evento para outras partes da aplicação
+    window.dispatchEvent(new Event('favoritos-changed'))
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-            Meus Favoritos
-          </h1>
-          <p className="text-gray-600">
-            {imoveisFavoritos.length === 0 
-              ? 'Você ainda não tem imóveis favoritados'
-              : `${imoveisFavoritos.length} ${imoveisFavoritos.length === 1 ? 'imóvel favoritado' : 'imóveis favoritados'}`
+      <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="flex items-center gap-3 mb-3">
+            <Heart className="w-8 h-8 md:w-10 md:h-10 fill-current" />
+            <h1 className="text-3xl md:text-4xl font-bold">
+              Meus Favoritos
+            </h1>
+          </div>
+          <p className="text-purple-100 text-lg">
+            {isLoading 
+              ? 'Carregando...'
+              : imoveisFavoritos.length === 0 
+                ? 'Você ainda não tem imóveis favoritados'
+                : `${imoveisFavoritos.length} ${imoveisFavoritos.length === 1 ? 'imóvel favoritado' : 'imóveis favoritados'}`
             }
           </p>
         </div>

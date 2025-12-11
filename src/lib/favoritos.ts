@@ -48,9 +48,13 @@ export function toggleFavorito(imovelId: string): boolean {
   
   if (isFavorito) {
     removerFavorito(imovelId)
+    // Disparar evento para atualizar componentes
+    window.dispatchEvent(new Event('favoritos-changed'))
     return false
   } else {
     adicionarFavorito(imovelId)
+    // Disparar evento para atualizar componentes
+    window.dispatchEvent(new Event('favoritos-changed'))
     return true
   }
 }
