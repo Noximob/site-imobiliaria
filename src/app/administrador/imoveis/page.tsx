@@ -307,10 +307,7 @@ export default function AdminImoveis() {
       coordenadas: { lat: 0, lng: 0 },
       visualizacoes: 0,
       contato: {
-        whatsapp: '(47) 99753-0113',
-        telefone: '',
-        email: '',
-        corretor: ''
+        whatsapp: '(47) 99753-0113'
       },
       publicado: true
     })
