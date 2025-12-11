@@ -66,11 +66,13 @@ export default function Header() {
             {/* Desktop Navigation - Cidades */}
             <nav className="hidden lg:flex items-center space-x-3">
               {/* Imóveis em Penha */}
-              <div className="relative">
+              <div 
+                className="relative"
+                onMouseEnter={() => setIsPenhaOpen(true)}
+                onMouseLeave={() => setIsPenhaOpen(false)}
+              >
                     <button 
                       className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm font-bold"
-                      onMouseEnter={() => setIsPenhaOpen(true)}
-                      onMouseLeave={() => setIsPenhaOpen(false)}
                     >
                       <MapPin className="w-4 h-4" />
                       <span>{menuPenha}</span>
@@ -101,11 +103,13 @@ export default function Header() {
               </div>
 
               {/* Imóveis em Piçarras */}
-              <div className="relative">
+              <div 
+                className="relative"
+                onMouseEnter={() => setIsPicarrasOpen(true)}
+                onMouseLeave={() => setIsPicarrasOpen(false)}
+              >
                     <button 
                       className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm font-bold"
-                      onMouseEnter={() => setIsPicarrasOpen(true)}
-                      onMouseLeave={() => setIsPicarrasOpen(false)}
                     >
                       <MapPin className="w-4 h-4" />
                       <span>{menuPicarras}</span>
@@ -136,11 +140,13 @@ export default function Header() {
               </div>
 
               {/* Imóveis em Barra Velha */}
-              <div className="relative">
+              <div 
+                className="relative"
+                onMouseEnter={() => setIsBarraVelhaOpen(true)}
+                onMouseLeave={() => setIsBarraVelhaOpen(false)}
+              >
                     <button 
                       className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm font-bold"
-                      onMouseEnter={() => setIsBarraVelhaOpen(true)}
-                      onMouseLeave={() => setIsBarraVelhaOpen(false)}
                     >
                       <MapPin className="w-4 h-4" />
                       <span>{menuBarraVelha}</span>
