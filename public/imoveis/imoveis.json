@@ -17,11 +17,11 @@
     "caracteristicas": {
       "quartos": 2,
       "banheiros": 1,
-      "vagas": 0,
-      "area": 0,
+      "vagas": 1,
+      "area": 4,
       "areaTerreno": 0,
-      "suite": 0,
-      "frenteMar": false,
+      "suite": 1,
+      "frenteMar": true,
       "piscina": false,
       "churrasqueira": false,
       "academia": false,
@@ -41,7 +41,13 @@
     ],
     "id": "73294",
     "createdAt": "2025-12-11T01:26:14.644Z",
-    "updatedAt": "2025-12-11T01:26:14.644Z"
+    "updatedAt": "2025-12-11T01:45:26.418Z",
+    "tags": [
+      "Mobiliado",
+      "Frente Mar",
+      "Área de Lazer",
+      "Home Club completo"
+    ]
   },
   {
     "titulo": "gsdhghg",
