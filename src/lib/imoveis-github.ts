@@ -19,16 +19,20 @@ export async function getAllImoveis(includeUnpublished: boolean = false): Promis
     const imoveisFormatados = imoveis.map((imovel: any) => {
       // Garantir que selecaoNox seja sempre boolean
       // Aceitar true, 'true', 1, ou qualquer valor truthy
-      const selecaoNox = imovel.selecaoNox === true || 
-                        imovel.selecaoNox === 'true' || 
-                        imovel.selecaoNox === 1 ||
-                        (imovel.selecaoNox !== undefined && imovel.selecaoNox !== null && imovel.selecaoNox !== false && imovel.selecaoNox !== 'false' && imovel.selecaoNox !== 0)
+      let selecaoNox = false
+      if (imovel.selecaoNox !== undefined && imovel.selecaoNox !== null) {
+        if (imovel.selecaoNox === true || imovel.selecaoNox === 'true' || imovel.selecaoNox === 1) {
+          selecaoNox = true
+        } else if (imovel.selecaoNox !== false && imovel.selecaoNox !== 'false' && imovel.selecaoNox !== 0) {
+          selecaoNox = Boolean(imovel.selecaoNox)
+        }
+      }
       
       return {
         ...imovel,
         createdAt: imovel.createdAt ? new Date(imovel.createdAt) : new Date(),
         updatedAt: imovel.updatedAt ? new Date(imovel.updatedAt) : new Date(),
-        selecaoNox: Boolean(selecaoNox),
+        selecaoNox: selecaoNox,
       } as Imovel
     })
     

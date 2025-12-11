@@ -60,21 +60,16 @@ export default async function HomePage() {
   // Buscar imóveis da Seleção Nox (máximo 3)
   const todosImoveis = await getAllImoveis()
   
-  // Log temporário para debug
-  const imoveisComSelecaoNox = todosImoveis.filter(i => (i as any).selecaoNox)
-  console.log('Total imóveis:', todosImoveis.length)
-  console.log('Imóveis com selecaoNox:', imoveisComSelecaoNox.map(i => ({ id: i.id, titulo: i.titulo, publicado: i.publicado, selecaoNox: (i as any).selecaoNox })))
-  
+  // Filtrar imóveis com selecaoNox = true e publicado = true
   const imoveisSelecaoNox = todosImoveis
     .filter(imovel => {
+      // Deve estar publicado
       if (!imovel.publicado) return false
-      const selecaoNox = (imovel as any).selecaoNox
-      // Aceitar qualquer valor truthy
-      return Boolean(selecaoNox) === true
+      
+      // Verificar selecaoNox - deve ser true (boolean)
+      return imovel.selecaoNox === true
     })
     .slice(0, 3)
-  
-  console.log('Imóveis Seleção Nox encontrados:', imoveisSelecaoNox.length)
 
   // Carrega apenas as imagens necessárias para esta página (otimização de performance)
   const siteImages = {
@@ -242,7 +237,7 @@ export default async function HomePage() {
                     {imovel.fotos && imovel.fotos.length > 0 ? (
                       <>
                         <Image 
-                          src={imovel.fotos[0]} 
+                          src={imovel.fotos[imovel.fotoPrincipalIndex ?? 0]} 
                           alt={imovel.titulo} 
                           fill
                           className="object-cover"
