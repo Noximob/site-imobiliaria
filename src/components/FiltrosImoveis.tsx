@@ -68,7 +68,7 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
             onChange={(e) => handleInputChange('status', e.target.value)}
             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           >
-            <option value="">Selecione</option>
+            <option value="">Todos</option>
             <option value="prontos">Imóveis Prontos</option>
             <option value="lancamento">Lançamento/em construção</option>
           </select>
@@ -81,7 +81,7 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
             onChange={(e) => handleInputChange('tipo', e.target.value)}
             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           >
-            <option value="">Selecione</option>
+            <option value="">Todos</option>
             <option value="apartamento">Apartamento</option>
             <option value="cobertura">Cobertura/Diferenciado</option>
             <option value="comercial">Salas Comerciais</option>
@@ -95,7 +95,7 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
             onChange={(e) => handleInputChange('cidade', e.target.value)}
             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           >
-            <option value="">Selecione</option>
+            <option value="">Todos</option>
             <option value="penha">Penha</option>
             <option value="barra-velha">Barra Velha</option>
             <option value="balneario-picarras">Balneário Piçarras</option>
