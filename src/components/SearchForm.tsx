@@ -9,7 +9,7 @@ export default function SearchForm() {
   const [filtros, setFiltros] = useState({
     tipo: '',
     cidade: '',
-    bairro: ''
+    status: ''
   })
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -49,10 +49,9 @@ export default function SearchForm() {
               className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
             >
               <option value="">TIPO</option>
-              <option value="casa">Casa</option>
               <option value="apartamento">Apartamento</option>
-              <option value="terreno">Terreno</option>
-              <option value="comercial">Comercial</option>
+              <option value="cobertura">Cobertura/Diferenciado</option>
+              <option value="comercial">Salas Comerciais</option>
             </select>
           </div>
 
@@ -66,23 +65,22 @@ export default function SearchForm() {
             >
               <option value="">CIDADE</option>
               <option value="penha">Penha</option>
-              <option value="picarras">Piçarras</option>
+              <option value="balneario-picarras">Balneário Piçarras</option>
               <option value="barra-velha">Barra Velha</option>
             </select>
           </div>
 
-          {/* BAIRRO OU EMPREENDIMENTO */}
+          {/* STATUS */}
           <div className="flex-1">
             <select
-              name="bairro"
-              value={filtros.bairro}
+              name="status"
+              value={filtros.status}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
             >
-              <option value="">BAIRRO OU EMPREENDIMENTO</option>
-              <option value="centro">Centro</option>
-              <option value="praia">Praia</option>
-              <option value="residencial">Residencial</option>
+              <option value="">STATUS</option>
+              <option value="lancamento">Lançamento/em construção</option>
+              <option value="prontos">Imóveis Prontos</option>
             </select>
           </div>
 
