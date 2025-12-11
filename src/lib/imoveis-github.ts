@@ -16,12 +16,20 @@ export async function getAllImoveis(includeUnpublished: boolean = false): Promis
     const imoveis = await response.json()
     
     // Converter datas de string para Date e garantir que selecaoNox seja boolean
-    const imoveisFormatados = imoveis.map((imovel: any) => ({
-      ...imovel,
-      createdAt: imovel.createdAt ? new Date(imovel.createdAt) : new Date(),
-      updatedAt: imovel.updatedAt ? new Date(imovel.updatedAt) : new Date(),
-      selecaoNox: imovel.selecaoNox !== undefined ? Boolean(imovel.selecaoNox) : false,
-    })) as Imovel[]
+    const imoveisFormatados = imoveis.map((imovel: any) => {
+      // Garantir que selecaoNox seja sempre boolean
+      let selecaoNox = false
+      if (imovel.selecaoNox !== undefined && imovel.selecaoNox !== null) {
+        selecaoNox = imovel.selecaoNox === true || imovel.selecaoNox === 'true' || imovel.selecaoNox === 1
+      }
+      
+      return {
+        ...imovel,
+        createdAt: imovel.createdAt ? new Date(imovel.createdAt) : new Date(),
+        updatedAt: imovel.updatedAt ? new Date(imovel.updatedAt) : new Date(),
+        selecaoNox: selecaoNox,
+      } as Imovel
+    })
     
     // Se includeUnpublished for false, filtrar apenas publicados
     if (!includeUnpublished) {
