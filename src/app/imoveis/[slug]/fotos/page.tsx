@@ -132,11 +132,11 @@ export default function FotosPage() {
   const localizacao = imovel.endereco?.bairro || imovel.endereco?.cidade || ''
 
   return (
-    <div className="h-screen bg-gray-900 flex flex-col overflow-hidden">
-      {/* Foto Principal - Horizontal em cima, menor para caber thumbnails */}
+    <div className="fixed inset-0 bg-gray-900 flex flex-col overflow-hidden z-50">
+      {/* Foto Principal - Horizontal em cima, ocupa quase toda a tela */}
       <div className="relative bg-gray-950 flex items-center justify-center" style={{ height: 'calc(100vh - 96px)' }}>
         {fotosOrdenadas[fotoAtualValida] && (
-          <div className="relative w-full max-w-[80%]" style={{ aspectRatio: '16/9', maxHeight: '70vh' }}>
+          <div className="relative w-full h-full">
             <Image
               src={fotosOrdenadas[fotoAtualValida]}
               alt={`${imovel.titulo} - Foto ${fotoAtualValida + 1}`}
