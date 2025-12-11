@@ -57,12 +57,18 @@ function ImoveisPageContent() {
         setImoveis(imoveisData)
       } catch (error) {
         console.error('Erro ao carregar imóveis:', error)
+        setImoveis([]) // Em caso de erro, definir array vazio para não ficar em loading infinito
       } finally {
         setIsLoading(false)
       }
     }
     
-    loadImoveis()
+    // Adicionar um pequeno delay para evitar múltiplas chamadas muito rápidas
+    const timeoutId = setTimeout(() => {
+      loadImoveis()
+    }, 100)
+    
+    return () => clearTimeout(timeoutId)
   }, [filtros])
 
   const handleFiltrosChange = (novosFiltros: any) => {

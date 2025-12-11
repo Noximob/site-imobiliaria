@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 interface FiltrosImoveisProps {
   onFiltrosChange?: (filtros: any) => void
@@ -25,9 +25,12 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
     homeClub: false
   })
 
-  // Aplicar filtros iniciais quando vierem da URL
+  const filtrosIniciaisAplicados = useRef(false)
+
+  // Aplicar filtros iniciais quando vierem da URL (apenas uma vez)
   useEffect(() => {
-    if (filtrosIniciais && Object.keys(filtrosIniciais).length > 0) {
+    if (filtrosIniciais && Object.keys(filtrosIniciais).length > 0 && !filtrosIniciaisAplicados.current) {
+      filtrosIniciaisAplicados.current = true
       const novosFiltros = {
         status: filtrosIniciais.status || '',
         tipo: filtrosIniciais.tipo || '',
@@ -47,7 +50,8 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
       setFiltros(novosFiltros)
       onFiltrosChange?.(novosFiltros)
     }
-  }, [filtrosIniciais, onFiltrosChange])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filtrosIniciais])
 
   const handleInputChange = (field: string, value: any) => {
     const newFiltros = { ...filtros, [field]: value }
