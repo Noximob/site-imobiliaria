@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Instagram, Facebook, Linkedin } from 'lucide-react'
+import { Instagram, Facebook } from 'lucide-react'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
 import { getWhatsAppLink } from '@/lib/whatsapp'
@@ -74,9 +74,6 @@ image.png      {/* Rodapé Tradicional */}
               </a>
               <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors">
                 <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors">
-                <Linkedin className="w-5 h-5" />
               </a>
             </div>
           </div>
