@@ -344,6 +344,9 @@ export async function PUT(request: NextRequest) {
     }
 
     // Salvar no GitHub
+    // Log temporário para debug
+    console.log('Salvando imóvel atualizado:', imoveis[index].titulo, 'selecaoNox:', imoveis[index].selecaoNox)
+    
     await octokit.repos.createOrUpdateFileContents({
       owner: REPO_OWNER,
       repo: REPO_NAME,
