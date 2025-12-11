@@ -93,8 +93,8 @@ export default function SearchForm() {
   return (
     <div className="w-full">
       {/* Formulário Principal - 3 campos horizontais */}
-      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-4 mb-2">
-        <div className="flex flex-col lg:flex-row gap-3">
+      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-4 transition-all duration-300">
+        <div className="flex flex-col lg:flex-row gap-3 mb-3">
           {/* TIPO */}
           <div className="flex-1">
             <select
@@ -150,11 +150,10 @@ export default function SearchForm() {
             </button>
           </div>
         </div>
-      </form>
 
-      {/* Formulário Avançado - Expansível embaixo */}
-      {mostrarAvancado && (
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-2 transition-all duration-300">
+        {/* Formulário Avançado - Expansível embaixo dentro do mesmo card */}
+        {mostrarAvancado && (
+          <div className="border-t border-gray-200 pt-4 mt-3 transition-all duration-300">
           {/* Quartos, Banheiros, Vagas */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             {/* Quartos */}
@@ -387,7 +386,8 @@ export default function SearchForm() {
             </div>
           </div>
         </div>
-      )}
+        )}
+      </form>
 
       {/* Botões de Busca Adicional - 3 botões horizontais */}
       <div className="flex flex-col sm:flex-row gap-3 justify-center mt-2">
