@@ -18,7 +18,7 @@ export default function AdminImoveis() {
     preco: 0,
     precoOriginal: 0,
     tipo: 'apartamento' as 'apartamento' | 'cobertura' | 'comercial',
-    status: 'venda' as 'venda' | 'aluguel' | 'venda-aluguel',
+    status: 'prontos' as 'prontos' | 'lancamento' | 'em-construcao',
     endereco: {
       cidade: '',
       bairro: '',
@@ -242,9 +242,9 @@ export default function AdminImoveis() {
     }
     setComodidadesSelecionadas(comodidadesCarregadas)
     
-    // Carregar status do imóvel (prontos/lancamento)
-    const statusImovelValue = (imovel as any).statusImovel || ''
-    setStatusImovel(statusImovelValue)
+    // Carregar status do imóvel (prontos/lancamento) - agora é o status principal
+    const statusValue = imovel.status || (imovel as any).statusImovel || 'prontos'
+    setStatusImovel(statusValue as 'prontos' | 'lancamento' | '')
     
     // Separar fotos principais (primeiras 5) das extras (restantes)
     const todasFotosExistentes = imovel.fotos || []
@@ -281,7 +281,7 @@ export default function AdminImoveis() {
       preco: 0,
       precoOriginal: 0,
       tipo: 'apartamento',
-      status: 'venda',
+      status: 'prontos',
       endereco: {
         cidade: '',
         bairro: '',
@@ -381,7 +381,7 @@ export default function AdminImoveis() {
         preco: novoImovel.preco,
         precoOriginal: novoImovel.precoOriginal > 0 ? novoImovel.precoOriginal : undefined,
         tipo: novoImovel.tipo,
-        status: novoImovel.status,
+        status: statusImovel || 'prontos', // Usar statusImovel como status principal
         endereco: novoImovel.endereco,
         caracteristicas: {
           ...novoImovel.caracteristicas,
@@ -398,7 +398,6 @@ export default function AdminImoveis() {
         },
         infraestrutura: undefined,
         tags: tagsList.length > 0 ? tagsList : undefined,
-        statusImovel: statusImovel || undefined,
         coordenadas: novoImovel.coordenadas.lat !== 0 && novoImovel.coordenadas.lng !== 0 
           ? novoImovel.coordenadas 
           : undefined,
@@ -518,9 +517,9 @@ export default function AdminImoveis() {
                 <Building className="w-6 h-6 text-purple-600" />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-500">Vendas</p>
+                <p className="text-sm font-medium text-gray-500">Lançamentos</p>
                 <p className="text-2xl font-semibold text-gray-900">
-                  {imoveis.filter(i => i.status === 'venda').length}
+                  {imoveis.filter(i => i.status === 'lancamento').length}
                 </p>
               </div>
             </div>
@@ -552,9 +551,8 @@ export default function AdminImoveis() {
                 onChange={(e) => setStatusFilter(e.target.value)}
               >
                 <option value="todos">Todos</option>
-                <option value="venda">Venda</option>
-                <option value="aluguel">Aluguel</option>
-                <option value="venda-aluguel">Venda/Aluguel</option>
+                <option value="prontos">Imóveis Prontos</option>
+                <option value="lancamento">Lançamento/em construção</option>
               </select>
             </div>
             <div className="sm:w-48">
@@ -654,22 +652,7 @@ export default function AdminImoveis() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Status (Venda/Aluguel) *
-                    </label>
-                    <select
-                      value={novoImovel.status}
-                      onChange={(e) => setNovoImovel({...novoImovel, status: e.target.value as any})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                      required
-                    >
-                      <option value="venda">Venda</option>
-                      <option value="aluguel">Aluguel</option>
-                      <option value="venda-aluguel">Venda/Aluguel</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Status do Imóvel *
+                      Status *
                     </label>
                     <select
                       value={statusImovel}

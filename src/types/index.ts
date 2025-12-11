@@ -6,7 +6,7 @@ export interface Imovel {
   preco: number;
   precoOriginal?: number; // Preço original antes do desconto
   tipo: 'casa' | 'apartamento' | 'terreno' | 'comercial' | 'cobertura';
-  status: 'venda' | 'aluguel' | 'venda-aluguel';
+  status: 'prontos' | 'lancamento' | 'em-construcao';
   endereco: {
     cidade: string;
     bairro: string;
