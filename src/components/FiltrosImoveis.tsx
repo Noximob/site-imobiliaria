@@ -110,7 +110,7 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Quartos</label>
           <div className="flex gap-2">
-            {['1', '2', '3', '4+'].map((qtd) => (
+            {['1+', '2+', '3+', '4+'].map((qtd) => (
               <button
                 key={qtd}
                 onClick={() => handleInputChange('quartos', filtros.quartos === qtd ? '' : qtd)}
