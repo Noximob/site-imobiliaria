@@ -28,7 +28,7 @@ function ImoveisPageContent() {
     }
   }, [])
 
-  // Ler query params da URL e aplicar filtros iniciais
+  // Ler query params da URL e aplicar filtros iniciais (sempre que a URL mudar)
   useEffect(() => {
     const params: any = {}
     
@@ -59,6 +59,7 @@ function ImoveisPageContent() {
     if (searchParams.get('areaLazer') === 'true') params.areaLazer = true
     if (searchParams.get('homeClub') === 'true') params.homeClub = true
     
+    // Sempre atualizar filtros iniciais quando a URL mudar
     setFiltrosIniciais(params)
   }, [searchParams])
 

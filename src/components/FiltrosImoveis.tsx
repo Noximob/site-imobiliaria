@@ -25,30 +25,51 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
     homeClub: false
   })
 
-  const filtrosIniciaisAplicados = useRef(false)
-
-  // Aplicar filtros iniciais quando vierem da URL (apenas uma vez)
+  // Aplicar filtros iniciais quando vierem da URL (sempre que mudarem)
   useEffect(() => {
-    if (filtrosIniciais && Object.keys(filtrosIniciais).length > 0 && !filtrosIniciaisAplicados.current) {
-      filtrosIniciaisAplicados.current = true
+    if (filtrosIniciais && Object.keys(filtrosIniciais).length > 0) {
       const novosFiltros = {
         status: filtrosIniciais.status || '',
         tipo: filtrosIniciais.tipo || '',
         cidade: filtrosIniciais.cidade || '',
-        quartos: [],
+        quartos: Array.isArray(filtrosIniciais.quartos) ? filtrosIniciais.quartos : [],
+        banheiros: filtrosIniciais.banheiros || '',
+        vagas: filtrosIniciais.vagas || '',
+        valorMin: filtrosIniciais.valorMin || '',
+        valorMax: filtrosIniciais.valorMax || '',
+        areaMin: filtrosIniciais.areaMin || '',
+        areaMax: filtrosIniciais.areaMax || '',
+        mobiliado: filtrosIniciais.mobiliado || false,
+        frenteMar: filtrosIniciais.frenteMar || false,
+        vistaMar: filtrosIniciais.vistaMar || false,
+        quadraMar: filtrosIniciais.quadraMar || false,
+        areaLazer: filtrosIniciais.areaLazer || false,
+        homeClub: filtrosIniciais.homeClub || false
+      }
+      setFiltros(novosFiltros)
+      onFiltrosChange?.(novosFiltros)
+    } else if (filtrosIniciais && Object.keys(filtrosIniciais).length === 0) {
+      // Se filtrosIniciais estiver vazio, limpar filtros
+      const filtrosLimpos = {
+        status: '',
+        tipo: '',
+        cidade: '',
+        quartos: [] as string[],
         banheiros: '',
         vagas: '',
         valorMin: '',
         valorMax: '',
-        mobiliado: filtrosIniciais.mobiliado || false,
-        frenteMar: filtrosIniciais.frenteMar || false,
-        vistaMar: filtrosIniciais.vistaMar || false,
+        areaMin: '',
+        areaMax: '',
+        mobiliado: false,
+        frenteMar: false,
+        vistaMar: false,
         quadraMar: false,
         areaLazer: false,
         homeClub: false
       }
-      setFiltros(novosFiltros)
-      onFiltrosChange?.(novosFiltros)
+      setFiltros(filtrosLimpos)
+      onFiltrosChange?.(filtrosLimpos)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filtrosIniciais])
