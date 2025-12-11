@@ -420,7 +420,7 @@ export default async function HomePage() {
                 <h3 className="text-lg font-bold text-blue-500">{getText('home.encontre_imovel.picarras.titulo')}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
+                <Link href="/imoveis?cidade=balneario-picarras&tipo=apartamento" className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent block">
                   <Image 
                     src={siteImages['picarras-cobertura'] || '/imagens/Cidades/Piçarras/Apartamentos e Coberturas.jpg'}
                     alt="Apartamentos e coberturas em Balneário Piçarras - Alto padrão"
@@ -436,8 +436,8 @@ export default async function HomePage() {
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.picarras.apartamentos_coberturas')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
-                </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
+                </Link>
+                <Link href="/imoveis?cidade=balneario-picarras&mobiliado=true" className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent block">
                   <Image 
                     src={siteImages['picarras-mobiliado'] || '/imagens/Cidades/Piçarras/Mobiliados.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
@@ -451,8 +451,8 @@ export default async function HomePage() {
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.picarras.mobiliados')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
-                </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
+                </Link>
+                <Link href="/imoveis?cidade=balneario-picarras&vistaMar=true&frenteMar=true" className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent block">
                   <Image 
                     src={siteImages['picarras-vista-mar'] || '/imagens/Cidades/Piçarras/Vista Mar.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
@@ -466,8 +466,8 @@ export default async function HomePage() {
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.picarras.vista_mar')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
-                </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
+                </Link>
+                <Link href="/imoveis?cidade=balneario-picarras&status=lancamento" className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent block">
                   <Image 
                     src={siteImages['picarras-lancamentos'] || '/imagens/Cidades/Piçarras/Lançamentos.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
@@ -481,7 +481,7 @@ export default async function HomePage() {
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.picarras.lancamentos')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
 
