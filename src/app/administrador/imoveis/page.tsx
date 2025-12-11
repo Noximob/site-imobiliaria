@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { ArrowLeft, Building, Plus, X, Edit, Trash2, Image as ImageIcon } from 'lucide-react'
+import { ArrowLeft, Building, Plus, X, Edit, Trash2, Image as ImageIcon, Star } from 'lucide-react'
 import Link from 'next/link'
 import { createImovelWithFotos, getAllImoveis, generateSlug, updateImovelWithFotos, deleteImovel } from '@/lib/imoveis-github'
 import { Imovel } from '@/types'
