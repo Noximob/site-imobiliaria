@@ -492,7 +492,7 @@ export default async function HomePage() {
                 <h3 className="text-lg font-bold text-blue-500">Barra Velha</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
+                <Link href="/imoveis?cidade=barra-velha&status=lancamento&frenteMar=true&vistaMar=true" className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent block">
                   <Image 
                     src={siteImages['bv-lancamentos-frente-mar'] || '/imagens/Cidades/Barra Velha/Lançamentos Frente Mar.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -506,8 +506,8 @@ export default async function HomePage() {
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Lançamentos Frente Mar</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
-                </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
+                </Link>
+                <Link href="/imoveis?cidade=barra-velha&status=lancamento" className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent block">
                   <Image 
                     src={siteImages['bv-em-construcao'] || '/imagens/Cidades/Barra Velha/Em Construção.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -521,8 +521,8 @@ export default async function HomePage() {
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Em Construção</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
-                </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
+                </Link>
+                <Link href="/imoveis?cidade=barra-velha&status=prontos" className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent block">
                   <Image 
                     src={siteImages['bv-imoveis-prontos'] || '/imagens/Cidades/Barra Velha/Imóveis Prontos.jpg'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -536,7 +536,7 @@ export default async function HomePage() {
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">Imóveis Prontos</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
