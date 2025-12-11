@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,7 +9,7 @@ import { getAllImoveis, searchImoveis, formatPrice } from '@/lib/imoveis'
 import { Imovel, FiltrosImovel } from '@/types'
 import { Heart } from 'lucide-react'
 
-export default function ImoveisPage() {
+function ImoveisPageContent() {
   const searchParams = useSearchParams()
   const [imoveis, setImoveis] = useState<Imovel[]>([])
   const [filtros, setFiltros] = useState<FiltrosImovel>({})
