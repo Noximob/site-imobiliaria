@@ -737,12 +737,15 @@ export default async function HomePage() {
                     {getText('home.anuncie_nox.subtitulo')}
                   </h2>
                   
-                  <button className="inline-flex items-center px-6 py-3 bg-purple-500 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors duration-200">
+                  <Link 
+                    href="/anunciar"
+                    className="inline-flex items-center px-6 py-3 bg-purple-500 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors duration-200"
+                  >
                     {getText('home.anuncie_nox.botao_avaliar')}
                     <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
