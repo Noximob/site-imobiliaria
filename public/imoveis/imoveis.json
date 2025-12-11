@@ -5,9 +5,9 @@
     "descricao": "1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n",
     "preco": 600000,
     "tipo": "apartamento",
-    "status": "venda",
+    "status": "prontos",
     "endereco": {
-      "cidade": "Penha",
+      "cidade": "penha",
       "bairro": "Gravata",
       "rua": "Jordelina flores",
       "numero": "154",
@@ -50,7 +50,7 @@
     ],
     "id": "1765388090477",
     "createdAt": "2025-12-10T17:34:52.744Z",
-    "updatedAt": "2025-12-11T00:44:43.490Z",
+    "updatedAt": "2025-12-11T01:06:20.744Z",
     "tags": [
       "Vista Mar",
       "Quadra Mar",
