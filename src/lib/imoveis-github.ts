@@ -33,7 +33,7 @@ export async function getAllImoveis(includeUnpublished: boolean = false): Promis
     
     // Se includeUnpublished for false, filtrar apenas publicados
     if (!includeUnpublished) {
-      return imoveisFormatados.filter(imovel => imovel.publicado)
+      return imoveisFormatados.filter((imovel: Imovel) => imovel.publicado)
     }
     
     return imoveisFormatados
