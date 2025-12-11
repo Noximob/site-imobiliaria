@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-import { Menu, X, Phone, MapPin, ChevronDown, Instagram, Linkedin, Facebook } from 'lucide-react'
+import { Menu, X, Phone, MapPin, ChevronDown, Instagram, Facebook } from 'lucide-react'
 import Image from 'next/image'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
@@ -71,9 +71,6 @@ export default function Header() {
                 </a>
                 <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
                   <Facebook className="w-5 h-5" />
-                </a>
-                <a href="#" className="text-purple-600 hover:text-purple-700 transition-colors">
-                  <Linkedin className="w-5 h-5" />
                 </a>
             </div>
             </div>
