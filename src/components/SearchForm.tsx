@@ -274,14 +274,14 @@ export default function SearchForm() {
 
           {/* Comodidades - Toggles */}
           <div>
-            <label className="block text-sm text-white font-bold mb-3">Comodidades</label>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div className="flex items-center gap-2">
+            <label className="block text-sm text-white font-bold mb-3 text-center">Comodidades</label>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
+              <div className="flex items-center gap-2 w-full justify-center md:justify-start">
                 <span className="text-sm text-white font-bold">Mobiliado</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('mobiliado')}
-                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors flex-shrink-0 ${
                     filtros.mobiliado ? 'bg-purple-600' : 'bg-gray-300'
                   }`}
                 >
@@ -293,12 +293,12 @@ export default function SearchForm() {
                 </button>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 w-full justify-center md:justify-start">
                 <span className="text-sm text-white font-bold">Frente Mar</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('frenteMar')}
-                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors flex-shrink-0 ${
                     filtros.frenteMar ? 'bg-purple-600' : 'bg-gray-300'
                   }`}
                 >
@@ -310,12 +310,12 @@ export default function SearchForm() {
                 </button>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 w-full justify-center md:justify-start">
                 <span className="text-sm text-white font-bold">Vista Mar</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('vistaMar')}
-                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors flex-shrink-0 ${
                     filtros.vistaMar ? 'bg-purple-600' : 'bg-gray-300'
                   }`}
                 >
@@ -327,12 +327,12 @@ export default function SearchForm() {
                 </button>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 w-full justify-center md:justify-start">
                 <span className="text-sm text-white font-bold">Quadra Mar</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('quadraMar')}
-                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors flex-shrink-0 ${
                     filtros.quadraMar ? 'bg-purple-600' : 'bg-gray-300'
                   }`}
                 >
@@ -344,12 +344,12 @@ export default function SearchForm() {
                 </button>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 w-full justify-center md:justify-start">
                 <span className="text-sm text-white font-bold">Área de Lazer</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('areaLazer')}
-                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors flex-shrink-0 ${
                     filtros.areaLazer ? 'bg-purple-600' : 'bg-gray-300'
                   }`}
                 >
@@ -361,12 +361,12 @@ export default function SearchForm() {
                 </button>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 w-full justify-center md:justify-start">
                 <span className="text-sm text-white font-bold">Home Club</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('homeClub')}
-                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors flex-shrink-0 ${
                     filtros.homeClub ? 'bg-purple-600' : 'bg-gray-300'
                   }`}
                 >
