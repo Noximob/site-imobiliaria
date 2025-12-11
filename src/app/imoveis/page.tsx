@@ -112,6 +112,8 @@ function ImoveisPageContent() {
       vagas: parseFilterValue(novosFiltros.vagas),
       precoMin: novosFiltros.valorMin ? Number(novosFiltros.valorMin) : undefined,
       precoMax: novosFiltros.valorMax ? Number(novosFiltros.valorMax) : undefined,
+      areaMin: novosFiltros.areaMin ? Number(novosFiltros.areaMin) : undefined,
+      areaMax: novosFiltros.areaMax ? Number(novosFiltros.areaMax) : undefined,
       frenteMar: novosFiltros.frenteMar || undefined,
       mobiliado: novosFiltros.mobiliado || undefined,
       vistaMar: novosFiltros.vistaMar || undefined,
