@@ -10,6 +10,7 @@ import { getCorretoresAtivos } from '@/lib/corretores-data'
 import { getDepoimentosAtivos } from '@/lib/depoimentos-data'
 import { getAllImoveis } from '@/lib/imoveis-github'
 import { formatPrice } from '@/lib/imoveis'
+import { Imovel } from '@/types'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
@@ -62,12 +63,13 @@ export default async function HomePage() {
   
   // Filtrar imóveis com selecaoNox = true e publicado = true
   const imoveisSelecaoNox = todosImoveis
-    .filter(imovel => {
+    .filter((imovel: Imovel) => {
       // Deve estar publicado
       if (!imovel.publicado) return false
       
-      // Verificar selecaoNox - deve ser true (boolean)
-      return imovel.selecaoNox === true
+      // Verificar selecaoNox - aceitar true, 'true', 1, ou qualquer valor truthy
+      const selecaoNox = (imovel as any).selecaoNox
+      return selecaoNox === true || selecaoNox === 'true' || selecaoNox === 1 || Boolean(selecaoNox) === true
     })
     .slice(0, 3)
 

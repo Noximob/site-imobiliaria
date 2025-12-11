@@ -21,18 +21,18 @@ export async function getAllImoveis(includeUnpublished: boolean = false): Promis
       // Aceitar true, 'true', 1, ou qualquer valor truthy
       let selecaoNox = false
       if (imovel.selecaoNox !== undefined && imovel.selecaoNox !== null) {
-        if (imovel.selecaoNox === true || imovel.selecaoNox === 'true' || imovel.selecaoNox === 1) {
-          selecaoNox = true
-        } else if (imovel.selecaoNox !== false && imovel.selecaoNox !== 'false' && imovel.selecaoNox !== 0) {
-          selecaoNox = Boolean(imovel.selecaoNox)
-        }
+        // Aceitar true, 'true', 1, ou qualquer valor truthy
+        selecaoNox = imovel.selecaoNox === true || 
+                     imovel.selecaoNox === 'true' || 
+                     imovel.selecaoNox === 1 ||
+                     (imovel.selecaoNox !== false && imovel.selecaoNox !== 'false' && imovel.selecaoNox !== 0 && imovel.selecaoNox !== '')
       }
       
       return {
         ...imovel,
         createdAt: imovel.createdAt ? new Date(imovel.createdAt) : new Date(),
         updatedAt: imovel.updatedAt ? new Date(imovel.updatedAt) : new Date(),
-        selecaoNox: selecaoNox,
+        selecaoNox: Boolean(selecaoNox), // Sempre converter para boolean
       } as Imovel
     })
     

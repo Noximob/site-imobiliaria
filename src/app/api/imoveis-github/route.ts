@@ -325,21 +325,23 @@ export async function PUT(request: NextRequest) {
       imovel.fotos = imovel.fotos && imovel.fotos.length > 0 ? imovel.fotos : (imoveis[index].fotos || [])
     }
 
-    // Atualizar imóvel - preservar selecaoNox explicitamente
-    // Garantir que selecaoNox seja sempre um boolean
+    // Atualizar imóvel - garantir que selecaoNox seja sempre boolean
     // Se imovel.selecaoNox vier no objeto, usar esse valor, senão manter o existente
-    const selecaoNoxValue = imovel.selecaoNox !== undefined 
-      ? Boolean(imovel.selecaoNox) 
-      : (imoveis[index].selecaoNox !== undefined ? Boolean(imoveis[index].selecaoNox) : false)
+    let selecaoNoxValue = false
+    if (imovel.selecaoNox !== undefined) {
+      // Se veio no objeto, usar esse valor (pode ser true, false, 'true', 'false', 1, 0, etc)
+      selecaoNoxValue = imovel.selecaoNox === true || imovel.selecaoNox === 'true' || imovel.selecaoNox === 1
+    } else {
+      // Se não veio, manter o valor existente
+      selecaoNoxValue = imoveis[index].selecaoNox === true || imoveis[index].selecaoNox === 'true' || imoveis[index].selecaoNox === 1
+    }
     
-    // Criar objeto atualizado sem o selecaoNox no spread para não sobrescrever
-    const { selecaoNox: _, ...imovelSemSelecaoNox } = imovel
-    
+    // Atualizar imóvel - garantir que selecaoNox seja sempre boolean true/false
     imoveis[index] = {
       ...imoveis[index],
-      ...imovelSemSelecaoNox,
-      fotoPrincipalIndex: imovel.fotoPrincipalIndex ?? 0,
-      selecaoNox: selecaoNoxValue, // Definir explicitamente DEPOIS do spread
+      ...imovel,
+      fotoPrincipalIndex: imovel.fotoPrincipalIndex ?? imoveis[index].fotoPrincipalIndex ?? 0,
+      selecaoNox: selecaoNoxValue, // Sempre boolean true/false
       updatedAt: new Date().toISOString(),
     }
 
