@@ -216,91 +216,58 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Carousel de Imóveis */}
-          <div className="relative">
-            {/* Botões de Navegação */}
-            <button className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded flex items-center justify-center transition-colors duration-200 z-10">
-              <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded flex items-center justify-center transition-colors duration-200 z-10">
-              <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            {/* Grid de Imóveis */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Imóvel 1 */}
-              <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
-                <div className="h-40 relative">
-                  <img 
-                    src="/imagens/Seleção Nox/1.jpg" 
-                    alt="Imóvel Seleção Nox 1" 
-                    className="w-full h-full object-cover"
-                    style={{ backgroundColor: 'transparent' }}
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-base font-bold text-gray-900 mb-1">
-                    {getText('home.selecao_nox.imovel_1.titulo')}
-                  </h3>
-                  <p className="text-blue-600 text-xs font-medium mb-2">
-                    {getText('home.selecao_nox.imovel_1.localizacao')}
-                  </p>
-                  <p className="text-lg font-bold text-gray-900">
-                    {getText('home.selecao_nox.imovel_1.preco')}
-                  </p>
-                </div>
+          {/* Grid de Imóveis */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {imoveisSelecaoNox.length > 0 ? (
+              imoveisSelecaoNox.map((imovel) => (
+                <Link 
+                  key={imovel.id}
+                  href={`/imoveis/${imovel.slug}`}
+                  className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
+                >
+                  <div className="h-64 relative">
+                    {imovel.fotos && imovel.fotos.length > 0 ? (
+                      <>
+                        <Image 
+                          src={imovel.fotos[0]} 
+                          alt={imovel.titulo} 
+                          fill
+                          className="object-cover"
+                          unoptimized
+                        />
+                        {/* Tag Mobiliado se existir nas tags */}
+                        {(imovel.tags && imovel.tags.some(tag => tag.toLowerCase().includes('mobiliado'))) && (
+                          <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full text-xs font-semibold text-gray-900">
+                            MOBILIADO
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                        <span className="text-gray-400">Sem foto</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-base font-bold text-gray-900 mb-1 line-clamp-2">
+                      {imovel.titulo}
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-2">
+                      {imovel.endereco.bairro}, {imovel.endereco.cidade}
+                    </p>
+                    <p className="text-lg font-bold text-gray-900">
+                      {formatPrice(imovel.preco)}
+                    </p>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              // Fallback se não houver imóveis selecionados
+              <div className="col-span-3 text-center py-8 text-gray-500">
+                <p>Nenhum imóvel selecionado para a Seleção Nox.</p>
+                <p className="text-sm mt-2">Selecione até 3 imóveis na área do administrador.</p>
               </div>
-
-              {/* Imóvel 2 */}
-              <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
-                <div className="h-40 relative">
-                  <img 
-                    src="/imagens/Seleção Nox/2.jpg" 
-                    alt="Imóvel Seleção Nox 2" 
-                    className="w-full h-full object-cover"
-                    style={{ backgroundColor: 'white' }}
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-base font-bold text-gray-900 mb-1">
-                    {getText('home.selecao_nox.imovel_2.titulo')}
-                  </h3>
-                  <p className="text-blue-600 text-xs font-medium mb-2">
-                    {getText('home.selecao_nox.imovel_2.localizacao')}
-                  </p>
-                  <p className="text-lg font-bold text-gray-900">
-                    {getText('home.selecao_nox.imovel_2.preco')}
-                  </p>
-                </div>
-          </div>
-
-              {/* Imóvel 3 */}
-              <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
-                <div className="h-40 relative">
-                  <img 
-                    src="/imagens/Seleção Nox/3.jpg" 
-                    alt="Imóvel Seleção Nox 3" 
-                    className="w-full h-full object-cover"
-                    style={{ backgroundColor: 'white' }}
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-base font-bold text-gray-900 mb-1">
-                    {getText('home.selecao_nox.imovel_3.titulo')}
-              </h3>
-                  <p className="text-blue-600 text-xs font-medium mb-2">
-                    {getText('home.selecao_nox.imovel_3.localizacao')}
-                  </p>
-                  <p className="text-lg font-bold text-gray-900">
-                    {getText('home.selecao_nox.imovel_3.preco')}
-              </p>
-            </div>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </section>
