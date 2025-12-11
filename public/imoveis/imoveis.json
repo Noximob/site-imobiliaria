@@ -113,12 +113,12 @@
       "estado": "SC"
     },
     "caracteristicas": {
-      "quartos": 0,
-      "banheiros": 0,
-      "vagas": 0,
-      "area": 0,
+      "quartos": 3,
+      "banheiros": 3,
+      "vagas": 3,
+      "area": 299,
       "areaTerreno": 0,
-      "suite": 0,
+      "suite": 3,
       "frenteMar": false,
       "piscina": false,
       "churrasqueira": false,
@@ -143,7 +143,7 @@
     ],
     "id": "90398",
     "createdAt": "2025-12-11T01:33:11.765Z",
-    "updatedAt": "2025-12-11T01:33:11.765Z"
+    "updatedAt": "2025-12-11T01:51:39.760Z"
   },
   {
     "titulo": "hjgjhgjhg",
