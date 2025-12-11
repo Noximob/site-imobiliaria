@@ -25,17 +25,30 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
     homeClub: false
   })
 
-  // Aplicar filtros iniciais quando vierem da URL
+  // Aplicar filtros iniciais quando vierem da URL (apenas uma vez)
   useEffect(() => {
     if (filtrosIniciais && Object.keys(filtrosIniciais).length > 0) {
       const novosFiltros = {
-        ...filtros,
-        ...filtrosIniciais
+        status: filtrosIniciais.status || '',
+        tipo: filtrosIniciais.tipo || '',
+        cidade: filtrosIniciais.cidade || '',
+        quartos: [],
+        banheiros: '',
+        vagas: '',
+        valorMin: '',
+        valorMax: '',
+        mobiliado: filtrosIniciais.mobiliado || false,
+        frenteMar: filtrosIniciais.frenteMar || false,
+        vistaMar: filtrosIniciais.vistaMar || false,
+        quadraMar: false,
+        areaLazer: false,
+        homeClub: false
       }
       setFiltros(novosFiltros)
       onFiltrosChange?.(novosFiltros)
     }
-  }, [filtrosIniciais])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleInputChange = (field: string, value: any) => {
     const newFiltros = { ...filtros, [field]: value }
