@@ -2,11 +2,13 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Search, MapPin, Home, Building, List, Filter } from 'lucide-react'
+import { Search, MapPin, Home, Building, List, Filter, ArrowLeft } from 'lucide-react'
 
 export default function SearchForm() {
   const router = useRouter()
   const [mostrarAvancado, setMostrarAvancado] = useState(false)
+  const [modoCodigo, setModoCodigo] = useState(false)
+  const [codigoImovel, setCodigoImovel] = useState('')
   const [filtros, setFiltros] = useState({
     tipo: '',
     cidade: '',
@@ -88,6 +90,79 @@ export default function SearchForm() {
           : [...prev.quartos, qtd]
       }
     })
+  }
+
+  const handleBuscarPorCodigo = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!codigoImovel.trim()) return
+
+    // Buscar imóvel pelo código (últimos 5 dígitos do ID)
+    try {
+      const response = await fetch('/api/imoveis-github')
+      if (!response.ok) return
+      
+      const imoveis = await response.json()
+      const codigoFormatado = codigoImovel.trim().padStart(5, '0')
+      
+      // Procurar imóvel cujo ID termina com o código digitado
+      const imovelEncontrado = imoveis.find((imovel: any) => {
+        const ultimos5Digitos = imovel.id.slice(-5).padStart(5, '0')
+        return ultimos5Digitos === codigoFormatado && imovel.publicado
+      })
+
+      if (imovelEncontrado) {
+        router.push(`/imoveis/${imovelEncontrado.slug}`)
+      } else {
+        // Se não encontrou, redirecionar para página de imóveis com mensagem
+        router.push(`/imoveis?codigo=${codigoFormatado}&naoEncontrado=true`)
+      }
+    } catch (error) {
+      console.error('Erro ao buscar imóvel por código:', error)
+    }
+  }
+
+  // Se estiver no modo código, mostrar apenas o input de código
+  if (modoCodigo) {
+    return (
+      <div className="w-full">
+        <form onSubmit={handleBuscarPorCodigo} className="transition-all duration-300">
+          <div className="flex flex-col lg:flex-row gap-3 items-center">
+            <div className="flex-1 w-full">
+              <input
+                type="text"
+                value={codigoImovel}
+                onChange={(e) => setCodigoImovel(e.target.value)}
+                placeholder="Digite o Código do Imóvel"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-sm"
+                autoFocus
+              />
+            </div>
+            <div className="flex-shrink-0">
+              <button
+                type="submit"
+                className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-200 flex items-center space-x-2 text-sm"
+              >
+                <Search className="w-5 h-5" />
+                <span>BUSCAR</span>
+              </button>
+            </div>
+          </div>
+        </form>
+        
+        {/* Link para voltar */}
+        <button
+          type="button"
+          onClick={() => {
+            setModoCodigo(false)
+            setCodigoImovel('')
+          }}
+          className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-colors duration-200 text-sm mt-3"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Voltar para busca</span>
+        </button>
+      </div>
+    )
   }
 
   return (
@@ -383,7 +458,7 @@ export default function SearchForm() {
         )}
       </form>
 
-      {/* Botões de Busca Adicional - 3 botões horizontais */}
+      {/* Botões de Busca Adicional - 2 botões horizontais */}
       <div className="flex flex-col sm:flex-row gap-3 justify-center mt-2">
         {/* Avançado */}
         <button 
@@ -396,15 +471,13 @@ export default function SearchForm() {
         </button>
 
         {/* Por código */}
-        <button className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-colors duration-200 text-sm">
+        <button 
+          type="button"
+          onClick={() => setModoCodigo(true)}
+          className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-colors duration-200 text-sm"
+        >
           <List className="w-4 h-4" />
           <span>Por código</span>
-        </button>
-
-        {/* Empreendimentos */}
-        <button className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-colors duration-200 text-sm">
-          <Building className="w-4 h-4" />
-          <span>Empreendimentos</span>
         </button>
       </div>
     </div>
