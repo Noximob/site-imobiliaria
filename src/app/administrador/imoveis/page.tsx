@@ -75,6 +75,8 @@ export default function AdminImoveis() {
   const [fotosPreviews, setFotosPreviews] = useState<string[]>([])
   const [fotosExistentes, setFotosExistentes] = useState<string[]>([]) // Fotos já salvas
   const [fotoPrincipalIndex, setFotoPrincipalIndex] = useState<number>(0)
+  const [maisFotosFiles, setMaisFotosFiles] = useState<File[]>([]) // Fotos extras para galeria
+  const [maisFotosPreviews, setMaisFotosPreviews] = useState<string[]>([]) // Preview das fotos extras
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('todos')
   const [tipoFilter, setTipoFilter] = useState('todos')
@@ -113,6 +115,34 @@ export default function AdminImoveis() {
         setFotosPreviews(prev => [...prev, ...previews])
       })
     }
+  }
+
+  const handleMaisFotosChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || [])
+    if (files.length > 0) {
+      // Adicionar fotos extras para galeria
+      setMaisFotosFiles(prev => [...prev, ...files])
+      const readers = files.map(file => {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        return new Promise<string>((resolve) => {
+          reader.onload = (e) => resolve(e.target?.result as string)
+        })
+      })
+      
+      Promise.all(readers).then(previews => {
+        setMaisFotosPreviews(prev => [...prev, ...previews])
+      })
+    }
+  }
+
+  const removeMaisFoto = (index: number) => {
+    const newFotos = [...maisFotosFiles]
+    const newPreviews = [...maisFotosPreviews]
+    newFotos.splice(index, 1)
+    newPreviews.splice(index, 1)
+    setMaisFotosFiles(newFotos)
+    setMaisFotosPreviews(newPreviews)
   }
 
   const removeFoto = (index: number, isExistente: boolean) => {
@@ -215,10 +245,18 @@ export default function AdminImoveis() {
     // Carregar status do imóvel (prontos/lancamento)
     const statusImovelValue = (imovel as any).statusImovel || ''
     setStatusImovel(statusImovelValue)
+    
+    // Separar fotos principais (primeiras 5) das extras (restantes)
+    const todasFotosExistentes = imovel.fotos || []
+    const fotosPrincipais = todasFotosExistentes.slice(0, 5)
+    const fotosExtrasExistentes = todasFotosExistentes.slice(5)
+    
     setFotosFiles([])
     setFotosPreviews([])
-    setFotosExistentes(imovel.fotos || [])
+    setFotosExistentes(fotosPrincipais)
     setFotoPrincipalIndex((imovel as any).fotoPrincipalIndex || 0)
+    setMaisFotosFiles([])
+    setMaisFotosPreviews(fotosExtrasExistentes) // Carregar fotos extras existentes como previews
     setShowCreateForm(true)
   }
 
@@ -287,6 +325,8 @@ export default function AdminImoveis() {
     setFotosPreviews([])
     setFotosExistentes([])
     setFotoPrincipalIndex(0)
+    setMaisFotosFiles([])
+    setMaisFotosPreviews([])
     setEditingImovel(null)
     setShowCreateForm(false)
   }
@@ -319,6 +359,7 @@ export default function AdminImoveis() {
       const homeClub = tagsList.includes('Home Club completo')
 
       // Organizar fotos: foto principal primeiro, depois as outras
+      // Primeiras 5 fotos aparecem na página principal, todas aparecem na galeria
       const todasFotos = [...fotosExistentes, ...fotosPreviews]
       let fotosOrdenadas = [...todasFotos]
       
@@ -328,6 +369,10 @@ export default function AdminImoveis() {
         fotosOrdenadas.splice(fotoPrincipalIndex, 1)
         fotosOrdenadas.unshift(fotoPrincipal)
       }
+
+      // Adicionar fotos extras ao final (só aparecem na galeria)
+      // maisFotosPreviews contém tanto URLs (existentes) quanto base64 (novas)
+      fotosOrdenadas = [...fotosOrdenadas, ...maisFotosPreviews]
 
       const imovelData = {
         titulo: novoImovel.titulo,
@@ -365,13 +410,14 @@ export default function AdminImoveis() {
       }
 
       if (editingImovel) {
-        // Editar imóvel existente - enviar apenas novas fotos (fotosFiles)
-        // As fotos ordenadas já estão em imovelData.fotos
-        await updateImovelWithFotos(editingImovel.id, imovelData, fotosFiles.length > 0 ? fotosFiles : undefined)
+        // Editar imóvel existente - enviar novas fotos principais + fotos extras
+        const todasFotosNovas = [...fotosFiles, ...maisFotosFiles]
+        await updateImovelWithFotos(editingImovel.id, imovelData, todasFotosNovas.length > 0 ? todasFotosNovas : undefined)
         alert('Imóvel atualizado com sucesso!')
       } else {
-        // Criar novo imóvel - todas as fotos são novas
-        await createImovelWithFotos(imovelData, fotosFiles)
+        // Criar novo imóvel - todas as fotos são novas (principais + extras)
+        const todasFotosNovas = [...fotosFiles, ...maisFotosFiles]
+        await createImovelWithFotos(imovelData, todasFotosNovas)
         alert('Imóvel criado com sucesso!')
       }
       
@@ -1055,6 +1101,59 @@ export default function AdminImoveis() {
                             </div>
                           )
                         })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Mais Fotos (Galeria) */}
+              <div className="border-b border-gray-200 pb-6">
+                <h3 className="text-md font-semibold text-gray-900 mb-4">Mais Fotos (Galeria)</h3>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Adicionar Fotos Extras
+                  </label>
+                  <p className="text-xs text-gray-500 mb-2">
+                    Estas fotos aparecerão apenas na galeria completa (barra de rolagem), não na página principal do imóvel.
+                  </p>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handleMaisFotosChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  />
+                  
+                  {/* Grid de fotos extras */}
+                  {maisFotosPreviews.length > 0 && (
+                    <div className="mt-4">
+                      <p className="text-sm font-medium text-gray-700 mb-3">
+                        Fotos Extras ({maisFotosPreviews.length})
+                      </p>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {maisFotosPreviews.map((foto, index) => (
+                          <div 
+                            key={index} 
+                            className="relative group border-2 border-gray-200 rounded-md overflow-hidden"
+                          >
+                            <img
+                              src={foto}
+                              alt={`Foto extra ${index + 1}`}
+                              className="w-full h-32 object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center">
+                              <button
+                                type="button"
+                                onClick={() => removeMaisFoto(index)}
+                                className="opacity-0 group-hover:opacity-100 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-opacity"
+                                title="Remover foto"
+                              >
+                                <X className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   )}
