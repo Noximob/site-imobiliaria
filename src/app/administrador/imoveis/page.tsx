@@ -255,6 +255,37 @@ export default function AdminImoveis() {
     setShowCreateForm(true)
   }
 
+  const handleToggleSelecaoNox = async (imovel: Imovel) => {
+    if (!confirm(`Deseja ${(imovel as any).selecaoNox ? 'remover' : 'adicionar'} este imóvel da Seleção Nox?`)) {
+      return
+    }
+
+    try {
+      // Verificar se já existem 3 imóveis selecionados
+      const imoveisSelecionados = imoveis.filter(i => (i as any).selecaoNox === true).length
+      const novoValor = !(imovel as any).selecaoNox
+      
+      if (novoValor && imoveisSelecionados >= 3) {
+        alert('Você já selecionou 3 imóveis para a Seleção Nox. Desmarque um imóvel antes de selecionar este.')
+        return
+      }
+
+      // Atualizar apenas o campo selecaoNox
+      await updateImovelWithFotos(imovel.id, {
+        ...imovel,
+        selecaoNox: novoValor
+      }, undefined)
+
+      // Recarregar lista de imóveis (incluindo não publicados para admin)
+      const imoveisAtualizados = await getAllImoveis(true)
+      setImoveis(imoveisAtualizados)
+      alert(`Imóvel ${novoValor ? 'adicionado' : 'removido'} da Seleção Nox com sucesso!`)
+    } catch (error) {
+      console.error('Erro ao atualizar seleção Nox:', error)
+      alert('Erro ao atualizar seleção Nox. Tente novamente.')
+    }
+  }
+
   const handleDelete = async (id: string) => {
     if (confirm('Tem certeza que deseja excluir este imóvel?')) {
       try {
@@ -1197,6 +1228,17 @@ export default function AdminImoveis() {
                           title="Editar imóvel"
                         >
                           <Edit className="w-4 h-4" />
+                        </button>
+                        <button 
+                          onClick={() => handleToggleSelecaoNox(imovel)}
+                          className={`p-2 rounded-md transition-colors ${
+                            (imovel as any).selecaoNox
+                              ? 'text-yellow-600 hover:text-yellow-900 hover:bg-yellow-50 bg-yellow-50'
+                              : 'text-gray-400 hover:text-gray-600 hover:bg-gray-50'
+                          }`}
+                          title={(imovel as any).selecaoNox ? 'Remover da Seleção Nox' : 'Adicionar à Seleção Nox'}
+                        >
+                          <Star className={`w-4 h-4 ${(imovel as any).selecaoNox ? 'fill-current' : ''}`} />
                         </button>
                         <button 
                           onClick={() => handleDelete(imovel.id)}

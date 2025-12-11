@@ -2,7 +2,7 @@ import { Imovel } from '@/types'
 
 const API_URL = '/api/imoveis-github'
 
-export async function getAllImoveis(): Promise<Imovel[]> {
+export async function getAllImoveis(includeUnpublished: boolean = false): Promise<Imovel[]> {
   try {
     const response = await fetch(API_URL, {
       cache: 'no-store'

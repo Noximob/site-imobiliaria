@@ -8,6 +8,9 @@ import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
 import { getCorretoresAtivos } from '@/lib/corretores-data'
 import { getDepoimentosAtivos } from '@/lib/depoimentos-data'
+import { getAllImoveis } from '@/lib/imoveis-github'
+import { formatPrice } from '@/lib/imoveis'
+import Link from 'next/link'
 import type { Metadata } from 'next'
 
 // Revalida a cada 24 horas
@@ -53,6 +56,12 @@ export default async function HomePage() {
   // Buscar corretores ativos e depoimentos ativos
   const corretores = await getCorretoresAtivos()
   const depoimentos = await getDepoimentosAtivos()
+  
+  // Buscar imóveis da Seleção Nox (máximo 3)
+  const todosImoveis = await getAllImoveis()
+  const imoveisSelecaoNox = todosImoveis
+    .filter(imovel => imovel.publicado === true && (imovel as any).selecaoNox === true)
+    .slice(0, 3)
 
   // Carrega apenas as imagens necessárias para esta página (otimização de performance)
   const siteImages = {

@@ -51,6 +51,7 @@ export interface Imovel {
   createdAt: Date;
   updatedAt: Date;
   publicado: boolean;
+  selecaoNox?: boolean; // Marca imóvel para aparecer na seção Seleção Nox
 }
 
 export interface FiltrosImovel {
