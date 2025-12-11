@@ -181,6 +181,7 @@ export async function POST(request: NextRequest) {
       slug,
       fotos: fotosFinais,
       fotoPrincipalIndex: imovel.fotoPrincipalIndex ?? 0,
+      selecaoNox: imovel.selecaoNox !== undefined ? Boolean(imovel.selecaoNox) : false,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     }
