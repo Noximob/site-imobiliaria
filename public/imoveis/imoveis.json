@@ -65,12 +65,12 @@
       "estado": "SC"
     },
     "caracteristicas": {
-      "quartos": 0,
-      "banheiros": 0,
-      "vagas": 0,
-      "area": 0,
+      "quartos": 1,
+      "banheiros": 1,
+      "vagas": 1,
+      "area": 10,
       "areaTerreno": 0,
-      "suite": 0,
+      "suite": 2,
       "frenteMar": true,
       "piscina": false,
       "churrasqueira": false,
@@ -95,7 +95,7 @@
     ],
     "id": "00805",
     "createdAt": "2025-12-11T01:31:42.305Z",
-    "updatedAt": "2025-12-11T01:31:42.305Z"
+    "updatedAt": "2025-12-11T01:47:25.853Z"
   },
   {
     "titulo": "hdghghgf",
