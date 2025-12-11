@@ -8,6 +8,7 @@ import FiltrosImoveis from '@/components/FiltrosImoveis'
 import { getAllImoveis, searchImoveis, formatPrice } from '@/lib/imoveis'
 import { Imovel, FiltrosImovel } from '@/types'
 import { Heart } from 'lucide-react'
+import { toggleFavorito, isFavorito } from '@/lib/favoritos'
 
 function ImoveisPageContent() {
   const searchParams = useSearchParams()
@@ -265,8 +266,23 @@ function ImoveisPageContent() {
                             </p>
                           </div>
                           <div className="flex items-center gap-2">
-                            <button className="text-gray-400 hover:text-red-500">
-                              <Heart className="w-5 h-5" />
+                            <button 
+                              onClick={(e) => {
+                                e.preventDefault()
+                                e.stopPropagation()
+                                toggleFavorito(imovel.id)
+                                // Forçar re-render
+                                setImoveis([...imoveis])
+                              }}
+                              className={`transition-colors ${
+                                isFavorito(imovel.id) 
+                                  ? 'text-red-500' 
+                                  : 'text-gray-400 hover:text-red-500'
+                              }`}
+                            >
+                              <Heart 
+                                className={`w-5 h-5 ${isFavorito(imovel.id) ? 'fill-current' : ''}`} 
+                              />
                             </button>
                             <Link 
                               href={`/imoveis/${imovel.slug}`}

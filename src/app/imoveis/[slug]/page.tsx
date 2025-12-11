@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getImovelBySlug, getAllImoveis, formatPrice } from '@/lib/imoveis'
 import { getWhatsAppLink } from '@/lib/whatsapp'
+import { toggleFavorito, isFavorito } from '@/lib/favoritos'
 import { 
   MapPin, 
   Key,
@@ -23,6 +24,7 @@ export default function ImovelDetalhePage() {
   const slug = params.slug as string
   const [imovel, setImovel] = useState<any>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [isFavoritado, setIsFavoritado] = useState(false)
   const [contatoTipo, setContatoTipo] = useState<'telefone' | 'email' | 'whatsapp'>('email')
   const [formData, setFormData] = useState({
     nome: '',
@@ -40,6 +42,7 @@ export default function ImovelDetalhePage() {
           return
         }
         setImovel(imovelData)
+        setIsFavoritado(isFavorito(imovelData.id))
         
       } catch (error) {
         console.error('Erro ao carregar imóvel:', error)
@@ -145,9 +148,21 @@ export default function ImovelDetalhePage() {
               </div>
               
               {/* Botão Favorito - Elegante */}
-              <button className="flex items-center gap-1.5 px-2.5 py-1 bg-white border border-gray-200 rounded-md hover:bg-gray-50 transition-colors">
-                <Heart className="w-3.5 h-3.5 text-gray-500" />
-                <span className="text-xs text-gray-600 font-light">Favorito</span>
+              <button 
+                onClick={() => {
+                  if (imovel) {
+                    const novoEstado = toggleFavorito(imovel.id)
+                    setIsFavoritado(novoEstado)
+                  }
+                }}
+                className={`flex items-center gap-1.5 px-2.5 py-1 bg-white border border-gray-200 rounded-md hover:bg-gray-50 transition-colors ${
+                  isFavoritado ? 'border-red-300' : ''
+                }`}
+              >
+                <Heart className={`w-3.5 h-3.5 ${isFavoritado ? 'text-red-500 fill-current' : 'text-gray-500'}`} />
+                <span className={`text-xs font-light ${isFavoritado ? 'text-red-600' : 'text-gray-600'}`}>
+                  Favorito
+                </span>
               </button>
             </div>
           </div>
