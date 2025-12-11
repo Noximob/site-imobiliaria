@@ -276,35 +276,107 @@ export default function SearchForm() {
           <div>
             <label className="block text-sm text-white font-bold mb-3">Comodidades</label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {[
-                { key: 'mobiliado', label: 'Mobiliado' },
-                { key: 'frenteMar', label: 'Frente Mar' },
-                { key: 'vistaMar', label: 'Vista Mar' },
-                { key: 'quadraMar', label: 'Quadra Mar' },
-                { key: 'areaLazer', label: 'Área de Lazer' },
-                { key: 'homeClub', label: 'Home Club' }
-              ].map(({ key, label }) => {
-                const field = key as 'mobiliado' | 'frenteMar' | 'vistaMar' | 'quadraMar' | 'areaLazer' | 'homeClub'
-                const isActive = filtros[field]
-                return (
-                  <div key={key} className="flex items-center justify-between">
-                    <span className="text-sm text-white font-bold">{label}</span>
-                    <button
-                      type="button"
-                      onClick={() => handleToggle(field)}
-                      className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
-                        isActive ? 'bg-purple-600' : 'bg-gray-300'
-                      }`}
-                    >
-                      <span
-                        className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
-                          isActive ? 'translate-x-5' : 'translate-x-0.5'
-                        }`}
-                      />
-                    </button>
-                  </div>
-                )
-              })}
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-white font-bold">Mobiliado</span>
+                <button
+                  type="button"
+                  onClick={() => handleToggle('mobiliado')}
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                    filtros.mobiliado ? 'bg-purple-600' : 'bg-gray-300'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                      filtros.mobiliado ? 'translate-x-5' : 'translate-x-0.5'
+                    }`}
+                  />
+                </button>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-white font-bold">Frente Mar</span>
+                <button
+                  type="button"
+                  onClick={() => handleToggle('frenteMar')}
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                    filtros.frenteMar ? 'bg-purple-600' : 'bg-gray-300'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                      filtros.frenteMar ? 'translate-x-5' : 'translate-x-0.5'
+                    }`}
+                  />
+                </button>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-white font-bold">Vista Mar</span>
+                <button
+                  type="button"
+                  onClick={() => handleToggle('vistaMar')}
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                    filtros.vistaMar ? 'bg-purple-600' : 'bg-gray-300'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                      filtros.vistaMar ? 'translate-x-5' : 'translate-x-0.5'
+                    }`}
+                  />
+                </button>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-white font-bold">Quadra Mar</span>
+                <button
+                  type="button"
+                  onClick={() => handleToggle('quadraMar')}
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                    filtros.quadraMar ? 'bg-purple-600' : 'bg-gray-300'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                      filtros.quadraMar ? 'translate-x-5' : 'translate-x-0.5'
+                    }`}
+                  />
+                </button>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-white font-bold">Área de Lazer</span>
+                <button
+                  type="button"
+                  onClick={() => handleToggle('areaLazer')}
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                    filtros.areaLazer ? 'bg-purple-600' : 'bg-gray-300'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                      filtros.areaLazer ? 'translate-x-5' : 'translate-x-0.5'
+                    }`}
+                  />
+                </button>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-white font-bold">Home Club</span>
+                <button
+                  type="button"
+                  onClick={() => handleToggle('homeClub')}
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                    filtros.homeClub ? 'bg-purple-600' : 'bg-gray-300'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                      filtros.homeClub ? 'translate-x-5' : 'translate-x-0.5'
+                    }`}
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
