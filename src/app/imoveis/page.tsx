@@ -62,8 +62,9 @@ export default function ImoveisPage() {
       status: novosFiltros.status || undefined,
       tipo: novosFiltros.tipo || undefined,
       cidade: novosFiltros.cidade || undefined,
-      quartos: parseFilterValue(novosFiltros.quartos),
-      suites: parseFilterValue(novosFiltros.suites),
+      quartos: Array.isArray(novosFiltros.quartos) && novosFiltros.quartos.length > 0 
+        ? novosFiltros.quartos.map((q: string) => parseFilterValue(q)).filter((q: number | undefined) => q !== undefined) as number[]
+        : undefined,
       banheiros: parseFilterValue(novosFiltros.banheiros),
       vagas: parseFilterValue(novosFiltros.vagas),
       precoMin: novosFiltros.valorMin ? Number(novosFiltros.valorMin) : undefined,

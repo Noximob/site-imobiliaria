@@ -91,16 +91,27 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
         return false;
       }
       
-      // Filtro por quartos (>= para valores com +)
-      if (filtros.quartos !== undefined && imovel.caracteristicas.quartos < filtros.quartos) {
-        return false;
-      }
-      
-      // Filtro por suítes (>= para valores com +)
-      if (filtros.suites !== undefined) {
-        const suiteValue = (imovel.caracteristicas as any).suite || 0;
-        if (suiteValue < filtros.suites) {
-          return false;
+      // Filtro por quartos (pode ser array para múltipla seleção)
+      if (filtros.quartos !== undefined) {
+        if (Array.isArray(filtros.quartos)) {
+          // Múltiplos valores selecionados - imóvel deve ter pelo menos um dos valores
+          const matches = filtros.quartos.some(qtd => {
+            if (qtd === 4) {
+              // "4+" significa 4 ou mais
+              return imovel.caracteristicas.quartos >= 4;
+            } else {
+              // Valores exatos (1, 2, 3)
+              return imovel.caracteristicas.quartos === qtd;
+            }
+          });
+          if (!matches) {
+            return false;
+          }
+        } else {
+          // Valor único (compatibilidade)
+          if (imovel.caracteristicas.quartos < filtros.quartos) {
+            return false;
+          }
         }
       }
       

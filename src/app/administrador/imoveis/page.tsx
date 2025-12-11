@@ -853,21 +853,6 @@ export default function AdminImoveis() {
                       min="0"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Suítes
-                    </label>
-                    <input
-                      type="number"
-                      value={novoImovel.caracteristicas.suite || ''}
-                      onChange={(e) => setNovoImovel({
-                        ...novoImovel, 
-                        caracteristicas: {...novoImovel.caracteristicas, suite: Number(e.target.value)}
-                      })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                      min="0"
-                    />
-                  </div>
                 </div>
               </div>
 

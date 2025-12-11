@@ -11,8 +11,7 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
     status: '',
     tipo: '',
     cidade: '',
-    quartos: '',
-    suites: '',
+    quartos: [] as string[],
     banheiros: '',
     vagas: '',
     valorMin: '',
@@ -41,8 +40,7 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
       status: '',
       tipo: '',
       cidade: '',
-      quartos: '',
-      suites: '',
+      quartos: [] as string[],
       banheiros: '',
       vagas: '',
       valorMin: '',
@@ -110,38 +108,28 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Quartos</label>
           <div className="flex gap-2">
-            {['1+', '2+', '3+', '4+'].map((qtd) => (
-              <button
-                key={qtd}
-                onClick={() => handleInputChange('quartos', filtros.quartos === qtd ? '' : qtd)}
-                className={`px-4 py-2 rounded-lg border ${
-                  filtros.quartos === qtd 
-                    ? 'bg-purple-500 text-white border-purple-500' 
-                    : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
-                }`}
-              >
-                {qtd}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Suítes</label>
-          <div className="flex gap-2">
-            {['1+', '2+', '3+', '4+'].map((qtd) => (
-              <button
-                key={qtd}
-                onClick={() => handleInputChange('suites', filtros.suites === qtd ? '' : qtd)}
-                className={`px-4 py-2 rounded-lg border ${
-                  filtros.suites === qtd 
-                    ? 'bg-purple-500 text-white border-purple-500' 
-                    : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
-                }`}
-              >
-                {qtd}
-              </button>
-            ))}
+            {['1', '2', '3', '4+'].map((qtd) => {
+              const isSelected = filtros.quartos.includes(qtd)
+              return (
+                <button
+                  key={qtd}
+                  type="button"
+                  onClick={() => {
+                    const newQuartos = isSelected
+                      ? filtros.quartos.filter(q => q !== qtd)
+                      : [...filtros.quartos, qtd]
+                    handleInputChange('quartos', newQuartos)
+                  }}
+                  className={`px-4 py-2 rounded-lg border ${
+                    isSelected
+                      ? 'bg-purple-500 text-white border-purple-500' 
+                      : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
+                  }`}
+                >
+                  {qtd}
+                </button>
+              )
+            })}
           </div>
         </div>
 
