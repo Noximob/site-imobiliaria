@@ -134,9 +134,9 @@ export default function FotosPage() {
   return (
     <div className="h-screen bg-gray-900 flex flex-col overflow-hidden">
       {/* Foto Principal - Horizontal em cima, menor para caber thumbnails */}
-      <div className="relative bg-gray-950 flex items-center justify-center" style={{ height: 'calc(100vh - 100px)' }}>
+      <div className="relative bg-gray-950 flex items-center justify-center" style={{ height: 'calc(100vh - 96px)' }}>
         {fotosOrdenadas[fotoAtualValida] && (
-          <div className="relative w-full max-w-[85%]" style={{ aspectRatio: '16/9', maxHeight: 'calc(100vh - 100px)' }}>
+          <div className="relative w-full max-w-[80%]" style={{ aspectRatio: '16/9', maxHeight: '70vh' }}>
             <Image
               src={fotosOrdenadas[fotoAtualValida]}
               alt={`${imovel.titulo} - Foto ${fotoAtualValida + 1}`}
