@@ -77,15 +77,24 @@ export default function Header() {
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isPenhaOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
+                  <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
+                    <Link href="/imoveis?cidade=penha&tipo=apartamento" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Apartamento à venda em Penha
+                    </Link>
                     <Link href="/imoveis?cidade=penha" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                      Apartamentos em Penha
+                      Imóveis à venda em Penha
                     </Link>
-                    <Link href="/imoveis?cidade=penha&tipo=casa" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                      Casas em Penha
+                    <Link href="/imoveis?cidade=penha&tipo=cobertura" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Coberturas à venda em Penha
                     </Link>
-                    <Link href="/imoveis?cidade=penha&tipo=terreno" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                      Terrenos em Penha
+                    <Link href="/imoveis?cidade=penha&frenteMar=true&vistaMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Apartamento Frente Mar em Penha
+                    </Link>
+                    <Link href="/imoveis?cidade=penha&vistaMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Apartamento Vista para o Mar em Penha
+                    </Link>
+                    <Link href="/imoveis?cidade=penha&quadraMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Apartamento Quadra Mar em Penha
                     </Link>
                   </div>
                 )}
@@ -103,15 +112,24 @@ export default function Header() {
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isPicarrasOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
-                    <Link href="/imoveis?cidade=picarras" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                      Apartamentos em Balneário Piçarras
+                  <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
+                    <Link href="/imoveis?cidade=balneario-picarras&tipo=apartamento" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Apartamento à venda em Balneário Piçarras
                     </Link>
-                    <Link href="/imoveis?cidade=picarras&tipo=casa" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                      Casas em Balneário Piçarras
+                    <Link href="/imoveis?cidade=balneario-picarras" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Imóveis à venda em Balneário Piçarras
                     </Link>
-                    <Link href="/imoveis?cidade=picarras&tipo=terreno" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                      Terrenos em Balneário Piçarras
+                    <Link href="/imoveis?cidade=balneario-picarras&tipo=cobertura" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Coberturas à venda em Balneário Piçarras
+                    </Link>
+                    <Link href="/imoveis?cidade=balneario-picarras&frenteMar=true&vistaMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Apartamento Frente Mar em Balneário Piçarras
+                    </Link>
+                    <Link href="/imoveis?cidade=balneario-picarras&vistaMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Apartamento Vista para o Mar em Balneário Piçarras
+                    </Link>
+                    <Link href="/imoveis?cidade=balneario-picarras&quadraMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Apartamento Quadra Mar em Balneário Piçarras
                     </Link>
                   </div>
                 )}
@@ -129,15 +147,24 @@ export default function Header() {
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isBarraVelhaOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
+                  <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
+                    <Link href="/imoveis?cidade=barra-velha&tipo=apartamento" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Apartamento à venda em Barra Velha
+                    </Link>
                     <Link href="/imoveis?cidade=barra-velha" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                      Apartamentos em Barra Velha
+                      Imóveis à venda em Barra Velha
                     </Link>
-                    <Link href="/imoveis?cidade=barra-velha&tipo=casa" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                      Casas em Barra Velha
+                    <Link href="/imoveis?cidade=barra-velha&tipo=cobertura" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Coberturas à venda em Barra Velha
                     </Link>
-                    <Link href="/imoveis?cidade=barra-velha&tipo=terreno" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
-                      Terrenos em Barra Velha
+                    <Link href="/imoveis?cidade=barra-velha&frenteMar=true&vistaMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Apartamento Frente Mar em Barra Velha
+                    </Link>
+                    <Link href="/imoveis?cidade=barra-velha&vistaMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Apartamento Vista para o Mar em Barra Velha
+                    </Link>
+                    <Link href="/imoveis?cidade=barra-velha&quadraMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                      Apartamento Quadra Mar em Barra Velha
                     </Link>
                   </div>
                 )}
