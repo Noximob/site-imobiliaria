@@ -93,7 +93,7 @@ export default function SearchForm() {
   return (
     <div className="w-full">
       {/* Formulário Principal - 3 campos horizontais */}
-      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-4 mb-4">
+      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-4 mb-2">
         <div className="flex flex-col lg:flex-row gap-3">
           {/* TIPO */}
           <div className="flex-1">
@@ -152,14 +152,14 @@ export default function SearchForm() {
         </div>
       </form>
 
-      {/* Formulário Avançado - Expansível */}
+      {/* Formulário Avançado - Expansível embaixo */}
       {mostrarAvancado && (
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-4 transition-all duration-300">
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-2 transition-all duration-300">
           {/* Quartos, Banheiros, Vagas */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             {/* Quartos */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">Quartos</label>
+              <label className="block text-xs font-medium text-gray-700 mb-2">Quartos</label>
               <div className="flex gap-2 flex-wrap">
                 {['1', '2', '3', '4+'].map((qtd) => {
                   const isSelected = filtros.quartos.includes(qtd)
@@ -168,7 +168,7 @@ export default function SearchForm() {
                       key={qtd}
                       type="button"
                       onClick={() => handleQuartosToggle(qtd)}
-                      className={`px-4 py-2 rounded-lg border text-sm transition-colors ${
+                      className={`px-3 py-1.5 rounded-lg border text-xs transition-colors ${
                         isSelected
                           ? 'bg-purple-600 text-white border-purple-600' 
                           : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
@@ -183,14 +183,14 @@ export default function SearchForm() {
 
             {/* Banheiros */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">Banheiros</label>
+              <label className="block text-xs font-medium text-gray-700 mb-2">Banheiros</label>
               <div className="flex gap-2 flex-wrap">
                 {['1+', '2+', '3+', '4+'].map((qtd) => (
                   <button
                     key={qtd}
                     type="button"
                     onClick={() => setFiltros(prev => ({ ...prev, banheiros: prev.banheiros === qtd ? '' : qtd }))}
-                    className={`px-4 py-2 rounded-lg border text-sm transition-colors ${
+                    className={`px-3 py-1.5 rounded-lg border text-xs transition-colors ${
                       filtros.banheiros === qtd 
                         ? 'bg-purple-600 text-white border-purple-600' 
                         : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
@@ -204,14 +204,14 @@ export default function SearchForm() {
 
             {/* Vagas */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">Vagas</label>
+              <label className="block text-xs font-medium text-gray-700 mb-2">Vagas</label>
               <div className="flex gap-2 flex-wrap">
                 {['1+', '2+', '3+', '4+'].map((qtd) => (
                   <button
                     key={qtd}
                     type="button"
                     onClick={() => setFiltros(prev => ({ ...prev, vagas: prev.vagas === qtd ? '' : qtd }))}
-                    className={`px-4 py-2 rounded-lg border text-sm transition-colors ${
+                    className={`px-3 py-1.5 rounded-lg border text-xs transition-colors ${
                       filtros.vagas === qtd 
                         ? 'bg-purple-600 text-white border-purple-600' 
                         : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
@@ -224,55 +224,50 @@ export default function SearchForm() {
             </div>
           </div>
 
-          {/* Valores */}
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-3">Valores</label>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
+          {/* Valores e Área */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            {/* Valores */}
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-2">Valores</label>
+              <div className="grid grid-cols-2 gap-2">
                 <input
                   type="number"
                   name="valorMin"
                   value={filtros.valorMin}
                   onChange={handleChange}
-                  placeholder="Valor mínimo"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
+                  placeholder="Mín"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-xs"
                 />
-              </div>
-              <div>
                 <input
                   type="number"
                   name="valorMax"
                   value={filtros.valorMax}
                   onChange={handleChange}
-                  placeholder="Valor máximo"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
+                  placeholder="Máx"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-xs"
                 />
               </div>
             </div>
-          </div>
 
-          {/* Área */}
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-3">Área (m²)</label>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
+            {/* Área */}
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-2">Área (m²)</label>
+              <div className="grid grid-cols-2 gap-2">
                 <input
                   type="number"
                   name="areaMin"
                   value={filtros.areaMin}
                   onChange={handleChange}
-                  placeholder="Área mínima"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
+                  placeholder="Mín"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-xs"
                 />
-              </div>
-              <div>
                 <input
                   type="number"
                   name="areaMax"
                   value={filtros.areaMax}
                   onChange={handleChange}
-                  placeholder="Área máxima"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
+                  placeholder="Máx"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-xs"
                 />
               </div>
             </div>
@@ -280,111 +275,111 @@ export default function SearchForm() {
 
           {/* Comodidades - Toggles */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">Comodidades</label>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <label className="block text-xs font-medium text-gray-700 mb-2">Comodidades</label>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {/* Mobiliado */}
-              <div className="flex items-center justify-between p-3 border border-gray-300 rounded-lg">
-                <span className="text-sm text-gray-700">Mobiliado</span>
+              <div className="flex items-center justify-between p-2 border border-gray-300 rounded-lg">
+                <span className="text-xs text-gray-700">Mobiliado</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('mobiliado')}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
                     filtros.mobiliado ? 'bg-purple-600' : 'bg-gray-300'
                   }`}
                 >
                   <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      filtros.mobiliado ? 'translate-x-6' : 'translate-x-1'
+                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                      filtros.mobiliado ? 'translate-x-5' : 'translate-x-0.5'
                     }`}
                   />
                 </button>
               </div>
 
               {/* Frente Mar */}
-              <div className="flex items-center justify-between p-3 border border-gray-300 rounded-lg">
-                <span className="text-sm text-gray-700">Frente Mar</span>
+              <div className="flex items-center justify-between p-2 border border-gray-300 rounded-lg">
+                <span className="text-xs text-gray-700">Frente Mar</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('frenteMar')}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
                     filtros.frenteMar ? 'bg-purple-600' : 'bg-gray-300'
                   }`}
                 >
                   <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      filtros.frenteMar ? 'translate-x-6' : 'translate-x-1'
+                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                      filtros.frenteMar ? 'translate-x-5' : 'translate-x-0.5'
                     }`}
                   />
                 </button>
               </div>
 
               {/* Vista Mar */}
-              <div className="flex items-center justify-between p-3 border border-gray-300 rounded-lg">
-                <span className="text-sm text-gray-700">Vista Mar</span>
+              <div className="flex items-center justify-between p-2 border border-gray-300 rounded-lg">
+                <span className="text-xs text-gray-700">Vista Mar</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('vistaMar')}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
                     filtros.vistaMar ? 'bg-purple-600' : 'bg-gray-300'
                   }`}
                 >
                   <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      filtros.vistaMar ? 'translate-x-6' : 'translate-x-1'
+                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                      filtros.vistaMar ? 'translate-x-5' : 'translate-x-0.5'
                     }`}
                   />
                 </button>
               </div>
 
               {/* Quadra Mar */}
-              <div className="flex items-center justify-between p-3 border border-gray-300 rounded-lg">
-                <span className="text-sm text-gray-700">Quadra Mar</span>
+              <div className="flex items-center justify-between p-2 border border-gray-300 rounded-lg">
+                <span className="text-xs text-gray-700">Quadra Mar</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('quadraMar')}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
                     filtros.quadraMar ? 'bg-purple-600' : 'bg-gray-300'
                   }`}
                 >
                   <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      filtros.quadraMar ? 'translate-x-6' : 'translate-x-1'
+                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                      filtros.quadraMar ? 'translate-x-5' : 'translate-x-0.5'
                     }`}
                   />
                 </button>
               </div>
 
               {/* Área de Lazer */}
-              <div className="flex items-center justify-between p-3 border border-gray-300 rounded-lg">
-                <span className="text-sm text-gray-700">Área de Lazer</span>
+              <div className="flex items-center justify-between p-2 border border-gray-300 rounded-lg">
+                <span className="text-xs text-gray-700">Área de Lazer</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('areaLazer')}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
                     filtros.areaLazer ? 'bg-purple-600' : 'bg-gray-300'
                   }`}
                 >
                   <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      filtros.areaLazer ? 'translate-x-6' : 'translate-x-1'
+                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                      filtros.areaLazer ? 'translate-x-5' : 'translate-x-0.5'
                     }`}
                   />
                 </button>
               </div>
 
               {/* Home Club */}
-              <div className="flex items-center justify-between p-3 border border-gray-300 rounded-lg">
-                <span className="text-sm text-gray-700">Home Club</span>
+              <div className="flex items-center justify-between p-2 border border-gray-300 rounded-lg">
+                <span className="text-xs text-gray-700">Home Club</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('homeClub')}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
                     filtros.homeClub ? 'bg-purple-600' : 'bg-gray-300'
                   }`}
                 >
                   <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      filtros.homeClub ? 'translate-x-6' : 'translate-x-1'
+                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                      filtros.homeClub ? 'translate-x-5' : 'translate-x-0.5'
                     }`}
                   />
                 </button>
@@ -395,26 +390,26 @@ export default function SearchForm() {
       )}
 
       {/* Botões de Busca Adicional - 3 botões horizontais */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <div className="flex flex-col sm:flex-row gap-3 justify-center mt-2">
         {/* Avançado */}
         <button 
           type="button"
           onClick={() => setMostrarAvancado(!mostrarAvancado)}
-          className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-colors duration-200"
+          className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-colors duration-200 text-sm"
         >
-          <Filter className="w-5 h-5" />
+          <Filter className="w-4 h-4" />
           <span>Avançado</span>
         </button>
 
         {/* Por código */}
-        <button className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-colors duration-200">
-          <List className="w-5 h-5" />
+        <button className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-colors duration-200 text-sm">
+          <List className="w-4 h-4" />
           <span>Por código</span>
         </button>
 
         {/* Empreendimentos */}
-        <button className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-colors duration-200">
-          <Building className="w-5 h-5" />
+        <button className="flex items-center space-x-2 text-white hover:text-yellow-300 transition-colors duration-200 text-sm">
+          <Building className="w-4 h-4" />
           <span>Empreendimentos</span>
         </button>
       </div>
