@@ -420,7 +420,7 @@ export default async function HomePage() {
                 <h3 className="text-lg font-bold text-blue-500">{getText('home.encontre_imovel.picarras.titulo')}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <Link href="/imoveis?cidade=balneario-picarras&tipo=apartamento" className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent block">
+                <Link href="/imoveis?cidade=balneario-picarras&tipo=cobertura" className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent block">
                   <Image 
                     src={siteImages['picarras-cobertura'] || '/imagens/Cidades/Piçarras/Apartamentos e Coberturas.jpg'}
                     alt="Apartamentos e coberturas em Balneário Piçarras - Alto padrão"
