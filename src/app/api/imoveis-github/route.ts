@@ -325,11 +325,16 @@ export async function PUT(request: NextRequest) {
     }
 
     // Atualizar imóvel - preservar selecaoNox explicitamente
+    // Garantir que selecaoNox seja sempre um boolean
+    const selecaoNoxValue = imovel.selecaoNox !== undefined 
+      ? Boolean(imovel.selecaoNox) 
+      : (imoveis[index].selecaoNox !== undefined ? Boolean(imoveis[index].selecaoNox) : false)
+    
     imoveis[index] = {
       ...imoveis[index],
       ...imovel,
       fotoPrincipalIndex: imovel.fotoPrincipalIndex ?? 0,
-      selecaoNox: imovel.selecaoNox !== undefined ? imovel.selecaoNox : (imoveis[index].selecaoNox !== undefined ? imoveis[index].selecaoNox : false),
+      selecaoNox: selecaoNoxValue,
       updatedAt: new Date().toISOString(),
     }
 
