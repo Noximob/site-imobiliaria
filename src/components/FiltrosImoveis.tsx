@@ -25,7 +25,7 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
     homeClub: false
   })
 
-  // Aplicar filtros iniciais quando vierem da URL (apenas uma vez)
+  // Aplicar filtros iniciais quando vierem da URL
   useEffect(() => {
     if (filtrosIniciais && Object.keys(filtrosIniciais).length > 0) {
       const novosFiltros = {
@@ -47,8 +47,7 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
       setFiltros(novosFiltros)
       onFiltrosChange?.(novosFiltros)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [filtrosIniciais, onFiltrosChange])
 
   const handleInputChange = (field: string, value: any) => {
     const newFiltros = { ...filtros, [field]: value }

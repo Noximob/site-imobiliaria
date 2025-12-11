@@ -21,7 +21,15 @@ export default function ImoveisPage() {
     document.body.style.overflow = 'hidden'
     document.documentElement.style.overflow = 'hidden'
     
-    // Ler query params da URL e aplicar filtros iniciais
+    // Cleanup: restaura overflow quando sair da página
+    return () => {
+      document.body.style.overflow = 'unset'
+      document.documentElement.style.overflow = 'unset'
+    }
+  }, [])
+
+  // Ler query params da URL e aplicar filtros iniciais
+  useEffect(() => {
     const params: any = {}
     if (searchParams.get('cidade')) params.cidade = searchParams.get('cidade')
     if (searchParams.get('status')) params.status = searchParams.get('status')
@@ -31,12 +39,6 @@ export default function ImoveisPage() {
     if (searchParams.get('frenteMar') === 'true') params.frenteMar = true
     
     setFiltrosIniciais(params)
-    
-    // Cleanup: restaura overflow quando sair da página
-    return () => {
-      document.body.style.overflow = 'unset'
-      document.documentElement.style.overflow = 'unset'
-    }
   }, [searchParams])
 
   useEffect(() => {
