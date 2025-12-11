@@ -76,6 +76,17 @@ export default async function HomePage() {
         const content = Buffer.from(data.content, 'base64').toString('utf-8')
         const todosImoveis = JSON.parse(content)
         
+        // Debug: verificar imóveis com selecaoNox
+        const imoveisComSelecaoNox = todosImoveis.filter((i: any) => i.selecaoNox)
+        console.log('DEBUG - Total imóveis:', todosImoveis.length)
+        console.log('DEBUG - Imóveis com selecaoNox:', imoveisComSelecaoNox.map((i: any) => ({ 
+          id: i.id, 
+          titulo: i.titulo, 
+          publicado: i.publicado, 
+          selecaoNox: i.selecaoNox,
+          tipoSelecaoNox: typeof i.selecaoNox
+        })))
+        
         // Filtrar imóveis com selecaoNox = true e publicado = true
         imoveisSelecaoNox = todosImoveis
           .filter((imovel: any) => {
@@ -84,7 +95,11 @@ export default async function HomePage() {
             
             // Verificar selecaoNox - aceitar true, 'true', 1, ou qualquer valor truthy
             const selecaoNox = imovel.selecaoNox
-            return selecaoNox === true || selecaoNox === 'true' || selecaoNox === 1 || Boolean(selecaoNox) === true
+            const resultado = selecaoNox === true || selecaoNox === 'true' || selecaoNox === 1 || Boolean(selecaoNox) === true
+            if (selecaoNox !== undefined && selecaoNox !== null) {
+              console.log(`DEBUG - Imóvel ${imovel.titulo}: publicado=${imovel.publicado}, selecaoNox=${selecaoNox} (${typeof selecaoNox}), resultado=${resultado}`)
+            }
+            return resultado
           })
           .slice(0, 3)
           .map((imovel: any) => ({
@@ -92,6 +107,8 @@ export default async function HomePage() {
             createdAt: imovel.createdAt ? new Date(imovel.createdAt) : new Date(),
             updatedAt: imovel.updatedAt ? new Date(imovel.updatedAt) : new Date(),
           })) as Imovel[]
+        
+        console.log('DEBUG - Imóveis Seleção Nox encontrados:', imoveisSelecaoNox.length)
       }
     }
   } catch (error) {
