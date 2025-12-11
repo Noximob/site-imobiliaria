@@ -24,14 +24,14 @@ export default function ImovelCard({ imovel }: ImovelCardProps) {
           />
           <div className="absolute top-4 left-4">
             <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-              imovel.status === 'venda' 
+              imovel.status === 'prontos' 
                 ? 'bg-green-100 text-green-800' 
-                : imovel.status === 'aluguel'
+                : imovel.status === 'lancamento'
                 ? 'bg-blue-100 text-blue-800'
                 : 'bg-purple-100 text-purple-800'
             }`}>
-              {imovel.status === 'venda' ? 'Venda' : 
-               imovel.status === 'aluguel' ? 'Aluguel' : 'Venda/Aluguel'}
+              {imovel.status === 'prontos' ? 'Pronto' : 
+               imovel.status === 'lancamento' ? 'Lançamento' : 'Em Construção'}
             </span>
           </div>
           {imovel.caracteristicas.frenteMar && (

@@ -138,9 +138,6 @@ export default function ImovelDetalhePage() {
               {/* Preço - Elegante */}
               <div className="text-right">
                 <div className="flex items-baseline gap-1.5">
-                  <span className="text-xs font-light text-gray-600">
-                    {imovel.status === 'venda' ? 'VENDA' : imovel.status === 'aluguel' ? 'ALUGUEL' : 'VENDA/ALUGUEL'}
-                  </span>
                   <span className="text-xl md:text-2xl font-light text-red-600 tracking-tight">
                     {formatPrice(imovel.preco)}
                   </span>
@@ -313,15 +310,12 @@ export default function ImovelDetalhePage() {
                   const tipoTexto = imovel.tipo === 'apartamento' ? 'Apartamento' : 
                                    imovel.tipo === 'cobertura' ? 'Cobertura diferenciado' : 
                                    imovel.tipo === 'comercial' ? 'Sala Comercial' : 'Imóvel'
-                  const statusTexto = imovel.status === 'venda' ? 'à venda' : 
-                                    imovel.status === 'aluguel' ? 'para aluguel' : 
-                                    'à venda/aluguel'
                   const frenteMarTexto = imovel.caracteristicas.frenteMar ? 'Frente Mar' : ''
                   const cidadeTexto = `em ${imovel.endereco.cidade}`
                   const suiteTexto = imovel.caracteristicas.suite ? `com ${imovel.caracteristicas.suite} ${imovel.caracteristicas.suite === 1 ? 'suíte' : 'suítes'}` : ''
                   const quartosTexto = imovel.caracteristicas.quartos ? `${imovel.caracteristicas.quartos} ${imovel.caracteristicas.quartos === 1 ? 'quarto' : 'quartos'}` : ''
                   
-                  return `${tipoTexto} ${statusTexto} ${frenteMarTexto} ${cidadeTexto} ${suiteTexto ? suiteTexto : quartosTexto}`.replace(/\s+/g, ' ').trim()
+                  return `${tipoTexto} ${frenteMarTexto} ${cidadeTexto} ${suiteTexto ? suiteTexto : quartosTexto}`.replace(/\s+/g, ' ').trim()
                 })()}
               </h1>
             </div>

@@ -206,7 +206,7 @@ export default function ImoveisPage() {
                         <div className="flex items-center justify-between mt-3">
                           <div>
                             <p className="text-lg font-bold text-purple-600">
-                              {imovel.status === 'venda' ? 'Venda' : imovel.status === 'aluguel' ? 'Aluguel' : 'Venda/Aluguel'} {formatPrice(imovel.preco)}
+                              {formatPrice(imovel.preco)}
                             </p>
                           </div>
                           <div className="flex items-center gap-2">
