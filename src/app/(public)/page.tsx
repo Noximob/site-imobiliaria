@@ -60,7 +60,11 @@ export default async function HomePage() {
   // Buscar imóveis da Seleção Nox (máximo 3)
   const todosImoveis = await getAllImoveis()
   const imoveisSelecaoNox = todosImoveis
-    .filter(imovel => imovel.publicado === true && (imovel as any).selecaoNox === true)
+    .filter(imovel => {
+      if (!imovel.publicado) return false
+      const selecaoNox = (imovel as any).selecaoNox
+      return selecaoNox === true || selecaoNox === 'true'
+    })
     .slice(0, 3)
 
   // Carrega apenas as imagens necessárias para esta página (otimização de performance)
