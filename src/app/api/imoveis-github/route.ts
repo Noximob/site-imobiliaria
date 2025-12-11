@@ -324,11 +324,12 @@ export async function PUT(request: NextRequest) {
       imovel.fotos = imovel.fotos && imovel.fotos.length > 0 ? imovel.fotos : (imoveis[index].fotos || [])
     }
 
-    // Atualizar imóvel
+    // Atualizar imóvel - preservar selecaoNox explicitamente
     imoveis[index] = {
       ...imoveis[index],
       ...imovel,
       fotoPrincipalIndex: imovel.fotoPrincipalIndex ?? 0,
+      selecaoNox: imovel.selecaoNox !== undefined ? imovel.selecaoNox : (imoveis[index].selecaoNox !== undefined ? imoveis[index].selecaoNox : false),
       updatedAt: new Date().toISOString(),
     }
 

@@ -13,8 +13,8 @@ import { formatPrice } from '@/lib/imoveis'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
-// Revalida a cada 24 horas
-export const revalidate = 86400
+// Revalida a cada 60 segundos para garantir atualizações rápidas
+export const revalidate = 60
 
 // Metadata otimizada para SEO
 export const metadata: Metadata = {
