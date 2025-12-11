@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
 import { Menu, X, Phone, MapPin, ChevronDown, Instagram, Linkedin, Facebook } from 'lucide-react'
 import Image from 'next/image'
 import { getImageUrl } from '@/lib/github-images'
@@ -9,6 +10,8 @@ import { getText } from '@/lib/site-texts'
 import { getWhatsAppLink } from '@/lib/whatsapp'
 
 export default function Header() {
+  const router = useRouter()
+  const pathname = usePathname()
   const logoUrl = getImageUrl('logo-header')
   const telefone = getText('header.telefone')
   const menuPenha = getText('header.menu_imoveis_penha')
@@ -18,6 +21,21 @@ export default function Header() {
   const [isPenhaOpen, setIsPenhaOpen] = useState(false)
   const [isPicarrasOpen, setIsPicarrasOpen] = useState(false)
   const [isBarraVelhaOpen, setIsBarraVelhaOpen] = useState(false)
+
+  const handleLinkClick = (href: string) => {
+    // Fechar dropdowns
+    setIsPenhaOpen(false)
+    setIsPicarrasOpen(false)
+    setIsBarraVelhaOpen(false)
+    
+    // Se já está na mesma rota, forçar navegação
+    if (pathname === '/imoveis') {
+      router.push(href)
+      router.refresh()
+    } else {
+      router.push(href)
+    }
+  }
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
@@ -79,25 +97,47 @@ export default function Header() {
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isPenhaOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
-                    <Link href="/imoveis?cidade=penha&tipo=apartamento" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                  <div 
+                    className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50"
+                    onMouseEnter={() => setIsPenhaOpen(true)}
+                    onMouseLeave={() => setIsPenhaOpen(false)}
+                  >
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=penha&tipo=apartamento')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Apartamento à venda em Penha
-                    </Link>
-                    <Link href="/imoveis?cidade=penha" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=penha')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Imóveis à venda em Penha
-                    </Link>
-                    <Link href="/imoveis?cidade=penha&tipo=cobertura" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=penha&tipo=cobertura')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Coberturas à venda em Penha
-                    </Link>
-                    <Link href="/imoveis?cidade=penha&frenteMar=true&vistaMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=penha&frenteMar=true&vistaMar=true')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Apartamento Frente Mar em Penha
-                    </Link>
-                    <Link href="/imoveis?cidade=penha&vistaMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=penha&vistaMar=true')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Apartamento Vista para o Mar em Penha
-                    </Link>
-                    <Link href="/imoveis?cidade=penha&quadraMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=penha&quadraMar=true')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Apartamento Quadra Mar em Penha
-                    </Link>
+                    </button>
                   </div>
                 )}
               </div>
@@ -116,25 +156,47 @@ export default function Header() {
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isPicarrasOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
-                    <Link href="/imoveis?cidade=balneario-picarras&tipo=apartamento" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                  <div 
+                    className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50"
+                    onMouseEnter={() => setIsPicarrasOpen(true)}
+                    onMouseLeave={() => setIsPicarrasOpen(false)}
+                  >
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=balneario-picarras&tipo=apartamento')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Apartamento à venda em Balneário Piçarras
-                    </Link>
-                    <Link href="/imoveis?cidade=balneario-picarras" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=balneario-picarras')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Imóveis à venda em Balneário Piçarras
-                    </Link>
-                    <Link href="/imoveis?cidade=balneario-picarras&tipo=cobertura" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=balneario-picarras&tipo=cobertura')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Coberturas à venda em Balneário Piçarras
-                    </Link>
-                    <Link href="/imoveis?cidade=balneario-picarras&frenteMar=true&vistaMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=balneario-picarras&frenteMar=true&vistaMar=true')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Apartamento Frente Mar em Balneário Piçarras
-                    </Link>
-                    <Link href="/imoveis?cidade=balneario-picarras&vistaMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=balneario-picarras&vistaMar=true')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Apartamento Vista para o Mar em Balneário Piçarras
-                    </Link>
-                    <Link href="/imoveis?cidade=balneario-picarras&quadraMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=balneario-picarras&quadraMar=true')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Apartamento Quadra Mar em Balneário Piçarras
-                    </Link>
+                    </button>
                   </div>
                 )}
               </div>
@@ -153,25 +215,47 @@ export default function Header() {
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isBarraVelhaOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
-                    <Link href="/imoveis?cidade=barra-velha&tipo=apartamento" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                  <div 
+                    className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50"
+                    onMouseEnter={() => setIsBarraVelhaOpen(true)}
+                    onMouseLeave={() => setIsBarraVelhaOpen(false)}
+                  >
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=barra-velha&tipo=apartamento')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Apartamento à venda em Barra Velha
-                    </Link>
-                    <Link href="/imoveis?cidade=barra-velha" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=barra-velha')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Imóveis à venda em Barra Velha
-                    </Link>
-                    <Link href="/imoveis?cidade=barra-velha&tipo=cobertura" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=barra-velha&tipo=cobertura')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Coberturas à venda em Barra Velha
-                    </Link>
-                    <Link href="/imoveis?cidade=barra-velha&frenteMar=true&vistaMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=barra-velha&frenteMar=true&vistaMar=true')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Apartamento Frente Mar em Barra Velha
-                    </Link>
-                    <Link href="/imoveis?cidade=barra-velha&vistaMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=barra-velha&vistaMar=true')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Apartamento Vista para o Mar em Barra Velha
-                    </Link>
-                    <Link href="/imoveis?cidade=barra-velha&quadraMar=true" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                    </button>
+                    <button 
+                      onClick={() => handleLinkClick('/imoveis?cidade=barra-velha&quadraMar=true')}
+                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                    >
                       Apartamento Quadra Mar em Barra Velha
-                    </Link>
+                    </button>
                   </div>
                 )}
               </div>
