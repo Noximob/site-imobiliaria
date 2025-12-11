@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import FiltrosImoveis from '@/components/FiltrosImoveis'
@@ -9,8 +10,10 @@ import { Imovel, FiltrosImovel } from '@/types'
 import { Heart } from 'lucide-react'
 
 export default function ImoveisPage() {
+  const searchParams = useSearchParams()
   const [imoveis, setImoveis] = useState<Imovel[]>([])
   const [filtros, setFiltros] = useState<FiltrosImovel>({})
+  const [filtrosIniciais, setFiltrosIniciais] = useState<any>({})
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -18,12 +21,23 @@ export default function ImoveisPage() {
     document.body.style.overflow = 'hidden'
     document.documentElement.style.overflow = 'hidden'
     
+    // Ler query params da URL e aplicar filtros iniciais
+    const params: any = {}
+    if (searchParams.get('cidade')) params.cidade = searchParams.get('cidade')
+    if (searchParams.get('status')) params.status = searchParams.get('status')
+    if (searchParams.get('tipo')) params.tipo = searchParams.get('tipo')
+    if (searchParams.get('mobiliado') === 'true') params.mobiliado = true
+    if (searchParams.get('vistaMar') === 'true') params.vistaMar = true
+    if (searchParams.get('frenteMar') === 'true') params.frenteMar = true
+    
+    setFiltrosIniciais(params)
+    
     // Cleanup: restaura overflow quando sair da página
     return () => {
       document.body.style.overflow = 'unset'
       document.documentElement.style.overflow = 'unset'
     }
-  }, [])
+  }, [searchParams])
 
   useEffect(() => {
     const loadImoveis = async () => {
@@ -86,7 +100,7 @@ export default function ImoveisPage() {
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar de Filtros - Lado Esquerdo - COM SCROLL */}
         <div className="w-80 bg-white shadow-lg overflow-y-auto">
-          <FiltrosImoveis onFiltrosChange={handleFiltrosChange} />
+          <FiltrosImoveis onFiltrosChange={handleFiltrosChange} filtrosIniciais={filtrosIniciais} />
         </div>
 
         {/* Área Principal - Lado Direito */}

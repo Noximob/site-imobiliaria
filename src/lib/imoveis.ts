@@ -87,8 +87,17 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
       }
       
       // Filtro por status
-      if (filtros.status && imovel.status !== filtros.status) {
-        return false;
+      if (filtros.status) {
+        // Se o filtro for "lancamento", aceitar tanto "lancamento" quanto "em-construcao"
+        if (filtros.status === 'lancamento') {
+          if (imovel.status !== 'lancamento' && imovel.status !== 'em-construcao') {
+            return false;
+          }
+        } else {
+          if (imovel.status !== filtros.status) {
+            return false;
+          }
+        }
       }
       
       // Filtro por quartos (pode ser array para múltipla seleção)

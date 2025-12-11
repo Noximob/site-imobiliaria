@@ -342,7 +342,7 @@ export default async function HomePage() {
                 <h3 className="text-lg font-bold text-blue-500">{getText('home.encontre_imovel.penha.titulo')}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
+                <Link href="/imoveis?cidade=penha&status=lancamento" className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent block">
                   <Image 
                     src={siteImages['lancamentos-investidor'] || '/imagens/Cidades/Penha/Lançamentos Investidor.jpg'}
                     alt="Lançamentos de imóveis para investidores em Penha - Apartamentos e casas na planta" 
@@ -358,8 +358,8 @@ export default async function HomePage() {
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.penha.lancamentos_investidor')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
-                </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
+                </Link>
+                <Link href="/imoveis?cidade=penha&vistaMar=true&frenteMar=true" className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent block">
                   <Image 
                     src={siteImages['frente-mar'] || '/imagens/Cidades/Penha/Frente Mar.jpg'}
                     alt="Apartamentos frente mar em Penha - Vista para o mar"
@@ -375,8 +375,8 @@ export default async function HomePage() {
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.penha.frente_mar')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
-                </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
+                </Link>
+                <Link href="/imoveis?cidade=penha&mobiliado=true" className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent block">
                   <Image 
                     src={siteImages['mobiliados'] || '/imagens/Cidades/Penha/Mobiliados.jpg'}
                     alt="Apartamentos mobiliados em Penha - Prontos para morar"
@@ -392,8 +392,8 @@ export default async function HomePage() {
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.penha.mobiliados')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
-                </div>
-                <div className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent">
+                </Link>
+                <Link href="/imoveis?cidade=penha&tipo=apartamento" className="relative h-48 rounded-lg overflow-hidden group cursor-pointer bg-transparent block">
                   <Image 
                     src={siteImages['apartamentos'] || '/imagens/Cidades/Penha/Apartamentos.jpg'}
                     alt="Apartamentos à venda em Penha - Diversos tamanhos"
@@ -409,7 +409,7 @@ export default async function HomePage() {
                     <span className="text-white text-sm font-medium text-center group-hover:-translate-y-2 transition-transform duration-300">{getText('home.encontre_imovel.penha.apartamentos')}</span>
                     <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 mt-2">Ver imóveis</span>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
 

@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface FiltrosImoveisProps {
   onFiltrosChange?: (filtros: any) => void
+  filtrosIniciais?: any
 }
 
-export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps) {
+export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: FiltrosImoveisProps) {
   const [filtros, setFiltros] = useState({
     status: '',
     tipo: '',
@@ -20,8 +21,21 @@ export default function FiltrosImoveis({ onFiltrosChange }: FiltrosImoveisProps)
     frenteMar: false,
     vistaMar: false,
     quadraMar: false,
-    areaLazer: false
+    areaLazer: false,
+    homeClub: false
   })
+
+  // Aplicar filtros iniciais quando vierem da URL
+  useEffect(() => {
+    if (filtrosIniciais && Object.keys(filtrosIniciais).length > 0) {
+      const novosFiltros = {
+        ...filtros,
+        ...filtrosIniciais
+      }
+      setFiltros(novosFiltros)
+      onFiltrosChange?.(novosFiltros)
+    }
+  }, [filtrosIniciais])
 
   const handleInputChange = (field: string, value: any) => {
     const newFiltros = { ...filtros, [field]: value }
