@@ -50,14 +50,22 @@ export default function ImoveisPage() {
   }, [filtros])
 
   const handleFiltrosChange = (novosFiltros: any) => {
+    // Função auxiliar para converter valores com "+" (ex: "4+" -> 4, "1+" -> 1)
+    const parseFilterValue = (value: string): number | undefined => {
+      if (!value) return undefined
+      const numValue = parseInt(value.replace('+', ''))
+      return isNaN(numValue) ? undefined : numValue
+    }
+
     // Converter filtros do componente para o formato esperado
     const filtrosFormatados: FiltrosImovel = {
       status: novosFiltros.status || undefined,
       tipo: novosFiltros.tipo || undefined,
       cidade: novosFiltros.cidade || undefined,
-      quartos: novosFiltros.quartos ? Number(novosFiltros.quartos) : undefined,
-      banheiros: novosFiltros.banheiros ? Number(novosFiltros.banheiros) : undefined,
-      vagas: novosFiltros.vagas ? Number(novosFiltros.vagas) : undefined,
+      quartos: parseFilterValue(novosFiltros.quartos),
+      suites: parseFilterValue(novosFiltros.suites),
+      banheiros: parseFilterValue(novosFiltros.banheiros),
+      vagas: parseFilterValue(novosFiltros.vagas),
       precoMin: novosFiltros.valorMin ? Number(novosFiltros.valorMin) : undefined,
       precoMax: novosFiltros.valorMax ? Number(novosFiltros.valorMax) : undefined,
       frenteMar: novosFiltros.frenteMar || undefined,

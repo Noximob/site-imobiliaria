@@ -91,18 +91,26 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
         return false;
       }
       
-      // Filtro por quartos
-      if (filtros.quartos && imovel.caracteristicas.quartos < filtros.quartos) {
+      // Filtro por quartos (>= para valores com +)
+      if (filtros.quartos !== undefined && imovel.caracteristicas.quartos < filtros.quartos) {
         return false;
       }
       
-      // Filtro por banheiros
-      if (filtros.banheiros && imovel.caracteristicas.banheiros < filtros.banheiros) {
+      // Filtro por suítes (>= para valores com +)
+      if (filtros.suites !== undefined) {
+        const suiteValue = (imovel.caracteristicas as any).suite || 0;
+        if (suiteValue < filtros.suites) {
+          return false;
+        }
+      }
+      
+      // Filtro por banheiros (>= para valores com +)
+      if (filtros.banheiros !== undefined && imovel.caracteristicas.banheiros < filtros.banheiros) {
         return false;
       }
       
-      // Filtro por vagas
-      if (filtros.vagas && imovel.caracteristicas.vagas < filtros.vagas) {
+      // Filtro por vagas (>= para valores com +)
+      if (filtros.vagas !== undefined && imovel.caracteristicas.vagas < filtros.vagas) {
         return false;
       }
       
@@ -181,3 +189,4 @@ export function generateSlug(titulo: string): string {
     .replace(/-+/g, '-')
     .trim();
 }
+

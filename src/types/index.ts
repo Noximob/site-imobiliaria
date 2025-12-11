@@ -59,6 +59,7 @@ export interface FiltrosImovel {
   precoMin?: number;
   precoMax?: number;
   quartos?: number;
+  suites?: number;
   banheiros?: number;
   vagas?: number;
   tipo?: string;
