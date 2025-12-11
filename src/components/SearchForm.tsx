@@ -276,7 +276,7 @@ export default function SearchForm() {
           <div>
             <label className="block text-sm text-white font-bold mb-3">Comodidades</label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
                 <span className="text-sm text-white font-bold">Mobiliado</span>
                 <button
                   type="button"
@@ -293,7 +293,7 @@ export default function SearchForm() {
                 </button>
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
                 <span className="text-sm text-white font-bold">Frente Mar</span>
                 <button
                   type="button"
@@ -310,7 +310,7 @@ export default function SearchForm() {
                 </button>
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
                 <span className="text-sm text-white font-bold">Vista Mar</span>
                 <button
                   type="button"
@@ -327,7 +327,7 @@ export default function SearchForm() {
                 </button>
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
                 <span className="text-sm text-white font-bold">Quadra Mar</span>
                 <button
                   type="button"
@@ -344,7 +344,7 @@ export default function SearchForm() {
                 </button>
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
                 <span className="text-sm text-white font-bold">Área de Lazer</span>
                 <button
                   type="button"
@@ -361,7 +361,7 @@ export default function SearchForm() {
                 </button>
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
                 <span className="text-sm text-white font-bold">Home Club</span>
                 <button
                   type="button"
