@@ -13,9 +13,11 @@ import { formatPrice } from '@/lib/imoveis'
 import { Imovel } from '@/types'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { Octokit } from '@octokit/rest'
 
-// Revalida a cada 60 segundos para garantir atualizações rápidas
-export const revalidate = 60
+// Sempre buscar dados frescos (sem cache)
+export const revalidate = 0
+export const dynamic = 'force-dynamic'
 
 // Metadata otimizada para SEO
 export const metadata: Metadata = {
@@ -58,20 +60,52 @@ export default async function HomePage() {
   const corretores = await getCorretoresAtivos()
   const depoimentos = await getDepoimentosAtivos()
   
-  // Buscar imóveis da Seleção Nox (máximo 3)
-  const todosImoveis = await getAllImoveis()
+  // Buscar imóveis diretamente do GitHub para garantir dados frescos
+  let imoveisSelecaoNox: Imovel[] = []
   
-  // Filtrar imóveis com selecaoNox = true e publicado = true
-  const imoveisSelecaoNox = todosImoveis
-    .filter((imovel: Imovel) => {
-      // Deve estar publicado
-      if (!imovel.publicado) return false
-      
-      // Verificar selecaoNox - aceitar true, 'true', 1, ou qualquer valor truthy
-      const selecaoNox = (imovel as any).selecaoNox
-      return selecaoNox === true || selecaoNox === 'true' || selecaoNox === 1 || Boolean(selecaoNox) === true
-    })
-    .slice(0, 3)
+  try {
+    if (process.env.GITHUB_TOKEN) {
+      const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
+      const { data } = await octokit.repos.getContent({
+        owner: 'Noximob',
+        repo: 'site-imobiliaria',
+        path: 'public/imoveis/imoveis.json',
+      })
+
+      if ('content' in data) {
+        const content = Buffer.from(data.content, 'base64').toString('utf-8')
+        const todosImoveis = JSON.parse(content)
+        
+        // Filtrar imóveis com selecaoNox = true e publicado = true
+        imoveisSelecaoNox = todosImoveis
+          .filter((imovel: any) => {
+            // Deve estar publicado
+            if (!imovel.publicado) return false
+            
+            // Verificar selecaoNox - aceitar true, 'true', 1, ou qualquer valor truthy
+            const selecaoNox = imovel.selecaoNox
+            return selecaoNox === true || selecaoNox === 'true' || selecaoNox === 1 || Boolean(selecaoNox) === true
+          })
+          .slice(0, 3)
+          .map((imovel: any) => ({
+            ...imovel,
+            createdAt: imovel.createdAt ? new Date(imovel.createdAt) : new Date(),
+            updatedAt: imovel.updatedAt ? new Date(imovel.updatedAt) : new Date(),
+          })) as Imovel[]
+      }
+    }
+  } catch (error) {
+    console.error('Erro ao buscar imóveis da Seleção Nox:', error)
+    // Fallback: tentar via API
+    const todosImoveis = await getAllImoveis()
+    imoveisSelecaoNox = todosImoveis
+      .filter((imovel: Imovel) => {
+        if (!imovel.publicado) return false
+        const selecaoNox = (imovel as any).selecaoNox
+        return selecaoNox === true || selecaoNox === 'true' || selecaoNox === 1 || Boolean(selecaoNox) === true
+      })
+      .slice(0, 3)
+  }
 
   // Carrega apenas as imagens necessárias para esta página (otimização de performance)
   const siteImages = {
