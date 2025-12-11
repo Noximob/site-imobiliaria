@@ -52,10 +52,7 @@ export default function AdminImoveis() {
     },
     visualizacoes: 0,
     contato: {
-      whatsapp: '(47) 99753-0113',
-      telefone: '',
-      email: '',
-      corretor: ''
+      whatsapp: '(47) 99753-0113'
     },
     publicado: true
   })
@@ -220,9 +217,7 @@ export default function AdminImoveis() {
       coordenadas: imovel.coordenadas || { lat: 0, lng: 0 },
       visualizacoes: (imovel as any).visualizacoes || 0,
       contato: {
-        ...imovel.contato,
-        telefone: imovel.contato.telefone || '',
-        email: imovel.contato.email || ''
+        ...imovel.contato
       },
       publicado: imovel.publicado
     })
@@ -699,9 +694,9 @@ export default function AdminImoveis() {
                       required
                     >
                       <option value="">Selecione</option>
-                      <option value="Penha">Penha</option>
-                      <option value="Barra Velha">Barra Velha</option>
-                      <option value="Balneário Piçarras">Balneário Piçarras</option>
+                      <option value="penha">Penha</option>
+                      <option value="barra-velha">Barra Velha</option>
+                      <option value="balneario-picarras">Balneário Piçarras</option>
                     </select>
                   </div>
                   <div>
@@ -962,51 +957,6 @@ export default function AdminImoveis() {
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                       placeholder="(47) 99753-0113"
                       required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Telefone
-                    </label>
-                    <input
-                      type="text"
-                      value={novoImovel.contato.telefone}
-                      onChange={(e) => setNovoImovel({
-                        ...novoImovel, 
-                        contato: {...novoImovel.contato, telefone: e.target.value}
-                      })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                      placeholder="Telefone"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      value={novoImovel.contato.email}
-                      onChange={(e) => setNovoImovel({
-                        ...novoImovel, 
-                        contato: {...novoImovel.contato, email: e.target.value}
-                      })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                      placeholder="email@exemplo.com"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Corretor
-                    </label>
-                    <input
-                      type="text"
-                      value={novoImovel.contato.corretor}
-                      onChange={(e) => setNovoImovel({
-                        ...novoImovel, 
-                        contato: {...novoImovel.contato, corretor: e.target.value}
-                      })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                      placeholder="Nome do corretor"
                     />
                   </div>
                 </div>
