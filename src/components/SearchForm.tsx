@@ -158,7 +158,7 @@ export default function SearchForm() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
             {/* Quartos */}
             <div>
-              <label className="block text-sm text-gray-700 mb-2">Quartos</label>
+              <label className="block text-sm text-white font-bold mb-2">Quartos</label>
               <div className="flex gap-2">
                 {['1', '2', '3', '4+'].map((qtd) => {
                   const isSelected = filtros.quartos.includes(qtd)
@@ -182,7 +182,7 @@ export default function SearchForm() {
 
             {/* Banheiros */}
             <div>
-              <label className="block text-sm text-gray-700 mb-2">Banheiros</label>
+              <label className="block text-sm text-white font-bold mb-2">Banheiros</label>
               <div className="flex gap-2">
                 {['1+', '2+', '3+', '4+'].map((qtd) => (
                   <button
@@ -203,7 +203,7 @@ export default function SearchForm() {
 
             {/* Vagas */}
             <div>
-              <label className="block text-sm text-gray-700 mb-2">Vagas</label>
+              <label className="block text-sm text-white font-bold mb-2">Vagas</label>
               <div className="flex gap-2">
                 {['1+', '2+', '3+', '4+'].map((qtd) => (
                   <button
@@ -227,7 +227,7 @@ export default function SearchForm() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
             {/* Valores */}
             <div>
-              <label className="block text-sm text-gray-700 mb-2">Valores</label>
+              <label className="block text-sm text-white font-bold mb-2">Valores</label>
               <div className="grid grid-cols-2 gap-2">
                 <input
                   type="number"
@@ -250,7 +250,7 @@ export default function SearchForm() {
 
             {/* Área */}
             <div>
-              <label className="block text-sm text-gray-700 mb-2">Área (m²)</label>
+              <label className="block text-sm text-white font-bold mb-2">Área (m²)</label>
               <div className="grid grid-cols-2 gap-2">
                 <input
                   type="number"
@@ -274,11 +274,11 @@ export default function SearchForm() {
 
           {/* Comodidades - Toggles */}
           <div>
-            <label className="block text-sm text-gray-700 mb-2">Comodidades</label>
+            <label className="block text-sm text-white font-bold mb-2">Comodidades</label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {/* Mobiliado */}
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-700">Mobiliado</span>
+                <span className="text-sm text-white font-bold">Mobiliado</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('mobiliado')}
@@ -296,7 +296,7 @@ export default function SearchForm() {
 
               {/* Frente Mar */}
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-700">Frente Mar</span>
+                <span className="text-sm text-white font-bold">Frente Mar</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('frenteMar')}
@@ -314,7 +314,7 @@ export default function SearchForm() {
 
               {/* Vista Mar */}
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-700">Vista Mar</span>
+                <span className="text-sm text-white font-bold">Vista Mar</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('vistaMar')}
@@ -332,7 +332,7 @@ export default function SearchForm() {
 
               {/* Quadra Mar */}
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-700">Quadra Mar</span>
+                <span className="text-sm text-white font-bold">Quadra Mar</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('quadraMar')}
@@ -350,7 +350,7 @@ export default function SearchForm() {
 
               {/* Área de Lazer */}
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-700">Área de Lazer</span>
+                <span className="text-sm text-white font-bold">Área de Lazer</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('areaLazer')}
@@ -368,7 +368,7 @@ export default function SearchForm() {
 
               {/* Home Club */}
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-700">Home Club</span>
+                <span className="text-sm text-white font-bold">Home Club</span>
                 <button
                   type="button"
                   onClick={() => handleToggle('homeClub')}
