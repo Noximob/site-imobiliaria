@@ -31,12 +31,33 @@ function ImoveisPageContent() {
   // Ler query params da URL e aplicar filtros iniciais
   useEffect(() => {
     const params: any = {}
+    
+    // Campos básicos
     if (searchParams.get('cidade')) params.cidade = searchParams.get('cidade')
     if (searchParams.get('status')) params.status = searchParams.get('status')
     if (searchParams.get('tipo')) params.tipo = searchParams.get('tipo')
+    
+    // Campos numéricos
+    const quartos = searchParams.getAll('quartos')
+    if (quartos.length > 0) params.quartos = quartos
+    if (searchParams.get('banheiros')) params.banheiros = searchParams.get('banheiros')
+    if (searchParams.get('vagas')) params.vagas = searchParams.get('vagas')
+    
+    // Valores
+    if (searchParams.get('valorMin')) params.valorMin = searchParams.get('valorMin')
+    if (searchParams.get('valorMax')) params.valorMax = searchParams.get('valorMax')
+    
+    // Área
+    if (searchParams.get('areaMin')) params.areaMin = searchParams.get('areaMin')
+    if (searchParams.get('areaMax')) params.areaMax = searchParams.get('areaMax')
+    
+    // Comodidades
     if (searchParams.get('mobiliado') === 'true') params.mobiliado = true
     if (searchParams.get('vistaMar') === 'true') params.vistaMar = true
     if (searchParams.get('frenteMar') === 'true') params.frenteMar = true
+    if (searchParams.get('quadraMar') === 'true') params.quadraMar = true
+    if (searchParams.get('areaLazer') === 'true') params.areaLazer = true
+    if (searchParams.get('homeClub') === 'true') params.homeClub = true
     
     setFiltrosIniciais(params)
   }, [searchParams])
