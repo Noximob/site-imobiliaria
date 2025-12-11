@@ -59,13 +59,24 @@ export default async function HomePage() {
   
   // Buscar imóveis da Seleção Nox (máximo 3)
   const todosImoveis = await getAllImoveis()
+  
+  // Debug temporário
+  console.log('Total de imóveis:', todosImoveis.length)
+  console.log('Imóveis com selecaoNox:', todosImoveis.filter(i => (i as any).selecaoNox).map(i => ({ id: i.id, titulo: i.titulo, publicado: i.publicado, selecaoNox: (i as any).selecaoNox })))
+  
   const imoveisSelecaoNox = todosImoveis
     .filter(imovel => {
       if (!imovel.publicado) return false
       const selecaoNox = (imovel as any).selecaoNox
-      return selecaoNox === true || selecaoNox === 'true'
+      const resultado = selecaoNox === true
+      if (selecaoNox) {
+        console.log('Imóvel encontrado para Seleção Nox:', imovel.titulo, 'selecaoNox:', selecaoNox)
+      }
+      return resultado
     })
     .slice(0, 3)
+  
+  console.log('Imóveis Seleção Nox encontrados:', imoveisSelecaoNox.length)
 
   // Carrega apenas as imagens necessárias para esta página (otimização de performance)
   const siteImages = {

@@ -270,11 +270,13 @@ export default function AdminImoveis() {
         return
       }
 
-      // Atualizar apenas o campo selecaoNox
-      await updateImovelWithFotos(imovel.id, {
+      // Atualizar apenas o campo selecaoNox - garantir que seja boolean
+      const imovelAtualizado = {
         ...imovel,
-        selecaoNox: novoValor
-      }, undefined)
+        selecaoNox: Boolean(novoValor)
+      }
+      console.log('Atualizando imóvel:', imovel.id, 'selecaoNox:', imovelAtualizado.selecaoNox)
+      await updateImovelWithFotos(imovel.id, imovelAtualizado, undefined)
 
       // Recarregar lista de imóveis (incluindo não publicados para admin)
       const imoveisAtualizados = await getAllImoveis(true)
