@@ -675,17 +675,26 @@ export default async function HomePage() {
               </p>
               
               <div className="flex flex-col lg:flex-row gap-3">
-                <button className="px-4 py-2 border border-purple-600 text-purple-600 font-medium rounded-lg hover:bg-purple-600 hover:text-white transition-colors duration-200 text-sm">
+                <Link 
+                  href="/imoveis?cidade=penha"
+                  className="px-4 py-2 border border-purple-600 text-purple-600 font-medium rounded-lg hover:bg-purple-600 hover:text-white transition-colors duration-200 text-sm text-center"
+                >
                   {getText('home.imoveis_na_planta.botao_penha')}
-                </button>
+                </Link>
                 
-                <button className="px-4 py-2 border border-purple-600 text-purple-600 font-medium rounded-lg hover:bg-purple-600 hover:text-white transition-colors duration-200 text-sm">
+                <Link 
+                  href="/imoveis?cidade=balneario-picarras"
+                  className="px-4 py-2 border border-purple-600 text-purple-600 font-medium rounded-lg hover:bg-purple-600 hover:text-white transition-colors duration-200 text-sm text-center"
+                >
                   {getText('home.imoveis_na_planta.botao_picarras')}
-                </button>
+                </Link>
                 
-                <button className="px-4 py-2 border border-purple-600 text-purple-600 font-medium rounded-lg hover:bg-purple-600 hover:text-white transition-colors duration-200 text-sm">
+                <Link 
+                  href="/imoveis?cidade=barra-velha"
+                  className="px-4 py-2 border border-purple-600 text-purple-600 font-medium rounded-lg hover:bg-purple-600 hover:text-white transition-colors duration-200 text-sm text-center"
+                >
                   {getText('home.imoveis_na_planta.botao_barra_velha')}
-                </button>
+                </Link>
               </div>
             </div>
           </div>
