@@ -326,15 +326,19 @@ export async function PUT(request: NextRequest) {
 
     // Atualizar imóvel - preservar selecaoNox explicitamente
     // Garantir que selecaoNox seja sempre um boolean
+    // Se imovel.selecaoNox vier no objeto, usar esse valor, senão manter o existente
     const selecaoNoxValue = imovel.selecaoNox !== undefined 
       ? Boolean(imovel.selecaoNox) 
       : (imoveis[index].selecaoNox !== undefined ? Boolean(imoveis[index].selecaoNox) : false)
     
+    // Criar objeto atualizado sem o selecaoNox no spread para não sobrescrever
+    const { selecaoNox: _, ...imovelSemSelecaoNox } = imovel
+    
     imoveis[index] = {
       ...imoveis[index],
-      ...imovel,
+      ...imovelSemSelecaoNox,
       fotoPrincipalIndex: imovel.fotoPrincipalIndex ?? 0,
-      selecaoNox: selecaoNoxValue,
+      selecaoNox: selecaoNoxValue, // Definir explicitamente DEPOIS do spread
       updatedAt: new Date().toISOString(),
     }
 
