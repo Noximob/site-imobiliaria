@@ -292,9 +292,6 @@ export default function Header() {
                     <Link href="/imoveis" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Imóveis à venda
                     </Link>
-                    <Link href="/empreendimentos" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
-                      Empreendimentos
-                    </Link>
                     <Link href="/favoritos" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Favoritos
               </Link>
