@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
+import { getWhatsAppLink } from '@/lib/whatsapp'
 import TeamSection from '@/components/TeamSection'
 import { getCorretoresAtivos } from '@/lib/corretores-data'
 
@@ -218,9 +219,14 @@ function EncontreMeuImovelPageClient({ corretores }: { corretores: any[] }) {
                 <h2 className="text-3xl font-bold">{getText('encontre_meu_imovel.cta_contato.titulo')}</h2>
               </div>
               <p className="text-xl text-gray-300">{getText('encontre_meu_imovel.cta_contato.subtitulo')}</p>
-              <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
+              <a 
+                href={getWhatsAppLink('(47) 99753-0113')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300"
+              >
                 {getText('encontre_meu_imovel.cta_contato.botao')}
-              </button>
+              </a>
             </div>
           </div>
         </div>
