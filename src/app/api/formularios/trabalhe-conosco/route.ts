@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Octokit } from '@octokit/rest'
+import { sendEmail, formatFormularioTrabalheConoscoEmail } from '@/lib/email'
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 const REPO_OWNER = 'Noximob'
@@ -94,6 +95,17 @@ export async function POST(request: NextRequest) {
       branch: 'main',
       ...(sha && { sha })
     })
+    
+    // Enviar email (não bloqueia a resposta se falhar)
+    try {
+      await sendEmail({
+        to: 'imoveisnox@gmail.com',
+        subject: `Novo Formulário: Trabalhe Conosco - ${dados.nome}`,
+        html: formatFormularioTrabalheConoscoEmail(dados)
+      })
+    } catch (error) {
+      console.error('Erro ao enviar email (não crítico):', error)
+    }
     
     return NextResponse.json({ success: true, id: novoFormulario.id })
     

@@ -173,7 +173,17 @@ NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=seu_projeto.appspot.com
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=seu_sender_id
 NEXT_PUBLIC_FIREBASE_APP_ID=seu_app_id
 NEXT_PUBLIC_SITE_URL=https://seu-site.netlify.app
+GITHUB_TOKEN=seu_token_github
+EMAIL_USER=imoveisnox@gmail.com
+EMAIL_PASSWORD=seu_app_password_gmail
 ```
+
+**Nota sobre Email:**
+Para o envio de emails funcionar, você precisa criar uma "App Password" no Gmail:
+1. Acesse sua conta Google
+2. Vá em Segurança > Verificação em duas etapas (deve estar ativada)
+3. Crie uma "Senha de app" para "Email"
+4. Use essa senha na variável `EMAIL_PASSWORD`
 
 ## 📱 Páginas Incluídas
 
