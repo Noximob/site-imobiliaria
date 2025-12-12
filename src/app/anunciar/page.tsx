@@ -35,10 +35,40 @@ function AnunciarPageClient({ depoimentos }: { depoimentos: any[] }) {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Dados do formulário:', formData)
-    alert('Formulário enviado com sucesso! Entraremos em contato em breve.')
+    setIsSubmitting(true)
+    
+    try {
+      const response = await fetch('/api/formularios/anunciar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      
+      if (response.ok) {
+        alert('Formulário enviado com sucesso! Entraremos em contato em breve.')
+        setFormData({
+          telefone: '',
+          email: '',
+          tipoImovel: '',
+          cidade: '',
+          bairro: '',
+          tipo: 'vender'
+        })
+      } else {
+        alert('Erro ao enviar formulário. Tente novamente.')
+      }
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error)
+      alert('Erro ao enviar formulário. Tente novamente.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -195,9 +225,10 @@ function AnunciarPageClient({ depoimentos }: { depoimentos: any[] }) {
 
                   <button
                     type="submit"
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-bold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    disabled={isSubmitting}
+                    className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-bold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Avaliar meu imóvel
+                    {isSubmitting ? 'Enviando...' : 'Avaliar meu imóvel'}
                   </button>
                 </form>
               </div>

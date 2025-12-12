@@ -37,19 +37,41 @@ export default function ContatoPage() {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Formulário enviado:', formData)
-    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.')
-    setFormData({
-      nome: '',
-      telefone: '',
-      email: '',
-      departamento: '',
-      contatoWhatsApp: true,
-      contatoTelefone: false,
-      mensagem: ''
-    })
+    setIsSubmitting(true)
+    
+    try {
+      const response = await fetch('/api/formularios/contato', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      
+      if (response.ok) {
+        alert('Mensagem enviada com sucesso! Entraremos em contato em breve.')
+        setFormData({
+          nome: '',
+          telefone: '',
+          email: '',
+          departamento: '',
+          contatoWhatsApp: true,
+          contatoTelefone: false,
+          mensagem: ''
+        })
+      } else {
+        alert('Erro ao enviar mensagem. Tente novamente.')
+      }
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error)
+      alert('Erro ao enviar mensagem. Tente novamente.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -218,9 +240,10 @@ export default function ContatoPage() {
               {/* Botão Enviar */}
               <button
                 type="submit"
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-lg hover:shadow-xl transform hover:scale-105"
+                disabled={isSubmitting}
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Enviar mensagem
+                {isSubmitting ? 'Enviando...' : 'Enviar mensagem'}
               </button>
             </form>
           </div>

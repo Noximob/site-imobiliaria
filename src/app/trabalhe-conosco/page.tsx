@@ -35,21 +35,45 @@ export default function TrabalheConoscoPage() {
     setArquivos(prev => prev.filter((_, i) => i !== index))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Dados do formulário:', formData)
-    console.log('Arquivos:', arquivos)
-    alert('Currículo enviado com sucesso! Entraremos em contato em breve.')
+    setIsSubmitting(true)
     
-    // Reset do formulário
-    setFormData({
-      nome: '',
-      telefone: '',
-      email: '',
-      instagram: '',
-      informacoes: ''
-    })
-    setArquivos([])
+    try {
+      // Por enquanto, não vamos fazer upload dos arquivos, apenas salvar os dados
+      // Os arquivos podem ser enviados depois se necessário
+      const response = await fetch('/api/formularios/trabalhe-conosco', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          arquivos: arquivos.map(f => f.name) // Apenas os nomes por enquanto
+        }),
+      })
+      
+      if (response.ok) {
+        alert('Currículo enviado com sucesso! Entraremos em contato em breve.')
+        setFormData({
+          nome: '',
+          telefone: '',
+          email: '',
+          instagram: '',
+          informacoes: ''
+        })
+        setArquivos([])
+      } else {
+        alert('Erro ao enviar currículo. Tente novamente.')
+      }
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error)
+      alert('Erro ao enviar currículo. Tente novamente.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -293,9 +317,10 @@ export default function TrabalheConoscoPage() {
                   )}
                   <button
                     type="submit"
-                    className="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-colors"
+                    disabled={isSubmitting}
+                    className="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    ENVIAR
+                    {isSubmitting ? 'ENVIANDO...' : 'ENVIAR'}
                   </button>
                 </div>
               </form>

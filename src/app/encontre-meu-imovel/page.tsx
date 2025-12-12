@@ -43,10 +43,42 @@ function EncontreMeuImovelPageClient({ corretores }: { corretores: any[] }) {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Dados do formulário:', formData)
-    alert('Formulário enviado com sucesso! Nossa equipe entrará em contato em breve.')
+    setIsSubmitting(true)
+    
+    try {
+      const response = await fetch('/api/formularios/encontre-imovel', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      
+      if (response.ok) {
+        alert('Formulário enviado com sucesso! Nossa equipe entrará em contato em breve.')
+        setFormData({
+          nome: '',
+          telefone: '',
+          email: '',
+          tipoImovel: '',
+          quartos: '',
+          vagas: '',
+          cidade: '',
+          bairro: ''
+        })
+      } else {
+        alert('Erro ao enviar formulário. Tente novamente.')
+      }
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error)
+      alert('Erro ao enviar formulário. Tente novamente.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -183,9 +215,10 @@ function EncontreMeuImovelPageClient({ corretores }: { corretores: any[] }) {
 
                 <button
                   type="submit"
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300"
+                  disabled={isSubmitting}
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Enviar
+                  {isSubmitting ? 'Enviando...' : 'Enviar'}
                 </button>
               </form>
             </div>
