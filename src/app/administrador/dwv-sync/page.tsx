@@ -1,0 +1,216 @@
+'use client'
+
+import { useState } from 'react'
+import { RefreshCw, CheckCircle, XCircle, Eye, Loader2 } from 'lucide-react'
+
+export default function DWVSyncPage() {
+  const [isLoading, setIsLoading] = useState(false)
+  const [isSyncing, setIsSyncing] = useState(false)
+  const [preview, setPreview] = useState<any>(null)
+  const [syncResult, setSyncResult] = useState<any>(null)
+  const [error, setError] = useState<string | null>(null)
+
+  const handlePreview = async () => {
+    setIsLoading(true)
+    setError(null)
+    setPreview(null)
+
+    try {
+      const response = await fetch('/api/dwv/sync')
+      const data = await response.json()
+
+      if (data.success) {
+        setPreview(data)
+      } else {
+        setError(data.message || 'Erro ao buscar imóveis')
+      }
+    } catch (err: any) {
+      setError(err.message || 'Erro ao conectar com a API')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleSync = async (mode: 'merge' | 'replace') => {
+    if (!confirm(`Tem certeza que deseja sincronizar? Modo: ${mode === 'merge' ? 'MERGE (adicionar/atualizar)' : 'REPLACE (substituir todos)'}`)) {
+      return
+    }
+
+    setIsSyncing(true)
+    setError(null)
+    setSyncResult(null)
+
+    try {
+      const response = await fetch('/api/dwv/sync', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ mode }),
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        setSyncResult(data)
+        // Atualizar preview após sync
+        handlePreview()
+      } else {
+        setError(data.error || 'Erro ao sincronizar')
+      }
+    } catch (err: any) {
+      setError(err.message || 'Erro ao conectar com a API')
+    } finally {
+      setIsSyncing(false)
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Sincronização DWV</h1>
+          <p className="text-gray-600">
+            Sincronize imóveis da API DWV com o site
+          </p>
+        </div>
+
+        {/* Configuração */}
+        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+          <h3 className="font-semibold text-yellow-900 mb-2">⚠️ Configuração Necessária</h3>
+          <p className="text-sm text-yellow-800 mb-2">
+            Configure estas variáveis no Netlify:
+          </p>
+          <ul className="text-sm text-yellow-800 list-disc list-inside space-y-1">
+            <li><code className="bg-yellow-100 px-1 rounded">DWV_API_URL</code> - URL da API DWV</li>
+            <li><code className="bg-yellow-100 px-1 rounded">DWV_API_TOKEN</code> - Token de autenticação</li>
+          </ul>
+          <p className="text-xs text-yellow-700 mt-2">
+            Veja o arquivo <code className="bg-yellow-100 px-1 rounded">src/lib/dwv-api.ts</code> para ajustar o formato dos dados.
+          </p>
+        </div>
+
+        {/* Botões de Ação */}
+        <div className="bg-white rounded-lg shadow p-6 mb-6">
+          <div className="flex flex-wrap gap-4">
+            <button
+              onClick={handlePreview}
+              disabled={isLoading}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Buscando...
+                </>
+              ) : (
+                <>
+                  <Eye className="w-4 h-4" />
+                  Ver Preview
+                </>
+              )}
+            </button>
+
+            <button
+              onClick={() => handleSync('merge')}
+              disabled={isSyncing || !preview}
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {isSyncing ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Sincronizando...
+                </>
+              ) : (
+                <>
+                  <RefreshCw className="w-4 h-4" />
+                  Sincronizar (MERGE)
+                </>
+              )}
+            </button>
+
+            <button
+              onClick={() => handleSync('replace')}
+              disabled={isSyncing || !preview}
+              className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {isSyncing ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Sincronizando...
+                </>
+              ) : (
+                <>
+                  <RefreshCw className="w-4 h-4" />
+                  Substituir Todos (REPLACE)
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Erro */}
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+            <div className="flex items-center gap-2">
+              <XCircle className="w-5 h-5 text-red-600" />
+              <p className="text-red-800">{error}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Preview */}
+        {preview && (
+          <div className="bg-white rounded-lg shadow p-6 mb-6">
+            <div className="flex items-center gap-2 mb-4">
+              <CheckCircle className="w-5 h-5 text-green-600" />
+              <h2 className="text-xl font-semibold text-gray-900">
+                Preview: {preview.total} imóveis encontrados
+              </h2>
+            </div>
+            <p className="text-gray-600 mb-4">{preview.message}</p>
+            
+            <div className="space-y-4">
+              <h3 className="font-semibold text-gray-900">Primeiros 5 imóveis (exemplo):</h3>
+              {preview.preview?.map((imovel: any, index: number) => (
+                <div key={index} className="border border-gray-200 rounded-lg p-4">
+                  <div className="flex justify-between items-start mb-2">
+                    <h4 className="font-semibold text-gray-900">{imovel.titulo}</h4>
+                    <span className="text-sm text-gray-500">ID: {imovel.id}</span>
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm text-gray-600">
+                    <div><strong>Tipo:</strong> {imovel.tipo}</div>
+                    <div><strong>Status:</strong> {imovel.status}</div>
+                    <div><strong>Cidade:</strong> {imovel.endereco.cidade}</div>
+                    <div><strong>Preço:</strong> R$ {imovel.preco.toLocaleString('pt-BR')}</div>
+                    <div><strong>Quartos:</strong> {imovel.caracteristicas.quartos}</div>
+                    <div><strong>Banheiros:</strong> {imovel.caracteristicas.banheiros}</div>
+                    <div><strong>Vagas:</strong> {imovel.caracteristicas.vagas}</div>
+                    <div><strong>Área:</strong> {imovel.caracteristicas.area}m²</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Resultado do Sync */}
+        {syncResult && (
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="flex items-center gap-2 mb-4">
+              <CheckCircle className="w-5 h-5 text-green-600" />
+              <h2 className="text-xl font-semibold text-gray-900">Sincronização Concluída</h2>
+            </div>
+            <div className="space-y-2 text-gray-700">
+              <p><strong>Total de imóveis:</strong> {syncResult.total}</p>
+              <p><strong>Novos da DWV:</strong> {syncResult.novos}</p>
+              <p><strong>Existentes:</strong> {syncResult.existentes}</p>
+              <p className="text-green-600 font-semibold">{syncResult.message}</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+

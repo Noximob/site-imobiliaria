@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Lock, User, Key, Home, Image, FileText, Building, BookOpen, Users, MessageSquare, ClipboardList } from 'lucide-react'
+import { Lock, User, Key, Home, Image, FileText, Building, BookOpen, Users, MessageSquare, ClipboardList, RefreshCw } from 'lucide-react'
 
 export default function AdminLogin() {
   const [username, setUsername] = useState('')
@@ -184,6 +184,21 @@ export default function AdminLogin() {
                 <div className="ml-4">
                   <h3 className="text-lg font-semibold text-gray-900">Formulários</h3>
                   <p className="text-sm text-gray-500">Ver submissões</p>
+                </div>
+              </div>
+            </div>
+
+            <div 
+              className="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow"
+              onClick={() => router.push('/administrador/dwv-sync')}
+            >
+              <div className="flex items-center">
+                <div className="p-3 bg-cyan-100 rounded-lg">
+                  <RefreshCw className="w-6 h-6 text-cyan-600" />
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold text-gray-900">Sincronizar DWV</h3>
+                  <p className="text-sm text-gray-500">Importar imóveis da API</p>
                 </div>
               </div>
             </div>

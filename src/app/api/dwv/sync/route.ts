@@ -1,0 +1,163 @@
+import { NextRequest, NextResponse } from 'next/server'
+import { Octokit } from '@octokit/rest'
+import { fetchDWVImoveis, convertDWVToImovel } from '@/lib/dwv-api'
+
+const octokit = new Octokit({
+  auth: process.env.GITHUB_TOKEN,
+})
+
+const REPO_OWNER = 'Noximob'
+const REPO_NAME = 'site-imobiliaria'
+const IMOVEIS_PATH = 'public/imoveis/imoveis.json'
+
+/**
+ * Sincroniza imóveis da API DWV com o GitHub
+ * 
+ * GET: Busca imóveis da DWV e mostra preview (não salva)
+ * POST: Sincroniza imóveis da DWV com o GitHub (substitui ou adiciona)
+ */
+export async function GET() {
+  try {
+    console.log('🔍 Iniciando busca de imóveis da API DWV...')
+    
+    const dwvImoveis = await fetchDWVImoveis()
+    
+    if (dwvImoveis.length === 0) {
+      return NextResponse.json({
+        success: false,
+        message: 'Nenhum imóvel encontrado na API DWV',
+        preview: []
+      })
+    }
+
+    // Converter para formato do site
+    const imoveisConvertidos = dwvImoveis.map((dwv, index) => 
+      convertDWVToImovel(dwv, index)
+    )
+
+    return NextResponse.json({
+      success: true,
+      message: `${imoveisConvertidos.length} imóveis encontrados na API DWV`,
+      preview: imoveisConvertidos.slice(0, 5), // Mostrar apenas 5 como preview
+      total: imoveisConvertidos.length
+    })
+  } catch (error: any) {
+    console.error('❌ Erro ao buscar imóveis da DWV:', error)
+    return NextResponse.json({
+      success: false,
+      error: error.message || 'Erro desconhecido',
+      preview: []
+    }, { status: 500 })
+  }
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    if (!process.env.GITHUB_TOKEN) {
+      return NextResponse.json(
+        { error: 'GitHub token não configurado' },
+        { status: 500 }
+      )
+    }
+
+    const { mode = 'merge' } = await request.json() // 'merge' ou 'replace'
+    
+    console.log('🔄 Iniciando sincronização com API DWV...')
+    console.log(`📋 Modo: ${mode}`)
+
+    // Buscar imóveis da API DWV
+    const dwvImoveis = await fetchDWVImoveis()
+    
+    if (dwvImoveis.length === 0) {
+      return NextResponse.json({
+        success: false,
+        message: 'Nenhum imóvel encontrado na API DWV para sincronizar'
+      })
+    }
+
+    // Converter para formato do site
+    const imoveisNovos = dwvImoveis.map((dwv, index) => 
+      convertDWVToImovel(dwv, index)
+    )
+
+    // Buscar imóveis existentes no GitHub
+    let imoveisExistentes: any[] = []
+    let sha: string | undefined
+
+    try {
+      const { data } = await octokit.repos.getContent({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        path: IMOVEIS_PATH,
+      })
+
+      if ('content' in data) {
+        const content = Buffer.from(data.content, 'base64').toString('utf-8')
+        imoveisExistentes = JSON.parse(content)
+        sha = data.sha
+      }
+    } catch (error: any) {
+      if (error.status !== 404) {
+        throw error
+      }
+      // Arquivo não existe, será criado
+    }
+
+    let imoveisFinais: any[]
+
+    if (mode === 'replace') {
+      // Substituir todos os imóveis pelos da DWV
+      imoveisFinais = imoveisNovos
+      console.log(`✅ Modo REPLACE: ${imoveisNovos.length} imóveis da DWV`)
+    } else {
+      // Modo MERGE: manter existentes e adicionar/atualizar da DWV
+      const imoveisMap = new Map<string, any>()
+      
+      // Adicionar imóveis existentes
+      imoveisExistentes.forEach(imovel => {
+        imoveisMap.set(imovel.id, imovel)
+      })
+      
+      // Adicionar/atualizar com imóveis da DWV
+      imoveisNovos.forEach(imovel => {
+        imoveisMap.set(imovel.id, {
+          ...imovel,
+          // Preservar visualizações se já existir
+          visualizacoes: imoveisMap.get(imovel.id)?.visualizacoes || 0,
+          // Preservar createdAt se já existir, senão usar novo
+          createdAt: imoveisMap.get(imovel.id)?.createdAt || imovel.createdAt,
+          updatedAt: new Date(), // Sempre atualizar updatedAt
+        })
+      })
+      
+      imoveisFinais = Array.from(imoveisMap.values())
+      console.log(`✅ Modo MERGE: ${imoveisExistentes.length} existentes + ${imoveisNovos.length} da DWV = ${imoveisFinais.length} total`)
+    }
+
+    // Salvar no GitHub
+    await octokit.repos.createOrUpdateFileContents({
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      path: IMOVEIS_PATH,
+      message: `Sync DWV: ${imoveisNovos.length} imóveis sincronizados (modo: ${mode})`,
+      content: Buffer.from(JSON.stringify(imoveisFinais, null, 2), 'utf-8').toString('base64'),
+      branch: 'main',
+      ...(sha && { sha })
+    })
+
+    return NextResponse.json({
+      success: true,
+      message: `${imoveisNovos.length} imóveis sincronizados com sucesso`,
+      total: imoveisFinais.length,
+      novos: imoveisNovos.length,
+      existentes: imoveisExistentes.length
+    })
+  } catch (error: any) {
+    console.error('❌ Erro ao sincronizar imóveis:', error)
+    return NextResponse.json({
+      success: false,
+      error: error.message || 'Erro ao sincronizar imóveis'
+    }, { status: 500 })
+  }
+}
+
