@@ -2,6 +2,7 @@
 
 import { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState } from 'react'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
@@ -54,14 +55,22 @@ function SobrePageClient({ depoimentos, corretores }: { depoimentos: any[], corr
           <p className="text-base md:text-lg mb-6 text-white/90">
             {getText('quem_somos.hero.subtitulo')}
           </p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg text-sm transition-colors duration-300 shadow-lg">
+          <button 
+            onClick={() => {
+              const element = document.getElementById('nossa-historia')
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+              }
+            }}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg text-sm transition-colors duration-300 shadow-lg"
+          >
             {getText('quem_somos.hero.botao')}
           </button>
         </div>
       </section>
 
       {/* Seção História da Empresa */}
-      <section className="py-16 bg-white">
+      <section id="nossa-historia" className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Imagem da Equipe */}
@@ -94,10 +103,6 @@ function SobrePageClient({ depoimentos, corretores }: { depoimentos: any[], corr
                   {getText('quem_somos.nossa_historia.paragrafo_3')}
                 </p>
               </div>
-              
-              <button className="mt-8 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
-                {getText('quem_somos.servicos.titulo')}
-              </button>
             </div>
           </div>
         </div>
@@ -157,9 +162,9 @@ function SobrePageClient({ depoimentos, corretores }: { depoimentos: any[], corr
             </div>
             
             {/* Botão */}
-            <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
+            <Link href="/trabalhe-conosco" className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300 inline-block">
               {getText('quem_somos.cta_trabalhe.botao')}
-            </button>
+            </Link>
           </div>
         </div>
       </section>
