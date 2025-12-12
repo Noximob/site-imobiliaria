@@ -80,15 +80,6 @@ export default async function ComoComprarPage() {
                 <div className="text-3xl md:text-4xl font-bold leading-tight">
                   {getText('como_comprar.hero.titulo')}
                 </div>
-                
-                <div className="flex justify-start">
-                  <Link 
-                    href="/sobre" 
-                    className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors inline-flex items-center text-base"
-                  >
-                    {getText('como_comprar.hero.botao_vantagens')}
-                  </Link>
-                </div>
               </div>
             </div>
             
@@ -219,7 +210,7 @@ export default async function ComoComprarPage() {
           {/* Cards das Cidades */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             {/* Penha */}
-            <div className="relative group cursor-pointer">
+            <Link href="/imoveis?cidade=penha" className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
                 <Image
                   src={comoComprarImages.apartamentoPenha}
@@ -236,10 +227,10 @@ export default async function ComoComprarPage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Balneário Piçarras */}
-            <div className="relative group cursor-pointer">
+            <Link href="/imoveis?cidade=balneario-picarras" className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
                 <Image
                   src={comoComprarImages.coberturaPicarras}
@@ -256,10 +247,10 @@ export default async function ComoComprarPage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Barra Velha */}
-            <div className="relative group cursor-pointer">
+            <Link href="/imoveis?cidade=barra-velha" className="relative group cursor-pointer">
               <div className="relative h-48 rounded-lg overflow-hidden">
                 <Image
                   src={comoComprarImages.lancamentosBarraVelha}
@@ -276,7 +267,7 @@ export default async function ComoComprarPage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
 
           {/* Chamada para Ação */}
@@ -309,26 +300,26 @@ export default async function ComoComprarPage() {
 
           {/* Botões de Localização */}
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
-            <button className="bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
+            <Link href="/imoveis?frenteMar=true" className="bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
               </svg>
               {getText('como_comprar.localizacao.opcao_1')}
-            </button>
+            </Link>
             
-            <button className="bg-purple-500 hover:bg-purple-600 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
+            <Link href="/imoveis?quadraMar=true" className="bg-purple-500 hover:bg-purple-600 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
               {getText('como_comprar.localizacao.opcao_2')}
-            </button>
+            </Link>
             
-            <button className="bg-purple-700 hover:bg-purple-800 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
+            <Link href="/imoveis?vistaMar=true" className="bg-purple-700 hover:bg-purple-800 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
               {getText('como_comprar.localizacao.opcao_3')}
-            </button>
+            </Link>
           </div>
 
           {/* Blocos de Conteúdo */}
@@ -354,9 +345,9 @@ export default async function ComoComprarPage() {
                 <h3 className="text-white text-lg font-bold mb-4">
                   {getText('como_comprar.cta_investimento.subtitulo')}
                 </h3>
-                <button className="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
+                <Link href="/imoveis" className="inline-block bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
                   {getText('como_comprar.cta_investimento.botao')}
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -381,9 +372,9 @@ export default async function ComoComprarPage() {
                 <h3 className="text-white text-lg font-bold mb-4">
                   {getText('como_comprar.anuncie.subtitulo')}
                 </h3>
-                <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
+                <Link href="/encontre-meu-imovel" className="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-lg hover:shadow-xl transform hover:scale-105">
                   {getText('como_comprar.anuncie.botao')}
-                </button>
+                </Link>
               </div>
             </div>
           </div>
