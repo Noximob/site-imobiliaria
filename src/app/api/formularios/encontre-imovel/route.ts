@@ -100,13 +100,17 @@ export async function POST(request: NextRequest) {
     
     // Enviar email (não bloqueia a resposta se falhar)
     try {
-      await sendEmail({
+      const emailResult = await sendEmail({
         to: 'imoveisnox@gmail.com',
         subject: `Novo Formulário: Encontre seu Imóvel - ${dados.nome}`,
         html: formatFormularioEncontreImovelEmail(dados)
       })
+      
+      if (!emailResult.success) {
+        console.error('⚠️ Email não foi enviado, mas formulário foi salvo:', emailResult.error)
+      }
     } catch (error) {
-      console.error('Erro ao enviar email (não crítico):', error)
+      console.error('⚠️ Erro ao enviar email (não crítico, formulário foi salvo):', error)
     }
     
     return NextResponse.json({ success: true, id: novoFormulario.id })

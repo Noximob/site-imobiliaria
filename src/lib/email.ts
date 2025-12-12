@@ -1,13 +1,23 @@
 import nodemailer from 'nodemailer'
 
-// Configurar transporter do Gmail
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER || 'imoveisnox@gmail.com',
-    pass: process.env.EMAIL_PASSWORD || process.env.EMAIL_APP_PASSWORD, // App Password do Gmail
-  },
-})
+// Função para criar transporter (criado dinamicamente para garantir que as env vars estão carregadas)
+function createTransporter() {
+  const emailUser = process.env.EMAIL_USER || 'imoveisnox@gmail.com'
+  const emailPassword = process.env.EMAIL_PASSWORD || process.env.EMAIL_APP_PASSWORD
+
+  if (!emailPassword) {
+    console.error('❌ EMAIL_PASSWORD não configurado! Configure no Netlify.')
+    throw new Error('EMAIL_PASSWORD não configurado')
+  }
+
+  return nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: emailUser,
+      pass: emailPassword,
+    },
+  })
+}
 
 interface EmailOptions {
   to: string
@@ -17,18 +27,40 @@ interface EmailOptions {
 
 export async function sendEmail({ to, subject, html }: EmailOptions) {
   try {
+    const transporter = createTransporter()
+    
+    const emailUser = process.env.EMAIL_USER || 'imoveisnox@gmail.com'
+    
+    console.log('📧 Tentando enviar email para:', to)
+    console.log('📧 De:', emailUser)
+    
     const info = await transporter.sendMail({
-      from: `"Nox Imóveis" <${process.env.EMAIL_USER || 'imoveisnox@gmail.com'}>`,
+      from: `"Nox Imóveis" <${emailUser}>`,
       to,
       subject,
       html,
     })
     
-    console.log('✅ Email enviado:', info.messageId)
+    console.log('✅ Email enviado com sucesso!')
+    console.log('✅ Message ID:', info.messageId)
+    console.log('✅ Resposta:', info.response)
+    
     return { success: true, messageId: info.messageId }
-  } catch (error) {
-    console.error('❌ Erro ao enviar email:', error)
-    return { success: false, error }
+  } catch (error: any) {
+    console.error('❌ Erro ao enviar email:')
+    console.error('❌ Tipo:', error.name)
+    console.error('❌ Mensagem:', error.message)
+    console.error('❌ Código:', error.code)
+    console.error('❌ Stack:', error.stack)
+    
+    // Mensagens de erro mais amigáveis
+    if (error.code === 'EAUTH') {
+      console.error('❌ Erro de autenticação! Verifique EMAIL_USER e EMAIL_PASSWORD no Netlify.')
+    } else if (error.code === 'ECONNECTION') {
+      console.error('❌ Erro de conexão! Verifique sua conexão com a internet.')
+    }
+    
+    return { success: false, error: error.message }
   }
 }
 
