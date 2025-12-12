@@ -1,15 +1,3 @@
 {
-  "formularios": [
-    {
-      "telefone": "(47) 99710-9895",
-      "email": "imoveisnox@gmail.com",
-      "tipoImovel": "casa",
-      "cidade": "Penha",
-      "bairro": "Gravata",
-      "tipo": "alugar",
-      "id": "1765577916606",
-      "createdAt": "2025-12-12T22:18:36.606Z",
-      "lido": false
-    }
-  ]
+  "formularios": []
 }
