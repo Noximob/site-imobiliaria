@@ -1,24 +1,24 @@
 [
   {
-    "titulo": " nbmvvhvmmn",
-    "slug": "-nbmvvhvmmn",
-    "descricao": "b cbnc",
-    "preco": 500,
+    "titulo": "Apartamento à venda no Orla da Barra em Barra Velha, Praia do Tabuleiro",
+    "slug": "apartamento-a-venda-no-orla-da-barra-em-barra-velha-praia-do-tabuleiro",
+    "descricao": "*Venda de apartamento residencial – Orla da Barra, Barra Velha*\n\nApartamento residencial localizado de frente para o mar, no empreendimento Orla da Barra, em Barra Velha.\nCom plantas de 68 a 88 m² de área privativa, o imóvel conta com 2 ou 3 dormitórios, sendo 1 suíte, além de vista mar em todas as unidades.\n\nProjetado para quem busca amplitude, privacidade e vista permanente para o oceano, o apartamento entrega uma planta funcional, integração entre ambientes e acabamentos compatíveis com um padrão elevado de moradia no litoral catarinense.\n\nValor de venda: R$ 1.000.000,00\nEstuda-se proposta e possibilidade de fluxo de pagamento com a construtora, mediante análise.\n\nUma oportunidade exclusiva para quem deseja morar ou investir em um dos trechos mais valorizados da orla de Barra Velha.\n\nOrla da Barra\nMorar de frente para o mar, com exclusividade\n\nO Orla da Barra é um empreendimento residencial de alto padrão, pensado para um público que valoriza localização estratégica, vista definitiva e qualidade de vida.\n\nInserido em um contexto urbano em constante valorização, o edifício se destaca pela proposta da facilidade de conquistar um frente mar, alto nível de privacidade e uma relação direta com a praia — algo cada vez mais escasso no litoral norte de Santa Catarina.\n\nLocalização privilegiada: Barra Velha – SC\n\nSituado na orla marítima de Barra Velha, o empreendimento está em uma região que combina:\n\n- Crescimento imobiliário consistente\n\n- Infraestrutura urbana em expansão\n\n- Fácil acesso a BR-101\n\n- Proximidade com Balneário Camboriú, Itajaí e Joinville\n\nBarra Velha vem se consolidando como uma alternativa estratégica para quem busca qualidade de vida à beira-mar, com valores ainda mais racionais quando comparados aos grandes centros do litoral.\n\nTipologia e diferenciais do apartamento\n\nApartamentos de 68 a 88 m² privativos\n\n2 ou 3 quartos, com 1 suíte, proporcionando conforto e privacidade para toda a família\n\nAmpla área social integrada, com vista para o mar\n\nSacadas generosas e aberturas que privilegiam iluminação e ventilação natural\n\nA planta favorece tanto o uso residencial quanto o perfil de segunda moradia de alto padrão.\n\n*Estrutura de lazer e áreas comuns*\n\nO condomínio oferece uma infraestrutura completa, pensada para proporcionar conforto, segurança e bem-estar, com destaque para:\n\nPiscina\n\nAcademia\n\nEspaço gourmet\n\nSalão de festas\n\nSala de jogos\n\nPlayground\n\nQuadra poliesportiva\n\nChurrasqueira\n\nMais do que lazer, o projeto prioriza um ambiente seguro, organizado e com vizinhança qualificada — pontos decisivos para famílias e investidores.\n\n*Valorização patrimonial e investimento consciente*\n\nImóveis frente mar, com plantas inteligentes e localização consolidada, representam ativos de escassez real.\nO Orla da Barra reúne três fatores-chave de valorização:\n\nTerreno nobre à beira-mar\n\nBaixa oferta de unidades semelhantes\n\nCrescimento consistente da cidade e da região\n\nIsso posiciona o imóvel como uma opção segura tanto para moradia quanto para preservação e crescimento patrimonial no médio e longo prazo.\n\n*Exclusividade e perfil de moradores*\n\nO empreendimento é voltado a um público que valoriza tranquilidade, espaço e discrição, fugindo do excesso de adensamento urbano, mas sem abrir mão de conforto e padrão construtivo.\n\nCada unidade reflete um estilo de vida mais reservado, conectado ao mar e à rotina familiar.\n\n*Agende uma apresentação personalizada*\n\nEssa é a oportunidade de conhecer um dos apartamentos mais completos da orla de Barra Velha.\nEntre em contato com a Felicità Imóveis para receber atendimento personalizado, informações detalhadas e agendar uma visita.",
+    "preco": 961216,
     "tipo": "apartamento",
-    "status": "prontos",
+    "status": "lancamento",
     "endereco": {
-      "cidade": "penha",
-      "bairro": "Gravata",
-      "rua": "Jordelina flores",
-      "numero": "154",
-      "cep": "88385000",
+      "cidade": "barra-velha",
+      "bairro": "Tabuleiro",
+      "rua": "Av. Avelino José Borges - Beira Mar",
+      "numero": "1448",
+      "cep": "88390-000",
       "estado": "Santa Catarina"
     },
     "caracteristicas": {
-      "quartos": 2,
-      "banheiros": 1,
+      "quartos": 3,
+      "banheiros": 2,
       "vagas": 1,
-      "area": 4,
+      "area": 88,
       "areaTerreno": 0,
       "suite": 1,
       "frenteMar": true,
@@ -41,12 +41,12 @@
     ],
     "id": "73294",
     "createdAt": "2025-12-11T01:26:14.644Z",
-    "updatedAt": "2025-12-11T14:44:02.581Z",
+    "updatedAt": "2026-01-09T18:26:24.719Z",
     "tags": [
-      "Mobiliado",
       "Frente Mar",
       "Área de Lazer",
-      "Home Club completo"
+      "Home Club completo",
+      "Vista Mar"
     ],
     "selecaoNox": true
   },
