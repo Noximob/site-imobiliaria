@@ -6,9 +6,32 @@ import { RefreshCw, CheckCircle, XCircle, Eye, Loader2 } from 'lucide-react'
 export default function DWVSyncPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [isSyncing, setIsSyncing] = useState(false)
+  const [isTesting, setIsTesting] = useState(false)
   const [preview, setPreview] = useState<any>(null)
   const [syncResult, setSyncResult] = useState<any>(null)
+  const [testResult, setTestResult] = useState<any>(null)
   const [error, setError] = useState<string | null>(null)
+
+  const handleTest = async () => {
+    setIsTesting(true)
+    setError(null)
+    setTestResult(null)
+
+    try {
+      const response = await fetch('/api/dwv/test')
+      const data = await response.json()
+
+      if (data.success) {
+        setTestResult(data)
+      } else {
+        setError(data.error || 'Erro ao testar conexão')
+      }
+    } catch (err: any) {
+      setError(err.message || 'Erro ao conectar com a API')
+    } finally {
+      setIsTesting(false)
+    }
+  }
 
   const handlePreview = async () => {
     setIsLoading(true)
@@ -22,7 +45,7 @@ export default function DWVSyncPage() {
       if (data.success) {
         setPreview(data)
       } else {
-        setError(data.message || 'Erro ao buscar imóveis')
+        setError(data.message || data.error || 'Erro ao buscar imóveis')
       }
     } catch (err: any) {
       setError(err.message || 'Erro ao conectar com a API')
@@ -94,6 +117,24 @@ export default function DWVSyncPage() {
         <div className="bg-white rounded-lg shadow p-6 mb-6">
           <div className="flex flex-wrap gap-4">
             <button
+              onClick={handleTest}
+              disabled={isTesting}
+              className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {isTesting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Testando...
+                </>
+              ) : (
+                <>
+                  <Eye className="w-4 h-4" />
+                  Testar Conexão
+                </>
+              )}
+            </button>
+
+            <button
               onClick={handlePreview}
               disabled={isLoading}
               className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
@@ -149,12 +190,51 @@ export default function DWVSyncPage() {
           </div>
         </div>
 
+        {/* Resultado do Teste */}
+        {testResult && (
+          <div className="bg-white rounded-lg shadow p-6 mb-6">
+            <div className="flex items-center gap-2 mb-4">
+              <CheckCircle className="w-5 h-5 text-green-600" />
+              <h2 className="text-xl font-semibold text-gray-900">
+                Teste de Conexão
+              </h2>
+            </div>
+            <div className="space-y-2 text-sm">
+              <div><strong>Status:</strong> <span className="text-green-600">{testResult.message}</span></div>
+              <div><strong>URL:</strong> <code className="bg-gray-100 px-2 py-1 rounded">{testResult.config?.url}</code></div>
+              <div><strong>Token:</strong> <code className="bg-gray-100 px-2 py-1 rounded">{testResult.config?.tokenPreview}</code></div>
+              {testResult.result && (
+                <div className="mt-4 pt-4 border-t">
+                  <div><strong>Imóveis encontrados:</strong> {testResult.result.totalEncontrados}</div>
+                  {testResult.result.primeiroImovel && (
+                    <div className="mt-2 p-3 bg-gray-50 rounded">
+                      <div><strong>ID:</strong> {testResult.result.primeiroImovel.id}</div>
+                      <div><strong>Título:</strong> {testResult.result.primeiroImovel.title}</div>
+                      <div><strong>Status:</strong> {testResult.result.primeiroImovel.status}</div>
+                      <div className="mt-2 text-xs text-gray-600">
+                        <div>Tem Unit: {testResult.result.primeiroImovel.hasUnit ? '✅' : '❌'}</div>
+                        <div>Tem Building: {testResult.result.primeiroImovel.hasBuilding ? '✅' : '❌'}</div>
+                        <div>Tem Third Party: {testResult.result.primeiroImovel.hasThirdParty ? '✅' : '❌'}</div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Erro */}
         {error && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
             <div className="flex items-center gap-2">
               <XCircle className="w-5 h-5 text-red-600" />
-              <p className="text-red-800">{error}</p>
+              <div className="flex-1">
+                <p className="text-red-800 font-semibold">{error}</p>
+                <p className="text-red-600 text-sm mt-1">
+                  Verifique se as variáveis DWV_API_URL e DWV_API_TOKEN estão configuradas no Netlify.
+                </p>
+              </div>
             </div>
           </div>
         )}

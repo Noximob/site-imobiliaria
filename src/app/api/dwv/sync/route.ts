@@ -18,7 +18,28 @@ const IMOVEIS_PATH = 'public/imoveis/imoveis.json'
  */
 export async function GET() {
   try {
+    // Verificar variáveis de ambiente
+    if (!process.env.DWV_API_TOKEN) {
+      return NextResponse.json({
+        success: false,
+        error: 'DWV_API_TOKEN não configurado no Netlify',
+        message: 'Configure a variável DWV_API_TOKEN no Netlify com o token da API DWV.',
+        preview: []
+      }, { status: 500 })
+    }
+
+    if (!process.env.DWV_API_URL) {
+      return NextResponse.json({
+        success: false,
+        error: 'DWV_API_URL não configurado no Netlify',
+        message: 'Configure a variável DWV_API_URL no Netlify com a URL da API DWV.',
+        preview: []
+      }, { status: 500 })
+    }
+
     console.log('🔍 Iniciando busca de imóveis da API DWV...')
+    console.log(`📍 URL: ${process.env.DWV_API_URL}`)
+    console.log(`🔑 Token: ${process.env.DWV_API_TOKEN.substring(0, 10)}...`)
     
     // Buscar apenas primeira página para preview (mais rápido)
     const dwvImoveis = await fetchDWVImoveis(1, 20)
@@ -27,6 +48,7 @@ export async function GET() {
       return NextResponse.json({
         success: false,
         message: 'Nenhum imóvel encontrado na API DWV. Verifique se o token está correto e se há imóveis selecionados para integração.',
+        error: 'Nenhum imóvel retornado pela API',
         preview: []
       })
     }
@@ -48,6 +70,7 @@ export async function GET() {
     return NextResponse.json({
       success: false,
       error: error.message || 'Erro desconhecido',
+      message: `Erro ao conectar com a API DWV: ${error.message}`,
       preview: []
     }, { status: 500 })
   }
@@ -57,7 +80,33 @@ export async function POST(request: NextRequest) {
   try {
     if (!process.env.GITHUB_TOKEN) {
       return NextResponse.json(
-        { error: 'GitHub token não configurado' },
+        { 
+          success: false,
+          error: 'GitHub token não configurado',
+          message: 'Configure a variável GITHUB_TOKEN no Netlify.'
+        },
+        { status: 500 }
+      )
+    }
+
+    if (!process.env.DWV_API_TOKEN) {
+      return NextResponse.json(
+        { 
+          success: false,
+          error: 'DWV_API_TOKEN não configurado',
+          message: 'Configure a variável DWV_API_TOKEN no Netlify.'
+        },
+        { status: 500 }
+      )
+    }
+
+    if (!process.env.DWV_API_URL) {
+      return NextResponse.json(
+        { 
+          success: false,
+          error: 'DWV_API_URL não configurado',
+          message: 'Configure a variável DWV_API_URL no Netlify.'
+        },
         { status: 500 }
       )
     }
@@ -66,6 +115,8 @@ export async function POST(request: NextRequest) {
     
     console.log('🔄 Iniciando sincronização com API DWV...')
     console.log(`📋 Modo: ${mode}`)
+    console.log(`📍 URL: ${process.env.DWV_API_URL}`)
+    console.log(`🔑 Token: ${process.env.DWV_API_TOKEN.substring(0, 10)}...`)
 
     // Buscar TODOS os imóveis da API DWV (com paginação automática)
     const dwvImoveis = await fetchDWVImoveis(1, 100) // Busca todas as páginas automaticamente
@@ -73,7 +124,8 @@ export async function POST(request: NextRequest) {
     if (dwvImoveis.length === 0) {
       return NextResponse.json({
         success: false,
-        message: 'Nenhum imóvel encontrado na API DWV para sincronizar'
+        error: 'Nenhum imóvel encontrado',
+        message: 'Nenhum imóvel encontrado na API DWV para sincronizar. Verifique se o token está correto e se há imóveis ativos na API.'
       })
     }
 
