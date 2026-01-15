@@ -45,7 +45,7 @@ export async function GET() {
 
     for (const url of urlsToTest) {
       // Testar diferentes formatos de autenticação
-      const authFormats = [
+      const authFormats: Array<{ name: string; headers: Record<string, string>; urlSuffix?: string }> = [
         { name: 'Header token', headers: { 'token': apiToken, 'Content-Type': 'application/json' } },
         { name: 'Header Authorization Bearer', headers: { 'Authorization': `Bearer ${apiToken}`, 'Content-Type': 'application/json' } },
         { name: 'Header Authorization Token', headers: { 'Authorization': `Token ${apiToken}`, 'Content-Type': 'application/json' } },
