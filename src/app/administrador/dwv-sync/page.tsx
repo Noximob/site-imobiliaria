@@ -305,19 +305,41 @@ export default function DWVSyncPage() {
               <div><strong>Token:</strong> <code className="bg-gray-100 px-2 py-1 rounded">{testResult.config?.tokenPreview}</code></div>
               {testResult.result && (
                 <div className="mt-4 pt-4 border-t">
-                  <div><strong>Imóveis encontrados:</strong> {testResult.result.totalEncontrados}</div>
-                  {testResult.result.primeiroImovel && (
-                    <div className="mt-2 p-3 bg-gray-50 rounded">
-                      <div><strong>ID:</strong> {testResult.result.primeiroImovel.id}</div>
-                      <div><strong>Título:</strong> {testResult.result.primeiroImovel.title}</div>
-                      <div><strong>Status:</strong> {testResult.result.primeiroImovel.status}</div>
-                      <div className="mt-2 text-xs text-gray-600">
-                        <div>Tem Unit: {testResult.result.primeiroImovel.hasUnit ? '✅' : '❌'}</div>
-                        <div>Tem Building: {testResult.result.primeiroImovel.hasBuilding ? '✅' : '❌'}</div>
-                        <div>Tem Third Party: {testResult.result.primeiroImovel.hasThirdParty ? '✅' : '❌'}</div>
+                  <div className="space-y-2">
+                    <div><strong>Imóveis encontrados (após filtros):</strong> {testResult.result.totalEncontrados}</div>
+                    {testResult.result.directResponse && (
+                      <div className="p-3 bg-blue-50 rounded border border-blue-200">
+                        <div className="text-sm font-semibold text-blue-900 mb-2">📊 Resposta Direta da API:</div>
+                        <div className="text-xs space-y-1 text-blue-800">
+                          <div><strong>Status HTTP:</strong> {testResult.result.directResponse.status} {testResult.result.directResponse.ok ? '✅' : '❌'}</div>
+                          <div><strong>Total na API:</strong> {testResult.result.directResponse.rawTotal}</div>
+                          <div><strong>Imóveis retornados:</strong> {testResult.result.directResponse.rawDataCount}</div>
+                          {testResult.result.directResponse.rawTotal > 0 && testResult.result.directResponse.rawDataCount === 0 && (
+                            <div className="mt-2 p-2 bg-yellow-100 rounded text-yellow-900">
+                              ⚠️ A API retornou {testResult.result.directResponse.rawTotal} imóveis no total, mas nenhum na página atual. Pode ser um problema de paginação ou filtros.
+                            </div>
+                          )}
+                          {testResult.result.directResponse.rawTotal === 0 && (
+                            <div className="mt-2 p-2 bg-red-100 rounded text-red-900">
+                              ❌ A API não retornou nenhum imóvel. Verifique: 1) Se os imóveis estão selecionados no painel DWV, 2) Se estão publicados/ativos, 3) Se o token está correto.
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                    {testResult.result.primeiroImovel && (
+                      <div className="mt-2 p-3 bg-gray-50 rounded">
+                        <div><strong>ID:</strong> {testResult.result.primeiroImovel.id}</div>
+                        <div><strong>Título:</strong> {testResult.result.primeiroImovel.title}</div>
+                        <div><strong>Status:</strong> {testResult.result.primeiroImovel.status}</div>
+                        <div className="mt-2 text-xs text-gray-600">
+                          <div>Tem Unit: {testResult.result.primeiroImovel.hasUnit ? '✅' : '❌'}</div>
+                          <div>Tem Building: {testResult.result.primeiroImovel.hasBuilding ? '✅' : '❌'}</div>
+                          <div>Tem Third Party: {testResult.result.primeiroImovel.hasThirdParty ? '✅' : '❌'}</div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
             </div>

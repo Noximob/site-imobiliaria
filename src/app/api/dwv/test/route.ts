@@ -42,14 +42,21 @@ export async function GET() {
     })
 
     let rawData: any = null
+    let responseStatus = testResponse.status
+    let responseOk = testResponse.ok
+    
     if (testResponse.ok) {
       rawData = await testResponse.json()
       console.log('📊 Resposta bruta da API:', JSON.stringify(rawData, null, 2))
+      console.log(`📊 Total na resposta: ${rawData.total || 0}`)
+      console.log(`📊 Data count: ${rawData.data?.length || 0}`)
     } else {
       const errorText = await testResponse.text()
       console.error('❌ Erro na resposta:', errorText)
+      console.error(`❌ Status: ${testResponse.status}`)
     }
 
+    // Tentar buscar com fetchDWVImoveis também
     const imoveis = await fetchDWVImoveis(1, 10)
 
     return NextResponse.json({
@@ -93,6 +100,13 @@ export async function GET() {
           // Mostrar todos os status diferentes encontrados
           statuses: rawData.data ? Array.from(new Set(rawData.data.map((i: any) => i.status))) : [],
         } : null,
+        directResponse: {
+          status: responseStatus,
+          ok: responseOk,
+          hasData: !!(rawData && rawData.data && rawData.data.length > 0),
+          rawTotal: rawData?.total || 0,
+          rawDataCount: rawData?.data?.length || 0,
+        },
       },
       diagnostic: {
         connectionOk: testResponse.ok,
