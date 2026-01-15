@@ -91,7 +91,7 @@ export async function GET() {
             rent: rawData.data[0].rent,
           } : null,
           // Mostrar todos os status diferentes encontrados
-          statuses: rawData.data ? [...new Set(rawData.data.map((i: any) => i.status))] : [],
+          statuses: rawData.data ? Array.from(new Set(rawData.data.map((i: any) => i.status))) : [],
         } : null,
       },
       diagnostic: {
