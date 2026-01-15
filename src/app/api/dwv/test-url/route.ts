@@ -21,8 +21,14 @@ export async function GET() {
       'https://api.dwvapp.com.br/api/integration/properties',
       'https://api.dwvapp.com.br/v1/properties',
       'https://api.dwvapp.com.br/v1/integration/properties',
+      'https://api.dwvapp.com.br/api/v1/properties',
+      'https://api.dwvapp.com.br/api/v1/integration/properties',
+      'https://api.dwvapp.com.br/properties',
+      'https://api.dwvapp.com.br/integration',
       'https://apisandbox.dwvapp.com.br/integration/properties',
       'https://apisandbox.dwvapp.com.br/api/integration/properties',
+      'https://apisandbox.dwvapp.com.br/v1/properties',
+      'https://apisandbox.dwvapp.com.br/api/v1/properties',
     ]
 
     const results = []
