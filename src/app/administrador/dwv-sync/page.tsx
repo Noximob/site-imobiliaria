@@ -239,6 +239,41 @@ export default function DWVSyncPage() {
           </div>
         )}
 
+        {/* Preview com erro mas com diagnóstico */}
+        {preview && !preview.success && preview.diagnostic && (
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
+            <div className="flex items-center gap-2 mb-4">
+              <XCircle className="w-5 h-5 text-yellow-600" />
+              <h2 className="text-xl font-semibold text-gray-900">Diagnóstico da API</h2>
+            </div>
+            {preview.diagnostic.rawResponse && (
+              <div className="space-y-2 text-sm mb-4">
+                <div><strong>Total na API:</strong> {preview.diagnostic.rawResponse.total || 0}</div>
+                <div><strong>Imóveis retornados:</strong> {preview.diagnostic.rawResponse.dataCount || 0}</div>
+                <div><strong>Página:</strong> {preview.diagnostic.rawResponse.page || 1} de {preview.diagnostic.rawResponse.lastPage || 1}</div>
+                {preview.diagnostic.rawResponse.allStatuses && preview.diagnostic.rawResponse.allStatuses.length > 0 && (
+                  <div><strong>Status encontrados:</strong> {preview.diagnostic.rawResponse.allStatuses.join(', ')}</div>
+                )}
+                {preview.diagnostic.rawResponse.firstItem && (
+                  <div className="mt-2 p-3 bg-white rounded border">
+                    <div><strong>Primeiro imóvel retornado:</strong></div>
+                    <div>ID: {preview.diagnostic.rawResponse.firstItem.id}</div>
+                    <div>Título: {preview.diagnostic.rawResponse.firstItem.title}</div>
+                    <div>Status: {preview.diagnostic.rawResponse.firstItem.status}</div>
+                    <div>Deletado: {preview.diagnostic.rawResponse.firstItem.deleted ? 'Sim' : 'Não'}</div>
+                  </div>
+                )}
+              </div>
+            )}
+            {preview.diagnostic.suggestion && (
+              <div className="mt-4 p-3 bg-yellow-100 rounded">
+                <p className="text-yellow-900 text-sm font-semibold">💡 Sugestão:</p>
+                <p className="text-yellow-800 text-sm mt-1">{preview.diagnostic.suggestion}</p>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Preview */}
         {preview && (
           <div className="bg-white rounded-lg shadow p-6 mb-6">

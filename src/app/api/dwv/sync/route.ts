@@ -41,6 +41,36 @@ export async function GET() {
     console.log(`📍 URL: ${process.env.DWV_API_URL}`)
     console.log(`🔑 Token: ${process.env.DWV_API_TOKEN.substring(0, 10)}...`)
     
+    // Fazer requisição direta para ver resposta bruta
+    const baseUrl = process.env.DWV_API_URL || 'https://api.dwvapp.com.br/integration/properties'
+    const apiToken = process.env.DWV_API_TOKEN
+    
+    const testUrl = `${baseUrl}?page=1&limit=20`
+    console.log(`🔗 Testando URL: ${testUrl}`)
+    
+    const testResponse = await fetch(testUrl, {
+      method: 'GET',
+      headers: {
+        'token': apiToken || '',
+        'Content-Type': 'application/json',
+      },
+    })
+
+    let rawResponse: any = null
+    if (testResponse.ok) {
+      rawResponse = await testResponse.json()
+      console.log('📊 Resposta bruta da API:', JSON.stringify(rawResponse, null, 2))
+    } else {
+      const errorText = await testResponse.text()
+      console.error('❌ Erro na resposta:', errorText)
+      return NextResponse.json({
+        success: false,
+        message: `Erro ao conectar com a API DWV: ${testResponse.status} ${testResponse.statusText}`,
+        error: errorText,
+        preview: []
+      }, { status: testResponse.status })
+    }
+
     // Buscar apenas primeira página para preview (mais rápido)
     const dwvImoveis = await fetchDWVImoveis(1, 20)
     
@@ -49,7 +79,30 @@ export async function GET() {
         success: false,
         message: 'Nenhum imóvel encontrado na API DWV. Verifique se o token está correto e se há imóveis selecionados para integração.',
         error: 'Nenhum imóvel retornado pela API',
-        preview: []
+        preview: [],
+        diagnostic: {
+          apiResponseOk: testResponse.ok,
+          apiStatus: testResponse.status,
+          rawResponse: rawResponse ? {
+            total: rawResponse.total,
+            perPage: rawResponse.perPage,
+            page: rawResponse.page,
+            lastPage: rawResponse.lastPage,
+            dataCount: rawResponse.data?.length || 0,
+            firstItem: rawResponse.data?.[0] ? {
+              id: rawResponse.data[0].id,
+              title: rawResponse.data[0].title,
+              status: rawResponse.data[0].status,
+              deleted: rawResponse.data[0].deleted,
+            } : null,
+            allStatuses: rawResponse.data ? Array.from(new Set(rawResponse.data.map((i: any) => i.status))) : [],
+          } : null,
+          suggestion: rawResponse && rawResponse.data && rawResponse.data.length === 0
+            ? 'A API retornou sucesso mas sem imóveis. Verifique: 1) Se os imóveis estão publicados/ativos no DWV, 2) Se precisa ativar "publicar para integração", 3) Se há algum delay após selecionar os imóveis.'
+            : rawResponse && rawResponse.data && rawResponse.data.length > 0
+            ? `A API retornou ${rawResponse.data.length} imóveis, mas foram filtrados. Verifique os filtros aplicados.`
+            : 'Verifique se os imóveis estão selecionados e publicados no painel do DWV.'
+        }
       })
     }
 
