@@ -18,15 +18,15 @@ export async function GET() {
     // URLs possíveis para testar
     // Baseado em: https://app.dwvapp.com.br/integrations (onde você seleciona as unidades)
     const urlsToTest = [
-      // URLs baseadas no app.dwvapp.com.br/integrations (painel de integração)
+      // URLs baseadas no app.dwvapp.com.br (painel principal)
+      'https://app.dwvapp.com.br/api/integration/properties',
+      'https://app.dwvapp.com.br/api/integrations/properties',
+      'https://app.dwvapp.com.br/api/v1/integration/properties',
+      'https://app.dwvapp.com.br/api/v1/integrations/properties',
+      'https://app.dwvapp.com.br/integration/properties',
       'https://app.dwvapp.com.br/integrations/properties',
       'https://app.dwvapp.com.br/integrations/api/properties',
       'https://app.dwvapp.com.br/integrations/integration/properties',
-      'https://app.dwvapp.com.br/api/integrations/properties',
-      'https://app.dwvapp.com.br/api/integration/properties',
-      'https://app.dwvapp.com.br/integration/properties',
-      'https://app.dwvapp.com.br/api/v1/integrations/properties',
-      'https://app.dwvapp.com.br/api/v1/integration/properties',
       'https://app.dwvapp.com.br/integrations/v1/properties',
       // URLs sandbox (conforme documentação oficial)
       'https://apisandbox.dwvapp.com.br/integration/properties',
