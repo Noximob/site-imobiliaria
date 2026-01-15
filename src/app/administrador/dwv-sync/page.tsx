@@ -33,6 +33,27 @@ export default function DWVSyncPage() {
     }
   }
 
+  const handleTestUrls = async () => {
+    setIsTestingUrls(true)
+    setError(null)
+    setUrlTestResult(null)
+
+    try {
+      const response = await fetch('/api/dwv/test-url')
+      const data = await response.json()
+
+      if (data.success) {
+        setUrlTestResult(data)
+      } else {
+        setError(data.error || 'Erro ao testar URLs')
+      }
+    } catch (err: any) {
+      setError(err.message || 'Erro ao testar URLs')
+    } finally {
+      setIsTestingUrls(false)
+    }
+  }
+
   const handlePreview = async () => {
     setIsLoading(true)
     setError(null)
@@ -135,6 +156,24 @@ export default function DWVSyncPage() {
             </button>
 
             <button
+              onClick={handleTestUrls}
+              disabled={isTestingUrls}
+              className="flex items-center gap-2 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {isTestingUrls ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Testando URLs...
+                </>
+              ) : (
+                <>
+                  <Eye className="w-4 h-4" />
+                  Testar URLs Alternativas
+                </>
+              )}
+            </button>
+
+            <button
               onClick={handlePreview}
               disabled={isLoading}
               className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
@@ -189,6 +228,65 @@ export default function DWVSyncPage() {
             </button>
           </div>
         </div>
+
+        {/* Resultado do Teste de URLs */}
+        {urlTestResult && (
+          <div className="bg-white rounded-lg shadow p-6 mb-6">
+            <div className="flex items-center gap-2 mb-4">
+              <CheckCircle className="w-5 h-5 text-green-600" />
+              <h2 className="text-xl font-semibold text-gray-900">
+                Teste de URLs Alternativas
+              </h2>
+            </div>
+            {urlTestResult.recommendation && urlTestResult.recommendation.url ? (
+              <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <p className="text-green-900 font-semibold mb-2">✅ URL Funcionando Encontrada!</p>
+                <p className="text-sm text-green-800 mb-2">
+                  <strong>URL:</strong> <code className="bg-green-100 px-2 py-1 rounded">{urlTestResult.recommendation.url}</code>
+                </p>
+                <p className="text-sm text-green-800">
+                  Esta URL retornou <strong>{urlTestResult.recommendation.dataCount}</strong> imóveis de um total de <strong>{urlTestResult.recommendation.total}</strong>.
+                </p>
+                <p className="text-sm text-green-700 mt-2">
+                  <strong>⚠️ Ação necessária:</strong> Configure esta URL na variável <code className="bg-green-100 px-1 rounded">DWV_API_URL</code> no Netlify.
+                </p>
+              </div>
+            ) : (
+              <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <p className="text-yellow-900 font-semibold mb-2">⚠️ Nenhuma URL retornou imóveis</p>
+                <p className="text-sm text-yellow-800">{urlTestResult.recommendation?.message}</p>
+              </div>
+            )}
+            <div className="space-y-2 text-sm">
+              <h3 className="font-semibold text-gray-900 mb-2">Resultados de todas as URLs testadas:</h3>
+              {urlTestResult.results?.map((result: any, index: number) => (
+                <div key={index} className={`p-3 rounded border ${result.ok && result.hasData ? 'bg-green-50 border-green-200' : result.ok ? 'bg-gray-50 border-gray-200' : 'bg-red-50 border-red-200'}`}>
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="font-mono text-xs break-all mb-1">{result.url}</div>
+                      {result.ok ? (
+                        <div className="text-xs">
+                          <span className="text-green-600">✓ OK</span> - Status: {result.status} | 
+                          Total: {result.total || 0} | 
+                          Retornados: {result.dataCount || 0}
+                          {result.firstItem && (
+                            <div className="mt-1 text-gray-600">
+                              Primeiro: ID {result.firstItem.id} - {result.firstItem.title} (Status: {result.firstItem.status})
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="text-xs text-red-600">
+                          ✗ Erro: {result.status || 'N/A'} - {result.error || 'Erro desconhecido'}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Resultado do Teste */}
         {testResult && (
