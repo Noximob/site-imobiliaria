@@ -97,14 +97,26 @@ export async function GET() {
             break // Parar de testar outros formatos se este funcionou
           } else {
             const errorText = await response.text()
-            // Só adicionar erro se for o último formato ou se for 401 (token inválido)
-            if (authFormat === authFormats[authFormats.length - 1] || response.status === 401) {
+            // Sempre adicionar erros 401 para ver qual formato está sendo usado
+            if (response.status === 401) {
               results.push({
                 url,
                 authFormat: authFormat.name,
                 status: response.status,
                 ok: false,
                 error: errorText.substring(0, 200), // Limitar tamanho
+                note: errorText.includes('não fornecido') 
+                  ? 'Token não está sendo enviado corretamente neste formato'
+                  : 'Token está sendo enviado mas foi rejeitado (pode estar incorreto ou expirado)'
+              })
+            } else if (authFormat === authFormats[authFormats.length - 1]) {
+              // Só adicionar outros erros no último formato para não poluir
+              results.push({
+                url,
+                authFormat: authFormat.name,
+                status: response.status,
+                ok: false,
+                error: errorText.substring(0, 200),
               })
             }
           }
