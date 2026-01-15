@@ -184,18 +184,18 @@ function parsePrice(priceStr?: string): number {
 function normalizeCity(city?: string): string {
   if (!city) return 'penha'
   
-  const cityMap: { [key: string]: string } = {
-    'penha': 'penha',
-    'balneário piçarras': 'balneario-picarras',
-    'balneario picarras': 'balneario-picarras',
-    'balneário-piçarras': 'balneario-picarras',
-    'balneário piçarras': 'balneario-picarras',
-    'barra velha': 'barra-velha',
-    'barra-velha': 'barra-velha',
-  }
-  
+  // Normalizar a cidade para comparação (lowercase, sem acentos)
   const normalized = city.toLowerCase().trim()
-  return cityMap[normalized] || normalized
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/-/g, ' ')
+  
+  // Mapear para formato do site
+  if (normalized.includes('penha')) return 'penha'
+  if (normalized.includes('picarras') || normalized.includes('picarras')) return 'balneario-picarras'
+  if (normalized.includes('barra') && normalized.includes('velha')) return 'barra-velha'
+  
+  return normalized
 }
 
 /**
