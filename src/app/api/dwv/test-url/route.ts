@@ -16,29 +16,36 @@ export async function GET() {
     }
 
     // URLs possíveis para testar
-    // Baseado em: https://app.dwvapp.com.br/integrations
+    // Baseado em: https://app.dwvapp.com.br/integrations (onde você seleciona as unidades)
     const urlsToTest = [
-      // URLs baseadas no app.dwvapp.com.br (onde você seleciona as unidades)
+      // URLs baseadas no app.dwvapp.com.br/integrations (painel de integração)
+      'https://app.dwvapp.com.br/integrations/properties',
+      'https://app.dwvapp.com.br/integrations/api/properties',
+      'https://app.dwvapp.com.br/integrations/integration/properties',
       'https://app.dwvapp.com.br/api/integrations/properties',
       'https://app.dwvapp.com.br/api/integration/properties',
-      'https://app.dwvapp.com.br/integrations/api/properties',
-      'https://app.dwvapp.com.br/integrations/properties',
+      'https://app.dwvapp.com.br/integration/properties',
       'https://app.dwvapp.com.br/api/v1/integrations/properties',
       'https://app.dwvapp.com.br/api/v1/integration/properties',
-      // URLs antigas (api.dwvapp.com.br)
+      'https://app.dwvapp.com.br/integrations/v1/properties',
+      // URLs sandbox (conforme documentação oficial)
+      'https://apisandbox.dwvapp.com.br/integration/properties',
+      'https://apisandbox.dwvapp.com.br/integrations/properties',
+      'https://apisandbox.dwvapp.com.br/api/integration/properties',
+      'https://apisandbox.dwvapp.com.br/api/integrations/properties',
+      'https://apisandbox.dwvapp.com.br/integrations/api/properties',
+      // URLs produção (conforme documentação oficial)
       'https://api.dwvapp.com.br/integration/properties',
+      'https://api.dwvapp.com.br/integrations/properties',
       'https://api.dwvapp.com.br/api/integration/properties',
+      'https://api.dwvapp.com.br/api/integrations/properties',
+      // Outras variações
       'https://api.dwvapp.com.br/v1/properties',
       'https://api.dwvapp.com.br/v1/integration/properties',
       'https://api.dwvapp.com.br/api/v1/properties',
       'https://api.dwvapp.com.br/api/v1/integration/properties',
       'https://api.dwvapp.com.br/properties',
       'https://api.dwvapp.com.br/integration',
-      // URLs sandbox
-      'https://apisandbox.dwvapp.com.br/integration/properties',
-      'https://apisandbox.dwvapp.com.br/api/integration/properties',
-      'https://apisandbox.dwvapp.com.br/v1/properties',
-      'https://apisandbox.dwvapp.com.br/api/v1/properties',
     ]
 
     const results = []
