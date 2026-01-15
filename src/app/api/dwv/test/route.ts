@@ -54,11 +54,16 @@ export async function GET() {
 
     return NextResponse.json({
       success: true,
-      message: 'Conexão com API DWV OK',
+      message: rawData && rawData.data && rawData.data.length > 0 
+        ? 'Conexão com API DWV OK - Imóveis encontrados!' 
+        : 'Conexão com API DWV OK - Mas nenhum imóvel retornado',
       config: {
         url: apiUrl,
         tokenLength: apiToken.length,
         tokenPreview: `${apiToken.substring(0, 10)}...`,
+        testUrl: testUrl,
+        responseStatus: testResponse.status,
+        responseOk: testResponse.ok,
       },
       result: {
         totalEncontrados: imoveis.length,
@@ -82,8 +87,20 @@ export async function GET() {
             title: rawData.data[0].title,
             status: rawData.data[0].status,
             deleted: rawData.data[0].deleted,
+            construction_stage: rawData.data[0].construction_stage,
+            rent: rawData.data[0].rent,
           } : null,
+          // Mostrar todos os status diferentes encontrados
+          statuses: rawData.data ? [...new Set(rawData.data.map((i: any) => i.status))] : [],
         } : null,
+      },
+      diagnostic: {
+        connectionOk: testResponse.ok,
+        hasData: !!(rawData && rawData.data),
+        dataCount: rawData?.data?.length || 0,
+        suggestion: rawData && rawData.data && rawData.data.length === 0
+          ? 'A API retornou sucesso mas sem imóveis. Verifique: 1) Se os imóveis estão publicados/ativos no DWV, 2) Se a URL do endpoint está correta, 3) Se precisa de parâmetros adicionais na URL.'
+          : 'Conexão funcionando normalmente.'
       }
     })
   } catch (error: any) {
