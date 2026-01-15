@@ -277,38 +277,44 @@ function extractTags(unit?: DWVUnit, building?: DWVBuilding, thirdParty?: DWVThi
   
   // Mapear para tags do site
   const tagMap: { [key: string]: string } = {
-    'frente mar': 'Frente Mar',
     'frente ao mar': 'Frente Mar',
-    'frente mar': 'Frente Mar',
-    'vista mar': 'Vista Mar',
     'vista para o mar': 'Vista Mar',
     'vista do mar': 'Vista Mar',
-    'quadra mar': 'Quadra Mar',
     'quadra do mar': 'Quadra Mar',
-    'mobiliado': 'Mobiliado',
     'mobiliada': 'Mobiliado',
     'area de lazer': 'Área de Lazer',
     'area lazer': 'Área de Lazer',
     'lazer': 'Área de Lazer',
-    'home club': 'Home Club completo',
     'home club completo': 'Home Club completo',
     'clube': 'Home Club completo',
   }
   
+  // Adicionar variações comuns (sem duplicatas)
+  const variations: { [key: string]: string } = {
+    'frente mar': 'Frente Mar',
+    'vista mar': 'Vista Mar',
+    'quadra mar': 'Quadra Mar',
+    'mobiliado': 'Mobiliado',
+    'home club': 'Home Club completo',
+  }
+  
+  // Mesclar ambos os objetos
+  const finalTagMap = { ...tagMap, ...variations }
+  
   // Procurar correspondências (busca parcial também)
   normalizedFeatures.forEach(feature => {
     // Busca exata
-    if (tagMap[feature]) {
-      if (!tags.includes(tagMap[feature])) {
-        tags.push(tagMap[feature])
+    if (finalTagMap[feature]) {
+      if (!tags.includes(finalTagMap[feature])) {
+        tags.push(finalTagMap[feature])
       }
       return
     }
     
     // Busca parcial (ex: "apartamento frente mar" contém "frente mar")
-    Object.keys(tagMap).forEach(key => {
-      if (feature.includes(key) && !tags.includes(tagMap[key])) {
-        tags.push(tagMap[key])
+    Object.keys(finalTagMap).forEach(key => {
+      if (feature.includes(key) && !tags.includes(finalTagMap[key])) {
+        tags.push(finalTagMap[key])
       }
     })
   })
