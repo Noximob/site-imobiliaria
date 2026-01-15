@@ -431,7 +431,7 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
   }
 
   // Remover duplicatas das fotos
-  fotos = [...new Set(fotos)]
+  fotos = Array.from(new Set(fotos))
 
   // Extrair tags/comodidades das features
   const tags = extractTags(unit, building, thirdParty)
