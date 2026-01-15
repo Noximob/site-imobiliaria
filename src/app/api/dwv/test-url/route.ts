@@ -44,51 +44,69 @@ export async function GET() {
     const results = []
 
     for (const url of urlsToTest) {
-      try {
-        const testUrl = `${url}?page=1&limit=5`
-        console.log(`🧪 Testando URL: ${testUrl}`)
+      // Testar diferentes formatos de autenticação
+      const authFormats = [
+        { name: 'Header token', headers: { 'token': apiToken, 'Content-Type': 'application/json' } },
+        { name: 'Header Authorization Bearer', headers: { 'Authorization': `Bearer ${apiToken}`, 'Content-Type': 'application/json' } },
+        { name: 'Header Authorization Token', headers: { 'Authorization': `Token ${apiToken}`, 'Content-Type': 'application/json' } },
+        { name: 'Query param token', headers: { 'Content-Type': 'application/json' }, urlSuffix: `&token=${apiToken}` },
+      ]
 
-        const response = await fetch(testUrl, {
-          method: 'GET',
-          headers: {
-            'token': apiToken,
-            'Content-Type': 'application/json',
-          },
-        })
+      for (const authFormat of authFormats) {
+        try {
+          const urlSuffix = authFormat.urlSuffix || ''
+          const testUrl = `${url}?page=1&limit=5${urlSuffix}`
+          console.log(`🧪 Testando URL: ${testUrl} com formato: ${authFormat.name}`)
 
-        let data: any = null
-        if (response.ok) {
-          data = await response.json()
-        } else {
-          const errorText = await response.text()
-          results.push({
-            url,
-            status: response.status,
-            ok: false,
-            error: errorText.substring(0, 200), // Limitar tamanho
+          const response = await fetch(testUrl, {
+            method: 'GET',
+            headers: authFormat.headers,
           })
-          continue
-        }
 
-        results.push({
-          url,
-          status: response.status,
-          ok: true,
-          total: data.total || 0,
-          dataCount: data.data?.length || 0,
-          hasData: !!(data.data && data.data.length > 0),
-          firstItem: data.data?.[0] ? {
-            id: data.data[0].id,
-            title: data.data[0].title,
-            status: data.data[0].status,
-          } : null,
-        })
-      } catch (error: any) {
-        results.push({
-          url,
-          ok: false,
-          error: error.message,
-        })
+          let data: any = null
+          if (response.ok) {
+            data = await response.json()
+            
+            // Se funcionou, adicionar ao resultado e parar de testar outros formatos para esta URL
+            results.push({
+              url,
+              authFormat: authFormat.name,
+              status: response.status,
+              ok: true,
+              total: data.total || 0,
+              dataCount: data.data?.length || 0,
+              hasData: !!(data.data && data.data.length > 0),
+              firstItem: data.data?.[0] ? {
+                id: data.data[0].id,
+                title: data.data[0].title,
+                status: data.data[0].status,
+              } : null,
+            })
+            break // Parar de testar outros formatos se este funcionou
+          } else {
+            const errorText = await response.text()
+            // Só adicionar erro se for o último formato ou se for 401 (token inválido)
+            if (authFormat === authFormats[authFormats.length - 1] || response.status === 401) {
+              results.push({
+                url,
+                authFormat: authFormat.name,
+                status: response.status,
+                ok: false,
+                error: errorText.substring(0, 200), // Limitar tamanho
+              })
+            }
+          }
+        } catch (error: any) {
+          // Só adicionar erro se for o último formato
+          if (authFormat === authFormats[authFormats.length - 1]) {
+            results.push({
+              url,
+              authFormat: authFormat.name,
+              ok: false,
+              error: error.message,
+            })
+          }
+        }
       }
     }
 
