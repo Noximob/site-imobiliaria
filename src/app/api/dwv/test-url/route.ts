@@ -47,9 +47,14 @@ export async function GET() {
       // Testar diferentes formatos de autenticação
       const authFormats: Array<{ name: string; headers: Record<string, string>; urlSuffix?: string }> = [
         { name: 'Header token', headers: { 'token': apiToken, 'Content-Type': 'application/json' } },
+        { name: 'Header X-Token', headers: { 'X-Token': apiToken, 'Content-Type': 'application/json' } },
+        { name: 'Header X-API-Token', headers: { 'X-API-Token': apiToken, 'Content-Type': 'application/json' } },
         { name: 'Header Authorization Bearer', headers: { 'Authorization': `Bearer ${apiToken}`, 'Content-Type': 'application/json' } },
         { name: 'Header Authorization Token', headers: { 'Authorization': `Token ${apiToken}`, 'Content-Type': 'application/json' } },
+        { name: 'Header Authorization (sem prefixo)', headers: { 'Authorization': apiToken, 'Content-Type': 'application/json' } },
         { name: 'Query param token', headers: { 'Content-Type': 'application/json' }, urlSuffix: `&token=${apiToken}` },
+        { name: 'Query param api_token', headers: { 'Content-Type': 'application/json' }, urlSuffix: `&api_token=${apiToken}` },
+        { name: 'Query param access_token', headers: { 'Content-Type': 'application/json' }, urlSuffix: `&access_token=${apiToken}` },
       ]
 
       for (const authFormat of authFormats) {
