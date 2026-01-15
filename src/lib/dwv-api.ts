@@ -143,26 +143,33 @@ export async function fetchDWVImoveis(page: number = 1, limit: number = 100): Pr
       console.log(`📊 Resposta da API: total=${data.total}, perPage=${data.perPage}, page=${data.page}, lastPage=${data.lastPage}`)
       console.log(`📊 Imóveis brutos retornados: ${data.data.length}`)
       
-      // Log do primeiro imóvel para debug
+      // Log detalhado dos primeiros 3 imóveis para debug
       if (data.data.length > 0) {
-        console.log(`📋 Primeiro imóvel:`, {
-          id: data.data[0].id,
-          title: data.data[0].title,
-          status: data.data[0].status,
-          deleted: data.data[0].deleted,
-          hasUnit: !!data.data[0].unit,
-          hasBuilding: !!data.data[0].building,
-          hasThirdParty: !!data.data[0].third_party_property,
+        console.log(`📋 Primeiros imóveis retornados pela API:`)
+        data.data.slice(0, 3).forEach((imovel, idx) => {
+          console.log(`  ${idx + 1}. ID: ${imovel.id}, Título: ${imovel.title}`)
+          console.log(`     Status: ${imovel.status}, Deletado: ${imovel.deleted}`)
+          console.log(`     Tem Unit: ${!!imovel.unit}, Tem Building: ${!!imovel.building}, Tem ThirdParty: ${!!imovel.third_party_property}`)
         })
+      } else {
+        console.log(`⚠️ A API retornou 0 imóveis na página ${currentPage}`)
       }
       
-      // Filtrar apenas imóveis não deletados (remover filtro de status para pegar todos)
-      // O usuário escolhe quais imóveis aparecer no pacote, então não devemos filtrar por status
-      const imoveisValidos = data.data.filter(imovel => 
-        !imovel.deleted && (imovel.unit || imovel.building || imovel.third_party_property)
-      )
+      // Filtrar apenas imóveis não deletados
+      // REMOVIDO: filtro de status - pegar todos os status
+      // REMOVIDO: filtro de unit/building/thirdParty - pode ter imóveis sem esses campos
+      // O usuário escolhe quais imóveis aparecer no pacote, então não devemos filtrar
+      const imoveisValidos = data.data.filter(imovel => !imovel.deleted)
       
-      console.log(`✅ Imóveis válidos após filtro: ${imoveisValidos.length}`)
+      console.log(`✅ Imóveis válidos após filtro (apenas !deleted): ${imoveisValidos.length} de ${data.data.length}`)
+      
+      // Se todos foram filtrados, mostrar por quê
+      if (data.data.length > 0 && imoveisValidos.length === 0) {
+        console.log(`⚠️ Todos os ${data.data.length} imóveis foram filtrados!`)
+        console.log(`   Verificando motivos:`)
+        const deletados = data.data.filter(i => i.deleted).length
+        console.log(`   - Deletados: ${deletados}`)
+      }
       
       allImoveis.push(...imoveisValidos)
       lastPage = data.lastPage
