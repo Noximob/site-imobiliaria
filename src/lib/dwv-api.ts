@@ -50,6 +50,8 @@ interface DWVThirdPartyProperty {
   bathroom?: number
   parking_spaces?: number
   private_area?: string
+  util_area?: string
+  total_area?: string
   text_address?: string
   gallery?: string[]
   cover?: string
