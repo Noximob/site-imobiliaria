@@ -36,6 +36,7 @@ interface DWVBuilding {
   }
   text_address?: string
   cover?: string
+  features?: string[] | any[] // Comodidades/features do empreendimento
 }
 
 interface DWVThirdPartyProperty {
@@ -51,6 +52,7 @@ interface DWVThirdPartyProperty {
   text_address?: string
   gallery?: string[]
   cover?: string
+  features?: string[] | any[] // Comodidades/features do imóvel
 }
 
 interface DWVImovel {
@@ -235,6 +237,85 @@ function mapStatus(constructionStage?: string, constructionStageRaw?: string): '
 }
 
 /**
+ * Extrai tags/comodidades das features da DWV
+ * Tenta mapear features para tags do site
+ */
+function extractTags(unit?: DWVUnit, building?: DWVBuilding, thirdParty?: DWVThirdPartyProperty): string[] {
+  const tags: string[] = []
+  const allFeatures: string[] = []
+  
+  // Coletar todas as features
+  if (unit?.features) {
+    const unitFeatures = Array.isArray(unit.features) 
+      ? unit.features.map(f => typeof f === 'string' ? f : f.name || f.title || String(f))
+      : []
+    allFeatures.push(...unitFeatures)
+  }
+  
+  if (building?.features) {
+    const buildingFeatures = Array.isArray(building.features)
+      ? building.features.map(f => typeof f === 'string' ? f : f.name || f.title || String(f))
+      : []
+    allFeatures.push(...buildingFeatures)
+  }
+  
+  if (thirdParty?.features) {
+    const thirdPartyFeatures = Array.isArray(thirdParty.features)
+      ? thirdParty.features.map(f => typeof f === 'string' ? f : f.name || f.title || String(f))
+      : []
+    allFeatures.push(...thirdPartyFeatures)
+  }
+  
+  // Normalizar features para comparação (lowercase, sem acentos)
+  const normalizedFeatures = allFeatures.map(f => 
+    f.toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim()
+  )
+  
+  // Mapear para tags do site
+  const tagMap: { [key: string]: string } = {
+    'frente mar': 'Frente Mar',
+    'frente ao mar': 'Frente Mar',
+    'frente mar': 'Frente Mar',
+    'vista mar': 'Vista Mar',
+    'vista para o mar': 'Vista Mar',
+    'vista do mar': 'Vista Mar',
+    'quadra mar': 'Quadra Mar',
+    'quadra do mar': 'Quadra Mar',
+    'mobiliado': 'Mobiliado',
+    'mobiliada': 'Mobiliado',
+    'area de lazer': 'Área de Lazer',
+    'area lazer': 'Área de Lazer',
+    'lazer': 'Área de Lazer',
+    'home club': 'Home Club completo',
+    'home club completo': 'Home Club completo',
+    'clube': 'Home Club completo',
+  }
+  
+  // Procurar correspondências (busca parcial também)
+  normalizedFeatures.forEach(feature => {
+    // Busca exata
+    if (tagMap[feature]) {
+      if (!tags.includes(tagMap[feature])) {
+        tags.push(tagMap[feature])
+      }
+      return
+    }
+    
+    // Busca parcial (ex: "apartamento frente mar" contém "frente mar")
+    Object.keys(tagMap).forEach(key => {
+      if (feature.includes(key) && !tags.includes(tagMap[key])) {
+        tags.push(tagMap[key])
+      }
+    })
+  })
+  
+  return tags
+}
+
+/**
  * Converte um imóvel da API DWV para o formato do site
  */
 export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
@@ -343,6 +424,17 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
   // Remover duplicatas das fotos
   fotos = [...new Set(fotos)]
 
+  // Extrair tags/comodidades das features
+  const tags = extractTags(unit, building, thirdParty)
+  
+  // Detectar comodidades básicas das tags para caracteristicas
+  const temFrenteMar = tags.includes('Frente Mar')
+  const temVistaMar = tags.includes('Vista Mar')
+  const temQuadraMar = tags.includes('Quadra Mar')
+  const temMobiliado = tags.includes('Mobiliado')
+  const temAreaLazer = tags.includes('Área de Lazer')
+  const temHomeClub = tags.includes('Home Club completo')
+
   // Contato da construtora ou padrão
   const whatsapp = dwvImovel.construction_company?.whatsapp || '(47) 99753-0113'
   const corretor = dwvImovel.construction_company?.title || 'Nox Imóveis'
@@ -362,15 +454,16 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
       vagas,
       area,
       suite: suites, // Número de suítes separado
-      frenteMar: false, // TODO: Verificar se há campo na API
-      piscina: false,
-      churrasqueira: false,
-      academia: false,
-      portaria: false,
-      elevador: false,
-      varanda: false,
-      sacada: false,
+      frenteMar: temFrenteMar,
+      piscina: temAreaLazer || temHomeClub, // Se tem área de lazer, provavelmente tem piscina
+      churrasqueira: false, // TODO: Verificar se há campo específico
+      academia: temHomeClub, // Home Club geralmente tem academia
+      portaria: false, // TODO: Verificar se há campo específico
+      elevador: false, // TODO: Verificar se há campo específico
+      varanda: false, // TODO: Verificar se há campo específico
+      sacada: false, // TODO: Verificar se há campo específico
     },
+    tags, // Tags para filtros (Frente Mar, Vista Mar, etc.)
     fotos,
     fotoPrincipalIndex: 0,
     contato: {
