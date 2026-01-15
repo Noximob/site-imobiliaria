@@ -20,12 +20,13 @@ export async function GET() {
   try {
     console.log('🔍 Iniciando busca de imóveis da API DWV...')
     
-    const dwvImoveis = await fetchDWVImoveis()
+    // Buscar apenas primeira página para preview (mais rápido)
+    const dwvImoveis = await fetchDWVImoveis(1, 20)
     
     if (dwvImoveis.length === 0) {
       return NextResponse.json({
         success: false,
-        message: 'Nenhum imóvel encontrado na API DWV',
+        message: 'Nenhum imóvel encontrado na API DWV. Verifique se o token está correto e se há imóveis selecionados para integração.',
         preview: []
       })
     }
@@ -37,9 +38,10 @@ export async function GET() {
 
     return NextResponse.json({
       success: true,
-      message: `${imoveisConvertidos.length} imóveis encontrados na API DWV`,
+      message: `${imoveisConvertidos.length} imóveis encontrados na API DWV (primeira página)`,
       preview: imoveisConvertidos.slice(0, 5), // Mostrar apenas 5 como preview
-      total: imoveisConvertidos.length
+      total: imoveisConvertidos.length,
+      note: 'Esta é apenas a primeira página. Ao sincronizar, todos os imóveis serão buscados.'
     })
   } catch (error: any) {
     console.error('❌ Erro ao buscar imóveis da DWV:', error)
@@ -65,8 +67,8 @@ export async function POST(request: NextRequest) {
     console.log('🔄 Iniciando sincronização com API DWV...')
     console.log(`📋 Modo: ${mode}`)
 
-    // Buscar imóveis da API DWV
-    const dwvImoveis = await fetchDWVImoveis()
+    // Buscar TODOS os imóveis da API DWV (com paginação automática)
+    const dwvImoveis = await fetchDWVImoveis(1, 100) // Busca todas as páginas automaticamente
     
     if (dwvImoveis.length === 0) {
       return NextResponse.json({
@@ -160,4 +162,5 @@ export async function POST(request: NextRequest) {
     }, { status: 500 })
   }
 }
+
 

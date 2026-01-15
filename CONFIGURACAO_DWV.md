@@ -31,9 +31,14 @@ Você precisa fornecer:
 Adicione estas variáveis de ambiente:
 
 ```
-DWV_API_URL=https://api.dwv.com.br/v1/imoveis
+DWV_API_URL=https://api.dwvapp.com.br/integration/properties
 DWV_API_TOKEN=seu_token_aqui
 ```
+
+**Nota:** 
+- Use `https://api.dwvapp.com.br` para produção
+- Use `https://apisandbox.dwvapp.com.br` para testes (sandbox)
+- O token deve ser gerado no sistema de Integração DWV
 
 ## 🔧 Passo 3: Ajustar o código
 
@@ -127,4 +132,5 @@ Se você tiver:
 - URL e token
 
 Posso ajudar a ajustar o código para funcionar perfeitamente!
+
 
