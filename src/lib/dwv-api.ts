@@ -434,7 +434,7 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
   fotos = Array.from(new Set(fotos))
 
   // Extrair tags/comodidades das features
-  const tags = extractTags(unit, building, thirdParty)
+  const tags = extractTags(unit || undefined, building || undefined, thirdParty || undefined)
   
   // Detectar comodidades básicas das tags para caracteristicas
   const temFrenteMar = tags.includes('Frente Mar')
