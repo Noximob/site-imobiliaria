@@ -7,9 +7,11 @@ export default function DWVSyncPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [isSyncing, setIsSyncing] = useState(false)
   const [isTesting, setIsTesting] = useState(false)
+  const [isTestingUrls, setIsTestingUrls] = useState(false)
   const [preview, setPreview] = useState<any>(null)
   const [syncResult, setSyncResult] = useState<any>(null)
   const [testResult, setTestResult] = useState<any>(null)
+  const [urlTestResult, setUrlTestResult] = useState<any>(null)
   const [error, setError] = useState<string | null>(null)
 
   const handleTest = async () => {
