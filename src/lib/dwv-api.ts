@@ -92,8 +92,10 @@ interface DWVResponse {
  */
 export async function fetchDWVImoveis(page: number = 1, limit: number = 100): Promise<DWVImovel[]> {
   try {
-    // URL base - usar produção ou sandbox conforme configurado
-    const baseUrl = process.env.DWV_API_URL || 'https://api.dwvapp.com.br/integration/properties'
+    // URL base - conforme documentação oficial DWV
+    // Sandbox: https://apisandbox.dwvapp.com.br/integration/properties
+    // Produção: https://api.dwvapp.com.br/integration/properties
+    const baseUrl = process.env.DWV_API_URL || 'https://apisandbox.dwvapp.com.br/integration/properties'
     const apiToken = process.env.DWV_API_TOKEN
 
     if (!apiToken) {
@@ -108,16 +110,18 @@ export async function fetchDWVImoveis(page: number = 1, limit: number = 100): Pr
     do {
       console.log(`🔍 Buscando imóveis da API DWV (página ${currentPage}/${lastPage})...`)
 
-      // Remover filtros da URL - buscar todos e filtrar depois
-      // A API pode não aceitar esses filtros ou os imóveis podem ter status diferente
+      // Conforme documentação: /integration/properties?page=1&limit=20
+      // Não usar filtros de status aqui - buscar todos e filtrar depois
       const url = `${baseUrl}?page=${currentPage}&limit=${limit}`
       
       console.log(`📍 URL: ${url}`)
+      console.log(`🔑 Token: ${apiToken.substring(0, 20)}...`)
       
+      // Conforme documentação oficial: header 'token: TOKEN_IMOBILIARIA'
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-          'token': apiToken, // DWV usa header 'token', não 'Authorization'
+          'token': apiToken, // Formato correto conforme documentação: header 'token'
           'Content-Type': 'application/json',
         },
       })
