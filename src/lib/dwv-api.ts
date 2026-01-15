@@ -108,7 +108,11 @@ export async function fetchDWVImoveis(page: number = 1, limit: number = 100): Pr
     do {
       console.log(`🔍 Buscando imóveis da API DWV (página ${currentPage}/${lastPage})...`)
 
-      const url = `${baseUrl}?page=${currentPage}&limit=${limit}&status=active&deleted=false`
+      // Remover filtros da URL - buscar todos e filtrar depois
+      // A API pode não aceitar esses filtros ou os imóveis podem ter status diferente
+      const url = `${baseUrl}?page=${currentPage}&limit=${limit}`
+      
+      console.log(`📍 URL: ${url}`)
       
       const response = await fetch(url, {
         method: 'GET',
@@ -136,16 +140,35 @@ export async function fetchDWVImoveis(page: number = 1, limit: number = 100): Pr
 
       const data: DWVResponse = await response.json()
       
-      // Filtrar apenas imóveis ativos e não deletados
-      const imoveisAtivos = data.data.filter(imovel => 
-        imovel.status === 'active' && !imovel.deleted
+      console.log(`📊 Resposta da API: total=${data.total}, perPage=${data.perPage}, page=${data.page}, lastPage=${data.lastPage}`)
+      console.log(`📊 Imóveis brutos retornados: ${data.data.length}`)
+      
+      // Log do primeiro imóvel para debug
+      if (data.data.length > 0) {
+        console.log(`📋 Primeiro imóvel:`, {
+          id: data.data[0].id,
+          title: data.data[0].title,
+          status: data.data[0].status,
+          deleted: data.data[0].deleted,
+          hasUnit: !!data.data[0].unit,
+          hasBuilding: !!data.data[0].building,
+          hasThirdParty: !!data.data[0].third_party_property,
+        })
+      }
+      
+      // Filtrar apenas imóveis não deletados (remover filtro de status para pegar todos)
+      // O usuário escolhe quais imóveis aparecer no pacote, então não devemos filtrar por status
+      const imoveisValidos = data.data.filter(imovel => 
+        !imovel.deleted && (imovel.unit || imovel.building || imovel.third_party_property)
       )
       
-      allImoveis.push(...imoveisAtivos)
+      console.log(`✅ Imóveis válidos após filtro: ${imoveisValidos.length}`)
+      
+      allImoveis.push(...imoveisValidos)
       lastPage = data.lastPage
       currentPage++
       
-      console.log(`✅ Página ${currentPage - 1}: ${imoveisAtivos.length} imóveis encontrados (Total: ${allImoveis.length})`)
+      console.log(`✅ Página ${currentPage - 1}: ${imoveisValidos.length} imóveis válidos (Total: ${allImoveis.length})`)
       
       // Pequeno delay para respeitar rate limit
       if (currentPage <= lastPage) {
