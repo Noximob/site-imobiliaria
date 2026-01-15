@@ -20,6 +20,7 @@ interface DWVUnit {
   cover?: string
   additional_galleries?: string[]
   payment_conditions?: any[]
+  features?: string[] | any[] // Comodidades/features da unidade
 }
 
 interface DWVBuilding {
