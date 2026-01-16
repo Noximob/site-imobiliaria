@@ -159,10 +159,33 @@ export default function DWVSyncPage() {
                 onClick={async () => {
                   try {
                     const response = await fetch('/api/dwv/debug')
-                    const data = await response.json()
-                    alert(`Diagnóstico:\nTotal: ${data.total}\nPublicados: ${data.publicados}\nDWV: ${data.fonteDWV}\nNão-DWV: ${data.naoDWV}`)
-                  } catch (err) {
-                    alert('Erro ao verificar')
+                    const responseText = await response.text()
+                    let data: any = {}
+                    
+                    try {
+                      data = JSON.parse(responseText)
+                    } catch (parseErr) {
+                      alert(`Erro ao processar resposta:\n${responseText.substring(0, 200)}`)
+                      return
+                    }
+
+                    if (data.error) {
+                      alert(`Erro: ${data.error}\nStatus: ${data.status || 'N/A'}`)
+                      return
+                    }
+
+                    const msg = `Diagnóstico dos Imóveis:\n\n` +
+                      `Arquivo existe: ${data.arquivoExiste ? 'Sim' : 'Não'}\n` +
+                      `Total: ${data.total || 0}\n` +
+                      `Publicados: ${data.publicados || 0}\n` +
+                      `Não publicados: ${data.naoPublicados || 0}\n` +
+                      `Da DWV: ${data.fonteDWV || 0}\n` +
+                      `Não-DWV (manuais): ${data.naoDWV || 0}\n` +
+                      `Com problemas: ${data.imoveisComProblemas || 0}`
+                    
+                    alert(msg)
+                  } catch (err: any) {
+                    alert(`Erro ao verificar: ${err.message || 'Erro desconhecido'}`)
                   }
                 }}
                 className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm"
