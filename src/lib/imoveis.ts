@@ -34,15 +34,29 @@ export async function getAllImoveis(): Promise<Imovel[]> {
 
     const imoveis = await response.json();
     
-    // Converter datas de string para Date
-    const imoveisFormatados = imoveis.map((imovel: any) => ({
-      ...imovel,
-      createdAt: imovel.createdAt ? new Date(imovel.createdAt) : new Date(),
-      updatedAt: imovel.updatedAt ? new Date(imovel.updatedAt) : new Date(),
-    })) as Imovel[];
+    // Converter datas de string para Date e garantir que publicado seja boolean
+    const imoveisFormatados = imoveis.map((imovel: any) => {
+      // Garantir que publicado seja sempre boolean
+      let publicado = false
+      if (imovel.publicado !== undefined && imovel.publicado !== null) {
+        publicado = imovel.publicado === true || 
+                    imovel.publicado === 'true' || 
+                    imovel.publicado === 1 ||
+                    (imovel.publicado !== false && imovel.publicado !== 'false' && imovel.publicado !== 0 && imovel.publicado !== '')
+      }
+      
+      return {
+        ...imovel,
+        createdAt: imovel.createdAt ? new Date(imovel.createdAt) : new Date(),
+        updatedAt: imovel.updatedAt ? new Date(imovel.updatedAt) : new Date(),
+        publicado: Boolean(publicado), // Sempre converter para boolean
+      }
+    }) as Imovel[];
 
-    // Filtrar apenas publicados
-    const imoveisPublicados = imoveisFormatados.filter(imovel => imovel.publicado);
+    // Filtrar apenas publicados (agora que temos certeza que é boolean)
+    const imoveisPublicados = imoveisFormatados.filter(imovel => imovel.publicado === true);
+    
+    console.log(`📊 Imóveis carregados: ${imoveis.length} total, ${imoveisPublicados.length} publicados`)
 
     // Atualizar cache
     cachedImoveis = imoveisPublicados;
