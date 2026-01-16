@@ -26,28 +26,14 @@ export default function DWVSyncPage() {
         body: JSON.stringify({ mode }),
       })
 
-      // Ler resposta UMA VEZ - não pode chamar .json() ou .text() duas vezes
+      // Ler resposta UMA VEZ apenas
+      const responseText = await response.text()
+      
       let data: any
       try {
-        const contentType = response.headers.get('content-type')
-        const isJson = contentType && contentType.includes('application/json')
-        
-        if (isJson) {
-          data = await response.json()
-        } else {
-          const text = await response.text()
-          throw new Error(`Resposta não é JSON (${response.status}): ${text.substring(0, 200)}`)
-        }
-      } catch (err: any) {
-        // Se não conseguir fazer parse, retornar erro
-        const errorMessage = err.message || `Erro ao processar resposta: ${response.status} ${response.statusText}`
-        throw new Error(errorMessage)
-      }
-      
-      // Agora verificar se foi erro HTTP
-      if (!response.ok) {
-        const errorMessage = data?.error || data?.message || `Erro HTTP ${response.status}`
-        throw new Error(errorMessage)
+        data = JSON.parse(responseText)
+      } catch (parseError) {
+        throw new Error(`Erro ao processar resposta do servidor: ${response.status} - ${responseText.substring(0, 200)}`)
       }
 
       if (data.success) {
