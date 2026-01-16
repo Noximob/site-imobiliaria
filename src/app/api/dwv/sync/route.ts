@@ -73,9 +73,9 @@ export async function POST(request: NextRequest) {
       convertDWVToImovel(dwv, index)
     )
 
-    // Buscar imóveis existentes do GitHub
+    // Buscar imóveis existentes do GitHub e obter SHA
     let imoveisExistentes: any[] = []
-    let sha: string | undefined
+    let fileSha: string | undefined
 
     try {
       const { data } = await octokit.repos.getContent({
@@ -84,12 +84,18 @@ export async function POST(request: NextRequest) {
         path: IMOVEIS_PATH,
       })
 
+      // Pegar SHA do arquivo (necessário para atualização)
+      if ('sha' in data && data.sha) {
+        fileSha = data.sha
+        console.log('📝 Arquivo existe no GitHub, SHA:', fileSha.substring(0, 10) + '...')
+      }
+
       if ('content' in data && data.content) {
         try {
           const content = Buffer.from(data.content, 'base64').toString('utf-8')
           if (content.trim()) {
             imoveisExistentes = JSON.parse(content)
-            sha = data.sha
+            console.log(`📋 ${imoveisExistentes.length} imóveis encontrados no GitHub`)
           }
         } catch (parseError: any) {
           console.error('❌ Erro ao fazer parse do JSON do GitHub:', parseError.message)
@@ -99,8 +105,9 @@ export async function POST(request: NextRequest) {
       }
     } catch (error: any) {
       if (error.status === 404) {
-        // Arquivo não existe, será criado
+        // Arquivo não existe, será criado (não precisa de SHA)
         console.log('📝 Arquivo de imóveis não existe, será criado')
+        fileSha = undefined
       } else {
         console.error('❌ Erro ao buscar imóveis do GitHub:', error.message)
         throw error
@@ -157,19 +164,32 @@ export async function POST(request: NextRequest) {
 
     // Salvar no GitHub
     try {
-      await octokit.repos.createOrUpdateFileContents({
+      const fileContent = JSON.stringify(imoveisFinais, null, 2)
+      const encodedContent = Buffer.from(fileContent, 'utf-8').toString('base64')
+
+      const updateParams: any = {
         owner: REPO_OWNER,
         repo: REPO_NAME,
         path: IMOVEIS_PATH,
         message: `Sync DWV: ${imoveisNovos.length} imóveis (${mode})`,
-        content: Buffer.from(JSON.stringify(imoveisFinais, null, 2), 'utf-8').toString('base64'),
+        content: encodedContent,
         branch: 'main',
-        ...(sha && { sha }),
-      })
+      }
+
+      // Se o arquivo já existe, precisa fornecer o SHA
+      if (fileSha) {
+        updateParams.sha = fileSha
+        console.log('📝 Atualizando arquivo existente no GitHub...')
+      } else {
+        console.log('📝 Criando novo arquivo no GitHub...')
+      }
+
+      await octokit.repos.createOrUpdateFileContents(updateParams)
 
       console.log('✅ Imóveis salvos no GitHub com sucesso')
     } catch (githubError: any) {
       console.error('❌ Erro ao salvar no GitHub:', githubError.message)
+      console.error('❌ Detalhes:', githubError)
       throw new Error(`Erro ao salvar no GitHub: ${githubError.message}`)
     }
 
