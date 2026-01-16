@@ -50,7 +50,15 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { mode = 'merge' } = await request.json() // 'merge' ou 'replace'
+    // Tentar ler o body, mas não falhar se vier vazio ou inválido
+    let mode = 'merge'
+    try {
+      const body = await request.json()
+      mode = body.mode || 'merge'
+    } catch (error) {
+      // Body vazio ou inválido, usar padrão 'merge'
+      mode = 'merge'
+    }
     
     console.log('🔄 Iniciando sincronização com API DWV...')
     console.log(`📋 Modo: ${mode}`)
@@ -97,34 +105,74 @@ export async function POST(request: NextRequest) {
     }
 
     let imoveisFinais: any[]
+    let removidos = 0
+    let adicionados = 0
+    let atualizados = 0
 
     if (mode === 'replace') {
       // Substituir todos os imóveis pelos da DWV
       imoveisFinais = imoveisNovos
+      adicionados = imoveisNovos.length
+      removidos = imoveisExistentes.length
       console.log(`✅ Modo REPLACE: ${imoveisNovos.length} imóveis da DWV`)
     } else {
-      // Modo MERGE: manter existentes e adicionar/atualizar da DWV
-      const imoveisMap = new Map<string, any>()
+      // Modo MERGE: 
+      // - Remover imóveis da DWV que não estão mais na lista atual
+      // - Adicionar novos da DWV
+      // - Atualizar existentes da DWV
+      // - MANTER imóveis que não são da DWV (imóveis adicionados manualmente)
       
-      // Adicionar imóveis existentes
-      imoveisExistentes.forEach(imovel => {
-        imoveisMap.set(imovel.id, imovel)
+      // Criar Set com IDs dos imóveis da DWV atuais (para verificação rápida)
+      const idsDWV = new Set(imoveisNovos.map(im => im.id))
+      
+      // Separar imóveis existentes em: da DWV (com flag fonteDWV) e não-DWV (manuais)
+      const imoveisDWVExistentes = imoveisExistentes.filter(im => im.fonteDWV === true)
+      const imoveisNaoDWV = imoveisExistentes.filter(im => im.fonteDWV !== true)
+      
+      // Criar mapa com imóveis da DWV existentes (para preservar dados como visualizações)
+      const imoveisDWVMap = new Map<string, any>()
+      imoveisDWVExistentes.forEach(imovel => {
+        imoveisDWVMap.set(imovel.id, imovel)
       })
       
-      // Adicionar/atualizar com imóveis da DWV
+      // Processar imóveis novos da DWV
       imoveisNovos.forEach(imovel => {
-        imoveisMap.set(imovel.id, {
+        const existia = imoveisDWVMap.has(imovel.id)
+        
+        imoveisDWVMap.set(imovel.id, {
           ...imovel,
           // Preservar visualizações se já existir
-          visualizacoes: imoveisMap.get(imovel.id)?.visualizacoes || 0,
+          visualizacoes: imoveisDWVMap.get(imovel.id)?.visualizacoes || 0,
           // Preservar createdAt se já existir, senão usar novo
-          createdAt: imoveisMap.get(imovel.id)?.createdAt || imovel.createdAt,
+          createdAt: imoveisDWVMap.get(imovel.id)?.createdAt || imovel.createdAt,
           updatedAt: new Date(), // Sempre atualizar updatedAt
+          fonteDWV: true, // Garantir flag
         })
+        
+        if (exisia) {
+          atualizados++
+        } else {
+          adicionados++
+        }
       })
       
-      imoveisFinais = Array.from(imoveisMap.values())
-      console.log(`✅ Modo MERGE: ${imoveisExistentes.length} existentes + ${imoveisNovos.length} da DWV = ${imoveisFinais.length} total`)
+      // Contar quantos foram removidos (eram da DWV mas não estão mais na lista atual)
+      // Removidos = imóveis que tinham fonteDWV mas não estão na lista nova
+      const idsDWVNovos = new Set(imoveisNovos.map(im => im.id))
+      removidos = imoveisDWVExistentes.filter(im => !idsDWVNovos.has(im.id)).length
+      
+      // Combinar: imóveis da DWV (atualizados) + imóveis não-DWV (mantidos)
+      imoveisFinais = [
+        ...Array.from(imoveisDWVMap.values()),
+        ...imoveisNaoDWV
+      ]
+      
+      console.log(`✅ Modo MERGE:`)
+      console.log(`   - Adicionados da DWV: ${adicionados}`)
+      console.log(`   - Atualizados da DWV: ${atualizados}`)
+      console.log(`   - Removidos da DWV (não estão mais na lista): ${removidos}`)
+      console.log(`   - Mantidos não-DWV (manuais): ${imoveisNaoDWV.length}`)
+      console.log(`   - Total final: ${imoveisFinais.length}`)
     }
 
     // Salvar no GitHub
@@ -140,10 +188,12 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: `${imoveisNovos.length} imóveis sincronizados com sucesso`,
+      message: `Sincronização concluída: ${adicionados} adicionados, ${atualizados} atualizados, ${removidos} removidos`,
       total: imoveisFinais.length,
-      novos: imoveisNovos.length,
-      existentes: imoveisExistentes.length
+      adicionados,
+      atualizados,
+      removidos,
+      totalDWV: imoveisNovos.length
     })
   } catch (error: any) {
     console.error('❌ Erro ao sincronizar imóveis:', error)

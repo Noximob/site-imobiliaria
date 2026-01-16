@@ -26,14 +26,27 @@ export default function DWVSyncPage() {
         body: JSON.stringify({ mode }),
       })
 
+      if (!response.ok) {
+        const errorText = await response.text()
+        let errorMessage = 'Erro ao sincronizar'
+        try {
+          const errorData = JSON.parse(errorText)
+          errorMessage = errorData.error || errorData.message || errorMessage
+        } catch {
+          errorMessage = errorText || `Erro HTTP ${response.status}`
+        }
+        throw new Error(errorMessage)
+      }
+
       const data = await response.json()
 
       if (data.success) {
         setSyncResult(data)
       } else {
-        setError(data.error || 'Erro ao sincronizar')
+        setError(data.error || data.message || 'Erro ao sincronizar')
       }
     } catch (err: any) {
+      console.error('Erro ao sincronizar:', err)
       setError(err.message || 'Erro ao conectar com a API')
     } finally {
       setIsSyncing(false)
@@ -137,9 +150,11 @@ export default function DWVSyncPage() {
               <h2 className="text-xl font-semibold text-gray-900">Sincronização Concluída</h2>
             </div>
             <div className="space-y-2 text-gray-700">
-              <p><strong>Total de imóveis:</strong> {syncResult.total}</p>
-              <p><strong>Novos da DWV:</strong> {syncResult.novos}</p>
-              <p><strong>Existentes:</strong> {syncResult.existentes}</p>
+              <p><strong>Total de imóveis no site:</strong> {syncResult.total}</p>
+              <p><strong>Adicionados:</strong> <span className="text-green-600">{syncResult.adicionados || 0}</span></p>
+              <p><strong>Atualizados:</strong> <span className="text-blue-600">{syncResult.atualizados || 0}</span></p>
+              <p><strong>Removidos:</strong> <span className="text-red-600">{syncResult.removidos || 0}</span></p>
+              <p><strong>Total da DWV:</strong> {syncResult.totalDWV || 0}</p>
               <p className="text-green-600 font-semibold mt-4">{syncResult.message}</p>
               <p className="text-sm text-gray-500 mt-2">
                 Os imóveis sincronizados já estão disponíveis na página de busca.

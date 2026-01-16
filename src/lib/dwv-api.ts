@@ -524,6 +524,7 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
     updatedAt: new Date(dwvImovel.last_updated_at || new Date()),
     publicado: true,
     selecaoNox: false,
+    fonteDWV: true, // Marca que este imóvel veio da DWV
   }
 }
 
