@@ -26,19 +26,41 @@ export default function DWVSyncPage() {
         body: JSON.stringify({ mode }),
       })
 
+      // Verificar se a resposta é JSON válido
+      const contentType = response.headers.get('content-type')
+      const isJson = contentType && contentType.includes('application/json')
+      
       if (!response.ok) {
-        const errorText = await response.text()
-        let errorMessage = 'Erro ao sincronizar'
+        let errorMessage = `Erro HTTP ${response.status}`
         try {
-          const errorData = JSON.parse(errorText)
-          errorMessage = errorData.error || errorData.message || errorMessage
-        } catch {
-          errorMessage = errorText || `Erro HTTP ${response.status}`
+          if (isJson) {
+            const errorData = await response.json()
+            errorMessage = errorData.error || errorData.message || errorMessage
+          } else {
+            const errorText = await response.text()
+            errorMessage = errorText || errorMessage
+          }
+        } catch (err) {
+          errorMessage = `Erro ao processar resposta: ${response.status} ${response.statusText}`
         }
         throw new Error(errorMessage)
       }
 
-      const data = await response.json()
+      // Tentar fazer parse do JSON, mas tratar erro se não for JSON
+      let data
+      try {
+        if (isJson) {
+          data = await response.json()
+        } else {
+          const text = await response.text()
+          throw new Error(`Resposta não é JSON: ${text.substring(0, 100)}`)
+        }
+      } catch (err: any) {
+        if (err.message && err.message.includes('JSON')) {
+          throw new Error(`Erro ao processar resposta do servidor: ${err.message}`)
+        }
+        throw err
+      }
 
       if (data.success) {
         setSyncResult(data)
