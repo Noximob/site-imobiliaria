@@ -258,7 +258,7 @@ function mapStatus(constructionStage?: string, constructionStageRaw?: string): '
 /**
  * Extrai tags/comodidades das features da DWV
  */
-function extractTags(unit?: DWVUnit, building?: DWVBuilding, thirdParty?: DWVThirdPartyProperty): string[] {
+function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, thirdParty?: DWVThirdPartyProperty | null): string[] {
   const tags: string[] = []
   const allTags: string[] = []
   
@@ -323,7 +323,7 @@ function extractTags(unit?: DWVUnit, building?: DWVBuilding, thirdParty?: DWVThi
 /**
  * Extrai endereço de building ou third_party_property
  */
-function extractAddress(building?: DWVBuilding, thirdParty?: DWVThirdPartyProperty): any {
+function extractAddress(building?: DWVBuilding | null, thirdParty?: DWVThirdPartyProperty | null): any {
   const defaultAddress = {
     cidade: 'penha',
     bairro: '',
@@ -368,7 +368,7 @@ function extractAddress(building?: DWVBuilding, thirdParty?: DWVThirdPartyProper
 /**
  * Extrai fotos de unit, building e third_party_property
  */
-function extractFotos(unit?: DWVUnit, building?: DWVBuilding, thirdParty?: DWVThirdPartyProperty): string[] {
+function extractFotos(unit?: DWVUnit | null, building?: DWVBuilding | null, thirdParty?: DWVThirdPartyProperty | null): string[] {
   const fotos: string[] = []
   
   // Fotos do unit
