@@ -149,7 +149,7 @@ export async function POST(request: NextRequest) {
           fonteDWV: true, // Garantir flag
         })
         
-        if (exisia) {
+        if (exista) {
           atualizados++
         } else {
           adicionados++
