@@ -2,7 +2,11 @@
  * Integração com API DWV
  * 
  * Esta função busca imóveis da API DWV e converte para o formato do site
- * Documentação: https://apisandbox.dwvapp.com.br/docs
+ * Documentação oficial: https://app.dwvapp.com.br/docs
+ * 
+ * URLs:
+ * - Produção: https://agencies.dwvapp.com.br/integration/properties
+ * - Sandbox: https://apisandbox.dwvapp.com.br/integration/properties
  */
 
 interface DWVUnit {
@@ -93,9 +97,10 @@ interface DWVResponse {
 export async function fetchDWVImoveis(page: number = 1, limit: number = 100): Promise<DWVImovel[]> {
   try {
     // URL base - conforme documentação oficial DWV
-    // Sandbox: https://apisandbox.dwvapp.com.br/integration/properties
-    // Produção: https://api.dwvapp.com.br/integration/properties
-    const baseUrl = process.env.DWV_API_URL || 'https://apisandbox.dwvapp.com.br/integration/properties'
+    // URLs oficiais conforme documentação:
+    // - Produção: https://agencies.dwvapp.com.br/integration/properties
+    // - Sandbox: https://apisandbox.dwvapp.com.br/integration/properties
+    const baseUrl = process.env.DWV_API_URL || 'https://agencies.dwvapp.com.br/integration/properties'
     const apiToken = process.env.DWV_API_TOKEN
 
     if (!apiToken) {

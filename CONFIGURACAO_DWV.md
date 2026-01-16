@@ -37,9 +37,10 @@ DWV_API_TOKEN=seu_token_aqui
 
 **Nota:** 
 - **Sandbox (testes)**: `https://apisandbox.dwvapp.com.br/integration/properties`
-- **Produção**: `https://api.dwvapp.com.br/integration/properties`
+- **Produção (oficial)**: `https://agencies.dwvapp.com.br/integration/properties` ⭐
 - O token deve ser gerado no sistema de Integração DWV (`https://app.dwvapp.com.br/integrations`)
 - **Formato de autenticação**: Header `token: TOKEN_IMOBILIARIA` (conforme documentação oficial)
+- **Documentação completa**: https://app.dwvapp.com.br/docs
 
 ## 🔧 Passo 3: Ajustar o código
 
