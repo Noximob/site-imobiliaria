@@ -138,11 +138,15 @@ export async function POST(request: NextRequest) {
       imoveisNovos.forEach((imovel: any) => {
         const jaExistia = imoveisDWVMap.has(imovel.id)
 
+        // Garantir que publicado seja sempre true para imóveis da DWV
+        const imovelExistente = imoveisDWVMap.get(imovel.id)
+        
         imoveisDWVMap.set(imovel.id, {
           ...imovel,
-          visualizacoes: imoveisDWVMap.get(imovel.id)?.visualizacoes || 0,
-          createdAt: imoveisDWVMap.get(imovel.id)?.createdAt || imovel.createdAt,
+          visualizacoes: imovelExistente?.visualizacoes || 0,
+          createdAt: imovelExistente?.createdAt || imovel.createdAt,
           updatedAt: new Date().toISOString(),
+          publicado: true, // Garantir que sempre está publicado
           fonteDWV: true,
         })
 
