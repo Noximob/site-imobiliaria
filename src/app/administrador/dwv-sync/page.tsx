@@ -26,40 +26,28 @@ export default function DWVSyncPage() {
         body: JSON.stringify({ mode }),
       })
 
-      // Verificar se a resposta é JSON válido
-      const contentType = response.headers.get('content-type')
-      const isJson = contentType && contentType.includes('application/json')
-      
-      if (!response.ok) {
-        let errorMessage = `Erro HTTP ${response.status}`
-        try {
-          if (isJson) {
-            const errorData = await response.json()
-            errorMessage = errorData.error || errorData.message || errorMessage
-          } else {
-            const errorText = await response.text()
-            errorMessage = errorText || errorMessage
-          }
-        } catch (err) {
-          errorMessage = `Erro ao processar resposta: ${response.status} ${response.statusText}`
-        }
-        throw new Error(errorMessage)
-      }
-
-      // Tentar fazer parse do JSON, mas tratar erro se não for JSON
-      let data
+      // Ler resposta UMA VEZ - não pode chamar .json() ou .text() duas vezes
+      let data: any
       try {
+        const contentType = response.headers.get('content-type')
+        const isJson = contentType && contentType.includes('application/json')
+        
         if (isJson) {
           data = await response.json()
         } else {
           const text = await response.text()
-          throw new Error(`Resposta não é JSON: ${text.substring(0, 100)}`)
+          throw new Error(`Resposta não é JSON (${response.status}): ${text.substring(0, 200)}`)
         }
       } catch (err: any) {
-        if (err.message && err.message.includes('JSON')) {
-          throw new Error(`Erro ao processar resposta do servidor: ${err.message}`)
-        }
-        throw err
+        // Se não conseguir fazer parse, retornar erro
+        const errorMessage = err.message || `Erro ao processar resposta: ${response.status} ${response.statusText}`
+        throw new Error(errorMessage)
+      }
+      
+      // Agora verificar se foi erro HTTP
+      if (!response.ok) {
+        const errorMessage = data?.error || data?.message || `Erro HTTP ${response.status}`
+        throw new Error(errorMessage)
       }
 
       if (data.success) {
