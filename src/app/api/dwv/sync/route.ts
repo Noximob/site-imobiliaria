@@ -137,7 +137,7 @@ export async function POST(request: NextRequest) {
       
       // Processar imóveis novos da DWV
       imoveisNovos.forEach(imovel => {
-        const existia = imoveisDWVMap.has(imovel.id)
+        const jaExistia = imoveisDWVMap.has(imovel.id)
         
         imoveisDWVMap.set(imovel.id, {
           ...imovel,
@@ -149,7 +149,7 @@ export async function POST(request: NextRequest) {
           fonteDWV: true, // Garantir flag
         })
         
-        if (exista) {
+        if (jaExistia) {
           atualizados++
         } else {
           adicionados++
