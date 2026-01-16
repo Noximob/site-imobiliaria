@@ -1,47 +1,93 @@
 /**
  * Integração com API DWV
  * 
- * Esta função busca imóveis da API DWV e converte para o formato do site
- * Documentação oficial: https://app.dwvapp.com.br/docs
+ * Documentação oficial: https://api.dwvapp.com.br/
+ * Versão: 1.0.2
+ * E-mail: suporte@dwvapp.com.br
  * 
  * URLs:
  * - Produção: https://agencies.dwvapp.com.br/integration/properties
  * - Sandbox: https://apisandbox.dwvapp.com.br/integration/properties
  */
 
+// ============================================
+// INTERFACES DWV (Conforme documentação oficial)
+// ============================================
+
+interface DWVSizes {
+  small?: string
+  medium?: string
+  large?: string
+  circle?: string
+  xfullhd?: string
+  xlarge?: string
+  xmedium?: string
+  xmediumhd?: string
+}
+
+interface DWVImage {
+  url: string
+  sizes?: DWVSizes
+}
+
+interface DWVAddress {
+  street_name?: string
+  street_number?: string
+  neighborhood?: string
+  complement?: string
+  zip_code?: string
+  city?: string
+  state?: string
+  country?: string
+  latitude?: number
+  longitude?: number
+}
+
+interface DWVFeature {
+  type?: string
+  tags?: string[]
+}
+
+interface DWVAdditionalGallery {
+  title?: string
+  files?: DWVImage[]
+}
+
 interface DWVUnit {
   id?: number
   title?: string
   price?: string
   type?: string
+  floor_plan?: any
+  section?: any
   parking_spaces?: number
-  dorms?: number
+  dorms?: number // Total de quartos (inclui suítes)
   suites?: number
-  bathroom?: number
+  bathroom?: number // Total de banheiros
   private_area?: string
   util_area?: string
   total_area?: string
-  cover?: string
-  additional_galleries?: string[]
   payment_conditions?: any[]
-  features?: string[] | any[] // Comodidades/features da unidade
+  cover?: string
+  additional_galleries?: DWVAdditionalGallery[]
+  features?: DWVFeature[]
 }
 
 interface DWVBuilding {
   id?: number
   title?: string
-  gallery?: string[]
-  address?: {
-    street?: string
-    number?: string
-    neighborhood?: string
-    city?: string
-    state?: string
-    zip_code?: string
-  }
+  gallery?: DWVImage[]
+  architectural_plans?: DWVImage[]
+  video?: string
+  videos?: any[]
+  tour_360?: string
+  description?: any[]
+  address?: DWVAddress
   text_address?: string
-  cover?: string
-  features?: string[] | any[] // Comodidades/features do empreendimento
+  incorporation?: string
+  cover?: DWVImage
+  features?: DWVFeature[]
+  delivery_date?: string
 }
 
 interface DWVThirdPartyProperty {
@@ -49,6 +95,7 @@ interface DWVThirdPartyProperty {
   title?: string
   price?: string
   type?: string
+  unit_info?: string
   dorms?: number
   suites?: number
   bathroom?: number
@@ -57,9 +104,22 @@ interface DWVThirdPartyProperty {
   util_area?: string
   total_area?: string
   text_address?: string
-  gallery?: string[]
-  cover?: string
-  features?: string[] | any[] // Comodidades/features do imóvel
+  address?: DWVAddress
+  gallery?: DWVImage[]
+  cover?: DWVImage
+  features?: DWVFeature[]
+  payment_conditions?: any[]
+}
+
+interface DWVConstructionCompany {
+  title?: string
+  site?: string
+  whatsapp?: string
+  instagram?: string
+  email?: string
+  business_contacts?: any[]
+  additionals_contacts?: any[]
+  logo?: DWVImage
 }
 
 interface DWVImovel {
@@ -75,11 +135,7 @@ interface DWVImovel {
   unit?: DWVUnit | null
   building?: DWVBuilding | null
   third_party_property?: DWVThirdPartyProperty | null
-  construction_company?: {
-    title?: string
-    whatsapp?: string
-    email?: string
-  }
+  construction_company?: DWVConstructionCompany
   last_updated_at: string
 }
 
@@ -91,127 +147,33 @@ interface DWVResponse {
   data: DWVImovel[]
 }
 
+// ============================================
+// FUNÇÕES AUXILIARES
+// ============================================
+
 /**
- * Busca imóveis da API DWV com paginação
+ * Extrai URL da imagem (usa large ou url direto)
  */
-export async function fetchDWVImoveis(page: number = 1, limit: number = 100): Promise<DWVImovel[]> {
-  try {
-    // URL base - conforme documentação oficial DWV
-    // URLs oficiais conforme documentação:
-    // - Produção: https://agencies.dwvapp.com.br/integration/properties
-    // - Sandbox: https://apisandbox.dwvapp.com.br/integration/properties
-    const baseUrl = process.env.DWV_API_URL || 'https://agencies.dwvapp.com.br/integration/properties'
-    const apiToken = process.env.DWV_API_TOKEN
-
-    if (!apiToken) {
-      console.error('❌ DWV_API_TOKEN não configurado no Netlify')
-      return []
-    }
-
-    const allImoveis: DWVImovel[] = []
-    let currentPage = page
-    let lastPage = 1
-
-    do {
-      console.log(`🔍 Buscando imóveis da API DWV (página ${currentPage}/${lastPage})...`)
-
-      // Conforme documentação: /integration/properties?page=1&limit=20
-      // Não usar filtros de status aqui - buscar todos e filtrar depois
-      const url = `${baseUrl}?page=${currentPage}&limit=${limit}`
-      
-      console.log(`📍 URL: ${url}`)
-      console.log(`🔑 Token: ${apiToken.substring(0, 20)}...`)
-      
-      // Conforme documentação oficial: header 'token: TOKEN_IMOBILIARIA'
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'token': apiToken, // Formato correto conforme documentação: header 'token'
-          'Content-Type': 'application/json',
-        },
-      })
-
-      if (!response.ok) {
-        if (response.status === 401) {
-          console.error('❌ Token inválido ou não autorizado')
-          return []
-        }
-        if (response.status === 429) {
-          console.error('❌ Limite de requisições excedido (100/minuto). Aguardando...')
-          await new Promise(resolve => setTimeout(resolve, 60000)) // Aguarda 1 minuto
-          continue
-        }
-        console.error(`❌ Erro na API DWV: ${response.status} ${response.statusText}`)
-        try {
-          const errorText = await response.text()
-          console.error('❌ Resposta:', errorText)
-        } catch (e) {
-          console.error('❌ Não foi possível ler resposta de erro')
-        }
-        return []
-      }
-
-      let data: DWVResponse
-      try {
-        data = await response.json()
-      } catch (error: any) {
-        console.error('❌ Erro ao fazer parse do JSON da API DWV:', error)
-        const text = await response.text().catch(() => 'Não foi possível ler resposta')
-        console.error('❌ Resposta bruta:', text.substring(0, 500))
-        return []
-      }
-      
-      console.log(`📊 Resposta da API: total=${data.total}, perPage=${data.perPage}, page=${data.page}, lastPage=${data.lastPage}`)
-      console.log(`📊 Imóveis brutos retornados: ${data.data.length}`)
-      
-      // Log detalhado dos primeiros 3 imóveis para debug
-      if (data.data.length > 0) {
-        console.log(`📋 Primeiros imóveis retornados pela API:`)
-        data.data.slice(0, 3).forEach((imovel, idx) => {
-          console.log(`  ${idx + 1}. ID: ${imovel.id}, Título: ${imovel.title}`)
-          console.log(`     Status: ${imovel.status}, Deletado: ${imovel.deleted}`)
-          console.log(`     Tem Unit: ${!!imovel.unit}, Tem Building: ${!!imovel.building}, Tem ThirdParty: ${!!imovel.third_party_property}`)
-        })
-      } else {
-        console.log(`⚠️ A API retornou 0 imóveis na página ${currentPage}`)
-      }
-      
-      // Filtrar apenas imóveis não deletados
-      // REMOVIDO: filtro de status - pegar todos os status
-      // REMOVIDO: filtro de unit/building/thirdParty - pode ter imóveis sem esses campos
-      // O usuário escolhe quais imóveis aparecer no pacote, então não devemos filtrar
-      const imoveisValidos = data.data.filter(imovel => !imovel.deleted)
-      
-      console.log(`✅ Imóveis válidos após filtro (apenas !deleted): ${imoveisValidos.length} de ${data.data.length}`)
-      
-      // Se todos foram filtrados, mostrar por quê
-      if (data.data.length > 0 && imoveisValidos.length === 0) {
-        console.log(`⚠️ Todos os ${data.data.length} imóveis foram filtrados!`)
-        console.log(`   Verificando motivos:`)
-        const deletados = data.data.filter(i => i.deleted).length
-        console.log(`   - Deletados: ${deletados}`)
-      }
-      
-      allImoveis.push(...imoveisValidos)
-      lastPage = data.lastPage
-      currentPage++
-      
-      console.log(`✅ Página ${currentPage - 1}: ${imoveisValidos.length} imóveis válidos (Total: ${allImoveis.length})`)
-      
-      // Pequeno delay para respeitar rate limit
-      if (currentPage <= lastPage) {
-        await new Promise(resolve => setTimeout(resolve, 100))
-      }
-      
-    } while (currentPage <= lastPage)
-    
-    console.log(`✅ Total: ${allImoveis.length} imóveis encontrados na API DWV`)
-    
-    return allImoveis
-  } catch (error) {
-    console.error('❌ Erro ao buscar imóveis da API DWV:', error)
-    return []
+function extractImageUrl(image?: string | DWVImage): string | null {
+  if (!image) return null
+  
+  if (typeof image === 'string') {
+    return image
   }
+  
+  // Preferir large, depois medium, depois url direto
+  return image.sizes?.large || image.sizes?.medium || image.sizes?.xlarge || image.url || null
+}
+
+/**
+ * Extrai múltiplas URLs de imagens de um array
+ */
+function extractImageUrls(images?: (string | DWVImage)[]): string[] {
+  if (!images || !Array.isArray(images)) return []
+  
+  return images
+    .map(img => extractImageUrl(img))
+    .filter((url): url is string => url !== null)
 }
 
 /**
@@ -238,15 +200,13 @@ function parsePrice(priceStr?: string): number {
 function normalizeCity(city?: string): string {
   if (!city) return 'penha'
   
-  // Normalizar a cidade para comparação (lowercase, sem acentos)
   const normalized = city.toLowerCase().trim()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/-/g, ' ')
   
-  // Mapear para formato do site
   if (normalized.includes('penha')) return 'penha'
-  if (normalized.includes('picarras') || normalized.includes('picarras')) return 'balneario-picarras'
+  if (normalized.includes('picarras')) return 'balneario-picarras'
   if (normalized.includes('barra') && normalized.includes('velha')) return 'barra-velha'
   
   return normalized
@@ -262,12 +222,17 @@ function mapType(dwvType?: string): 'casa' | 'apartamento' | 'terreno' | 'comerc
     'apartment': 'apartamento',
     'house': 'casa',
     'land': 'terreno',
-    'comercialRoom': 'comercial',
+    'comercialroom': 'comercial',
+    'comercial_room': 'comercial',
     'showroom': 'comercial',
     'warehouse': 'comercial',
+    'hotel': 'comercial',
     'penthouse': 'cobertura',
     'roof': 'cobertura',
     'differentiated': 'cobertura',
+    'garden': 'apartamento',
+    'duplex': 'casa',
+    'smallfarm': 'terreno',
   }
   
   return typeMap[dwvType.toLowerCase()] || 'apartamento'
@@ -292,82 +257,62 @@ function mapStatus(constructionStage?: string, constructionStageRaw?: string): '
 
 /**
  * Extrai tags/comodidades das features da DWV
- * Tenta mapear features para tags do site
  */
 function extractTags(unit?: DWVUnit, building?: DWVBuilding, thirdParty?: DWVThirdPartyProperty): string[] {
   const tags: string[] = []
-  const allFeatures: string[] = []
+  const allTags: string[] = []
   
-  // Coletar todas as features
-  if (unit?.features) {
-    const unitFeatures = Array.isArray(unit.features) 
-      ? unit.features.map(f => typeof f === 'string' ? f : f.name || f.title || String(f))
-      : []
-    allFeatures.push(...unitFeatures)
+  // Coletar tags de todas as features
+  const collectTags = (features?: DWVFeature[]) => {
+    if (!features || !Array.isArray(features)) return
+    
+    features.forEach(feature => {
+      if (feature.tags && Array.isArray(feature.tags)) {
+        allTags.push(...feature.tags.map(t => t.toLowerCase().trim()))
+      }
+    })
   }
   
-  if (building?.features) {
-    const buildingFeatures = Array.isArray(building.features)
-      ? building.features.map(f => typeof f === 'string' ? f : f.name || f.title || String(f))
-      : []
-    allFeatures.push(...buildingFeatures)
-  }
+  collectTags(unit?.features)
+  collectTags(building?.features)
+  collectTags(thirdParty?.features)
   
-  if (thirdParty?.features) {
-    const thirdPartyFeatures = Array.isArray(thirdParty.features)
-      ? thirdParty.features.map(f => typeof f === 'string' ? f : f.name || f.title || String(f))
-      : []
-    allFeatures.push(...thirdPartyFeatures)
-  }
-  
-  // Normalizar features para comparação (lowercase, sem acentos)
-  const normalizedFeatures = allFeatures.map(f => 
-    f.toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .trim()
+  // Normalizar tags para comparação
+  const normalizedTags = allTags.map(t =>
+    t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim()
   )
   
   // Mapear para tags do site
   const tagMap: { [key: string]: string } = {
     'frente ao mar': 'Frente Mar',
+    'frente mar': 'Frente Mar',
     'vista para o mar': 'Vista Mar',
+    'vista mar': 'Vista Mar',
     'vista do mar': 'Vista Mar',
     'quadra do mar': 'Quadra Mar',
+    'quadra mar': 'Quadra Mar',
     'mobiliada': 'Mobiliado',
+    'mobiliado': 'Mobiliado',
     'area de lazer': 'Área de Lazer',
     'area lazer': 'Área de Lazer',
     'lazer': 'Área de Lazer',
     'home club completo': 'Home Club completo',
+    'home club': 'Home Club completo',
     'clube': 'Home Club completo',
   }
   
-  // Adicionar variações comuns (sem duplicatas)
-  const variations: { [key: string]: string } = {
-    'frente mar': 'Frente Mar',
-    'vista mar': 'Vista Mar',
-    'quadra mar': 'Quadra Mar',
-    'mobiliado': 'Mobiliado',
-    'home club': 'Home Club completo',
-  }
-  
-  // Mesclar ambos os objetos
-  const finalTagMap = { ...tagMap, ...variations }
-  
-  // Procurar correspondências (busca parcial também)
-  normalizedFeatures.forEach(feature => {
+  // Adicionar tags mapeadas (sem duplicatas)
+  normalizedTags.forEach(tag => {
     // Busca exata
-    if (finalTagMap[feature]) {
-      if (!tags.includes(finalTagMap[feature])) {
-        tags.push(finalTagMap[feature])
-      }
+    if (tagMap[tag] && !tags.includes(tagMap[tag])) {
+      tags.push(tagMap[tag])
       return
     }
     
-    // Busca parcial (ex: "apartamento frente mar" contém "frente mar")
-    Object.keys(finalTagMap).forEach(key => {
-      if (feature.includes(key) && !tags.includes(finalTagMap[key])) {
-        tags.push(finalTagMap[key])
+    // Busca parcial
+    Object.keys(tagMap).forEach(key => {
+      if (tag.includes(key) && !tags.includes(tagMap[key])) {
+        tags.push(tagMap[key])
       }
     })
   })
@@ -376,13 +321,220 @@ function extractTags(unit?: DWVUnit, building?: DWVBuilding, thirdParty?: DWVThi
 }
 
 /**
+ * Extrai endereço de building ou third_party_property
+ */
+function extractAddress(building?: DWVBuilding, thirdParty?: DWVThirdPartyProperty): any {
+  const defaultAddress = {
+    cidade: 'penha',
+    bairro: '',
+    rua: '',
+    numero: '',
+    cep: '',
+    estado: 'SC',
+  }
+  
+  // Priorizar building.address, depois third_party.address
+  let address: DWVAddress | undefined
+  
+  if (building?.address) {
+    address = building.address
+  } else if (thirdParty?.address) {
+    address = thirdParty.address
+  }
+  
+  if (address) {
+    return {
+      cidade: normalizeCity(address.city),
+      bairro: address.neighborhood || '',
+      rua: address.street_name || '',
+      numero: address.street_number || '',
+      cep: address.zip_code || '',
+      estado: address.state || 'SC',
+    }
+  }
+  
+  // Fallback: tentar extrair de text_address
+  const textAddress = building?.text_address || thirdParty?.text_address || ''
+  if (textAddress) {
+    const cityMatch = textAddress.match(/(Penha|Balneário Piçarras|Barra Velha)/i)
+    if (cityMatch) {
+      defaultAddress.cidade = normalizeCity(cityMatch[0])
+    }
+  }
+  
+  return defaultAddress
+}
+
+/**
+ * Extrai fotos de unit, building e third_party_property
+ */
+function extractFotos(unit?: DWVUnit, building?: DWVBuilding, thirdParty?: DWVThirdPartyProperty): string[] {
+  const fotos: string[] = []
+  
+  // Fotos do unit
+  if (unit) {
+    // Cover do unit
+    if (unit.cover) {
+      fotos.push(unit.cover)
+    }
+    
+    // Additional galleries do unit
+    if (unit.additional_galleries && Array.isArray(unit.additional_galleries)) {
+      unit.additional_galleries.forEach(gallery => {
+        if (gallery.files && Array.isArray(gallery.files)) {
+          gallery.files.forEach(file => {
+            const url = extractImageUrl(file)
+            if (url) fotos.push(url)
+          })
+        }
+      })
+    }
+  }
+  
+  // Fotos do building
+  if (building) {
+    // Cover do building (prioridade)
+    if (building.cover) {
+      const coverUrl = extractImageUrl(building.cover)
+      if (coverUrl) fotos.unshift(coverUrl) // Adicionar no início
+    }
+    
+    // Gallery do building
+    if (building.gallery && Array.isArray(building.gallery)) {
+      const buildingFotos = extractImageUrls(building.gallery)
+      fotos.push(...buildingFotos)
+    }
+  }
+  
+  // Fotos do third_party_property
+  if (thirdParty) {
+    // Cover do third_party
+    if (thirdParty.cover) {
+      const coverUrl = extractImageUrl(thirdParty.cover)
+      if (coverUrl) fotos.unshift(coverUrl)
+    }
+    
+    // Gallery do third_party
+    if (thirdParty.gallery && Array.isArray(thirdParty.gallery)) {
+      const thirdPartyFotos = extractImageUrls(thirdParty.gallery)
+      fotos.push(...thirdPartyFotos)
+    }
+  }
+  
+  // Remover duplicatas mantendo ordem
+  return Array.from(new Set(fotos))
+}
+
+// ============================================
+// FUNÇÃO PRINCIPAL: Buscar imóveis da DWV
+// ============================================
+
+/**
+ * Busca imóveis da API DWV com paginação automática
+ */
+export async function fetchDWVImoveis(page: number = 1, limit: number = 100): Promise<DWVImovel[]> {
+  try {
+    const baseUrl = process.env.DWV_API_URL || 'https://agencies.dwvapp.com.br/integration/properties'
+    const apiToken = process.env.DWV_API_TOKEN
+
+    if (!apiToken) {
+      console.error('❌ DWV_API_TOKEN não configurado no Netlify')
+      return []
+    }
+
+    const allImoveis: DWVImovel[] = []
+    let currentPage = page
+    let lastPage = 1
+
+    do {
+      console.log(`🔍 Buscando imóveis da API DWV (página ${currentPage}/${lastPage})...`)
+
+      const url = `${baseUrl}?page=${currentPage}&limit=${limit}`
+      
+      console.log(`📍 URL: ${url}`)
+      console.log(`🔑 Token: ${apiToken.substring(0, 20)}...`)
+      
+      // Autenticação conforme documentação: header 'token: TOKEN_IMOBILIARIA'
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'token': apiToken,
+          'Content-Type': 'application/json',
+        },
+      })
+
+      if (!response.ok) {
+        if (response.status === 401) {
+          console.error('❌ Token inválido ou não autorizado')
+          return []
+        }
+        if (response.status === 429) {
+          console.error('❌ Limite de requisições excedido (100/minuto). Aguardando...')
+          await new Promise(resolve => setTimeout(resolve, 60000))
+          continue
+        }
+        console.error(`❌ Erro na API DWV: ${response.status} ${response.statusText}`)
+        try {
+          const errorText = await response.text()
+          console.error('❌ Resposta:', errorText)
+        } catch (e) {
+          console.error('❌ Não foi possível ler resposta de erro')
+        }
+        return []
+      }
+
+      let data: DWVResponse
+      try {
+        data = await response.json()
+      } catch (error: any) {
+        console.error('❌ Erro ao fazer parse do JSON da API DWV:', error)
+        const text = await response.text().catch(() => 'Não foi possível ler resposta')
+        console.error('❌ Resposta bruta:', text.substring(0, 500))
+        return []
+      }
+      
+      console.log(`📊 Resposta da API: total=${data.total}, perPage=${data.perPage}, page=${data.page}, lastPage=${data.lastPage}`)
+      console.log(`📊 Imóveis brutos retornados: ${data.data.length}`)
+      
+      // Filtrar apenas imóveis não deletados
+      const imoveisValidos = data.data.filter(imovel => !imovel.deleted)
+      
+      console.log(`✅ Imóveis válidos após filtro (apenas !deleted): ${imoveisValidos.length} de ${data.data.length}`)
+      
+      allImoveis.push(...imoveisValidos)
+      lastPage = data.lastPage
+      currentPage++
+      
+      console.log(`✅ Página ${currentPage - 1}: ${imoveisValidos.length} imóveis válidos (Total: ${allImoveis.length})`)
+      
+      // Pequeno delay para respeitar rate limit
+      if (currentPage <= lastPage) {
+        await new Promise(resolve => setTimeout(resolve, 100))
+      }
+      
+    } while (currentPage <= lastPage)
+    
+    console.log(`✅ Total: ${allImoveis.length} imóveis encontrados na API DWV`)
+    
+    return allImoveis
+  } catch (error) {
+    console.error('❌ Erro ao buscar imóveis da API DWV:', error)
+    return []
+  }
+}
+
+// ============================================
+// FUNÇÃO PRINCIPAL: Converter DWV para Imovel
+// ============================================
+
+/**
  * Converte um imóvel da API DWV para o formato do site
  */
 export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
-  // Usar ID da DWV como base, garantir 5 dígitos
+  // ID: usar ID da DWV com 5 dígitos
   const id = dwvImovel.id.toString().padStart(5, '0').slice(-5)
 
-  // Gerar slug do título
+  // Slug: gerar do título
   const slug = dwvImovel.title
     ? dwvImovel.title
         .toLowerCase()
@@ -392,102 +544,63 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
         .replace(/^-+|-+$/g, '') + `-${id}`
     : `imovel-${id}`
 
-  // Determinar se é unit, building ou third_party_property
+  // Extrair dados principais
   const unit = dwvImovel.unit
   const building = dwvImovel.building
   const thirdParty = dwvImovel.third_party_property
 
-  // Extrair informações principais
+  // Preço
   let preco = 0
+  if (unit?.price) preco = parsePrice(unit.price)
+  else if (thirdParty?.price) preco = parsePrice(thirdParty.price)
+
+  // Tipo
   let tipo = 'apartamento' as any
-  let quartos = 0
+  if (unit?.type) tipo = mapType(unit.type)
+  else if (thirdParty?.type) tipo = mapType(thirdParty.type)
+
+  // Quartos e suítes (conforme documentação: quartos incluem suítes)
+  // Total de quartos = dorms (que já inclui suítes)
+  // Quartos sociais = dorms - suites
+  let quartosTotal = 0
   let suites = 0
-  let banheiros = 0
-  let vagas = 0
-  let area = 0
-  let fotos: string[] = []
-  let endereco: any = {
-    cidade: 'penha',
-    bairro: '',
-    rua: '',
-    numero: '',
-    cep: '',
-    estado: 'SC',
-  }
-
-  if (unit) {
-    // É uma unidade (apartamento, casa, etc.)
-    preco = parsePrice(unit.price)
-    tipo = mapType(unit.type)
-    quartos = unit.dorms || 0
-    suites = unit.suites || 0
-    banheiros = unit.bathroom || 0
-    vagas = unit.parking_spaces || 0
-    area = parseArea(unit.private_area || unit.total_area || unit.util_area)
-    
-    // Fotos: cover + additional_galleries
-    if (unit.cover) fotos.push(unit.cover)
-    if (unit.additional_galleries) {
-      fotos.push(...unit.additional_galleries)
-    }
-    
-    // Endereço do building
-    if (building?.address) {
-      endereco = {
-        cidade: normalizeCity(building.address.city),
-        bairro: building.address.neighborhood || '',
-        rua: building.address.street || '',
-        numero: building.address.number || '',
-        cep: building.address.zip_code || '',
-        estado: building.address.state || 'SC',
-      }
-    } else if (building?.text_address) {
-      // Tentar extrair cidade do text_address
-      const cityMatch = building.text_address.match(/(Penha|Balneário Piçarras|Barra Velha)/i)
-      if (cityMatch) {
-        endereco.cidade = normalizeCity(cityMatch[0])
-      }
-    }
-    
-    // Adicionar fotos do building também
-    if (building?.gallery) {
-      fotos.push(...building.gallery)
-    }
-    if (building?.cover) {
-      fotos.unshift(building.cover) // Cover do building como primeira foto
-    }
-  } else if (thirdParty) {
-    // É um imóvel de terceiro (usado)
-    preco = parsePrice(thirdParty.price)
-    tipo = mapType(thirdParty.type)
-    quartos = thirdParty.dorms || 0
-    suites = thirdParty.suites || 0
-    banheiros = thirdParty.bathroom || 0
-    vagas = thirdParty.parking_spaces || 0
-    area = parseArea(thirdParty.private_area || thirdParty.total_area)
-    
-    // Fotos
-    if (thirdParty.cover) fotos.push(thirdParty.cover)
-    if (thirdParty.gallery) {
-      fotos.push(...thirdParty.gallery)
-    }
-    
-    // Endereço do third_party
-    if (thirdParty.text_address) {
-      const cityMatch = thirdParty.text_address.match(/(Penha|Balneário Piçarras|Barra Velha)/i)
-      if (cityMatch) {
-        endereco.cidade = normalizeCity(cityMatch[0])
-      }
-    }
-  }
-
-  // Remover duplicatas das fotos
-  fotos = Array.from(new Set(fotos))
-
-  // Extrair tags/comodidades das features
-  const tags = extractTags(unit || undefined, building || undefined, thirdParty || undefined)
   
-  // Detectar comodidades básicas das tags para caracteristicas
+  if (unit) {
+    quartosTotal = unit.dorms || 0 // Total já inclui suítes
+    suites = unit.suites || 0
+  } else if (thirdParty) {
+    quartosTotal = thirdParty.dorms || 0
+    suites = thirdParty.suites || 0
+  }
+
+  // Banheiros (conforme documentação: total - banheiros da suíte = banheiros sociais)
+  let banheiros = 0
+  if (unit) banheiros = unit.bathroom || 0
+  else if (thirdParty) banheiros = thirdParty.bathroom || 0
+
+  // Vagas
+  let vagas = 0
+  if (unit) vagas = unit.parking_spaces || 0
+  else if (thirdParty) vagas = thirdParty.parking_spaces || 0
+
+  // Área (priorizar private_area, depois total_area, depois util_area)
+  let area = 0
+  if (unit) {
+    area = parseArea(unit.private_area || unit.total_area || unit.util_area)
+  } else if (thirdParty) {
+    area = parseArea(thirdParty.private_area || thirdParty.total_area || thirdParty.util_area)
+  }
+
+  // Endereço
+  const endereco = extractAddress(building, thirdParty)
+
+  // Fotos
+  const fotos = extractFotos(unit, building, thirdParty)
+
+  // Tags/comodidades
+  const tags = extractTags(unit, building, thirdParty)
+
+  // Detectar comodidades para caracteristicas
   const temFrenteMar = tags.includes('Frente Mar')
   const temVistaMar = tags.includes('Vista Mar')
   const temQuadraMar = tags.includes('Quadra Mar')
@@ -495,7 +608,7 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
   const temAreaLazer = tags.includes('Área de Lazer')
   const temHomeClub = tags.includes('Home Club completo')
 
-  // Contato da construtora ou padrão
+  // Contato
   const whatsapp = dwvImovel.construction_company?.whatsapp || '(47) 99753-0113'
   const corretor = dwvImovel.construction_company?.title || 'Nox Imóveis'
 
@@ -509,21 +622,21 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
     status: mapStatus(dwvImovel.construction_stage, dwvImovel.construction_stage_raw),
     endereco,
     caracteristicas: {
-      quartos: quartos + suites, // Total de quartos (incluindo suítes)
+      quartos: quartosTotal, // Total de quartos (já inclui suítes)
       banheiros,
       vagas,
       area,
       suite: suites, // Número de suítes separado
       frenteMar: temFrenteMar,
-      piscina: temAreaLazer || temHomeClub, // Se tem área de lazer, provavelmente tem piscina
-      churrasqueira: false, // TODO: Verificar se há campo específico
-      academia: temHomeClub, // Home Club geralmente tem academia
-      portaria: false, // TODO: Verificar se há campo específico
-      elevador: false, // TODO: Verificar se há campo específico
-      varanda: false, // TODO: Verificar se há campo específico
-      sacada: false, // TODO: Verificar se há campo específico
+      piscina: temAreaLazer || temHomeClub,
+      churrasqueira: false,
+      academia: temHomeClub,
+      portaria: false,
+      elevador: false,
+      varanda: false,
+      sacada: false,
     },
-    tags, // Tags para filtros (Frente Mar, Vista Mar, etc.)
+    tags, // Tags para filtros
     fotos,
     fotoPrincipalIndex: 0,
     contato: {
@@ -534,10 +647,8 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
     visualizacoes: 0,
     createdAt: new Date(dwvImovel.last_updated_at || new Date()),
     updatedAt: new Date(dwvImovel.last_updated_at || new Date()),
-    publicado: true,
+    publicado: true, // Sempre publicado
     selecaoNox: false,
-    fonteDWV: true, // Marca que este imóvel veio da DWV
+    fonteDWV: true, // Marca origem DWV
   }
 }
-
-
