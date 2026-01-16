@@ -17,6 +17,8 @@ function ImoveisPageContent() {
   const [filtrosIniciais, setFiltrosIniciais] = useState<any>({})
   const [isLoading, setIsLoading] = useState(true)
   const [, setFavoritosUpdate] = useState(0) // Para forçar re-render quando favoritos mudarem
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 10
 
   useEffect(() => {
     // Força overflow hidden no body apenas nesta página
@@ -87,6 +89,7 @@ function ImoveisPageContent() {
         }
         
         setImoveis(imoveisData)
+        setCurrentPage(1) // Resetar para página 1 quando filtros mudarem
       } catch (error) {
         console.error('Erro ao carregar imóveis:', error)
         setImoveis([]) // Em caso de erro, definir array vazio para não ficar em loading infinito
@@ -189,8 +192,11 @@ function ImoveisPageContent() {
                   <p className="text-gray-600">Nenhum imóvel encontrado com os filtros selecionados.</p>
                 </div>
               ) : (
-                <div className="space-y-8">
-                  {imoveis.map((imovel) => (
+                <>
+                  <div className="space-y-8">
+                    {imoveis
+                      .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+                      .map((imovel) => (
                     <div key={imovel.id} className="bg-white rounded-lg shadow-lg overflow-hidden flex h-64">
                       <div className="w-64 h-full relative">
                         {imovel.fotos && imovel.fotos.length > 0 ? (
@@ -302,7 +308,67 @@ function ImoveisPageContent() {
                       </div>
                     </div>
                   ))}
-                </div>
+                  </div>
+                  
+                  {/* Paginação */}
+                  {imoveis.length > itemsPerPage && (
+                    <div className="mt-8 flex items-center justify-center gap-2">
+                      <button
+                        onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                        disabled={currentPage === 1}
+                        className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                      >
+                        Anterior
+                      </button>
+                      
+                      <div className="flex items-center gap-1">
+                        {Array.from({ length: Math.ceil(imoveis.length / itemsPerPage) }, (_, i) => i + 1)
+                          .filter(page => {
+                            // Mostrar primeira, última, atual e adjacentes
+                            if (page === 1 || page === Math.ceil(imoveis.length / itemsPerPage)) return true
+                            if (Math.abs(page - currentPage) <= 1) return true
+                            return false
+                          })
+                          .map((page, index, array) => {
+                            // Adicionar "..." entre páginas não adjacentes
+                            const prevPage = array[index - 1]
+                            const showEllipsis = prevPage && page - prevPage > 1
+                            
+                            return (
+                              <div key={page} className="flex items-center gap-1">
+                                {showEllipsis && (
+                                  <span className="px-2 text-gray-500">...</span>
+                                )}
+                                <button
+                                  onClick={() => setCurrentPage(page)}
+                                  className={`px-3 py-2 rounded-lg transition-colors ${
+                                    currentPage === page
+                                      ? 'bg-purple-600 text-white'
+                                      : 'bg-white border border-gray-300 hover:bg-gray-50'
+                                  }`}
+                                >
+                                  {page}
+                                </button>
+                              </div>
+                            )
+                          })}
+                      </div>
+                      
+                      <button
+                        onClick={() => setCurrentPage(prev => Math.min(Math.ceil(imoveis.length / itemsPerPage), prev + 1))}
+                        disabled={currentPage === Math.ceil(imoveis.length / itemsPerPage)}
+                        className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                      >
+                        Próxima
+                      </button>
+                      
+                      <span className="text-sm text-gray-600 ml-4">
+                        Página {currentPage} de {Math.ceil(imoveis.length / itemsPerPage)} 
+                        ({imoveis.length} {imoveis.length === 1 ? 'imóvel' : 'imóveis'})
+                      </span>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </div>
