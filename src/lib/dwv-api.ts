@@ -142,12 +142,24 @@ export async function fetchDWVImoveis(page: number = 1, limit: number = 100): Pr
           continue
         }
         console.error(`❌ Erro na API DWV: ${response.status} ${response.statusText}`)
-        const errorText = await response.text()
-        console.error('❌ Resposta:', errorText)
+        try {
+          const errorText = await response.text()
+          console.error('❌ Resposta:', errorText)
+        } catch (e) {
+          console.error('❌ Não foi possível ler resposta de erro')
+        }
         return []
       }
 
-      const data: DWVResponse = await response.json()
+      let data: DWVResponse
+      try {
+        data = await response.json()
+      } catch (error: any) {
+        console.error('❌ Erro ao fazer parse do JSON da API DWV:', error)
+        const text = await response.text().catch(() => 'Não foi possível ler resposta')
+        console.error('❌ Resposta bruta:', text.substring(0, 500))
+        return []
+      }
       
       console.log(`📊 Resposta da API: total=${data.total}, perPage=${data.perPage}, page=${data.page}, lastPage=${data.lastPage}`)
       console.log(`📊 Imóveis brutos retornados: ${data.data.length}`)
