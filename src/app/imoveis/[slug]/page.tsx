@@ -25,6 +25,7 @@ export default function ImovelDetalhePage() {
   const [imovel, setImovel] = useState<any>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isFavoritado, setIsFavoritado] = useState(false)
+  const [hoveredPhotoIndex, setHoveredPhotoIndex] = useState<number | null>(null)
   const [contatoTipo, setContatoTipo] = useState<'telefone' | 'email' | 'whatsapp'>('email')
   const [formData, setFormData] = useState({
     nome: '',
@@ -171,9 +172,21 @@ export default function ImovelDetalhePage() {
         {/* Galeria de Fotos - Layout: 1 foto grande à esquerda, 4 fotos menores à direita (2x2) */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-3">
           {fotosOrdenadas.length > 0 ? (
-            <div className="grid grid-cols-2 gap-1.5 p-1.5" style={{ height: '400px' }}>
+            <div 
+              className="grid grid-cols-2 gap-1.5 p-1.5" 
+              style={{ height: '400px' }}
+              onMouseLeave={() => setHoveredPhotoIndex(null)}
+            >
               {/* Coluna Esquerda - Foto Principal (grande) */}
-              <div className="relative rounded-lg overflow-hidden h-full">
+              <Link 
+                href={`/imoveis/${imovel.slug}/fotos?index=0`}
+                className={`relative rounded-lg overflow-hidden h-full cursor-pointer transition-all duration-300 ${
+                  hoveredPhotoIndex === null || hoveredPhotoIndex === 0
+                    ? 'opacity-100 scale-100'
+                    : 'opacity-50 scale-95'
+                }`}
+                onMouseEnter={() => setHoveredPhotoIndex(0)}
+              >
                 <Image
                   src={fotosOrdenadas[0]}
                   alt={`${imovel.titulo} - Foto principal`}
@@ -181,13 +194,21 @@ export default function ImovelDetalhePage() {
                   className="object-cover"
                   unoptimized
                 />
-              </div>
+              </Link>
               
               {/* Coluna Direita - Grid 2x2 com 4 fotos menores */}
               <div className="grid grid-cols-2 grid-rows-2 gap-2 h-full">
                 {/* Foto 2 - Superior esquerda */}
                 {fotosOrdenadas[1] && (
-                  <div className="relative rounded-lg overflow-hidden">
+                  <Link
+                    href={`/imoveis/${imovel.slug}/fotos?index=1`}
+                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
+                      hoveredPhotoIndex === null || hoveredPhotoIndex === 1
+                        ? 'opacity-100 scale-100'
+                        : 'opacity-50 scale-95'
+                    }`}
+                    onMouseEnter={() => setHoveredPhotoIndex(1)}
+                  >
                     <Image
                       src={fotosOrdenadas[1]}
                       alt={`${imovel.titulo} - Foto 2`}
@@ -195,12 +216,20 @@ export default function ImovelDetalhePage() {
                       className="object-cover"
                       unoptimized
                     />
-                  </div>
+                  </Link>
                 )}
                 
                 {/* Foto 3 - Superior direita */}
                 {fotosOrdenadas[2] && (
-                  <div className="relative rounded-lg overflow-hidden">
+                  <Link
+                    href={`/imoveis/${imovel.slug}/fotos?index=2`}
+                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
+                      hoveredPhotoIndex === null || hoveredPhotoIndex === 2
+                        ? 'opacity-100 scale-100'
+                        : 'opacity-50 scale-95'
+                    }`}
+                    onMouseEnter={() => setHoveredPhotoIndex(2)}
+                  >
                     <Image
                       src={fotosOrdenadas[2]}
                       alt={`${imovel.titulo} - Foto 3`}
@@ -208,12 +237,20 @@ export default function ImovelDetalhePage() {
                       className="object-cover"
                       unoptimized
                     />
-                  </div>
+                  </Link>
                 )}
                 
                 {/* Foto 4 - Inferior esquerda */}
                 {fotosOrdenadas[3] && (
-                  <div className="relative rounded-lg overflow-hidden">
+                  <Link
+                    href={`/imoveis/${imovel.slug}/fotos?index=3`}
+                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
+                      hoveredPhotoIndex === null || hoveredPhotoIndex === 3
+                        ? 'opacity-100 scale-100'
+                        : 'opacity-50 scale-95'
+                    }`}
+                    onMouseEnter={() => setHoveredPhotoIndex(3)}
+                  >
                     <Image
                       src={fotosOrdenadas[3]}
                       alt={`${imovel.titulo} - Foto 4`}
@@ -221,12 +258,20 @@ export default function ImovelDetalhePage() {
                       className="object-cover"
                       unoptimized
                     />
-                  </div>
+                  </Link>
                 )}
                 
                 {/* Foto 5 - Inferior direita com botão Visualizar Fotos */}
                 {fotosOrdenadas[4] ? (
-                  <Link href={`/imoveis/${imovel.slug}/fotos`} className="relative rounded-lg overflow-hidden group cursor-pointer">
+                  <Link 
+                    href={`/imoveis/${imovel.slug}/fotos?index=4`}
+                    className={`relative rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 ${
+                      hoveredPhotoIndex === null || hoveredPhotoIndex === 4
+                        ? 'opacity-100 scale-100'
+                        : 'opacity-50 scale-95'
+                    }`}
+                    onMouseEnter={() => setHoveredPhotoIndex(4)}
+                  >
                     <Image
                       src={fotosOrdenadas[4]}
                       alt={`${imovel.titulo} - Foto 5`}
@@ -246,7 +291,15 @@ export default function ImovelDetalhePage() {
                   </Link>
                 ) : fotosOrdenadas.length > 0 && fotosOrdenadas.length < 5 ? (
                   // Se tiver menos de 5 fotos mas mais de 0, mostrar botão na última foto disponível
-                  <Link href={`/imoveis/${imovel.slug}/fotos`} className="relative rounded-lg overflow-hidden group cursor-pointer">
+                  <Link 
+                    href={`/imoveis/${imovel.slug}/fotos?index=${fotosOrdenadas.length - 1}`}
+                    className={`relative rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 ${
+                      hoveredPhotoIndex === null || hoveredPhotoIndex === fotosOrdenadas.length - 1
+                        ? 'opacity-100 scale-100'
+                        : 'opacity-50 scale-95'
+                    }`}
+                    onMouseEnter={() => setHoveredPhotoIndex(fotosOrdenadas.length - 1)}
+                  >
                     <Image
                       src={fotosOrdenadas[fotosOrdenadas.length - 1]}
                       alt={`${imovel.titulo} - Última foto`}

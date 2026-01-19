@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useMemo, useRef } from 'react'
-import { notFound, useParams, useRouter } from 'next/navigation'
+import { notFound, useParams, useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { getImovelBySlug } from '@/lib/imoveis'
 import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Maximize, Grid } from 'lucide-react'
@@ -9,10 +9,14 @@ import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Maximize, Grid } from 'l
 export default function FotosPage() {
   const params = useParams()
   const router = useRouter()
+  const searchParams = useSearchParams()
   const slug = params.slug as string
   const [imovel, setImovel] = useState<any>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [fotoAtual, setFotoAtual] = useState(0)
+  
+  // Pegar índice inicial da query string
+  const initialIndex = parseInt(searchParams.get('index') || '0', 10)
+  const [fotoAtual, setFotoAtual] = useState(initialIndex)
   const [zoom, setZoom] = useState(1)
   const thumbnailRefs = useRef<{ [key: number]: HTMLButtonElement | null }>({})
 
@@ -35,6 +39,16 @@ export default function FotosPage() {
     
     loadImovel()
   }, [slug])
+
+  // Atualizar fotoAtual quando initialIndex mudar ou quando fotos forem carregadas
+  useEffect(() => {
+    if (!isLoading && imovel && fotosOrdenadas.length > 0) {
+      const index = parseInt(searchParams.get('index') || '0', 10)
+      if (index >= 0 && index < fotosOrdenadas.length) {
+        setFotoAtual(index)
+      }
+    }
+  }, [isLoading, imovel, searchParams, fotosOrdenadas.length])
 
   // Calcular fotos ordenadas usando useMemo
   const fotosOrdenadas = useMemo(() => {
