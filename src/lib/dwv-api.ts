@@ -187,14 +187,24 @@ function parseArea(areaStr?: string): number {
 
 /**
  * Converte preço de string para número (remove formatação)
- * Suporta formatos brasileiro (400.000,00) e americano (400000.00)
- * A API DWV retorna preços em centavos (sem decimais), então divide por 100 quando necessário
+ * A API DWV retorna preços em centavos (sem decimais) como string
+ * Exemplos: "420492998" (sem decimais, 9 dígitos) = R$ 4.204.929,98
+ * Estratégia: Se não tem decimais e tem 7+ dígitos, os últimos 2 são centavos
  */
 function parsePrice(priceStr?: string): number {
   if (!priceStr) return 0
   
+  // Guardar formato original
+  const originalStr = priceStr.trim()
+  
   // Remove tudo exceto dígitos, vírgulas e pontos
-  let numStr = priceStr.replace(/[^\d,.]/g, '')
+  let numStr = originalStr.replace(/[^\d,.]/g, '')
+  
+  // Verificar se tinha decimais no original
+  const tinhaVirgula = originalStr.includes(',')
+  const temPontoDecimal = originalStr.includes('.') && 
+    originalStr.split('.').pop()?.length === 2
+  const tinhaDecimais = tinhaVirgula || temPontoDecimal
   
   // Se tem vírgula, é formato brasileiro (ex: "400.000,00" ou "400000,00")
   if (numStr.includes(',')) {
@@ -217,17 +227,18 @@ function parsePrice(priceStr?: string): number {
       numStr = numStr.replace(/\./g, '')
     }
   }
-  // Se não tem nem vírgula nem ponto, é número puro (ex: "400000")
-  
-  let price = parseFloat(numStr) || 0
-  
-  // Se o número não tem decimais e é muito grande (mais de 6 dígitos),
-  // provavelmente está em centavos - dividir por 100
-  if (price > 0 && !numStr.includes('.') && !numStr.includes(',') && price >= 100000) {
-    price = price / 100
+  // Se não tem nem vírgula nem ponto, é número puro
+  else {
+    // Se não tinha decimais no original E tem 7+ dígitos, 
+    // assumir que os últimos 2 dígitos são centavos
+    if (!tinhaDecimais && numStr.length >= 7) {
+      const parteInteira = numStr.slice(0, -2)
+      const centavos = numStr.slice(-2)
+      numStr = parteInteira + '.' + centavos
+    }
   }
   
-  return price
+  return parseFloat(numStr) || 0
 }
 
 /**
