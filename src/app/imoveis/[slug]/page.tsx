@@ -180,7 +180,7 @@ export default function ImovelDetalhePage() {
               {/* Coluna Esquerda - Foto Principal (grande) */}
               <Link 
                 href={`/imoveis/${imovel.slug}/fotos?index=0`}
-                className={`relative rounded-lg overflow-hidden h-full cursor-pointer transition-all duration-300 bg-gray-900 ${
+                className={`relative rounded-lg overflow-hidden h-full cursor-pointer transition-all duration-300 bg-gray-900 flex items-center justify-center ${
                   hoveredPhotoIndex === null || hoveredPhotoIndex === 0
                     ? 'opacity-100 scale-100'
                     : 'opacity-50 scale-95'
@@ -191,8 +191,9 @@ export default function ImovelDetalhePage() {
                   src={fotosOrdenadas[0]}
                   alt={`${imovel.titulo} - Foto principal`}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   unoptimized
+                  style={{ objectPosition: 'center' }}
                 />
               </Link>
               
