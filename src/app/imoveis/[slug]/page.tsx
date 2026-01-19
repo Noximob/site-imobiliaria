@@ -16,7 +16,9 @@ import {
   BedDouble,
   Droplet,
   Car,
-  Maximize2
+  Maximize2,
+  Eye,
+  Flame
 } from 'lucide-react'
 
 export default function ImovelDetalhePage() {
@@ -323,20 +325,28 @@ export default function ImovelDetalhePage() {
           )}
         </div>
 
-        {/* Características do Imóvel - Abaixo das Fotos */}
-        <div className="bg-white rounded-lg shadow-sm p-4 mb-3">
-          <div className="flex flex-wrap items-center gap-6 text-sm">
+        {/* Estatísticas do Imóvel - Abaixo das Fotos */}
+        <div className="bg-white rounded-lg shadow-sm p-6 mb-3">
+          <div className="flex flex-wrap items-center gap-8 text-sm">
             {/* Código */}
             <div className="flex items-center gap-2 text-gray-700">
               <Key className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
-              <span className="font-light">{imovel.id.slice(-5).padStart(5, '0')} Código</span>
+              <span className="font-medium">{imovel.id.slice(-5).padStart(5, '0')}</span>
             </div>
             
             {/* Quartos */}
             {imovel.caracteristicas.quartos > 0 && (
               <div className="flex items-center gap-2 text-gray-700">
                 <BedDouble className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
-                <span className="font-light">{imovel.caracteristicas.quartos} {imovel.caracteristicas.quartos === 1 ? 'Quarto' : 'Quartos'}</span>
+                <span className="font-medium">{imovel.caracteristicas.quartos}</span>
+              </div>
+            )}
+            
+            {/* Suítes */}
+            {imovel.caracteristicas.suite && imovel.caracteristicas.suite > 0 && (
+              <div className="flex items-center gap-2 text-gray-700">
+                <BedDouble className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
+                <span className="font-medium">{imovel.caracteristicas.suite} {imovel.caracteristicas.suite === 1 ? 'Suíte' : 'Suítes'}</span>
               </div>
             )}
             
@@ -344,7 +354,7 @@ export default function ImovelDetalhePage() {
             {imovel.caracteristicas.banheiros > 0 && (
               <div className="flex items-center gap-2 text-gray-700">
                 <Droplet className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
-                <span className="font-light">{imovel.caracteristicas.banheiros} {imovel.caracteristicas.banheiros === 1 ? 'Banheiro' : 'Banheiros'}</span>
+                <span className="font-medium">{imovel.caracteristicas.banheiros}</span>
               </div>
             )}
             
@@ -352,7 +362,7 @@ export default function ImovelDetalhePage() {
             {imovel.caracteristicas.vagas > 0 && (
               <div className="flex items-center gap-2 text-gray-700">
                 <Car className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
-                <span className="font-light">{imovel.caracteristicas.vagas} {imovel.caracteristicas.vagas === 1 ? 'Vaga' : 'Vagas'}</span>
+                <span className="font-medium">{imovel.caracteristicas.vagas}</span>
               </div>
             )}
             
@@ -360,52 +370,118 @@ export default function ImovelDetalhePage() {
             {imovel.caracteristicas.area > 0 && (
               <div className="flex items-center gap-2 text-gray-700">
                 <Maximize2 className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
-                <span className="font-light">{imovel.caracteristicas.area} M² Privativos</span>
+                <span className="font-medium">{imovel.caracteristicas.area} M²</span>
               </div>
             )}
             
+            {/* Visualizações */}
+            <div className="flex items-center gap-2 text-gray-700">
+              <Eye className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
+              <span className="font-medium">{imovel.visualizacoes || 0}</span>
+            </div>
           </div>
         </div>
+
+        {/* Badge de Muito Visualizado */}
+        {(imovel.visualizacoes && imovel.visualizacoes > 100) && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-3">
+            <div className="flex items-center gap-2">
+              <Flame className="w-5 h-5 text-red-600" />
+              <span className="text-red-800 font-semibold">
+                Muito visualizado! Já foram {imovel.visualizacoes} acessos.
+              </span>
+            </div>
+          </div>
+        )}
 
         {/* Conteúdo Principal - Layout com Título, Características, Descrição à Esquerda e Formulário à Direita */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Coluna Esquerda - Conteúdo Principal */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Título Completo */}
+            {/* Título Completo com Badges */}
             <div className="bg-white rounded-lg shadow-sm p-6">
               <h1 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4">
-                {(() => {
-                  const tipoTexto = imovel.tipo === 'apartamento' ? 'Apartamento' : 
-                                   imovel.tipo === 'cobertura' ? 'Cobertura diferenciado' : 
-                                   imovel.tipo === 'comercial' ? 'Sala Comercial' : 'Imóvel'
-                  const frenteMarTexto = imovel.caracteristicas.frenteMar ? 'Frente Mar' : ''
-                  const cidadeTexto = `em ${imovel.endereco.cidade}`
-                  const suiteTexto = imovel.caracteristicas.suite ? `com ${imovel.caracteristicas.suite} ${imovel.caracteristicas.suite === 1 ? 'suíte' : 'suítes'}` : ''
-                  const quartosTexto = imovel.caracteristicas.quartos ? `${imovel.caracteristicas.quartos} ${imovel.caracteristicas.quartos === 1 ? 'quarto' : 'quartos'}` : ''
-                  
-                  return `${tipoTexto} ${frenteMarTexto} ${cidadeTexto} ${suiteTexto ? suiteTexto : quartosTexto}`.replace(/\s+/g, ' ').trim()
-                })()}
+                {imovel.titulo}
               </h1>
-            </div>
+              
+              {/* Badges de Destaque */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {imovel.tags && imovel.tags.includes('Mobiliado') && (
+                  <span className="px-3 py-1 bg-yellow-100 border border-yellow-300 text-yellow-800 rounded-md text-sm font-medium">
+                    Mobiliado
+                  </span>
+                )}
+                {imovel.selecaoNox && (
+                  <span className="px-3 py-1 bg-purple-100 border border-purple-300 text-purple-800 rounded-md text-sm font-medium">
+                    Seleção Nox
+                  </span>
+                )}
+              </div>
 
-            {/* Descrição */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                {imovel.descricao}
-              </p>
+              {/* Texto introdutório */}
+              {imovel.descricao && (
+                <div className="mb-4">
+                  <p className="text-gray-700 leading-relaxed text-base">
+                    {imovel.descricao.split('\n')[0]}
+                  </p>
+                </div>
+              )}
+
+              {/* Lista de características principais */}
+              <div className="space-y-2 mb-4">
+                {imovel.caracteristicas.area > 0 && (
+                  <p className="text-gray-700">
+                    - {imovel.caracteristicas.area}m² de área interna
+                  </p>
+                )}
+                {imovel.caracteristicas.suite && imovel.caracteristicas.suite > 0 && (
+                  <p className="text-gray-700">
+                    - {imovel.caracteristicas.suite} {imovel.caracteristicas.suite === 1 ? 'suíte' : 'suítes'}{imovel.caracteristicas.suite === 1 && imovel.tags?.includes('Master') ? ', sendo uma master com banheira' : ''}
+                  </p>
+                )}
+                {imovel.caracteristicas.quartos > 0 && !imovel.caracteristicas.suite && (
+                  <p className="text-gray-700">
+                    - {imovel.caracteristicas.quartos} {imovel.caracteristicas.quartos === 1 ? 'quarto' : 'quartos'}
+                  </p>
+                )}
+                {imovel.caracteristicas.vagas > 0 && (
+                  <p className="text-gray-700">
+                    - {imovel.caracteristicas.vagas} {imovel.caracteristicas.vagas === 1 ? 'vaga de garagem' : 'vagas de garagem'}
+                  </p>
+                )}
+                {imovel.caracteristicas.frenteMar && (
+                  <p className="text-gray-700">
+                    - Sacada ampla com vista para o mar
+                  </p>
+                )}
+                {imovel.endereco.rua && (
+                  <p className="text-gray-700">
+                    - Condomínio {imovel.endereco.rua}, {imovel.endereco.numero} - {imovel.endereco.bairro}, {imovel.endereco.cidade} - {imovel.endereco.estado}
+                  </p>
+                )}
+              </div>
+
+              {/* Descrição completa */}
+              {imovel.descricao && imovel.descricao.split('\n').length > 1 && (
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+                    {imovel.descricao.split('\n').slice(1).join('\n')}
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Características - Apenas tags/comodidades (interligadas com o filtro) */}
             {imovel.tags && imovel.tags.length > 0 && (
               <div className="bg-white rounded-lg shadow-sm p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Características</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <h2 className="text-xl font-semibold text-gray-900 mb-6">Características</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {imovel.tags.map((tag: string, index: number) => (
-                    <div key={index} className="flex items-center gap-2 text-gray-700">
-                      <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-3 h-3 text-white" />
+                    <div key={index} className="flex items-center gap-3 text-gray-700">
+                      <div className="w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
+                        <Check className="w-4 h-4 text-white" strokeWidth={3} />
                       </div>
-                      <span>{tag}</span>
+                      <span className="text-base">{tag}</span>
                     </div>
                   ))}
                 </div>
@@ -430,15 +506,21 @@ export default function ImovelDetalhePage() {
             )}
 
             {/* Localização - Mapa */}
-            {imovel.coordenadas && (
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Localização</h2>
-                <div className="mb-3">
-                  <p className="text-gray-700">
-                    {imovel.endereco.rua}, {imovel.endereco.numero}, {imovel.endereco.bairro} - {imovel.endereco.cidade}/{imovel.endereco.estado}
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">Localização</h2>
+              <div className="mb-4">
+                <div className="flex items-start gap-2 text-gray-700">
+                  <MapPin className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                  <p className="text-base">
+                    {imovel.endereco.rua && `${imovel.endereco.rua}, `}
+                    {imovel.endereco.numero && `${imovel.endereco.numero}, `}
+                    {imovel.endereco.bairro && `${imovel.endereco.bairro} - `}
+                    {imovel.endereco.cidade}/{imovel.endereco.estado}
                   </p>
                 </div>
-                <div className="relative h-96 rounded-lg overflow-hidden bg-gray-200">
+              </div>
+              {imovel.coordenadas ? (
+                <div className="relative h-96 rounded-lg overflow-hidden bg-gray-200 border border-gray-300">
                   <iframe
                     src={`https://maps.google.com/maps?q=${imovel.coordenadas.lat},${imovel.coordenadas.lng}&hl=pt-BR&z=15&output=embed`}
                     width="100%"
@@ -450,8 +532,12 @@ export default function ImovelDetalhePage() {
                     className="absolute inset-0 w-full h-full"
                   />
                 </div>
-              </div>
-            )}
+              ) : (
+                <div className="relative h-96 rounded-lg overflow-hidden bg-gray-200 border border-gray-300 flex items-center justify-center">
+                  <p className="text-gray-500">Mapa não disponível</p>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Coluna Direita - Formulário de Contato */}
