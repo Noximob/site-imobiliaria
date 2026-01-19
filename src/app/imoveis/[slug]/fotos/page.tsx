@@ -40,16 +40,6 @@ export default function FotosPage() {
     loadImovel()
   }, [slug])
 
-  // Atualizar fotoAtual quando initialIndex mudar ou quando fotos forem carregadas
-  useEffect(() => {
-    if (!isLoading && imovel && fotosOrdenadas.length > 0) {
-      const index = parseInt(searchParams.get('index') || '0', 10)
-      if (index >= 0 && index < fotosOrdenadas.length) {
-        setFotoAtual(index)
-      }
-    }
-  }, [isLoading, imovel, searchParams, fotosOrdenadas.length])
-
   // Calcular fotos ordenadas usando useMemo
   const fotosOrdenadas = useMemo(() => {
     if (!imovel || !imovel.fotos || imovel.fotos.length === 0) {
@@ -69,6 +59,16 @@ export default function FotosPage() {
     
     return fotos
   }, [imovel])
+
+  // Atualizar fotoAtual quando initialIndex mudar ou quando fotos forem carregadas
+  useEffect(() => {
+    if (!isLoading && imovel && fotosOrdenadas.length > 0) {
+      const index = parseInt(searchParams.get('index') || '0', 10)
+      if (index >= 0 && index < fotosOrdenadas.length) {
+        setFotoAtual(index)
+      }
+    }
+  }, [isLoading, imovel, searchParams, fotosOrdenadas.length])
 
   // Garantir que fotoAtual está dentro do range válido
   const fotoAtualValida = useMemo(() => {
