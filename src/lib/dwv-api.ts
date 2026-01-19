@@ -188,6 +188,7 @@ function parseArea(areaStr?: string): number {
 /**
  * Converte preço de string para número (remove formatação)
  * Suporta formatos brasileiro (400.000,00) e americano (400000.00)
+ * A API DWV retorna preços em centavos (sem decimais), então divide por 100 quando necessário
  */
 function parsePrice(priceStr?: string): number {
   if (!priceStr) return 0
@@ -218,7 +219,15 @@ function parsePrice(priceStr?: string): number {
   }
   // Se não tem nem vírgula nem ponto, é número puro (ex: "400000")
   
-  return parseFloat(numStr) || 0
+  let price = parseFloat(numStr) || 0
+  
+  // Se o número não tem decimais e é muito grande (mais de 6 dígitos),
+  // provavelmente está em centavos - dividir por 100
+  if (price > 0 && !numStr.includes('.') && !numStr.includes(',') && price >= 100000) {
+    price = price / 100
+  }
+  
+  return price
 }
 
 /**
