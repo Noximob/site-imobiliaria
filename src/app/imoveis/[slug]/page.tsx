@@ -191,7 +191,7 @@ export default function ImovelDetalhePage() {
                   src={fotosOrdenadas[0]}
                   alt={`${imovel.titulo} - Foto principal`}
                   fill
-                  className="object-cover"
+                  className="object-contain bg-gray-100"
                   unoptimized
                 />
               </Link>
@@ -213,7 +213,7 @@ export default function ImovelDetalhePage() {
                       src={fotosOrdenadas[1]}
                       alt={`${imovel.titulo} - Foto 2`}
                       fill
-                      className="object-cover"
+                      className="object-contain bg-gray-100"
                       unoptimized
                     />
                   </Link>
@@ -234,7 +234,7 @@ export default function ImovelDetalhePage() {
                       src={fotosOrdenadas[2]}
                       alt={`${imovel.titulo} - Foto 3`}
                       fill
-                      className="object-cover"
+                      className="object-contain bg-gray-100"
                       unoptimized
                     />
                   </Link>
@@ -255,7 +255,7 @@ export default function ImovelDetalhePage() {
                       src={fotosOrdenadas[3]}
                       alt={`${imovel.titulo} - Foto 4`}
                       fill
-                      className="object-cover"
+                      className="object-contain bg-gray-100"
                       unoptimized
                     />
                   </Link>
@@ -276,7 +276,7 @@ export default function ImovelDetalhePage() {
                       src={fotosOrdenadas[4]}
                       alt={`${imovel.titulo} - Foto 5`}
                       fill
-                      className="object-cover"
+                      className="object-contain bg-gray-100"
                       unoptimized
                     />
                     {/* Botão Visualizar Fotos - Canto inferior direito */}
@@ -304,7 +304,7 @@ export default function ImovelDetalhePage() {
                       src={fotosOrdenadas[fotosOrdenadas.length - 1]}
                       alt={`${imovel.titulo} - Última foto`}
                       fill
-                      className="object-cover"
+                      className="object-contain bg-gray-100"
                       unoptimized
                     />
                     <div className="absolute bottom-2 right-2">

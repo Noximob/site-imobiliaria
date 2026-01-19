@@ -204,7 +204,7 @@ function ImoveisPageContent() {
                             src={imovel.fotos[0]}
                             alt={imovel.titulo}
                             fill
-                            className="object-cover"
+                            className="object-contain bg-gray-100"
                             unoptimized
                           />
                         ) : (

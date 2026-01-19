@@ -152,7 +152,7 @@ interface DWVResponse {
 // ============================================
 
 /**
- * Extrai URL da imagem (usa large ou url direto)
+ * Extrai URL da imagem (prioriza URL original para evitar cortes)
  */
 function extractImageUrl(image?: string | DWVImage): string | null {
   if (!image) return null
@@ -161,8 +161,9 @@ function extractImageUrl(image?: string | DWVImage): string | null {
     return image
   }
   
-  // Preferir large, depois medium, depois url direto
-  return image.sizes?.large || image.sizes?.medium || image.sizes?.xlarge || image.url || null
+  // Priorizar URL original (sem redimensionamento/corte) ou xfullhd (maior versão completa)
+  // As versões large/medium/xlarge podem estar cortadas pelo DWV
+  return image.url || image.sizes?.xfullhd || image.sizes?.xlarge || image.sizes?.large || image.sizes?.medium || null
 }
 
 /**

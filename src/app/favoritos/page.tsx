@@ -116,7 +116,7 @@ export default function FavoritosPage() {
                         src={primeiraFoto}
                         alt={imovel.titulo}
                         fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
+                        className="object-contain hover:scale-105 transition-transform duration-300 bg-gray-100"
                         loading="lazy"
                       />
                       <div className="absolute top-4 left-4">

@@ -276,7 +276,7 @@ export default async function HomePage() {
                           src={imovel.fotos[imovel.fotoPrincipalIndex ?? 0]} 
                           alt={imovel.titulo} 
                           fill
-                          className="object-cover"
+                          className="object-contain bg-gray-100"
                           unoptimized
                         />
                         {/* Tag Mobiliado se existir nas tags */}
