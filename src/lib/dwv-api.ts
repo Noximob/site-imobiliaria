@@ -397,6 +397,8 @@ function extractAddress(building?: DWVBuilding | null, thirdParty?: DWVThirdPart
       numero: address.street_number || '',
       cep: address.zip_code || '',
       estado: address.state || 'SC',
+      lat: address.latitude,
+      lng: address.longitude,
     }
   }
   
@@ -659,6 +661,12 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
   const whatsapp = dwvImovel.construction_company?.whatsapp || '(47) 99753-0113'
   const corretor = dwvImovel.construction_company?.title || 'Nox Imóveis'
 
+  // Coordenadas do endereço
+  const coordenadas = (endereco.lat && endereco.lng) ? {
+    lat: endereco.lat,
+    lng: endereco.lng,
+  } : undefined
+
   return {
     id,
     titulo: dwvImovel.title || `Imóvel ${id}`,
@@ -668,6 +676,7 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
     tipo,
     status: mapStatus(dwvImovel.construction_stage, dwvImovel.construction_stage_raw),
     endereco,
+    coordenadas,
     caracteristicas: {
       quartos: quartosTotal, // Total de quartos (já inclui suítes)
       banheiros,

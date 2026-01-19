@@ -16,9 +16,7 @@ import {
   BedDouble,
   Droplet,
   Car,
-  Maximize2,
-  Eye,
-  Flame
+  Maximize2
 } from 'lucide-react'
 
 export default function ImovelDetalhePage() {
@@ -327,72 +325,60 @@ export default function ImovelDetalhePage() {
 
         {/* Estatísticas do Imóvel - Abaixo das Fotos */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-3">
-          <div className="flex flex-wrap items-center gap-8 text-sm">
+          <div className="flex flex-wrap items-start gap-8 text-sm">
             {/* Código */}
-            <div className="flex items-center gap-2 text-gray-700">
+            <div className="flex flex-col items-center gap-2 text-gray-700">
               <Key className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
-              <span className="font-medium">{imovel.id.slice(-5).padStart(5, '0')}</span>
+              <span className="font-medium text-xs">{imovel.id.slice(-5).padStart(5, '0')}</span>
+              <span className="text-xs text-gray-500">Código</span>
             </div>
             
             {/* Quartos */}
             {imovel.caracteristicas.quartos > 0 && (
-              <div className="flex items-center gap-2 text-gray-700">
+              <div className="flex flex-col items-center gap-2 text-gray-700">
                 <BedDouble className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
-                <span className="font-medium">{imovel.caracteristicas.quartos}</span>
+                <span className="font-medium text-xs">{imovel.caracteristicas.quartos}</span>
+                <span className="text-xs text-gray-500">Quartos</span>
               </div>
             )}
             
             {/* Suítes */}
             {imovel.caracteristicas.suite && imovel.caracteristicas.suite > 0 && (
-              <div className="flex items-center gap-2 text-gray-700">
+              <div className="flex flex-col items-center gap-2 text-gray-700">
                 <BedDouble className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
-                <span className="font-medium">{imovel.caracteristicas.suite} {imovel.caracteristicas.suite === 1 ? 'Suíte' : 'Suítes'}</span>
+                <span className="font-medium text-xs">{imovel.caracteristicas.suite}</span>
+                <span className="text-xs text-gray-500">{imovel.caracteristicas.suite === 1 ? 'Suíte' : 'Suítes'}</span>
               </div>
             )}
             
             {/* Banheiros */}
             {imovel.caracteristicas.banheiros > 0 && (
-              <div className="flex items-center gap-2 text-gray-700">
+              <div className="flex flex-col items-center gap-2 text-gray-700">
                 <Droplet className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
-                <span className="font-medium">{imovel.caracteristicas.banheiros}</span>
+                <span className="font-medium text-xs">{imovel.caracteristicas.banheiros}</span>
+                <span className="text-xs text-gray-500">Banheiros</span>
               </div>
             )}
             
             {/* Vagas */}
             {imovel.caracteristicas.vagas > 0 && (
-              <div className="flex items-center gap-2 text-gray-700">
+              <div className="flex flex-col items-center gap-2 text-gray-700">
                 <Car className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
-                <span className="font-medium">{imovel.caracteristicas.vagas}</span>
+                <span className="font-medium text-xs">{imovel.caracteristicas.vagas}</span>
+                <span className="text-xs text-gray-500">Vagas</span>
               </div>
             )}
             
             {/* Área */}
             {imovel.caracteristicas.area > 0 && (
-              <div className="flex items-center gap-2 text-gray-700">
+              <div className="flex flex-col items-center gap-2 text-gray-700">
                 <Maximize2 className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
-                <span className="font-medium">{imovel.caracteristicas.area} M²</span>
+                <span className="font-medium text-xs">{imovel.caracteristicas.area} M²</span>
+                <span className="text-xs text-gray-500">Privativos</span>
               </div>
             )}
-            
-            {/* Visualizações */}
-            <div className="flex items-center gap-2 text-gray-700">
-              <Eye className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
-              <span className="font-medium">{imovel.visualizacoes || 0}</span>
-            </div>
           </div>
         </div>
-
-        {/* Badge de Muito Visualizado */}
-        {(imovel.visualizacoes && imovel.visualizacoes > 100) && (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-3">
-            <div className="flex items-center gap-2">
-              <Flame className="w-5 h-5 text-red-600" />
-              <span className="text-red-800 font-semibold">
-                Muito visualizado! Já foram {imovel.visualizacoes} acessos.
-              </span>
-            </div>
-          </div>
-        )}
 
         {/* Conteúdo Principal - Layout com Título, Características, Descrição à Esquerda e Formulário à Direita */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
