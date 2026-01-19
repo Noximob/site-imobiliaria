@@ -13,7 +13,13 @@
       "rua": "Avenida Itajuba",
       "numero": "2862",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.699032169604216,
+      "lng": -48.682946545754994
+    },
+    "coordenadas": {
+      "lat": -26.699032169604216,
+      "lng": -48.682946545754994
     },
     "caracteristicas": {
       "quartos": 0,
@@ -68,7 +74,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T19:15:05.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -87,7 +93,13 @@
       "rua": "Avenida Itajuba",
       "numero": "2862",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.699032169604216,
+      "lng": -48.682946545754994
+    },
+    "coordenadas": {
+      "lat": -26.699032169604216,
+      "lng": -48.682946545754994
     },
     "caracteristicas": {
       "quartos": 0,
@@ -142,7 +154,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T19:15:05.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -161,7 +173,13 @@
       "rua": "Rua Engenheiro Antonio Gioppo",
       "numero": "116",
       "cep": "88390000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.654748,
+      "lng": -48.68624
+    },
+    "coordenadas": {
+      "lat": -26.654748,
+      "lng": -48.68624
     },
     "caracteristicas": {
       "quartos": 4,
@@ -237,7 +255,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:23:20.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -256,7 +274,13 @@
       "rua": "Rua Salustrio Santana de Freitas",
       "numero": "106",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.672597,
+      "lng": -48.6889013
+    },
+    "coordenadas": {
+      "lat": -26.672597,
+      "lng": -48.6889013
     },
     "caracteristicas": {
       "quartos": 4,
@@ -321,7 +345,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:35:55.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -340,7 +364,13 @@
       "rua": "R. José Raimundo Ramos",
       "numero": "1280",
       "cep": "88390000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.650315,
+      "lng": -48.698496
+    },
+    "coordenadas": {
+      "lat": -26.650315,
+      "lng": -48.698496
     },
     "caracteristicas": {
       "quartos": 2,
@@ -392,7 +422,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T13:04:10.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -411,7 +441,13 @@
       "rua": "Avenida Avelino José Borges - Beira Mar",
       "numero": "2300",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.6594165,
+      "lng": -48.6867406
+    },
+    "coordenadas": {
+      "lat": -26.6594165,
+      "lng": -48.6867406
     },
     "caracteristicas": {
       "quartos": 3,
@@ -468,7 +504,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-14T17:30:50.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -487,7 +523,13 @@
       "rua": "Rua Costa Esmeralda",
       "numero": "1622",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.654052,
+      "lng": -48.6853898
+    },
+    "coordenadas": {
+      "lat": -26.654052,
+      "lng": -48.6853898
     },
     "caracteristicas": {
       "quartos": 3,
@@ -532,7 +574,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-04T20:01:43.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -551,7 +593,13 @@
       "rua": "R. José Raimundo Ramos",
       "numero": "1280",
       "cep": "88390000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.650315,
+      "lng": -48.698496
+    },
+    "coordenadas": {
+      "lat": -26.650315,
+      "lng": -48.698496
     },
     "caracteristicas": {
       "quartos": 2,
@@ -603,7 +651,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T13:04:10.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -622,7 +670,13 @@
       "rua": "Rua Salustrio Santana de Freitas",
       "numero": "106",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.672597,
+      "lng": -48.6889013
+    },
+    "coordenadas": {
+      "lat": -26.672597,
+      "lng": -48.6889013
     },
     "caracteristicas": {
       "quartos": 4,
@@ -687,7 +741,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:35:55.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -706,7 +760,13 @@
       "rua": "Rua Engenheiro Antonio Gioppo",
       "numero": "116",
       "cep": "88390000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.654748,
+      "lng": -48.68624
+    },
+    "coordenadas": {
+      "lat": -26.654748,
+      "lng": -48.68624
     },
     "caracteristicas": {
       "quartos": 3,
@@ -782,7 +842,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:23:20.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -801,7 +861,13 @@
       "rua": "Rua Engenheiro Antonio Gioppo",
       "numero": "116",
       "cep": "88390000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.654748,
+      "lng": -48.68624
+    },
+    "coordenadas": {
+      "lat": -26.654748,
+      "lng": -48.68624
     },
     "caracteristicas": {
       "quartos": 3,
@@ -877,7 +943,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:23:20.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -896,7 +962,13 @@
       "rua": "Avenida Avelino José Borges - Beira Mar",
       "numero": "2300",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.6594165,
+      "lng": -48.6867406
+    },
+    "coordenadas": {
+      "lat": -26.6594165,
+      "lng": -48.6867406
     },
     "caracteristicas": {
       "quartos": 3,
@@ -953,7 +1025,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:34:17.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -972,7 +1044,13 @@
       "rua": "Rua José Raimundo Ramos",
       "numero": "1475",
       "cep": "88390000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.650488,
+      "lng": -48.698521
+    },
+    "coordenadas": {
+      "lat": -26.650488,
+      "lng": -48.698521
     },
     "caracteristicas": {
       "quartos": 2,
@@ -1019,7 +1097,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T13:13:34.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1038,7 +1116,13 @@
       "rua": "Avenida Avelino José Borges - Beira Mar",
       "numero": "2300",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.6594165,
+      "lng": -48.6867406
+    },
+    "coordenadas": {
+      "lat": -26.6594165,
+      "lng": -48.6867406
     },
     "caracteristicas": {
       "quartos": 3,
@@ -1095,7 +1179,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:34:17.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1114,7 +1198,13 @@
       "rua": "Rua Salustrio Santana de Freitas",
       "numero": "106",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.672597,
+      "lng": -48.6889013
+    },
+    "coordenadas": {
+      "lat": -26.672597,
+      "lng": -48.6889013
     },
     "caracteristicas": {
       "quartos": 3,
@@ -1179,7 +1269,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:35:55.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1198,7 +1288,13 @@
       "rua": "Avenida Avelino José Borges - Beira Mar",
       "numero": "2300",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.6594165,
+      "lng": -48.6867406
+    },
+    "coordenadas": {
+      "lat": -26.6594165,
+      "lng": -48.6867406
     },
     "caracteristicas": {
       "quartos": 3,
@@ -1255,7 +1351,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:34:17.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1274,7 +1370,13 @@
       "rua": "Rua 1206",
       "numero": "69",
       "cep": "88390000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.6955,
+      "lng": -48.692252
+    },
+    "coordenadas": {
+      "lat": -26.6955,
+      "lng": -48.692252
     },
     "caracteristicas": {
       "quartos": 2,
@@ -1336,7 +1438,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-15T16:55:17.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1355,7 +1457,13 @@
       "rua": "Rua Tenente Ataliba Adur",
       "numero": "578",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7198572,
+      "lng": -48.6894904
+    },
+    "coordenadas": {
+      "lat": -26.7198572,
+      "lng": -48.6894904
     },
     "caracteristicas": {
       "quartos": 2,
@@ -1395,7 +1503,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-05T14:17:09.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1414,7 +1522,13 @@
       "rua": "Rua 1206",
       "numero": "69",
       "cep": "88390000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.6955,
+      "lng": -48.692252
+    },
+    "coordenadas": {
+      "lat": -26.6955,
+      "lng": -48.692252
     },
     "caracteristicas": {
       "quartos": 3,
@@ -1476,7 +1590,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-15T16:55:36.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1495,7 +1609,13 @@
       "rua": "Rua Blumenau",
       "numero": "465",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.709654560431684,
+      "lng": -48.68748282824172
+    },
+    "coordenadas": {
+      "lat": -26.709654560431684,
+      "lng": -48.68748282824172
     },
     "caracteristicas": {
       "quartos": 2,
@@ -1529,7 +1649,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:30:20.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1548,7 +1668,13 @@
       "rua": "Avenida Avelino José Borges - Beira Mar",
       "numero": "1890",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.6586826,
+      "lng": -48.6865657
+    },
+    "coordenadas": {
+      "lat": -26.6586826,
+      "lng": -48.6865657
     },
     "caracteristicas": {
       "quartos": 3,
@@ -1602,7 +1728,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T14:11:39.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1621,7 +1747,13 @@
       "rua": "Avenida Avelino José Borges - Beira Mar",
       "numero": "1890",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.6586826,
+      "lng": -48.6865657
+    },
+    "coordenadas": {
+      "lat": -26.6586826,
+      "lng": -48.6865657
     },
     "caracteristicas": {
       "quartos": 3,
@@ -1675,7 +1807,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T14:11:39.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1694,7 +1826,13 @@
       "rua": "Rua Blumenau",
       "numero": "465",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.709654560431684,
+      "lng": -48.68748282824172
+    },
+    "coordenadas": {
+      "lat": -26.709654560431684,
+      "lng": -48.68748282824172
     },
     "caracteristicas": {
       "quartos": 2,
@@ -1728,7 +1866,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-03T17:42:08.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1747,7 +1885,13 @@
       "rua": "Rua Blumenau",
       "numero": "465",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.709654560431684,
+      "lng": -48.68748282824172
+    },
+    "coordenadas": {
+      "lat": -26.709654560431684,
+      "lng": -48.68748282824172
     },
     "caracteristicas": {
       "quartos": 0,
@@ -1781,7 +1925,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:30:20.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1800,7 +1944,13 @@
       "rua": "Rua 1206",
       "numero": "69",
       "cep": "88390000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.6955,
+      "lng": -48.692252
+    },
+    "coordenadas": {
+      "lat": -26.6955,
+      "lng": -48.692252
     },
     "caracteristicas": {
       "quartos": 2,
@@ -1862,7 +2012,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-15T16:55:36.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1881,7 +2031,13 @@
       "rua": "Rua 1161",
       "numero": "326",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7136692,
+      "lng": -48.6863871
+    },
+    "coordenadas": {
+      "lat": -26.7136692,
+      "lng": -48.6863871
     },
     "caracteristicas": {
       "quartos": 2,
@@ -1917,7 +2073,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T14:10:16.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1936,7 +2092,13 @@
       "rua": "Rua 1161",
       "numero": "326",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7136692,
+      "lng": -48.6863871
+    },
+    "coordenadas": {
+      "lat": -26.7136692,
+      "lng": -48.6863871
     },
     "caracteristicas": {
       "quartos": 3,
@@ -1972,7 +2134,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T14:10:16.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1991,7 +2153,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "6343",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7204033,
+      "lng": -48.6832906
+    },
+    "coordenadas": {
+      "lat": -26.7204033,
+      "lng": -48.6832906
     },
     "caracteristicas": {
       "quartos": 0,
@@ -2044,7 +2212,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2063,7 +2231,13 @@
       "rua": "Rua 3020",
       "numero": "133",
       "cep": "88380-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7366803,
+      "lng": -48.6811557
+    },
+    "coordenadas": {
+      "lat": -26.7366803,
+      "lng": -48.6811557
     },
     "caracteristicas": {
       "quartos": 0,
@@ -2113,7 +2287,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:03:52.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2132,7 +2306,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "6343",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7204033,
+      "lng": -48.6832906
+    },
+    "coordenadas": {
+      "lat": -26.7204033,
+      "lng": -48.6832906
     },
     "caracteristicas": {
       "quartos": 0,
@@ -2185,7 +2365,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2204,7 +2384,13 @@
       "rua": "Rua Nilson Fausto",
       "numero": "121",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.723568492132344,
+      "lng": -48.68377401219902
+    },
+    "coordenadas": {
+      "lat": -26.723568492132344,
+      "lng": -48.68377401219902
     },
     "caracteristicas": {
       "quartos": 2,
@@ -2243,7 +2429,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2262,7 +2448,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "483",
       "cep": "88380000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.76686,
+      "lng": -48.670204
+    },
+    "coordenadas": {
+      "lat": -26.76686,
+      "lng": -48.670204
     },
     "caracteristicas": {
       "quartos": 3,
@@ -2311,7 +2503,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-04T20:01:01.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2330,7 +2522,13 @@
       "rua": "Rua Serena",
       "numero": "59",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7252078,
+      "lng": -48.6822601
+    },
+    "coordenadas": {
+      "lat": -26.7252078,
+      "lng": -48.6822601
     },
     "caracteristicas": {
       "quartos": 4,
@@ -2369,7 +2567,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T18:56:53.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2388,7 +2586,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "6343",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7204033,
+      "lng": -48.6832906
+    },
+    "coordenadas": {
+      "lat": -26.7204033,
+      "lng": -48.6832906
     },
     "caracteristicas": {
       "quartos": 0,
@@ -2441,7 +2645,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2460,7 +2664,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "6343",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7204033,
+      "lng": -48.6832906
+    },
+    "coordenadas": {
+      "lat": -26.7204033,
+      "lng": -48.6832906
     },
     "caracteristicas": {
       "quartos": 0,
@@ -2513,7 +2723,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2532,7 +2742,13 @@
       "rua": "Rua Paulista",
       "numero": "232",
       "cep": "88380000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.733002,
+      "lng": -48.683243
+    },
+    "coordenadas": {
+      "lat": -26.733002,
+      "lng": -48.683243
     },
     "caracteristicas": {
       "quartos": 3,
@@ -2578,7 +2794,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T11:16:31.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2597,7 +2813,13 @@
       "rua": "Rua Ladislau Pires",
       "numero": "140",
       "cep": "88380-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.76963305665633,
+      "lng": -48.66861260405617
+    },
+    "coordenadas": {
+      "lat": -26.76963305665633,
+      "lng": -48.66861260405617
     },
     "caracteristicas": {
       "quartos": 0,
@@ -2654,7 +2876,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T23:12:37.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2673,7 +2895,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "6343",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7204033,
+      "lng": -48.6832906
+    },
+    "coordenadas": {
+      "lat": -26.7204033,
+      "lng": -48.6832906
     },
     "caracteristicas": {
       "quartos": 0,
@@ -2726,7 +2954,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2745,7 +2973,13 @@
       "rua": "Rua Nilson Fausto",
       "numero": "121",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.723568492132344,
+      "lng": -48.68377401219902
+    },
+    "coordenadas": {
+      "lat": -26.723568492132344,
+      "lng": -48.68377401219902
     },
     "caracteristicas": {
       "quartos": 2,
@@ -2784,7 +3018,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2803,7 +3037,13 @@
       "rua": "Rua Nilson Fausto",
       "numero": "121",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.723568492132344,
+      "lng": -48.68377401219902
+    },
+    "coordenadas": {
+      "lat": -26.723568492132344,
+      "lng": -48.68377401219902
     },
     "caracteristicas": {
       "quartos": 3,
@@ -2842,7 +3082,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2861,7 +3101,13 @@
       "rua": "Rua Ladislau Pires",
       "numero": "140",
       "cep": "88380-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.76963305665633,
+      "lng": -48.66861260405617
+    },
+    "coordenadas": {
+      "lat": -26.76963305665633,
+      "lng": -48.66861260405617
     },
     "caracteristicas": {
       "quartos": 0,
@@ -2918,7 +3164,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T11:11:01.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2937,7 +3183,13 @@
       "rua": "Avenida Getúlio Vargas",
       "numero": "2524",
       "cep": "88380-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.757808436012787,
+      "lng": -48.67556418382263
+    },
+    "coordenadas": {
+      "lat": -26.757808436012787,
+      "lng": -48.67556418382263
     },
     "caracteristicas": {
       "quartos": 2,
@@ -2996,7 +3248,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-16T12:10:52.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3015,7 +3267,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "6343",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7204033,
+      "lng": -48.6832906
+    },
+    "coordenadas": {
+      "lat": -26.7204033,
+      "lng": -48.6832906
     },
     "caracteristicas": {
       "quartos": 0,
@@ -3068,7 +3326,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3087,7 +3345,13 @@
       "rua": "Rua Paulista",
       "numero": "232",
       "cep": "88380000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.733002,
+      "lng": -48.683243
+    },
+    "coordenadas": {
+      "lat": -26.733002,
+      "lng": -48.683243
     },
     "caracteristicas": {
       "quartos": 2,
@@ -3133,7 +3397,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T11:14:13.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3152,7 +3416,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "6343",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7204033,
+      "lng": -48.6832906
+    },
+    "coordenadas": {
+      "lat": -26.7204033,
+      "lng": -48.6832906
     },
     "caracteristicas": {
       "quartos": 0,
@@ -3205,7 +3475,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3224,7 +3494,13 @@
       "rua": "Rua Serena",
       "numero": "59",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7252078,
+      "lng": -48.6822601
+    },
+    "coordenadas": {
+      "lat": -26.7252078,
+      "lng": -48.6822601
     },
     "caracteristicas": {
       "quartos": 3,
@@ -3263,7 +3539,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T18:55:43.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3282,7 +3558,13 @@
       "rua": "Rua Paulista",
       "numero": "232",
       "cep": "88380000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.733002,
+      "lng": -48.683243
+    },
+    "coordenadas": {
+      "lat": -26.733002,
+      "lng": -48.683243
     },
     "caracteristicas": {
       "quartos": 2,
@@ -3328,7 +3610,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T23:01:39.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3347,7 +3629,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "6343",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7204033,
+      "lng": -48.6832906
+    },
+    "coordenadas": {
+      "lat": -26.7204033,
+      "lng": -48.6832906
     },
     "caracteristicas": {
       "quartos": 0,
@@ -3400,7 +3688,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:38:45.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3419,7 +3707,13 @@
       "rua": "Rua Nilson Fausto",
       "numero": "121",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.723568492132344,
+      "lng": -48.68377401219902
+    },
+    "coordenadas": {
+      "lat": -26.723568492132344,
+      "lng": -48.68377401219902
     },
     "caracteristicas": {
       "quartos": 3,
@@ -3458,7 +3752,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3477,7 +3771,13 @@
       "rua": "Avenida Getúlio Vargas",
       "numero": "2524",
       "cep": "88380-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.757808436012787,
+      "lng": -48.67556418382263
+    },
+    "coordenadas": {
+      "lat": -26.757808436012787,
+      "lng": -48.67556418382263
     },
     "caracteristicas": {
       "quartos": 3,
@@ -3536,7 +3836,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T18:48:03.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3555,7 +3855,13 @@
       "rua": "Rua Camarão",
       "numero": "138",
       "cep": "88380000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.741802,
+      "lng": -48.680216
+    },
+    "coordenadas": {
+      "lat": -26.741802,
+      "lng": -48.680216
     },
     "caracteristicas": {
       "quartos": 3,
@@ -3610,7 +3916,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:24:27.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3629,7 +3935,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "5855",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.725177,
+      "lng": -48.683308
+    },
+    "coordenadas": {
+      "lat": -26.725177,
+      "lng": -48.683308
     },
     "caracteristicas": {
       "quartos": 0,
@@ -3675,7 +3987,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-16T03:03:04.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3694,7 +4006,13 @@
       "rua": "Rua Paulista",
       "numero": "232",
       "cep": "88380000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.733002,
+      "lng": -48.683243
+    },
+    "coordenadas": {
+      "lat": -26.733002,
+      "lng": -48.683243
     },
     "caracteristicas": {
       "quartos": 2,
@@ -3740,7 +4058,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T23:01:39.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3759,7 +4077,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "5855",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.725177,
+      "lng": -48.683308
+    },
+    "coordenadas": {
+      "lat": -26.725177,
+      "lng": -48.683308
     },
     "caracteristicas": {
       "quartos": 0,
@@ -3805,7 +4129,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-16T03:03:04.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3824,7 +4148,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "5855",
       "cep": "88390-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.725177,
+      "lng": -48.683308
+    },
+    "coordenadas": {
+      "lat": -26.725177,
+      "lng": -48.683308
     },
     "caracteristicas": {
       "quartos": 0,
@@ -3870,7 +4200,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-16T03:03:04.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3889,7 +4219,13 @@
       "rua": "Av. Nereu Ramos",
       "numero": "4770",
       "cep": "88380000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.734756,
+      "lng": -48.682175
+    },
+    "coordenadas": {
+      "lat": -26.734756,
+      "lng": -48.682175
     },
     "caracteristicas": {
       "quartos": 3,
@@ -3945,7 +4281,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-16T03:02:57.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3964,7 +4300,13 @@
       "rua": "Rua São Francisco",
       "numero": "106",
       "cep": "88380-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7599285,
+      "lng": -48.6865
+    },
+    "coordenadas": {
+      "lat": -26.7599285,
+      "lng": -48.6865
     },
     "caracteristicas": {
       "quartos": 0,
@@ -4012,7 +4354,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-16T03:03:05.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4031,7 +4373,13 @@
       "rua": "Av. Nereu Ramos",
       "numero": "4770",
       "cep": "88380000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.734756,
+      "lng": -48.682175
+    },
+    "coordenadas": {
+      "lat": -26.734756,
+      "lng": -48.682175
     },
     "caracteristicas": {
       "quartos": 4,
@@ -4087,7 +4435,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-16T03:02:57.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4106,14 +4454,20 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "4770",
       "cep": "88380000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.734756,
+      "lng": -48.682175
+    },
+    "coordenadas": {
+      "lat": -26.734756,
+      "lng": -48.682175
     },
     "caracteristicas": {
-      "quartos": 3,
-      "banheiros": 4,
-      "vagas": 2,
+      "quartos": 0,
+      "banheiros": 1,
+      "vagas": 3,
       "area": 218.68,
-      "suite": 3,
+      "suite": 4,
       "frenteMar": false,
       "piscina": false,
       "churrasqueira": false,
@@ -4165,7 +4519,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-16T03:02:57.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4184,7 +4538,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "4770",
       "cep": "88380000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.734756,
+      "lng": -48.682175
+    },
+    "coordenadas": {
+      "lat": -26.734756,
+      "lng": -48.682175
     },
     "caracteristicas": {
       "quartos": 3,
@@ -4243,7 +4603,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-16T03:02:57.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4262,7 +4622,13 @@
       "rua": "Rua São Francisco",
       "numero": "106",
       "cep": "88380-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7599285,
+      "lng": -48.6865
+    },
+    "coordenadas": {
+      "lat": -26.7599285,
+      "lng": -48.6865
     },
     "caracteristicas": {
       "quartos": 0,
@@ -4310,7 +4676,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-16T03:01:27.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4329,7 +4695,13 @@
       "rua": "Rua Otto Lehmann",
       "numero": "71",
       "cep": "88380-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7469133,
+      "lng": -48.6793505
+    },
+    "coordenadas": {
+      "lat": -26.7469133,
+      "lng": -48.6793505
     },
     "caracteristicas": {
       "quartos": 0,
@@ -4370,7 +4742,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T11:25:42.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4389,7 +4761,13 @@
       "rua": "Rua Otto Lehmann",
       "numero": "71",
       "cep": "88380-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7469133,
+      "lng": -48.6793505
+    },
+    "coordenadas": {
+      "lat": -26.7469133,
+      "lng": -48.6793505
     },
     "caracteristicas": {
       "quartos": 0,
@@ -4430,7 +4808,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T11:25:42.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4449,7 +4827,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "4770",
       "cep": "88380000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.734756,
+      "lng": -48.682175
+    },
+    "coordenadas": {
+      "lat": -26.734756,
+      "lng": -48.682175
     },
     "caracteristicas": {
       "quartos": 3,
@@ -4508,7 +4892,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-16T03:02:57.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4527,7 +4911,13 @@
       "rua": "Rua Otto Lehmann",
       "numero": "71",
       "cep": "88380-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7469133,
+      "lng": -48.6793505
+    },
+    "coordenadas": {
+      "lat": -26.7469133,
+      "lng": -48.6793505
     },
     "caracteristicas": {
       "quartos": 0,
@@ -4568,7 +4958,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T17:08:43.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4587,7 +4977,13 @@
       "rua": "Rua 3020",
       "numero": "164",
       "cep": "88380-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7365544,
+      "lng": -48.6814978
+    },
+    "coordenadas": {
+      "lat": -26.7365544,
+      "lng": -48.6814978
     },
     "caracteristicas": {
       "quartos": 2,
@@ -4634,7 +5030,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T14:44:00.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4653,7 +5049,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "2329",
       "cep": "88380-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7414965,
+      "lng": -48.6808042
+    },
+    "coordenadas": {
+      "lat": -26.7414965,
+      "lng": -48.6808042
     },
     "caracteristicas": {
       "quartos": 3,
@@ -4693,7 +5095,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T14:17:51.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4712,7 +5114,13 @@
       "rua": "Rua 3020",
       "numero": "164",
       "cep": "88380-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7365544,
+      "lng": -48.6814978
+    },
+    "coordenadas": {
+      "lat": -26.7365544,
+      "lng": -48.6814978
     },
     "caracteristicas": {
       "quartos": 2,
@@ -4759,7 +5167,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T14:44:00.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4778,7 +5186,13 @@
       "rua": "Rua 3020",
       "numero": "164",
       "cep": "88380-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7365544,
+      "lng": -48.6814978
+    },
+    "coordenadas": {
+      "lat": -26.7365544,
+      "lng": -48.6814978
     },
     "caracteristicas": {
       "quartos": 3,
@@ -4825,7 +5239,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T14:44:00.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4844,7 +5258,13 @@
       "rua": "Avenida Nereu Ramos",
       "numero": "2329",
       "cep": "88380-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7414965,
+      "lng": -48.6808042
+    },
+    "coordenadas": {
+      "lat": -26.7414965,
+      "lng": -48.6808042
     },
     "caracteristicas": {
       "quartos": 3,
@@ -4884,7 +5304,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T14:17:51.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4903,7 +5323,13 @@
       "rua": "Rua Avelino J Reis",
       "numero": "97",
       "cep": "88385-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.776149789209953,
+      "lng": -48.63815671590386
+    },
+    "coordenadas": {
+      "lat": -26.776149789209953,
+      "lng": -48.63815671590386
     },
     "caracteristicas": {
       "quartos": 3,
@@ -4947,7 +5373,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4966,7 +5392,13 @@
       "rua": "Rua Avelino J Reis",
       "numero": "97",
       "cep": "88385-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.776149789209953,
+      "lng": -48.63815671590386
+    },
+    "coordenadas": {
+      "lat": -26.776149789209953,
+      "lng": -48.63815671590386
     },
     "caracteristicas": {
       "quartos": 3,
@@ -5010,7 +5442,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5029,7 +5461,13 @@
       "rua": "Rua Avelino J Reis",
       "numero": "97",
       "cep": "88385-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.776149789209953,
+      "lng": -48.63815671590386
+    },
+    "coordenadas": {
+      "lat": -26.776149789209953,
+      "lng": -48.63815671590386
     },
     "caracteristicas": {
       "quartos": 2,
@@ -5073,7 +5511,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5092,7 +5530,13 @@
       "rua": "Rua Avelino J Reis",
       "numero": "97",
       "cep": "88385-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.776149789209953,
+      "lng": -48.63815671590386
+    },
+    "coordenadas": {
+      "lat": -26.776149789209953,
+      "lng": -48.63815671590386
     },
     "caracteristicas": {
       "quartos": 2,
@@ -5136,7 +5580,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5155,7 +5599,13 @@
       "rua": "Avenida Itapocorói",
       "numero": "1914",
       "cep": "88385-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7916256,
+      "lng": -48.611601
+    },
+    "coordenadas": {
+      "lat": -26.7916256,
+      "lng": -48.611601
     },
     "caracteristicas": {
       "quartos": 3,
@@ -5213,7 +5663,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:36.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5232,7 +5682,13 @@
       "rua": "Avenida Itapocorói",
       "numero": "314",
       "cep": "88385-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.787468332397797,
+      "lng": -48.62641936501237
+    },
+    "coordenadas": {
+      "lat": -26.787468332397797,
+      "lng": -48.62641936501237
     },
     "caracteristicas": {
       "quartos": 3,
@@ -5282,7 +5738,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T12:08:17.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5301,7 +5757,13 @@
       "rua": "Avenida Itapocorói",
       "numero": "1914",
       "cep": "88385-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7916256,
+      "lng": -48.611601
+    },
+    "coordenadas": {
+      "lat": -26.7916256,
+      "lng": -48.611601
     },
     "caracteristicas": {
       "quartos": 3,
@@ -5359,7 +5821,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:36.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5378,7 +5840,13 @@
       "rua": "Rodovia Paulo Stuart Wright",
       "numero": "135",
       "cep": "88385-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7756087,
+      "lng": -48.66319619999999
+    },
+    "coordenadas": {
+      "lat": -26.7756087,
+      "lng": -48.66319619999999
     },
     "caracteristicas": {
       "quartos": 3,
@@ -5436,7 +5904,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T17:48:07.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5455,7 +5923,13 @@
       "rua": "Rodovia Paulo Stuart Wright",
       "numero": "135",
       "cep": "88385-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7756087,
+      "lng": -48.66319619999999
+    },
+    "coordenadas": {
+      "lat": -26.7756087,
+      "lng": -48.66319619999999
     },
     "caracteristicas": {
       "quartos": 4,
@@ -5513,7 +5987,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T17:48:07.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5532,7 +6006,13 @@
       "rua": "Avenida Eugênio Krause",
       "numero": "3650",
       "cep": "88385000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.793077,
+      "lng": -48.621531
+    },
+    "coordenadas": {
+      "lat": -26.793077,
+      "lng": -48.621531
     },
     "caracteristicas": {
       "quartos": 3,
@@ -5579,7 +6059,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T17:45:15.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5598,7 +6078,13 @@
       "rua": "Rodovia Paulo Stuart Wright",
       "numero": "135",
       "cep": "88385-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.7756087,
+      "lng": -48.66319619999999
+    },
+    "coordenadas": {
+      "lat": -26.7756087,
+      "lng": -48.66319619999999
     },
     "caracteristicas": {
       "quartos": 2,
@@ -5656,7 +6142,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T17:48:07.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5675,7 +6161,13 @@
       "rua": "Avenida Itapocorói",
       "numero": "314",
       "cep": "88385-000",
-      "estado": "SC"
+      "estado": "SC",
+      "lat": -26.787468332397797,
+      "lng": -48.62641936501237
+    },
+    "coordenadas": {
+      "lat": -26.787468332397797,
+      "lng": -48.62641936501237
     },
     "caracteristicas": {
       "quartos": 4,
@@ -5725,7 +6217,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T17:22:15.000Z",
-    "updatedAt": "2026-01-19T16:42:44.227Z",
+    "updatedAt": "2026-01-19T19:10:30.009Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
