@@ -18,6 +18,7 @@ export default function FotosPage() {
   const initialIndex = parseInt(searchParams.get('index') || '0', 10)
   const [fotoAtual, setFotoAtual] = useState(initialIndex)
   const [zoom, setZoom] = useState(1)
+  const [mostrarMiniaturas, setMostrarMiniaturas] = useState(true)
   const thumbnailRefs = useRef<{ [key: number]: HTMLButtonElement | null }>({})
 
   useEffect(() => {
@@ -161,7 +162,10 @@ export default function FotosPage() {
   return (
     <div className="fixed inset-0 bg-gray-900 flex flex-col overflow-hidden z-50">
       {/* Foto Principal - Horizontal em cima, ocupa quase toda a tela */}
-      <div className="relative bg-gray-950 flex items-center justify-center" style={{ height: 'calc(100vh - 96px)' }}>
+      <div 
+        className="relative bg-gray-950 flex items-center justify-center transition-all duration-300" 
+        style={{ height: mostrarMiniaturas ? 'calc(100vh - 96px)' : '100vh' }}
+      >
         {fotosOrdenadas[fotoAtualValida] && (
           <div className="relative w-full h-full">
             <Image
@@ -226,14 +230,18 @@ export default function FotosPage() {
           </>
         )}
 
-        {/* Grid icon no canto inferior direito */}
-        <div className="absolute bottom-4 right-4 z-20">
-          <Grid className="w-5 h-5 text-white/80" />
-        </div>
+        {/* Grid icon no canto inferior direito - Toggle miniaturas */}
+        <button
+          onClick={() => setMostrarMiniaturas(!mostrarMiniaturas)}
+          className="absolute bottom-4 right-4 z-20 text-white/80 hover:text-white transition-opacity"
+          aria-label={mostrarMiniaturas ? 'Ocultar miniaturas' : 'Mostrar miniaturas'}
+        >
+          <Grid className="w-5 h-5" />
+        </button>
       </div>
 
       {/* Thumbnails - Logo abaixo, sem espaçamento */}
-      {fotosOrdenadas.length > 1 && (
+      {fotosOrdenadas.length > 1 && mostrarMiniaturas && (
         <div className="bg-gray-950 flex-shrink-0 h-24 border-t border-gray-800">
           <div className="flex gap-2 overflow-x-auto h-full px-4 items-center" style={{ scrollbarWidth: 'thin', scrollbarColor: '#444 #1a1a1a' }}>
             {fotosOrdenadas.map((foto: string, index: number) => (
