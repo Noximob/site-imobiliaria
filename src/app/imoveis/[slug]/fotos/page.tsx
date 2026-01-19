@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo, useRef } from 'react'
 import { notFound, useParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { getImovelBySlug } from '@/lib/imoveis'
@@ -14,6 +14,7 @@ export default function FotosPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [fotoAtual, setFotoAtual] = useState(0)
   const [zoom, setZoom] = useState(1)
+  const thumbnailRefs = useRef<{ [key: number]: HTMLButtonElement | null }>({})
 
   useEffect(() => {
     const loadImovel = async () => {
@@ -108,6 +109,18 @@ export default function FotosPage() {
     window.addEventListener('keydown', handleKeyPress)
     return () => window.removeEventListener('keydown', handleKeyPress)
   }, [router, fotosOrdenadas.length])
+
+  // Fazer scroll automático da miniatura ativa
+  useEffect(() => {
+    const thumbnailElement = thumbnailRefs.current[fotoAtualValida]
+    if (thumbnailElement) {
+      thumbnailElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      })
+    }
+  }, [fotoAtualValida])
 
   if (isLoading) {
     return (
@@ -212,6 +225,7 @@ export default function FotosPage() {
             {fotosOrdenadas.map((foto: string, index: number) => (
               <button
                 key={index}
+                ref={(el) => { thumbnailRefs.current[index] = el }}
                 onClick={() => irParaFoto(index)}
                 className={`flex-shrink-0 relative w-20 h-20 rounded overflow-hidden border-2 transition-all ${
                   index === fotoAtualValida
