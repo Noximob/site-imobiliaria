@@ -187,10 +187,37 @@ function parseArea(areaStr?: string): number {
 
 /**
  * Converte preço de string para número (remove formatação)
+ * Suporta formatos brasileiro (400.000,00) e americano (400000.00)
  */
 function parsePrice(priceStr?: string): number {
   if (!priceStr) return 0
-  const numStr = priceStr.replace(/[^\d,.]/g, '').replace(/\./g, '').replace(',', '.')
+  
+  // Remove tudo exceto dígitos, vírgulas e pontos
+  let numStr = priceStr.replace(/[^\d,.]/g, '')
+  
+  // Se tem vírgula, é formato brasileiro (ex: "400.000,00" ou "400000,00")
+  if (numStr.includes(',')) {
+    // Remove pontos (separadores de milhar) e substitui vírgula por ponto
+    numStr = numStr.replace(/\./g, '').replace(',', '.')
+  }
+  // Se tem ponto mas não vírgula, verificar se é decimal ou separador de milhar
+  else if (numStr.includes('.')) {
+    // Se o ponto está nas últimas 3 posições, é decimal (formato americano)
+    const lastDotIndex = numStr.lastIndexOf('.')
+    const afterDot = numStr.substring(lastDotIndex + 1)
+    
+    if (afterDot.length <= 2) {
+      // É formato americano (ex: "400000.00") - manter o ponto decimal
+      // Remover apenas pontos que são separadores de milhar (antes do último ponto)
+      const beforeDot = numStr.substring(0, lastDotIndex).replace(/\./g, '')
+      numStr = beforeDot + '.' + afterDot
+    } else {
+      // É separador de milhar (ex: "400.000") - remover todos os pontos
+      numStr = numStr.replace(/\./g, '')
+    }
+  }
+  // Se não tem nem vírgula nem ponto, é número puro (ex: "400000")
+  
   return parseFloat(numStr) || 0
 }
 
