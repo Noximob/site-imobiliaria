@@ -76,6 +76,8 @@ export default function AdminImoveis() {
   const [fotosMenoresIndices, setFotosMenoresIndices] = useState<number[]>([]) // Índices das 4 fotos menores escolhidas manualmente
   const [maisFotosFiles, setMaisFotosFiles] = useState<File[]>([]) // Fotos extras para galeria
   const [maisFotosPreviews, setMaisFotosPreviews] = useState<string[]>([]) // Preview das fotos extras
+  const [fotosDWV, setFotosDWV] = useState<Array<{ url: string, hasMedium: boolean }>>([]) // Todas as fotos disponíveis do DWV
+  const [carregandoFotosDWV, setCarregandoFotosDWV] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('todos')
   const [tipoFilter, setTipoFilter] = useState('todos')
