@@ -111,7 +111,7 @@ export default function ImovelDetalhePage() {
     
     // Pegar as fotos restantes (excluindo principal e as 4 menores)
     const indicesUsados = new Set([fotoPrincipalIndex > 0 ? fotoPrincipalIndex : 0, ...fotosMenoresIndices])
-    const fotosRestantes = todasFotos.filter((_, idx) => !indicesUsados.has(idx))
+    const fotosRestantes = todasFotos.filter((_: string, idx: number) => !indicesUsados.has(idx))
     
     // Montar array final: principal + 4 menores + resto
     fotosParaExibir = [principal, ...quatroMenores, ...fotosRestantes]
