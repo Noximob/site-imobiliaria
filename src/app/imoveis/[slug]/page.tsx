@@ -173,13 +173,13 @@ export default function ImovelDetalhePage() {
           {fotosOrdenadas.length > 0 ? (
             <div 
               className="grid grid-cols-2 gap-1.5 p-1.5" 
-              style={{ minHeight: '600px', height: '600px' }}
+              style={{ minHeight: '70vh', height: '70vh' }}
               onMouseLeave={() => setHoveredPhotoIndex(null)}
             >
               {/* Coluna Esquerda - Foto Principal (grande) */}
               <Link 
                 href={`/imoveis/${imovel.slug}/fotos?index=0`}
-                className={`relative rounded-lg overflow-hidden h-full cursor-pointer transition-all duration-300 bg-gray-100 ${
+                className={`relative rounded-lg overflow-hidden h-full cursor-pointer transition-all duration-300 ${
                   hoveredPhotoIndex === null || hoveredPhotoIndex === 0
                     ? 'opacity-100 scale-100'
                     : 'opacity-50 scale-95'
@@ -189,23 +189,17 @@ export default function ImovelDetalhePage() {
                 <img
                   src={fotosOrdenadas[0]}
                   alt={`${imovel.titulo} - Foto principal`}
-                  className="w-full h-full object-contain"
-                  style={{ 
-                    width: '100%', 
-                    height: '100%', 
-                    objectFit: 'contain',
-                    objectPosition: 'center'
-                  }}
+                  className="w-full h-full object-cover"
                 />
               </Link>
               
               {/* Coluna Direita - Grid 2x2 com 4 fotos menores */}
               <div className="grid grid-cols-2 grid-rows-2 gap-1.5 h-full">
                 {/* Foto 2 - Superior esquerda */}
-                {fotosOrdenadas[1] && (
+                {fotosOrdenadas[1] ? (
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=1`}
-                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 bg-gray-100 ${
+                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 1
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -215,22 +209,18 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosOrdenadas[1]}
                       alt={`${imovel.titulo} - Foto 2`}
-                      className="w-full h-full object-contain"
-                      style={{ 
-                        width: '100%', 
-                        height: '100%', 
-                        objectFit: 'contain',
-                        objectPosition: 'center'
-                      }}
+                      className="w-full h-full object-cover"
                     />
                   </Link>
+                ) : (
+                  <div className="bg-gray-50 rounded-lg"></div>
                 )}
                 
                 {/* Foto 3 - Superior direita */}
-                {fotosOrdenadas[2] && (
+                {fotosOrdenadas[2] ? (
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=2`}
-                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 bg-gray-100 ${
+                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 2
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -240,22 +230,18 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosOrdenadas[2]}
                       alt={`${imovel.titulo} - Foto 3`}
-                      className="w-full h-full object-contain"
-                      style={{ 
-                        width: '100%', 
-                        height: '100%', 
-                        objectFit: 'contain',
-                        objectPosition: 'center'
-                      }}
+                      className="w-full h-full object-cover"
                     />
                   </Link>
+                ) : (
+                  <div className="bg-gray-50 rounded-lg"></div>
                 )}
                 
                 {/* Foto 4 - Inferior esquerda */}
-                {fotosOrdenadas[3] && (
+                {fotosOrdenadas[3] ? (
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=3`}
-                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 bg-gray-100 ${
+                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 3
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -265,22 +251,18 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosOrdenadas[3]}
                       alt={`${imovel.titulo} - Foto 4`}
-                      className="w-full h-full object-contain"
-                      style={{ 
-                        width: '100%', 
-                        height: '100%', 
-                        objectFit: 'contain',
-                        objectPosition: 'center'
-                      }}
+                      className="w-full h-full object-cover"
                     />
                   </Link>
+                ) : (
+                  <div className="bg-gray-50 rounded-lg"></div>
                 )}
                 
                 {/* Foto 5 - Inferior direita com botão Visualizar Fotos */}
                 {fotosOrdenadas[4] ? (
                   <Link 
                     href={`/imoveis/${imovel.slug}/fotos?index=4`}
-                    className={`relative rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 bg-gray-100 ${
+                    className={`relative rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 4
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -290,13 +272,7 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosOrdenadas[4]}
                       alt={`${imovel.titulo} - Foto 5`}
-                      className="w-full h-full object-contain"
-                      style={{ 
-                        width: '100%', 
-                        height: '100%', 
-                        objectFit: 'contain',
-                        objectPosition: 'center'
-                      }}
+                      className="w-full h-full object-cover"
                     />
                     {/* Botão Visualizar Fotos - Canto inferior direito */}
                     <div className="absolute bottom-2 right-2">
@@ -308,11 +284,11 @@ export default function ImovelDetalhePage() {
                       </div>
                     </div>
                   </Link>
-                ) : fotosOrdenadas.length > 0 && fotosOrdenadas.length < 5 ? (
-                  // Se tiver menos de 5 fotos mas mais de 0, mostrar botão na última foto disponível
+                ) : fotosOrdenadas.length > 0 ? (
+                  // Se tiver menos de 5 fotos, mostrar botão na última foto disponível
                   <Link 
                     href={`/imoveis/${imovel.slug}/fotos?index=${fotosOrdenadas.length - 1}`}
-                    className={`relative rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 bg-gray-100 ${
+                    className={`relative rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === fotosOrdenadas.length - 1
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -322,13 +298,7 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosOrdenadas[fotosOrdenadas.length - 1]}
                       alt={`${imovel.titulo} - Última foto`}
-                      className="w-full h-full object-contain"
-                      style={{ 
-                        width: '100%', 
-                        height: '100%', 
-                        objectFit: 'contain',
-                        objectPosition: 'center'
-                      }}
+                      className="w-full h-full object-cover"
                     />
                     <div className="absolute bottom-2 right-2">
                       <div className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium text-sm transition-colors shadow-lg">
@@ -336,7 +306,9 @@ export default function ImovelDetalhePage() {
                       </div>
                     </div>
                   </Link>
-                ) : null}
+                ) : (
+                  <div className="bg-gray-50 rounded-lg"></div>
+                )}
               </div>
             </div>
           ) : (
