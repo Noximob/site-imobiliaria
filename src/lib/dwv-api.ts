@@ -613,8 +613,19 @@ function extractFotos(unit?: DWVUnit | null, building?: DWVBuilding | null, thir
   })
   
   // Demais fotos (índices 5+)
-  const indicesUsados = new Set([0, ...quatroParaMenores.map((_, idx) => idx + 1)])
-  const demaisFotos = fotosRestantes.filter((_, idx) => !indicesUsados.has(idx + 1))
+  // Criar Set com as fotos já usadas (principal + 4 menores) para comparação
+  const fotosUsadasUrls = new Set<string>()
+  const urlPrincipalTemp = extractImageUrl(fotoPrincipal.image)
+  if (urlPrincipalTemp) fotosUsadasUrls.add(urlPrincipalTemp)
+  quatroParaMenores.forEach(foto => {
+    const url = extractImageUrl(foto.image)
+    if (url) fotosUsadasUrls.add(url)
+  })
+  
+  const demaisFotos = fotosRestantes.filter(foto => {
+    const url = extractImageUrl(foto.image)
+    return url && !fotosUsadasUrls.has(url)
+  })
   demaisFotos.forEach(foto => {
     const url = extractImageUrl(foto.image)
     if (url) fotosProcessadas.push(url)
