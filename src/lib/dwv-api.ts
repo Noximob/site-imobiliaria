@@ -166,6 +166,16 @@ function removeCropParams(url: string): string {
 }
 
 /**
+ * Verifica se uma imagem tem o tamanho 'medium' disponível
+ */
+function hasMediumSize(image?: string | DWVImage): boolean {
+  if (!image || typeof image === 'string') {
+    return false // Strings não têm sizes, assumir que não tem medium
+  }
+  return !!image.sizes?.medium
+}
+
+/**
  * Extrai URL da imagem com tamanho específico baseado na posição
  * @param image - Imagem do DWV (string ou DWVImage)
  * @param sizePreference - 'large' para foto principal, 'medium' para fotos menores
@@ -461,11 +471,11 @@ function extractAddress(building?: DWVBuilding | null, thirdParty?: DWVThirdPart
 
 /**
  * Extrai fotos de unit, building e third_party_property com tamanhos otimizados
- * Retorna array onde:
- * - Índice 0: foto principal (tamanho large/xlarge) para foto grande
- * - Índices 1-4: fotos secundárias (tamanho medium) para harmonia nas 4 menores
+ * Retorna objeto com:
+ * - fotos: array de URLs onde índice 0 é foto principal (large/xlarge) e índices 1-4 são secundárias (medium)
+ * - semMedium: array de índices (1-4) que não têm tamanho medium disponível e precisam de object-contain
  */
-function extractFotos(unit?: DWVUnit | null, building?: DWVBuilding | null, thirdParty?: DWVThirdPartyProperty | null): string[] {
+function extractFotos(unit?: DWVUnit | null, building?: DWVBuilding | null, thirdParty?: DWVThirdPartyProperty | null): { fotos: string[], semMedium: number[] } {
   const todasFotos: Array<{ image: string | DWVImage, source: 'unit' | 'building' | 'thirdParty' }> = []
   
   // Coletar todas as fotos com suas fontes
@@ -541,9 +551,11 @@ function extractFotos(unit?: DWVUnit | null, building?: DWVBuilding | null, thir
   // Estratégia: escolher tamanhos que ao redimensionar com object-cover fiquem harmônicos
   // IMPORTANTE: Sempre garantir que extraia uma URL válida, mesmo que não tenha o tamanho preferido
   const fotosProcessadas: string[] = []
+  const semMedium: number[] = [] // Índices das fotos menores (1-4) que não têm medium disponível
   
   fotosUnicas.forEach((foto, index) => {
     let url: string | null = null
+    let temMedium = false
     
     // Primeira foto (índice 0): foto grande à esquerda
     // Usar xlarge ou large (tamanhos maiores, geralmente verticais/retangulares)
@@ -558,10 +570,18 @@ function extractFotos(unit?: DWVUnit | null, building?: DWVBuilding | null, thir
     // Usar medium (tamanho médio, geralmente mais quadrado, ideal para grids pequenos)
     // Isso garante que as 4 fotos tenham tamanhos similares e fiquem harmônicas
     else if (index >= 1 && index <= 4) {
+      // Verificar se tem medium disponível
+      temMedium = hasMediumSize(foto.image)
+      
       url = extractImageUrlBySize(foto.image, 'medium')
       // Se não encontrou com tamanho preferido, usar fallback genérico
       if (!url) {
         url = extractImageUrl(foto.image)
+      }
+      
+      // Se não tem medium disponível, marcar para usar object-contain na página
+      if (!temMedium) {
+        semMedium.push(index)
       }
     }
     // Demais fotos: usar tamanho padrão (para carrossel completo)
@@ -575,7 +595,7 @@ function extractFotos(unit?: DWVUnit | null, building?: DWVBuilding | null, thir
     }
   })
   
-  return fotosProcessadas
+  return { fotos: fotosProcessadas, semMedium }
 }
 
 // ============================================
@@ -748,7 +768,7 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
   const endereco = extractAddress(building, thirdParty)
 
   // Fotos
-  const fotos = extractFotos(unit, building, thirdParty)
+  const { fotos, semMedium } = extractFotos(unit, building, thirdParty)
 
   // Tags/comodidades
   const tags = extractTags(unit, building, thirdParty)
@@ -798,6 +818,7 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
     },
     tags, // Tags para filtros
     fotos,
+    fotosSemMedium: semMedium, // Índices das fotos menores (1-4) que não têm medium e precisam object-contain
     fotoPrincipalIndex: 0,
     contato: {
       whatsapp,
