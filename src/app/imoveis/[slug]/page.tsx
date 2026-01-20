@@ -26,8 +26,6 @@ export default function ImovelDetalhePage() {
   const [isFavoritado, setIsFavoritado] = useState(false)
   const [hoveredPhotoIndex, setHoveredPhotoIndex] = useState<number | null>(null)
   const [contatoTipo, setContatoTipo] = useState<'telefone' | 'email' | 'whatsapp'>('email')
-  const [fotosOrdenadas, setFotosOrdenadas] = useState<string[]>([]) // Fotos reordenadas com as 4 horizontais selecionadas
-  const [aspectRatios, setAspectRatios] = useState<Map<number, number>>(new Map()) // Cache de aspect ratios
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
@@ -45,9 +43,6 @@ export default function ImovelDetalhePage() {
         }
         setImovel(imovelData)
         setIsFavoritado(isFavorito(imovelData.id))
-        // Resetar estados ao carregar novo imóvel
-        setFotosOrdenadas([])
-        setAspectRatios(new Map())
         
       } catch (error) {
         console.error('Erro ao carregar imóvel:', error)
@@ -95,92 +90,17 @@ export default function ImovelDetalhePage() {
     ? imovel.precoOriginal - imovel.preco
     : 0
 
-  // Organizar fotos: foto principal primeiro, depois escolher 4 horizontais para as menores
+  // Organizar fotos: o backend já prioriza fotos com "medium" (geralmente mais horizontais/quadradas) para as 4 menores
   const todasFotos = imovel.fotos || []
   const fotoPrincipalIndex = (imovel as any).fotoPrincipalIndex ?? 0
   
-  // Função para detectar aspect ratio de uma foto
-  const handleImageLoad = (url: string, index: number, event: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = event.currentTarget
-    if (!img.naturalWidth || !img.naturalHeight) return
-    
-    const aspectRatio = img.naturalWidth / img.naturalHeight
-    setAspectRatios(prev => {
-      const novo = new Map(prev)
-      novo.set(index, aspectRatio)
-      return novo
-    })
+  // Se há foto principal definida e não está na primeira posição, reorganizar
+  let fotosParaExibir = [...todasFotos]
+  if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < fotosParaExibir.length) {
+    const fotoPrincipal = fotosParaExibir[fotoPrincipalIndex]
+    fotosParaExibir.splice(fotoPrincipalIndex, 1)
+    fotosParaExibir.unshift(fotoPrincipal)
   }
-
-  // Efeito para reorganizar fotos quando tivermos aspect ratios suficientes
-  useEffect(() => {
-    if (!imovel || !todasFotos.length) return
-    // Se já reorganizamos para este conjunto de fotos, não fazer novamente
-    if (fotosOrdenadas.length > 0 && fotosOrdenadas[0] === (todasFotos[fotoPrincipalIndex] || todasFotos[0])) return
-    
-    // Se já temos aspect ratios para pelo menos 5 fotos (ou todas se tiver menos), reorganizar
-    const fotosComAspectRatio = todasFotos.filter((_, index) => aspectRatios.has(index))
-    
-    // Se temos pelo menos 5 fotos com aspect ratio, ou todas as fotos disponíveis (se tiver menos de 5)
-    if (fotosComAspectRatio.length >= Math.min(5, todasFotos.length) || (todasFotos.length < 5 && aspectRatios.size === todasFotos.length)) {
-      // 1. Escolher foto principal
-      let fotoPrincipal: string
-      let fotosRestantes: string[]
-      
-      if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < todasFotos.length) {
-        fotoPrincipal = todasFotos[fotoPrincipalIndex]
-        fotosRestantes = todasFotos.filter((_, i) => i !== fotoPrincipalIndex)
-      } else {
-        fotoPrincipal = todasFotos[0]
-        fotosRestantes = todasFotos.slice(1)
-      }
-      
-      // 2. Das fotos restantes, escolher as 4 mais horizontais/quadradas (aspect ratio > 0.7)
-      // Ordenar por: primeiro as horizontais (aspect ratio > 0.7), depois por proximidade de 1.0 (quadrado)
-      const fotosComScores = fotosRestantes.map((url, idx) => {
-        const originalIndex = todasFotos.indexOf(url)
-        const aspectRatio = aspectRatios.get(originalIndex) || 1.0
-        
-        // Score: fotos horizontais (aspect ratio > 0.7) têm prioridade
-        // Dentro das horizontais, priorizar as mais próximas de 1.0 (quadradas)
-        let score = 0
-        if (aspectRatio > 0.7) {
-          // Fotos horizontais: score base 1000 + proximidade de 1.0
-          score = 1000 + (1 - Math.abs(1 - aspectRatio)) * 100
-        } else {
-          // Fotos verticais: score baseado apenas na proximidade de 1.0 (menor prioridade)
-          score = Math.abs(1 - aspectRatio) * 10
-        }
-        
-        return { url, originalIndex, aspectRatio, score }
-      })
-      
-      // Ordenar por score (maior primeiro)
-      fotosComScores.sort((a, b) => b.score - a.score)
-      
-      // Pegar as 4 melhores (mais horizontais/quadradas)
-      const quatroMelhores = fotosComScores.slice(0, 4).map(f => f.url)
-      
-      // As demais fotos vão depois
-      const demaisFotos = fotosComScores.slice(4).map(f => f.url)
-      
-      // Ordenação final: [principal, 4 horizontais, demais]
-      const novaOrdem = [fotoPrincipal, ...quatroMelhores, ...demaisFotos]
-      
-      setFotosOrdenadas(novaOrdem)
-    }
-  }, [imovel, todasFotos.join(','), aspectRatios.size, fotoPrincipalIndex])
-
-  // Se ainda não temos fotos ordenadas, usar ordem padrão temporariamente
-  const fotosParaExibir = fotosOrdenadas.length > 0 ? fotosOrdenadas : (() => {
-    const temp = [...todasFotos]
-    if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < temp.length) {
-      const fotoPrincipal = temp[fotoPrincipalIndex]
-      temp.splice(fotoPrincipalIndex, 1)
-      temp.unshift(fotoPrincipal)
-    }
-    return temp
-  })()
 
   // Características vêm apenas das tags/comodidades (interligadas com o filtro)
   // Não incluir outras características booleanas, apenas as tags
@@ -246,18 +166,6 @@ export default function ImovelDetalhePage() {
               </button>
             </div>
           </div>
-        </div>
-
-        {/* Pré-carregar todas as fotos invisivelmente para detectar aspect ratios */}
-        <div className="hidden">
-          {todasFotos.map((url, index) => (
-            <img
-              key={index}
-              src={url}
-              alt=""
-              onLoad={(e) => handleImageLoad(url, index, e)}
-            />
-          ))}
         </div>
 
         {/* Galeria de Fotos - Layout: 1 foto grande à esquerda, 4 fotos menores em grid 2x2 à direita */}

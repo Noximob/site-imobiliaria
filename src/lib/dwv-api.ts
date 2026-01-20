@@ -547,52 +547,77 @@ function extractFotos(unit?: DWVUnit | null, building?: DWVBuilding | null, thir
     }
   })
   
-  // Processar fotos com tamanhos otimizados para layout: 1 grande + 4 menores em grid 2x2
-  // Estratégia: escolher tamanhos que ao redimensionar com object-cover fiquem harmônicos
-  // IMPORTANTE: Sempre garantir que extraia uma URL válida, mesmo que não tenha o tamanho preferido
-  const fotosProcessadas: string[] = []
-  const semMedium: number[] = [] // Índices das fotos menores (1-4) que não têm medium disponível
+  // Estratégia: escolher 4 fotos que têm tamanho "medium" disponível (geralmente mais quadradas/horizontais)
+  // para as 4 menores, garantindo layout harmonioso
   
-  fotosUnicas.forEach((foto, index) => {
-    let url: string | null = null
-    let temMedium = false
+  if (fotosUnicas.length === 0) {
+    return { fotos: [], semMedium: [] }
+  }
+  
+  // 1. Escolher foto principal (primeira)
+  const fotoPrincipal = fotosUnicas[0]
+  const urlPrincipal = extractImageUrlBySize(fotoPrincipal.image, 'large') || extractImageUrl(fotoPrincipal.image)
+  
+  if (!urlPrincipal) {
+    return { fotos: [], semMedium: [] }
+  }
+  
+  // 2. Separar fotos restantes: as que têm medium vs as que não têm
+  const fotosRestantes = fotosUnicas.slice(1)
+  const fotosComMedium: Array<{ image: string | DWVImage, source: 'unit' | 'building' | 'thirdParty' }> = []
+  const fotosSemMedium: Array<{ image: string | DWVImage, source: 'unit' | 'building' | 'thirdParty' }> = []
+  
+  fotosRestantes.forEach(foto => {
+    if (hasMediumSize(foto.image)) {
+      fotosComMedium.push(foto)
+    } else {
+      fotosSemMedium.push(foto)
+    }
+  })
+  
+  // 3. Escolher 4 fotos para as menores: priorizar as que têm medium (são geralmente mais horizontais/quadradas)
+  const quatroParaMenores = [
+    ...fotosComMedium.slice(0, 4),
+    ...fotosSemMedium.slice(0, Math.max(0, 4 - fotosComMedium.length))
+  ].slice(0, 4)
+  
+  // 4. Processar fotos: principal + 4 menores + demais
+  const fotosProcessadas: string[] = [urlPrincipal]
+  const semMedium: number[] = []
+  
+  // 4 menores (índices 1-4)
+  quatroParaMenores.forEach((foto, idx) => {
+    const indexReal = idx + 1 // Índices 1-4
+    const temMedium = hasMediumSize(foto.image)
     
-    // Primeira foto (índice 0): foto grande à esquerda
-    // Usar xlarge ou large (tamanhos maiores, geralmente verticais/retangulares)
-    if (index === 0) {
-      url = extractImageUrlBySize(foto.image, 'large')
-      // Se não encontrou com tamanho preferido, usar fallback genérico
-      if (!url) {
-        url = extractImageUrl(foto.image)
+    if (temMedium) {
+      const url = extractImageUrlBySize(foto.image, 'medium')
+      if (url) {
+        fotosProcessadas.push(url)
+      } else {
+        // Fallback se medium não retornou URL
+        const urlFallback = extractImageUrl(foto.image)
+        if (urlFallback) {
+          fotosProcessadas.push(urlFallback)
+          semMedium.push(indexReal)
+        }
+      }
+    } else {
+      // Não tem medium, usar fallback e marcar
+      const urlFallback = extractImageUrl(foto.image)
+      if (urlFallback) {
+        fotosProcessadas.push(urlFallback)
+        semMedium.push(indexReal)
       }
     }
-    // Fotos 1-4: 4 menores em grid 2x2 à direita
-    // Usar medium (tamanho médio, geralmente mais quadrado, ideal para grids pequenos)
-    // Isso garante que as 4 fotos tenham tamanhos similares e fiquem harmônicas
-    else if (index >= 1 && index <= 4) {
-      // Verificar se tem medium disponível
-      temMedium = hasMediumSize(foto.image)
-      
-      url = extractImageUrlBySize(foto.image, 'medium')
-      // Se não encontrou com tamanho preferido, usar fallback genérico
-      if (!url) {
-        url = extractImageUrl(foto.image)
-      }
-      
-      // Se não tem medium disponível, marcar para usar object-contain na página
-      if (!temMedium) {
-        semMedium.push(index)
-      }
-    }
-    // Demais fotos: usar tamanho padrão (para carrossel completo)
-    else {
-      url = extractImageUrl(foto.image)
-    }
-    
-    // Sempre adicionar se tiver URL válida
-    if (url) {
-      fotosProcessadas.push(url)
-    }
+  })
+  
+  // Demais fotos (índices 5+)
+  const indicesUsados = new Set([0, ...quatroParaMenores.map((_, idx) => idx + 1)])
+  const demaisFotos = fotosRestantes.filter((_, idx) => !indicesUsados.has(idx + 1))
+  demaisFotos.forEach(foto => {
+    const url = extractImageUrl(foto.image)
+    if (url) fotosProcessadas.push(url)
   })
   
   return { fotos: fotosProcessadas, semMedium }
