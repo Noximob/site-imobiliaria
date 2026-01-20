@@ -1016,55 +1016,160 @@ export default function AdminImoveis() {
                   
                   {/* Grid de todas as fotos (existentes + novas) */}
                   {(fotosExistentes.length > 0 || fotosPreviews.length > 0) && (
-                    <div className="mt-4">
-                      <p className="text-sm font-medium text-gray-700 mb-3">
-                        Todas as Fotos ({fotosExistentes.length + fotosPreviews.length})
-                      </p>
-                      <p className="text-xs text-gray-500 mb-3">
-                        Clique em uma foto para definir como principal (aparecerá maior na página).
-                      </p>
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {[...fotosExistentes, ...fotosPreviews].map((foto, index) => {
-                          const isPrincipal = index === fotoPrincipalIndex
-                          const isExistente = index < fotosExistentes.length
-                          return (
-                            <div 
-                              key={index} 
-                              className={`relative group border-2 rounded-md overflow-hidden ${
-                                isPrincipal ? 'border-purple-600 ring-2 ring-purple-300' : 'border-gray-200'
-                              }`}
-                            >
-                              <img
-                                src={foto}
-                                alt={`Foto ${index + 1}`}
-                                className="w-full h-32 object-cover"
-                              />
-                              {isPrincipal && (
-                                <div className="absolute top-2 left-2 bg-purple-600 text-white text-xs px-2 py-1 rounded">
-                                  Principal
-                                </div>
-                              )}
-                              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center gap-2">
-                                <button
-                                  type="button"
-                                  onClick={() => definirFotoPrincipal(index)}
-                                  className="opacity-0 group-hover:opacity-100 bg-purple-600 text-white px-3 py-1 rounded text-xs font-medium hover:bg-purple-700 transition-opacity"
-                                  title="Definir como foto principal"
-                                >
-                                  {isPrincipal ? '✓ Principal' : 'Definir Principal'}
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={() => removeFoto(index, isExistente)}
-                                  className="opacity-0 group-hover:opacity-100 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-opacity"
-                                  title="Remover foto"
-                                >
-                                  <X className="w-4 h-4" />
-                                </button>
-                              </div>
+                    <div className="mt-4 space-y-6">
+                      {/* Seção: Foto Principal */}
+                      <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
+                        <h4 className="text-sm font-semibold text-gray-900 mb-2">
+                          📸 Foto Principal (Grande - Em Cima)
+                        </h4>
+                        <p className="text-xs text-gray-600 mb-3">
+                          Esta foto aparecerá grande na parte superior da página do imóvel.
+                        </p>
+                        {fotoPrincipalIndex >= 0 && fotoPrincipalIndex < fotosExistentes.length + fotosPreviews.length ? (
+                          <div className="relative group border-2 border-purple-600 ring-2 ring-purple-300 rounded-lg overflow-hidden max-w-xs">
+                            <img
+                              src={[...fotosExistentes, ...fotosPreviews][fotoPrincipalIndex]}
+                              alt="Foto Principal"
+                              className="w-full h-48 object-cover"
+                            />
+                            <div className="absolute top-2 left-2 bg-purple-600 text-white text-xs px-2 py-1 rounded">
+                              Principal
                             </div>
-                          )
-                        })}
+                          </div>
+                        ) : (
+                          <p className="text-xs text-amber-600">⚠️ Selecione uma foto principal abaixo.</p>
+                        )}
+                      </div>
+
+                      {/* Seção: 4 Fotos Menores */}
+                      <div className="p-4 bg-green-50 rounded-lg border border-green-200">
+                        <h4 className="text-sm font-semibold text-gray-900 mb-2">
+                          🖼️ 4 Fotos Menores (Grid 2x2 - Embaixo)
+                        </h4>
+                        <p className="text-xs text-gray-600 mb-3">
+                          Escolha 4 fotos horizontais/quadradas que aparecerão no grid 2x2 abaixo da foto principal.
+                          Selecione fotos que preencham bem o espaço sem cortes.
+                        </p>
+                        {fotosMenoresIndices.length > 0 ? (
+                          <div className="grid grid-cols-2 gap-3 max-w-md">
+                            {fotosMenoresIndices.map((idx, pos) => {
+                              const todasFotos = [...fotosExistentes, ...fotosPreviews]
+                              if (idx >= todasFotos.length) return null
+                              return (
+                                <div key={idx} className="relative group border-2 border-green-500 ring-2 ring-green-300 rounded-lg overflow-hidden">
+                                  <img
+                                    src={todasFotos[idx]}
+                                    alt={`Menor ${pos + 1}`}
+                                    className="w-full h-32 object-cover"
+                                  />
+                                  <div className="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">
+                                    Menor {pos + 1}
+                                  </div>
+                                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center">
+                                    <button
+                                      type="button"
+                                      onClick={() => setFotosMenoresIndices(prev => prev.filter(i => i !== idx))}
+                                      className="opacity-0 group-hover:opacity-100 bg-red-500 text-white px-3 py-1 rounded text-xs font-medium hover:bg-red-600 transition-opacity"
+                                    >
+                                      Remover
+                                    </button>
+                                  </div>
+                                </div>
+                              )
+                            })}
+                          </div>
+                        ) : (
+                          <p className="text-xs text-amber-600">⚠️ Selecione 4 fotos abaixo para o grid 2x2.</p>
+                        )}
+                        {fotosMenoresIndices.length < 4 && (
+                          <p className="text-xs text-amber-600 mt-2">
+                            ⚠️ Faltam {4 - fotosMenoresIndices.length} foto(s) para completar as 4 menores.
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Seção: Todas as Fotos Disponíveis */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-900 mb-2">
+                          📚 Todas as Fotos Disponíveis ({fotosExistentes.length + fotosPreviews.length})
+                        </h4>
+                        <p className="text-xs text-gray-500 mb-3">
+                          Clique em uma foto para definir como principal ou adicionar às 4 menores.
+                        </p>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                          {[...fotosExistentes, ...fotosPreviews].map((foto, index) => {
+                            const isPrincipal = index === fotoPrincipalIndex
+                            const isMenor = fotosMenoresIndices.includes(index)
+                            const isExistente = index < fotosExistentes.length
+                            
+                            return (
+                              <div 
+                                key={index} 
+                                className={`relative group border-2 rounded-md overflow-hidden ${
+                                  isPrincipal ? 'border-purple-600 ring-2 ring-purple-300' : 
+                                  isMenor ? 'border-green-500 ring-2 ring-green-300' : 
+                                  'border-gray-200'
+                                }`}
+                              >
+                                <img
+                                  src={foto}
+                                  alt={`Foto ${index + 1}`}
+                                  className="w-full h-32 object-cover"
+                                />
+                                {isPrincipal && (
+                                  <div className="absolute top-2 left-2 bg-purple-600 text-white text-xs px-2 py-1 rounded">
+                                    Principal
+                                  </div>
+                                )}
+                                {isMenor && !isPrincipal && (
+                                  <div className="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">
+                                    Menor {fotosMenoresIndices.indexOf(index) + 1}
+                                  </div>
+                                )}
+                                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center gap-2 flex-wrap">
+                                  {!isPrincipal && (
+                                    <button
+                                      type="button"
+                                      onClick={() => definirFotoPrincipal(index)}
+                                      className="opacity-0 group-hover:opacity-100 bg-purple-600 text-white px-2 py-1 rounded text-xs font-medium hover:bg-purple-700 transition-opacity"
+                                      title="Definir como foto principal"
+                                    >
+                                      Principal
+                                    </button>
+                                  )}
+                                  {!isMenor && fotosMenoresIndices.length < 4 && (
+                                    <button
+                                      type="button"
+                                      onClick={() => setFotosMenoresIndices(prev => [...prev, index])}
+                                      className="opacity-0 group-hover:opacity-100 bg-green-600 text-white px-2 py-1 rounded text-xs font-medium hover:bg-green-700 transition-opacity"
+                                      title="Adicionar às 4 menores"
+                                    >
+                                      + Menor
+                                    </button>
+                                  )}
+                                  {isMenor && (
+                                    <button
+                                      type="button"
+                                      onClick={() => setFotosMenoresIndices(prev => prev.filter(i => i !== index))}
+                                      className="opacity-0 group-hover:opacity-100 bg-red-500 text-white px-2 py-1 rounded text-xs font-medium hover:bg-red-600 transition-opacity"
+                                      title="Remover das 4 menores"
+                                    >
+                                      Remover
+                                    </button>
+                                  )}
+                                  <button
+                                    type="button"
+                                    onClick={() => removeFoto(index, isExistente)}
+                                    className="opacity-0 group-hover:opacity-100 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-opacity"
+                                    title="Remover foto"
+                                  >
+                                    <X className="w-4 h-4" />
+                                  </button>
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
                       </div>
                     </div>
                   )}
