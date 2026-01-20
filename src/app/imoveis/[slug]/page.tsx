@@ -26,7 +26,8 @@ export default function ImovelDetalhePage() {
   const [isFavoritado, setIsFavoritado] = useState(false)
   const [hoveredPhotoIndex, setHoveredPhotoIndex] = useState<number | null>(null)
   const [contatoTipo, setContatoTipo] = useState<'telefone' | 'email' | 'whatsapp'>('email')
-  const [fotosVerticais, setFotosVerticais] = useState<Set<number>>(new Set()) // Índices das fotos menores que são muito verticais
+  const [fotosOrdenadas, setFotosOrdenadas] = useState<string[]>([]) // Fotos reordenadas com as 4 horizontais selecionadas
+  const [aspectRatios, setAspectRatios] = useState<Map<number, number>>(new Map()) // Cache de aspect ratios
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
@@ -44,8 +45,9 @@ export default function ImovelDetalhePage() {
         }
         setImovel(imovelData)
         setIsFavoritado(isFavorito(imovelData.id))
-        // Resetar fotos verticais ao carregar novo imóvel
-        setFotosVerticais(new Set())
+        // Resetar estados ao carregar novo imóvel
+        setFotosOrdenadas([])
+        setAspectRatios(new Map())
         
       } catch (error) {
         console.error('Erro ao carregar imóvel:', error)
@@ -93,46 +95,92 @@ export default function ImovelDetalhePage() {
     ? imovel.precoOriginal - imovel.preco
     : 0
 
-  // Organizar fotos: foto principal primeiro
+  // Organizar fotos: foto principal primeiro, depois escolher 4 horizontais para as menores
   const todasFotos = imovel.fotos || []
   const fotoPrincipalIndex = (imovel as any).fotoPrincipalIndex ?? 0
   
-  // Se há foto principal definida e não está na primeira posição, reorganizar
-  let fotosOrdenadas = [...todasFotos]
-  if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < fotosOrdenadas.length) {
-    const fotoPrincipal = fotosOrdenadas[fotoPrincipalIndex]
-    fotosOrdenadas.splice(fotoPrincipalIndex, 1)
-    fotosOrdenadas.unshift(fotoPrincipal)
-  }
-  
-  // Função para detectar se uma foto é muito vertical (prédio) e precisa de object-contain
-  const handleImageLoad = (index: number, event: React.SyntheticEvent<HTMLImageElement>) => {
-    // Só verificar as 4 fotos menores (índices 1-4)
-    if (index < 1 || index > 4) return
-    // Se já foi detectada, não verificar novamente
-    if (fotosVerticais.has(index)) return
-    
+  // Função para detectar aspect ratio de uma foto
+  const handleImageLoad = (url: string, index: number, event: React.SyntheticEvent<HTMLImageElement>) => {
     const img = event.currentTarget
-    // Verificar se a imagem já carregou completamente
     if (!img.naturalWidth || !img.naturalHeight) return
     
     const aspectRatio = img.naturalWidth / img.naturalHeight
-    
-    // Se a imagem é muito vertical (aspect ratio < 0.7), é provavelmente uma foto de prédio
-    // Essas fotos ficam cortadas com object-cover, então precisam de object-contain
-    if (aspectRatio < 0.7) {
-      setFotosVerticais(prev => {
-        const novo = new Set(prev)
-        novo.add(index)
-        return novo
-      })
-    }
+    setAspectRatios(prev => {
+      const novo = new Map(prev)
+      novo.set(index, aspectRatio)
+      return novo
+    })
   }
 
-  // Função auxiliar para verificar se uma foto precisa de object-contain
-  const precisaObjectContain = (index: number): boolean => {
-    return fotosVerticais.has(index)
-  }
+  // Efeito para reorganizar fotos quando tivermos aspect ratios suficientes
+  useEffect(() => {
+    if (!imovel || !todasFotos.length) return
+    // Se já reorganizamos para este conjunto de fotos, não fazer novamente
+    if (fotosOrdenadas.length > 0 && fotosOrdenadas[0] === (todasFotos[fotoPrincipalIndex] || todasFotos[0])) return
+    
+    // Se já temos aspect ratios para pelo menos 5 fotos (ou todas se tiver menos), reorganizar
+    const fotosComAspectRatio = todasFotos.filter((_, index) => aspectRatios.has(index))
+    
+    // Se temos pelo menos 5 fotos com aspect ratio, ou todas as fotos disponíveis (se tiver menos de 5)
+    if (fotosComAspectRatio.length >= Math.min(5, todasFotos.length) || (todasFotos.length < 5 && aspectRatios.size === todasFotos.length)) {
+      // 1. Escolher foto principal
+      let fotoPrincipal: string
+      let fotosRestantes: string[]
+      
+      if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < todasFotos.length) {
+        fotoPrincipal = todasFotos[fotoPrincipalIndex]
+        fotosRestantes = todasFotos.filter((_, i) => i !== fotoPrincipalIndex)
+      } else {
+        fotoPrincipal = todasFotos[0]
+        fotosRestantes = todasFotos.slice(1)
+      }
+      
+      // 2. Das fotos restantes, escolher as 4 mais horizontais/quadradas (aspect ratio > 0.7)
+      // Ordenar por: primeiro as horizontais (aspect ratio > 0.7), depois por proximidade de 1.0 (quadrado)
+      const fotosComScores = fotosRestantes.map((url, idx) => {
+        const originalIndex = todasFotos.indexOf(url)
+        const aspectRatio = aspectRatios.get(originalIndex) || 1.0
+        
+        // Score: fotos horizontais (aspect ratio > 0.7) têm prioridade
+        // Dentro das horizontais, priorizar as mais próximas de 1.0 (quadradas)
+        let score = 0
+        if (aspectRatio > 0.7) {
+          // Fotos horizontais: score base 1000 + proximidade de 1.0
+          score = 1000 + (1 - Math.abs(1 - aspectRatio)) * 100
+        } else {
+          // Fotos verticais: score baseado apenas na proximidade de 1.0 (menor prioridade)
+          score = Math.abs(1 - aspectRatio) * 10
+        }
+        
+        return { url, originalIndex, aspectRatio, score }
+      })
+      
+      // Ordenar por score (maior primeiro)
+      fotosComScores.sort((a, b) => b.score - a.score)
+      
+      // Pegar as 4 melhores (mais horizontais/quadradas)
+      const quatroMelhores = fotosComScores.slice(0, 4).map(f => f.url)
+      
+      // As demais fotos vão depois
+      const demaisFotos = fotosComScores.slice(4).map(f => f.url)
+      
+      // Ordenação final: [principal, 4 horizontais, demais]
+      const novaOrdem = [fotoPrincipal, ...quatroMelhores, ...demaisFotos]
+      
+      setFotosOrdenadas(novaOrdem)
+    }
+  }, [imovel, todasFotos.join(','), aspectRatios.size, fotoPrincipalIndex])
+
+  // Se ainda não temos fotos ordenadas, usar ordem padrão temporariamente
+  const fotosParaExibir = fotosOrdenadas.length > 0 ? fotosOrdenadas : (() => {
+    const temp = [...todasFotos]
+    if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < temp.length) {
+      const fotoPrincipal = temp[fotoPrincipalIndex]
+      temp.splice(fotoPrincipalIndex, 1)
+      temp.unshift(fotoPrincipal)
+    }
+    return temp
+  })()
 
   // Características vêm apenas das tags/comodidades (interligadas com o filtro)
   // Não incluir outras características booleanas, apenas as tags
@@ -200,9 +248,21 @@ export default function ImovelDetalhePage() {
           </div>
         </div>
 
+        {/* Pré-carregar todas as fotos invisivelmente para detectar aspect ratios */}
+        <div className="hidden">
+          {todasFotos.map((url, index) => (
+            <img
+              key={index}
+              src={url}
+              alt=""
+              onLoad={(e) => handleImageLoad(url, index, e)}
+            />
+          ))}
+        </div>
+
         {/* Galeria de Fotos - Layout: 1 foto grande à esquerda, 4 fotos menores em grid 2x2 à direita */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-3">
-          {fotosOrdenadas.length > 0 ? (
+          {fotosParaExibir.length > 0 ? (
             <div 
               className="grid grid-cols-2 gap-1.5 p-1.5" 
               style={{ minHeight: '70vh', height: '70vh' }}
@@ -219,21 +279,19 @@ export default function ImovelDetalhePage() {
                 onMouseEnter={() => setHoveredPhotoIndex(0)}
               >
                 <img
-                  src={fotosOrdenadas[0]}
+                  src={fotosParaExibir[0]}
                   alt={`${imovel.titulo} - Foto principal`}
                   className="w-full h-full object-cover"
                 />
               </Link>
               
-              {/* Coluna Direita - Grid 2x2 com 4 fotos menores */}
+              {/* Coluna Direita - Grid 2x2 com 4 fotos menores (escolhidas por serem horizontais) */}
               <div className="grid grid-cols-2 grid-rows-2 gap-1.5 h-full">
                 {/* Foto 2 - Superior esquerda */}
-                {fotosOrdenadas[1] ? (
+                {fotosParaExibir[1] ? (
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=1`}
                     className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
-                      precisaObjectContain(1) ? 'bg-white flex items-center justify-center' : ''
-                    } ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 1
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -241,11 +299,9 @@ export default function ImovelDetalhePage() {
                     onMouseEnter={() => setHoveredPhotoIndex(1)}
                   >
                     <img
-                      src={fotosOrdenadas[1]}
+                      src={fotosParaExibir[1]}
                       alt={`${imovel.titulo} - Foto 2`}
-                      className={`w-full h-full ${precisaObjectContain(1) ? 'object-contain' : 'object-cover'}`}
-                      style={precisaObjectContain(1) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
-                      onLoad={(e) => handleImageLoad(1, e)}
+                      className="w-full h-full object-cover"
                     />
                   </Link>
                 ) : (
@@ -253,12 +309,10 @@ export default function ImovelDetalhePage() {
                 )}
                 
                 {/* Foto 3 - Superior direita */}
-                {fotosOrdenadas[2] ? (
+                {fotosParaExibir[2] ? (
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=2`}
                     className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
-                      precisaObjectContain(2) ? 'bg-white flex items-center justify-center' : ''
-                    } ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 2
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -266,11 +320,9 @@ export default function ImovelDetalhePage() {
                     onMouseEnter={() => setHoveredPhotoIndex(2)}
                   >
                     <img
-                      src={fotosOrdenadas[2]}
+                      src={fotosParaExibir[2]}
                       alt={`${imovel.titulo} - Foto 3`}
-                      className={`w-full h-full ${precisaObjectContain(2) ? 'object-contain' : 'object-cover'}`}
-                      style={precisaObjectContain(2) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
-                      onLoad={(e) => handleImageLoad(2, e)}
+                      className="w-full h-full object-cover"
                     />
                   </Link>
                 ) : (
@@ -278,12 +330,10 @@ export default function ImovelDetalhePage() {
                 )}
                 
                 {/* Foto 4 - Inferior esquerda */}
-                {fotosOrdenadas[3] ? (
+                {fotosParaExibir[3] ? (
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=3`}
                     className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
-                      precisaObjectContain(3) ? 'bg-white flex items-center justify-center' : ''
-                    } ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 3
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -291,11 +341,9 @@ export default function ImovelDetalhePage() {
                     onMouseEnter={() => setHoveredPhotoIndex(3)}
                   >
                     <img
-                      src={fotosOrdenadas[3]}
+                      src={fotosParaExibir[3]}
                       alt={`${imovel.titulo} - Foto 4`}
-                      className={`w-full h-full ${precisaObjectContain(3) ? 'object-contain' : 'object-cover'}`}
-                      style={precisaObjectContain(3) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
-                      onLoad={(e) => handleImageLoad(3, e)}
+                      className="w-full h-full object-cover"
                     />
                   </Link>
                 ) : (
@@ -303,12 +351,10 @@ export default function ImovelDetalhePage() {
                 )}
                 
                 {/* Foto 5 - Inferior direita com botão Visualizar Fotos */}
-                {fotosOrdenadas[4] ? (
+                {fotosParaExibir[4] ? (
                   <Link 
                     href={`/imoveis/${imovel.slug}/fotos?index=4`}
                     className={`relative rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 ${
-                      precisaObjectContain(4) ? 'bg-white flex items-center justify-center' : ''
-                    } ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 4
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -316,40 +362,35 @@ export default function ImovelDetalhePage() {
                     onMouseEnter={() => setHoveredPhotoIndex(4)}
                   >
                     <img
-                      src={fotosOrdenadas[4]}
+                      src={fotosParaExibir[4]}
                       alt={`${imovel.titulo} - Foto 5`}
-                      className={`w-full h-full ${precisaObjectContain(4) ? 'object-contain' : 'object-cover'}`}
-                      style={precisaObjectContain(4) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
-                      onLoad={(e) => handleImageLoad(4, e)}
+                      className="w-full h-full object-cover"
                     />
                     {/* Botão Visualizar Fotos - Canto inferior direito */}
                     <div className="absolute bottom-2 right-2 z-10">
                       <div className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium text-sm transition-colors flex items-center gap-2 shadow-lg">
                         <span>Visualizar Fotos</span>
-                        {fotosOrdenadas.length > 5 && (
-                          <span className="text-xs text-gray-600">({fotosOrdenadas.length})</span>
+                        {fotosParaExibir.length > 5 && (
+                          <span className="text-xs text-gray-600">({fotosParaExibir.length})</span>
                         )}
                       </div>
                     </div>
                   </Link>
-                ) : fotosOrdenadas.length > 0 ? (
+                ) : fotosParaExibir.length > 0 ? (
                   // Se tiver menos de 5 fotos, mostrar botão na última foto disponível
                   <Link 
-                    href={`/imoveis/${imovel.slug}/fotos?index=${fotosOrdenadas.length - 1}`}
+                    href={`/imoveis/${imovel.slug}/fotos?index=${fotosParaExibir.length - 1}`}
                     className={`relative rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 ${
-                      precisaObjectContain(fotosOrdenadas.length - 1) ? 'bg-white flex items-center justify-center' : ''
-                    } ${
-                      hoveredPhotoIndex === null || hoveredPhotoIndex === fotosOrdenadas.length - 1
+                      hoveredPhotoIndex === null || hoveredPhotoIndex === fotosParaExibir.length - 1
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
                     }`}
-                    onMouseEnter={() => setHoveredPhotoIndex(fotosOrdenadas.length - 1)}
+                    onMouseEnter={() => setHoveredPhotoIndex(fotosParaExibir.length - 1)}
                   >
                     <img
-                      src={fotosOrdenadas[fotosOrdenadas.length - 1]}
+                      src={fotosParaExibir[fotosParaExibir.length - 1]}
                       alt={`${imovel.titulo} - Última foto`}
-                      className={`w-full h-full ${precisaObjectContain(fotosOrdenadas.length - 1) ? 'object-contain' : 'object-cover'}`}
-                      style={precisaObjectContain(fotosOrdenadas.length - 1) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
+                      className="w-full h-full object-cover"
                     />
                     <div className="absolute bottom-2 right-2 z-10">
                       <div className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium text-sm transition-colors shadow-lg">
