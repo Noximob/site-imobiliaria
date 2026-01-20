@@ -537,16 +537,20 @@ function extractFotos(unit?: DWVUnit | null, building?: DWVBuilding | null, thir
     }
   })
   
-  // Processar fotos com tamanhos otimizados
+  // Processar fotos com tamanhos otimizados para layout: 1 grande + 4 menores em grid 2x2
+  // Estratégia: escolher tamanhos que ao redimensionar com object-cover fiquem harmônicos
   const fotosProcessadas: string[] = []
   
   fotosUnicas.forEach((foto, index) => {
-    // Primeira foto (índice 0): usar tamanho large para foto grande
+    // Primeira foto (índice 0): foto grande à esquerda
+    // Usar xlarge ou large (tamanhos maiores, geralmente verticais/retangulares)
     if (index === 0) {
       const url = extractImageUrlBySize(foto.image, 'large')
       if (url) fotosProcessadas.push(url)
     }
-    // Fotos 1-4: usar tamanho medium para harmonia nas 4 menores
+    // Fotos 1-4: 4 menores em grid 2x2 à direita
+    // Usar medium (tamanho médio, geralmente mais quadrado, ideal para grids pequenos)
+    // Isso garante que as 4 fotos tenham tamanhos similares e fiquem harmônicas
     else if (index >= 1 && index <= 4) {
       const url = extractImageUrlBySize(foto.image, 'medium')
       if (url) fotosProcessadas.push(url)
