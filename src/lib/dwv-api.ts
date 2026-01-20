@@ -539,26 +539,39 @@ function extractFotos(unit?: DWVUnit | null, building?: DWVBuilding | null, thir
   
   // Processar fotos com tamanhos otimizados para layout: 1 grande + 4 menores em grid 2x2
   // Estratégia: escolher tamanhos que ao redimensionar com object-cover fiquem harmônicos
+  // IMPORTANTE: Sempre garantir que extraia uma URL válida, mesmo que não tenha o tamanho preferido
   const fotosProcessadas: string[] = []
   
   fotosUnicas.forEach((foto, index) => {
+    let url: string | null = null
+    
     // Primeira foto (índice 0): foto grande à esquerda
     // Usar xlarge ou large (tamanhos maiores, geralmente verticais/retangulares)
     if (index === 0) {
-      const url = extractImageUrlBySize(foto.image, 'large')
-      if (url) fotosProcessadas.push(url)
+      url = extractImageUrlBySize(foto.image, 'large')
+      // Se não encontrou com tamanho preferido, usar fallback genérico
+      if (!url) {
+        url = extractImageUrl(foto.image)
+      }
     }
     // Fotos 1-4: 4 menores em grid 2x2 à direita
     // Usar medium (tamanho médio, geralmente mais quadrado, ideal para grids pequenos)
     // Isso garante que as 4 fotos tenham tamanhos similares e fiquem harmônicas
     else if (index >= 1 && index <= 4) {
-      const url = extractImageUrlBySize(foto.image, 'medium')
-      if (url) fotosProcessadas.push(url)
+      url = extractImageUrlBySize(foto.image, 'medium')
+      // Se não encontrou com tamanho preferido, usar fallback genérico
+      if (!url) {
+        url = extractImageUrl(foto.image)
+      }
     }
     // Demais fotos: usar tamanho padrão (para carrossel completo)
     else {
-      const url = extractImageUrl(foto.image)
-      if (url) fotosProcessadas.push(url)
+      url = extractImageUrl(foto.image)
+    }
+    
+    // Sempre adicionar se tiver URL válida
+    if (url) {
+      fotosProcessadas.push(url)
     }
   })
   
