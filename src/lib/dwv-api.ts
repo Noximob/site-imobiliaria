@@ -152,25 +152,62 @@ interface DWVResponse {
 // ============================================
 
 /**
- * Extrai URL da imagem (prioriza URL original para evitar cortes)
+ * Remove parâmetros de crop da URL
+ */
+function removeCropParams(url: string): string {
+  try {
+    const urlObj = new URL(url)
+    urlObj.searchParams.delete('crop')
+    return urlObj.toString()
+  } catch (error) {
+    console.warn("Invalid URL for crop param removal:", url, error)
+    return url
+  }
+}
+
+/**
+ * Extrai URL da imagem com tamanho específico baseado na posição
+ * @param image - Imagem do DWV (string ou DWVImage)
+ * @param sizePreference - 'large' para foto principal, 'medium' para fotos menores
+ */
+function extractImageUrlBySize(image?: string | DWVImage, sizePreference: 'large' | 'medium' = 'large'): string | null {
+  if (!image) return null
+  
+  if (typeof image === 'string') {
+    return removeCropParams(image)
+  }
+  
+  // Para foto grande (principal): priorizar xlarge ou large
+  if (sizePreference === 'large') {
+    // Tentar usar tamanhos maiores primeiro (xlarge > large > url original)
+    const url = image.sizes?.xlarge || image.sizes?.large || image.url || null
+    return url ? removeCropParams(url) : null
+  }
+  
+  // Para fotos menores: priorizar medium para harmonia
+  if (sizePreference === 'medium') {
+    // Tentar usar medium primeiro, depois fallback para outros tamanhos
+    const url = image.sizes?.medium || image.sizes?.large || image.url || image.sizes?.xlarge || null
+    return url ? removeCropParams(url) : null
+  }
+  
+  return null
+}
+
+/**
+ * Extrai URL da imagem (compatibilidade - mantém comportamento antigo para listagens)
  * IMPORTANTE: As fotos são URLs do DWV, não são baixadas. Precisamos usar a URL original.
  */
 function extractImageUrl(image?: string | DWVImage): string | null {
   if (!image) return null
   
   if (typeof image === 'string') {
-    return image
+    return removeCropParams(image)
   }
   
-  // SEMPRE priorizar image.url primeiro (URL original do DWV)
-  // As versões em sizes (xfullhd, xlarge, large, medium) podem estar redimensionadas/cortadas
-  // Se image.url não existir, usar a maior versão disponível como fallback
-  if (image.url) {
-    return image.url
-  }
-  
-  // Fallback: usar a maior versão disponível se não tiver URL original
-  return image.sizes?.xfullhd || image.sizes?.xlarge || image.sizes?.large || image.sizes?.medium || null
+  // Para listagens: usar URL original sem crop, ou maior versão disponível
+  const url = image.url || image.sizes?.xfullhd || image.sizes?.xlarge || image.sizes?.large || image.sizes?.medium || null
+  return url ? removeCropParams(url) : null
 }
 
 /**
@@ -423,16 +460,20 @@ function extractAddress(building?: DWVBuilding | null, thirdParty?: DWVThirdPart
 }
 
 /**
- * Extrai fotos de unit, building e third_party_property
+ * Extrai fotos de unit, building e third_party_property com tamanhos otimizados
+ * Retorna array onde:
+ * - Índice 0: foto principal (tamanho large/xlarge) para foto grande
+ * - Índices 1-4: fotos secundárias (tamanho medium) para harmonia nas 4 menores
  */
 function extractFotos(unit?: DWVUnit | null, building?: DWVBuilding | null, thirdParty?: DWVThirdPartyProperty | null): string[] {
-  const fotos: string[] = []
+  const todasFotos: Array<{ image: string | DWVImage, source: 'unit' | 'building' | 'thirdParty' }> = []
   
+  // Coletar todas as fotos com suas fontes
   // Fotos do unit
   if (unit) {
     // Cover do unit
     if (unit.cover) {
-      fotos.push(unit.cover)
+      todasFotos.push({ image: unit.cover, source: 'unit' })
     }
     
     // Additional galleries do unit
@@ -440,8 +481,7 @@ function extractFotos(unit?: DWVUnit | null, building?: DWVBuilding | null, thir
       unit.additional_galleries.forEach(gallery => {
         if (gallery.files && Array.isArray(gallery.files)) {
           gallery.files.forEach(file => {
-            const url = extractImageUrl(file)
-            if (url) fotos.push(url)
+            todasFotos.push({ image: file, source: 'unit' })
           })
         }
       })
@@ -450,36 +490,75 @@ function extractFotos(unit?: DWVUnit | null, building?: DWVBuilding | null, thir
   
   // Fotos do building
   if (building) {
-    // Cover do building (prioridade)
+    // Cover do building (prioridade - vai no início)
     if (building.cover) {
-      const coverUrl = extractImageUrl(building.cover)
-      if (coverUrl) fotos.unshift(coverUrl) // Adicionar no início
+      todasFotos.unshift({ image: building.cover, source: 'building' })
     }
     
     // Gallery do building
     if (building.gallery && Array.isArray(building.gallery)) {
-      const buildingFotos = extractImageUrls(building.gallery)
-      fotos.push(...buildingFotos)
+      building.gallery.forEach(img => {
+        todasFotos.push({ image: img, source: 'building' })
+      })
     }
   }
   
   // Fotos do third_party_property
   if (thirdParty) {
-    // Cover do third_party
+    // Cover do third_party (prioridade - vai no início)
     if (thirdParty.cover) {
-      const coverUrl = extractImageUrl(thirdParty.cover)
-      if (coverUrl) fotos.unshift(coverUrl)
+      todasFotos.unshift({ image: thirdParty.cover, source: 'thirdParty' })
     }
     
     // Gallery do third_party
     if (thirdParty.gallery && Array.isArray(thirdParty.gallery)) {
-      const thirdPartyFotos = extractImageUrls(thirdParty.gallery)
-      fotos.push(...thirdPartyFotos)
+      thirdParty.gallery.forEach(img => {
+        todasFotos.push({ image: img, source: 'thirdParty' })
+      })
     }
   }
   
-  // Remover duplicatas mantendo ordem
-  return Array.from(new Set(fotos))
+  // Remover duplicatas baseado na URL (antes de processar tamanhos)
+  const fotosUnicas: Array<{ image: string | DWVImage, source: 'unit' | 'building' | 'thirdParty' }> = []
+  const urlsVistas = new Set<string>()
+  
+  todasFotos.forEach(foto => {
+    // Extrair URL temporária para verificar duplicatas
+    let urlTemp: string | null = null
+    if (typeof foto.image === 'string') {
+      urlTemp = foto.image
+    } else {
+      urlTemp = foto.image.url || foto.image.sizes?.xlarge || foto.image.sizes?.large || foto.image.sizes?.medium || null
+    }
+    
+    if (urlTemp && !urlsVistas.has(urlTemp)) {
+      urlsVistas.add(urlTemp)
+      fotosUnicas.push(foto)
+    }
+  })
+  
+  // Processar fotos com tamanhos otimizados
+  const fotosProcessadas: string[] = []
+  
+  fotosUnicas.forEach((foto, index) => {
+    // Primeira foto (índice 0): usar tamanho large para foto grande
+    if (index === 0) {
+      const url = extractImageUrlBySize(foto.image, 'large')
+      if (url) fotosProcessadas.push(url)
+    }
+    // Fotos 1-4: usar tamanho medium para harmonia nas 4 menores
+    else if (index >= 1 && index <= 4) {
+      const url = extractImageUrlBySize(foto.image, 'medium')
+      if (url) fotosProcessadas.push(url)
+    }
+    // Demais fotos: usar tamanho padrão (para carrossel completo)
+    else {
+      const url = extractImageUrl(foto.image)
+      if (url) fotosProcessadas.push(url)
+    }
+  })
+  
+  return fotosProcessadas
 }
 
 // ============================================
