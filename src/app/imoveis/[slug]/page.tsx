@@ -93,6 +93,7 @@ export default function ImovelDetalhePage() {
   // Organizar fotos: o backend já prioriza fotos com "medium" (geralmente mais horizontais/quadradas) para as 4 menores
   const todasFotos = imovel.fotos || []
   const fotoPrincipalIndex = (imovel as any).fotoPrincipalIndex ?? 0
+  const fotosSemMedium = (imovel as any).fotosSemMedium || [] // Índices 1-4 que não têm medium (do backend)
   
   // Se há foto principal definida e não está na primeira posição, reorganizar
   let fotosParaExibir = [...todasFotos]
@@ -102,9 +103,11 @@ export default function ImovelDetalhePage() {
     fotosParaExibir.unshift(fotoPrincipal)
   }
 
-  // SOLUÇÃO DEFINITIVA: Sempre usar object-contain para as 4 menores
-  // O usuário vai remover imóveis sem fotos horizontais/medium, então todas devem aparecer inteiras
-  // Isso garante consistência total sem depender de detecção ou informações do backend
+  // Usar object-contain apenas para fotos que NÃO têm medium (são verticais)
+  // Fotos com medium (horizontais/quadradas) usam object-cover (preenchem sem bordas)
+  const precisaObjectContain = (index: number): boolean => {
+    return fotosSemMedium.includes(index)
+  }
 
   // Características vêm apenas das tags/comodidades (interligadas com o filtro)
   // Não incluir outras características booleanas, apenas as tags
@@ -146,8 +149,8 @@ export default function ImovelDetalhePage() {
               <div className="text-right">
                 <div className="flex items-baseline gap-1.5">
                   <span className="text-xl md:text-2xl font-light text-red-600 tracking-tight">
-                    {formatPrice(imovel.preco)}
-                  </span>
+                      {formatPrice(imovel.preco)}
+                    </span>
                 </div>
               </div>
               
@@ -203,7 +206,9 @@ export default function ImovelDetalhePage() {
                 {fotosParaExibir[1] ? (
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=1`}
-                    className={`relative rounded-lg overflow-hidden bg-white flex items-center justify-center cursor-pointer transition-all duration-300 ${
+                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
+                      precisaObjectContain(1) ? 'bg-white flex items-center justify-center' : ''
+                    } ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 1
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -213,8 +218,8 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosParaExibir[1]}
                       alt={`${imovel.titulo} - Foto 2`}
-                      className="w-full h-full object-contain"
-                      style={{ maxWidth: '100%', maxHeight: '100%' }}
+                      className={`w-full h-full ${precisaObjectContain(1) ? 'object-contain' : 'object-cover'}`}
+                      style={precisaObjectContain(1) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
                     />
                   </Link>
                 ) : (
@@ -225,7 +230,9 @@ export default function ImovelDetalhePage() {
                 {fotosParaExibir[2] ? (
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=2`}
-                    className={`relative rounded-lg overflow-hidden bg-white flex items-center justify-center cursor-pointer transition-all duration-300 ${
+                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
+                      precisaObjectContain(2) ? 'bg-white flex items-center justify-center' : ''
+                    } ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 2
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -235,8 +242,8 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosParaExibir[2]}
                       alt={`${imovel.titulo} - Foto 3`}
-                      className="w-full h-full object-contain"
-                      style={{ maxWidth: '100%', maxHeight: '100%' }}
+                      className={`w-full h-full ${precisaObjectContain(2) ? 'object-contain' : 'object-cover'}`}
+                      style={precisaObjectContain(2) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
                     />
                   </Link>
                 ) : (
@@ -247,7 +254,9 @@ export default function ImovelDetalhePage() {
                 {fotosParaExibir[3] ? (
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=3`}
-                    className={`relative rounded-lg overflow-hidden bg-white flex items-center justify-center cursor-pointer transition-all duration-300 ${
+                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
+                      precisaObjectContain(3) ? 'bg-white flex items-center justify-center' : ''
+                    } ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 3
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -257,8 +266,8 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosParaExibir[3]}
                       alt={`${imovel.titulo} - Foto 4`}
-                      className="w-full h-full object-contain"
-                      style={{ maxWidth: '100%', maxHeight: '100%' }}
+                      className={`w-full h-full ${precisaObjectContain(3) ? 'object-contain' : 'object-cover'}`}
+                      style={precisaObjectContain(3) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
                     />
                   </Link>
                 ) : (
@@ -269,7 +278,9 @@ export default function ImovelDetalhePage() {
                 {fotosParaExibir[4] ? (
                   <Link 
                     href={`/imoveis/${imovel.slug}/fotos?index=4`}
-                    className={`relative rounded-lg overflow-hidden bg-white flex items-center justify-center group cursor-pointer transition-all duration-300 ${
+                    className={`relative rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 ${
+                      precisaObjectContain(4) ? 'bg-white flex items-center justify-center' : ''
+                    } ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 4
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -279,8 +290,8 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosParaExibir[4]}
                       alt={`${imovel.titulo} - Foto 5`}
-                      className="w-full h-full object-contain"
-                      style={{ maxWidth: '100%', maxHeight: '100%' }}
+                      className={`w-full h-full ${precisaObjectContain(4) ? 'object-contain' : 'object-cover'}`}
+                      style={precisaObjectContain(4) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
                     />
                     {/* Botão Visualizar Fotos - Canto inferior direito */}
                     <div className="absolute bottom-2 right-2 z-10">
@@ -532,106 +543,106 @@ export default function ImovelDetalhePage() {
           {/* Coluna Direita - Formulário de Contato */}
           <div className="lg:col-span-1">
             <div className="bg-gray-900 rounded-lg shadow-lg p-6 sticky top-4">
-              <h3 className="text-white text-lg font-semibold mb-4">RECEBER CONTATO POR:</h3>
-              
-              {/* Opções de Contato */}
-              <div className="flex gap-2 mb-6">
-                <button
-                  onClick={() => setContatoTipo('telefone')}
-                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
-                    contatoTipo === 'telefone'
-                      ? 'bg-orange-500 text-white'
-                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                  }`}
-                >
-                  Telefone
-                </button>
-                <button
-                  onClick={() => setContatoTipo('email')}
-                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
-                    contatoTipo === 'email'
-                      ? 'bg-orange-500 text-white'
-                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                  }`}
-                >
-                  Email
-                </button>
-                <button
-                  onClick={() => setContatoTipo('whatsapp')}
-                  className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
-                    contatoTipo === 'whatsapp'
-                      ? 'bg-orange-500 text-white'
-                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                  }`}
-                >
-                  WhatsApp
-                </button>
-              </div>
-
-              <form onSubmit={handleSubmitForm} className="space-y-4">
-                <textarea
-                  value={formData.mensagem}
-                  onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
-                  className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm resize-none"
-                  rows={4}
-                  required
-                />
-
-                <input
-                  type="text"
-                  placeholder="Nome"
-                  value={formData.nome}
-                  onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                  className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
-                  required
-                />
-
-                <input
-                  type="email"
-                  placeholder="E-mail"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
-                  required
-                />
-
-                <input
-                  type="tel"
-                  placeholder="Celular / WhatsApp"
-                  value={formData.telefone}
-                  onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
-                  className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
-                  required
-                />
-
-                <button
-                  type="submit"
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors"
-                >
-                  ENVIAR
-                </button>
-
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-700"></div>
-                  </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-gray-900 text-gray-400">OU</span>
-                  </div>
-                </div>
-
-                <a
-                  href={getWhatsAppLink(imovel.contato?.whatsapp || '', `Olá, gostaria de receber mais informações sobre este imóvel: ${imovel.titulo}`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
-                >
-                  <MessageCircle className="w-5 h-5" />
-                  Fale pelo WhatsApp
-                </a>
-              </form>
-            </div>
+          <h3 className="text-white text-lg font-semibold mb-4">RECEBER CONTATO POR:</h3>
+          
+          {/* Opções de Contato */}
+          <div className="flex gap-2 mb-6">
+            <button
+              onClick={() => setContatoTipo('telefone')}
+              className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                contatoTipo === 'telefone'
+                  ? 'bg-orange-500 text-white'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              }`}
+            >
+              Telefone
+            </button>
+            <button
+              onClick={() => setContatoTipo('email')}
+              className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                contatoTipo === 'email'
+                  ? 'bg-orange-500 text-white'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              }`}
+            >
+              Email
+            </button>
+            <button
+              onClick={() => setContatoTipo('whatsapp')}
+              className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                contatoTipo === 'whatsapp'
+                  ? 'bg-orange-500 text-white'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              }`}
+            >
+              WhatsApp
+            </button>
           </div>
+
+          <form onSubmit={handleSubmitForm} className="space-y-4">
+            <textarea
+              value={formData.mensagem}
+              onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
+              className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm resize-none"
+              rows={4}
+              required
+            />
+
+            <input
+              type="text"
+              placeholder="Nome"
+              value={formData.nome}
+              onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+              className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
+              required
+            />
+
+            <input
+              type="email"
+              placeholder="E-mail"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
+              required
+            />
+
+            <input
+              type="tel"
+              placeholder="Celular / WhatsApp"
+              value={formData.telefone}
+              onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+              className="w-full bg-gray-800 text-white rounded-lg p-3 text-sm"
+              required
+            />
+
+            <button
+              type="submit"
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors"
+            >
+              ENVIAR
+            </button>
+
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-700"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-gray-900 text-gray-400">OU</span>
+              </div>
+            </div>
+
+            <a
+              href={getWhatsAppLink(imovel.contato?.whatsapp || '', `Olá, gostaria de receber mais informações sobre este imóvel: ${imovel.titulo}`)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Fale pelo WhatsApp
+            </a>
+          </form>
+                </div>
+              </div>
         </div>
       </div>
     </div>
