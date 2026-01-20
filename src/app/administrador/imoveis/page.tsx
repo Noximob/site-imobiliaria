@@ -1037,13 +1037,13 @@ export default function AdminImoveis() {
                   
                   {/* Seção: Fotos do DWV (se for imóvel do DWV) */}
                   {fotosDWV.length > 0 && (
-                    <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
                       <h4 className="text-sm font-semibold text-gray-900 mb-2">
                         📷 Galeria Completa do DWV ({fotosDWV.length} fotos)
                       </h4>
                       <p className="text-xs text-gray-600 mb-3">
-                        Escolha a foto principal e as 4 menores desta galeria completa do DWV.
-                        Fotos com borda azul destacada têm tamanho "medium" e são ideais para as 4 menores (grid 2x2).
+                        Escolha qual foto será a principal e quais 4 serão as menores.
+                        <span className="text-blue-600 font-medium"> Fotos com borda azul são horizontais/ideais para as 4 menores.</span>
                       </p>
                       {carregandoFotosDWV ? (
                         <p className="text-xs text-gray-500">Carregando fotos do DWV...</p>
@@ -1254,12 +1254,17 @@ export default function AdminImoveis() {
                             const isMenor = fotosMenoresIndices.includes(index)
                             const isExistente = index < fotosExistentes.length
                             
+                            // Verificar se foto está no DWV e tem medium (ideal para menores)
+                            const fotoDWV = fotosDWV.find(f => f.url === foto)
+                            const temMedium = fotoDWV?.hasMedium || false
+                            
                             return (
                               <div 
                                 key={index} 
                                 className={`relative group border-2 rounded-md overflow-hidden ${
                                   isPrincipal ? 'border-purple-600 ring-2 ring-purple-300' : 
                                   isMenor ? 'border-green-500 ring-2 ring-green-300' : 
+                                  temMedium && !isPrincipal && !isMenor ? 'border-blue-400 ring-2 ring-blue-200' : 
                                   'border-gray-200'
                                 }`}
                               >
@@ -1269,13 +1274,18 @@ export default function AdminImoveis() {
                                   className="w-full h-32 object-cover"
                                 />
                                 {isPrincipal && (
-                                  <div className="absolute top-2 left-2 bg-purple-600 text-white text-xs px-2 py-1 rounded">
+                                  <div className="absolute top-2 left-2 bg-purple-600 text-white text-xs px-2 py-1 rounded font-medium">
                                     Principal
                                   </div>
                                 )}
                                 {isMenor && !isPrincipal && (
-                                  <div className="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">
+                                  <div className="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded font-medium">
                                     Menor {fotosMenoresIndices.indexOf(index) + 1}
+                                  </div>
+                                )}
+                                {temMedium && !isPrincipal && !isMenor && (
+                                  <div className="absolute top-2 left-2 bg-blue-500 text-white text-xs px-2 py-1 rounded font-medium">
+                                    ⭐ Ideal
                                   </div>
                                 )}
                                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center gap-2 flex-wrap">
@@ -1283,7 +1293,7 @@ export default function AdminImoveis() {
                                     <button
                                       type="button"
                                       onClick={() => definirFotoPrincipal(index)}
-                                      className="opacity-0 group-hover:opacity-100 bg-purple-600 text-white px-2 py-1 rounded text-xs font-medium hover:bg-purple-700 transition-opacity"
+                                      className="opacity-0 group-hover:opacity-100 bg-purple-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-purple-700 transition-opacity"
                                       title="Definir como foto principal"
                                     >
                                       Principal
@@ -1293,63 +1303,39 @@ export default function AdminImoveis() {
                                     <button
                                       type="button"
                                       onClick={() => setFotosMenoresIndices(prev => [...prev, index])}
-                                      className="opacity-0 group-hover:opacity-100 bg-green-600 text-white px-2 py-1 rounded text-xs font-medium hover:bg-green-700 transition-opacity"
+                                      className="opacity-0 group-hover:opacity-100 bg-green-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-green-700 transition-opacity"
                                       title="Adicionar às 4 menores"
                                     >
                                       + Menor
                                     </button>
                                   )}
                                   {isMenor && (
-                                    <>
-                                      <button
-                                        type="button"
-                                        onClick={() => {
-                                          // Mover para extras
-                                          setFotosMenoresIndices(prev => prev.filter(i => i !== index))
-                                          setMaisFotosPreviews(prev => [...prev, foto])
-                                        }}
-                                        className="opacity-0 group-hover:opacity-100 bg-blue-500 text-white px-2 py-1 rounded text-xs font-medium hover:bg-blue-600 transition-opacity"
-                                        title="Mover para extras"
-                                      >
-                                        → Extras
-                                      </button>
-                                      <button
-                                        type="button"
-                                        onClick={() => setFotosMenoresIndices(prev => prev.filter(i => i !== index))}
-                                        className="opacity-0 group-hover:opacity-100 bg-red-500 text-white px-2 py-1 rounded text-xs font-medium hover:bg-red-600 transition-opacity"
-                                        title="Remover"
-                                      >
-                                        Remover
-                                      </button>
-                                    </>
+                                    <button
+                                      type="button"
+                                      onClick={() => setFotosMenoresIndices(prev => prev.filter(i => i !== index))}
+                                      className="opacity-0 group-hover:opacity-100 bg-red-500 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-red-600 transition-opacity"
+                                      title="Remover das menores"
+                                    >
+                                      Remover
+                                    </button>
                                   )}
-                                  {!isPrincipal && !isMenor && fotosMenoresIndices.length > 0 && (
+                                  {!isPrincipal && !isMenor && fotosMenoresIndices.length === 4 && (
                                     <button
                                       type="button"
                                       onClick={() => {
-                                        // Trocar com primeira menor disponível
+                                        // Substituir primeira menor
                                         const primeiraMenor = fotosMenoresIndices[0]
                                         const todasFotos = [...fotosExistentes, ...fotosPreviews]
-                                        const fotoMenor = todasFotos[primeiraMenor]
                                         
-                                        // Trocar: esta foto vira menor, a menor vai para extras
                                         setFotosMenoresIndices(prev => [index, ...prev.slice(1)])
-                                        setMaisFotosPreviews(prev => [...prev, fotoMenor])
+                                        setMaisFotosPreviews(prev => [...prev, todasFotos[primeiraMenor]])
                                       }}
-                                      className="opacity-0 group-hover:opacity-100 bg-yellow-600 text-white px-2 py-1 rounded text-xs font-medium hover:bg-yellow-700 transition-opacity"
-                                      title="Trocar com uma menor"
+                                      className="opacity-0 group-hover:opacity-100 bg-green-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-green-700 transition-opacity"
+                                      title="Substituir uma menor"
                                     >
-                                      Trocar Menor
+                                      Substituir Menor
                                     </button>
                                   )}
-                                  <button
-                                    type="button"
-                                    onClick={() => removeFoto(index, isExistente)}
-                                    className="opacity-0 group-hover:opacity-100 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-opacity"
-                                    title="Remover foto"
-                                  >
-                                    <X className="w-4 h-4" />
-                                  </button>
                                 </div>
                               </div>
                             )
@@ -1385,8 +1371,8 @@ export default function AdminImoveis() {
                       <p className="text-sm font-medium text-gray-700 mb-3">
                         Fotos Extras ({maisFotosPreviews.length})
                       </p>
-                      <p className="text-xs text-blue-600 mb-3">
-                        💡 Fotos com borda azul têm tamanho "medium" e são ideais para substituir uma das 4 menores.
+                      <p className="text-xs text-gray-600 mb-3">
+                        <span className="text-blue-600 font-medium">Fotos com borda azul são ideais para as 4 menores (horizontais).</span>
                       </p>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {maisFotosPreviews.map((foto, index) => {
@@ -1411,7 +1397,7 @@ export default function AdminImoveis() {
                                   ⭐ Ideal
                                 </div>
                               )}
-                              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center gap-2 flex-wrap">
+                              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center gap-2">
                                 {fotosMenoresIndices.length < 4 ? (
                                   <button
                                     type="button"
@@ -1420,52 +1406,42 @@ export default function AdminImoveis() {
                                       const todasFotos = [...fotosExistentes, ...fotosPreviews]
                                       let idx = todasFotos.indexOf(foto)
                                       if (idx < 0) {
-                                        // Foto não está nas principais, adicionar
                                         setFotosPreviews(prev => [...prev, foto])
                                         idx = fotosExistentes.length + fotosPreviews.length
                                       }
                                       setFotosMenoresIndices(prev => [...prev, idx])
                                       removeMaisFoto(index)
                                     }}
-                                    className="opacity-0 group-hover:opacity-100 bg-green-600 text-white px-3 py-1 rounded text-xs font-medium hover:bg-green-700 transition-opacity"
+                                    className="opacity-0 group-hover:opacity-100 bg-green-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-green-700 transition-opacity"
                                     title="Adicionar às 4 menores"
                                   >
                                     → Menores
                                   </button>
                                 ) : (
-                                  <div className="flex flex-col gap-1">
-                                    {fotosMenoresIndices.map((menorIdx, pos) => (
-                                      <button
-                                        key={menorIdx}
-                                        type="button"
-                                        onClick={() => {
-                                          // Substituir esta menor pela extra
-                                          const todasFotos = [...fotosExistentes, ...fotosPreviews]
-                                          const fotoAntiga = todasFotos[menorIdx]
-                                          
-                                          // Mover foto antiga para extras
-                                          removeMaisFoto(index)
-                                          setMaisFotosPreviews(prev => [...prev, fotoAntiga])
-                                          
-                                          // Adicionar nova foto às principais se não estiver
-                                          let novoIdx = todasFotos.indexOf(foto)
-                                          if (novoIdx < 0) {
-                                            setFotosPreviews(prev => [...prev, foto])
-                                            novoIdx = fotosExistentes.length + fotosPreviews.length
-                                          }
-                                          
-                                          // Substituir índice na menor
-                                          setFotosMenoresIndices(prev => 
-                                            prev.map(i => i === menorIdx ? novoIdx : i)
-                                          )
-                                        }}
-                                        className="opacity-0 group-hover:opacity-100 bg-green-600 text-white px-2 py-1 rounded text-xs font-medium hover:bg-green-700 transition-opacity whitespace-nowrap"
-                                        title={`Substituir Menor ${pos + 1}`}
-                                      >
-                                        Substituir Menor {pos + 1}
-                                      </button>
-                                    ))}
-                                  </div>
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      // Substituir primeira menor
+                                      const primeiraMenor = fotosMenoresIndices[0]
+                                      const todasFotos = [...fotosExistentes, ...fotosPreviews]
+                                      const fotoAntiga = todasFotos[primeiraMenor]
+                                      
+                                      removeMaisFoto(index)
+                                      setMaisFotosPreviews(prev => [...prev, fotoAntiga])
+                                      
+                                      let novoIdx = todasFotos.indexOf(foto)
+                                      if (novoIdx < 0) {
+                                        setFotosPreviews(prev => [...prev, foto])
+                                        novoIdx = fotosExistentes.length + fotosPreviews.length
+                                      }
+                                      
+                                      setFotosMenoresIndices(prev => [novoIdx, ...prev.slice(1)])
+                                    }}
+                                    className="opacity-0 group-hover:opacity-100 bg-green-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-green-700 transition-opacity"
+                                    title="Substituir uma menor"
+                                  >
+                                    Substituir Menor
+                                  </button>
                                 )}
                                 <button
                                   type="button"
