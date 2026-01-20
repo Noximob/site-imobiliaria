@@ -75,7 +75,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T19:15:05.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -156,7 +156,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T19:15:05.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -258,7 +258,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:23:20.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -348,7 +348,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-20T20:51:10.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -426,7 +426,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T13:04:10.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -509,7 +509,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-14T17:30:50.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -580,7 +580,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-04T20:01:43.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -658,7 +658,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T13:04:10.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -702,18 +702,26 @@
     },
     "tags": [],
     "fotos": [
-      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/personal/f05d26934c1f1c22926dbdb6de4da820277dd7fc021d964398191f376e8c3877.jpg?width=1900",
-      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/fachada_01.jpg-name-3ce75cf673594d65e9cd107e9da58a70d9dc414e35d36efdf3e0b37458c81b46.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/fachada_01.jpg-name-3ce75cf673594d65e9cd107e9da58a70d9dc414e35d36efdf3e0b37458c81b46.jpg?width=1900",
+      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/hall_de_entrada_2.jpg-name-5415a3b2d7dbde3443c828a89d5f53cc88e8f953e554eb893169062f49e70d99.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/brinquedoteca.jpg-name-126820f0793a2059614e2f292f154e3abfdbaa5dcf84315046b372affb187a90.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/acad_2.jpg-name-54f13552bfef4a06427056620157bc3eaea1bd1d510a880dc205377333c3fe69.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/hall_de_entrada_1.jpg-name-8d99b42afebf25544ba97fac71da210d8e2db6a1f3518545364398bbdee93687.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/rooftop_estar.jpg-name-df7d37a2fcd607e7ec46387ed979c6ccfd7f28ec44230deef1659250c485b10e.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/spa_final_.jpg-name-2ba20dac6f159db2e77b9561881fa536ef0a254ab34e622e8822e0b4539f8466.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/salao_bancada_final_.jpg-name-2e54211520739395168fdc31080b6c9bb17eb0d60a5b5c6f17c99eec1f0643f1.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/salao_living_final_.jpg-name-b9cee6b5e21b4521100166d5fa23d6c3e4708ba63baa2b6bed08490be853fe88.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/rooftop_piscina_externo_.jpg-name-4a861a11b685618b7fe69881208bf771c247029d1d6fee5b481982c47b32cd42.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/rooftop_piscina_interno_.jpg-name-de63955643daae9944f9150608425678b443488eefe024e994a2bb0cfbc71da4.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/sala_de_gamae.jpg-name-fe044381c8e27133b1bd596d26e32d8a2d94d1e74d441c469b335eea8ad15596.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/apto_06_cozinha_.jpg-name-d915d6541af03710d89aed7357eef4f56b25f561808cfec461a763284af91da2.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/apto_06_estar.jpg-name-01a4846c04d4a6a9d8e30d20f14f65ca8d96e1439f5bf7e30d7452228821fade.jpg",
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/fachada_2.jpg-name-1066e38026ba2c2ac3745fa1ecf36a774035b569cd14134a4dd4af6042f464b1.jpg",
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/fachada_3.jpg-name-03b73c99c2f85e8f6ca9a4bb0d73ed6c8e057e85cf8c31b890c55ba1e4b888d9.jpg",
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/fachada_04.jpg-name-0f2f5edaa43343c72c8ac619ea86b29090dafc839ccb76b497ae3111a854f809.jpg",
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/fachada_5.jpg-name-860360dce136dbbc337f94ca28f4c3bb66339ee74dd391e71614c6e364674238.jpg",
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/fachada_6_.jpg-name-6831244dc3c8ecdc9d850e44d97b491209e0f227e849438bd5d19f106ab2a785.jpg",
-      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/hall_de_entrada_1.jpg-name-8d99b42afebf25544ba97fac71da210d8e2db6a1f3518545364398bbdee93687.jpg",
-      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/hall_de_entrada_2.jpg-name-5415a3b2d7dbde3443c828a89d5f53cc88e8f953e554eb893169062f49e70d99.jpg",
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/acad_1.jpg-name-67e10542103512523cb1e47703edb0a0819cb74f248dcfaae6277f69e51070dc.jpg",
-      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/acad_2.jpg-name-54f13552bfef4a06427056620157bc3eaea1bd1d510a880dc205377333c3fe69.jpg",
-      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/brinquedoteca.jpg-name-126820f0793a2059614e2f292f154e3abfdbaa5dcf84315046b372affb187a90.jpg",
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/clube_amalfitano_.jpg-name-eb22d01b868e3981e997f178bb0408b92f65cc3a676e4997812d1cf4f2832c41.jpg",
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/espaco_gourmet.jpg-name-52dcf4f41dd4d09512be433808c8956fb737c139a709bc54c1199b9c124e13c2.jpg",
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/petplace.jpg-name-a0d391b4efeb143fcb91e55943b8495508319ba4c2e9b4a6e4f84bbef45875c6.jpg",
@@ -723,16 +731,7 @@
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/quadra_final_.jpg-name-d4b1d03b6bf2e4edf9cd346dbbadcdc0f6d4c5c1d3770510b50f6fc90f339d7d.jpg",
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/redario_.jpg-name-2862760b7d87d82474dd6dc01fa036344a7b4e3c9b82a6e23935ca8ec9b32eac.jpg",
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/rooftop_banheiras.jpg-name-f1f64b4ef012eb8bebeb275dd11a45e0b730932376483870ec6401fe9006d09a.jpg",
-      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/rooftop_estar.jpg-name-df7d37a2fcd607e7ec46387ed979c6ccfd7f28ec44230deef1659250c485b10e.jpg",
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/rooftop_piscina_coberta.jpg-name-3a57f102c2ebbe7919734db043bea5f4d752d8ba8cb4dca7207eac19a389229c.jpg",
-      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/rooftop_piscina_externo_.jpg-name-4a861a11b685618b7fe69881208bf771c247029d1d6fee5b481982c47b32cd42.jpg",
-      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/rooftop_piscina_interno_.jpg-name-de63955643daae9944f9150608425678b443488eefe024e994a2bb0cfbc71da4.jpg",
-      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/sala_de_gamae.jpg-name-fe044381c8e27133b1bd596d26e32d8a2d94d1e74d441c469b335eea8ad15596.jpg",
-      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/salao_bancada_final_.jpg-name-2e54211520739395168fdc31080b6c9bb17eb0d60a5b5c6f17c99eec1f0643f1.jpg",
-      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/salao_living_final_.jpg-name-b9cee6b5e21b4521100166d5fa23d6c3e4708ba63baa2b6bed08490be853fe88.jpg",
-      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/spa_final_.jpg-name-2ba20dac6f159db2e77b9561881fa536ef0a254ab34e622e8822e0b4539f8466.jpg",
-      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/apto_06_cozinha_.jpg-name-d915d6541af03710d89aed7357eef4f56b25f561808cfec461a763284af91da2.jpg",
-      "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/apto_06_estar.jpg-name-01a4846c04d4a6a9d8e30d20f14f65ca8d96e1439f5bf7e30d7452228821fade.jpg",
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/apto_12_cena_01.jpg-name-81a28a7bf657f5262766b51545c431c2b6836e829cd6cc8d29e6cce9ad76af60.jpg",
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/apto_12_cena_02.jpg-name-f68971c2d80ed2bc1975bc756075347839625683c990fda7a786b10c5f078fce.jpg",
       "https://dwvimagesv1.b-cdn.net/images/developments/6409967f-85eb-4da5-ab75-612babb96510/galleries/pictures/apto_12_suite.jpg-name-5f50e34499479d1abc136f95c434635aa2a334e11c73d8c6172187e953c5776f.jpg",
@@ -749,7 +748,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:35:55.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -851,7 +850,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:23:20.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -953,7 +952,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:23:20.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1036,7 +1035,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:34:17.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1109,7 +1108,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T13:13:34.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1192,7 +1191,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:34:17.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1283,7 +1282,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:35:55.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1366,7 +1365,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:34:17.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1454,7 +1453,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-15T16:55:17.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1520,7 +1519,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-05T14:17:09.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1608,7 +1607,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-15T16:55:36.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1668,7 +1667,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:30:20.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1748,7 +1747,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T14:11:39.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1828,7 +1827,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T14:11:39.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1888,7 +1887,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-03T17:42:08.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -1948,7 +1947,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:30:20.000Z",
-    "updatedAt": "2026-01-20T20:51:41.398Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2036,7 +2035,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-15T16:55:36.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2098,7 +2097,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T14:10:16.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2160,7 +2159,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T14:10:16.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2239,7 +2238,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2315,7 +2314,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:03:52.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2394,7 +2393,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2459,7 +2458,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2534,7 +2533,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-04T20:01:01.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2599,7 +2598,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T18:56:53.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2678,7 +2677,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2757,7 +2756,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2829,7 +2828,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T11:16:31.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2912,7 +2911,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T23:12:37.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -2991,7 +2990,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3056,7 +3055,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3121,7 +3120,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3204,7 +3203,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T11:11:01.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3289,7 +3288,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-16T12:10:52.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3368,7 +3367,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3440,7 +3439,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T11:14:13.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3519,7 +3518,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3584,7 +3583,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T18:55:43.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3656,7 +3655,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T23:01:39.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3735,7 +3734,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:38:45.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3800,7 +3799,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3885,7 +3884,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T18:48:03.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -3966,7 +3965,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:24:27.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4038,7 +4037,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-20T03:02:11.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4110,7 +4109,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T23:01:39.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4182,7 +4181,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-20T03:02:11.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4254,7 +4253,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-20T03:02:11.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4336,7 +4335,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-20T03:02:08.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4410,7 +4409,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-20T03:02:10.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4492,7 +4491,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-20T03:02:08.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4576,7 +4575,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-20T17:25:07.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4661,7 +4660,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-20T03:02:09.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4735,7 +4734,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-20T03:01:14.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4802,7 +4801,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T11:25:42.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4869,7 +4868,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T11:25:42.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -4954,7 +4953,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-20T03:02:09.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5021,7 +5020,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T17:08:43.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5094,7 +5093,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T14:44:00.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5160,7 +5159,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T14:17:51.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5233,7 +5232,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T14:44:00.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5306,7 +5305,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T14:44:00.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5372,7 +5371,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T14:17:51.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5442,7 +5441,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5512,7 +5511,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5582,7 +5581,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5652,7 +5651,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5736,7 +5735,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:36.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5812,7 +5811,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T12:08:17.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5896,7 +5895,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:36.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -5980,7 +5979,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T17:48:07.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -6064,7 +6063,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T17:48:07.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -6137,7 +6136,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T17:45:15.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -6221,7 +6220,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T17:48:07.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
@@ -6297,7 +6296,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T17:22:15.000Z",
-    "updatedAt": "2026-01-20T20:51:41.399Z",
+    "updatedAt": "2026-01-20T21:02:04.605Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
