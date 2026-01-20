@@ -207,7 +207,7 @@ export default function AdminImoveis() {
     })
   }
 
-  const handleEdit = (imovel: Imovel) => {
+  const handleEdit = async (imovel: Imovel) => {
     setEditingImovel(imovel)
     setNovoImovel({
       titulo: imovel.titulo,
