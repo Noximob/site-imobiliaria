@@ -1300,13 +1300,46 @@ export default function AdminImoveis() {
                                     </button>
                                   )}
                                   {isMenor && (
+                                    <>
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          // Mover para extras
+                                          setFotosMenoresIndices(prev => prev.filter(i => i !== index))
+                                          setMaisFotosPreviews(prev => [...prev, foto])
+                                        }}
+                                        className="opacity-0 group-hover:opacity-100 bg-blue-500 text-white px-2 py-1 rounded text-xs font-medium hover:bg-blue-600 transition-opacity"
+                                        title="Mover para extras"
+                                      >
+                                        → Extras
+                                      </button>
+                                      <button
+                                        type="button"
+                                        onClick={() => setFotosMenoresIndices(prev => prev.filter(i => i !== index))}
+                                        className="opacity-0 group-hover:opacity-100 bg-red-500 text-white px-2 py-1 rounded text-xs font-medium hover:bg-red-600 transition-opacity"
+                                        title="Remover"
+                                      >
+                                        Remover
+                                      </button>
+                                    </>
+                                  )}
+                                  {!isPrincipal && !isMenor && fotosMenoresIndices.length > 0 && (
                                     <button
                                       type="button"
-                                      onClick={() => setFotosMenoresIndices(prev => prev.filter(i => i !== index))}
-                                      className="opacity-0 group-hover:opacity-100 bg-red-500 text-white px-2 py-1 rounded text-xs font-medium hover:bg-red-600 transition-opacity"
-                                      title="Remover das 4 menores"
+                                      onClick={() => {
+                                        // Trocar com primeira menor disponível
+                                        const primeiraMenor = fotosMenoresIndices[0]
+                                        const todasFotos = [...fotosExistentes, ...fotosPreviews]
+                                        const fotoMenor = todasFotos[primeiraMenor]
+                                        
+                                        // Trocar: esta foto vira menor, a menor vai para extras
+                                        setFotosMenoresIndices(prev => [index, ...prev.slice(1)])
+                                        setMaisFotosPreviews(prev => [...prev, fotoMenor])
+                                      }}
+                                      className="opacity-0 group-hover:opacity-100 bg-yellow-600 text-white px-2 py-1 rounded text-xs font-medium hover:bg-yellow-700 transition-opacity"
+                                      title="Trocar com uma menor"
                                     >
-                                      Remover
+                                      Trocar Menor
                                     </button>
                                   )}
                                   <button
