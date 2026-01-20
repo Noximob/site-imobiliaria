@@ -72,6 +72,7 @@ export default function AdminImoveis() {
   const [fotosPreviews, setFotosPreviews] = useState<string[]>([])
   const [fotosExistentes, setFotosExistentes] = useState<string[]>([]) // Fotos já salvas
   const [fotoPrincipalIndex, setFotoPrincipalIndex] = useState<number>(0)
+  const [fotosMenoresIndices, setFotosMenoresIndices] = useState<number[]>([]) // Índices das 4 fotos menores escolhidas manualmente
   const [maisFotosFiles, setMaisFotosFiles] = useState<File[]>([]) // Fotos extras para galeria
   const [maisFotosPreviews, setMaisFotosPreviews] = useState<string[]>([]) // Preview das fotos extras
   const [searchTerm, setSearchTerm] = useState('')
@@ -192,6 +193,17 @@ export default function AdminImoveis() {
     } else if (fotoPrincipalIndex === novaPosicao) {
       setFotoPrincipalIndex(indexAtual)
     }
+    
+    // Ajustar índices das fotos menores
+    setFotosMenoresIndices(prev => {
+      return prev.map(idx => {
+        if (idx === indexAtual) return novaPosicao
+        if (idx === novaPosicao) return indexAtual
+        if (idx > indexAtual && idx <= novaPosicao) return idx - 1
+        if (idx < indexAtual && idx >= novaPosicao) return idx + 1
+        return idx
+      })
+    })
   }
 
   const handleEdit = (imovel: Imovel) => {
@@ -250,6 +262,10 @@ export default function AdminImoveis() {
     setFotosPreviews([])
     setFotosExistentes(fotosPrincipais)
     setFotoPrincipalIndex((imovel as any).fotoPrincipalIndex || 0)
+    // Carregar índices das 4 fotos menores escolhidas manualmente (se existir)
+    const fotosMenoresSalvas = (imovel as any).fotosMenoresIndices || []
+    // Se não tem salvo, usar índices 1-4 por padrão (após a principal)
+    setFotosMenoresIndices(fotosMenoresSalvas.length === 4 ? fotosMenoresSalvas : [1, 2, 3, 4].filter(i => i < todasFotosExistentes.length))
     setMaisFotosFiles([])
     setMaisFotosPreviews(fotosExtrasExistentes) // Carregar fotos extras existentes como previews
     setShowCreateForm(true)
@@ -348,6 +364,7 @@ export default function AdminImoveis() {
     setFotosPreviews([])
     setFotosExistentes([])
     setFotoPrincipalIndex(0)
+    setFotosMenoresIndices([])
     setMaisFotosFiles([])
     setMaisFotosPreviews([])
     setEditingImovel(null)
@@ -428,7 +445,8 @@ export default function AdminImoveis() {
         contato: novoImovel.contato,
         publicado: novoImovel.publicado,
         fotoPrincipalIndex: 0, // Sempre 0 porque já movemos para o início
-        fotos: fotosOrdenadas // Enviar todas as fotos ordenadas
+        fotos: fotosOrdenadas, // Enviar todas as fotos ordenadas
+        fotosMenoresIndices: fotosMenoresIndices.length === 4 ? fotosMenoresIndices : undefined // Salvar índices das 4 menores escolhidas
       }
 
       if (editingImovel) {

@@ -90,22 +90,49 @@ export default function ImovelDetalhePage() {
     ? imovel.precoOriginal - imovel.preco
     : 0
 
-  // Organizar fotos: o backend já prioriza fotos com "medium" (geralmente mais horizontais/quadradas) para as 4 menores
+  // Organizar fotos: verificar se há índices das 4 menores escolhidas manualmente no admin
   const todasFotos = imovel.fotos || []
   const fotoPrincipalIndex = (imovel as any).fotoPrincipalIndex ?? 0
-  const fotosSemMedium = (imovel as any).fotosSemMedium || [] // Índices 1-4 que não têm medium (do backend)
+  const fotosMenoresIndices = (imovel as any).fotosMenoresIndices || [] // Índices das 4 menores escolhidas manualmente no admin (baseados na ordem ORIGINAL)
   
-  // Se há foto principal definida e não está na primeira posição, reorganizar
   let fotosParaExibir = [...todasFotos]
-  if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < fotosParaExibir.length) {
-    const fotoPrincipal = fotosParaExibir[fotoPrincipalIndex]
-    fotosParaExibir.splice(fotoPrincipalIndex, 1)
-    fotosParaExibir.unshift(fotoPrincipal)
+  
+  // Se há índices das 4 menores escolhidas manualmente, reorganizar
+  if (fotosMenoresIndices.length === 4) {
+    // Pegar as 4 fotos escolhidas (usando índices originais)
+    const quatroMenores = fotosMenoresIndices
+      .map(idx => todasFotos[idx])
+      .filter(Boolean) as string[]
+    
+    // Pegar a foto principal (se foi definida)
+    const principal = fotoPrincipalIndex > 0 && fotoPrincipalIndex < todasFotos.length 
+      ? todasFotos[fotoPrincipalIndex] 
+      : todasFotos[0]
+    
+    // Pegar as fotos restantes (excluindo principal e as 4 menores)
+    const indicesUsados = new Set([fotoPrincipalIndex > 0 ? fotoPrincipalIndex : 0, ...fotosMenoresIndices])
+    const fotosRestantes = todasFotos.filter((_, idx) => !indicesUsados.has(idx))
+    
+    // Montar array final: principal + 4 menores + resto
+    fotosParaExibir = [principal, ...quatroMenores, ...fotosRestantes]
+  } else {
+    // Se não há índices escolhidos manualmente, usar lógica padrão
+    if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < fotosParaExibir.length) {
+      const fotoPrincipal = fotosParaExibir[fotoPrincipalIndex]
+      fotosParaExibir.splice(fotoPrincipalIndex, 1)
+      fotosParaExibir.unshift(fotoPrincipal)
+    }
   }
 
-  // Usar object-contain apenas para fotos que NÃO têm medium (são verticais)
-  // Fotos com medium (horizontais/quadradas) usam object-cover (preenchem sem bordas)
+  // Se há índices escolhidos manualmente, sempre usar object-contain para as 4 menores (escolhidas pelo usuário)
+  // Caso contrário, usar informação do backend (fotosSemMedium)
+  const fotosSemMedium = (imovel as any).fotosSemMedium || []
   const precisaObjectContain = (index: number): boolean => {
+    // Se há índices escolhidos manualmente, sempre usar object-contain para as 4 menores
+    if (fotosMenoresIndices.length === 4) {
+      return index >= 1 && index <= 4
+    }
+    // Caso contrário, usar informação do backend
     return fotosSemMedium.includes(index)
   }
 
