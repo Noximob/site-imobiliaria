@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { createImovelWithFotos, getAllImoveis, generateSlug, updateImovelWithFotos, deleteImovel } from '@/lib/imoveis-github'
 import { Imovel } from '@/types'
 import { formatPrice } from '@/lib/imoveis'
+import { getDWVImovelFotos } from '@/lib/dwv-api'
 
 export default function AdminImoveis() {
   const [imoveis, setImoveis] = useState<Imovel[]>([])
@@ -268,6 +269,24 @@ export default function AdminImoveis() {
     setFotosMenoresIndices(fotosMenoresSalvas.length === 4 ? fotosMenoresSalvas : [1, 2, 3, 4].filter(i => i < todasFotosExistentes.length))
     setMaisFotosFiles([])
     setMaisFotosPreviews(fotosExtrasExistentes) // Carregar fotos extras existentes como previews
+    
+    // Se é imóvel do DWV, buscar todas as fotos disponíveis da API
+    const dwvId = (imovel as any).dwvId
+    if (dwvId) {
+      setCarregandoFotosDWV(true)
+      try {
+        const todasFotosDWV = await getDWVImovelFotos(dwvId)
+        setFotosDWV(todasFotosDWV)
+      } catch (error) {
+        console.error('Erro ao buscar fotos do DWV:', error)
+        setFotosDWV([])
+      } finally {
+        setCarregandoFotosDWV(false)
+      }
+    } else {
+      setFotosDWV([])
+    }
+    
     setShowCreateForm(true)
   }
 
@@ -1014,6 +1033,109 @@ export default function AdminImoveis() {
                     required={!editingImovel && fotosExistentes.length === 0 && fotosPreviews.length === 0}
                   />
                   
+                  {/* Seção: Fotos do DWV (se for imóvel do DWV) */}
+                  {fotosDWV.length > 0 && (
+                    <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2">
+                        📷 Galeria Completa do DWV ({fotosDWV.length} fotos)
+                      </h4>
+                      <p className="text-xs text-gray-600 mb-3">
+                        Escolha a foto principal e as 4 menores desta galeria completa do DWV.
+                        Fotos com borda azul destacada têm tamanho "medium" e são ideais para as 4 menores (grid 2x2).
+                      </p>
+                      {carregandoFotosDWV ? (
+                        <p className="text-xs text-gray-500">Carregando fotos do DWV...</p>
+                      ) : (
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                          {fotosDWV.map((fotoDWV, index) => {
+                            const isPrincipal = fotosExistentes.length > 0 && fotoPrincipalIndex >= 0 && 
+                              fotosExistentes[fotoPrincipalIndex] === fotoDWV.url
+                            const isMenor = fotosMenoresIndices.some(idx => {
+                              const todasFotos = [...fotosExistentes, ...fotosPreviews]
+                              return idx < todasFotos.length && todasFotos[idx] === fotoDWV.url
+                            })
+                            
+                            return (
+                              <div 
+                                key={index} 
+                                className={`relative group border-2 rounded-md overflow-hidden ${
+                                  isPrincipal ? 'border-purple-600 ring-2 ring-purple-300' : 
+                                  isMenor ? 'border-green-500 ring-2 ring-green-300' : 
+                                  fotoDWV.hasMedium ? 'border-blue-500 ring-2 ring-blue-300' : 
+                                  'border-gray-200'
+                                }`}
+                              >
+                                <img
+                                  src={fotoDWV.url}
+                                  alt={`Foto DWV ${index + 1}`}
+                                  className="w-full h-32 object-cover"
+                                />
+                                {fotoDWV.hasMedium && !isPrincipal && !isMenor && (
+                                  <div className="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">
+                                    Ideal para Menores
+                                  </div>
+                                )}
+                                {isPrincipal && (
+                                  <div className="absolute top-2 left-2 bg-purple-600 text-white text-xs px-2 py-1 rounded">
+                                    Principal
+                                  </div>
+                                )}
+                                {isMenor && !isPrincipal && (
+                                  <div className="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">
+                                    Menor {fotosMenoresIndices.findIndex(idx => {
+                                      const todasFotos = [...fotosExistentes, ...fotosPreviews]
+                                      return idx < todasFotos.length && todasFotos[idx] === fotoDWV.url
+                                    }) + 1}
+                                  </div>
+                                )}
+                                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center gap-2 flex-wrap">
+                                  {!isPrincipal && (
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        // Adicionar foto do DWV às fotos existentes se não estiver lá
+                                        if (!fotosExistentes.includes(fotoDWV.url) && !fotosPreviews.includes(fotoDWV.url)) {
+                                          setFotosPreviews(prev => [...prev, fotoDWV.url])
+                                          const novoIndex = fotosExistentes.length + fotosPreviews.length
+                                          definirFotoPrincipal(novoIndex)
+                                        } else {
+                                          const idx = [...fotosExistentes, ...fotosPreviews].indexOf(fotoDWV.url)
+                                          if (idx >= 0) definirFotoPrincipal(idx)
+                                        }
+                                      }}
+                                      className="opacity-0 group-hover:opacity-100 bg-purple-600 text-white px-2 py-1 rounded text-xs font-medium hover:bg-purple-700 transition-opacity"
+                                      title="Definir como foto principal"
+                                    >
+                                      Principal
+                                    </button>
+                                  )}
+                                  {!isMenor && fotosMenoresIndices.length < 4 && (
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        // Adicionar foto do DWV às fotos existentes se não estiver lá
+                                        let idx = [...fotosExistentes, ...fotosPreviews].indexOf(fotoDWV.url)
+                                        if (idx < 0) {
+                                          setFotosPreviews(prev => [...prev, fotoDWV.url])
+                                          idx = fotosExistentes.length + fotosPreviews.length
+                                        }
+                                        setFotosMenoresIndices(prev => [...prev, idx])
+                                      }}
+                                      className="opacity-0 group-hover:opacity-100 bg-green-600 text-white px-2 py-1 rounded text-xs font-medium hover:bg-green-700 transition-opacity"
+                                      title="Adicionar às 4 menores"
+                                    >
+                                      + Menor
+                                    </button>
+                                  )}
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   {/* Grid de todas as fotos (existentes + novas) */}
                   {(fotosExistentes.length > 0 || fotosPreviews.length > 0) && (
                     <div className="mt-4 space-y-6">

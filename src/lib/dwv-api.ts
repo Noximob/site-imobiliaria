@@ -856,6 +856,8 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
     fotos,
     fotosSemMedium: semMedium, // Índices das fotos menores (1-4) que não têm medium e precisam object-contain
     fotoPrincipalIndex: 0,
+    dwvId: dwvImovel.id, // ID original do DWV para buscar fotos completas depois
+    fonteDWV: true, // Marca origem DWV
     contato: {
       whatsapp,
       corretor,
@@ -866,6 +868,98 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
     updatedAt: new Date(dwvImovel.last_updated_at || new Date()),
     publicado: true, // Sempre publicado
     selecaoNox: false,
-    fonteDWV: true, // Marca origem DWV
+  }
+}
+
+/**
+ * Busca um imóvel específico do DWV pelo ID e retorna todas as fotos disponíveis
+ */
+export async function getDWVImovelFotos(dwvId: number): Promise<Array<{ url: string, hasMedium: boolean, image: string | DWVImage }>> {
+  try {
+    const apiToken = process.env.DWV_API_TOKEN
+    const baseUrl = process.env.DWV_API_URL || 'https://agencies.dwvapp.com.br/integration/properties'
+    
+    if (!apiToken) {
+      console.error('❌ DWV_API_TOKEN não configurado')
+      return []
+    }
+
+    // Buscar todos os imóveis e encontrar o específico
+    const allImoveis = await fetchDWVImoveis(1, 1000) // Buscar muitos para encontrar o específico
+    const dwvImovel = allImoveis.find(imovel => imovel.id === dwvId)
+    
+    if (!dwvImovel) {
+      console.error(`❌ Imóvel DWV com ID ${dwvId} não encontrado`)
+      return []
+    }
+
+    const unit = dwvImovel.unit
+    const building = dwvImovel.building
+    const thirdParty = dwvImovel.third_party_property
+
+    // Coletar TODAS as fotos disponíveis (igual extractFotos mas sem processamento)
+    const todasFotos: Array<{ image: string | DWVImage, source: 'unit' | 'building' | 'thirdParty' }> = []
+    
+    // Fotos do unit
+    if (unit) {
+      if (unit.cover) {
+        todasFotos.push({ image: unit.cover, source: 'unit' })
+      }
+      if (unit.additional_galleries) {
+        unit.additional_galleries.forEach(gallery => {
+          if (gallery.files) {
+            gallery.files.forEach(file => {
+              todasFotos.push({ image: file, source: 'unit' })
+            })
+          }
+        })
+      }
+    }
+    
+    // Fotos do building
+    if (building) {
+      if (building.cover) {
+        todasFotos.push({ image: building.cover, source: 'building' })
+      }
+      if (building.gallery) {
+        building.gallery.forEach(img => {
+          todasFotos.push({ image: img, source: 'building' })
+        })
+      }
+    }
+    
+    // Fotos do third_party_property
+    if (thirdParty) {
+      if (thirdParty.cover) {
+        todasFotos.push({ image: thirdParty.cover, source: 'thirdParty' })
+      }
+      if (thirdParty.gallery) {
+        thirdParty.gallery.forEach(img => {
+          todasFotos.push({ image: img, source: 'thirdParty' })
+        })
+      }
+    }
+
+    // Remover duplicatas baseado na URL
+    const fotosUnicas: Array<{ image: string | DWVImage, source: 'unit' | 'building' | 'thirdParty' }> = []
+    const urlsVistas = new Set<string>()
+    
+    todasFotos.forEach(foto => {
+      const url = extractImageUrl(foto.image)
+      if (url && !urlsVistas.has(url)) {
+        urlsVistas.add(url)
+        fotosUnicas.push(foto)
+      }
+    })
+
+    // Retornar array com URL e informação se tem medium
+    return fotosUnicas.map(foto => ({
+      url: extractImageUrl(foto.image) || '',
+      hasMedium: hasMediumSize(foto.image),
+      image: foto.image
+    }))
+  } catch (error) {
+    console.error('❌ Erro ao buscar fotos do imóvel DWV:', error)
+    return []
   }
 }
