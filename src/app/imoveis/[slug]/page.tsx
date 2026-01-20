@@ -101,7 +101,7 @@ export default function ImovelDetalhePage() {
   if (fotosMenoresIndices.length === 4) {
     // Pegar as 4 fotos escolhidas (usando índices originais)
     const quatroMenores = fotosMenoresIndices
-      .map(idx => todasFotos[idx])
+      .map((idx: number) => todasFotos[idx])
       .filter(Boolean) as string[]
     
     // Pegar a foto principal (se foi definida)
