@@ -27,7 +27,6 @@ export default function ImovelDetalhePage() {
   const [hoveredPhotoIndex, setHoveredPhotoIndex] = useState<number | null>(null)
   const [contatoTipo, setContatoTipo] = useState<'telefone' | 'email' | 'whatsapp'>('email')
   const [fotosVerticais, setFotosVerticais] = useState<Set<number>>(new Set()) // Índices das fotos menores que são muito verticais
-  const [fotosCarregadas, setFotosCarregadas] = useState<Set<number>>(new Set()) // Para controlar quais já foram verificadas
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
@@ -45,6 +44,8 @@ export default function ImovelDetalhePage() {
         }
         setImovel(imovelData)
         setIsFavoritado(isFavorito(imovelData.id))
+        // Resetar fotos verticais ao carregar novo imóvel
+        setFotosVerticais(new Set())
         
       } catch (error) {
         console.error('Erro ao carregar imóvel:', error)
@@ -95,7 +96,6 @@ export default function ImovelDetalhePage() {
   // Organizar fotos: foto principal primeiro
   const todasFotos = imovel.fotos || []
   const fotoPrincipalIndex = (imovel as any).fotoPrincipalIndex ?? 0
-  const fotosSemMedium = (imovel as any).fotosSemMedium || []
   
   // Se há foto principal definida e não está na primeira posição, reorganizar
   let fotosOrdenadas = [...todasFotos]
@@ -105,59 +105,33 @@ export default function ImovelDetalhePage() {
     fotosOrdenadas.unshift(fotoPrincipal)
   }
   
-  // Pré-carregar e detectar aspect ratio das fotos menores ANTES de renderizar
-  useEffect(() => {
-    if (!imovel || !fotosOrdenadas.length) return
+  // Função para detectar se uma foto é muito vertical (prédio) e precisa de object-contain
+  const handleImageLoad = (index: number, event: React.SyntheticEvent<HTMLImageElement>) => {
+    // Só verificar as 4 fotos menores (índices 1-4)
+    if (index < 1 || index > 4) return
+    // Se já foi detectada, não verificar novamente
+    if (fotosVerticais.has(index)) return
     
-    // Resetar estados quando imóvel mudar
-    setFotosVerticais(new Set())
-    setFotosCarregadas(new Set())
+    const img = event.currentTarget
+    // Verificar se a imagem já carregou completamente
+    if (!img.naturalWidth || !img.naturalHeight) return
     
-    // Pré-carregar apenas as 4 fotos menores (índices 1-4)
-    const indicesParaVerificar = [1, 2, 3, 4].filter(i => fotosOrdenadas[i])
+    const aspectRatio = img.naturalWidth / img.naturalHeight
     
-    if (indicesParaVerificar.length === 0) return
-    
-    indicesParaVerificar.forEach(index => {
-      const img = new Image()
-      img.onload = () => {
-        if (img.naturalWidth && img.naturalHeight) {
-          const aspectRatio = img.naturalWidth / img.naturalHeight
-          
-          // Se muito vertical (aspect ratio < 0.7), é foto de prédio - precisa object-contain
-          // Threshold 0.7 para pegar fotos verticais mas não ser muito agressivo
-          if (aspectRatio < 0.7) {
-            setFotosVerticais(prev => {
-              const novo = new Set(prev)
-              novo.add(index)
-              return novo
-            })
-          }
-        }
-        setFotosCarregadas(prev => {
-          const novo = new Set(prev)
-          novo.add(index)
-          return novo
-        })
-      }
-      img.onerror = () => {
-        // Em caso de erro, marcar como carregada mas não adicionar às verticais
-        setFotosCarregadas(prev => {
-          const novo = new Set(prev)
-          novo.add(index)
-          return novo
-        })
-      }
-      img.src = fotosOrdenadas[index]
-    })
-  }, [imovel?.id, fotosOrdenadas.join(',')])
-  
-  // Função para detectar se uma foto precisa de object-contain
-  // Usa object-contain apenas se: não tem medium OU foi detectada como muito vertical
+    // Se a imagem é muito vertical (aspect ratio < 0.7), é provavelmente uma foto de prédio
+    // Essas fotos ficam cortadas com object-cover, então precisam de object-contain
+    if (aspectRatio < 0.7) {
+      setFotosVerticais(prev => {
+        const novo = new Set(prev)
+        novo.add(index)
+        return novo
+      })
+    }
+  }
+
+  // Função auxiliar para verificar se uma foto precisa de object-contain
   const precisaObjectContain = (index: number): boolean => {
-    if (fotosSemMedium.includes(index)) return true
-    if (fotosVerticais.has(index)) return true
-    return false
+    return fotosVerticais.has(index)
   }
 
   // Características vêm apenas das tags/comodidades (interligadas com o filtro)
@@ -271,6 +245,7 @@ export default function ImovelDetalhePage() {
                       alt={`${imovel.titulo} - Foto 2`}
                       className={`w-full h-full ${precisaObjectContain(1) ? 'object-contain' : 'object-cover'}`}
                       style={precisaObjectContain(1) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
+                      onLoad={(e) => handleImageLoad(1, e)}
                     />
                   </Link>
                 ) : (
@@ -295,6 +270,7 @@ export default function ImovelDetalhePage() {
                       alt={`${imovel.titulo} - Foto 3`}
                       className={`w-full h-full ${precisaObjectContain(2) ? 'object-contain' : 'object-cover'}`}
                       style={precisaObjectContain(2) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
+                      onLoad={(e) => handleImageLoad(2, e)}
                     />
                   </Link>
                 ) : (
@@ -319,6 +295,7 @@ export default function ImovelDetalhePage() {
                       alt={`${imovel.titulo} - Foto 4`}
                       className={`w-full h-full ${precisaObjectContain(3) ? 'object-contain' : 'object-cover'}`}
                       style={precisaObjectContain(3) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
+                      onLoad={(e) => handleImageLoad(3, e)}
                     />
                   </Link>
                 ) : (
@@ -343,6 +320,7 @@ export default function ImovelDetalhePage() {
                       alt={`${imovel.titulo} - Foto 5`}
                       className={`w-full h-full ${precisaObjectContain(4) ? 'object-contain' : 'object-cover'}`}
                       style={precisaObjectContain(4) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
+                      onLoad={(e) => handleImageLoad(4, e)}
                     />
                     {/* Botão Visualizar Fotos - Canto inferior direito */}
                     <div className="absolute bottom-2 right-2 z-10">
