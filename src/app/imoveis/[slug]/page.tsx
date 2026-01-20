@@ -168,12 +168,12 @@ export default function ImovelDetalhePage() {
           </div>
         </div>
 
-        {/* Galeria de Fotos - Layout: 1 foto grande à esquerda, 4 fotos menores à direita (2x2) */}
+        {/* Galeria de Fotos - Layout: 1 foto grande à esquerda, 4 fotos menores empilhadas verticalmente à direita */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-3">
           {fotosOrdenadas.length > 0 ? (
             <div 
               className="grid grid-cols-2 gap-1.5 p-1.5" 
-              style={{ height: '400px' }}
+              style={{ height: '500px' }}
               onMouseLeave={() => setHoveredPhotoIndex(null)}
             >
               {/* Coluna Esquerda - Foto Principal (grande) */}
@@ -194,13 +194,13 @@ export default function ImovelDetalhePage() {
                 />
               </Link>
               
-              {/* Coluna Direita - Grid 2x2 com 4 fotos menores */}
-              <div className="grid grid-cols-2 grid-rows-2 gap-2 h-full">
-                {/* Foto 2 - Superior esquerda */}
+              {/* Coluna Direita - 4 fotos menores empilhadas verticalmente */}
+              <div className="flex flex-col gap-1.5 h-full">
+                {/* Foto 2 - Primeira da coluna */}
                 {fotosOrdenadas[1] && (
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=1`}
-                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 bg-gray-900 flex items-center justify-center ${
+                    className={`relative rounded-lg overflow-hidden flex-1 cursor-pointer transition-all duration-300 bg-gray-900 flex items-center justify-center ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 1
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -216,11 +216,11 @@ export default function ImovelDetalhePage() {
                   </Link>
                 )}
                 
-                {/* Foto 3 - Superior direita */}
+                {/* Foto 3 - Segunda da coluna */}
                 {fotosOrdenadas[2] && (
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=2`}
-                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 bg-gray-900 flex items-center justify-center ${
+                    className={`relative rounded-lg overflow-hidden flex-1 cursor-pointer transition-all duration-300 bg-gray-900 flex items-center justify-center ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 2
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -236,11 +236,11 @@ export default function ImovelDetalhePage() {
                   </Link>
                 )}
                 
-                {/* Foto 4 - Inferior esquerda */}
+                {/* Foto 4 - Terceira da coluna */}
                 {fotosOrdenadas[3] && (
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=3`}
-                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 bg-gray-900 flex items-center justify-center ${
+                    className={`relative rounded-lg overflow-hidden flex-1 cursor-pointer transition-all duration-300 bg-gray-900 flex items-center justify-center ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 3
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -256,11 +256,11 @@ export default function ImovelDetalhePage() {
                   </Link>
                 )}
                 
-                {/* Foto 5 - Inferior direita com botão Visualizar Fotos */}
+                {/* Foto 5 - Quarta da coluna com botão Visualizar Fotos */}
                 {fotosOrdenadas[4] ? (
                   <Link 
                     href={`/imoveis/${imovel.slug}/fotos?index=4`}
-                    className={`relative rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 bg-gray-900 flex items-center justify-center ${
+                    className={`relative rounded-lg overflow-hidden group flex-1 cursor-pointer transition-all duration-300 bg-gray-900 flex items-center justify-center ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 4
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -287,7 +287,7 @@ export default function ImovelDetalhePage() {
                   // Se tiver menos de 5 fotos mas mais de 0, mostrar botão na última foto disponível
                   <Link 
                     href={`/imoveis/${imovel.slug}/fotos?index=${fotosOrdenadas.length - 1}`}
-                    className={`relative rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 bg-gray-900 flex items-center justify-center ${
+                    className={`relative rounded-lg overflow-hidden group flex-1 cursor-pointer transition-all duration-300 bg-gray-900 flex items-center justify-center ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === fotosOrdenadas.length - 1
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
