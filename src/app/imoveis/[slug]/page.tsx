@@ -26,6 +26,7 @@ export default function ImovelDetalhePage() {
   const [isFavoritado, setIsFavoritado] = useState(false)
   const [hoveredPhotoIndex, setHoveredPhotoIndex] = useState<number | null>(null)
   const [contatoTipo, setContatoTipo] = useState<'telefone' | 'email' | 'whatsapp'>('email')
+  const [fotosVerticais, setFotosVerticais] = useState<Set<number>>(new Set()) // Índices das fotos menores que são muito verticais
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
@@ -105,7 +106,36 @@ export default function ImovelDetalhePage() {
   
   // Função auxiliar para verificar se uma foto precisa de object-contain
   const precisaObjectContain = (index: number): boolean => {
-    return fotosSemMedium.includes(index)
+    // Verificar se está na lista de fotos sem medium (após sincronização)
+    if (fotosSemMedium.includes(index)) return true
+    // Verificar se foi detectada como vertical dinamicamente
+    if (fotosVerticais.has(index)) return true
+    return false
+  }
+  
+  // Função para detectar se uma imagem é muito vertical (foto de prédio)
+  const handleImageLoad = (index: number, event: React.SyntheticEvent<HTMLImageElement>) => {
+    // Só verificar fotos menores (índices 1-4)
+    if (index < 1 || index > 4) return
+    
+    // Se já foi detectada, não precisa verificar novamente
+    if (fotosVerticais.has(index)) return
+    
+    const img = event.currentTarget
+    if (!img.naturalWidth || !img.naturalHeight) return
+    
+    const aspectRatio = img.naturalWidth / img.naturalHeight
+    
+    // Se a imagem é muito vertical (aspect ratio < 0.75), é provavelmente uma foto de prédio
+    // Fotos horizontais/interiores geralmente têm aspect ratio > 0.8
+    // Usando 0.75 como threshold para ser mais conservador
+    if (aspectRatio < 0.75) {
+      setFotosVerticais(prev => {
+        const novo = new Set(prev)
+        novo.add(index)
+        return novo
+      })
+    }
   }
 
   // Características vêm apenas das tags/comodidades (interligadas com o filtro)
@@ -219,6 +249,7 @@ export default function ImovelDetalhePage() {
                       alt={`${imovel.titulo} - Foto 2`}
                       className={`w-full h-full ${precisaObjectContain(1) ? 'object-contain' : 'object-cover'}`}
                       style={precisaObjectContain(1) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
+                      onLoad={(e) => handleImageLoad(1, e)}
                     />
                   </Link>
                 ) : (
@@ -243,6 +274,7 @@ export default function ImovelDetalhePage() {
                       alt={`${imovel.titulo} - Foto 3`}
                       className={`w-full h-full ${precisaObjectContain(2) ? 'object-contain' : 'object-cover'}`}
                       style={precisaObjectContain(2) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
+                      onLoad={(e) => handleImageLoad(2, e)}
                     />
                   </Link>
                 ) : (
@@ -267,6 +299,7 @@ export default function ImovelDetalhePage() {
                       alt={`${imovel.titulo} - Foto 4`}
                       className={`w-full h-full ${precisaObjectContain(3) ? 'object-contain' : 'object-cover'}`}
                       style={precisaObjectContain(3) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
+                      onLoad={(e) => handleImageLoad(3, e)}
                     />
                   </Link>
                 ) : (
@@ -291,6 +324,7 @@ export default function ImovelDetalhePage() {
                       alt={`${imovel.titulo} - Foto 5`}
                       className={`w-full h-full ${precisaObjectContain(4) ? 'object-contain' : 'object-cover'}`}
                       style={precisaObjectContain(4) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
+                      onLoad={(e) => handleImageLoad(4, e)}
                     />
                     {/* Botão Visualizar Fotos - Canto inferior direito */}
                     <div className="absolute bottom-2 right-2">
