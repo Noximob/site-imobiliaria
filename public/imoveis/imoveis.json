@@ -2,8 +2,8 @@
   {
     "id": "91696",
     "titulo": "Grant Vista",
-    "slug": "grant-vista-91696",
-    "descricao": "-> Empreendimento\n\nPiscina adulto  \nPiscina infantil  \nAcademia  \nSalão de festas  \nLounge  \nHall de entrada decorado e mobiliado  \nRooftop  \nEspaço gourmet  \nEntrada p/ banhistas e box de praia  \nMedidores de água, luz e gás individuais  \nElevador  \nInternet\n     Terraço  \nCozinha kids  \nEspaço Pikler  \nPraça do pôr do sol  \nQuiosque do pôr do sol  \nMusculação, yoga e pilates  \nEspaço criançada  \nEspaço dos pequeninos  \nPrainha  \nDeck  \nQuiosque de piscina  \nMercado Self-service\n\n     -> Unidade\n\nAcabamento em gesso  \nLiving  \nLavabo  \nÁrea de Serviço  \nEspera para split  \nPorcelanato  \nSacada  \nBanheiro Social  \nGás Individual  \nAquecimento a Gás  \nEscritório  \nSala de jantar  \nVaranda  \nSala de Estar  \nCloset  \nHidrômetro Individual  \nChurrasqueira  \nFechadura com senha na porta de entrada  \nInfraestrutura para água quente  \nCozinha\n     \n     \n     \nCONDIÇÕES DE PAGAMENTO\n\nChaves (1x) - R$ 109.710,05\nReforço Semestral (6x) - R$ 36.570,02\nEntrada (1x) - R$ 109.710,05\nParcelamento (140x) - R$ 14.889,22\nFinanciamento (1x) - R$ 1.316.520,60\n\n     \nIncorporação: 10-29.385",
+    "slug": "grant-vista",
+    "descricao": "Apartamento à venda no Grant Vista – Itajuba, Barra Velha\n\nApartamento de alto padrão localizado no empreendimento Grant Vista, no bairro Itajuba, em Barra Velha – SC.\nA unidade possui 158,21 m² de área privativa, com 3 suítes, ambientes amplos e bem distribuídos, além de 2 vagas de garagem.\n\nProjetado para quem busca conforto, funcionalidade e qualidade construtiva, o imóvel oferece planta moderna, excelente padrão de acabamento e infraestrutura completa de condomínio.\n\nLocalização estratégica no bairro Itajuba – Barra Velha\n\nO Grant Vista está situado na Avenida Itajuba, 2862, em uma das regiões mais valorizadas e desejadas de Barra Velha.\nO bairro Itajuba se destaca pela proximidade com o mar, crescimento imobiliário consistente e fácil acesso à BR-101, conectando rapidamente a cidades como Balneário Camboriú, Itajaí e Joinville.\n\nPlanta e diferenciais do apartamento\n\n158,21 m² de área privativa\n\n3 suítes, incluindo suíte com closet\n\nLiving amplo com integração entre sala de estar, jantar e cozinha\n\nLavabo e área de serviço independentes\n\nSacada com churrasqueira\n\nEscritório\n\nAcabamentos em porcelanato e gesso\n\nInfraestrutura para água quente e aquecimento a gás\n\nFechadura eletrônica com senha\n\n2 vagas de garagem\n\nA planta atende tanto ao uso residencial quanto ao perfil de famílias que buscam mais espaço e conforto em um condomínio completo.\n\nEstrutura de lazer e áreas comuns do Grant Vista\n\nO condomínio oferece uma infraestrutura diferenciada, com foco em bem-estar, convivência e qualidade de vida:\n\nPiscina adulto e infantil\n\nAcademia completa (musculação, yoga e pilates)\n\nRooftop com vista panorâmica\n\nSalão de festas e lounge\n\nEspaço gourmet\n\nMercado self-service\n\nPraça do pôr do sol e quiosque do pôr do sol\n\nPrainha, deck e quiosque de piscina\n\nEspaços infantis: cozinha kids, espaço Pikler, espaço criançada e espaço dos pequeninos\n\nHall de entrada decorado e mobiliado\n\nEntrada para banhistas e box de praia\n\nElevador\n\nMedidores individuais de água, luz e gás\n\nInternet nas áreas comuns\n\nCondições de pagamento\n\nEntrada: R$ 109.710,05\n\nChaves: R$ 109.710,05\n\nReforços semestrais (6x): R$ 36.570,02\n\nParcelamento (140x): R$ 14.889,22\n\nFinanciamento: R$ 1.316.520,60\n\nCondições sujeitas à análise e disponibilidade.\n\nInvestimento imobiliário em Barra Velha\n\nApartamentos com metragem elevada, múltiplas suítes e condomínio completo representam ativos de alta demanda e valorização consistente, especialmente no bairro Itajuba, uma das regiões mais procuradas de Barra Velha.\n\nO Grant Vista reúne localização estratégica, padrão construtivo elevado e estrutura de lazer diferenciada, tornando-se uma excelente opção para moradia ou investimento no litoral norte catarinense.\n\nAgende uma visita\n\nEntre em contato com a NOX Imóveis para receber mais informações, valores atualizados e agendar uma visita ao apartamento no Grant Vista, em Barra Velha.\n\nIncorporação: 10-29.385",
     "preco": 2194201,
     "tipo": "apartamento",
     "status": "lancamento",
@@ -25,7 +25,7 @@
       "quartos": 0,
       "banheiros": 1,
       "vagas": 2,
-      "area": 158.21,
+      "area": 158,
       "suite": 3,
       "frenteMar": false,
       "piscina": false,
@@ -34,7 +34,8 @@
       "portaria": false,
       "elevador": false,
       "varanda": false,
-      "sacada": false
+      "sacada": false,
+      "areaTerreno": 0
     },
     "tags": [],
     "fotos": [
@@ -75,7 +76,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T19:15:05.000Z",
-    "updatedAt": "2026-01-20T21:02:04.605Z",
+    "updatedAt": "2026-01-20T22:48:12.119Z",
     "publicado": true,
     "selecaoNox": false,
     "fonteDWV": true
