@@ -1050,12 +1050,11 @@ export default function AdminImoveis() {
                       ) : (
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                           {fotosDWV.map((fotoDWV, index) => {
-                            const isPrincipal = fotosExistentes.length > 0 && fotoPrincipalIndex >= 0 && 
-                              fotosExistentes[fotoPrincipalIndex] === fotoDWV.url
-                            const isMenor = fotosMenoresIndices.some(idx => {
-                              const todasFotos = [...fotosExistentes, ...fotosPreviews]
-                              return idx < todasFotos.length && todasFotos[idx] === fotoDWV.url
-                            })
+                            const todasFotos = [...fotosExistentes, ...fotosPreviews]
+                            const fotoIndex = todasFotos.indexOf(fotoDWV.url)
+                            const isPrincipal = fotoIndex >= 0 && fotoIndex === fotoPrincipalIndex
+                            const isMenor = fotoIndex >= 0 && fotosMenoresIndices.includes(fotoIndex)
+                            const temMedium = fotoDWV.hasMedium
                             
                             return (
                               <div 
@@ -1063,7 +1062,7 @@ export default function AdminImoveis() {
                                 className={`relative group border-2 rounded-md overflow-hidden ${
                                   isPrincipal ? 'border-purple-600 ring-2 ring-purple-300' : 
                                   isMenor ? 'border-green-500 ring-2 ring-green-300' : 
-                                  fotoDWV.hasMedium ? 'border-blue-500 ring-2 ring-blue-300' : 
+                                  temMedium ? 'border-blue-400 ring-2 ring-blue-200' : 
                                   'border-gray-200'
                                 }`}
                               >
@@ -1072,61 +1071,75 @@ export default function AdminImoveis() {
                                   alt={`Foto DWV ${index + 1}`}
                                   className="w-full h-32 object-cover"
                                 />
-                                {fotoDWV.hasMedium && !isPrincipal && !isMenor && (
-                                  <div className="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">
-                                    Ideal para Menores
+                                {temMedium && !isPrincipal && !isMenor && (
+                                  <div className="absolute top-2 left-2 bg-blue-500 text-white text-xs px-2 py-1 rounded font-medium">
+                                    ⭐ Ideal para 4 Menores
                                   </div>
                                 )}
                                 {isPrincipal && (
-                                  <div className="absolute top-2 left-2 bg-purple-600 text-white text-xs px-2 py-1 rounded">
+                                  <div className="absolute top-2 left-2 bg-purple-600 text-white text-xs px-2 py-1 rounded font-medium">
                                     Principal
                                   </div>
                                 )}
                                 {isMenor && !isPrincipal && (
-                                  <div className="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">
-                                    Menor {fotosMenoresIndices.findIndex(idx => {
-                                      const todasFotos = [...fotosExistentes, ...fotosPreviews]
-                                      return idx < todasFotos.length && todasFotos[idx] === fotoDWV.url
-                                    }) + 1}
+                                  <div className="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded font-medium">
+                                    Menor {fotosMenoresIndices.indexOf(fotoIndex) + 1}
                                   </div>
                                 )}
                                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center gap-2 flex-wrap">
-                                  {!isPrincipal && (
-                                    <button
-                                      type="button"
-                                      onClick={() => {
-                                        // Adicionar foto do DWV às fotos existentes se não estiver lá
-                                        if (!fotosExistentes.includes(fotoDWV.url) && !fotosPreviews.includes(fotoDWV.url)) {
-                                          setFotosPreviews(prev => [...prev, fotoDWV.url])
-                                          const novoIndex = fotosExistentes.length + fotosPreviews.length
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      // Adicionar foto do DWV às fotos existentes se não estiver lá
+                                      if (fotoIndex < 0) {
+                                        setFotosPreviews(prev => [...prev, fotoDWV.url])
+                                        const novoIndex = fotosExistentes.length + fotosPreviews.length
+                                        setTimeout(() => {
                                           definirFotoPrincipal(novoIndex)
-                                        } else {
-                                          const idx = [...fotosExistentes, ...fotosPreviews].indexOf(fotoDWV.url)
-                                          if (idx >= 0) definirFotoPrincipal(idx)
-                                        }
-                                      }}
-                                      className="opacity-0 group-hover:opacity-100 bg-purple-600 text-white px-2 py-1 rounded text-xs font-medium hover:bg-purple-700 transition-opacity"
-                                      title="Definir como foto principal"
-                                    >
-                                      Principal
-                                    </button>
-                                  )}
-                                  {!isMenor && fotosMenoresIndices.length < 4 && (
+                                        }, 0)
+                                      } else {
+                                        definirFotoPrincipal(fotoIndex)
+                                      }
+                                    }}
+                                    className={`opacity-0 group-hover:opacity-100 text-white px-3 py-1.5 rounded text-xs font-medium transition-opacity ${
+                                      isPrincipal ? 'bg-purple-700 hover:bg-purple-800' : 'bg-purple-600 hover:bg-purple-700'
+                                    }`}
+                                    title="Definir como foto principal"
+                                  >
+                                    {isPrincipal ? '✓ Principal' : 'Definir Principal'}
+                                  </button>
+                                  {!isPrincipal && fotosMenoresIndices.length < 4 && (
                                     <button
                                       type="button"
                                       onClick={() => {
                                         // Adicionar foto do DWV às fotos existentes se não estiver lá
-                                        let idx = [...fotosExistentes, ...fotosPreviews].indexOf(fotoDWV.url)
+                                        let idx = fotoIndex
                                         if (idx < 0) {
                                           setFotosPreviews(prev => [...prev, fotoDWV.url])
                                           idx = fotosExistentes.length + fotosPreviews.length
+                                          setTimeout(() => {
+                                            setFotosMenoresIndices(prev => [...prev, idx])
+                                          }, 0)
+                                        } else {
+                                          setFotosMenoresIndices(prev => [...prev, idx])
                                         }
-                                        setFotosMenoresIndices(prev => [...prev, idx])
                                       }}
-                                      className="opacity-0 group-hover:opacity-100 bg-green-600 text-white px-2 py-1 rounded text-xs font-medium hover:bg-green-700 transition-opacity"
+                                      className="opacity-0 group-hover:opacity-100 bg-green-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-green-700 transition-opacity"
                                       title="Adicionar às 4 menores"
                                     >
                                       + Menor
+                                    </button>
+                                  )}
+                                  {isMenor && (
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        setFotosMenoresIndices(prev => prev.filter(i => i !== fotoIndex))
+                                      }}
+                                      className="opacity-0 group-hover:opacity-100 bg-red-500 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-red-600 transition-opacity"
+                                      title="Remover das 4 menores"
+                                    >
+                                      Remover
                                     </button>
                                   )}
                                 </div>
