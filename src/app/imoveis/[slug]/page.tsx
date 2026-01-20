@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { notFound, useParams } from 'next/navigation'
-import Image from 'next/image'
 import Link from 'next/link'
 import { getImovelBySlug, getAllImoveis, formatPrice } from '@/lib/imoveis'
 import { getWhatsAppLink } from '@/lib/whatsapp'
@@ -187,13 +186,11 @@ export default function ImovelDetalhePage() {
                 }`}
                 onMouseEnter={() => setHoveredPhotoIndex(0)}
               >
-                <Image
+                <img
                   src={fotosOrdenadas[0]}
                   alt={`${imovel.titulo} - Foto principal`}
-                  fill
-                  className="object-contain"
-                  unoptimized
-                  style={{ objectPosition: 'center' }}
+                  className="w-full h-full object-contain"
+                  style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }}
                 />
               </Link>
               
@@ -210,13 +207,11 @@ export default function ImovelDetalhePage() {
                     }`}
                     onMouseEnter={() => setHoveredPhotoIndex(1)}
                   >
-                    <Image
+                    <img
                       src={fotosOrdenadas[1]}
                       alt={`${imovel.titulo} - Foto 2`}
-                      fill
-                      className="object-contain"
-                      unoptimized
-                      style={{ objectPosition: 'center' }}
+                      className="w-full h-full object-contain"
+                      style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }}
                     />
                   </Link>
                 )}
@@ -232,13 +227,11 @@ export default function ImovelDetalhePage() {
                     }`}
                     onMouseEnter={() => setHoveredPhotoIndex(2)}
                   >
-                    <Image
+                    <img
                       src={fotosOrdenadas[2]}
                       alt={`${imovel.titulo} - Foto 3`}
-                      fill
-                      className="object-contain"
-                      unoptimized
-                      style={{ objectPosition: 'center' }}
+                      className="w-full h-full object-contain"
+                      style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }}
                     />
                   </Link>
                 )}
@@ -254,13 +247,11 @@ export default function ImovelDetalhePage() {
                     }`}
                     onMouseEnter={() => setHoveredPhotoIndex(3)}
                   >
-                    <Image
+                    <img
                       src={fotosOrdenadas[3]}
                       alt={`${imovel.titulo} - Foto 4`}
-                      fill
-                      className="object-contain"
-                      unoptimized
-                      style={{ objectPosition: 'center' }}
+                      className="w-full h-full object-contain"
+                      style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }}
                     />
                   </Link>
                 )}
@@ -276,13 +267,11 @@ export default function ImovelDetalhePage() {
                     }`}
                     onMouseEnter={() => setHoveredPhotoIndex(4)}
                   >
-                    <Image
+                    <img
                       src={fotosOrdenadas[4]}
                       alt={`${imovel.titulo} - Foto 5`}
-                      fill
-                      className="object-contain"
-                      unoptimized
-                      style={{ objectPosition: 'center' }}
+                      className="w-full h-full object-contain"
+                      style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }}
                     />
                     {/* Botão Visualizar Fotos - Canto inferior direito */}
                     <div className="absolute bottom-2 right-2">
@@ -305,13 +294,11 @@ export default function ImovelDetalhePage() {
                     }`}
                     onMouseEnter={() => setHoveredPhotoIndex(fotosOrdenadas.length - 1)}
                   >
-                    <Image
+                    <img
                       src={fotosOrdenadas[fotosOrdenadas.length - 1]}
                       alt={`${imovel.titulo} - Última foto`}
-                      fill
-                      className="object-contain"
-                      unoptimized
-                      style={{ objectPosition: 'center' }}
+                      className="w-full h-full object-contain"
+                      style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }}
                     />
                     <div className="absolute bottom-2 right-2">
                       <div className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium text-sm transition-colors shadow-lg">
