@@ -103,7 +103,7 @@ export async function POST(request: NextRequest) {
     // Processar sincronização
     // Lógica: Puxar apenas o que está selecionado no DWV (o que vem da API)
     // - Adicionar novos que estão na lista do DWV
-    // - Atualizar existentes que ainda estão na lista
+    // - NÃO atualizar existentes (preservar edições futuras do admin)
     // - Remover os que não estão mais na lista do DWV (foram desmarcados)
     // - Manter imóveis manuais (não-DWV) intactos
     
@@ -130,55 +130,69 @@ export async function POST(request: NextRequest) {
       idsDWVNovos.add(key)
       
       const jaExistia = imoveisDWVMap.has(key)
-      const imovelExistente = imoveisDWVMap.get(key)
 
-      // Verificar se realmente mudou (comparar dados principais)
-      let mudou = false
       if (!jaExistia) {
-        mudou = true // Novo imóvel
-      } else {
-        // Comparar campos principais para ver se atualizou
-        const camposParaComparar = ['titulo', 'preco', 'endereco', 'fotos']
-        mudou = camposParaComparar.some(campo => {
-          const novo = JSON.stringify(imovel[campo])
-          const antigo = JSON.stringify(imovelExistente[campo])
-          return novo !== antigo
+        // NOVO imóvel: adicionar
+        imoveisDWVMap.set(key, {
+          ...imovel,
+          visualizacoes: 0,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+          publicado: true,
+          fonteDWV: true,
+          dwvId: imovel.dwvId || imovel.id,
         })
-      }
-
-      // Atualizar ou adicionar imóvel
-      imoveisDWVMap.set(key, {
-        ...imovel,
-        visualizacoes: imovelExistente?.visualizacoes || 0,
-        createdAt: imovelExistente?.createdAt || imovel.createdAt,
-        updatedAt: new Date().toISOString(),
-        publicado: true,
-        fonteDWV: true,
-        dwvId: imovel.dwvId || imovel.id,
-      })
-
-      if (jaExistia) {
-        if (mudou) {
-          atualizados++
-        }
-      } else {
         adicionados++
+      } else {
+        // IMÓVEL EXISTENTE: manter como está (não atualizar para preservar edições futuras)
+        // Apenas garantir que tem os campos essenciais
+        const imovelExistente = imoveisDWVMap.get(key)
+        imoveisDWVMap.set(key, {
+          ...imovelExistente, // Manter dados existentes
+          fonteDWV: true, // Garantir flag
+          dwvId: imovel.dwvId || imovel.id, // Garantir dwvId
+        })
+        // Não incrementar atualizados - não estamos atualizando
       }
     })
 
     // Remover imóveis DWV que não estão mais na lista (foram desmarcados no DWV)
-    removidos = imoveisDWVExistentes.filter((im: any) => {
+    const imoveisParaRemover = imoveisDWVExistentes.filter((im: any) => {
       const key = im.dwvId?.toString() || im.id
       return !idsDWVNovos.has(key)
-    }).length
+    })
+    removidos = imoveisParaRemover.length
 
-    // Montar lista final: imóveis DWV atualizados + imóveis manuais
+    // Remover do mapa
+    imoveisParaRemover.forEach((im: any) => {
+      const key = im.dwvId?.toString() || im.id
+      imoveisDWVMap.delete(key)
+    })
+
+    // Montar lista final: imóveis DWV (mantidos + novos) + imóveis manuais
     imoveisFinais = [
       ...Array.from(imoveisDWVMap.values()),
       ...imoveisNaoDWV,
     ]
 
-    // Salvar no GitHub
+    // Verificar se há mudanças reais antes de fazer commit
+    const temMudancas = adicionados > 0 || removidos > 0
+
+    if (!temMudancas) {
+      // Não há mudanças, retornar sem fazer commit
+      return NextResponse.json({
+        success: true,
+        message: `Nenhuma alteração necessária. ${imoveisNovos.length} imóvel(is) sincronizado(s) do DWV.`,
+        total: imoveisFinais.length,
+        adicionados: 0,
+        atualizados: 0,
+        removidos: 0,
+        totalDWV: imoveisNovos.length,
+        temMudancas: false,
+      })
+    }
+
+    // Há mudanças, fazer commit no GitHub
     try {
       const fileContent = JSON.stringify(imoveisFinais, null, 2)
       const encodedContent = Buffer.from(fileContent, 'utf-8').toString('base64')
@@ -187,7 +201,7 @@ export async function POST(request: NextRequest) {
         owner: REPO_OWNER,
         repo: REPO_NAME,
         path: IMOVEIS_PATH,
-        message: `Sync DWV: ${imoveisNovos.length} imóveis - ${adicionados} novos, ${atualizados} atualizados, ${removidos} removidos`,
+        message: `Sync DWV: ${adicionados} novo(s), ${removidos} removido(s)`,
         content: encodedContent,
         branch: 'main',
       }
@@ -209,21 +223,17 @@ export async function POST(request: NextRequest) {
       throw new Error(`Erro ao salvar no GitHub: ${githubError.message}`)
     }
 
-    // Só mostrar mensagem se houver mudanças reais
-    const temMudancas = adicionados > 0 || atualizados > 0 || removidos > 0
-    const mensagem = temMudancas
-      ? `Sincronização concluída: ${adicionados} novo(s), ${atualizados} atualizado(s), ${removidos} removido(s)`
-      : `Nenhuma alteração necessária. ${imoveisNovos.length} imóvel(is) sincronizado(s) do DWV.`
+    const mensagem = `Sincronização concluída: ${adicionados} novo(s), ${removidos} removido(s)`
 
     return NextResponse.json({
       success: true,
       message: mensagem,
       total: imoveisFinais.length,
       adicionados,
-      atualizados,
+      atualizados: 0, // Sempre 0, pois não atualizamos existentes
       removidos,
       totalDWV: imoveisNovos.length,
-      temMudancas,
+      temMudancas: true,
     })
   } catch (error: any) {
     console.error('❌ Erro ao sincronizar:', error)
