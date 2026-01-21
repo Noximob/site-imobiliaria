@@ -213,7 +213,16 @@ export default function ImovelDetalhePage() {
               </Link>
               
               {/* Coluna Direita - Grid 2x2 com 4 fotos menores - QUADROS FIXOS */}
-              <div className="grid grid-cols-2 grid-rows-2 gap-1.5 h-full" style={{ maxHeight: '100%' }}>
+              <div 
+                className="grid grid-cols-2 grid-rows-2 gap-1.5" 
+                style={{ 
+                  height: '100%',
+                  maxHeight: '100%',
+                  display: 'grid',
+                  gridTemplateRows: 'calc(50% - 0.375rem) calc(50% - 0.375rem)',
+                  gridTemplateColumns: 'calc(50% - 0.375rem) calc(50% - 0.375rem)'
+                }}
+              >
                 {/* Foto 2 - Superior esquerda - QUADRO FIXO */}
                 {fotosParaExibir[1] ? (
                   <Link
@@ -246,14 +255,13 @@ export default function ImovelDetalhePage() {
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
                     }`}
-                    style={{ minHeight: 0, maxHeight: '100%' }}
+                    style={{ height: '100%', width: '100%', overflow: 'hidden', position: 'relative' }}
                     onMouseEnter={() => setHoveredPhotoIndex(2)}
                   >
                     <img
                       src={fotosParaExibir[2]}
                       alt={`${imovel.titulo} - Foto 3`}
-                      className="w-full h-full object-cover"
-                      style={{ objectFit: 'cover', objectPosition: 'center', width: '100%', height: '100%' }}
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
                   </Link>
                 ) : (
@@ -269,14 +277,13 @@ export default function ImovelDetalhePage() {
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
                     }`}
-                    style={{ minHeight: 0, maxHeight: '100%' }}
+                    style={{ height: '100%', width: '100%', overflow: 'hidden', position: 'relative' }}
                     onMouseEnter={() => setHoveredPhotoIndex(3)}
                   >
                     <img
                       src={fotosParaExibir[3]}
                       alt={`${imovel.titulo} - Foto 4`}
-                      className="w-full h-full object-cover"
-                      style={{ objectFit: 'cover', objectPosition: 'center', width: '100%', height: '100%' }}
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
                   </Link>
                 ) : (
@@ -292,14 +299,13 @@ export default function ImovelDetalhePage() {
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
                     }`}
-                    style={{ minHeight: 0, maxHeight: '100%' }}
+                    style={{ height: '100%', width: '100%', overflow: 'hidden', position: 'relative' }}
                     onMouseEnter={() => setHoveredPhotoIndex(4)}
                   >
                     <img
                       src={fotosParaExibir[4]}
                       alt={`${imovel.titulo} - Foto 5`}
-                      className="w-full h-full object-cover"
-                      style={{ objectFit: 'cover', objectPosition: 'center', width: '100%', height: '100%' }}
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
                     {/* Botão Visualizar Fotos - Canto inferior direito */}
                     <div className="absolute bottom-2 right-2 z-10">

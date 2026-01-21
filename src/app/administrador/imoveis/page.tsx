@@ -1093,142 +1093,127 @@ export default function AdminImoveis() {
                     required={!editingImovel && fotosExistentes.length === 0 && fotosPreviews.length === 0}
                   />
                   
-                  {/* Seção: Fotos do DWV (se for imóvel do DWV) - COM PREVIEW */}
+                  {/* Seção: Fotos do DWV - SIMPLES E DIRETO */}
                   {fotosDWV.length > 0 && (
-                    <div className="mt-6">
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        {/* Coluna Esquerda: Galeria do DWV */}
-                        <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                          <h4 className="text-sm font-semibold text-gray-900 mb-2">
-                            📷 Galeria do DWV ({fotosDWV.length} fotos)
-                          </h4>
-                          <p className="text-xs text-gray-600 mb-3">
-                            <strong>Clique:</strong> Principal (roxo) | <strong>Shift+Clique:</strong> 4 Menores (verde)
-                            {fotoPrincipalDWV && <span className="text-green-600 font-medium ml-2">✓ Principal</span>}
-                            {fotosMenoresDWV.length > 0 && <span className="text-green-600 font-medium ml-2">✓ {fotosMenoresDWV.length}/4 menores</span>}
-                          </p>
-                          {carregandoFotosDWV ? (
-                            <p className="text-xs text-gray-500">Carregando fotos do DWV...</p>
-                          ) : (
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h-96 overflow-y-auto">
-                              {fotosDWV.map((fotoDWV, index) => {
-                            const isPrincipal = fotoPrincipalDWV === fotoDWV.url
-                            const isMenor = fotosMenoresDWV.includes(fotoDWV.url)
-                            const posicaoMenor = isMenor ? fotosMenoresDWV.indexOf(fotoDWV.url) + 1 : 0
-                            const isIdeal = isIdealParaMenores(fotoDWV)
-                            
-                            return (
-                              <div 
-                                key={index}
-                                onClick={(e) => {
-                                  if (e.shiftKey) {
-                                    // Shift + Clique: adicionar/remover das 4 menores
-                                    if (isMenor) {
-                                      setFotosMenoresDWV(prev => prev.filter(url => url !== fotoDWV.url))
-                                    } else {
-                                      if (fotosMenoresDWV.length < 4) {
-                                        setFotosMenoresDWV(prev => [...prev, fotoDWV.url])
-                                      } else {
-                                        // Substituir a primeira
-                                        setFotosMenoresDWV(prev => [fotoDWV.url, ...prev.slice(1)])
-                                      }
-                                    }
-                                  } else {
-                                    // Clique normal: definir como principal
-                                    setFotoPrincipalDWV(fotoDWV.url)
-                                    // Se estava nas menores, remover
-                                    if (isMenor) {
-                                      setFotosMenoresDWV(prev => prev.filter(url => url !== fotoDWV.url))
-                                    }
-                                  }
-                                }}
-                                className={`relative group cursor-pointer border-2 rounded-md overflow-hidden transition-all ${
-                                  isPrincipal ? 'border-purple-600 ring-4 ring-purple-300 scale-105' : 
-                                  isMenor ? 'border-green-500 ring-2 ring-green-300' : 
-                                  isIdeal && !isPrincipal && !isMenor ? 'border-blue-400 ring-1 ring-blue-200' :
-                                  'border-gray-200 hover:border-gray-400'
-                                }`}
-                              >
-                                <img
-                                  src={fotoDWV.url}
-                                  alt={`Foto DWV ${index + 1}`}
-                                  className="w-full h-24 object-cover"
-                                  onLoad={() => detectarAspectRatio(fotoDWV.url)}
-                                />
-                                {isPrincipal && (
-                                  <div className="absolute top-1 left-1 bg-purple-600 text-white text-xs px-1.5 py-0.5 rounded font-medium shadow-lg">
-                                    ✓ Principal
-                                  </div>
-                                )}
-                                {isMenor && !isPrincipal && (
-                                  <div className="absolute top-1 left-1 bg-green-600 text-white text-xs px-1.5 py-0.5 rounded font-medium shadow-lg">
-                                    {posicaoMenor}/4
-                                  </div>
-                                )}
-                                {isIdeal && !isPrincipal && !isMenor && (
-                                  <div className="absolute top-1 right-1 bg-blue-500 text-white text-xs px-1.5 py-0.5 rounded font-medium shadow-lg">
-                                    ⭐ Ideal
-                                  </div>
-                                )}
+                    <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-3">
+                        📷 Escolher Fotos do DWV ({fotosDWV.length} fotos disponíveis)
+                      </h4>
+                      
+                      {/* Preview do que está selecionado */}
+                      <div className="mb-4 p-3 bg-white rounded-lg border-2 border-purple-200">
+                        <div className="grid grid-cols-2 gap-2" style={{ height: '200px' }}>
+                          {/* Principal */}
+                          <div className="relative rounded overflow-hidden border-2 border-purple-600">
+                            {fotoPrincipalDWV ? (
+                              <img src={fotoPrincipalDWV} alt="Principal" className="w-full h-full object-cover" />
+                            ) : (
+                              <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                                <span className="text-xs text-gray-400">Principal</span>
                               </div>
+                            )}
+                          </div>
+                          {/* 4 Menores */}
+                          <div className="grid grid-cols-2 grid-rows-2 gap-1">
+                            {[0, 1, 2, 3].map((pos) => {
+                              const url = fotosMenoresDWV[pos]
+                              return (
+                                <div key={pos} className="relative rounded overflow-hidden border border-green-500">
+                                  {url ? (
+                                    <img src={url} alt={`Menor ${pos + 1}`} className="w-full h-full object-cover" />
+                                  ) : (
+                                    <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                                      <span className="text-xs text-gray-400">{pos + 1}</span>
+                                    </div>
+                                  )}
+                                </div>
                               )
                             })}
-                            </div>
-                          )}
-                        </div>
-                        
-                        {/* Coluna Direita: Preview do Layout Final */}
-                        <div className="p-4 bg-white rounded-lg border-2 border-purple-200">
-                          <h4 className="text-sm font-semibold text-gray-900 mb-2">
-                            👁️ Preview - Como ficará na página
-                          </h4>
-                          <div className="bg-gray-50 rounded-lg p-2" style={{ aspectRatio: '16/9', maxHeight: '400px' }}>
-                            <div className="grid grid-cols-2 gap-1.5 h-full">
-                              {/* Foto Principal */}
-                              <div className="relative rounded-lg overflow-hidden border-2 border-purple-600">
-                                {fotoPrincipalDWV ? (
-                                  <img
-                                    src={fotoPrincipalDWV}
-                                    alt="Preview Principal"
-                                    className="w-full h-full object-cover"
-                                  />
-                                ) : (
-                                  <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                                    <span className="text-xs text-gray-400">Principal</span>
-                                  </div>
-                                )}
-                              </div>
-                              
-                              {/* Grid 2x2 das 4 menores */}
-                              <div className="grid grid-cols-2 grid-rows-2 gap-1.5 h-full">
-                                {[0, 1, 2, 3].map((pos) => {
-                                  const fotoUrl = fotosMenoresDWV[pos]
-                                  return (
-                                    <div key={pos} className="relative rounded-lg overflow-hidden border-2 border-green-500">
-                                      {fotoUrl ? (
-                                        <img
-                                          src={fotoUrl}
-                                          alt={`Preview Menor ${pos + 1}`}
-                                          className="w-full h-full object-cover"
-                                        />
-                                      ) : (
-                                        <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                                          <span className="text-xs text-gray-400">{pos + 1}/4</span>
-                                        </div>
-                                      )}
-                                    </div>
-                                  )
-                                })}
-                              </div>
-                            </div>
                           </div>
-                          {(!fotoPrincipalDWV || fotosMenoresDWV.length < 4) && (
-                            <p className="text-xs text-amber-600 mt-2">
-                              ⚠️ {!fotoPrincipalDWV ? 'Selecione uma foto principal' : `Faltam ${4 - fotosMenoresDWV.length} foto(s) para as 4 menores`}
-                            </p>
-                          )}
                         </div>
+                        {(!fotoPrincipalDWV || fotosMenoresDWV.length < 4) && (
+                          <p className="text-xs text-amber-600 mt-2 text-center">
+                            ⚠️ {!fotoPrincipalDWV ? 'Selecione uma foto principal' : `Faltam ${4 - fotosMenoresDWV.length} foto(s)`}
+                          </p>
+                        )}
                       </div>
+                      
+                      {/* Galeria do DWV */}
+                      {carregandoFotosDWV ? (
+                        <p className="text-xs text-gray-500">Carregando fotos do DWV...</p>
+                      ) : (
+                        <>
+                          <p className="text-xs text-gray-600 mb-3">
+                            <strong>Clique:</strong> Trocar Principal | <strong>Shift+Clique:</strong> Trocar nas 4 Menores
+                            <br />
+                            <span className="text-blue-600">Fotos com borda azul são ideais para as 4 menores (horizontais)</span>
+                          </p>
+                          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-h-96 overflow-y-auto">
+                            {fotosDWV.map((fotoDWV, index) => {
+                              const isPrincipal = fotoPrincipalDWV === fotoDWV.url
+                              const isMenor = fotosMenoresDWV.includes(fotoDWV.url)
+                              const posMenor = isMenor ? fotosMenoresDWV.indexOf(fotoDWV.url) + 1 : 0
+                              const isIdeal = isIdealParaMenores(fotoDWV)
+                              
+                              return (
+                                <div
+                                  key={index}
+                                  onClick={(e) => {
+                                    if (e.shiftKey) {
+                                      // Shift+Clique: trocar nas 4 menores
+                                      if (isMenor) {
+                                        // Se já está nas menores, remover
+                                        setFotosMenoresDWV(prev => prev.filter(url => url !== fotoDWV.url))
+                                      } else {
+                                        // Adicionar (substitui primeira se já tiver 4)
+                                        if (fotosMenoresDWV.length < 4) {
+                                          setFotosMenoresDWV(prev => [...prev, fotoDWV.url])
+                                        } else {
+                                          setFotosMenoresDWV(prev => [fotoDWV.url, ...prev.slice(1)])
+                                        }
+                                      }
+                                    } else {
+                                      // Clique normal: trocar principal
+                                      setFotoPrincipalDWV(fotoDWV.url)
+                                      if (isMenor) {
+                                        setFotosMenoresDWV(prev => prev.filter(url => url !== fotoDWV.url))
+                                      }
+                                    }
+                                  }}
+                                  className={`relative cursor-pointer border-2 rounded overflow-hidden transition-all ${
+                                    isPrincipal ? 'border-purple-600 ring-2 ring-purple-300' :
+                                    isMenor ? 'border-green-500 ring-1 ring-green-300' :
+                                    isIdeal ? 'border-blue-400 ring-1 ring-blue-200' :
+                                    'border-gray-300 hover:border-gray-400'
+                                  }`}
+                                >
+                                  <img
+                                    src={fotoDWV.url}
+                                    alt={`Foto ${index + 1}`}
+                                    className="w-full h-20 object-cover"
+                                    onLoad={() => detectarAspectRatio(fotoDWV.url)}
+                                  />
+                                  {isPrincipal && (
+                                    <div className="absolute top-0 left-0 bg-purple-600 text-white text-xs px-1 py-0.5 rounded-br font-medium">
+                                      Principal
+                                    </div>
+                                  )}
+                                  {isMenor && !isPrincipal && (
+                                    <div className="absolute top-0 left-0 bg-green-600 text-white text-xs px-1 py-0.5 rounded-br font-medium">
+                                      {posMenor}/4
+                                    </div>
+                                  )}
+                                  {isIdeal && !isPrincipal && !isMenor && (
+                                    <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs px-1 py-0.5 rounded-bl font-medium">
+                                      ⭐
+                                    </div>
+                                  )}
+                                </div>
+                              )
+                            })}
+                          </div>
+                        </>
+                      )}
                     </div>
                   )}
 
