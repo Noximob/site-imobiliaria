@@ -191,6 +191,7 @@ export default function ImovelDetalhePage() {
                   src={fotosParaExibir[0]}
                   alt={`${imovel.titulo} - Foto principal`}
                   className="w-full h-full object-cover"
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               </Link>
               
@@ -211,6 +212,7 @@ export default function ImovelDetalhePage() {
                       src={fotosParaExibir[1]}
                       alt={`${imovel.titulo} - Foto 2`}
                       className="w-full h-full object-cover"
+                      style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
                   </Link>
                 ) : (
@@ -232,6 +234,7 @@ export default function ImovelDetalhePage() {
                       src={fotosParaExibir[2]}
                       alt={`${imovel.titulo} - Foto 3`}
                       className="w-full h-full object-cover"
+                      style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
                   </Link>
                 ) : (
@@ -253,6 +256,7 @@ export default function ImovelDetalhePage() {
                       src={fotosParaExibir[3]}
                       alt={`${imovel.titulo} - Foto 4`}
                       className="w-full h-full object-cover"
+                      style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
                   </Link>
                 ) : (
@@ -274,6 +278,7 @@ export default function ImovelDetalhePage() {
                       src={fotosParaExibir[4]}
                       alt={`${imovel.titulo} - Foto 5`}
                       className="w-full h-full object-cover"
+                      style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
                     {/* Botão Visualizar Fotos - Canto inferior direito */}
                     <div className="absolute bottom-2 right-2 z-10">

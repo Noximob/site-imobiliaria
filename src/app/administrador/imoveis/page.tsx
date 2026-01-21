@@ -1129,7 +1129,7 @@ export default function AdminImoveis() {
                                 key={index} 
                                 className={`relative group border-2 rounded-md overflow-hidden ${
                                   isPrincipal ? 'border-purple-600 ring-2 ring-purple-300' : 
-                                  index < 5 ? 'border-blue-300' : 
+                                  index >= 1 && index < 5 ? 'border-green-500 ring-2 ring-green-300' : 
                                   'border-gray-200'
                                 }`}
                               >
@@ -1143,9 +1143,9 @@ export default function AdminImoveis() {
                                     Principal
                                   </div>
                                 )}
-                                {!isPrincipal && index < 5 && (
-                                  <div className="absolute top-2 left-2 bg-blue-500 text-white text-xs px-2 py-1 rounded font-medium">
-                                    Grid 2x2 ({index})
+                                {!isPrincipal && index >= 1 && index < 5 && (
+                                  <div className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded font-medium">
+                                    4 Menores ({index})
                                   </div>
                                 )}
                                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center gap-2 flex-wrap">
@@ -1157,6 +1157,94 @@ export default function AdminImoveis() {
                                       title="Definir como foto principal"
                                     >
                                       Principal
+                                    </button>
+                                  )}
+                                  {!isPrincipal && index >= 1 && index < 5 && (
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        // Remover das 4 menores e mover para extras
+                                        const todasFotos = [...fotosExistentes, ...fotosPreviews]
+                                        const fotoRemovida = todasFotos[index]
+                                        
+                                        // Remover da posição atual
+                                        const novasFotos = todasFotos.filter((_, i) => i !== index)
+                                        
+                                        // Separar entre existentes e previews
+                                        const novasExistentes = novasFotos.filter(f => fotosExistentes.includes(f))
+                                        const novasPreviews = novasFotos.filter(f => !fotosExistentes.includes(f))
+                                        
+                                        setFotosExistentes(novasExistentes)
+                                        setFotosPreviews(novasPreviews)
+                                        
+                                        // Mover para extras
+                                        if (fotoRemovida) {
+                                          setMaisFotosPreviews(prev => [...prev, fotoRemovida])
+                                        }
+                                      }}
+                                      className="opacity-0 group-hover:opacity-100 bg-orange-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-orange-700 transition-opacity"
+                                      title="Remover das 4 menores e mover para extras"
+                                    >
+                                      → Extras
+                                    </button>
+                                  )}
+                                  {!isPrincipal && index >= 5 && (
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        // Mover foto para as 4 menores (posições 1-4)
+                                        // Se já tiver 4 menores, substituir a primeira e mover a substituída para extras
+                                        const todasFotos = [...fotosExistentes, ...fotosPreviews]
+                                        const fotoAtual = todasFotos[index]
+                                        
+                                        // Se já tiver 4 fotos nas posições 1-4 (após principal)
+                                        if (todasFotos.length > 4) {
+                                          // Pegar a primeira das 4 menores (índice 1, pois 0 é a principal)
+                                          const fotoSubstituida = todasFotos[1]
+                                          
+                                          // Remover a foto atual da posição atual
+                                          const novasFotos = todasFotos.filter((_, i) => i !== index)
+                                          
+                                          // Remover a primeira das menores
+                                          novasFotos.splice(1, 1)
+                                          
+                                          // Adicionar a nova foto na posição 1 (primeira das 4 menores)
+                                          novasFotos.splice(1, 0, fotoAtual)
+                                          
+                                          // Separar entre existentes e previews
+                                          const novasExistentes = novasFotos.filter(f => fotosExistentes.includes(f))
+                                          const novasPreviews = novasFotos.filter(f => !fotosExistentes.includes(f))
+                                          
+                                          setFotosExistentes(novasExistentes)
+                                          setFotosPreviews(novasPreviews)
+                                          
+                                          // Mover a foto substituída para extras
+                                          if (fotoSubstituida) {
+                                            setMaisFotosPreviews(prev => [...prev, fotoSubstituida])
+                                          }
+                                        } else {
+                                          // Se não tiver 4 ainda, apenas reorganizar para colocar na posição correta
+                                          const novasFotos = [...todasFotos]
+                                          novasFotos.splice(index, 1)
+                                          
+                                          // Garantir que tenha pelo menos 5 fotos (1 principal + 4 menores)
+                                          if (novasFotos.length < 5) {
+                                            novasFotos.splice(1, 0, fotoAtual)
+                                          } else {
+                                            novasFotos.splice(1, 0, fotoAtual)
+                                          }
+                                          
+                                          const novasExistentes = novasFotos.filter(f => fotosExistentes.includes(f))
+                                          const novasPreviews = novasFotos.filter(f => !fotosExistentes.includes(f))
+                                          
+                                          setFotosExistentes(novasExistentes)
+                                          setFotosPreviews(novasPreviews)
+                                        }
+                                      }}
+                                      className="opacity-0 group-hover:opacity-100 bg-green-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-green-700 transition-opacity"
+                                      title="Mover para as 4 menores (substitui a primeira se já tiver 4)"
+                                    >
+                                      → 4 Menores
                                     </button>
                                   )}
                                 </div>
@@ -1210,6 +1298,46 @@ export default function AdminImoveis() {
                                 className="w-full h-32 object-cover"
                               />
                               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center gap-2">
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    // Mover para as 4 menores (substitui a primeira se já tiver 4)
+                                    const todasFotos = [...fotosExistentes, ...fotosPreviews]
+                                    
+                                    if (todasFotos.length >= 4) {
+                                      // Pegar a primeira das 4 menores (índice 1)
+                                      const fotoSubstituida = todasFotos[1]
+                                      
+                                      // Remover a primeira das menores
+                                      const novasFotos = [...todasFotos]
+                                      novasFotos.splice(1, 1)
+                                      
+                                      // Adicionar a nova foto na posição 1
+                                      novasFotos.splice(1, 0, foto)
+                                      
+                                      // Separar entre existentes e previews
+                                      const novasExistentes = novasFotos.filter(f => fotosExistentes.includes(f))
+                                      const novasPreviews = novasFotos.filter(f => !fotosExistentes.includes(f))
+                                      
+                                      setFotosExistentes(novasExistentes)
+                                      setFotosPreviews(novasPreviews)
+                                      
+                                      // Mover a foto substituída para extras
+                                      if (fotoSubstituida) {
+                                        setMaisFotosPreviews(prev => [...prev, fotoSubstituida])
+                                      }
+                                    } else {
+                                      // Se não tiver 4 ainda, adicionar normalmente
+                                      setFotosPreviews(prev => [...prev, foto])
+                                    }
+                                    
+                                    removeMaisFoto(index)
+                                  }}
+                                  className="opacity-0 group-hover:opacity-100 bg-green-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-green-700 transition-opacity"
+                                  title="Mover para as 4 menores (substitui a primeira se já tiver 4)"
+                                >
+                                  → 4 Menores
+                                </button>
                                 <button
                                   type="button"
                                   onClick={() => {
