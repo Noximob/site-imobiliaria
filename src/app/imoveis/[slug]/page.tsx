@@ -232,14 +232,13 @@ export default function ImovelDetalhePage() {
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
                     }`}
-                    style={{ minHeight: 0, maxHeight: '100%' }}
+                    style={{ height: '100%', width: '100%', overflow: 'hidden', position: 'relative' }}
                     onMouseEnter={() => setHoveredPhotoIndex(1)}
                   >
                     <img
                       src={fotosParaExibir[1]}
                       alt={`${imovel.titulo} - Foto 2`}
-                      className="w-full h-full object-cover"
-                      style={{ objectFit: 'cover', objectPosition: 'center', width: '100%', height: '100%' }}
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
                   </Link>
                 ) : (
