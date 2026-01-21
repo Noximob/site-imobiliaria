@@ -8,8 +8,8 @@ export default function DWVSyncPage() {
   const [syncResult, setSyncResult] = useState<any>(null)
   const [error, setError] = useState<string | null>(null)
 
-  const handleSync = async (mode: 'merge' | 'replace') => {
-    if (!confirm(`Tem certeza que deseja sincronizar? Modo: ${mode === 'merge' ? 'MERGE (adicionar/atualizar)' : 'REPLACE (substituir todos)'}`)) {
+  const handleSync = async () => {
+    if (!confirm('Sincronizar imóveis do DWV?\n\n- Adicionará novos imóveis selecionados\n- Atualizará imóveis existentes\n- Removerá imóveis desmarcados no DWV\n- Manterá imóveis manuais intactos')) {
       return
     }
 
@@ -23,7 +23,7 @@ export default function DWVSyncPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ mode }),
+        body: JSON.stringify({}),
       })
 
       // Ler resposta UMA VEZ apenas
@@ -146,13 +146,43 @@ export default function DWVSyncPage() {
               <h2 className="text-xl font-semibold text-gray-900">Sincronização Concluída</h2>
             </div>
             <div className="space-y-2 text-gray-700">
-              <p><strong>Total de imóveis no site:</strong> {syncResult.total}</p>
-              <p><strong>Adicionados:</strong> <span className="text-green-600">{syncResult.adicionados || 0}</span></p>
-              <p><strong>Atualizados:</strong> <span className="text-blue-600">{syncResult.atualizados || 0}</span></p>
-              <p><strong>Removidos:</strong> <span className="text-red-600">{syncResult.removidos || 0}</span></p>
-              <p><strong>Total da DWV:</strong> {syncResult.totalDWV || 0}</p>
-              <p className="text-green-600 font-semibold mt-4">{syncResult.message}</p>
-              <p className="text-sm text-gray-500 mt-2">
+              <p className="font-semibold text-lg mb-3">{syncResult.message}</p>
+              {syncResult.temMudancas ? (
+                <>
+                  <div className="grid grid-cols-2 gap-4 mt-4 p-4 bg-gray-50 rounded-lg">
+                    <div>
+                      <p className="text-sm text-gray-600">Total no site:</p>
+                      <p className="text-xl font-bold text-gray-900">{syncResult.total}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600">Da DWV:</p>
+                      <p className="text-xl font-bold text-blue-600">{syncResult.totalDWV || 0}</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4 mt-4">
+                    <div className="flex-1 text-center p-3 bg-green-50 rounded-lg">
+                      <p className="text-sm text-gray-600">Novos</p>
+                      <p className="text-2xl font-bold text-green-600">{syncResult.adicionados || 0}</p>
+                    </div>
+                    <div className="flex-1 text-center p-3 bg-blue-50 rounded-lg">
+                      <p className="text-sm text-gray-600">Atualizados</p>
+                      <p className="text-2xl font-bold text-blue-600">{syncResult.atualizados || 0}</p>
+                    </div>
+                    <div className="flex-1 text-center p-3 bg-red-50 rounded-lg">
+                      <p className="text-sm text-gray-600">Removidos</p>
+                      <p className="text-2xl font-bold text-red-600">{syncResult.removidos || 0}</p>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div className="mt-4 p-4 bg-blue-50 rounded-lg">
+                  <p className="text-sm text-gray-600">Tudo está sincronizado!</p>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Total: <strong>{syncResult.total}</strong> imóveis | DWV: <strong>{syncResult.totalDWV || 0}</strong>
+                  </p>
+                </div>
+              )}
+              <p className="text-sm text-gray-500 mt-4">
                 Os imóveis sincronizados já estão disponíveis na página de busca.
               </p>
               <button
