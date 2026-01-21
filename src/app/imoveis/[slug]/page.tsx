@@ -90,38 +90,17 @@ export default function ImovelDetalhePage() {
     ? imovel.precoOriginal - imovel.preco
     : 0
 
-  // Organizar fotos: verificar se há índices das 4 menores escolhidas manualmente no admin
+  // SIMPLIFICADO: Sempre usar as primeiras 5 fotos na ordem que estão
+  // A ordem das fotos no admin determina quais aparecem (1 principal + 4 menores)
   const todasFotos = imovel.fotos || []
   const fotoPrincipalIndex = (imovel as any).fotoPrincipalIndex ?? 0
-  const fotosMenoresIndices = (imovel as any).fotosMenoresIndices || [] // Índices das 4 menores escolhidas manualmente no admin (baseados na ordem ORIGINAL)
   
+  // Se há foto principal definida, mover para o início
   let fotosParaExibir = [...todasFotos]
-  
-  // Se há índices das 4 menores escolhidas manualmente, reorganizar
-  if (fotosMenoresIndices.length === 4) {
-    // Pegar as 4 fotos escolhidas (usando índices originais)
-    const quatroMenores = fotosMenoresIndices
-      .map((idx: number) => todasFotos[idx])
-      .filter(Boolean) as string[]
-    
-    // Pegar a foto principal (se foi definida)
-    const principal = fotoPrincipalIndex > 0 && fotoPrincipalIndex < todasFotos.length 
-      ? todasFotos[fotoPrincipalIndex] 
-      : todasFotos[0]
-    
-    // Pegar as fotos restantes (excluindo principal e as 4 menores)
-    const indicesUsados = new Set([fotoPrincipalIndex > 0 ? fotoPrincipalIndex : 0, ...fotosMenoresIndices])
-    const fotosRestantes = todasFotos.filter((_: string, idx: number) => !indicesUsados.has(idx))
-    
-    // Montar array final: principal + 4 menores + resto
-    fotosParaExibir = [principal, ...quatroMenores, ...fotosRestantes]
-  } else {
-    // Se não há índices escolhidos manualmente, usar lógica padrão
-    if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < fotosParaExibir.length) {
-      const fotoPrincipal = fotosParaExibir[fotoPrincipalIndex]
-      fotosParaExibir.splice(fotoPrincipalIndex, 1)
-      fotosParaExibir.unshift(fotoPrincipal)
-    }
+  if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < fotosParaExibir.length) {
+    const fotoPrincipal = fotosParaExibir[fotoPrincipalIndex]
+    fotosParaExibir.splice(fotoPrincipalIndex, 1)
+    fotosParaExibir.unshift(fotoPrincipal)
   }
 
   // Características vêm apenas das tags/comodidades (interligadas com o filtro)
