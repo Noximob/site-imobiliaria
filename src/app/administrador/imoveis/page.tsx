@@ -1446,7 +1446,8 @@ export default function AdminImoveis() {
                                 </div>
                               </div>
                             )
-                          })}
+                          })} 
+                        </div>
                         </div>
                       </div>
                     </div>
