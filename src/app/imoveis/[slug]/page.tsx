@@ -103,7 +103,7 @@ export default function ImovelDetalhePage() {
     fotosParaExibir = [fotoPrincipalDWV, ...fotosMenoresDWV]
     // Adicionar fotos restantes
     const fotosEscolhidas = new Set([fotoPrincipalDWV, ...fotosMenoresDWV])
-    const fotosRestantes = todasFotos.filter(f => !fotosEscolhidas.has(f))
+    const fotosRestantes = todasFotos.filter((f: string) => !fotosEscolhidas.has(f))
     fotosParaExibir = [...fotosParaExibir, ...fotosRestantes]
   } else {
     // Lógica antiga: mover foto principal para o início se definida
