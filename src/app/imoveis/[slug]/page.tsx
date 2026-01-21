@@ -124,18 +124,6 @@ export default function ImovelDetalhePage() {
     }
   }
 
-  // Se há índices escolhidos manualmente, sempre usar object-contain para as 4 menores (escolhidas pelo usuário)
-  // Caso contrário, usar informação do backend (fotosSemMedium)
-  const fotosSemMedium = (imovel as any).fotosSemMedium || []
-  const precisaObjectContain = (index: number): boolean => {
-    // Se há índices escolhidos manualmente, sempre usar object-contain para as 4 menores
-    if (fotosMenoresIndices.length === 4) {
-      return index >= 1 && index <= 4
-    }
-    // Caso contrário, usar informação do backend
-    return fotosSemMedium.includes(index)
-  }
-
   // Características vêm apenas das tags/comodidades (interligadas com o filtro)
   // Não incluir outras características booleanas, apenas as tags
   const caracteristicasList: string[] = []
@@ -234,8 +222,6 @@ export default function ImovelDetalhePage() {
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=1`}
                     className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
-                      precisaObjectContain(1) ? 'bg-white flex items-center justify-center' : ''
-                    } ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 1
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -245,8 +231,7 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosParaExibir[1]}
                       alt={`${imovel.titulo} - Foto 2`}
-                      className={`w-full h-full ${precisaObjectContain(1) ? 'object-contain' : 'object-cover'}`}
-                      style={precisaObjectContain(1) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
+                      className="w-full h-full object-cover"
                     />
                   </Link>
                 ) : (
@@ -258,8 +243,6 @@ export default function ImovelDetalhePage() {
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=2`}
                     className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
-                      precisaObjectContain(2) ? 'bg-white flex items-center justify-center' : ''
-                    } ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 2
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -269,8 +252,7 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosParaExibir[2]}
                       alt={`${imovel.titulo} - Foto 3`}
-                      className={`w-full h-full ${precisaObjectContain(2) ? 'object-contain' : 'object-cover'}`}
-                      style={precisaObjectContain(2) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
+                      className="w-full h-full object-cover"
                     />
                   </Link>
                 ) : (
@@ -282,8 +264,6 @@ export default function ImovelDetalhePage() {
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=3`}
                     className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
-                      precisaObjectContain(3) ? 'bg-white flex items-center justify-center' : ''
-                    } ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 3
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -293,8 +273,7 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosParaExibir[3]}
                       alt={`${imovel.titulo} - Foto 4`}
-                      className={`w-full h-full ${precisaObjectContain(3) ? 'object-contain' : 'object-cover'}`}
-                      style={precisaObjectContain(3) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
+                      className="w-full h-full object-cover"
                     />
                   </Link>
                 ) : (
@@ -306,8 +285,6 @@ export default function ImovelDetalhePage() {
                   <Link 
                     href={`/imoveis/${imovel.slug}/fotos?index=4`}
                     className={`relative rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 ${
-                      precisaObjectContain(4) ? 'bg-white flex items-center justify-center' : ''
-                    } ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 4
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -317,8 +294,7 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosParaExibir[4]}
                       alt={`${imovel.titulo} - Foto 5`}
-                      className={`w-full h-full ${precisaObjectContain(4) ? 'object-contain' : 'object-cover'}`}
-                      style={precisaObjectContain(4) ? { maxWidth: '100%', maxHeight: '100%' } : {}}
+                      className="w-full h-full object-cover"
                     />
                     {/* Botão Visualizar Fotos - Canto inferior direito */}
                     <div className="absolute bottom-2 right-2 z-10">
