@@ -90,17 +90,29 @@ export default function ImovelDetalhePage() {
     ? imovel.precoOriginal - imovel.preco
     : 0
 
-  // SIMPLIFICADO: Sempre usar as primeiras 5 fotos na ordem que estão
-  // A ordem das fotos no admin determina quais aparecem (1 principal + 4 menores)
+  // SIMPLIFICADO: Se for imóvel do DWV com seleções salvas, usar essas seleções
+  // Caso contrário, usar as primeiras 5 fotos na ordem que estão
   const todasFotos = imovel.fotos || []
-  const fotoPrincipalIndex = (imovel as any).fotoPrincipalIndex ?? 0
+  const fotoPrincipalDWV = (imovel as any).fotoPrincipalDWV
+  const fotosMenoresDWV = (imovel as any).fotosMenoresDWV || []
   
-  // Se há foto principal definida, mover para o início
   let fotosParaExibir = [...todasFotos]
-  if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < fotosParaExibir.length) {
-    const fotoPrincipal = fotosParaExibir[fotoPrincipalIndex]
-    fotosParaExibir.splice(fotoPrincipalIndex, 1)
-    fotosParaExibir.unshift(fotoPrincipal)
+  
+  // Se há seleções do DWV, usar essas seleções
+  if (fotoPrincipalDWV && fotosMenoresDWV.length > 0) {
+    fotosParaExibir = [fotoPrincipalDWV, ...fotosMenoresDWV]
+    // Adicionar fotos restantes
+    const fotosEscolhidas = new Set([fotoPrincipalDWV, ...fotosMenoresDWV])
+    const fotosRestantes = todasFotos.filter(f => !fotosEscolhidas.has(f))
+    fotosParaExibir = [...fotosParaExibir, ...fotosRestantes]
+  } else {
+    // Lógica antiga: mover foto principal para o início se definida
+    const fotoPrincipalIndex = (imovel as any).fotoPrincipalIndex ?? 0
+    if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < fotosParaExibir.length) {
+      const fotoPrincipal = fotosParaExibir[fotoPrincipalIndex]
+      fotosParaExibir.splice(fotoPrincipalIndex, 1)
+      fotosParaExibir.unshift(fotoPrincipal)
+    }
   }
 
   // Características vêm apenas das tags/comodidades (interligadas com o filtro)
