@@ -180,7 +180,7 @@ export default function ImovelDetalhePage() {
               {/* Coluna Esquerda - Foto Principal (grande) */}
               <Link 
                 href={`/imoveis/${imovel.slug}/fotos?index=0`}
-                className={`relative rounded-lg overflow-hidden h-full cursor-pointer transition-all duration-300 ${
+                className={`relative w-full h-full rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
                   hoveredPhotoIndex === null || hoveredPhotoIndex === 0
                     ? 'opacity-100 scale-100'
                     : 'opacity-50 scale-95'
@@ -194,13 +194,13 @@ export default function ImovelDetalhePage() {
                 />
               </Link>
               
-              {/* Coluna Direita - Grid 2x2 com 4 fotos menores (escolhidas por serem horizontais) */}
+              {/* Coluna Direita - Grid 2x2 com 4 fotos menores */}
               <div className="grid grid-cols-2 grid-rows-2 gap-1.5 h-full">
                 {/* Foto 2 - Superior esquerda */}
                 {fotosParaExibir[1] ? (
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=1`}
-                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
+                    className={`relative w-full h-full rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 1
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -214,14 +214,14 @@ export default function ImovelDetalhePage() {
                     />
                   </Link>
                 ) : (
-                  <div className="bg-gray-50 rounded-lg"></div>
+                  <div className="w-full h-full bg-gray-50 rounded-lg"></div>
                 )}
                 
                 {/* Foto 3 - Superior direita */}
                 {fotosParaExibir[2] ? (
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=2`}
-                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
+                    className={`relative w-full h-full rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 2
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -235,14 +235,14 @@ export default function ImovelDetalhePage() {
                     />
                   </Link>
                 ) : (
-                  <div className="bg-gray-50 rounded-lg"></div>
+                  <div className="w-full h-full bg-gray-50 rounded-lg"></div>
                 )}
                 
                 {/* Foto 4 - Inferior esquerda */}
                 {fotosParaExibir[3] ? (
                   <Link
                     href={`/imoveis/${imovel.slug}/fotos?index=3`}
-                    className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
+                    className={`relative w-full h-full rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 3
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
@@ -256,14 +256,14 @@ export default function ImovelDetalhePage() {
                     />
                   </Link>
                 ) : (
-                  <div className="bg-gray-50 rounded-lg"></div>
+                  <div className="w-full h-full bg-gray-50 rounded-lg"></div>
                 )}
                 
                 {/* Foto 5 - Inferior direita com botão Visualizar Fotos */}
                 {fotosParaExibir[4] ? (
                   <Link 
                     href={`/imoveis/${imovel.slug}/fotos?index=4`}
-                    className={`relative rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 ${
+                    className={`relative w-full h-full rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 ${
                       hoveredPhotoIndex === null || hoveredPhotoIndex === 4
                         ? 'opacity-100 scale-100'
                         : 'opacity-50 scale-95'
