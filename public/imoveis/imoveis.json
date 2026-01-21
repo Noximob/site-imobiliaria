@@ -165,11 +165,11 @@
   {
     "id": "91704",
     "titulo": "Gioppo Residenza",
-    "slug": "gioppo-residenza-91704",
-    "descricao": "-> Empreendimento\n\nBicicletário  \nAcademia  \nBar  \nBrinquedoteca  \nElevador  \nEstar Social  \nGuarita de segurança  \nAlarme  \nCircuito Tv  \nEntrada p/ banhistas e box de praia  \nHall de entrada decorado e mobiliado  \nInterfone  \nPiscina  \nMedidores de água, luz e gás individuais  \nInternet  \nSala de Reunião  \nSala de jogos  \nSpa  \nSalão de festas  \nJacuzzi\n     Redário  \nFireplace  \nHorta comunitária\n\n     -> Unidade\n\nEspera para split  \nGás Individual  \nHidrômetro Individual  \nLiving  \nPorcelanato  \nSala de Estar  \nVista Panorâmica  \nSala de jantar  \nInterfone  \nAcabamento em gesso  \nAr Condicionado  \nAquecimento a Gás  \nCircuito Tv  \nCozinha  \nChurrasqueira  \nLavabo\n     Nicho nos box\n     \n     \nCONDIÇÕES DE PAGAMENTO\n\nINVESTIDOR: Entrada (1x) - R$ 1.051.232,50\nBalão Sem. (5x) - R$ 252.295,80\nParcelas (36x) - R$ 52.561,62\nBalão Sem. 10% (1x) - R$ 420.493,00\nChaves 70% (1x) - R$ 2.943.450,99\nParcelas 10% (11x) - R$ 38.226,64\nEntrada 10% (1x) - R$ 420.493,00\n\n     \nIncorporação: 17-25.108",
-    "preco": 4204929.98,
+    "slug": "gioppo-residenza",
+    "descricao": "Gioppo Residenza – Cobertura Exclusiva com Vista Panorâmica\nOportunidade Única de Alto Padrão no Litoral Catarinense\n\n234,17 m² de área interna\n\n4 suítes\n\n4 vagas de garagem\n\nEspera para split\n\nGás individual\n\nHidrômetro individual\n\nLiving integrado com sala de estar e jantar\n\nVista panorâmica\n\nPorcelanato e acabamento em gesso\n\nAr condicionado e aquecimento a gás\n\nCozinha equipada com churrasqueira\n\nLavabo e nicho nos box de banheiro\n\nConstrutora: Vici Incorporadora (incorporação e construção)\nPrevisão de entrega: Dezembro de 2026\nDistância da praia: aproximadamente 70 m da Praia do Tabuleiro, com vista e fácil acesso ao mar\n\nEste é um dos lançamentos mais exclusivos do litoral norte catarinense: uma cobertura de alto padrão em um empreendimento premium, projetado para quem busca conforto, espaço e elegância a poucos passos do mar. Seus ambientes são amplos e integrados, com acabamento de primeira qualidade, infraestrutura completa e ventilação natural com vista panorâmica para o oceano.\n\nA unidade conta com quatro suítes completas, garantindo privacidade e conforto para toda a família, além de quatro vagas de garagem individuais, oferecendo praticidade e segurança. O projeto contempla elementos diferenciados como porcelanato em todos os espaços, espera para ar-condicionado, aquecimento a gás e nichos nos banheiros.\n\nGioppo Residenza\nEmpreendimento de Alto Padrão na Praia do Tabuleiro – Barra Velha (SC)\n\nLocalizado na Rua Engenheiro Antonio Gioppo, 116 – Tabuleiro, Barra Velha – SC, o Gioppo Residenza se destaca por sua proximidade com a Praia do Tabuleiro — um dos pontos mais valorizados do litoral de Santa Catarina — estando a cerca de 70 metros da areia do mar, o que proporciona uma experiência única de vida junto à natureza e com fácil acesso ao litoral.\n\nO edifício conta com uma torre única e estrutura moderna, com espaços exclusivos projetados para elevar a experiência de viver na praia em grande estilo.\n\nLazer e Convivência Premium\n\nO empreendimento oferece uma área de lazer completa ideal para o bem-estar e o convívio familiar, incluindo:\n\nBicicletário\n\nAcademia equipada\n\nBar e áreas de convivência\n\nBrinquedoteca\n\nElevadores\n\nEstar social\n\nGuarita de segurança\n\nCircuito de TV e interfone\n\nEntrada para banhistas e box de praia\n\nHall de entrada decorado e mobiliado\n\nSala de reunião\n\nSala de jogos\n\nSpa e jacuzzi\n\nSalão de festas\n\nRedário e fireplace\n\nHorta comunitária\n\nPiscina com espaços integrados\n\nAlém disso, cada unidade possui medidores individuais de água, luz e gás, garantindo transparência e controle de consumo.\n\nSeja para morar com conforto e qualidade de vida ou investir no litoral catarinense com alto potencial de valorização, o Gioppo Residenza é uma escolha estratégica e sofisticada.\n\n👉 Garanta já esta oportunidade exclusiva! Entre em contato com a equipe NOX Imóveis e saiba mais sobre essa cobertura única na Praia do Tabuleiro",
+    "preco": 4204929,
     "tipo": "apartamento",
-    "status": "em-construcao",
+    "status": "lancamento",
     "endereco": {
       "cidade": "barra-velha",
       "bairro": "Tabuleiro",
@@ -188,7 +188,7 @@
       "quartos": 4,
       "banheiros": 5,
       "vagas": 4,
-      "area": 234.17,
+      "area": 234,
       "suite": 4,
       "frenteMar": false,
       "piscina": false,
@@ -197,7 +197,8 @@
       "portaria": false,
       "elevador": false,
       "varanda": false,
-      "sacada": false
+      "sacada": false,
+      "areaTerreno": 0
     },
     "tags": [],
     "fotos": [
@@ -259,10 +260,16 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:23:20.000Z",
-    "updatedAt": "2026-01-20T21:02:04.605Z",
+    "updatedAt": "2026-01-21T00:26:32.625Z",
     "publicado": true,
     "selecaoNox": false,
-    "fonteDWV": true
+    "fonteDWV": true,
+    "fotosMenoresIndices": [
+      1,
+      2,
+      3,
+      4
+    ]
   },
   {
     "id": "91701",
