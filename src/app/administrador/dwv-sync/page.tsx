@@ -74,52 +74,34 @@ export default function DWVSyncPage() {
           </p>
         </div>
 
-        {/* Botões de Ação */}
+        {/* Botão de Sincronização */}
         <div className="bg-white rounded-lg shadow p-6 mb-6">
-          <div className="flex flex-wrap gap-4 justify-center">
-            <button
-              onClick={() => handleSync('merge')}
-              disabled={isSyncing}
-              className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
-            >
-              {isSyncing ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  Sincronizando...
-                </>
-              ) : (
-                <>
-                  <RefreshCw className="w-5 h-5" />
-                  Sincronizar (MERGE)
-                </>
-              )}
-            </button>
-
-            <button
-              onClick={() => handleSync('replace')}
-              disabled={isSyncing}
-              className="flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
-            >
-              {isSyncing ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  Substituindo...
-                </>
-              ) : (
-                <>
-                  <RefreshCw className="w-5 h-5" />
-                  Substituir Todos (REPLACE)
-                </>
-              )}
-            </button>
-          </div>
+          <button
+            onClick={handleSync}
+            disabled={isSyncing}
+            className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
+          >
+            {isSyncing ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                Sincronizando...
+              </>
+            ) : (
+              <>
+                <RefreshCw className="w-5 h-5" />
+                Sincronizar Imóveis do DWV
+              </>
+            )}
+          </button>
           
           <div className="mt-4 pt-4 border-t">
-            <p className="text-sm text-gray-600">
-              <strong>MERGE:</strong> Adiciona novos imóveis e atualiza existentes, mantendo imóveis não-DWV.
-              <br />
-              <strong>REPLACE:</strong> Remove todos os imóveis e substitui apenas pelos da DWV.
-            </p>
+            <p className="text-sm text-gray-600 font-semibold mb-2">Como funciona:</p>
+            <ul className="text-sm text-gray-600 list-disc list-inside space-y-1">
+              <li>Adiciona novos imóveis que você selecionou no DWV</li>
+              <li>Atualiza imóveis existentes com dados atualizados</li>
+              <li>Remove imóveis que foram desmarcados no DWV</li>
+              <li>Mantém seus imóveis manuais intactos</li>
+            </ul>
           </div>
         </div>
 
