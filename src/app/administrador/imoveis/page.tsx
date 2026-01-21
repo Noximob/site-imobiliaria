@@ -81,6 +81,7 @@ export default function AdminImoveis() {
   const [fotoPrincipalDWV, setFotoPrincipalDWV] = useState<string | null>(null) // URL da foto principal escolhida do DWV
   const [fotosMenoresDWV, setFotosMenoresDWV] = useState<string[]>([]) // URLs das 4 fotos menores escolhidas do DWV
   const [aspectRatios, setAspectRatios] = useState<Record<string, number>>({}) // Cache de aspect ratios das fotos
+  const [posicaoMenorSelecionada, setPosicaoMenorSelecionada] = useState<number | null>(null) // Posição (0-3) selecionada para troca
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('todos')
   const [tipoFilter, setTipoFilter] = useState('todos')
@@ -1093,23 +1094,40 @@ export default function AdminImoveis() {
                     required={!editingImovel && fotosExistentes.length === 0 && fotosPreviews.length === 0}
                   />
                   
-                  {/* Seção: Fotos do DWV - SIMPLES E DIRETO */}
+                  {/* Seção: Fotos do DWV - ORGANIZADA E INTUITIVA */}
                   {fotosDWV.length > 0 && (
-                    <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                      <h4 className="text-sm font-semibold text-gray-900 mb-3">
-                        📷 Escolher Fotos do DWV ({fotosDWV.length} fotos disponíveis)
-                      </h4>
+                    <div className="mt-6 space-y-4">
+                      <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg border-2 border-purple-200">
+                        <h4 className="text-lg font-bold text-gray-900 mb-1">
+                          📷 Seleção de Fotos do DWV
+                        </h4>
+                        <p className="text-xs text-gray-600">
+                          {fotosDWV.length} fotos disponíveis • Escolha a principal e as 4 menores que aparecerão na página
+                        </p>
+                      </div>
                       
                       {/* Preview do que está selecionado */}
-                      <div className="mb-4 p-3 bg-white rounded-lg border-2 border-purple-200">
-                        <div className="grid grid-cols-2 gap-2" style={{ height: '200px' }}>
+                      <div className="bg-white p-4 rounded-lg border-2 border-gray-200 shadow-sm">
+                        <h5 className="text-sm font-semibold text-gray-700 mb-3">👁️ Preview - Como ficará na página</h5>
+                        <div className="grid grid-cols-2 gap-2" style={{ height: '220px' }}>
                           {/* Principal */}
-                          <div className="relative rounded overflow-hidden border-2 border-purple-600">
+                          <div 
+                            onClick={() => setPosicaoMenorSelecionada(null)}
+                            className={`relative rounded-lg overflow-hidden border-2 cursor-pointer transition-all ${
+                              posicaoMenorSelecionada === null ? 'border-purple-600 ring-4 ring-purple-300' : 'border-purple-600'
+                            }`}
+                          >
                             {fotoPrincipalDWV ? (
-                              <img src={fotoPrincipalDWV} alt="Principal" className="w-full h-full object-cover" />
+                              <>
+                                <img src={fotoPrincipalDWV} alt="Principal" className="w-full h-full object-cover" />
+                                <div className="absolute top-2 left-2 bg-purple-600 text-white text-xs px-2 py-1 rounded font-medium shadow-lg">
+                                  Principal
+                                </div>
+                              </>
                             ) : (
-                              <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                                <span className="text-xs text-gray-400">Principal</span>
+                              <div className="w-full h-full bg-gray-100 flex flex-col items-center justify-center border-2 border-dashed border-gray-300">
+                                <span className="text-sm text-gray-400 font-medium">Foto Principal</span>
+                                <span className="text-xs text-gray-400 mt-1">Clique em uma foto abaixo</span>
                               </div>
                             )}
                           </div>
@@ -1117,13 +1135,36 @@ export default function AdminImoveis() {
                           <div className="grid grid-cols-2 grid-rows-2 gap-1">
                             {[0, 1, 2, 3].map((pos) => {
                               const url = fotosMenoresDWV[pos]
+                              const isSelecionada = posicaoMenorSelecionada === pos
                               return (
-                                <div key={pos} className="relative rounded overflow-hidden border border-green-500">
+                                <div
+                                  key={pos}
+                                  onClick={() => setPosicaoMenorSelecionada(pos)}
+                                  className={`relative rounded-lg overflow-hidden border-2 cursor-pointer transition-all ${
+                                    isSelecionada 
+                                      ? 'border-green-600 ring-4 ring-green-300 scale-105' 
+                                      : url 
+                                        ? 'border-green-500' 
+                                        : 'border-gray-300 border-dashed'
+                                  }`}
+                                >
                                   {url ? (
-                                    <img src={url} alt={`Menor ${pos + 1}`} className="w-full h-full object-cover" />
+                                    <>
+                                      <img src={url} alt={`Menor ${pos + 1}`} className="w-full h-full object-cover" />
+                                      <div className="absolute top-1 left-1 bg-green-600 text-white text-xs px-1.5 py-0.5 rounded font-medium shadow-lg">
+                                        {pos + 1}/4
+                                      </div>
+                                    </>
                                   ) : (
-                                    <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                                    <div className="w-full h-full bg-gray-50 flex items-center justify-center">
                                       <span className="text-xs text-gray-400">{pos + 1}</span>
+                                    </div>
+                                  )}
+                                  {isSelecionada && (
+                                    <div className="absolute inset-0 bg-green-500 bg-opacity-20 flex items-center justify-center">
+                                      <span className="bg-green-600 text-white text-xs px-2 py-1 rounded font-medium shadow-lg">
+                                        Selecionada para troca
+                                      </span>
                                     </div>
                                   )}
                                 </div>
@@ -1132,126 +1173,148 @@ export default function AdminImoveis() {
                           </div>
                         </div>
                         {(!fotoPrincipalDWV || fotosMenoresDWV.length < 4) && (
-                          <p className="text-xs text-amber-600 mt-2 text-center">
-                            ⚠️ {!fotoPrincipalDWV ? 'Selecione uma foto principal' : `Faltam ${4 - fotosMenoresDWV.length} foto(s)`}
+                          <p className="text-xs text-amber-600 mt-3 text-center bg-amber-50 p-2 rounded">
+                            ⚠️ {!fotoPrincipalDWV ? 'Selecione uma foto principal' : `Faltam ${4 - fotosMenoresDWV.length} foto(s) para completar as 4 menores`}
+                          </p>
+                        )}
+                        {posicaoMenorSelecionada !== null && (
+                          <p className="text-xs text-green-600 mt-2 text-center bg-green-50 p-2 rounded">
+                            ✓ Posição {posicaoMenorSelecionada + 1}/4 selecionada • Clique em uma foto abaixo para trocar
                           </p>
                         )}
                       </div>
                       
                       {/* Galeria do DWV */}
-                      {carregandoFotosDWV ? (
-                        <p className="text-xs text-gray-500">Carregando fotos do DWV...</p>
-                      ) : (
-                        <>
-                          <p className="text-xs text-gray-600 mb-3">
-                            <strong>Clique:</strong> Trocar Principal | <strong>Shift+Clique:</strong> Trocar nas 4 Menores
-                            <br />
-                            <span className="text-blue-600">Fotos com borda azul são ideais para as 4 menores (horizontais)</span>
-                          </p>
-                          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-h-96 overflow-y-auto">
-                            {fotosDWV.map((fotoDWV, index) => {
-                              const isPrincipal = fotoPrincipalDWV === fotoDWV.url
-                              const isMenor = fotosMenoresDWV.includes(fotoDWV.url)
-                              const posMenor = isMenor ? fotosMenoresDWV.indexOf(fotoDWV.url) + 1 : 0
-                              const isIdeal = isIdealParaMenores(fotoDWV)
-                              
-                              return (
-                                <div
-                                  key={index}
-                                  onClick={(e) => {
-                                    if (e.shiftKey) {
-                                      // Shift+Clique: trocar nas 4 menores
-                                      if (isMenor) {
-                                        // Se já está nas menores, remover
-                                        setFotosMenoresDWV(prev => prev.filter(url => url !== fotoDWV.url))
+                      <div className="bg-white p-4 rounded-lg border border-gray-200">
+                        <h5 className="text-sm font-semibold text-gray-700 mb-3">📚 Galeria do DWV</h5>
+                        {carregandoFotosDWV ? (
+                          <p className="text-xs text-gray-500 text-center py-4">Carregando fotos do DWV...</p>
+                        ) : (
+                          <>
+                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
+                              <p className="text-xs text-gray-700 leading-relaxed">
+                                <strong className="text-purple-600">• Clique:</strong> Trocar foto principal (roxo)
+                                <br />
+                                <strong className="text-green-600">• Clique em uma posição acima + Clique aqui:</strong> Trocar foto na posição selecionada
+                                <br />
+                                <span className="text-blue-600">• Fotos com borda azul ⭐ são ideais para as 4 menores (horizontais/quadradas)</span>
+                              </p>
+                            </div>
+                            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 max-h-96 overflow-y-auto p-2 bg-gray-50 rounded-lg">
+                              {fotosDWV.map((fotoDWV, index) => {
+                                const isPrincipal = fotoPrincipalDWV === fotoDWV.url
+                                const isMenor = fotosMenoresDWV.includes(fotoDWV.url)
+                                const posMenor = isMenor ? fotosMenoresDWV.indexOf(fotoDWV.url) : -1
+                                const isIdeal = isIdealParaMenores(fotoDWV)
+                                
+                                return (
+                                  <div
+                                    key={index}
+                                    onClick={() => {
+                                      if (posicaoMenorSelecionada !== null) {
+                                        // Trocar na posição específica selecionada
+                                        setFotosMenoresDWV(prev => {
+                                          const novas = [...prev]
+                                          // Garantir que tem 4 posições
+                                          while (novas.length < 4) {
+                                            novas.push('')
+                                          }
+                                          novas[posicaoMenorSelecionada] = fotoDWV.url
+                                          // Remover duplicatas (se a foto já estava em outra posição)
+                                          const semDuplicatas = novas.map((url, idx) => 
+                                            idx === posicaoMenorSelecionada ? url : (url === fotoDWV.url ? '' : url)
+                                          )
+                                          return semDuplicatas.filter(url => url !== '')
+                                        })
+                                        setPosicaoMenorSelecionada(null) // Deselecionar após trocar
                                       } else {
-                                        // Adicionar (substitui primeira se já tiver 4)
-                                        if (fotosMenoresDWV.length < 4) {
-                                          setFotosMenoresDWV(prev => [...prev, fotoDWV.url])
-                                        } else {
-                                          setFotosMenoresDWV(prev => [fotoDWV.url, ...prev.slice(1)])
+                                        // Trocar principal
+                                        setFotoPrincipalDWV(fotoDWV.url)
+                                        // Se estava nas menores, remover
+                                        if (isMenor) {
+                                          setFotosMenoresDWV(prev => prev.filter(url => url !== fotoDWV.url))
                                         }
                                       }
-                                    } else {
-                                      // Clique normal: trocar principal
-                                      setFotoPrincipalDWV(fotoDWV.url)
-                                      if (isMenor) {
-                                        setFotosMenoresDWV(prev => prev.filter(url => url !== fotoDWV.url))
-                                      }
-                                    }
-                                  }}
-                                  className={`relative cursor-pointer border-2 rounded overflow-hidden transition-all ${
-                                    isPrincipal ? 'border-purple-600 ring-2 ring-purple-300' :
-                                    isMenor ? 'border-green-500 ring-1 ring-green-300' :
-                                    isIdeal ? 'border-blue-400 ring-1 ring-blue-200' :
-                                    'border-gray-300 hover:border-gray-400'
-                                  }`}
-                                >
-                                  <img
-                                    src={fotoDWV.url}
-                                    alt={`Foto ${index + 1}`}
-                                    className="w-full h-20 object-cover"
-                                    onLoad={() => detectarAspectRatio(fotoDWV.url)}
-                                  />
-                                  {isPrincipal && (
-                                    <div className="absolute top-0 left-0 bg-purple-600 text-white text-xs px-1 py-0.5 rounded-br font-medium">
-                                      Principal
-                                    </div>
-                                  )}
-                                  {isMenor && !isPrincipal && (
-                                    <div className="absolute top-0 left-0 bg-green-600 text-white text-xs px-1 py-0.5 rounded-br font-medium">
-                                      {posMenor}/4
-                                    </div>
-                                  )}
-                                  {isIdeal && !isPrincipal && !isMenor && (
-                                    <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs px-1 py-0.5 rounded-bl font-medium">
-                                      ⭐
-                                    </div>
-                                  )}
-                                </div>
-                              )
-                            })}
-                          </div>
-                        </>
-                      )}
+                                    }}
+                                    className={`relative cursor-pointer border-2 rounded-lg overflow-hidden transition-all hover:scale-105 ${
+                                      isPrincipal ? 'border-purple-600 ring-2 ring-purple-300 shadow-lg' :
+                                      isMenor ? 'border-green-500 ring-1 ring-green-300' :
+                                      isIdeal ? 'border-blue-400 ring-1 ring-blue-200' :
+                                      'border-gray-300 hover:border-gray-400'
+                                    }`}
+                                  >
+                                    <img
+                                      src={fotoDWV.url}
+                                      alt={`Foto ${index + 1}`}
+                                      className="w-full h-24 object-cover"
+                                      onLoad={() => detectarAspectRatio(fotoDWV.url)}
+                                    />
+                                    {isPrincipal && (
+                                      <div className="absolute top-0 left-0 bg-purple-600 text-white text-xs px-1.5 py-0.5 rounded-br font-medium shadow-lg">
+                                        Principal
+                                      </div>
+                                    )}
+                                    {isMenor && !isPrincipal && (
+                                      <div className="absolute top-0 left-0 bg-green-600 text-white text-xs px-1.5 py-0.5 rounded-br font-medium shadow-lg">
+                                        {posMenor + 1}/4
+                                      </div>
+                                    )}
+                                    {isIdeal && !isPrincipal && !isMenor && (
+                                      <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs px-1.5 py-0.5 rounded-bl font-medium shadow-lg">
+                                        ⭐ Ideal
+                                      </div>
+                                    )}
+                                  </div>
+                                )
+                              })}
+                            </div>
+                          </>
+                        )}
+                      </div>
                     </div>
                   )}
 
                   {/* Grid de todas as fotos (existentes + novas) */}
                   {(fotosExistentes.length > 0 || fotosPreviews.length > 0) && (
                     <div className="mt-4 space-y-6">
-                      {/* Seção: Foto Principal */}
-                      <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
-                        <h4 className="text-sm font-semibold text-gray-900 mb-2">
-                          📸 Foto Principal (Grande - Em Cima)
-                        </h4>
-                        <p className="text-xs text-gray-600 mb-3">
-                          Esta foto aparecerá grande na parte superior da página do imóvel.
-                        </p>
-                        {fotoPrincipalIndex >= 0 && fotoPrincipalIndex < fotosExistentes.length + fotosPreviews.length ? (
-                          <div className="relative group border-2 border-purple-600 ring-2 ring-purple-300 rounded-lg overflow-hidden max-w-xs">
-                            <img
-                              src={[...fotosExistentes, ...fotosPreviews][fotoPrincipalIndex]}
-                              alt="Foto Principal"
-                              className="w-full h-48 object-cover"
-                            />
-                            <div className="absolute top-2 left-2 bg-purple-600 text-white text-xs px-2 py-1 rounded">
-                              Principal
-                            </div>
-                          </div>
-                        ) : (
-                          <p className="text-xs text-amber-600">⚠️ Selecione uma foto principal abaixo.</p>
-                        )}
-                      </div>
+                      {/* Seção: Organização de Fotos (Imóveis não-DWV) */}
+                      <div className="space-y-4">
+                        <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg border-2 border-purple-200">
+                          <h4 className="text-lg font-bold text-gray-900 mb-1">
+                            📸 Organização de Fotos
+                          </h4>
+                          <p className="text-xs text-gray-600">
+                            {fotosExistentes.length + fotosPreviews.length} fotos • A primeira será a principal (grande), as próximas 4 aparecerão no grid 2x2
+                          </p>
+                        </div>
 
-                      {/* Seção: Todas as Fotos Disponíveis */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-gray-900 mb-2">
-                          📚 Todas as Fotos Disponíveis ({fotosExistentes.length + fotosPreviews.length})
-                        </h4>
-                        <p className="text-xs text-gray-500 mb-3">
-                          A primeira foto será a principal (grande). As próximas 4 aparecerão no grid 2x2. Reordene as fotos arrastando ou use os botões para definir a principal.
-                        </p>
+                        {/* Preview da Foto Principal */}
+                        <div className="bg-white p-4 rounded-lg border border-gray-200">
+                          <h5 className="text-sm font-semibold text-gray-700 mb-3">📸 Foto Principal</h5>
+                          {fotoPrincipalIndex >= 0 && fotoPrincipalIndex < fotosExistentes.length + fotosPreviews.length ? (
+                            <div className="relative group border-2 border-purple-600 ring-2 ring-purple-300 rounded-lg overflow-hidden max-w-xs">
+                              <img
+                                src={[...fotosExistentes, ...fotosPreviews][fotoPrincipalIndex]}
+                                alt="Foto Principal"
+                                className="w-full h-48 object-cover"
+                              />
+                              <div className="absolute top-2 left-2 bg-purple-600 text-white text-xs px-2 py-1 rounded font-medium shadow-lg">
+                                Principal
+                              </div>
+                            </div>
+                          ) : (
+                            <p className="text-xs text-amber-600 bg-amber-50 p-2 rounded">⚠️ Selecione uma foto principal abaixo.</p>
+                          )}
+                        </div>
+
+                        {/* Todas as Fotos Disponíveis */}
+                        <div className="bg-white p-4 rounded-lg border border-gray-200">
+                          <h5 className="text-sm font-semibold text-gray-700 mb-3">
+                            📚 Todas as Fotos ({fotosExistentes.length + fotosPreviews.length})
+                          </h5>
+                          <p className="text-xs text-gray-500 mb-3 bg-gray-50 p-2 rounded">
+                            Clique nos botões abaixo das fotos para definir qual será a principal. As primeiras 5 fotos aparecerão na página principal.
+                          </p>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                           {[...fotosExistentes, ...fotosPreviews].map((foto, index) => {
                             const isPrincipal = index === fotoPrincipalIndex
