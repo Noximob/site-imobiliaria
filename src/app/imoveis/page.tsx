@@ -18,6 +18,7 @@ function ImoveisPageContent() {
   const [isLoading, setIsLoading] = useState(true)
   const [, setFavoritosUpdate] = useState(0) // Para forçar re-render quando favoritos mudarem
   const [currentPage, setCurrentPage] = useState(1)
+  const [ordenacao, setOrdenacao] = useState<'menor-preco' | 'maior-preco' | 'mais-dormitorios' | 'menos-dormitorios'>('menor-preco')
   const itemsPerPage = 10
 
   useEffect(() => {
@@ -104,7 +105,7 @@ function ImoveisPageContent() {
     }, 100)
     
     return () => clearTimeout(timeoutId)
-  }, [filtros])
+  }, [filtros, ordenacao])
 
   const handleFiltrosChange = (novosFiltros: any) => {
     // Função auxiliar para converter valores com "+" (ex: "4+" -> 4, "1+" -> 1)
@@ -161,12 +162,16 @@ function ImoveisPageContent() {
                 <p className="text-xs text-gray-600 mt-1">Home &gt; Imóveis à Venda</p>
               </div>
               <div className="flex items-center gap-3">
-                <button className="flex items-center gap-1 px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                  </svg>
-                  Ordenar
-                </button>
+                <select
+                  value={ordenacao}
+                  onChange={(e) => setOrdenacao(e.target.value as any)}
+                  className="flex items-center gap-1 px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 cursor-pointer"
+                >
+                  <option value="menor-preco">Menor Preço</option>
+                  <option value="maior-preco">Maior Preço</option>
+                  <option value="mais-dormitorios">Mais Dormitórios</option>
+                  <option value="menos-dormitorios">Menos Dormitórios</option>
+                </select>
                 <button className="p-1.5 border border-gray-300 rounded-lg hover:bg-gray-50">
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
