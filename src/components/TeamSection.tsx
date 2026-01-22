@@ -100,11 +100,11 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
           <div 
             className="flex transition-transform duration-500 ease-in-out gap-6"
             style={{
-              transform: `translateX(calc(-${currentIndex} * (100% / ${itemsPerPage})))`,
+              transform: `translateX(-${(currentIndex / itemsPerPage) * 100}%)`,
               width: `${(activeCorretores.length / itemsPerPage) * 100}%`
             }}
           >
-            {activeCorretores.map((corretor, index) => (
+            {activeCorretores.map((corretor) => (
               <div
                 key={corretor.id}
                 className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex-shrink-0"
