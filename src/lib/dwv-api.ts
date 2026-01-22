@@ -658,23 +658,7 @@ export async function fetchDWVImoveis(page: number = 1, limit: number = 100): Pr
     do {
       console.log(`🔍 Buscando imóveis da API DWV (página ${currentPage}/${lastPage})...`)
 
-      // Usar fields para garantir que delivery_date seja retornado do building
-      // Conforme documentação: fields pode ser usado para solicitar campos específicos
-      const fieldsParam = encodeURIComponent(JSON.stringify([
-        "id", "title", "description", "status", "construction_stage", "construction_stage_raw",
-        "rent", "deleted", "address_display_type", "last_updated_at",
-        {"unit": ["id", "title", "price", "type", "dorms", "suites", "bathroom", "parking_spaces", 
-                  "private_area", "total_area", "util_area", "cover", "additional_galleries", "features"]},
-        {"building": ["id", "title", "gallery", "architectural_plans", "video", "videos", "tour_360",
-                      "description", "address", "text_address", "incorporation", "cover", "features",
-                      "delivery_date"]}, // Solicitar delivery_date explicitamente
-        {"third_party_property": ["id", "title", "price", "type", "dorms", "suites", "bathroom",
-                                  "parking_spaces", "private_area", "util_area", "text_address",
-                                  "address", "gallery", "cover", "features"]},
-        {"construction_company": ["title", "site", "whatsapp", "instagram", "email", "logo"]}
-      ]))
-      
-      const url = `${baseUrl}?page=${currentPage}&limit=${limit}&fields=${fieldsParam}`
+      const url = `${baseUrl}?page=${currentPage}&limit=${limit}`
       
       console.log(`📍 URL: ${url}`)
       console.log(`🔑 Token: ${apiToken.substring(0, 20)}...`)
@@ -844,27 +828,7 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
   } : undefined
 
   // Data de entrega (do building, se disponível)
-  // Tentar diferentes possíveis nomes de campos para data de entrega
-  let dataEntrega: string | undefined = undefined
-  
-  if (building) {
-    // Tentar delivery_date primeiro
-    if (building.delivery_date) {
-      dataEntrega = building.delivery_date
-      console.log(`✅ Imóvel ${id} (${dwvImovel.title}) - delivery_date encontrado: ${building.delivery_date}`)
-    } else {
-      // Log completo do building para debug (apenas para imóveis em construção/lançamento)
-      if (dwvImovel.construction_stage_raw === 'new' || dwvImovel.construction_stage_raw === 'under construction' || dwvImovel.construction_stage_raw === 'pre-market') {
-        console.log(`⚠️ Imóvel ${id} (${dwvImovel.title}) - Building sem delivery_date.`)
-        console.log(`📋 Building keys disponíveis:`, building ? Object.keys(building) : 'N/A')
-        console.log(`📋 Building completo:`, JSON.stringify(building, null, 2).substring(0, 500))
-      }
-    }
-  } else {
-    if (dwvImovel.construction_stage_raw === 'new' || dwvImovel.construction_stage_raw === 'under construction' || dwvImovel.construction_stage_raw === 'pre-market') {
-      console.log(`⚠️ Imóvel ${id} (${dwvImovel.title}) - Sem building object. Status: ${dwvImovel.construction_stage_raw}`)
-    }
-  }
+  const dataEntrega = building?.delivery_date || undefined
 
   return {
     id,
