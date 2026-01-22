@@ -366,7 +366,12 @@ function mapStatus(constructionStage?: string, constructionStageRaw?: string): '
 function extractDescriptionText(building?: DWVBuilding | null, dwvImovel?: any): string {
   let textoCompleto = ''
   
-  // Extrair do building.description (array)
+  // 1. Adicionar título do imóvel (importante para tags!)
+  if (dwvImovel?.title) {
+    textoCompleto += ' ' + dwvImovel.title
+  }
+  
+  // 2. Extrair do building.description (array)
   if (building?.description && Array.isArray(building.description)) {
     building.description.forEach((section: any) => {
       if (section.title) {
@@ -382,9 +387,14 @@ function extractDescriptionText(building?: DWVBuilding | null, dwvImovel?: any):
     })
   }
   
-  // Extrair também do campo description direto do imóvel (se for string)
+  // 3. Extrair também do campo description direto do imóvel (se for string)
   if (dwvImovel?.description && typeof dwvImovel.description === 'string') {
     textoCompleto += ' ' + dwvImovel.description
+  }
+  
+  // 4. Extrair do building.title também
+  if (building?.title) {
+    textoCompleto += ' ' + building.title
   }
   
   return textoCompleto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -422,15 +432,28 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
   
   // 3. Mapear palavras-chave para tags do site
   // Ordem importa: termos mais específicos primeiro
-  const keywordMap: Array<{ keywords: string[], tag: string }> = [
+  // SOLUÇÃO SIMPLES: Buscar palavras-chave separadas também (ex: "frente" + "mar")
+  const keywordMap: Array<{ keywords: string[], tag: string, palavrasSeparadas?: string[] }> = [
     // Frente Mar (mais específico primeiro)
-    { keywords: ['frente ao mar', 'frente mar', 'frente do mar', 'beira mar', 'beira-mar', 'frente mar', 'frentemar'], tag: 'Frente Mar' },
+    { 
+      keywords: ['frente ao mar', 'frente mar', 'frente do mar', 'beira mar', 'beira-mar', 'frentemar', 'frente mar'], 
+      tag: 'Frente Mar',
+      palavrasSeparadas: ['frente', 'mar'] // Buscar "frente" E "mar" próximos (até 50 caracteres de distância)
+    },
     
     // Vista Mar
-    { keywords: ['vista para o mar', 'vista mar', 'vista do mar', 'vista ao mar', 'vista para mar', 'vistamar'], tag: 'Vista Mar' },
+    { 
+      keywords: ['vista para o mar', 'vista mar', 'vista do mar', 'vista ao mar', 'vista para mar', 'vistamar'], 
+      tag: 'Vista Mar',
+      palavrasSeparadas: ['vista', 'mar']
+    },
     
     // Quadra Mar
-    { keywords: ['quadra do mar', 'quadra mar', '1 quadra do mar', 'uma quadra do mar', 'quadramar'], tag: 'Quadra Mar' },
+    { 
+      keywords: ['quadra do mar', 'quadra mar', '1 quadra do mar', 'uma quadra do mar', 'quadramar'], 
+      tag: 'Quadra Mar',
+      palavrasSeparadas: ['quadra', 'mar']
+    },
     
     // Mobiliado
     { keywords: ['mobiliado', 'mobiliada', 'mobília', 'mobilia', 'totalmente mobiliado', 'completo mobiliado'], tag: 'Mobiliado' },
@@ -443,20 +466,44 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
   ]
   
   // 4. Buscar palavras-chave no texto do descritivo
-  keywordMap.forEach(({ keywords, tag }) => {
-    const encontrou = keywords.some(keyword => {
-      // Normalizar a keyword também (lowercase, sem acentos)
+  keywordMap.forEach(({ keywords, tag, palavrasSeparadas }) => {
+    let encontrou = false
+    
+    // Primeiro: buscar keywords completas
+    encontrou = keywords.some(keyword => {
       const keywordNormalizada = keyword.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      
-      // Buscar palavra-chave no texto normalizado (busca simples e direta)
       const encontrouKeyword = textoDescricao.includes(keywordNormalizada)
       
       if (encontrouKeyword) {
-        console.log(`✅ Tag encontrada: "${tag}" via keyword "${keyword}" (normalizada: "${keywordNormalizada}")`)
+        console.log(`✅ Tag encontrada: "${tag}" via keyword completa "${keyword}"`)
       }
       
       return encontrouKeyword
     })
+    
+    // Se não encontrou com keywords completas, tentar palavras separadas
+    if (!encontrou && palavrasSeparadas && palavrasSeparadas.length >= 2) {
+      const todasPalavrasPresentes = palavrasSeparadas.every(palavra => {
+        const palavraNormalizada = palavra.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        return textoDescricao.includes(palavraNormalizada)
+      })
+      
+      if (todasPalavrasPresentes) {
+        // Verificar se estão próximas (dentro de 50 caracteres)
+        const indices = palavrasSeparadas.map(palavra => {
+          const palavraNormalizada = palavra.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          return textoDescricao.indexOf(palavraNormalizada)
+        }).filter(idx => idx !== -1).sort((a, b) => a - b)
+        
+        if (indices.length === palavrasSeparadas.length) {
+          const distancia = indices[indices.length - 1] - indices[0]
+          if (distancia <= 50) { // Palavras dentro de 50 caracteres
+            encontrou = true
+            console.log(`✅ Tag encontrada: "${tag}" via palavras separadas próximas: ${palavrasSeparadas.join(' + ')}`)
+          }
+        }
+      }
+    }
     
     if (encontrou && !tags.includes(tag)) {
       tags.push(tag)
