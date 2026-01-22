@@ -360,13 +360,44 @@ function mapStatus(constructionStage?: string, constructionStageRaw?: string): '
 }
 
 /**
- * Extrai tags/comodidades das features da DWV
+ * Extrai texto completo do campo description do DWV
+ * O description é um array com objetos { title: string, items: [{ item: string }] }
  */
-function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, thirdParty?: DWVThirdPartyProperty | null): string[] {
+function extractDescriptionText(building?: DWVBuilding | null, dwvImovel?: any): string {
+  let textoCompleto = ''
+  
+  // Extrair do building.description (array)
+  if (building?.description && Array.isArray(building.description)) {
+    building.description.forEach((section: any) => {
+      if (section.title) {
+        textoCompleto += ' ' + section.title
+      }
+      if (section.items && Array.isArray(section.items)) {
+        section.items.forEach((item: any) => {
+          if (item.item) {
+            textoCompleto += ' ' + item.item
+          }
+        })
+      }
+    })
+  }
+  
+  // Extrair também do campo description direto do imóvel (se for string)
+  if (dwvImovel?.description && typeof dwvImovel.description === 'string') {
+    textoCompleto += ' ' + dwvImovel.description
+  }
+  
+  return textoCompleto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+}
+
+/**
+ * Extrai tags/comodidades das features da DWV E do descritivo
+ */
+function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, thirdParty?: DWVThirdPartyProperty | null, dwvImovel?: any): string[] {
   const tags: string[] = []
   const allTags: string[] = []
   
-  // Coletar tags de todas as features
+  // 1. Coletar tags de todas as features (se existirem)
   const collectTags = (features?: DWVFeature[]) => {
     if (!features || !Array.isArray(features)) return
     
@@ -381,12 +412,49 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
   collectTags(building?.features)
   collectTags(thirdParty?.features)
   
-  // Normalizar tags para comparação
+  // 2. Extrair texto completo do descritivo
+  const textoDescricao = extractDescriptionText(building, dwvImovel)
+  
+  // 3. Mapear palavras-chave para tags do site
+  // Ordem importa: termos mais específicos primeiro
+  const keywordMap: Array<{ keywords: string[], tag: string }> = [
+    // Frente Mar (mais específico primeiro)
+    { keywords: ['frente ao mar', 'frente mar', 'frente do mar', 'beira mar', 'beira-mar'], tag: 'Frente Mar' },
+    
+    // Vista Mar
+    { keywords: ['vista para o mar', 'vista mar', 'vista do mar', 'vista ao mar', 'vista mar', 'vista para mar'], tag: 'Vista Mar' },
+    
+    // Quadra Mar
+    { keywords: ['quadra do mar', 'quadra mar', 'quadra do mar', '1 quadra do mar', 'uma quadra do mar'], tag: 'Quadra Mar' },
+    
+    // Mobiliado
+    { keywords: ['mobiliado', 'mobiliada', 'mobília', 'mobilia', 'totalmente mobiliado', 'completo mobiliado'], tag: 'Mobiliado' },
+    
+    // Área de Lazer
+    { keywords: ['área de lazer', 'area de lazer', 'área lazer', 'area lazer', 'lazer completo', 'espaço de lazer', 'espaco de lazer'], tag: 'Área de Lazer' },
+    
+    // Home Club
+    { keywords: ['home club completo', 'home club', 'homeclub', 'clube completo', 'clube'], tag: 'Home Club completo' },
+  ]
+  
+  // 4. Buscar palavras-chave no texto do descritivo
+  keywordMap.forEach(({ keywords, tag }) => {
+    const encontrou = keywords.some(keyword => {
+      // Buscar palavra-chave no texto (case-insensitive, com espaços flexíveis)
+      const regex = new RegExp(keyword.replace(/\s+/g, '\\s+'), 'i')
+      return regex.test(textoDescricao)
+    })
+    
+    if (encontrou && !tags.includes(tag)) {
+      tags.push(tag)
+    }
+  })
+  
+  // 5. Processar tags das features (se existirem)
   const normalizedTags = allTags.map(t =>
     t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim()
   )
   
-  // Mapear para tags do site
   const tagMap: { [key: string]: string } = {
     'frente ao mar': 'Frente Mar',
     'frente mar': 'Frente Mar',
@@ -405,15 +473,12 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
     'clube': 'Home Club completo',
   }
   
-  // Adicionar tags mapeadas (sem duplicatas)
   normalizedTags.forEach(tag => {
-    // Busca exata
     if (tagMap[tag] && !tags.includes(tagMap[tag])) {
       tags.push(tagMap[tag])
       return
     }
     
-    // Busca parcial
     Object.keys(tagMap).forEach(key => {
       if (tag.includes(key) && !tags.includes(tagMap[key])) {
         tags.push(tagMap[key])
@@ -800,8 +865,8 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
   // Fotos
   const { fotos, semMedium } = extractFotos(unit, building, thirdParty)
 
-  // Tags/comodidades
-  const tags = extractTags(unit, building, thirdParty)
+  // Tags/comodidades (extrair de features E do descritivo)
+  const tags = extractTags(unit, building, thirdParty, dwvImovel)
 
   // Detectar comodidades para caracteristicas
   const temFrenteMar = tags.includes('Frente Mar')
