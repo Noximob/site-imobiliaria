@@ -20,6 +20,7 @@ export default function SearchForm() {
     valorMax: '',
     areaMin: '',
     areaMax: '',
+    dataEntrega: [] as (string | number)[],
     mobiliado: false,
     frenteMar: false,
     vistaMar: false,
@@ -53,6 +54,17 @@ export default function SearchForm() {
     // Área
     if (filtros.areaMin) params.append('areaMin', filtros.areaMin)
     if (filtros.areaMax) params.append('areaMax', filtros.areaMax)
+    
+    // Data de Entrega
+    if (filtros.dataEntrega && filtros.dataEntrega.length > 0) {
+      filtros.dataEntrega.forEach(d => {
+        if (typeof d === 'string') {
+          params.append('dataEntrega', d)
+        } else {
+          params.append('dataEntrega', d.toString())
+        }
+      })
+    }
     
     // Comodidades (booleanos)
     if (filtros.mobiliado) params.append('mobiliado', 'true')
@@ -343,6 +355,72 @@ export default function SearchForm() {
                   placeholder="Máx"
                   className="w-full px-3 py-2 border border-gray-300 rounded text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-sm"
                 />
+              </div>
+            </div>
+          </div>
+
+          {/* Data de Entrega */}
+          <div className="mb-5">
+            <label className="block text-sm text-white font-bold mb-3">Data de Entrega</label>
+            <div className="space-y-3">
+              {/* Checkbox Entregues */}
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const temEntregues = filtros.dataEntrega.includes('entregues')
+                    setFiltros(prev => ({
+                      ...prev,
+                      dataEntrega: temEntregues
+                        ? prev.dataEntrega.filter(d => d !== 'entregues')
+                        : [...prev.dataEntrega, 'entregues']
+                    }))
+                  }}
+                  className={`flex items-center gap-2 px-3 py-2 rounded border text-sm transition-all ${
+                    filtros.dataEntrega.includes('entregues')
+                      ? 'bg-purple-600 text-white border-purple-600'
+                      : 'bg-white text-gray-700 border-gray-300 hover:border-purple-400'
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={filtros.dataEntrega.includes('entregues')}
+                    onChange={() => {}}
+                    className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                  />
+                  <span>Entregues</span>
+                </button>
+              </div>
+              
+              {/* Anos */}
+              <div>
+                <label className="block text-xs text-white/80 mb-2">Ano de Entrega</label>
+                <div className="flex flex-wrap gap-2">
+                  {[2026, 2027, 2028, 2029, 2030, 2031].map((ano) => {
+                    const isSelected = filtros.dataEntrega.includes(ano)
+                    return (
+                      <button
+                        key={ano}
+                        type="button"
+                        onClick={() => {
+                          setFiltros(prev => ({
+                            ...prev,
+                            dataEntrega: isSelected
+                              ? prev.dataEntrega.filter(d => d !== ano)
+                              : [...prev.dataEntrega, ano]
+                          }))
+                        }}
+                        className={`px-3 py-1.5 rounded border text-sm transition-all ${
+                          isSelected
+                            ? 'bg-purple-600 text-white border-purple-600'
+                            : 'bg-white text-gray-700 border-gray-300 hover:border-purple-400'
+                        }`}
+                      >
+                        {ano}
+                      </button>
+                    )
+                  })}
+                </div>
               </div>
             </div>
           </div>
