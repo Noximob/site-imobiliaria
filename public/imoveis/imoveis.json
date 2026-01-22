@@ -77,9 +77,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T19:15:05.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.602Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-10-17"
   },
   {
     "id": "91697",
@@ -159,9 +160,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T19:15:05.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.602Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-10-17"
   },
   {
     "id": "91704",
@@ -262,9 +264,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:23:20.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.602Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2026-12-17"
   },
   {
     "id": "91701",
@@ -353,9 +356,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-20T20:51:10.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.602Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2031-05-01"
   },
   {
     "id": "91694",
@@ -432,9 +436,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T13:04:10.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.602Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2025-11-17"
   },
   {
     "id": "91698",
@@ -504,9 +509,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-04T20:01:43.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.602Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2026-08-17"
   },
   {
     "id": "91693",
@@ -583,9 +589,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T13:04:10.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.602Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2025-11-17"
   },
   {
     "id": "91700",
@@ -674,9 +681,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-20T21:01:39.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2031-05-01"
   },
   {
     "id": "91703",
@@ -777,9 +785,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:23:20.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2026-12-17"
   },
   {
     "id": "91702",
@@ -880,9 +889,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:23:20.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2026-12-17"
   },
   {
     "id": "91695",
@@ -954,9 +964,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T13:13:34.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-08-17"
   },
   {
     "id": "91707",
@@ -1038,9 +1049,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:34:17.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-12-17"
   },
   {
     "id": "91699",
@@ -1130,9 +1142,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:35:55.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2031-05-01"
   },
   {
     "id": "91706",
@@ -1214,9 +1227,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:34:17.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-12-17"
   },
   {
     "id": "91685",
@@ -1281,9 +1295,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-05T14:17:09.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-09-01"
   },
   {
     "id": "91691",
@@ -1370,9 +1385,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-15T16:55:36.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2029-03-01"
   },
   {
     "id": "91689",
@@ -1451,9 +1467,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T14:11:39.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-11-01"
   },
   {
     "id": "91682",
@@ -1512,9 +1529,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T15:16:11.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2026-03-17"
   },
   {
     "id": "91690",
@@ -1601,9 +1619,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-15T16:55:36.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2029-03-01"
   },
   {
     "id": "91687",
@@ -1664,9 +1683,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T14:10:16.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2029-03-01"
   },
   {
     "id": "91686",
@@ -1727,9 +1747,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T14:10:16.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2029-03-01"
   },
   {
     "id": "91671",
@@ -1807,9 +1828,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-03-17"
   },
   {
     "id": "91676",
@@ -1887,9 +1909,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-03-17"
   },
   {
     "id": "91681",
@@ -1953,9 +1976,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-06-02"
   },
   {
     "id": "91664",
@@ -2029,9 +2053,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-04T20:01:01.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2026-07-17"
   },
   {
     "id": "91667",
@@ -2095,9 +2120,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T18:56:53.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-08-03"
   },
   {
     "id": "91673",
@@ -2175,9 +2201,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.603Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-03-17"
   },
   {
     "id": "91675",
@@ -2255,9 +2282,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.605Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-03-17"
   },
   {
     "id": "91660",
@@ -2328,9 +2356,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T11:16:31.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.605Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-01-17"
   },
   {
     "id": "91663",
@@ -2412,9 +2441,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T23:12:37.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.605Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-08-01"
   },
   {
     "id": "91674",
@@ -2492,9 +2522,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.605Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-03-17"
   },
   {
     "id": "91680",
@@ -2558,9 +2589,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.605Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-06-02"
   },
   {
     "id": "91678",
@@ -2624,9 +2656,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.605Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-06-02"
   },
   {
     "id": "91662",
@@ -2708,9 +2741,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T11:11:01.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.605Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-08-01"
   },
   {
     "id": "91669",
@@ -2788,9 +2822,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-03-17"
   },
   {
     "id": "91659",
@@ -2861,9 +2896,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T11:14:13.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-01-17"
   },
   {
     "id": "91672",
@@ -2941,9 +2977,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-03-17"
   },
   {
     "id": "91668",
@@ -3007,9 +3044,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T18:55:43.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-08-03"
   },
   {
     "id": "91661",
@@ -3080,9 +3118,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T23:01:39.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-01-17"
   },
   {
     "id": "91679",
@@ -3146,9 +3185,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-06-02"
   },
   {
     "id": "91665",
@@ -3314,9 +3354,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:24:27.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2024-07-17"
   },
   {
     "id": "91655",
@@ -3387,9 +3428,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:31.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-10-05"
   },
   {
     "id": "91658",
@@ -3460,9 +3502,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T23:01:39.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-01-17"
   },
   {
     "id": "91654",
@@ -3533,9 +3576,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:31.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-10-05"
   },
   {
     "id": "91656",
@@ -3606,9 +3650,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:31.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-10-05"
   },
   {
     "id": "91651",
@@ -3689,9 +3734,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:31.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2024-10-30"
   },
   {
     "id": "91652",
@@ -3764,9 +3810,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T20:13:10.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-10-31"
   },
   {
     "id": "91650",
@@ -3847,9 +3894,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:31.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2024-10-30"
   },
   {
     "id": "91648",
@@ -3932,9 +3980,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:29.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2022-12-24"
   },
   {
     "id": "91649",
@@ -4018,9 +4067,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:29.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2022-12-24"
   },
   {
     "id": "91645",
@@ -4086,9 +4136,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T11:25:42.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2025-12-01"
   },
   {
     "id": "91647",
@@ -4172,9 +4223,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:29.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2022-12-24"
   },
   {
     "id": "91639",
@@ -4246,9 +4298,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T14:44:00.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-12-01"
   },
   {
     "id": "91642",
@@ -4313,9 +4366,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T14:17:51.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-12-01"
   },
   {
     "id": "91641",
@@ -4387,9 +4441,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T14:44:00.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-12-01"
   },
   {
     "id": "91640",
@@ -4461,9 +4516,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T14:44:00.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-12-01"
   },
   {
     "id": "91643",
@@ -4528,9 +4584,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T14:17:51.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-12-01"
   },
   {
     "id": "91623",
@@ -4599,9 +4656,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-08-01"
   },
   {
     "id": "91622",
@@ -4670,9 +4728,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-08-01"
   },
   {
     "id": "91624",
@@ -4741,9 +4800,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-08-01"
   },
   {
     "id": "91621",
@@ -4812,9 +4872,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2028-08-01"
   },
   {
     "id": "91616",
@@ -4897,9 +4958,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:36.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2029-05-18"
   },
   {
     "id": "91613",
@@ -4974,9 +5036,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T12:08:17.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2025-11-02"
   },
   {
     "id": "91615",
@@ -5059,9 +5122,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:36.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2029-05-18"
   },
   {
     "id": "91617",
@@ -5144,9 +5208,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T17:48:07.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-03-17"
   },
   {
     "id": "91618",
@@ -5229,9 +5294,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T17:48:07.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-03-17"
   },
   {
     "id": "91620",
@@ -5388,9 +5454,10 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T17:48:07.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2027-03-17"
   },
   {
     "id": "91614",
@@ -5465,8 +5532,9 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T17:22:15.000Z",
-    "updatedAt": "2026-01-21T22:36:45.924Z",
+    "updatedAt": "2026-01-22T17:47:29.606Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "dataEntrega": "2025-11-02"
   }
 ]
