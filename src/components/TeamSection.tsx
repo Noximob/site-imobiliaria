@@ -90,17 +90,21 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
         {/* Carrossel de Corretores */}
         <div className="relative overflow-hidden">
           <div 
-            className="flex transition-transform duration-500 ease-in-out gap-6"
+            className="flex transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(-${currentIndex * (100 / itemsVisible)}%)`,
-              width: `${(activeCorretores.length / itemsVisible) * 100}%`
+              transform: `translateX(calc(-${currentIndex} * (((100% - (1.5rem * ${itemsVisible - 1})) / ${itemsVisible}) + 1.5rem)))`,
+              gap: '1.5rem'
             }}
           >
             {activeCorretores.map((corretor) => (
               <div
                 key={corretor.id}
                 className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex-shrink-0"
-                style={{ width: `calc((100% / ${itemsVisible}) - ${((itemsVisible - 1) * 1.5) / itemsVisible}rem)` }}
+                style={{ 
+                  minWidth: `calc((100% - (1.5rem * ${itemsVisible - 1})) / ${itemsVisible})`,
+                  maxWidth: `calc((100% - (1.5rem * ${itemsVisible - 1})) / ${itemsVisible})`,
+                  width: `calc((100% - (1.5rem * ${itemsVisible - 1})) / ${itemsVisible})`
+                }}
               >
                 {/* Foto do Corretor */}
                 <div className="relative h-64 overflow-hidden">
