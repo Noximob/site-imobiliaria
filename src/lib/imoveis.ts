@@ -84,6 +84,16 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
   try {
     const imoveis = await getAllImoveis();
     
+    // Debug: contar imóveis com dataEntrega
+    if (filtros.dataEntrega && Array.isArray(filtros.dataEntrega) && filtros.dataEntrega.length > 0) {
+      const imoveisComDataEntrega = imoveis.filter(i => i.dataEntrega)
+      const imoveisSemDataEntrega = imoveis.filter(i => !i.dataEntrega)
+      console.log(`🔍 Filtro dataEntrega ativo. Total imóveis: ${imoveis.length}, Com dataEntrega: ${imoveisComDataEntrega.length}, Sem dataEntrega: ${imoveisSemDataEntrega.length}`)
+      if (imoveisComDataEntrega.length > 0) {
+        console.log(`📅 Exemplos de dataEntrega:`, imoveisComDataEntrega.slice(0, 5).map(i => ({ id: i.id, titulo: i.titulo, dataEntrega: i.dataEntrega })))
+      }
+    }
+    
     return imoveis.filter(imovel => {
       // Filtro por cidade
       if (filtros.cidade && imovel.endereco.cidade !== filtros.cidade) {
@@ -132,12 +142,18 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
         if (anosSelecionados.length > 0 && imovel.dataEntrega) {
           try {
             const dataEntrega = new Date(imovel.dataEntrega)
-            const anoEntrega = dataEntrega.getFullYear()
-            if (anosSelecionados.includes(anoEntrega)) {
-              matchDataEntrega = true
+            // Verificar se a data é válida
+            if (isNaN(dataEntrega.getTime())) {
+              console.warn(`⚠️ Data de entrega inválida para imóvel ${imovel.id}: ${imovel.dataEntrega}`)
+            } else {
+              const anoEntrega = dataEntrega.getFullYear()
+              if (anosSelecionados.includes(anoEntrega)) {
+                matchDataEntrega = true
+              }
             }
           } catch (e) {
             // Se dataEntrega não for uma data válida, ignorar
+            console.warn(`⚠️ Erro ao processar dataEntrega para imóvel ${imovel.id}:`, e)
           }
         }
         

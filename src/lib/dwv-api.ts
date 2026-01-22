@@ -831,8 +831,14 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
   const dataEntrega = building?.delivery_date || undefined
   
   // Debug: log para verificar se delivery_date está vindo do DWV
-  if (building && !building.delivery_date && (dwvImovel.construction_stage_raw === 'new' || dwvImovel.construction_stage_raw === 'under construction')) {
-    console.log(`⚠️ Imóvel ${id} (${dwvImovel.title}) - Building sem delivery_date. Status: ${dwvImovel.construction_stage_raw}`)
+  if (building) {
+    if (building.delivery_date) {
+      console.log(`✅ Imóvel ${id} (${dwvImovel.title}) - delivery_date encontrado: ${building.delivery_date}`)
+    } else if (dwvImovel.construction_stage_raw === 'new' || dwvImovel.construction_stage_raw === 'under construction') {
+      console.log(`⚠️ Imóvel ${id} (${dwvImovel.title}) - Building sem delivery_date. Status: ${dwvImovel.construction_stage_raw}`)
+    }
+  } else {
+    console.log(`⚠️ Imóvel ${id} (${dwvImovel.title}) - Sem building object`)
   }
 
   return {
