@@ -10,35 +10,35 @@ interface TeamSectionProps {
 
 export default function TeamSection({ corretores }: TeamSectionProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null)
-  const [currentPage, setCurrentPage] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   // Filtrar apenas corretores ativos
   const activeCorretores = corretores.filter(corretor => corretor.ativo)
   
-  // Calcular quantos grupos de 4 corretores existem
-  const itemsPerPage = 4
-  const totalPages = Math.ceil(activeCorretores.length / itemsPerPage)
+  // Mostrar 4 corretores por vez, mas navegar 1 por vez
+  const itemsVisible = 4
+  const maxIndex = Math.max(0, activeCorretores.length - itemsVisible)
 
   const handleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id)
   }
 
   const handleNext = () => {
-    if (currentPage < totalPages - 1) {
-      setCurrentPage(prev => prev + 1)
+    if (currentIndex < maxIndex) {
+      setCurrentIndex(prev => Math.min(prev + 1, maxIndex))
       setExpandedId(null)
     }
   }
 
   const handlePrev = () => {
-    if (currentPage > 0) {
-      setCurrentPage(prev => prev - 1)
+    if (currentIndex > 0) {
+      setCurrentIndex(prev => Math.max(prev - 1, 0))
       setExpandedId(null)
     }
   }
 
-  const canGoNext = currentPage < totalPages - 1
-  const canGoPrev = currentPage > 0
+  const canGoNext = currentIndex < maxIndex
+  const canGoPrev = currentIndex > 0
 
   if (activeCorretores.length === 0) {
     return null
@@ -47,68 +47,61 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
   return (
     <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Título com Setas de Navegação */}
-        <div className="text-center mb-12 relative">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            {/* Seta Esquerda */}
-            {activeCorretores.length > itemsPerPage && (
-              <button
-                onClick={handlePrev}
-                disabled={!canGoPrev}
-                className={`p-2 rounded-lg border transition-all ${
-                  canGoPrev
-                    ? 'bg-gray-800 text-white border-gray-800 hover:bg-gray-700 cursor-pointer'
-                    : 'bg-gray-200 text-gray-400 border-gray-200 cursor-not-allowed'
-                }`}
-                aria-label="Anterior"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-            )}
-            
-            <div className="flex-1">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Conheça nossa equipe
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Profissionais qualificados e experientes para te ajudar a encontrar o imóvel ideal
-              </p>
-            </div>
-            
-            {/* Seta Direita */}
-            {activeCorretores.length > itemsPerPage && (
-              <button
-                onClick={handleNext}
-                disabled={!canGoNext}
-                className={`p-2 rounded-lg border transition-all ${
-                  canGoNext
-                    ? 'bg-gray-800 text-white border-gray-800 hover:bg-gray-700 cursor-pointer'
-                    : 'bg-gray-200 text-gray-400 border-gray-200 cursor-not-allowed'
-                }`}
-                aria-label="Próximo"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            )}
-          </div>
+        {/* Título */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            Conheça nossa equipe
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Profissionais qualificados e experientes para te ajudar a encontrar o imóvel ideal
+          </p>
         </div>
+
+        {/* Setas de Navegação - Lado a lado */}
+        {activeCorretores.length > itemsVisible && (
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <button
+              onClick={handlePrev}
+              disabled={!canGoPrev}
+              className={`p-2 rounded-lg border transition-all ${
+                canGoPrev
+                  ? 'bg-gray-800 text-white border-gray-800 hover:bg-gray-700 cursor-pointer'
+                  : 'bg-gray-200 text-gray-400 border-gray-200 cursor-not-allowed'
+              }`}
+              aria-label="Anterior"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={!canGoNext}
+              className={`p-2 rounded-lg border transition-all ${
+                canGoNext
+                  ? 'bg-gray-800 text-white border-gray-800 hover:bg-gray-700 cursor-pointer'
+                  : 'bg-gray-200 text-gray-400 border-gray-200 cursor-not-allowed'
+              }`}
+              aria-label="Próximo"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        )}
 
         {/* Carrossel de Corretores */}
         <div className="relative overflow-hidden">
           <div 
-            className="flex transition-transform duration-500 ease-in-out"
+            className="flex transition-transform duration-500 ease-in-out gap-6"
             style={{
-              transform: `translateX(-${currentPage * 100}%)`,
-              width: `${totalPages * 100}%`
+              transform: `translateX(-${currentIndex * (100 / itemsVisible)}%)`,
+              width: `${(activeCorretores.length / itemsVisible) * 100}%`
             }}
           >
-            {Array.from({ length: totalPages }).map((_, pageIndex) => (
-              <div key={pageIndex} className="flex gap-6 flex-shrink-0" style={{ width: `${100 / totalPages}%` }}>
-                {activeCorretores.slice(pageIndex * itemsPerPage, (pageIndex + 1) * itemsPerPage).map((corretor) => (
-                  <div
-                    key={corretor.id}
-                    className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex-1"
-                  >
+            {activeCorretores.map((corretor) => (
+              <div
+                key={corretor.id}
+                className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex-shrink-0"
+                style={{ width: `calc((100% / ${itemsVisible}) - ${((itemsVisible - 1) * 1.5) / itemsVisible}rem)` }}
+              >
               {/* Foto do Corretor */}
               <div className="relative h-64 overflow-hidden">
                 <img
@@ -167,9 +160,6 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
                     )}
                   </button>
                 </div>
-              </div>
-                  </div>
-                ))}
               </div>
             ))}
           </div>
