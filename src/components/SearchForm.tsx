@@ -423,7 +423,7 @@ export default function SearchForm() {
             {/* Comodidades - Lado Direito */}
             <div>
               <label className="block text-sm text-white font-bold mb-3 text-center lg:text-left">Comodidades</label>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-center lg:justify-items-start">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-center lg:justify-items-start">
               <div className="flex items-center gap-2 w-full justify-center md:justify-start">
                 <span className="text-sm text-white font-bold">Mobiliado</span>
                 <button
@@ -525,9 +525,9 @@ export default function SearchForm() {
                   />
                 </button>
               </div>
+              </div>
             </div>
           </div>
-        </div>
         )}
       </form>
 
