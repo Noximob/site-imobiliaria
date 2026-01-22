@@ -102,63 +102,64 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
                 className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex-shrink-0"
                 style={{ width: `calc((100% / ${itemsVisible}) - ${((itemsVisible - 1) * 1.5) / itemsVisible}rem)` }}
               >
-              {/* Foto do Corretor */}
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src={corretor.foto || '/placeholder-corretor.jpg'}
-                  alt={corretor.nome}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                
-                {/* Overlay com informações (quando expandido) */}
-                {expandedId === corretor.id && (
-                  <div className="absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center">
-                    <div className="text-center text-white p-4">
-                      <h3 className="text-lg font-semibold mb-2">{corretor.nome}</h3>
-                      <p className="text-sm mb-4">{corretor.cargo}</p>
-                      <p className="text-xs mb-4">CRECI: {corretor.creci}</p>
-                      
-                      {/* Informações de contato */}
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-center space-x-2">
-                          <Phone className="w-4 h-4" />
-                          <span className="text-sm">{corretor.telefone}</span>
-                        </div>
+                {/* Foto do Corretor */}
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={corretor.foto || '/placeholder-corretor.jpg'}
+                    alt={corretor.nome}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  
+                  {/* Overlay com informações (quando expandido) */}
+                  {expandedId === corretor.id && (
+                    <div className="absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center">
+                      <div className="text-center text-white p-4">
+                        <h3 className="text-lg font-semibold mb-2">{corretor.nome}</h3>
+                        <p className="text-sm mb-4">{corretor.cargo}</p>
+                        <p className="text-xs mb-4">CRECI: {corretor.creci}</p>
                         
-                        <div className="flex items-center justify-center space-x-2">
-                          <Mail className="w-4 h-4" />
-                          <span className="text-sm">{corretor.email}</span>
-                        </div>
-                        
-                        {corretor.instagram && (
+                        {/* Informações de contato */}
+                        <div className="space-y-2">
                           <div className="flex items-center justify-center space-x-2">
-                            <Instagram className="w-4 h-4" />
-                            <span className="text-sm">{corretor.instagram}</span>
+                            <Phone className="w-4 h-4" />
+                            <span className="text-sm">{corretor.telefone}</span>
                           </div>
-                        )}
+                          
+                          <div className="flex items-center justify-center space-x-2">
+                            <Mail className="w-4 h-4" />
+                            <span className="text-sm">{corretor.email}</span>
+                          </div>
+                          
+                          {corretor.instagram && (
+                            <div className="flex items-center justify-center space-x-2">
+                              <Instagram className="w-4 h-4" />
+                              <span className="text-sm">{corretor.instagram}</span>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
 
-              {/* Nome e botão */}
-              <div className="p-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-gray-900 truncate">
-                    {corretor.nome}
-                  </h3>
-                  <button
-                    onClick={() => handleExpand(corretor.id)}
-                    className="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors"
-                  >
-                    {expandedId === corretor.id ? (
-                      <X className="w-4 h-4" />
-                    ) : (
-                      <span className="text-lg font-bold">+</span>
-                    )}
-                  </button>
+                {/* Nome e botão */}
+                <div className="p-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-semibold text-gray-900 truncate">
+                      {corretor.nome}
+                    </h3>
+                    <button
+                      onClick={() => handleExpand(corretor.id)}
+                      className="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors"
+                    >
+                      {expandedId === corretor.id ? (
+                        <X className="w-4 h-4" />
+                      ) : (
+                        <span className="text-lg font-bold">+</span>
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
