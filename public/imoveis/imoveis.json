@@ -5536,5 +5536,78 @@
     "publicado": true,
     "selecaoNox": false,
     "dataEntrega": "2025-11-02"
+  },
+  {
+    "id": "03732",
+    "titulo": "Coliseum Residence",
+    "slug": "coliseum-residence-03732",
+    "descricao": "-> Empreendimento\n\nInterfone  \nEstar Social  \nHall de entrada decorado e mobiliado  \nElevador\n\n     -> Unidade\n\nGás Individual  \nCozinha  \nÁrea de Serviço  \nAcabamento em gesso  \nChurrasqueira  \nAr Condicionado  \nSacada  \nSala de Estar  \nInterfone  \nCircuito Tv  \nSala de jantar  \nBanheiro Social  \nInternetItens adicionais \n2 Elevadores  \n \n3 dormitórios (sendo 1 suíte)  \nSacada com churrasq. a carvao  \n2 Vaga de garagem  \n \n\n     \n\n     ",
+    "preco": 1600000,
+    "tipo": "apartamento",
+    "status": "prontos",
+    "endereco": {
+      "cidade": "balneario camboriu",
+      "bairro": "Centro",
+      "rua": "Rua 1532",
+      "numero": "22",
+      "cep": "88330-543",
+      "estado": "SC",
+      "lat": -26.9926466,
+      "lng": -48.6351656
+    },
+    "coordenadas": {
+      "lat": -26.9926466,
+      "lng": -48.6351656
+    },
+    "caracteristicas": {
+      "quartos": 3,
+      "banheiros": 2,
+      "vagas": 2,
+      "area": 119,
+      "suite": 1,
+      "frenteMar": false,
+      "piscina": false,
+      "churrasqueira": false,
+      "academia": false,
+      "portaria": false,
+      "elevador": false,
+      "varanda": false,
+      "sacada": false
+    },
+    "tags": [],
+    "fotos": [
+      "https://dwvimagesv1.b-cdn.net/images/properties/d15f3677-719f-4a6a-8397-223692ef0821/personal/0073bf1438f192345dca50e1be4b0549063ae13e7cf70a25cc0504c8d0a72894.jpg?width=1900",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.07-10.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.07-9.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.07-8.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.07-11.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.06-3.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.06-2.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.06.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.07-6.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.07-5.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.07-7.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.07-4.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.07-3.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.07-2.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.07.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.06-5.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.06-4.jpeg",
+      "https://dwvimagesv1.b-cdn.net//images/properties/00f0f58e-60a7-4f37-8513-e0609f91621d/galleries/pictures/WhatsApp%20Image%202025-01-24%20at%2010.01.07-12.jpeg"
+    ],
+    "fotosSemMedium": [],
+    "fotoPrincipalIndex": 0,
+    "dwvId": 603732,
+    "fonteDWV": true,
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "corretor": "HPIO",
+      "email": "vendas@hpio.com.br"
+    },
+    "visualizacoes": 0,
+    "createdAt": "2026-01-22T17:52:55.161Z",
+    "updatedAt": "2026-01-22T17:52:55.161Z",
+    "publicado": true,
+    "selecaoNox": false
   }
 ]
