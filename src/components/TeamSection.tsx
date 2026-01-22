@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Phone, Mail, Instagram, X } from 'lucide-react'
+import { Phone, Mail, Instagram, X, ChevronLeft, ChevronRight } from 'lucide-react'
 import type { Corretor } from '@/lib/corretores-data'
 
 interface TeamSectionProps {
@@ -14,20 +14,34 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
 
   // Filtrar apenas corretores ativos
   const activeCorretores = corretores.filter(corretor => corretor.ativo)
+  
+  // Calcular quantos grupos de 4 corretores existem
+  const itemsPerPage = 4
+  const totalPages = Math.ceil(activeCorretores.length / itemsPerPage)
+  const maxIndex = Math.max(0, (totalPages - 1) * itemsPerPage)
 
   const handleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id)
   }
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % activeCorretores.length)
-    setExpandedId(null)
+    if (currentIndex + itemsPerPage < activeCorretores.length) {
+      setCurrentIndex(prev => Math.min(prev + itemsPerPage, maxIndex))
+      setExpandedId(null)
+    }
   }
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + activeCorretores.length) % activeCorretores.length)
-    setExpandedId(null)
+    if (currentIndex > 0) {
+      setCurrentIndex(prev => Math.max(prev - itemsPerPage, 0))
+      setExpandedId(null)
+    }
   }
+
+  // Calcular quais corretores mostrar
+  const visibleCorretores = activeCorretores.slice(currentIndex, currentIndex + itemsPerPage)
+  const canGoNext = currentIndex + itemsPerPage < activeCorretores.length
+  const canGoPrev = currentIndex > 0
 
   if (activeCorretores.length === 0) {
     return null
@@ -36,23 +50,66 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
   return (
     <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Título */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Conheça nossa equipe
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Profissionais qualificados e experientes para te ajudar a encontrar o imóvel ideal
-          </p>
+        {/* Título com Setas de Navegação */}
+        <div className="text-center mb-12 relative">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            {/* Seta Esquerda */}
+            {activeCorretores.length > itemsPerPage && (
+              <button
+                onClick={handlePrev}
+                disabled={!canGoPrev}
+                className={`p-2 rounded-lg border transition-all ${
+                  canGoPrev
+                    ? 'bg-gray-800 text-white border-gray-800 hover:bg-gray-700 cursor-pointer'
+                    : 'bg-gray-200 text-gray-400 border-gray-200 cursor-not-allowed'
+                }`}
+                aria-label="Anterior"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+            )}
+            
+            <div className="flex-1">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Conheça nossa equipe
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Profissionais qualificados e experientes para te ajudar a encontrar o imóvel ideal
+              </p>
+            </div>
+            
+            {/* Seta Direita */}
+            {activeCorretores.length > itemsPerPage && (
+              <button
+                onClick={handleNext}
+                disabled={!canGoNext}
+                className={`p-2 rounded-lg border transition-all ${
+                  canGoNext
+                    ? 'bg-gray-800 text-white border-gray-800 hover:bg-gray-700 cursor-pointer'
+                    : 'bg-gray-200 text-gray-400 border-gray-200 cursor-not-allowed'
+                }`}
+                aria-label="Próximo"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            )}
+          </div>
         </div>
 
-        {/* Grid de Corretores */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {activeCorretores.map((corretor, index) => (
-            <div
-              key={corretor.id}
-              className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-            >
+        {/* Carrossel de Corretores */}
+        <div className="relative overflow-hidden">
+          <div 
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{
+              transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)`
+            }}
+          >
+            {activeCorretores.map((corretor, index) => (
+              <div
+                key={corretor.id}
+                className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex-shrink-0 px-3"
+                style={{ width: `${100 / itemsPerPage}%` }}
+              >
               {/* Foto do Corretor */}
               <div className="relative h-64 overflow-hidden">
                 <img
@@ -112,44 +169,9 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
                   </button>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Navegação (se houver mais de 4 corretores) */}
-        {activeCorretores.length > 4 && (
-          <div className="flex justify-center mt-8 space-x-4">
-            <button
-              onClick={handlePrev}
-              className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
-            >
-              Anterior
-            </button>
-            <button
-              onClick={handleNext}
-              className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
-            >
-              Próximo
-            </button>
-          </div>
-        )}
-
-        {/* Indicador de posição */}
-        {activeCorretores.length > 4 && (
-          <div className="flex justify-center mt-4 space-x-2">
-            {Array.from({ length: Math.ceil(activeCorretores.length / 4) }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index * 4)}
-                className={`w-2 h-2 rounded-full ${
-                  Math.floor(currentIndex / 4) === index
-                    ? 'bg-purple-600'
-                    : 'bg-gray-300'
-                }`}
-              />
             ))}
           </div>
-        )}
+        </div>
       </div>
     </section>
   )
