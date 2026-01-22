@@ -829,6 +829,11 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
 
   // Data de entrega (do building, se disponível)
   const dataEntrega = building?.delivery_date || undefined
+  
+  // Debug: log para verificar se delivery_date está vindo do DWV
+  if (building && !building.delivery_date && (dwvImovel.construction_stage_raw === 'new' || dwvImovel.construction_stage_raw === 'under construction')) {
+    console.log(`⚠️ Imóvel ${id} (${dwvImovel.title}) - Building sem delivery_date. Status: ${dwvImovel.construction_stage_raw}`)
+  }
 
   return {
     id,
