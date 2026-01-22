@@ -9,7 +9,7 @@ export default function DWVSyncPage() {
   const [error, setError] = useState<string | null>(null)
 
   const handleSync = async () => {
-    if (!confirm('Sincronizar imóveis do DWV?\n\n- Adicionará novos imóveis selecionados\n- Atualizará imóveis existentes\n- Removerá imóveis desmarcados no DWV\n- Manterá imóveis manuais intactos')) {
+    if (!confirm('Sincronizar imóveis do DWV?\n\n- Adicionará novos imóveis selecionados\n- ATUALIZARÁ TODOS os imóveis existentes com dados mais recentes do DWV (upload total)\n- Removerá imóveis desmarcados no DWV\n- Manterá imóveis manuais intactos')) {
       return
     }
 

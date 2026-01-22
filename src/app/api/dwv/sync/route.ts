@@ -101,9 +101,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Processar sincronização
-    // Lógica: Puxar apenas o que está selecionado no DWV (o que vem da API)
+    // Lógica: SEMPRE fazer upload total dos imóveis DWV
     // - Adicionar novos que estão na lista do DWV
-    // - NÃO atualizar existentes (preservar edições futuras do admin)
+    // - SEMPRE atualizar existentes com dados mais recentes do DWV (incluindo tags, descrições, etc)
     // - Remover os que não estão mais na lista do DWV (foram desmarcados)
     // - Manter imóveis manuais (não-DWV) intactos
     
@@ -123,7 +123,7 @@ export async function POST(request: NextRequest) {
       imoveisDWVMap.set(key, imovel)
     })
 
-    // Processar imóveis novos do DWV (apenas os que estão selecionados na API)
+    // Processar imóveis do DWV (apenas os que estão selecionados na API)
     const idsDWVNovos = new Set<string>()
     imoveisNovos.forEach((imovel: any) => {
       const key = imovel.dwvId?.toString() || imovel.id
@@ -143,29 +143,28 @@ export async function POST(request: NextRequest) {
           dwvId: imovel.dwvId || imovel.id,
         })
         adicionados++
+        console.log(`➕ Novo imóvel adicionado: ${key} - ${imovel.titulo?.substring(0, 50)}`)
       } else {
-        // IMÓVEL EXISTENTE: manter como está (não atualizar para preservar edições futuras)
-        // EXCEÇÃO: atualizar dataEntrega se estiver faltando e o DWV tiver enviado
+        // IMÓVEL EXISTENTE: SEMPRE atualizar com dados mais recentes do DWV
         const imovelExistente = imoveisDWVMap.get(key)
-        const precisaAtualizarDataEntrega = !imovelExistente.dataEntrega && imovel.dataEntrega
         
-        if (precisaAtualizarDataEntrega) {
-          imoveisDWVMap.set(key, {
-            ...imovelExistente, // Manter dados existentes
-            dataEntrega: imovel.dataEntrega, // Adicionar dataEntrega que estava faltando
-            fonteDWV: true, // Garantir flag
-            dwvId: imovel.dwvId || imovel.id, // Garantir dwvId
-            updatedAt: new Date().toISOString(), // Atualizar timestamp
-          })
-          atualizados++
-          console.log(`📅 Atualizando dataEntrega para imóvel ${key}: ${imovel.dataEntrega}`)
-        } else {
-          imoveisDWVMap.set(key, {
-            ...imovelExistente, // Manter dados existentes
-            fonteDWV: true, // Garantir flag
-            dwvId: imovel.dwvId || imovel.id, // Garantir dwvId
-          })
+        // Preservar alguns campos que podem ter sido editados manualmente ou são específicos do site
+        const camposPreservados = {
+          visualizacoes: imovelExistente.visualizacoes || 0,
+          createdAt: imovelExistente.createdAt || new Date().toISOString(),
+          publicado: imovelExistente.publicado !== undefined ? imovelExistente.publicado : true,
         }
+        
+        // Atualizar com dados mais recentes do DWV, preservando campos específicos do site
+        imoveisDWVMap.set(key, {
+          ...imovel, // Dados mais recentes do DWV (incluindo tags atualizadas)
+          ...camposPreservados, // Preservar campos do site
+          updatedAt: new Date().toISOString(), // Atualizar timestamp
+          fonteDWV: true, // Garantir flag
+          dwvId: imovel.dwvId || imovel.id, // Garantir dwvId
+        })
+        atualizados++
+        console.log(`🔄 Imóvel atualizado: ${key} - ${imovel.titulo?.substring(0, 50)}`)
       }
     })
 
@@ -188,21 +187,13 @@ export async function POST(request: NextRequest) {
       ...imoveisNaoDWV,
     ]
 
-    // Verificar se há mudanças reais antes de fazer commit
+    // SEMPRE fazer commit (upload total), mesmo sem mudanças aparentes
+    // Isso garante que tags e descrições atualizadas no DWV sejam sempre refletidas
     const temMudancas = adicionados > 0 || removidos > 0 || atualizados > 0
-
+    
+    // Se não houver mudanças aparentes, ainda assim fazer upload para garantir sincronização
     if (!temMudancas) {
-      // Não há mudanças, retornar sem fazer commit
-      return NextResponse.json({
-        success: true,
-        message: `Nenhuma alteração necessária. ${imoveisNovos.length} imóvel(is) sincronizado(s) do DWV.`,
-        total: imoveisFinais.length,
-        adicionados: 0,
-        atualizados: 0,
-        removidos: 0,
-        totalDWV: imoveisNovos.length,
-        temMudancas: false,
-      })
+      console.log(`ℹ️ Nenhuma mudança aparente, mas fazendo upload total para garantir sincronização`)
     }
 
     // Há mudanças, fazer commit no GitHub
