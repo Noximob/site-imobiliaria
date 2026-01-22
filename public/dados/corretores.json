@@ -51,6 +51,19 @@
       "id": "1768502033197",
       "createdAt": "2026-01-15T18:33:53.197Z",
       "updatedAt": "2026-01-15T18:33:53.197Z"
+    },
+    {
+      "nome": "teste",
+      "cargo": "Corretor(a) de imóveis",
+      "creci": "484848",
+      "telefone": "47997109595",
+      "instagram": "",
+      "email": "betoezen@gmail.com",
+      "foto": "",
+      "ativo": true,
+      "id": "1769107748519",
+      "createdAt": "2026-01-22T18:49:08.519Z",
+      "updatedAt": "2026-01-22T18:49:08.519Z"
     }
   ]
 }
