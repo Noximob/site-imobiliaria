@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Phone, Mail, Instagram, X, ChevronLeft, ChevronRight } from 'lucide-react'
 import type { Corretor } from '@/lib/corretores-data'
 
@@ -17,7 +17,6 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
   
   // Calcular quantos grupos de 4 corretores existem
   const itemsPerPage = 4
-  const totalPages = Math.ceil(activeCorretores.length / itemsPerPage)
 
   const handleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id)
