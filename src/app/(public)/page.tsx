@@ -267,6 +267,8 @@ export default async function HomePage() {
                 <Link 
                   key={imovel.id}
                   href={`/imoveis/${imovel.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
                 >
                   <div className="h-64 relative">

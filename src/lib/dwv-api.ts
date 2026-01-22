@@ -10,6 +10,8 @@
  * - Sandbox: https://apisandbox.dwvapp.com.br/integration/properties
  */
 
+import { generateSlug } from './imoveis'
+
 // ============================================
 // INTERFACES DWV (Conforme documentação oficial)
 // ============================================
@@ -743,15 +745,7 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
   // ID: usar ID da DWV com 5 dígitos
   const id = dwvImovel.id.toString().padStart(5, '0').slice(-5)
 
-  // Slug: gerar do título
-  const slug = dwvImovel.title
-    ? dwvImovel.title
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '') + `-${id}`
-    : `imovel-${id}`
+  // Slug será gerado depois com todas as informações do imóvel
 
   // Extrair dados principais
   const unit = dwvImovel.unit
@@ -842,9 +836,36 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
     }
   }
 
+  // Criar objeto do imóvel primeiro para gerar slug com todas as informações
+  const titulo = dwvImovel.title || `Imóvel ${id}`
+  const imovelData = {
+    id,
+    titulo,
+    tipo,
+    endereco,
+    caracteristicas: {
+      quartos: quartosTotal,
+      banheiros,
+      vagas,
+      area,
+      suite: suites,
+      frenteMar: temFrenteMar,
+      piscina: temAreaLazer || temHomeClub,
+      churrasqueira: false,
+      academia: temHomeClub,
+      portaria: false,
+      elevador: false,
+      varanda: false,
+      sacada: false,
+    },
+  }
+  
+  // Gerar slug amigável ao SEO com informações do imóvel
+  const slug = generateSlug(titulo, imovelData)
+  
   return {
     id,
-    titulo: dwvImovel.title || `Imóvel ${id}`,
+    titulo,
     slug,
     descricao: dwvImovel.description || '',
     preco,

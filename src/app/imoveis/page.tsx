@@ -322,6 +322,8 @@ function ImoveisPageContent() {
                             </button>
                             <Link 
                               href={`/imoveis/${imovel.slug}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
                               className="bg-purple-500 hover:bg-purple-600 text-white font-medium py-2 px-5 rounded-md transition-colors duration-200 text-sm"
                             >
                               SABER MAIS

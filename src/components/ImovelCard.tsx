@@ -13,7 +13,11 @@ export default function ImovelCard({ imovel }: ImovelCardProps) {
   
   return (
     <div className="card hover:shadow-lg transition-shadow duration-300">
-      <Link href={`/imoveis/${imovel.slug}`}>
+      <Link 
+        href={`/imoveis/${imovel.slug}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <div className="relative h-48 overflow-hidden bg-transparent">
           <Image
             src={primeiraFoto}

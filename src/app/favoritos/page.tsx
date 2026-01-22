@@ -110,7 +110,11 @@ export default function FavoritosPage() {
               
               return (
                 <div key={imovel.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                  <Link href={`/imoveis/${imovel.slug}`}>
+                  <Link 
+                    href={`/imoveis/${imovel.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <div className="relative h-48 overflow-hidden">
                       <Image
                         src={primeiraFoto}
@@ -147,7 +151,11 @@ export default function FavoritosPage() {
                   </Link>
                   
                   <div className="p-6">
-                    <Link href={`/imoveis/${imovel.slug}`}>
+                    <Link 
+                      href={`/imoveis/${imovel.slug}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-2 hover:text-purple-600 transition-colors">
                         {imovel.titulo}
                       </h3>

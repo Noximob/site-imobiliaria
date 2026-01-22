@@ -286,8 +286,9 @@ export function formatPrice(price: number): string {
   }).format(price);
 }
 
-export function generateSlug(titulo: string): string {
-  return titulo
+export function generateSlug(titulo: string, imovel?: Partial<Imovel>): string {
+  // Criar slug base do título
+  let slug = titulo
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
@@ -295,5 +296,41 @@ export function generateSlug(titulo: string): string {
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
     .trim();
+  
+  // Se tiver informações do imóvel, adicionar contexto para SEO
+  if (imovel) {
+    const partes: string[] = []
+    
+    // Adicionar tipo se disponível
+    if (imovel.tipo) {
+      partes.push(imovel.tipo)
+    }
+    
+    // Adicionar cidade se disponível
+    if (imovel.endereco?.cidade) {
+      const cidade = imovel.endereco.cidade
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+      partes.push(cidade)
+    }
+    
+    // Adicionar quartos se disponível (ex: "2-quartos")
+    if (imovel.caracteristicas?.quartos) {
+      partes.push(`${imovel.caracteristicas.quartos}-quartos`)
+    }
+    
+    // Se tiver partes adicionais, adicionar ao slug
+    if (partes.length > 0) {
+      slug = `${partes.join('-')}-${slug}`
+    }
+  }
+  
+  // Limpar múltiplos hífens e remover hífens no início/fim
+  slug = slug.replace(/-+/g, '-').replace(/^-+|-+$/g, '')
+  
+  return slug;
 }
 
