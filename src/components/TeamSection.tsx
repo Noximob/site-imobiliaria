@@ -10,36 +10,35 @@ interface TeamSectionProps {
 
 export default function TeamSection({ corretores }: TeamSectionProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null)
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentPage, setCurrentPage] = useState(0)
 
   // Filtrar apenas corretores ativos
   const activeCorretores = corretores.filter(corretor => corretor.ativo)
   
   // Calcular quantos grupos de 4 corretores existem
   const itemsPerPage = 4
+  const totalPages = Math.ceil(activeCorretores.length / itemsPerPage)
 
   const handleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id)
   }
 
   const handleNext = () => {
-    const nextIndex = currentIndex + itemsPerPage
-    if (nextIndex < activeCorretores.length) {
-      setCurrentIndex(nextIndex)
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(prev => prev + 1)
       setExpandedId(null)
     }
   }
 
   const handlePrev = () => {
-    const prevIndex = currentIndex - itemsPerPage
-    if (prevIndex >= 0) {
-      setCurrentIndex(prevIndex)
+    if (currentPage > 0) {
+      setCurrentPage(prev => prev - 1)
       setExpandedId(null)
     }
   }
 
-  const canGoNext = currentIndex + itemsPerPage < activeCorretores.length
-  const canGoPrev = currentIndex > 0
+  const canGoNext = currentPage < totalPages - 1
+  const canGoPrev = currentPage > 0
 
   if (activeCorretores.length === 0) {
     return null
@@ -99,8 +98,8 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
           <div 
             className="flex transition-transform duration-500 ease-in-out gap-6"
             style={{
-              transform: `translateX(-${(currentIndex / itemsPerPage) * 100}%)`,
-              width: `${(activeCorretores.length / itemsPerPage) * 100}%`
+              transform: `translateX(-${currentPage * 100}%)`,
+              width: `${totalPages * 100}%`
             }}
           >
             {activeCorretores.map((corretor) => (
@@ -108,7 +107,7 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
                 key={corretor.id}
                 className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex-shrink-0"
                 style={{ 
-                  width: `calc((100% / ${itemsPerPage}) - ${((itemsPerPage - 1) * 1.5) / itemsPerPage}rem)`
+                  width: `calc((100% / ${totalPages}) / ${itemsPerPage} - ${((itemsPerPage - 1) * 1.5) / (totalPages * itemsPerPage)}rem)`
                 }}
               >
               {/* Foto do Corretor */}
