@@ -98,9 +98,9 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
         {/* Carrossel de Corretores */}
         <div className="relative overflow-hidden">
           <div 
-            className="flex transition-transform duration-500 ease-in-out gap-6"
+            className="flex transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(-${(currentIndex / activeCorretores.length) * 100}%)`,
+              transform: `translateX(-${(currentIndex / itemsPerPage) * 100}%)`,
               width: `${(activeCorretores.length / itemsPerPage) * 100}%`
             }}
           >
@@ -109,8 +109,8 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
                 key={corretor.id}
                 className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex-shrink-0"
                 style={{ 
-                  width: `calc((100% / ${activeCorretores.length}) * ${itemsPerPage} - ${((itemsPerPage - 1) * 1.5) / (activeCorretores.length / itemsPerPage)}rem)`,
-                  minWidth: `calc((100% / ${itemsPerPage}) - 1.125rem)`
+                  width: `calc(100% / ${itemsPerPage} - ${((itemsPerPage - 1) * 1.5) / itemsPerPage}rem)`,
+                  marginRight: index < activeCorretores.length - 1 ? '1.5rem' : '0'
                 }}
               >
               {/* Foto do Corretor */}
