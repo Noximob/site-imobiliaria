@@ -827,6 +827,9 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
     lng: endereco.lng,
   } : undefined
 
+  // Data de entrega (do building, se disponível)
+  const dataEntrega = building?.delivery_date || undefined
+
   return {
     id,
     titulo: dwvImovel.title || `Imóvel ${id}`,
@@ -837,6 +840,7 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
     status: mapStatus(dwvImovel.construction_stage, dwvImovel.construction_stage_raw),
     endereco,
     coordenadas,
+    dataEntrega,
     caracteristicas: {
       quartos: quartosTotal, // Total de quartos (já inclui suítes)
       banheiros,

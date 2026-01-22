@@ -114,6 +114,39 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
         }
       }
       
+      // Filtro por data de entrega
+      if (filtros.dataEntrega && Array.isArray(filtros.dataEntrega) && filtros.dataEntrega.length > 0) {
+        const temEntregues = filtros.dataEntrega.includes('entregues')
+        const anosSelecionados = filtros.dataEntrega.filter(d => typeof d === 'number') as number[]
+        
+        let matchDataEntrega = false
+        
+        // Se "entregues" está selecionado: imóveis prontos OU sem dataEntrega
+        if (temEntregues) {
+          if (imovel.status === 'prontos' || !imovel.dataEntrega) {
+            matchDataEntrega = true
+          }
+        }
+        
+        // Se anos estão selecionados: verificar se dataEntrega corresponde a algum ano
+        if (anosSelecionados.length > 0 && imovel.dataEntrega) {
+          try {
+            const dataEntrega = new Date(imovel.dataEntrega)
+            const anoEntrega = dataEntrega.getFullYear()
+            if (anosSelecionados.includes(anoEntrega)) {
+              matchDataEntrega = true
+            }
+          } catch (e) {
+            // Se dataEntrega não for uma data válida, ignorar
+          }
+        }
+        
+        // Se nenhuma condição foi atendida, excluir imóvel
+        if (!matchDataEntrega) {
+          return false
+        }
+      }
+      
       // Filtro por quartos (pode ser array para múltipla seleção)
       if (filtros.quartos !== undefined) {
         if (Array.isArray(filtros.quartos)) {

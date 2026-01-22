@@ -52,6 +52,7 @@ export interface Imovel {
   updatedAt: Date;
   publicado: boolean;
   selecaoNox?: boolean; // Marca imóvel para aparecer na seção Seleção Nox
+  dataEntrega?: string; // Data de entrega do empreendimento (para lançamentos/em construção)
 }
 
 export interface FiltrosImovel {
@@ -72,6 +73,7 @@ export interface FiltrosImovel {
   homeClub?: boolean;
   areaMin?: number;
   areaMax?: number;
+  dataEntrega?: string | number[]; // 'entregues' ou array de anos (2026-2032)
 }
 
 export interface Lead {

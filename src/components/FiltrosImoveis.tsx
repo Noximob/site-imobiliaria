@@ -12,6 +12,7 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
     status: '',
     tipo: '',
     cidade: '',
+    dataEntrega: [] as (string | number)[],
     quartos: [] as string[],
     banheiros: '',
     vagas: '',
@@ -32,6 +33,7 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
         status: filtrosIniciais.status || '',
         tipo: filtrosIniciais.tipo || '',
         cidade: filtrosIniciais.cidade || '',
+        dataEntrega: Array.isArray(filtrosIniciais.dataEntrega) ? filtrosIniciais.dataEntrega : [],
         quartos: Array.isArray(filtrosIniciais.quartos) ? filtrosIniciais.quartos : [],
         banheiros: filtrosIniciais.banheiros || '',
         vagas: filtrosIniciais.vagas || '',
@@ -54,6 +56,7 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
         status: '',
         tipo: '',
         cidade: '',
+        dataEntrega: [] as (string | number)[],
         quartos: [] as string[],
         banheiros: '',
         vagas: '',
@@ -151,6 +154,54 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
             <option value="barra-velha">Barra Velha</option>
             <option value="balneario-picarras">Balneário Piçarras</option>
           </select>
+        </div>
+
+        {/* Data de Entrega */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Data de Entrega</label>
+          <div className="space-y-2">
+            {/* Checkbox Entregues */}
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={filtros.dataEntrega.includes('entregues')}
+                onChange={(e) => {
+                  const newDataEntrega = e.target.checked
+                    ? [...filtros.dataEntrega, 'entregues']
+                    : filtros.dataEntrega.filter(d => d !== 'entregues')
+                  handleInputChange('dataEntrega', newDataEntrega)
+                }}
+                className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+              />
+              <span className="text-sm text-gray-700">Entregues</span>
+            </label>
+            
+            {/* Anos */}
+            <div className="flex flex-wrap gap-2">
+              {[2026, 2027, 2028, 2029, 2030, 2031, 2032].map((ano) => {
+                const isSelected = filtros.dataEntrega.includes(ano)
+                return (
+                  <button
+                    key={ano}
+                    type="button"
+                    onClick={() => {
+                      const newDataEntrega = isSelected
+                        ? filtros.dataEntrega.filter(d => d !== ano)
+                        : [...filtros.dataEntrega, ano]
+                      handleInputChange('dataEntrega', newDataEntrega)
+                    }}
+                    className={`px-3 py-2 rounded-lg border text-sm ${
+                      isSelected
+                        ? 'bg-purple-500 text-white border-purple-500' 
+                        : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
+                    }`}
+                  >
+                    {ano}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
         </div>
       </div>
 
