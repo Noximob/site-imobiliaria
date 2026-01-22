@@ -96,20 +96,19 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
         {/* Carrossel de Corretores */}
         <div className="relative overflow-hidden">
           <div 
-            className="flex transition-transform duration-500 ease-in-out gap-6"
+            className="flex transition-transform duration-500 ease-in-out"
             style={{
               transform: `translateX(-${currentPage * 100}%)`,
               width: `${totalPages * 100}%`
             }}
           >
-            {activeCorretores.map((corretor) => (
-              <div
-                key={corretor.id}
-                className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex-shrink-0"
-                style={{ 
-                  width: `calc((100% / ${totalPages}) / ${itemsPerPage} - ${((itemsPerPage - 1) * 1.5) / (totalPages * itemsPerPage)}rem)`
-                }}
-              >
+            {Array.from({ length: totalPages }).map((_, pageIndex) => (
+              <div key={pageIndex} className="flex gap-6 flex-shrink-0" style={{ width: `${100 / totalPages}%` }}>
+                {activeCorretores.slice(pageIndex * itemsPerPage, (pageIndex + 1) * itemsPerPage).map((corretor) => (
+                  <div
+                    key={corretor.id}
+                    className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex-1"
+                  >
               {/* Foto do Corretor */}
               <div className="relative h-64 overflow-hidden">
                 <img
@@ -168,6 +167,8 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
                     )}
                   </button>
                 </div>
+                  </div>
+                ))}
               </div>
             ))}
           </div>
