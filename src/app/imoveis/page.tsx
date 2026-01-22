@@ -18,7 +18,7 @@ function ImoveisPageContent() {
   const [isLoading, setIsLoading] = useState(true)
   const [, setFavoritosUpdate] = useState(0) // Para forçar re-render quando favoritos mudarem
   const [currentPage, setCurrentPage] = useState(1)
-  const [ordenacao, setOrdenacao] = useState<'menor-preco' | 'maior-preco' | 'mais-dormitorios' | 'menos-dormitorios'>('menor-preco')
+  const [ordenacao, setOrdenacao] = useState<'sem-ordenacao' | 'menor-preco' | 'maior-preco' | 'mais-dormitorios' | 'menos-dormitorios'>('sem-ordenacao')
   const itemsPerPage = 10
 
   useEffect(() => {
@@ -167,6 +167,7 @@ function ImoveisPageContent() {
                   onChange={(e) => setOrdenacao(e.target.value as any)}
                   className="flex items-center gap-1 px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 cursor-pointer"
                 >
+                  <option value="sem-ordenacao">Sem Ordenação</option>
                   <option value="menor-preco">Menor Preço</option>
                   <option value="maior-preco">Maior Preço</option>
                   <option value="mais-dormitorios">Mais Dormitórios</option>
