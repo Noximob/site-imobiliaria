@@ -214,7 +214,7 @@ export async function POST(request: NextRequest) {
         owner: REPO_OWNER,
         repo: REPO_NAME,
         path: IMOVEIS_PATH,
-        message: `Sync DWV: ${adicionados} novo(s), ${removidos} removido(s)`,
+        message: `Sync DWV: ${adicionados} novo(s), ${atualizados} atualizado(s), ${removidos} removido(s)`,
         content: encodedContent,
         branch: 'main',
       }
