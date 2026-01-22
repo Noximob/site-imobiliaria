@@ -359,12 +359,13 @@ export default function SearchForm() {
             </div>
           </div>
 
-          {/* Data de Entrega */}
-          <div className="mb-5">
-            <label className="block text-sm text-white font-bold mb-3">Data de Entrega</label>
-            <div className="space-y-3">
-              {/* Checkbox Entregues */}
-              <div className="flex items-center gap-2">
+          {/* Data de Entrega e Comodidades - Mesma linha */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
+            {/* Data de Entrega - Lado Esquerdo */}
+            <div>
+              <label className="block text-sm text-white font-bold mb-3">Data de Entrega</label>
+              <div className="flex flex-wrap items-center gap-2">
+                {/* Checkbox Entregues */}
                 <button
                   type="button"
                   onClick={() => {
@@ -376,7 +377,7 @@ export default function SearchForm() {
                         : [...prev.dataEntrega, 'entregues']
                     }))
                   }}
-                  className={`flex items-center gap-2 px-3 py-2 rounded border text-sm transition-all ${
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded border text-sm transition-all ${
                     filtros.dataEntrega.includes('entregues')
                       ? 'bg-purple-600 text-white border-purple-600'
                       : 'bg-white text-gray-700 border-gray-300 hover:border-purple-400'
@@ -390,45 +391,39 @@ export default function SearchForm() {
                   />
                   <span>Entregues</span>
                 </button>
-              </div>
-              
-              {/* Anos */}
-              <div>
-                <label className="block text-xs text-white/80 mb-2">Ano de Entrega</label>
-                <div className="flex flex-wrap gap-2">
-                  {[2026, 2027, 2028, 2029, 2030, 2031].map((ano) => {
-                    const isSelected = filtros.dataEntrega.includes(ano)
-                    return (
-                      <button
-                        key={ano}
-                        type="button"
-                        onClick={() => {
-                          setFiltros(prev => ({
-                            ...prev,
-                            dataEntrega: isSelected
-                              ? prev.dataEntrega.filter(d => d !== ano)
-                              : [...prev.dataEntrega, ano]
-                          }))
-                        }}
-                        className={`px-3 py-1.5 rounded border text-sm transition-all ${
-                          isSelected
-                            ? 'bg-purple-600 text-white border-purple-600'
-                            : 'bg-white text-gray-700 border-gray-300 hover:border-purple-400'
-                        }`}
-                      >
-                        {ano}
-                      </button>
-                    )
-                  })}
-                </div>
+                
+                {/* Anos */}
+                {[2026, 2027, 2028, 2029, 2030, 2031].map((ano) => {
+                  const isSelected = filtros.dataEntrega.includes(ano)
+                  return (
+                    <button
+                      key={ano}
+                      type="button"
+                      onClick={() => {
+                        setFiltros(prev => ({
+                          ...prev,
+                          dataEntrega: isSelected
+                            ? prev.dataEntrega.filter(d => d !== ano)
+                            : [...prev.dataEntrega, ano]
+                        }))
+                      }}
+                      className={`px-3 py-1.5 rounded border text-sm transition-all ${
+                        isSelected
+                          ? 'bg-purple-600 text-white border-purple-600'
+                          : 'bg-white text-gray-700 border-gray-300 hover:border-purple-400'
+                      }`}
+                    >
+                      {ano}
+                    </button>
+                  )
+                })}
               </div>
             </div>
-          </div>
 
-          {/* Comodidades - Toggles */}
-          <div>
-            <label className="block text-sm text-white font-bold mb-3 text-center">Comodidades</label>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
+            {/* Comodidades - Lado Direito */}
+            <div>
+              <label className="block text-sm text-white font-bold mb-3 text-center lg:text-left">Comodidades</label>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-center lg:justify-items-start">
               <div className="flex items-center gap-2 w-full justify-center md:justify-start">
                 <span className="text-sm text-white font-bold">Mobiliado</span>
                 <button
