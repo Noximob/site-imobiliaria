@@ -528,6 +528,7 @@ export default function SearchForm() {
               </div>
             </div>
           </div>
+          </div>
         )}
       </form>
 
