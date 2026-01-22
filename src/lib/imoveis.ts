@@ -234,6 +234,14 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
       // Filtro por comodidades (buscar nas tags)
       const tags = imovel.tags || []
       
+      // Debug: log quando filtro frenteMar está ativo
+      if (filtros.frenteMar) {
+        const temTag = tags.includes('Frente Mar')
+        if (!temTag) {
+          console.log(`🔍 Filtro Frente Mar: Imóvel ${imovel.id} (${imovel.titulo?.substring(0, 50)}) NÃO tem tag. Tags disponíveis: [${tags.join(', ')}]`)
+        }
+      }
+      
       if (filtros.frenteMar && !tags.includes('Frente Mar')) {
         return false;
       }

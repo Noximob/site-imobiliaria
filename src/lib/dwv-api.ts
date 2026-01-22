@@ -469,7 +469,7 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
   keywordMap.forEach(({ keywords, tag, palavrasSeparadas }) => {
     let encontrou = false
     
-    // Primeiro: buscar keywords completas
+    // Primeiro: buscar keywords completas (já normalizadas)
     encontrou = keywords.some(keyword => {
       const keywordNormalizada = keyword.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
       const encontrouKeyword = textoDescricao.includes(keywordNormalizada)
@@ -500,6 +500,28 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
           if (distancia <= 50) { // Palavras dentro de 50 caracteres
             encontrou = true
             console.log(`✅ Tag encontrada: "${tag}" via palavras separadas próximas: ${palavrasSeparadas.join(' + ')}`)
+          }
+        }
+      }
+    }
+    
+    // Última tentativa: buscar a tag exatamente como escrita (case-insensitive)
+    // Ex: "Frente Mar" no título deve ser encontrado
+    if (!encontrou) {
+      const tagNormalizada = tag.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      // Buscar a tag completa no texto (ex: "frente mar" deve encontrar "Frente Mar")
+      const palavrasTag = tagNormalizada.split(/\s+/).filter(p => p.length > 0)
+      if (palavrasTag.length >= 2) {
+        const todasPalavrasTag = palavrasTag.every(palavra => textoDescricao.includes(palavra))
+        if (todasPalavrasTag) {
+          // Verificar se estão próximas
+          const indicesTag = palavrasTag.map(p => textoDescricao.indexOf(p)).filter(idx => idx !== -1).sort((a, b) => a - b)
+          if (indicesTag.length === palavrasTag.length) {
+            const distanciaTag = indicesTag[indicesTag.length - 1] - indicesTag[0]
+            if (distanciaTag <= 20) { // Palavras da tag dentro de 20 caracteres
+              encontrou = true
+              console.log(`✅ Tag encontrada: "${tag}" via busca direta da tag no texto`)
+            }
           }
         }
       }
@@ -935,6 +957,11 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
 
   // Tags/comodidades (extrair de features E do descritivo)
   const tags = extractTags(unit, building, thirdParty, dwvImovel)
+  
+  // Debug: log das tags extraídas para este imóvel
+  if (tags.length > 0) {
+    console.log(`🏷️ Imóvel ${id} (${dwvImovel.title?.substring(0, 50)}): Tags = [${tags.join(', ')}]`)
+  }
 
   // Detectar comodidades para caracteristicas
   const temFrenteMar = tags.includes('Frente Mar')
