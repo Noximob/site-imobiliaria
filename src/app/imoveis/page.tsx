@@ -89,7 +89,26 @@ function ImoveisPageContent() {
           imoveisData = await getAllImoveis()
         }
         
-        setImoveis(imoveisData)
+        // Aplicar ordenação
+        let imoveisOrdenados = [...imoveisData]
+        if (ordenacao !== 'sem-ordenacao') {
+          imoveisOrdenados = imoveisOrdenados.sort((a, b) => {
+            switch (ordenacao) {
+              case 'menor-preco':
+                return a.preco - b.preco
+              case 'maior-preco':
+                return b.preco - a.preco
+              case 'mais-dormitorios':
+                return b.caracteristicas.quartos - a.caracteristicas.quartos
+              case 'menos-dormitorios':
+                return a.caracteristicas.quartos - b.caracteristicas.quartos
+              default:
+                return 0
+            }
+          })
+        }
+        
+        setImoveis(imoveisOrdenados)
         setCurrentPage(1) // Resetar para página 1 quando filtros mudarem
       } catch (error) {
         console.error('Erro ao carregar imóveis:', error)
