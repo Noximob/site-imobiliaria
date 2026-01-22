@@ -119,6 +119,9 @@ function ImoveisPageContent() {
       status: novosFiltros.status || undefined,
       tipo: novosFiltros.tipo || undefined,
       cidade: novosFiltros.cidade || undefined,
+      dataEntrega: Array.isArray(novosFiltros.dataEntrega) && novosFiltros.dataEntrega.length > 0
+        ? novosFiltros.dataEntrega
+        : undefined,
       quartos: Array.isArray(novosFiltros.quartos) && novosFiltros.quartos.length > 0 
         ? novosFiltros.quartos.map((q: string) => parseFilterValue(q)).filter((q: number | undefined) => q !== undefined) as number[]
         : undefined,

@@ -179,7 +179,7 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
             
             {/* Anos */}
             <div className="flex flex-wrap gap-2">
-              {[2026, 2027, 2028, 2029, 2030, 2031, 2032].map((ano) => {
+              {[2026, 2027, 2028, 2029, 2030, 2031].map((ano) => {
                 const isSelected = filtros.dataEntrega.includes(ano)
                 return (
                   <button
