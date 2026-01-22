@@ -415,17 +415,22 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
   // 2. Extrair texto completo do descritivo
   const textoDescricao = extractDescriptionText(building, dwvImovel)
   
+  // Debug: log do texto extraído (apenas primeiros 200 caracteres)
+  if (textoDescricao.length > 0) {
+    console.log(`📝 Texto extraído (primeiros 200 chars): ${textoDescricao.substring(0, 200)}`)
+  }
+  
   // 3. Mapear palavras-chave para tags do site
   // Ordem importa: termos mais específicos primeiro
   const keywordMap: Array<{ keywords: string[], tag: string }> = [
     // Frente Mar (mais específico primeiro)
-    { keywords: ['frente ao mar', 'frente mar', 'frente do mar', 'beira mar', 'beira-mar'], tag: 'Frente Mar' },
+    { keywords: ['frente ao mar', 'frente mar', 'frente do mar', 'beira mar', 'beira-mar', 'frente mar', 'frentemar'], tag: 'Frente Mar' },
     
     // Vista Mar
-    { keywords: ['vista para o mar', 'vista mar', 'vista do mar', 'vista ao mar', 'vista mar', 'vista para mar'], tag: 'Vista Mar' },
+    { keywords: ['vista para o mar', 'vista mar', 'vista do mar', 'vista ao mar', 'vista para mar', 'vistamar'], tag: 'Vista Mar' },
     
     // Quadra Mar
-    { keywords: ['quadra do mar', 'quadra mar', 'quadra do mar', '1 quadra do mar', 'uma quadra do mar'], tag: 'Quadra Mar' },
+    { keywords: ['quadra do mar', 'quadra mar', '1 quadra do mar', 'uma quadra do mar', 'quadramar'], tag: 'Quadra Mar' },
     
     // Mobiliado
     { keywords: ['mobiliado', 'mobiliada', 'mobília', 'mobilia', 'totalmente mobiliado', 'completo mobiliado'], tag: 'Mobiliado' },
@@ -440,15 +445,31 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
   // 4. Buscar palavras-chave no texto do descritivo
   keywordMap.forEach(({ keywords, tag }) => {
     const encontrou = keywords.some(keyword => {
-      // Buscar palavra-chave no texto (case-insensitive, com espaços flexíveis)
-      const regex = new RegExp(keyword.replace(/\s+/g, '\\s+'), 'i')
-      return regex.test(textoDescricao)
+      // Normalizar a keyword também (lowercase, sem acentos)
+      const keywordNormalizada = keyword.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      
+      // Buscar palavra-chave no texto normalizado (busca simples e direta)
+      const encontrouKeyword = textoDescricao.includes(keywordNormalizada)
+      
+      if (encontrouKeyword) {
+        console.log(`✅ Tag encontrada: "${tag}" via keyword "${keyword}" (normalizada: "${keywordNormalizada}")`)
+      }
+      
+      return encontrouKeyword
     })
     
     if (encontrou && !tags.includes(tag)) {
       tags.push(tag)
+      console.log(`🏷️ Tag adicionada: "${tag}"`)
     }
   })
+  
+  // Debug: log final das tags encontradas
+  if (tags.length > 0) {
+    console.log(`📋 Tags finais extraídas: ${tags.join(', ')}`)
+  } else {
+    console.log(`⚠️ Nenhuma tag encontrada no descritivo`)
+  }
   
   // 5. Processar tags das features (se existirem)
   const normalizedTags = allTags.map(t =>
