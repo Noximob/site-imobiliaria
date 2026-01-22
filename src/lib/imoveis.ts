@@ -84,13 +84,27 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
   try {
     const imoveis = await getAllImoveis();
     
-    // Debug: contar imóveis com dataEntrega
+    // Debug: contar imóveis com dataEntrega por status
     if (filtros.dataEntrega && Array.isArray(filtros.dataEntrega) && filtros.dataEntrega.length > 0) {
       const imoveisComDataEntrega = imoveis.filter(i => i.dataEntrega)
       const imoveisSemDataEntrega = imoveis.filter(i => !i.dataEntrega)
-      console.log(`🔍 Filtro dataEntrega ativo. Total imóveis: ${imoveis.length}, Com dataEntrega: ${imoveisComDataEntrega.length}, Sem dataEntrega: ${imoveisSemDataEntrega.length}`)
+      const prontosComData = imoveis.filter(i => i.status === 'prontos' && i.dataEntrega)
+      const prontosSemData = imoveis.filter(i => i.status === 'prontos' && !i.dataEntrega)
+      const lancamentoComData = imoveis.filter(i => (i.status === 'lancamento' || i.status === 'em-construcao') && i.dataEntrega)
+      const lancamentoSemData = imoveis.filter(i => (i.status === 'lancamento' || i.status === 'em-construcao') && !i.dataEntrega)
+      
+      console.log(`🔍 Filtro dataEntrega ativo.`)
+      console.log(`📊 Total: ${imoveis.length} | Com dataEntrega: ${imoveisComDataEntrega.length} | Sem dataEntrega: ${imoveisSemDataEntrega.length}`)
+      console.log(`📊 Prontos: ${prontosComData.length} com data, ${prontosSemData.length} sem data`)
+      console.log(`📊 Lançamento/Construção: ${lancamentoComData.length} com data, ${lancamentoSemData.length} sem data`)
+      
       if (imoveisComDataEntrega.length > 0) {
-        console.log(`📅 Exemplos de dataEntrega:`, imoveisComDataEntrega.slice(0, 5).map(i => ({ id: i.id, titulo: i.titulo, dataEntrega: i.dataEntrega })))
+        console.log(`📅 Exemplos de dataEntrega:`, imoveisComDataEntrega.slice(0, 5).map(i => ({ 
+          id: i.id, 
+          titulo: i.titulo.substring(0, 30), 
+          status: i.status,
+          dataEntrega: i.dataEntrega 
+        })))
       }
     }
     
@@ -131,7 +145,8 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
         
         let matchDataEntrega = false
         
-        // Se "entregues" está selecionado: apenas imóveis com status 'prontos'
+        // Se "entregues" está selecionado: imóveis com status 'prontos'
+        // (podem ter delivery_date no passado ou não ter, ambos são considerados entregues)
         if (temEntregues) {
           if (imovel.status === 'prontos') {
             matchDataEntrega = true
@@ -139,6 +154,7 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
         }
         
         // Se anos estão selecionados: verificar se dataEntrega corresponde a algum ano
+        // Funciona para TODOS os imóveis (prontos, lançamento, em construção) que têm dataEntrega
         if (anosSelecionados.length > 0 && imovel.dataEntrega) {
           try {
             const dataEntrega = new Date(imovel.dataEntrega)

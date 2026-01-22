@@ -828,7 +828,19 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
   } : undefined
 
   // Data de entrega (do building, se disponível)
+  // Imóveis prontos podem ter delivery_date (data passada de quando foram entregues)
+  // Imóveis lançamento/em construção devem ter delivery_date (data futura de quando serão entregues)
   const dataEntrega = building?.delivery_date || undefined
+  
+  // Debug: log para entender o padrão de delivery_date
+  if (dataEntrega) {
+    console.log(`✅ Imóvel ${id} - Status: ${dwvImovel.construction_stage_raw}, delivery_date: ${dataEntrega}`)
+  } else {
+    // Log apenas para imóveis que deveriam ter data (lançamento/em construção)
+    if (dwvImovel.construction_stage_raw === 'new' || dwvImovel.construction_stage_raw === 'under construction' || dwvImovel.construction_stage_raw === 'pre-market') {
+      console.log(`⚠️ Imóvel ${id} (${dwvImovel.title}) - Status: ${dwvImovel.construction_stage_raw}, SEM delivery_date`)
+    }
+  }
 
   return {
     id,
