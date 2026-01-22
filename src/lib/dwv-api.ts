@@ -505,22 +505,28 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
       }
     }
     
-    // Última tentativa: buscar a tag exatamente como escrita (case-insensitive)
-    // Ex: "Frente Mar" no título deve ser encontrado
+    // Última tentativa: buscar a tag diretamente no texto normalizado
+    // Ex: "Frente Mar" no título -> normalizado para "frente mar" -> deve encontrar
     if (!encontrou) {
       const tagNormalizada = tag.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      // Buscar a tag completa no texto (ex: "frente mar" deve encontrar "Frente Mar")
-      const palavrasTag = tagNormalizada.split(/\s+/).filter(p => p.length > 0)
-      if (palavrasTag.length >= 2) {
-        const todasPalavrasTag = palavrasTag.every(palavra => textoDescricao.includes(palavra))
-        if (todasPalavrasTag) {
-          // Verificar se estão próximas
-          const indicesTag = palavrasTag.map(p => textoDescricao.indexOf(p)).filter(idx => idx !== -1).sort((a, b) => a - b)
-          if (indicesTag.length === palavrasTag.length) {
-            const distanciaTag = indicesTag[indicesTag.length - 1] - indicesTag[0]
-            if (distanciaTag <= 20) { // Palavras da tag dentro de 20 caracteres
-              encontrou = true
-              console.log(`✅ Tag encontrada: "${tag}" via busca direta da tag no texto`)
+      // Buscar a tag completa como string (ex: "frente mar" no texto)
+      if (textoDescricao.includes(tagNormalizada)) {
+        encontrou = true
+        console.log(`✅ Tag encontrada: "${tag}" via busca direta da tag normalizada no texto`)
+      } else {
+        // Se não encontrou a tag completa, tentar palavras separadas da tag
+        const palavrasTag = tagNormalizada.split(/\s+/).filter(p => p.length > 0)
+        if (palavrasTag.length >= 2) {
+          const todasPalavrasTag = palavrasTag.every(palavra => textoDescricao.includes(palavra))
+          if (todasPalavrasTag) {
+            // Verificar se estão próximas (até 20 caracteres)
+            const indicesTag = palavrasTag.map(p => textoDescricao.indexOf(p)).filter(idx => idx !== -1).sort((a, b) => a - b)
+            if (indicesTag.length === palavrasTag.length) {
+              const distanciaTag = indicesTag[indicesTag.length - 1] - indicesTag[0]
+              if (distanciaTag <= 20) { // Palavras da tag dentro de 20 caracteres
+                encontrou = true
+                console.log(`✅ Tag encontrada: "${tag}" via palavras da tag próximas no texto`)
+              }
             }
           }
         }
