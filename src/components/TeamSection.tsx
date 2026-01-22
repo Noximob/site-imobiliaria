@@ -167,6 +167,7 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
                     )}
                   </button>
                 </div>
+              </div>
                   </div>
                 ))}
               </div>
