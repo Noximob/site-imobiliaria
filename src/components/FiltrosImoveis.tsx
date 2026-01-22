@@ -94,6 +94,7 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
       status: '',
       tipo: '',
       cidade: '',
+      dataEntrega: [] as (string | number)[],
       quartos: [] as string[],
       banheiros: '',
       vagas: '',
