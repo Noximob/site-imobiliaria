@@ -86,6 +86,9 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
     
     // Debug: contar imóveis com dataEntrega por status
     if (filtros.dataEntrega && Array.isArray(filtros.dataEntrega) && filtros.dataEntrega.length > 0) {
+      const temEntregues = filtros.dataEntrega.some((d: string | number) => d === 'entregues')
+      const anosSelecionados = filtros.dataEntrega.filter((d: string | number): d is number => typeof d === 'number')
+      
       const imoveisComDataEntrega = imoveis.filter(i => i.dataEntrega)
       const imoveisSemDataEntrega = imoveis.filter(i => !i.dataEntrega)
       const prontosComData = imoveis.filter(i => i.status === 'prontos' && i.dataEntrega)
@@ -94,9 +97,14 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
       const lancamentoSemData = imoveis.filter(i => (i.status === 'lancamento' || i.status === 'em-construcao') && !i.dataEntrega)
       
       console.log(`🔍 Filtro dataEntrega ativo.`)
-      console.log(`📊 Total: ${imoveis.length} | Com dataEntrega: ${imoveisComDataEntrega.length} | Sem dataEntrega: ${imoveisSemDataEntrega.length}`)
-      console.log(`📊 Prontos: ${prontosComData.length} com data, ${prontosSemData.length} sem data`)
-      console.log(`📊 Lançamento/Construção: ${lancamentoComData.length} com data, ${lancamentoSemData.length} sem data`)
+      console.log(`📋 Filtros aplicados: entregues=${temEntregues}, anos=${anosSelecionados.join(',')}`)
+      console.log(`📊 Total imóveis: ${imoveis.length}`)
+      console.log(`📊 Prontos: ${prontosComData.length + prontosSemData.length} total (${prontosComData.length} com data, ${prontosSemData.length} sem data)`)
+      console.log(`📊 Lançamento/Construção: ${lancamentoComData.length + lancamentoSemData.length} total (${lancamentoComData.length} com data, ${lancamentoSemData.length} sem data)`)
+      
+      // Contar quantos imóveis prontos existem
+      const totalProntos = imoveis.filter(i => i.status === 'prontos').length
+      console.log(`✅ Total de imóveis com status 'prontos': ${totalProntos}`)
       
       if (imoveisComDataEntrega.length > 0) {
         console.log(`📅 Exemplos de dataEntrega:`, imoveisComDataEntrega.slice(0, 5).map(i => ({ 
