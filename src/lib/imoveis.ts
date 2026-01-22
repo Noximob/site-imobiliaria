@@ -121,9 +121,9 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
         
         let matchDataEntrega = false
         
-        // Se "entregues" está selecionado: imóveis prontos OU sem dataEntrega
+        // Se "entregues" está selecionado: apenas imóveis com status 'prontos'
         if (temEntregues) {
-          if (imovel.status === 'prontos' || !imovel.dataEntrega) {
+          if (imovel.status === 'prontos') {
             matchDataEntrega = true
           }
         }
