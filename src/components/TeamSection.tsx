@@ -18,28 +18,27 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
   // Calcular quantos grupos de 4 corretores existem
   const itemsPerPage = 4
   const totalPages = Math.ceil(activeCorretores.length / itemsPerPage)
-  const maxIndex = Math.max(0, (totalPages - 1) * itemsPerPage)
 
   const handleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id)
   }
 
   const handleNext = () => {
-    if (currentIndex + itemsPerPage < activeCorretores.length) {
-      setCurrentIndex(prev => Math.min(prev + itemsPerPage, maxIndex))
+    const nextIndex = currentIndex + itemsPerPage
+    if (nextIndex < activeCorretores.length) {
+      setCurrentIndex(nextIndex)
       setExpandedId(null)
     }
   }
 
   const handlePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(prev => Math.max(prev - itemsPerPage, 0))
+    const prevIndex = currentIndex - itemsPerPage
+    if (prevIndex >= 0) {
+      setCurrentIndex(prevIndex)
       setExpandedId(null)
     }
   }
 
-  // Calcular quais corretores mostrar
-  const visibleCorretores = activeCorretores.slice(currentIndex, currentIndex + itemsPerPage)
   const canGoNext = currentIndex + itemsPerPage < activeCorretores.length
   const canGoPrev = currentIndex > 0
 
@@ -99,16 +98,20 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
         {/* Carrossel de Corretores */}
         <div className="relative overflow-hidden">
           <div 
-            className="flex transition-transform duration-500 ease-in-out"
+            className="flex transition-transform duration-500 ease-in-out gap-6"
             style={{
-              transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)`
+              transform: `translateX(-${(currentIndex / activeCorretores.length) * 100}%)`,
+              width: `${(activeCorretores.length / itemsPerPage) * 100}%`
             }}
           >
             {activeCorretores.map((corretor, index) => (
               <div
                 key={corretor.id}
-                className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex-shrink-0 px-3"
-                style={{ width: `${100 / itemsPerPage}%` }}
+                className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex-shrink-0"
+                style={{ 
+                  width: `calc((100% / ${activeCorretores.length}) * ${itemsPerPage} - ${((itemsPerPage - 1) * 1.5) / (activeCorretores.length / itemsPerPage)}rem)`,
+                  minWidth: `calc((100% / ${itemsPerPage}) - 1.125rem)`
+                }}
               >
               {/* Foto do Corretor */}
               <div className="relative h-64 overflow-hidden">
