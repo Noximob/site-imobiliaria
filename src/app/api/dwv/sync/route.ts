@@ -243,7 +243,7 @@ export async function POST(request: NextRequest) {
       message: mensagem,
       total: imoveisFinais.length,
       adicionados,
-      atualizados: 0, // Sempre 0, pois não atualizamos existentes
+      atualizados, // Pode ter atualizações de dataEntrega quando estava faltando
       removidos,
       totalDWV: imoveisNovos.length,
       temMudancas: true,
