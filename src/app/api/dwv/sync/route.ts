@@ -145,14 +145,27 @@ export async function POST(request: NextRequest) {
         adicionados++
       } else {
         // IMÓVEL EXISTENTE: manter como está (não atualizar para preservar edições futuras)
-        // Apenas garantir que tem os campos essenciais
+        // EXCEÇÃO: atualizar dataEntrega se estiver faltando e o DWV tiver enviado
         const imovelExistente = imoveisDWVMap.get(key)
-        imoveisDWVMap.set(key, {
-          ...imovelExistente, // Manter dados existentes
-          fonteDWV: true, // Garantir flag
-          dwvId: imovel.dwvId || imovel.id, // Garantir dwvId
-        })
-        // Não incrementar atualizados - não estamos atualizando
+        const precisaAtualizarDataEntrega = !imovelExistente.dataEntrega && imovel.dataEntrega
+        
+        if (precisaAtualizarDataEntrega) {
+          imoveisDWVMap.set(key, {
+            ...imovelExistente, // Manter dados existentes
+            dataEntrega: imovel.dataEntrega, // Adicionar dataEntrega que estava faltando
+            fonteDWV: true, // Garantir flag
+            dwvId: imovel.dwvId || imovel.id, // Garantir dwvId
+            updatedAt: new Date().toISOString(), // Atualizar timestamp
+          })
+          atualizados++
+          console.log(`📅 Atualizando dataEntrega para imóvel ${key}: ${imovel.dataEntrega}`)
+        } else {
+          imoveisDWVMap.set(key, {
+            ...imovelExistente, // Manter dados existentes
+            fonteDWV: true, // Garantir flag
+            dwvId: imovel.dwvId || imovel.id, // Garantir dwvId
+          })
+        }
       }
     })
 
@@ -176,7 +189,7 @@ export async function POST(request: NextRequest) {
     ]
 
     // Verificar se há mudanças reais antes de fazer commit
-    const temMudancas = adicionados > 0 || removidos > 0
+    const temMudancas = adicionados > 0 || removidos > 0 || atualizados > 0
 
     if (!temMudancas) {
       // Não há mudanças, retornar sem fazer commit
