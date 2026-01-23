@@ -75,11 +75,19 @@ export default function EditarImovelPage() {
           throw new Error('Imóveis do DWV não podem ser editados aqui. Use a página de editar fotos.')
         }
 
+        // Função para formatar preço para exibição
+        const formatPriceForInput = (price: number): string => {
+          return new Intl.NumberFormat('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }).format(price)
+        }
+
         // Preencher formulário
         setFormData({
           titulo: imovel.titulo || '',
           descricao: imovel.descricao || '',
-          preco: imovel.preco?.toString() || '',
+          preco: imovel.preco ? formatPriceForInput(imovel.preco) : '',
           tipo: imovel.tipo || 'apartamento',
           status: imovel.status || 'lancamento',
           cidade: imovel.endereco?.cidade || 'penha',
@@ -128,8 +136,43 @@ export default function EditarImovelPage() {
     loadImovel()
   }, [id])
 
+  // Função para formatar preço enquanto digita (ex: 5000 -> 5.000,00)
+  const formatCurrencyInput = (value: string): string => {
+    // Remove tudo que não é dígito
+    const numbers = value.replace(/\D/g, '')
+    
+    if (!numbers) return ''
+    
+    // Converte para número e divide por 100 para ter centavos
+    const amount = parseInt(numbers, 10) / 100
+    
+    // Formata como moeda brasileira
+    return new Intl.NumberFormat('pt-BR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(amount)
+  }
+
+  // Função para converter valor formatado de volta para número
+  const parseCurrencyValue = (value: string): number => {
+    // Remove pontos e substitui vírgula por ponto
+    const cleanValue = value.replace(/\./g, '').replace(',', '.')
+    return parseFloat(cleanValue) || 0
+  }
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
+    
+    // Se for o campo de preço, formatar automaticamente
+    if (name === 'preco') {
+      const formatted = formatCurrencyInput(value)
+      setFormData(prev => ({
+        ...prev,
+        [name]: formatted
+      }))
+      return
+    }
+    
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
@@ -253,7 +296,7 @@ export default function EditarImovelPage() {
       const imovelData: any = {
         titulo: formData.titulo.trim(),
         descricao: formData.descricao.trim(),
-        preco: parseFloat(formData.preco.replace(/[^\d,.-]/g, '').replace(',', '.')) || 0,
+        preco: parseCurrencyValue(formData.preco),
         tipo: formData.tipo,
         status: formData.status,
         endereco: {
@@ -447,6 +490,9 @@ export default function EditarImovelPage() {
                     placeholder="Ex: 1.500.000,00"
                     required
                   />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Digite apenas números. A formatação será aplicada automaticamente.
+                  </p>
                 </div>
 
                 <div>

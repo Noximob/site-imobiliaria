@@ -42,8 +42,43 @@ export default function NovoImovelPage() {
   const [fotoPrincipalIndex, setFotoPrincipalIndex] = useState<number | null>(null)
   const [fotosMenoresIndices, setFotosMenoresIndices] = useState<number[]>([])
 
+  // Função para formatar preço enquanto digita (ex: 5000 -> 5.000,00)
+  const formatCurrencyInput = (value: string): string => {
+    // Remove tudo que não é dígito
+    const numbers = value.replace(/\D/g, '')
+    
+    if (!numbers) return ''
+    
+    // Converte para número e divide por 100 para ter centavos
+    const amount = parseInt(numbers, 10) / 100
+    
+    // Formata como moeda brasileira
+    return new Intl.NumberFormat('pt-BR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(amount)
+  }
+
+  // Função para converter valor formatado de volta para número
+  const parseCurrencyValue = (value: string): number => {
+    // Remove pontos e substitui vírgula por ponto
+    const cleanValue = value.replace(/\./g, '').replace(',', '.')
+    return parseFloat(cleanValue) || 0
+  }
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
+    
+    // Se for o campo de preço, formatar automaticamente
+    if (name === 'preco') {
+      const formatted = formatCurrencyInput(value)
+      setFormData(prev => ({
+        ...prev,
+        [name]: formatted
+      }))
+      return
+    }
+    
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
@@ -300,6 +335,9 @@ export default function NovoImovelPage() {
                     placeholder="Ex: 1.500.000,00"
                     required
                   />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Digite apenas números. A formatação será aplicada automaticamente.
+                  </p>
                 </div>
 
                 <div>
