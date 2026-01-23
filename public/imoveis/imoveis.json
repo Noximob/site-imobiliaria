@@ -80,9 +80,16 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T19:15:05.000Z",
-    "updatedAt": "2026-01-23T00:04:03.265Z",
+    "updatedAt": "2026-01-23T14:21:54.940Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "fotoPrincipalDWV": "https://dwvimagesv1.b-cdn.net/images/developments/526515c5-f2cc-4f60-85be-364b732c9627/personal/56d6a364157686bcf900c1d3b607299d34667640264860b5bf91722ebc467b76.jpg?width=1900",
+    "fotosMenoresDWV": [
+      "https://dwvimagesv1.b-cdn.net/images/developments/526515c5-f2cc-4f60-85be-364b732c9627/galleries/pictures/GRANT_VISTA_-_MUSCULACAO_PILATES_E_YOGA_1.jpg-name-8f2b6fe79a1e772a241c9a73c14d3cc6694aaa026446610fa3e852731dc1b966.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/526515c5-f2cc-4f60-85be-364b732c9627/galleries/pictures/GRANT_VISTA_-_MUSCULACAO_PILATES_E_YOGA_2.jpg-name-0da5bf4e708959bb4a627293ae96843e2041b417cacdc6d364d29fd9d491db76.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/526515c5-f2cc-4f60-85be-364b732c9627/galleries/pictures/GRANT_VISTA_-_HALL_DE_ENTRADA.jpg-name-3f67e2026243c497914ff3045a957f00baf4c566bd78e1a8dab2e46fcbece178.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/526515c5-f2cc-4f60-85be-364b732c9627/galleries/pictures/GRANT_VISTA_-_GOURMET_CRIANCADA_2.jpg-name-d8e3f30b785551852b4e8ff5117902f1a1389a20e7c0b9eda638ba05ae3cccc3.jpg"
+    ]
   },
   {
     "id": "91697",
