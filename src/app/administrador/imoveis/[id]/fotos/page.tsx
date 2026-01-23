@@ -20,6 +20,12 @@ export default function EditarFotosImovelDWV() {
   const [fotoPrincipal, setFotoPrincipal] = useState<string | null>(null)
   const [fotosMenores, setFotosMenores] = useState<string[]>([])
 
+  // Função para extrair extensão da URL
+  const getFileExtension = (url: string): string => {
+    const match = url.match(/\.([a-zA-Z0-9]+)(\?|$)/)
+    return match ? `.${match[1].toLowerCase()}` : ''
+  }
+
   useEffect(() => {
     const loadImovel = async () => {
       try {
@@ -264,11 +270,16 @@ export default function EditarFotosImovelDWV() {
                         </div>
                       </div>
                     )}
-                    {fotoPrincipal === foto && (
-                      <div className="absolute bottom-2 left-2 bg-purple-600 text-white text-xs font-semibold px-2 py-1 rounded">
-                        Principal
-                      </div>
-                    )}
+                    <div className="absolute bottom-2 left-2 flex gap-1">
+                      {fotoPrincipal === foto && (
+                        <span className="bg-purple-600 text-white text-xs font-semibold px-2 py-1 rounded">
+                          Principal
+                        </span>
+                      )}
+                      <span className="bg-gray-800 bg-opacity-75 text-white text-xs font-medium px-2 py-1 rounded">
+                        {getFileExtension(foto)}
+                      </span>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -323,11 +334,16 @@ export default function EditarFotosImovelDWV() {
                           </div>
                         </div>
                       )}
-                      {isMenor && (
-                        <div className="absolute bottom-2 left-2 bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded">
-                          Menor {fotosMenores.indexOf(foto) + 1}
-                        </div>
-                      )}
+                      <div className="absolute bottom-2 left-2 flex gap-1">
+                        {isMenor && (
+                          <span className="bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded">
+                            Menor {fotosMenores.indexOf(foto) + 1}
+                          </span>
+                        )}
+                        <span className="bg-gray-800 bg-opacity-75 text-white text-xs font-medium px-2 py-1 rounded">
+                          {getFileExtension(foto)}
+                        </span>
+                      </div>
                     </button>
                   )
                 })}
