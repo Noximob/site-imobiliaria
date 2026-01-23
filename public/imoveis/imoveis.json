@@ -38,7 +38,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Lavatory",
       "Living",
       "Desk",
@@ -112,7 +111,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T19:15:05.000Z",
-    "updatedAt": "2026-01-23T15:54:47.566Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -155,7 +154,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Lavatory",
       "Living",
       "Desk",
@@ -229,7 +227,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T19:15:05.000Z",
-    "updatedAt": "2026-01-23T15:54:47.566Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -272,7 +270,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Gas_heating",
       "Tv_circuit",
       "Kitchen",
@@ -369,7 +366,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:23:20.000Z",
-    "updatedAt": "2026-01-23T15:54:47.566Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -412,7 +409,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Home_office",
       "Hot_water_infrastructure",
       "Gas_heating",
@@ -515,7 +511,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-20T20:51:10.000Z",
-    "updatedAt": "2026-01-23T15:54:47.566Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -609,7 +605,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T13:04:10.000Z",
-    "updatedAt": "2026-01-23T15:54:47.566Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -652,8 +648,6 @@
       "sacada": false
     },
     "tags": [
-      "Vista Mar",
-      "Mobiliado",
       "Barbecue_grill",
       "Living",
       "Social_bathroom",
@@ -702,7 +696,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-04T20:01:43.000Z",
-    "updatedAt": "2026-01-23T15:54:47.566Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -796,7 +790,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T13:04:10.000Z",
-    "updatedAt": "2026-01-23T15:54:47.566Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -839,7 +833,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Home_office",
       "Hot_water_infrastructure",
       "Gas_heating",
@@ -942,7 +935,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-20T21:01:39.000Z",
-    "updatedAt": "2026-01-23T15:54:47.566Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -985,7 +978,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Gas_heating",
       "Tv_circuit",
       "Kitchen",
@@ -1082,7 +1074,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:23:20.000Z",
-    "updatedAt": "2026-01-23T15:54:47.566Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -1125,7 +1117,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Gas_heating",
       "Tv_circuit",
       "Kitchen",
@@ -1222,7 +1213,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:23:20.000Z",
-    "updatedAt": "2026-01-23T15:54:47.566Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -1322,7 +1313,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T13:13:34.000Z",
-    "updatedAt": "2026-01-23T15:54:47.574Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -1365,7 +1356,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Gas_heating",
       "Password_lock_entrance_door",
       "Hot_water_infrastructure",
@@ -1435,7 +1425,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:34:17.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -1478,7 +1468,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Home_office",
       "Hot_water_infrastructure",
       "Gas_heating",
@@ -1582,7 +1571,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:35:55.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -1625,7 +1614,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Gas_heating",
       "Password_lock_entrance_door",
       "Hot_water_infrastructure",
@@ -1695,7 +1683,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T12:34:17.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -1783,7 +1771,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-05T14:17:09.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -1826,7 +1814,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Service_area",
       "Balcony",
       "Individual_water_meter",
@@ -1909,7 +1896,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-15T16:55:36.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -1952,7 +1939,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Living",
       "Hot_water_infrastructure",
       "Air_conditioning_infrastructure",
@@ -2022,7 +2008,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T14:11:39.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -2094,7 +2080,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T15:16:11.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -2137,7 +2123,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Service_area",
       "Balcony",
       "Individual_water_meter",
@@ -2220,7 +2205,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-15T16:55:36.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -2299,7 +2284,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T14:10:16.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -2378,7 +2363,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T14:10:16.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -2421,7 +2406,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Workmanship_on_plaster",
       "Service_area",
       "Kitchen",
@@ -2493,7 +2477,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -2536,7 +2520,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Workmanship_on_plaster",
       "Service_area",
       "Kitchen",
@@ -2608,7 +2591,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -2651,7 +2634,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Living_room",
       "Alarm",
       "Dining_room",
@@ -2723,7 +2705,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -2766,8 +2748,6 @@
       "sacada": false
     },
     "tags": [
-      "Vista Mar",
-      "Mobiliado",
       "Lavatory",
       "Intercom",
       "Air_conditioning_infrastructure",
@@ -2835,7 +2815,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-04T20:01:01.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -2878,7 +2858,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Living",
       "Gas_heating",
       "Individual_gas",
@@ -2942,7 +2921,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T18:56:53.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -2985,7 +2964,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Workmanship_on_plaster",
       "Service_area",
       "Kitchen",
@@ -3057,7 +3035,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -3100,7 +3078,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Workmanship_on_plaster",
       "Service_area",
       "Kitchen",
@@ -3172,7 +3149,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -3215,7 +3192,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Air_conditioning_infrastructure",
       "Intercom",
       "Porcelain",
@@ -3273,7 +3249,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T11:16:31.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -3380,7 +3356,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T23:12:37.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -3423,7 +3399,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Workmanship_on_plaster",
       "Service_area",
       "Kitchen",
@@ -3495,7 +3470,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -3538,7 +3513,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Living_room",
       "Alarm",
       "Dining_room",
@@ -3610,7 +3584,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -3653,7 +3627,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Living_room",
       "Alarm",
       "Dining_room",
@@ -3725,7 +3698,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -3832,7 +3805,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T11:11:01.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -3875,7 +3848,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Workmanship_on_plaster",
       "Service_area",
       "Kitchen",
@@ -3947,7 +3919,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -3990,7 +3962,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Air_conditioning_infrastructure",
       "Intercom",
       "Porcelain",
@@ -4048,7 +4019,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T11:14:13.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -4091,7 +4062,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Workmanship_on_plaster",
       "Service_area",
       "Kitchen",
@@ -4163,7 +4133,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-05T20:39:02.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -4206,7 +4176,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Living",
       "Gas_heating",
       "Individual_gas",
@@ -4270,7 +4239,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T18:55:43.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -4313,7 +4282,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Air_conditioning_infrastructure",
       "Intercom",
       "Porcelain",
@@ -4371,7 +4339,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T23:01:39.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -4414,7 +4382,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Living_room",
       "Alarm",
       "Dining_room",
@@ -4486,7 +4453,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-13T12:25:33.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -4528,7 +4495,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Gas_heating",
       "Individual_gas",
       "Internet",
@@ -4625,7 +4591,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T18:48:03.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -4728,7 +4694,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:24:27.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -4832,7 +4798,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:31.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -4875,7 +4841,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Air_conditioning_infrastructure",
       "Intercom",
       "Porcelain",
@@ -4933,7 +4898,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T23:01:39.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -5037,7 +5002,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:31.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -5141,7 +5106,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:31.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -5184,7 +5149,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Gourmet_balcony",
       "Intercom",
       "Living",
@@ -5275,7 +5239,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:31.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -5374,7 +5338,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T20:13:10.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -5417,7 +5381,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Gourmet_balcony",
       "Intercom",
       "Living",
@@ -5508,7 +5471,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:31.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -5551,8 +5514,6 @@
       "sacada": false
     },
     "tags": [
-      "Vista Mar",
-      "Mobiliado",
       "Accessibility_for_pne",
       "Workmanship_on_plaster",
       "Gas_heating",
@@ -5648,7 +5609,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:29.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -5691,8 +5652,6 @@
       "sacada": false
     },
     "tags": [
-      "Vista Mar",
-      "Mobiliado",
       "Accessibility_for_pne",
       "Workmanship_on_plaster",
       "Gas_heating",
@@ -5789,7 +5748,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:29.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -5832,7 +5791,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Home_office",
       "Living",
       "Lavatory",
@@ -5907,7 +5865,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T11:25:42.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -5950,8 +5908,6 @@
       "sacada": false
     },
     "tags": [
-      "Vista Mar",
-      "Mobiliado",
       "Accessibility_for_pne",
       "Workmanship_on_plaster",
       "Gas_heating",
@@ -6048,7 +6004,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-21T03:02:29.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -6091,7 +6047,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Living",
       "Lavatory",
       "Kitchen",
@@ -6156,7 +6111,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T14:44:00.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -6199,7 +6154,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Living",
       "Lavatory",
       "Kitchen",
@@ -6259,7 +6213,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T14:17:51.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -6302,7 +6256,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Living",
       "Lavatory",
       "Kitchen",
@@ -6367,7 +6320,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T14:44:00.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -6410,7 +6363,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Living",
       "Lavatory",
       "Kitchen",
@@ -6475,7 +6427,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T14:44:00.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -6518,7 +6470,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Living",
       "Lavatory",
       "Kitchen",
@@ -6578,7 +6529,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-06T14:17:51.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -6621,7 +6572,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Individual_gas",
       "Living",
       "Lavatory",
@@ -6682,7 +6632,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -6725,7 +6675,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Individual_gas",
       "Living",
       "Lavatory",
@@ -6786,7 +6735,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -6829,7 +6778,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Individual_gas",
       "Living",
       "Lavatory",
@@ -6890,7 +6838,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -6933,7 +6881,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Individual_gas",
       "Living",
       "Lavatory",
@@ -6994,7 +6941,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:37.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -7037,7 +6984,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Gas_heating",
       "Panoramic_view",
       "Social_bathroom",
@@ -7112,7 +7058,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:36.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -7155,7 +7101,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Whirlpool_bathtub",
       "Living",
       "Lavatory",
@@ -7228,7 +7173,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-02T12:08:17.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -7271,7 +7216,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Gas_heating",
       "Panoramic_view",
       "Social_bathroom",
@@ -7346,7 +7290,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2025-12-01T18:16:36.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -7389,7 +7333,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Individual_gas",
       "Workmanship_on_plaster",
       "Air_conditioner",
@@ -7489,7 +7432,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T17:48:07.000Z",
-    "updatedAt": "2026-01-23T15:54:47.575Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -7532,7 +7475,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Individual_gas",
       "Workmanship_on_plaster",
       "Air_conditioner",
@@ -7632,7 +7574,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T17:48:07.000Z",
-    "updatedAt": "2026-01-23T15:54:47.576Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -7721,7 +7663,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T17:45:15.000Z",
-    "updatedAt": "2026-01-23T15:54:47.576Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -7764,7 +7706,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Individual_gas",
       "Workmanship_on_plaster",
       "Air_conditioner",
@@ -7864,7 +7805,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-01T17:48:07.000Z",
-    "updatedAt": "2026-01-23T15:54:47.576Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -7907,7 +7848,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Whirlpool_bathtub",
       "Living",
       "Lavatory",
@@ -7980,7 +7920,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-08T17:22:15.000Z",
-    "updatedAt": "2026-01-23T15:54:47.576Z",
+    "updatedAt": "2026-01-23T17:49:49.301Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -8022,7 +7962,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Individual_gas",
       "Kitchen",
       "Service_area",
@@ -8071,7 +8010,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-22T17:52:55.161Z",
-    "updatedAt": "2026-01-23T15:54:47.566Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -8104,7 +8043,7 @@
       "vagas": 2,
       "area": 344.29,
       "suite": 4,
-      "frenteMar": true,
+      "frenteMar": false,
       "piscina": false,
       "churrasqueira": false,
       "academia": false,
@@ -8114,7 +8053,6 @@
       "sacada": false
     },
     "tags": [
-      "Frente Mar",
       "Intercom",
       "Tv_circuit",
       "Service_bathroom",
@@ -8203,7 +8141,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-22T23:42:29.507Z",
-    "updatedAt": "2026-01-23T15:54:47.566Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -8246,7 +8184,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Home_office",
       "Living",
       "Lavatory",
@@ -8321,7 +8258,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-22T23:42:29.507Z",
-    "updatedAt": "2026-01-23T15:54:47.566Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
@@ -8364,7 +8301,6 @@
       "sacada": false
     },
     "tags": [
-      "Mobiliado",
       "Home_office",
       "Living",
       "Lavatory",
@@ -8439,7 +8375,7 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-22T23:42:29.507Z",
-    "updatedAt": "2026-01-23T15:54:47.566Z",
+    "updatedAt": "2026-01-23T17:49:49.300Z",
     "publicado": true,
     "selecaoNox": false
   },
