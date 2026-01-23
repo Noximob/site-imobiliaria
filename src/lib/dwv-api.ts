@@ -462,7 +462,18 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
     // Primeiro: buscar keywords completas (já normalizadas)
     encontrou = keywords.some(keyword => {
       const keywordNormalizada = keyword.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      const encontrouKeyword = textoDescricao.includes(keywordNormalizada)
+      
+      // Para palavras únicas como "mobiliado", usar word boundaries para evitar falsos positivos
+      // Ex: "não mobiliado" não deve ser detectado como "Mobiliado"
+      let encontrouKeyword = false
+      if (keywordNormalizada.split(/\s+/).length === 1) {
+        // Palavra única: usar word boundaries
+        const regex = new RegExp(`\\b${keywordNormalizada.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i')
+        encontrouKeyword = regex.test(textoDescricao)
+      } else {
+        // Frase completa: usar includes normal
+        encontrouKeyword = textoDescricao.includes(keywordNormalizada)
+      }
       
       if (encontrouKeyword) {
         console.log(`✅ Tag encontrada: "${tag}" via keyword completa "${keyword}"`)
@@ -500,7 +511,20 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
     if (!encontrou) {
       const tagNormalizada = tag.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
       // Buscar a tag completa como string (ex: "frente mar" no texto)
-      if (textoDescricao.includes(tagNormalizada)) {
+      // Para palavras únicas como "Mobiliado", usar word boundaries
+      const palavrasTagNormalizada = tagNormalizada.split(/\s+/)
+      let encontrouTag = false
+      
+      if (palavrasTagNormalizada.length === 1) {
+        // Palavra única: usar word boundaries
+        const regex = new RegExp(`\\b${tagNormalizada.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i')
+        encontrouTag = regex.test(textoDescricao)
+      } else {
+        // Frase: usar includes normal
+        encontrouTag = textoDescricao.includes(tagNormalizada)
+      }
+      
+      if (encontrouTag) {
         encontrou = true
         console.log(`✅ Tag encontrada: "${tag}" via busca direta da tag normalizada no texto`)
       } else {
@@ -558,19 +582,31 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
   }
   
   normalizedTags.forEach(tag => {
+    // Match exato primeiro
     if (tagMap[tag] && !tags.includes(tagMap[tag])) {
       tags.push(tagMap[tag])
       return
     }
     
+    // Match mais restritivo: usar word boundaries para evitar falsos positivos
+    // Ex: "não mobiliado" não deve ser detectado como "Mobiliado"
     Object.keys(tagMap).forEach(key => {
-      if (tag.includes(key) && !tags.includes(tagMap[key])) {
+      // Criar regex com word boundaries para match exato da palavra
+      const regex = new RegExp(`\\b${key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i')
+      if (regex.test(tag) && !tags.includes(tagMap[key])) {
         tags.push(tagMap[key])
       }
     })
   })
   
-  return tags
+  // 6. Filtrar tags para manter apenas características simples (1-2 palavras)
+  // As características devem ser palavras ou 2 palavras no máximo
+  const tagsFiltradas = tags.filter(tag => {
+    const palavras = tag.trim().split(/\s+/).filter(p => p.length > 0)
+    return palavras.length <= 2 && palavras.length > 0
+  })
+  
+  return tagsFiltradas
 }
 
 /**

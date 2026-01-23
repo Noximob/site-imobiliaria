@@ -418,18 +418,13 @@ export default function ImovelDetalhePage() {
               </h1>
               
               {/* Badges de Destaque */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                {imovel.tags && imovel.tags.includes('Mobiliado') && (
-                  <span className="px-3 py-1 bg-yellow-100 border border-yellow-300 text-yellow-800 rounded-md text-sm font-medium">
-                    Mobiliado
-                  </span>
-                )}
-                {imovel.selecaoNox && (
+              {imovel.selecaoNox && (
+                <div className="flex flex-wrap gap-2 mb-4">
                   <span className="px-3 py-1 bg-purple-100 border border-purple-300 text-purple-800 rounded-md text-sm font-medium">
                     Seleção Nox
                   </span>
-                )}
-              </div>
+                </div>
+              )}
 
               {/* Texto introdutório */}
               {imovel.descricao && (
@@ -491,7 +486,7 @@ export default function ImovelDetalhePage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {imovel.tags.map((tag: string, index: number) => (
                     <div key={index} className="flex items-center gap-3 text-gray-700">
-                      <div className="w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
+                      <div className="w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center flex-shrink-0">
                         <Check className="w-4 h-4 text-white" strokeWidth={3} />
                       </div>
                       <span className="text-base">{tag}</span>
