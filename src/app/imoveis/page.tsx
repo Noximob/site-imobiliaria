@@ -68,7 +68,6 @@ function ImoveisPageContent() {
     if (searchParams.get('mobiliado') === 'true') params.mobiliado = true
     if (searchParams.get('vistaMar') === 'true') params.vistaMar = true
     if (searchParams.get('frenteMar') === 'true') params.frenteMar = true
-    if (searchParams.get('quadraMar') === 'true') params.quadraMar = true
     if (searchParams.get('areaLazer') === 'true') params.areaLazer = true
     if (searchParams.get('homeClub') === 'true') params.homeClub = true
     
@@ -154,7 +153,6 @@ function ImoveisPageContent() {
       frenteMar: novosFiltros.frenteMar || undefined,
       mobiliado: novosFiltros.mobiliado || undefined,
       vistaMar: novosFiltros.vistaMar || undefined,
-      quadraMar: novosFiltros.quadraMar || undefined,
       areaLazer: novosFiltros.areaLazer || undefined,
       homeClub: novosFiltros.homeClub || undefined,
     }

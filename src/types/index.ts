@@ -68,7 +68,6 @@ export interface FiltrosImovel {
   frenteMar?: boolean;
   mobiliado?: boolean;
   vistaMar?: boolean;
-  quadraMar?: boolean;
   areaLazer?: boolean;
   homeClub?: boolean;
   areaMin?: number;

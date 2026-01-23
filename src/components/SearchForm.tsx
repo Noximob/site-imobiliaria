@@ -24,7 +24,6 @@ export default function SearchForm() {
     mobiliado: false,
     frenteMar: false,
     vistaMar: false,
-    quadraMar: false,
     areaLazer: false,
     homeClub: false
   })
@@ -85,7 +84,7 @@ export default function SearchForm() {
     }))
   }
 
-  const handleToggle = (field: 'mobiliado' | 'frenteMar' | 'vistaMar' | 'quadraMar' | 'areaLazer' | 'homeClub') => {
+  const handleToggle = (field: 'mobiliado' | 'frenteMar' | 'vistaMar' | 'areaLazer' | 'homeClub') => {
     setFiltros(prev => ({
       ...prev,
       [field]: !prev[field]
@@ -470,23 +469,6 @@ export default function SearchForm() {
                   <span
                     className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
                       filtros.vistaMar ? 'translate-x-5' : 'translate-x-0.5'
-                    }`}
-                  />
-                </button>
-              </div>
-
-              <div className="flex items-center gap-2 w-full justify-center md:justify-start">
-                <span className="text-sm text-white font-bold">Quadra Mar</span>
-                <button
-                  type="button"
-                  onClick={() => handleToggle('quadraMar')}
-                  className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors flex-shrink-0 ${
-                    filtros.quadraMar ? 'bg-purple-600' : 'bg-gray-300'
-                  }`}
-                >
-                  <span
-                    className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
-                      filtros.quadraMar ? 'translate-x-5' : 'translate-x-0.5'
                     }`}
                   />
                 </button>

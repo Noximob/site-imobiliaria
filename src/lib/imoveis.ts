@@ -254,10 +254,6 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
         return false;
       }
       
-      if (filtros.quadraMar && !tags.includes('Quadra Mar')) {
-        return false;
-      }
-      
       if (filtros.areaLazer && !tags.includes('Área de Lazer')) {
         return false;
       }

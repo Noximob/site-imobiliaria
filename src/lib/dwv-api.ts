@@ -448,13 +448,6 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
       palavrasSeparadas: ['vista', 'mar']
     },
     
-    // Quadra Mar
-    { 
-      keywords: ['quadra do mar', 'quadra mar', '1 quadra do mar', 'uma quadra do mar', 'quadramar'], 
-      tag: 'Quadra Mar',
-      palavrasSeparadas: ['quadra', 'mar']
-    },
-    
     // Mobiliado
     { keywords: ['mobiliado', 'mobiliada', 'mobília', 'mobilia', 'totalmente mobiliado', 'completo mobiliado'], tag: 'Mobiliado' },
     
@@ -557,8 +550,6 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
     'vista para o mar': 'Vista Mar',
     'vista mar': 'Vista Mar',
     'vista do mar': 'Vista Mar',
-    'quadra do mar': 'Quadra Mar',
-    'quadra mar': 'Quadra Mar',
     'mobiliada': 'Mobiliado',
     'mobiliado': 'Mobiliado',
     'area de lazer': 'Área de Lazer',
@@ -972,7 +963,6 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
   // Detectar comodidades para caracteristicas
   const temFrenteMar = tags.includes('Frente Mar')
   const temVistaMar = tags.includes('Vista Mar')
-  const temQuadraMar = tags.includes('Quadra Mar')
   const temMobiliado = tags.includes('Mobiliado')
   const temAreaLazer = tags.includes('Área de Lazer')
   const temHomeClub = tags.includes('Home Club completo')

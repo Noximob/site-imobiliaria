@@ -21,7 +21,6 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
     mobiliado: false,
     frenteMar: false,
     vistaMar: false,
-    quadraMar: false,
     areaLazer: false,
     homeClub: false
   })
@@ -44,7 +43,6 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
         mobiliado: filtrosIniciais.mobiliado || false,
         frenteMar: filtrosIniciais.frenteMar || false,
         vistaMar: filtrosIniciais.vistaMar || false,
-        quadraMar: filtrosIniciais.quadraMar || false,
         areaLazer: filtrosIniciais.areaLazer || false,
         homeClub: filtrosIniciais.homeClub || false
       }
@@ -67,7 +65,6 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
         mobiliado: false,
         frenteMar: false,
         vistaMar: false,
-        quadraMar: false,
         areaLazer: false,
         homeClub: false
       }
@@ -103,7 +100,6 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
       mobiliado: false,
       frenteMar: false,
       vistaMar: false,
-      quadraMar: false,
       areaLazer: false,
       homeClub: false
     }
@@ -310,7 +306,6 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
             { key: 'mobiliado', label: 'Mobiliado' },
             { key: 'frenteMar', label: 'Frente Mar' },
             { key: 'vistaMar', label: 'Vista Mar' },
-            { key: 'quadraMar', label: 'Quadra Mar' },
             { key: 'areaLazer', label: 'Área de Lazer' },
             { key: 'homeClub', label: 'Home Club completo' }
           ].map(({ key, label }) => (
