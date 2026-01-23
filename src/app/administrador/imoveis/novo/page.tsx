@@ -179,8 +179,10 @@ export default function NovoImovelPage() {
         selecaoNox: formData.selecaoNox,
         dataEntrega: formData.dataEntrega || undefined,
         coordenadas: undefined, // Pode ser adicionado depois
-        fotoPrincipalIndex: 0, // Sempre 0, pois ordenamos assim
-      }
+      } as any
+      
+      // Adicionar fotoPrincipalIndex (sempre 0, pois ordenamos assim)
+      imovelData.fotoPrincipalIndex = 0
 
       // Preparar fotos: ordenar (principal primeiro, depois menores, depois resto)
       const fotosOrdenadas: File[] = []
