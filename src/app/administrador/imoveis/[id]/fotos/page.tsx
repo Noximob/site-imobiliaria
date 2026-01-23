@@ -341,37 +341,60 @@ export default function EditarFotosImovelDWV() {
                 <p className="text-sm text-gray-600 mb-4">
                   Como aparecerá na página de detalhes do imóvel
                 </p>
-                <div className="grid grid-cols-2 gap-2 max-w-2xl">
-                  {/* Foto Principal */}
-                  {fotoPrincipal && (
-                    <div className="row-span-2 aspect-square rounded-lg overflow-hidden border-2 border-purple-300">
+                <div 
+                  className="grid grid-cols-2 gap-1.5 p-1.5 bg-gray-50 rounded-lg"
+                  style={{ minHeight: '70vh', height: '70vh', maxHeight: '70vh' }}
+                >
+                  {/* Foto Principal - Coluna Esquerda */}
+                  {fotoPrincipal ? (
+                    <div className="relative w-full h-full rounded-lg overflow-hidden">
                       <img
                         src={fotoPrincipal}
                         alt="Principal"
                         className="w-full h-full object-cover"
+                        style={{ objectFit: 'cover', objectPosition: 'center' }}
                       />
-                      <div className="absolute bottom-2 left-2 bg-purple-600 text-white text-xs font-semibold px-2 py-1 rounded">
-                        Principal
-                      </div>
+                    </div>
+                  ) : (
+                    <div className="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center">
+                      <span className="text-gray-400 text-sm">Selecione foto principal</span>
                     </div>
                   )}
-                  {/* Fotos Menores */}
-                  <div className="grid grid-cols-2 gap-2">
-                    {fotosMenores.slice(0, 4).map((foto, index) => (
-                      <div
-                        key={index}
-                        className="aspect-square rounded-lg overflow-hidden border-2 border-blue-300 relative"
-                      >
-                        <img
-                          src={foto}
-                          alt={`Menor ${index + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute bottom-1 left-1 bg-blue-600 text-white text-xs font-semibold px-1.5 py-0.5 rounded">
-                          {index + 1}
+                  
+                  {/* Fotos Menores - Coluna Direita em Grid 2x2 */}
+                  <div 
+                    className="grid grid-cols-2 grid-rows-2 gap-1.5"
+                    style={{ 
+                      height: '100%',
+                      maxHeight: '100%',
+                      display: 'grid',
+                      gridTemplateRows: 'calc(50% - 0.375rem) calc(50% - 0.375rem)',
+                      gridTemplateColumns: 'calc(50% - 0.375rem) calc(50% - 0.375rem)'
+                    }}
+                  >
+                    {[0, 1, 2, 3].map((index) => {
+                      const foto = fotosMenores[index]
+                      return foto ? (
+                        <div
+                          key={index}
+                          className="relative w-full h-full rounded-lg overflow-hidden"
+                          style={{ height: '100%', width: '100%', overflow: 'hidden', position: 'relative' }}
+                        >
+                          <img
+                            src={foto}
+                            alt={`Menor ${index + 1}`}
+                            className="w-full h-full object-cover"
+                            style={{ objectFit: 'cover', objectPosition: 'center' }}
+                          />
                         </div>
-                      </div>
-                    ))}
+                      ) : (
+                        <div
+                          key={index}
+                          className="w-full h-full bg-gray-200 rounded-lg"
+                          style={{ minHeight: 0 }}
+                        />
+                      )
+                    })}
                   </div>
                 </div>
               </div>
