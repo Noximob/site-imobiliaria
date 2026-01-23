@@ -337,11 +337,16 @@ export async function PUT(request: NextRequest) {
     }
     
     // Atualizar imóvel - garantir que selecaoNox seja sempre boolean true/false
+    // Preservar campos de seleção de fotos DWV se não vierem no update
     imoveis[index] = {
-      ...imoveis[index],
-      ...imovel,
+      ...imoveis[index], // Manter dados existentes primeiro
+      ...imovel, // Sobrescrever com dados atualizados
+      id, // Garantir que o ID não mude
       fotoPrincipalIndex: imovel.fotoPrincipalIndex ?? imoveis[index].fotoPrincipalIndex ?? 0,
       selecaoNox: selecaoNoxValue, // Sempre boolean true/false
+      // Preservar seleções de fotos DWV se não vierem no update, senão usar as novas
+      fotoPrincipalDWV: imovel.fotoPrincipalDWV !== undefined ? imovel.fotoPrincipalDWV : (imoveis[index].fotoPrincipalDWV !== undefined ? imoveis[index].fotoPrincipalDWV : undefined),
+      fotosMenoresDWV: imovel.fotosMenoresDWV !== undefined ? imovel.fotosMenoresDWV : (imoveis[index].fotosMenoresDWV !== undefined ? imoveis[index].fotosMenoresDWV : undefined),
       updatedAt: new Date().toISOString(),
     }
 
