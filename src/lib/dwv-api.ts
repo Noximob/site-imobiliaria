@@ -422,206 +422,60 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
   collectTags(building?.features)
   collectTags(thirdParty?.features)
   
-  // 2. Extrair texto completo do descritivo
-  const textoDescricao = extractDescriptionText(building, dwvImovel)
-  
-  // Debug: log do texto extraído (apenas primeiros 200 caracteres)
-  if (textoDescricao.length > 0) {
-    console.log(`📝 Texto extraído (primeiros 200 chars): ${textoDescricao.substring(0, 200)}`)
-  }
-  
-  // 3. Mapear palavras-chave para tags do site
-  // Ordem importa: termos mais específicos primeiro
-  // SOLUÇÃO SIMPLES: Buscar palavras-chave separadas também (ex: "frente" + "mar")
-  const keywordMap: Array<{ keywords: string[], tag: string, palavrasSeparadas?: string[] }> = [
-    // Frente Mar (mais específico primeiro)
-    { 
-      keywords: ['frente ao mar', 'frente mar', 'frente do mar', 'beira mar', 'beira-mar', 'frentemar', 'frente mar'], 
-      tag: 'Frente Mar',
-      palavrasSeparadas: ['frente', 'mar'] // Buscar "frente" E "mar" próximos (até 50 caracteres de distância)
-    },
-    
-    // Vista Mar
-    { 
-      keywords: ['vista para o mar', 'vista mar', 'vista do mar', 'vista ao mar', 'vista para mar', 'vistamar'], 
-      tag: 'Vista Mar',
-      palavrasSeparadas: ['vista', 'mar']
-    },
-    
-    // Mobiliado
-    { keywords: ['mobiliado', 'mobiliada', 'mobília', 'mobilia', 'totalmente mobiliado', 'completo mobiliado'], tag: 'Mobiliado' },
-    
-    // Área de Lazer (unificado com Home Club)
-    { keywords: ['área de lazer', 'area de lazer', 'área lazer', 'area lazer', 'lazer completo', 'espaço de lazer', 'espaco de lazer', 'home club completo', 'home club', 'homeclub', 'clube completo', 'clube'], tag: 'Área de Lazer' },
-  ]
-  
-  // 4. Buscar palavras-chave no texto do descritivo
-  keywordMap.forEach(({ keywords, tag, palavrasSeparadas }) => {
-    let encontrou = false
-    
-    // Primeiro: buscar keywords completas (já normalizadas)
-    encontrou = keywords.some(keyword => {
-      const keywordNormalizada = keyword.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      
-      // Para palavras únicas como "mobiliado", usar word boundaries para evitar falsos positivos
-      // Ex: "não mobiliado" não deve ser detectado como "Mobiliado"
-      let encontrouKeyword = false
-      if (keywordNormalizada.split(/\s+/).length === 1) {
-        // Palavra única: usar word boundaries
-        const regex = new RegExp(`\\b${keywordNormalizada.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i')
-        encontrouKeyword = regex.test(textoDescricao)
-      } else {
-        // Frase completa: usar includes normal
-        encontrouKeyword = textoDescricao.includes(keywordNormalizada)
-      }
-      
-      if (encontrouKeyword) {
-        console.log(`✅ Tag encontrada: "${tag}" via keyword completa "${keyword}"`)
-      }
-      
-      return encontrouKeyword
-    })
-    
-    // Se não encontrou com keywords completas, tentar palavras separadas
-    if (!encontrou && palavrasSeparadas && palavrasSeparadas.length >= 2) {
-      const todasPalavrasPresentes = palavrasSeparadas.every(palavra => {
-        const palavraNormalizada = palavra.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-        return textoDescricao.includes(palavraNormalizada)
-      })
-      
-      if (todasPalavrasPresentes) {
-        // Verificar se estão próximas (dentro de 50 caracteres)
-        const indices = palavrasSeparadas.map(palavra => {
-          const palavraNormalizada = palavra.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-          return textoDescricao.indexOf(palavraNormalizada)
-        }).filter(idx => idx !== -1).sort((a, b) => a - b)
-        
-        if (indices.length === palavrasSeparadas.length) {
-          const distancia = indices[indices.length - 1] - indices[0]
-          if (distancia <= 50) { // Palavras dentro de 50 caracteres
-            encontrou = true
-            console.log(`✅ Tag encontrada: "${tag}" via palavras separadas próximas: ${palavrasSeparadas.join(' + ')}`)
-          }
-        }
-      }
-    }
-    
-    // Última tentativa: buscar a tag diretamente no texto normalizado
-    // Ex: "Frente Mar" no título -> normalizado para "frente mar" -> deve encontrar
-    if (!encontrou) {
-      const tagNormalizada = tag.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      // Buscar a tag completa como string (ex: "frente mar" no texto)
-      // Para palavras únicas como "Mobiliado", usar word boundaries
-      const palavrasTagNormalizada = tagNormalizada.split(/\s+/)
-      let encontrouTag = false
-      
-      if (palavrasTagNormalizada.length === 1) {
-        // Palavra única: usar word boundaries
-        const regex = new RegExp(`\\b${tagNormalizada.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i')
-        encontrouTag = regex.test(textoDescricao)
-      } else {
-        // Frase: usar includes normal
-        encontrouTag = textoDescricao.includes(tagNormalizada)
-      }
-      
-      if (encontrouTag) {
-        encontrou = true
-        console.log(`✅ Tag encontrada: "${tag}" via busca direta da tag normalizada no texto`)
-      } else {
-        // Se não encontrou a tag completa, tentar palavras separadas da tag
-        const palavrasTag = tagNormalizada.split(/\s+/).filter(p => p.length > 0)
-        if (palavrasTag.length >= 2) {
-          const todasPalavrasTag = palavrasTag.every(palavra => textoDescricao.includes(palavra))
-          if (todasPalavrasTag) {
-            // Verificar se estão próximas (até 20 caracteres)
-            const indicesTag = palavrasTag.map(p => textoDescricao.indexOf(p)).filter(idx => idx !== -1).sort((a, b) => a - b)
-            if (indicesTag.length === palavrasTag.length) {
-              const distanciaTag = indicesTag[indicesTag.length - 1] - indicesTag[0]
-              if (distanciaTag <= 20) { // Palavras da tag dentro de 20 caracteres
-                encontrou = true
-                console.log(`✅ Tag encontrada: "${tag}" via palavras da tag próximas no texto`)
-              }
-            }
-          }
-        }
-      }
-    }
-    
-    if (encontrou && !tags.includes(tag)) {
-      tags.push(tag)
-      console.log(`🏷️ Tag adicionada: "${tag}"`)
-    }
-  })
-  
-  // Debug: log final das tags encontradas
-  if (tags.length > 0) {
-    console.log(`📋 Tags finais extraídas: ${tags.join(', ')}`)
-  } else {
-    console.log(`⚠️ Nenhuma tag encontrada no descritivo`)
-  }
-  
-  // 5. Processar tags das features (se existirem)
+  // 2. Processar características das features (3ª parte do DWV)
+  // IMPORTANTE: Os filtros de comodidades devem ser detectados APENAS nas características (features)
   const normalizedTags = allTags.map(t =>
     t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim()
   )
   
+  // Mapear características das features para tags de filtro (match exato)
   const tagMap: { [key: string]: string } = {
     'frente ao mar': 'Frente Mar',
     'frente mar': 'Frente Mar',
+    'frente-mar': 'Frente Mar',
+    'beira mar': 'Frente Mar',
+    'beira-mar': 'Frente Mar',
     'vista para o mar': 'Vista Mar',
     'vista mar': 'Vista Mar',
     'vista do mar': 'Vista Mar',
-    // REMOVIDO: 'mobiliada' e 'mobiliado' - não detectar nas features
-    // Mobiliado só deve ser detectado na descrição do imóvel, não nas características do empreendimento
+    'vista ao mar': 'Vista Mar',
+    'mobiliado': 'Mobiliado',
+    'mobiliada': 'Mobiliado',
     'area de lazer': 'Área de Lazer',
     'area lazer': 'Área de Lazer',
-    'lazer': 'Área de Lazer',
-    'home club completo': 'Home Club completo',
-    'home club': 'Home Club completo',
-    'clube': 'Home Club completo',
+    'área de lazer': 'Área de Lazer',
+    'área lazer': 'Área de Lazer',
+    'home club completo': 'Área de Lazer',
+    'home club': 'Área de Lazer',
+    'homeclub': 'Área de Lazer',
+    'clube completo': 'Área de Lazer',
   }
   
+  // 3. Processar características das features para filtros (match exato)
   normalizedTags.forEach(tag => {
-    // Match exato primeiro
+    // Match exato primeiro - se a característica for exatamente uma das chaves do tagMap
     if (tagMap[tag] && !tags.includes(tagMap[tag])) {
       tags.push(tagMap[tag])
-      return
     }
-    
-    // Match mais restritivo: usar word boundaries para evitar falsos positivos
-    // Ex: "não mobiliado" não deve ser detectado como "Mobiliado"
-    Object.keys(tagMap).forEach(key => {
-      // Criar regex com word boundaries para match exato da palavra
-      const regex = new RegExp(`\\b${key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i')
-      if (regex.test(tag) && !tags.includes(tagMap[key])) {
-        tags.push(tagMap[key])
-      }
-    })
   })
   
-  // 6. Adicionar TODAS as features que não foram mapeadas (características completas)
-  // Essas são as características que aparecem na última seção do DWV e compõem a descrição completa
-  // Não importa se são 1 palavra, 2 palavras ou mais - todas devem aparecer
+  // 4. Adicionar TODAS as características das features para exibição
+  // Essas são as características que aparecem na 3ª parte do DWV e compõem a descrição completa
   normalizedTags.forEach(tag => {
-    // Verificar se já foi adicionada via tagMap
+    // Verificar se já foi adicionada como tag de filtro
     const jaFoiAdicionada = tags.some(t => 
       t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') === tag
     )
     
-    if (!jaFoiAdicionada) {
-      // Adicionar todas as características, exceto "mobiliado" (para evitar falsos positivos)
-      const temMobiliado = tag.includes('mobiliado') || tag.includes('mobiliada')
+    if (!jaFoiAdicionada && tag.trim().length > 0) {
+      // Capitalizar primeira letra de cada palavra
+      const palavras = tag.trim().split(/\s+/).filter(p => p.length > 0)
+      const tagFormatada = palavras.map(p => 
+        p.charAt(0).toUpperCase() + p.slice(1).toLowerCase()
+      ).join(' ')
       
-      if (!temMobiliado && tag.trim().length > 0) {
-        // Capitalizar primeira letra de cada palavra
-        const palavras = tag.trim().split(/\s+/).filter(p => p.length > 0)
-        const tagFormatada = palavras.map(p => 
-          p.charAt(0).toUpperCase() + p.slice(1).toLowerCase()
-        ).join(' ')
-        
-        if (!tags.includes(tagFormatada)) {
-          tags.push(tagFormatada)
-        }
+      if (!tags.includes(tagFormatada)) {
+        tags.push(tagFormatada)
       }
     }
   })
