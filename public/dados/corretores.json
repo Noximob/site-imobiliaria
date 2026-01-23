@@ -38,6 +38,19 @@
       "id": "1768502033197",
       "createdAt": "2026-01-15T18:33:53.197Z",
       "updatedAt": "2026-01-23T18:02:24.974Z"
+    },
+    {
+      "nome": "Lucas Ribas",
+      "cargo": "Corretor(a) de imóveis",
+      "creci": "57305",
+      "telefone": "47 997308538",
+      "instagram": "@lucasriibas_",
+      "email": "corretorlucasribas@gmail.com",
+      "foto": "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imagens/corretores/corretor-1769191405871.jpg",
+      "ativo": true,
+      "id": "1769191471746",
+      "createdAt": "2026-01-23T18:04:31.746Z",
+      "updatedAt": "2026-01-23T18:04:31.746Z"
     }
   ]
 }
