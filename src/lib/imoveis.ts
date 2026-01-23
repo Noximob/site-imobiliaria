@@ -231,32 +231,33 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
         return false;
       }
       
-      // Filtro por comodidades (buscar nas tags/características de forma flexível)
-      // O usuário escreve nas características do DWV, então buscamos de forma case-insensitive
-      const tags = imovel.tags || []
-      
-      // Função auxiliar para verificar se uma tag contém a palavra-chave (case-insensitive)
-      const temCaracteristica = (palavraChave: string): boolean => {
-        const palavraNormalizada = palavraChave.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-        return tags.some(tag => {
-          const tagNormalizada = tag.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-          return tagNormalizada.includes(palavraNormalizada) || tagNormalizada === palavraNormalizada
-        })
+      // Filtro por comodidades (buscar nas características do DWV)
+      // Importante: aqui é match EXATO do item para evitar falso positivo
+      // Ex.: "Hall de entrada decorado e mobiliado" NÃO deve marcar como "Mobiliado".
+      // Então, para filtrar "Mobiliado", precisa existir um item "Mobiliado" nas características.
+      const caracteristicasDWV = imovel.tags || []
+
+      const normalizar = (s: string) =>
+        s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim()
+
+      const temCaracteristicaExata = (opcoes: string[]): boolean => {
+        const opcoesNorm = opcoes.map(normalizar)
+        return caracteristicasDWV.some(tag => opcoesNorm.includes(normalizar(tag)))
       }
-      
-      if (filtros.frenteMar && !temCaracteristica('frente mar')) {
+
+      if (filtros.frenteMar && !temCaracteristicaExata(['Frente Mar', 'Frente-mar', 'Frente ao mar', 'Beira mar', 'Beira-mar'])) {
         return false;
       }
       
-      if (filtros.mobiliado && !temCaracteristica('mobiliado')) {
+      if (filtros.mobiliado && !temCaracteristicaExata(['Mobiliado', 'Mobiliada'])) {
         return false;
       }
       
-      if (filtros.vistaMar && !temCaracteristica('vista mar')) {
+      if (filtros.vistaMar && !temCaracteristicaExata(['Vista Mar', 'Vista para o mar', 'Vista do mar', 'Vista ao mar'])) {
         return false;
       }
       
-      if (filtros.areaLazer && !temCaracteristica('área de lazer') && !temCaracteristica('area de lazer')) {
+      if (filtros.areaLazer && !temCaracteristicaExata(['Área de Lazer', 'Area de lazer', 'Home club', 'Home Club', 'Homeclub', 'Clube completo'])) {
         return false;
       }
       
