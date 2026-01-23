@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import { ArrowLeft, Upload, X, Loader2, Image as ImageIcon, Trash2 } from 'lucide-react'
+import { ArrowLeft, Upload, X, Loader2, Image as ImageIcon, Check } from 'lucide-react'
 import Link from 'next/link'
 import { updateImovelWithFotos } from '@/lib/imoveis-github'
 import { generateSlug } from '@/lib/imoveis'
@@ -35,12 +35,7 @@ export default function EditarImovelPage() {
     vagas: '',
     area: '',
     suite: '',
-    frenteMar: false,
-    mobiliado: false,
-    vistaMar: false,
-    areaLazer: false,
     whatsapp: '(47) 99753-0113',
-    corretor: '',
     email: '',
     publicado: true,
     selecaoNox: false,
@@ -48,13 +43,17 @@ export default function EditarImovelPage() {
     caracteristicas: '', // Campo de texto para características (tags)
   })
 
-  // Fotos existentes e novas
+  // Fotos - sistema como DWV: combinar existentes (URLs) e novas (Files)
   const [fotosExistentes, setFotosExistentes] = useState<string[]>([])
-  const [fotoPrincipalIndex, setFotoPrincipalIndex] = useState(0)
-  const [fotoPrincipalFile, setFotoPrincipalFile] = useState<File | null>(null)
-  const [fotosSecundariasFiles, setFotosSecundariasFiles] = useState<File[]>([])
-  const [previewPrincipal, setPreviewPrincipal] = useState<string | null>(null)
-  const [previewSecundarias, setPreviewSecundarias] = useState<string[]>([])
+  const [novasFotos, setNovasFotos] = useState<{ file: File; preview: string }[]>([])
+  const [fotoPrincipalIndex, setFotoPrincipalIndex] = useState<number | null>(null)
+  const [fotosMenoresIndices, setFotosMenoresIndices] = useState<number[]>([])
+  
+  // Helper para obter todas as fotos (existentes + novas)
+  const todasFotos = [
+    ...fotosExistentes.map(url => ({ type: 'existente' as const, url, preview: url })),
+    ...novasFotos.map(foto => ({ type: 'nova' as const, file: foto.file, preview: foto.preview }))
+  ]
 
   useEffect(() => {
     const loadImovel = async () => {
@@ -96,12 +95,7 @@ export default function EditarImovelPage() {
           vagas: imovel.caracteristicas?.vagas?.toString() || '',
           area: imovel.caracteristicas?.area?.toString() || '',
           suite: imovel.caracteristicas?.suite?.toString() || '',
-          frenteMar: imovel.tags?.includes('Frente Mar') || false,
-          mobiliado: imovel.tags?.includes('Mobiliado') || false,
-          vistaMar: imovel.tags?.includes('Vista Mar') || false,
-          areaLazer: imovel.tags?.includes('Área de Lazer') || false,
           whatsapp: imovel.contato?.whatsapp || '(47) 99753-0113',
-          corretor: imovel.contato?.corretor || '',
           email: imovel.contato?.email || '',
           publicado: imovel.publicado !== false,
           selecaoNox: imovel.selecaoNox || false,
@@ -112,10 +106,21 @@ export default function EditarImovelPage() {
         })
 
         // Carregar fotos existentes
-        setFotosExistentes(imovel.fotos || [])
-        setFotoPrincipalIndex(imovel.fotoPrincipalIndex || 0)
-        if (imovel.fotos && imovel.fotos.length > 0) {
-          setPreviewPrincipal(imovel.fotos[imovel.fotoPrincipalIndex || 0])
+        const fotos = imovel.fotos || []
+        setFotosExistentes(fotos)
+        const principalIndex = imovel.fotoPrincipalIndex || 0
+        setFotoPrincipalIndex(principalIndex < fotos.length ? principalIndex : null)
+        
+        // Carregar fotos menores se existirem (do DWV ou padrão)
+        // Por padrão, usar as 4 seguintes à principal
+        if (fotos.length > 1) {
+          const menores: number[] = []
+          for (let i = 1; i < Math.min(5, fotos.length); i++) {
+            if (i !== principalIndex) {
+              menores.push(i)
+            }
+          }
+          setFotosMenoresIndices(menores.slice(0, 4))
         }
       } catch (error: any) {
         setError(error.message)
@@ -135,64 +140,86 @@ export default function EditarImovelPage() {
     }))
   }
 
-  const handleFotoPrincipalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      setFotoPrincipalFile(file)
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setPreviewPrincipal(reader.result as string)
-      }
-      reader.readAsDataURL(file)
-    }
-  }
-
-  const handleFotosSecundariasChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAdicionarFotos = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || [])
-    const newFiles = [...fotosSecundariasFiles, ...files.slice(0, 4 - fotosSecundariasFiles.length)]
-    setFotosSecundariasFiles(newFiles)
-    
-    // Criar previews
-    const newPreviews: string[] = []
-    newFiles.forEach(file => {
+    if (files.length === 0) return
+
+    files.forEach(file => {
       const reader = new FileReader()
       reader.onloadend = () => {
-        newPreviews.push(reader.result as string)
-        if (newPreviews.length === newFiles.length) {
-          setPreviewSecundarias(newPreviews)
+        const preview = reader.result as string
+        setNovasFotos(prev => [...prev, { file, preview }])
+        
+        // Se for a primeira foto e não houver principal, definir como principal
+        const totalFotos = fotosExistentes.length + novasFotos.length
+        if (totalFotos === 1 && fotoPrincipalIndex === null) {
+          setFotoPrincipalIndex(fotosExistentes.length) // Primeira nova foto
         }
       }
       reader.readAsDataURL(file)
     })
   }
 
-  const removeFotoSecundaria = (index: number) => {
-    const newFiles = fotosSecundariasFiles.filter((_, i) => i !== index)
-    setFotosSecundariasFiles(newFiles)
-    const newPreviews = previewSecundarias.filter((_, i) => i !== index)
-    setPreviewSecundarias(newPreviews)
-  }
-
-  const removerFotoExistente = (index: number) => {
-    const novasFotos = fotosExistentes.filter((_, i) => i !== index)
-    setFotosExistentes(novasFotos)
-    
-    // Ajustar índice da foto principal se necessário
-    if (fotoPrincipalIndex === index) {
-      setFotoPrincipalIndex(0)
-      if (novasFotos.length > 0) {
-        setPreviewPrincipal(novasFotos[0])
-      } else {
-        setPreviewPrincipal(null)
+  const removerFoto = (index: number) => {
+    if (index < fotosExistentes.length) {
+      // Remover foto existente
+      const novasFotosExistentes = fotosExistentes.filter((_, i) => i !== index)
+      setFotosExistentes(novasFotosExistentes)
+      
+      // Ajustar índices
+      if (fotoPrincipalIndex === index) {
+        setFotoPrincipalIndex(null)
+      } else if (fotoPrincipalIndex !== null && fotoPrincipalIndex > index) {
+        setFotoPrincipalIndex(fotoPrincipalIndex - 1)
       }
-    } else if (fotoPrincipalIndex > index) {
-      setFotoPrincipalIndex(fotoPrincipalIndex - 1)
+      
+      setFotosMenoresIndices(prev => 
+        prev
+          .filter(i => i !== index)
+          .map(i => i > index ? i - 1 : i)
+      )
+    } else {
+      // Remover nova foto
+      const indiceNova = index - fotosExistentes.length
+      setNovasFotos(prev => prev.filter((_, i) => i !== indiceNova))
+      
+      // Ajustar índices
+      const indiceReal = index
+      if (fotoPrincipalIndex === indiceReal) {
+        setFotoPrincipalIndex(null)
+      } else if (fotoPrincipalIndex !== null && fotoPrincipalIndex > indiceReal) {
+        setFotoPrincipalIndex(fotoPrincipalIndex - 1)
+      }
+      
+      setFotosMenoresIndices(prev => 
+        prev
+          .filter(i => i !== indiceReal)
+          .map(i => i > indiceReal ? i - 1 : i)
+      )
     }
   }
 
   const selecionarFotoPrincipal = (index: number) => {
     setFotoPrincipalIndex(index)
-    setPreviewPrincipal(fotosExistentes[index])
+    // Remover das menores se estiver lá
+    setFotosMenoresIndices(prev => prev.filter(i => i !== index))
+  }
+
+  const toggleFotoMenor = (index: number) => {
+    // Não permitir selecionar a foto principal como menor
+    if (index === fotoPrincipalIndex) return
+
+    if (fotosMenoresIndices.includes(index)) {
+      // Remover
+      setFotosMenoresIndices(prev => prev.filter(i => i !== index))
+    } else {
+      // Adicionar (máximo 4)
+      if (fotosMenoresIndices.length < 4) {
+        setFotosMenoresIndices(prev => [...prev, index])
+      } else {
+        setError('Máximo de 4 fotos menores permitidas')
+      }
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -205,20 +232,26 @@ export default function EditarImovelPage() {
         throw new Error('Título é obrigatório')
       }
 
-      // Processar características (tags)
-      const tagsComodidades = [
-        ...(formData.frenteMar ? ['Frente Mar'] : []),
-        ...(formData.mobiliado ? ['Mobiliado'] : []),
-        ...(formData.vistaMar ? ['Vista Mar'] : []),
-        ...(formData.areaLazer ? ['Área de Lazer'] : []),
-      ]
+      const todasFotosCount = fotosExistentes.length + novasFotos.length
+      if (todasFotosCount === 0) {
+        throw new Error('Adicione pelo menos uma foto')
+      }
 
+      if (fotoPrincipalIndex === null) {
+        throw new Error('Selecione uma foto principal')
+      }
+
+      if (fotosMenoresIndices.length === 0) {
+        throw new Error('Selecione pelo menos 1 foto menor')
+      }
+
+      // Processar características (tags) - o sistema detecta automaticamente comodidades
       const tagsCaracteristicas = formData.caracteristicas
         .split(',')
         .map(tag => tag.trim())
         .filter(tag => tag.length > 0)
 
-      const todasTags = [...tagsComodidades, ...tagsCaracteristicas]
+      const todasTags = tagsCaracteristicas
 
       // Preparar dados do imóvel
       const imovelData = {
@@ -241,10 +274,10 @@ export default function EditarImovelPage() {
           vagas: parseInt(formData.vagas) || 0,
           area: parseFloat(formData.area.replace(',', '.')) || 0,
           suite: parseInt(formData.suite) || 0,
-          frenteMar: formData.frenteMar,
-          piscina: formData.areaLazer,
+          frenteMar: false,
+          piscina: false,
           churrasqueira: false,
-          academia: formData.areaLazer,
+          academia: false,
           portaria: false,
           elevador: false,
           varanda: false,
@@ -253,7 +286,7 @@ export default function EditarImovelPage() {
         tags: todasTags,
         contato: {
           whatsapp: formData.whatsapp.trim(),
-          corretor: formData.corretor.trim() || 'NOX Imóveis',
+          corretor: 'NOX Imóveis',
           email: formData.email.trim() || undefined,
         },
         publicado: formData.publicado,
@@ -263,74 +296,59 @@ export default function EditarImovelPage() {
       }
 
       // Preparar lista completa de fotos ordenadas
-      // 1. Reordenar fotos existentes: foto principal primeiro
-      let fotosOrdenadas = [...fotosExistentes]
-      if (fotosOrdenadas.length > 0 && fotoPrincipalIndex > 0 && fotoPrincipalIndex < fotosOrdenadas.length) {
-        const fotoPrincipal = fotosOrdenadas[fotoPrincipalIndex]
-        fotosOrdenadas.splice(fotoPrincipalIndex, 1)
-        fotosOrdenadas.unshift(fotoPrincipal)
-        imovelData.fotoPrincipalIndex = 0
-      }
-
-      // Preparar novas fotos para upload
-      const novasFotos: File[] = []
-      if (fotoPrincipalFile) {
-        novasFotos.push(fotoPrincipalFile) // Nova foto principal vai primeiro
-      }
-      novasFotos.push(...fotosSecundariasFiles)
-
-      // Se houver novas fotos, fazer upload
-      // A API vai adicionar as novas URLs ao final
-      // Depois faremos um segundo update para reordenar (nova principal primeiro)
-      if (novasFotos.length > 0) {
-        // Primeiro: fazer upload das novas fotos
-        await updateImovelWithFotos(
-          id,
-          {
-            ...imovelData,
-            fotos: fotosOrdenadas, // Fotos existentes ordenadas
-          },
-          novasFotos
-        )
-        
-        // Segundo: buscar imóvel atualizado e reordenar
-        const response = await fetch('/api/imoveis-github', { cache: 'no-store' })
-        const imoveis = await response.json()
-        const imovelAtualizado = imoveis.find((i: any) => i.id === id)
-        
-        if (imovelAtualizado) {
-          const todasFotos = imovelAtualizado.fotos || []
-          let fotosFinais = [...todasFotos]
-          
-          // Se há nova foto principal, ela está no final (última das novas)
-          // Mover para o início
-          if (fotoPrincipalFile && todasFotos.length > fotosExistentes.length) {
-            const indiceNovaPrincipal = todasFotos.length - novasFotos.length // Primeira nova = principal
-            const novaPrincipal = todasFotos[indiceNovaPrincipal]
-            fotosFinais.splice(indiceNovaPrincipal, 1)
-            fotosFinais.unshift(novaPrincipal)
-            imovelData.fotoPrincipalIndex = 0
-          }
-          
-          // Atualizar com ordem final
-          await updateImovelWithFotos(
-            id,
-            {
-              ...imovelData,
-              fotos: fotosFinais,
-            }
-          )
+      // 1. Foto principal primeiro
+      // 2. Fotos menores
+      // 3. Resto das fotos
+      const fotosOrdenadas: string[] = []
+      const novasFotosFiles: File[] = []
+      
+      // Adicionar foto principal
+      if (fotoPrincipalIndex !== null) {
+        if (fotoPrincipalIndex < fotosExistentes.length) {
+          fotosOrdenadas.push(fotosExistentes[fotoPrincipalIndex])
+        } else {
+          const indiceNova = fotoPrincipalIndex - fotosExistentes.length
+          novasFotosFiles.push(novasFotos[indiceNova].file)
         }
-      } else {
-        // Apenas atualizar dados, mantendo fotos existentes ordenadas
-        await updateImovelWithFotos(
-          id,
-          {
-            ...imovelData,
-            fotos: fotosOrdenadas,
-          }
-        )
       }
+      
+      // Adicionar fotos menores
+      fotosMenoresIndices.forEach(index => {
+        if (index !== fotoPrincipalIndex) {
+          if (index < fotosExistentes.length) {
+            fotosOrdenadas.push(fotosExistentes[index])
+          } else {
+            const indiceNova = index - fotosExistentes.length
+            novasFotosFiles.push(novasFotos[indiceNova].file)
+          }
+        }
+      })
+      
+      // Adicionar resto das fotos (para o book)
+      const totalFotos = fotosExistentes.length + novasFotos.length
+      for (let index = 0; index < totalFotos; index++) {
+        if (index !== fotoPrincipalIndex && !fotosMenoresIndices.includes(index)) {
+          if (index < fotosExistentes.length) {
+            fotosOrdenadas.push(fotosExistentes[index])
+          } else {
+            const indiceNova = index - fotosExistentes.length
+            novasFotosFiles.push(novasFotos[indiceNova].file)
+          }
+        }
+      }
+
+      // Definir índice da foto principal (sempre 0, pois ordenamos assim)
+      imovelData.fotoPrincipalIndex = 0
+
+      // Atualizar imóvel
+      await updateImovelWithFotos(
+        id,
+        {
+          ...imovelData,
+          fotos: fotosOrdenadas, // Fotos existentes ordenadas
+        },
+        novasFotosFiles.length > 0 ? novasFotosFiles : undefined
+      )
 
       setSuccess(true)
       setTimeout(() => {
@@ -671,192 +689,161 @@ export default function EditarImovelPage() {
                 value={formData.caracteristicas}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="Ex: Varanda, Sacada, Piscina, Academia"
+                placeholder="Ex: Varanda, Sacada, Piscina, Academia, Frente Mar, Mobiliado"
               />
               <p className="text-xs text-gray-500 mt-1">
-                Adicione características adicionais separadas por vírgula. As comodidades (Frente Mar, Mobiliado, etc.) são marcadas abaixo.
+                Adicione características separadas por vírgula. O sistema detecta automaticamente comodidades como Frente Mar, Mobiliado, Vista Mar e Área de Lazer.
               </p>
-            </div>
-          </div>
-
-          {/* Comodidades */}
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Comodidades</h2>
-            <div className="grid grid-cols-2 gap-4">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  name="frenteMar"
-                  checked={formData.frenteMar}
-                  onChange={handleInputChange}
-                  className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
-                />
-                <span className="text-sm text-gray-700">Frente Mar</span>
-              </label>
-
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  name="vistaMar"
-                  checked={formData.vistaMar}
-                  onChange={handleInputChange}
-                  className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
-                />
-                <span className="text-sm text-gray-700">Vista Mar</span>
-              </label>
-
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  name="mobiliado"
-                  checked={formData.mobiliado}
-                  onChange={handleInputChange}
-                  className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
-                />
-                <span className="text-sm text-gray-700">Mobiliado</span>
-              </label>
-
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  name="areaLazer"
-                  checked={formData.areaLazer}
-                  onChange={handleInputChange}
-                  className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
-                />
-                <span className="text-sm text-gray-700">Área de Lazer / Home Club</span>
-              </label>
             </div>
           </div>
 
           {/* Fotos */}
           <div>
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Fotos</h2>
-            
-            {/* Fotos Existentes */}
-            {fotosExistentes.length > 0 && (
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Fotos Existentes
-                </label>
-                <div className="grid grid-cols-2 gap-4">
-                  {fotosExistentes.map((foto, index) => (
-                    <div key={index} className="relative group">
-                      <img
-                        src={foto}
-                        alt={`Foto ${index + 1}`}
-                        className={`w-full h-48 object-cover rounded-lg border-2 ${
-                          fotoPrincipalIndex === index ? 'border-purple-600' : 'border-gray-200'
-                        }`}
-                      />
-                      <div className="absolute top-2 right-2 flex gap-2">
-                        {fotoPrincipalIndex === index ? (
-                          <span className="bg-purple-600 text-white px-2 py-1 rounded text-xs font-medium">
+            <p className="text-sm text-gray-600 mb-4">
+              Adicione novas fotos ou gerencie as existentes. Selecione 1 principal e até 4 menores. As outras ficarão no book (galeria completa).
+            </p>
+
+            {/* Adicionar Novas Fotos */}
+            <div className="mb-6">
+              <label className="block border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-purple-400 transition-colors">
+                <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                <span className="text-sm text-gray-600 font-medium">
+                  Adicionar Novas Fotos ({novasFotos.length} novas)
+                </span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={handleAdicionarFotos}
+                  className="hidden"
+                />
+              </label>
+            </div>
+
+            {/* Galeria de Fotos */}
+            {(fotosExistentes.length > 0 || novasFotos.length > 0) && (
+              <div className="space-y-6">
+                {/* Foto Principal */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h3 className="text-sm font-semibold text-gray-900 mb-3">
+                    Foto Principal {fotoPrincipalIndex !== null && <span className="text-green-600">✓ Selecionada</span>}
+                  </h3>
+                  <p className="text-xs text-gray-600 mb-3">Clique em uma foto para definir como principal</p>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    {[
+                      ...fotosExistentes.map((url, i) => ({ index: i, preview: url, type: 'existente' as const })),
+                      ...novasFotos.map((foto, i) => ({ index: fotosExistentes.length + i, preview: foto.preview, type: 'nova' as const }))
+                    ].map(({ index, preview }) => (
+                      <div key={index} className="relative group">
+                        <button
+                          type="button"
+                          onClick={() => selecionarFotoPrincipal(index)}
+                          className={`w-full aspect-video rounded-lg overflow-hidden border-2 transition-all ${
+                            fotoPrincipalIndex === index
+                              ? 'border-purple-600 ring-4 ring-purple-200'
+                              : 'border-gray-300 hover:border-purple-400'
+                          }`}
+                        >
+                          <img
+                            src={preview}
+                            alt={`Foto ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                          {fotoPrincipalIndex === index && (
+                            <div className="absolute inset-0 bg-purple-600 bg-opacity-20 flex items-center justify-center">
+                              <div className="bg-purple-600 text-white rounded-full p-2">
+                                <Check className="w-5 h-5" />
+                              </div>
+                            </div>
+                          )}
+                        </button>
+                        {fotoPrincipalIndex === index && (
+                          <div className="absolute bottom-2 left-2 bg-purple-600 text-white text-xs font-semibold px-2 py-1 rounded">
                             Principal
-                          </span>
-                        ) : (
-                          <button
-                            type="button"
-                            onClick={() => selecionarFotoPrincipal(index)}
-                            className="bg-blue-600 text-white px-2 py-1 rounded text-xs font-medium hover:bg-blue-700"
-                          >
-                            Definir Principal
-                          </button>
+                          </div>
                         )}
                         <button
                           type="button"
-                          onClick={() => removerFotoExistente(index)}
-                          className="bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+                          onClick={() => removerFoto(index)}
+                          className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
                         >
-                          <Trash2 className="w-4 h-4" />
+                          <X className="w-4 h-4" />
                         </button>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                </div>
+
+                {/* Fotos Menores */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h3 className="text-sm font-semibold text-gray-900 mb-3">
+                    Fotos Menores ({fotosMenoresIndices.length}/4)
+                    {fotosMenoresIndices.length === 4 && <span className="text-green-600"> ✓ Completo</span>}
+                  </h3>
+                  <p className="text-xs text-gray-600 mb-3">Clique nas fotos para selecionar até 4 menores (aparecem em grid 2x2)</p>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    {[
+                      ...fotosExistentes.map((url, i) => ({ index: i, preview: url, type: 'existente' as const })),
+                      ...novasFotos.map((foto, i) => ({ index: fotosExistentes.length + i, preview: foto.preview, type: 'nova' as const }))
+                    ].map(({ index, preview }) => {
+                      const isPrincipal = index === fotoPrincipalIndex
+                      const isMenor = fotosMenoresIndices.includes(index)
+                      const podeSelecionar = !isPrincipal && (isMenor || fotosMenoresIndices.length < 4)
+
+                      return (
+                        <div key={index} className="relative group">
+                          <button
+                            type="button"
+                            onClick={() => toggleFotoMenor(index)}
+                            disabled={isPrincipal || (!isMenor && fotosMenoresIndices.length >= 4)}
+                            className={`w-full aspect-video rounded-lg overflow-hidden border-2 transition-all ${
+                              isPrincipal
+                                ? 'border-gray-200 opacity-50 cursor-not-allowed'
+                                : isMenor
+                                ? 'border-blue-600 ring-4 ring-blue-200'
+                                : fotosMenoresIndices.length >= 4
+                                ? 'border-gray-200 opacity-50 cursor-not-allowed'
+                                : 'border-gray-300 hover:border-blue-400'
+                            }`}
+                          >
+                            <img
+                              src={preview}
+                              alt={`Foto ${index + 1}`}
+                              className="w-full h-full object-cover"
+                            />
+                            {isPrincipal && (
+                              <div className="absolute inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+                                <span className="text-white text-xs font-semibold">Principal</span>
+                              </div>
+                            )}
+                            {isMenor && (
+                              <div className="absolute inset-0 bg-blue-600 bg-opacity-20 flex items-center justify-center">
+                                <div className="bg-blue-600 text-white rounded-full p-2">
+                                  <Check className="w-5 h-5" />
+                                </div>
+                              </div>
+                            )}
+                          </button>
+                          {isMenor && (
+                            <div className="absolute bottom-2 left-2 bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded">
+                              Menor {fotosMenoresIndices.indexOf(index) + 1}
+                            </div>
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => removerFoto(index)}
+                            className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
               </div>
             )}
-
-            {/* Nova Foto Principal */}
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Nova Foto Principal (opcional)
-              </label>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                {previewPrincipal && !fotosExistentes.includes(previewPrincipal) ? (
-                  <div className="relative inline-block">
-                    <img
-                      src={previewPrincipal}
-                      alt="Preview principal"
-                      className="max-w-full h-64 object-cover rounded-lg"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setFotoPrincipalFile(null)
-                        setPreviewPrincipal(fotosExistentes[fotoPrincipalIndex] || null)
-                      }}
-                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  </div>
-                ) : (
-                  <label className="cursor-pointer">
-                    <div className="flex flex-col items-center">
-                      <ImageIcon className="w-12 h-12 text-gray-400 mb-2" />
-                      <span className="text-sm text-gray-600">Clique para selecionar nova foto principal</span>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFotoPrincipalChange}
-                        className="hidden"
-                      />
-                    </div>
-                  </label>
-                )}
-              </div>
-            </div>
-
-            {/* Novas Fotos Secundárias */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Novas Fotos Secundárias (opcional, máximo 4)
-              </label>
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                {previewSecundarias.map((preview, index) => (
-                  <div key={index} className="relative">
-                    <img
-                      src={preview}
-                      alt={`Preview ${index + 1}`}
-                      className="w-full h-48 object-cover rounded-lg"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => removeFotoSecundaria(index)}
-                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  </div>
-                ))}
-              </div>
-              {fotosSecundariasFiles.length < 4 && (
-                <label className="block border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-purple-400 transition-colors">
-                  <Upload className="w-6 h-6 text-gray-400 mx-auto mb-2" />
-                  <span className="text-sm text-gray-600">
-                    Adicionar {fotosSecundariasFiles.length === 0 ? 'fotos' : 'mais fotos'} ({fotosSecundariasFiles.length}/4)
-                  </span>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    onChange={handleFotosSecundariasChange}
-                    className="hidden"
-                  />
-                </label>
-              )}
-            </div>
           </div>
 
           {/* Contato */}
@@ -877,33 +864,17 @@ export default function EditarImovelPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Corretor
-                  </label>
-                  <input
-                    type="text"
-                    name="corretor"
-                    value={formData.corretor}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    placeholder="NOX Imóveis"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  />
-                </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                />
               </div>
             </div>
           </div>
