@@ -571,8 +571,8 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
     'vista para o mar': 'Vista Mar',
     'vista mar': 'Vista Mar',
     'vista do mar': 'Vista Mar',
-    'mobiliada': 'Mobiliado',
-    'mobiliado': 'Mobiliado',
+    // REMOVIDO: 'mobiliada' e 'mobiliado' - não detectar nas features
+    // Mobiliado só deve ser detectado na descrição do imóvel, não nas características do empreendimento
     'area de lazer': 'Área de Lazer',
     'area lazer': 'Área de Lazer',
     'lazer': 'Área de Lazer',
@@ -599,7 +599,33 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
     })
   })
   
-  // 6. Filtrar tags para manter apenas características simples (1-2 palavras)
+  // 6. Adicionar todas as features que não foram mapeadas (características simples de 1-2 palavras)
+  // Essas são as características que aparecem na última seção do DWV
+  normalizedTags.forEach(tag => {
+    // Verificar se já foi adicionada via tagMap
+    const jaFoiAdicionada = tags.some(t => 
+      t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') === tag
+    )
+    
+    if (!jaFoiAdicionada) {
+      // Adicionar apenas se tiver 1-2 palavras e não for "mobiliado" (para evitar falsos positivos)
+      const palavras = tag.trim().split(/\s+/).filter(p => p.length > 0)
+      const temMobiliado = tag.includes('mobiliado') || tag.includes('mobiliada')
+      
+      if (palavras.length <= 2 && palavras.length > 0 && !temMobiliado) {
+        // Capitalizar primeira letra de cada palavra
+        const tagFormatada = palavras.map(p => 
+          p.charAt(0).toUpperCase() + p.slice(1).toLowerCase()
+        ).join(' ')
+        
+        if (!tags.includes(tagFormatada)) {
+          tags.push(tagFormatada)
+        }
+      }
+    }
+  })
+  
+  // 7. Filtrar tags para manter apenas características simples (1-2 palavras)
   // As características devem ser palavras ou 2 palavras no máximo
   const tagsFiltradas = tags.filter(tag => {
     const palavras = tag.trim().split(/\s+/).filter(p => p.length > 0)
