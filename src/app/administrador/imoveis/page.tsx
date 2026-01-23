@@ -344,9 +344,13 @@ export default function AdminImoveis() {
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-sm text-gray-500 italic">
-                            Sincronizado do DWV
-                          </span>
+                          <Link
+                            href={`/administrador/imoveis/${imovel.id}/fotos`}
+                            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-blue-300 rounded-lg hover:bg-blue-50 transition-colors"
+                          >
+                            <Edit className="w-4 h-4" />
+                            Editar Fotos
+                          </Link>
                         </div>
                       </div>
                     </div>
