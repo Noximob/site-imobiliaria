@@ -5971,5 +5971,54 @@
     "updatedAt": "2026-01-23T00:04:03.265Z",
     "publicado": true,
     "selecaoNox": false
+  },
+  {
+    "titulo": "kkkk",
+    "descricao": "kkkk",
+    "preco": 7777,
+    "tipo": "apartamento",
+    "status": "lancamento",
+    "endereco": {
+      "cidade": "penha",
+      "bairro": "7777",
+      "rua": "777",
+      "numero": "777",
+      "cep": "88385000",
+      "estado": "SC"
+    },
+    "caracteristicas": {
+      "quartos": 1,
+      "banheiros": 1,
+      "vagas": 1,
+      "area": 1515,
+      "suite": 1,
+      "frenteMar": true,
+      "piscina": false,
+      "churrasqueira": false,
+      "academia": false,
+      "portaria": false,
+      "elevador": false,
+      "varanda": false,
+      "sacada": false
+    },
+    "tags": [
+      "Frente Mar"
+    ],
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "corretor": "NOX Imóveis"
+    },
+    "publicado": true,
+    "selecaoNox": false,
+    "dataEntrega": "2026-01-30",
+    "id": "60406",
+    "slug": "kkkk",
+    "fotos": [
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/60406_0.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/60406_1.jpg"
+    ],
+    "fotoPrincipalIndex": 0,
+    "createdAt": "2026-01-23T00:32:41.995Z",
+    "updatedAt": "2026-01-23T00:32:41.995Z"
   }
 ]
