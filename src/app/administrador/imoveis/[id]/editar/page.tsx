@@ -1,14 +1,18 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { ArrowLeft, Upload, X, Loader2, Image as ImageIcon } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { useParams, useRouter } from 'next/navigation'
+import { ArrowLeft, Upload, X, Loader2, Image as ImageIcon, Trash2 } from 'lucide-react'
 import Link from 'next/link'
-import { createImovelWithFotos } from '@/lib/imoveis-github'
+import { updateImovelWithFotos } from '@/lib/imoveis-github'
 import { generateSlug } from '@/lib/imoveis'
 
-export default function NovoImovelPage() {
+export default function EditarImovelPage() {
+  const params = useParams()
   const router = useRouter()
+  const id = params.id as string
+  
+  const [isLoading, setIsLoading] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
@@ -44,11 +48,84 @@ export default function NovoImovelPage() {
     caracteristicas: '', // Campo de texto para características (tags)
   })
 
-  // Fotos
-  const [fotoPrincipal, setFotoPrincipal] = useState<File | null>(null)
-  const [fotosSecundarias, setFotosSecundarias] = useState<File[]>([])
+  // Fotos existentes e novas
+  const [fotosExistentes, setFotosExistentes] = useState<string[]>([])
+  const [fotoPrincipalIndex, setFotoPrincipalIndex] = useState(0)
+  const [fotoPrincipalFile, setFotoPrincipalFile] = useState<File | null>(null)
+  const [fotosSecundariasFiles, setFotosSecundariasFiles] = useState<File[]>([])
   const [previewPrincipal, setPreviewPrincipal] = useState<string | null>(null)
   const [previewSecundarias, setPreviewSecundarias] = useState<string[]>([])
+
+  useEffect(() => {
+    const loadImovel = async () => {
+      try {
+        const response = await fetch('/api/imoveis-github', {
+          cache: 'no-store'
+        })
+        
+        if (!response.ok) {
+          throw new Error('Erro ao buscar imóveis')
+        }
+
+        const imoveis = await response.json()
+        const imovel = imoveis.find((i: any) => i.id === id)
+        
+        if (!imovel) {
+          throw new Error('Imóvel não encontrado')
+        }
+
+        if (imovel.fonteDWV) {
+          throw new Error('Imóveis do DWV não podem ser editados aqui. Use a página de editar fotos.')
+        }
+
+        // Preencher formulário
+        setFormData({
+          titulo: imovel.titulo || '',
+          descricao: imovel.descricao || '',
+          preco: imovel.preco?.toString() || '',
+          tipo: imovel.tipo || 'apartamento',
+          status: imovel.status || 'lancamento',
+          cidade: imovel.endereco?.cidade || 'penha',
+          bairro: imovel.endereco?.bairro || '',
+          rua: imovel.endereco?.rua || '',
+          numero: imovel.endereco?.numero || '',
+          cep: imovel.endereco?.cep || '',
+          estado: imovel.endereco?.estado || 'SC',
+          quartos: imovel.caracteristicas?.quartos?.toString() || '',
+          banheiros: imovel.caracteristicas?.banheiros?.toString() || '',
+          vagas: imovel.caracteristicas?.vagas?.toString() || '',
+          area: imovel.caracteristicas?.area?.toString() || '',
+          suite: imovel.caracteristicas?.suite?.toString() || '',
+          frenteMar: imovel.tags?.includes('Frente Mar') || false,
+          mobiliado: imovel.tags?.includes('Mobiliado') || false,
+          vistaMar: imovel.tags?.includes('Vista Mar') || false,
+          areaLazer: imovel.tags?.includes('Área de Lazer') || false,
+          whatsapp: imovel.contato?.whatsapp || '(47) 99753-0113',
+          corretor: imovel.contato?.corretor || '',
+          email: imovel.contato?.email || '',
+          publicado: imovel.publicado !== false,
+          selecaoNox: imovel.selecaoNox || false,
+          dataEntrega: imovel.dataEntrega || '',
+          caracteristicas: imovel.tags?.filter((tag: string) => 
+            !['Frente Mar', 'Mobiliado', 'Vista Mar', 'Área de Lazer'].includes(tag)
+          ).join(', ') || '',
+        })
+
+        // Carregar fotos existentes
+        setFotosExistentes(imovel.fotos || [])
+        setFotoPrincipalIndex(imovel.fotoPrincipalIndex || 0)
+        if (imovel.fotos && imovel.fotos.length > 0) {
+          setPreviewPrincipal(imovel.fotos[imovel.fotoPrincipalIndex || 0])
+        }
+      } catch (error: any) {
+        setError(error.message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadImovel()
+  }, [id])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
@@ -61,7 +138,7 @@ export default function NovoImovelPage() {
   const handleFotoPrincipalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
-      setFotoPrincipal(file)
+      setFotoPrincipalFile(file)
       const reader = new FileReader()
       reader.onloadend = () => {
         setPreviewPrincipal(reader.result as string)
@@ -72,13 +149,8 @@ export default function NovoImovelPage() {
 
   const handleFotosSecundariasChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || [])
-    if (fotosSecundarias.length + files.length > 4) {
-      setError('Máximo de 4 fotos secundárias permitidas')
-      return
-    }
-    
-    const newFiles = [...fotosSecundarias, ...files.slice(0, 4 - fotosSecundarias.length)]
-    setFotosSecundarias(newFiles)
+    const newFiles = [...fotosSecundariasFiles, ...files.slice(0, 4 - fotosSecundariasFiles.length)]
+    setFotosSecundariasFiles(newFiles)
     
     // Criar previews
     const newPreviews: string[] = []
@@ -95,10 +167,32 @@ export default function NovoImovelPage() {
   }
 
   const removeFotoSecundaria = (index: number) => {
-    const newFiles = fotosSecundarias.filter((_, i) => i !== index)
-    setFotosSecundarias(newFiles)
+    const newFiles = fotosSecundariasFiles.filter((_, i) => i !== index)
+    setFotosSecundariasFiles(newFiles)
     const newPreviews = previewSecundarias.filter((_, i) => i !== index)
     setPreviewSecundarias(newPreviews)
+  }
+
+  const removerFotoExistente = (index: number) => {
+    const novasFotos = fotosExistentes.filter((_, i) => i !== index)
+    setFotosExistentes(novasFotos)
+    
+    // Ajustar índice da foto principal se necessário
+    if (fotoPrincipalIndex === index) {
+      setFotoPrincipalIndex(0)
+      if (novasFotos.length > 0) {
+        setPreviewPrincipal(novasFotos[0])
+      } else {
+        setPreviewPrincipal(null)
+      }
+    } else if (fotoPrincipalIndex > index) {
+      setFotoPrincipalIndex(fotoPrincipalIndex - 1)
+    }
+  }
+
+  const selecionarFotoPrincipal = (index: number) => {
+    setFotoPrincipalIndex(index)
+    setPreviewPrincipal(fotosExistentes[index])
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -107,15 +201,8 @@ export default function NovoImovelPage() {
     setIsSubmitting(true)
 
     try {
-      // Validar campos obrigatórios
       if (!formData.titulo.trim()) {
         throw new Error('Título é obrigatório')
-      }
-      if (!fotoPrincipal) {
-        throw new Error('Foto principal é obrigatória')
-      }
-      if (fotosSecundarias.length === 0) {
-        throw new Error('Pelo menos 1 foto secundária é obrigatória')
       }
 
       // Processar características (tags)
@@ -172,24 +259,96 @@ export default function NovoImovelPage() {
         publicado: formData.publicado,
         selecaoNox: formData.selecaoNox,
         dataEntrega: formData.dataEntrega || undefined,
-        coordenadas: undefined, // Pode ser adicionado depois
+        fotoPrincipalIndex: fotoPrincipalIndex,
       }
 
-      // Preparar fotos: principal primeiro, depois secundárias
-      const todasFotos = [fotoPrincipal, ...fotosSecundarias].filter(Boolean) as File[]
+      // Preparar lista completa de fotos ordenadas
+      // 1. Reordenar fotos existentes: foto principal primeiro
+      let fotosOrdenadas = [...fotosExistentes]
+      if (fotosOrdenadas.length > 0 && fotoPrincipalIndex > 0 && fotoPrincipalIndex < fotosOrdenadas.length) {
+        const fotoPrincipal = fotosOrdenadas[fotoPrincipalIndex]
+        fotosOrdenadas.splice(fotoPrincipalIndex, 1)
+        fotosOrdenadas.unshift(fotoPrincipal)
+        imovelData.fotoPrincipalIndex = 0
+      }
 
-      // Criar imóvel
-      const id = await createImovelWithFotos(imovelData, todasFotos)
+      // Preparar novas fotos para upload
+      const novasFotos: File[] = []
+      if (fotoPrincipalFile) {
+        novasFotos.push(fotoPrincipalFile) // Nova foto principal vai primeiro
+      }
+      novasFotos.push(...fotosSecundariasFiles)
+
+      // Se houver novas fotos, fazer upload
+      // A API vai adicionar as novas URLs ao final
+      // Depois faremos um segundo update para reordenar (nova principal primeiro)
+      if (novasFotos.length > 0) {
+        // Primeiro: fazer upload das novas fotos
+        await updateImovelWithFotos(
+          id,
+          {
+            ...imovelData,
+            fotos: fotosOrdenadas, // Fotos existentes ordenadas
+          },
+          novasFotos
+        )
+        
+        // Segundo: buscar imóvel atualizado e reordenar
+        const response = await fetch('/api/imoveis-github', { cache: 'no-store' })
+        const imoveis = await response.json()
+        const imovelAtualizado = imoveis.find((i: any) => i.id === id)
+        
+        if (imovelAtualizado) {
+          const todasFotos = imovelAtualizado.fotos || []
+          let fotosFinais = [...todasFotos]
+          
+          // Se há nova foto principal, ela está no final (última das novas)
+          // Mover para o início
+          if (fotoPrincipalFile && todasFotos.length > fotosExistentes.length) {
+            const indiceNovaPrincipal = todasFotos.length - novasFotos.length // Primeira nova = principal
+            const novaPrincipal = todasFotos[indiceNovaPrincipal]
+            fotosFinais.splice(indiceNovaPrincipal, 1)
+            fotosFinais.unshift(novaPrincipal)
+            imovelData.fotoPrincipalIndex = 0
+          }
+          
+          // Atualizar com ordem final
+          await updateImovelWithFotos(
+            id,
+            {
+              ...imovelData,
+              fotos: fotosFinais,
+            }
+          )
+        }
+      } else {
+        // Apenas atualizar dados, mantendo fotos existentes ordenadas
+        await updateImovelWithFotos(
+          id,
+          {
+            ...imovelData,
+            fotos: fotosOrdenadas,
+          }
+        )
+      }
 
       setSuccess(true)
       setTimeout(() => {
         router.push(`/administrador/imoveis`)
       }, 2000)
     } catch (err: any) {
-      setError(err.message || 'Erro ao criar imóvel')
+      setError(err.message || 'Erro ao atualizar imóvel')
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-purple-600" />
+      </div>
+    )
   }
 
   return (
@@ -207,7 +366,7 @@ export default function NovoImovelPage() {
                 <span className="text-sm font-medium">Voltar</span>
               </Link>
               <div className="h-6 w-px bg-gray-300" />
-              <h1 className="text-2xl font-bold text-gray-900">Adicionar Novo Imóvel</h1>
+              <h1 className="text-2xl font-bold text-gray-900">Editar Imóvel</h1>
             </div>
           </div>
         </div>
@@ -217,7 +376,7 @@ export default function NovoImovelPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {success && (
           <div className="mb-6 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
-            ✅ Imóvel criado com sucesso! Redirecionando...
+            ✅ Imóvel atualizado com sucesso! Redirecionando...
           </div>
         )}
 
@@ -574,16 +733,57 @@ export default function NovoImovelPage() {
           <div>
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Fotos</h2>
             
-            {/* Foto Principal */}
+            {/* Fotos Existentes */}
+            {fotosExistentes.length > 0 && (
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Fotos Existentes
+                </label>
+                <div className="grid grid-cols-2 gap-4">
+                  {fotosExistentes.map((foto, index) => (
+                    <div key={index} className="relative group">
+                      <img
+                        src={foto}
+                        alt={`Foto ${index + 1}`}
+                        className={`w-full h-48 object-cover rounded-lg border-2 ${
+                          fotoPrincipalIndex === index ? 'border-purple-600' : 'border-gray-200'
+                        }`}
+                      />
+                      <div className="absolute top-2 right-2 flex gap-2">
+                        {fotoPrincipalIndex === index ? (
+                          <span className="bg-purple-600 text-white px-2 py-1 rounded text-xs font-medium">
+                            Principal
+                          </span>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => selecionarFotoPrincipal(index)}
+                            className="bg-blue-600 text-white px-2 py-1 rounded text-xs font-medium hover:bg-blue-700"
+                          >
+                            Definir Principal
+                          </button>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => removerFotoExistente(index)}
+                          className="bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Nova Foto Principal */}
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Foto Principal *
-                <span className="ml-2 text-xs text-gray-500 font-normal">
-                  (Tamanho sugerido: 1200x800px ou maior, formato JPG/PNG)
-                </span>
+                Nova Foto Principal (opcional)
               </label>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                {previewPrincipal ? (
+                {previewPrincipal && !fotosExistentes.includes(previewPrincipal) ? (
                   <div className="relative inline-block">
                     <img
                       src={previewPrincipal}
@@ -593,8 +793,8 @@ export default function NovoImovelPage() {
                     <button
                       type="button"
                       onClick={() => {
-                        setFotoPrincipal(null)
-                        setPreviewPrincipal(null)
+                        setFotoPrincipalFile(null)
+                        setPreviewPrincipal(fotosExistentes[fotoPrincipalIndex] || null)
                       }}
                       className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
                     >
@@ -605,13 +805,12 @@ export default function NovoImovelPage() {
                   <label className="cursor-pointer">
                     <div className="flex flex-col items-center">
                       <ImageIcon className="w-12 h-12 text-gray-400 mb-2" />
-                      <span className="text-sm text-gray-600">Clique para selecionar foto principal</span>
+                      <span className="text-sm text-gray-600">Clique para selecionar nova foto principal</span>
                       <input
                         type="file"
                         accept="image/*"
                         onChange={handleFotoPrincipalChange}
                         className="hidden"
-                        required
                       />
                     </div>
                   </label>
@@ -619,13 +818,10 @@ export default function NovoImovelPage() {
               </div>
             </div>
 
-            {/* Fotos Secundárias */}
+            {/* Novas Fotos Secundárias */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Fotos Secundárias (1-4 fotos) *
-                <span className="ml-2 text-xs text-gray-500 font-normal">
-                  (Tamanho sugerido: 800x600px ou maior, formato JPG/PNG)
-                </span>
+                Novas Fotos Secundárias (opcional, máximo 4)
               </label>
               <div className="grid grid-cols-2 gap-4 mb-4">
                 {previewSecundarias.map((preview, index) => (
@@ -645,11 +841,11 @@ export default function NovoImovelPage() {
                   </div>
                 ))}
               </div>
-              {fotosSecundarias.length < 4 && (
+              {fotosSecundariasFiles.length < 4 && (
                 <label className="block border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-purple-400 transition-colors">
                   <Upload className="w-6 h-6 text-gray-400 mx-auto mb-2" />
                   <span className="text-sm text-gray-600">
-                    Adicionar {fotosSecundarias.length === 0 ? 'fotos' : 'mais fotos'} ({fotosSecundarias.length}/4)
+                    Adicionar {fotosSecundariasFiles.length === 0 ? 'fotos' : 'mais fotos'} ({fotosSecundariasFiles.length}/4)
                   </span>
                   <input
                     type="file"
@@ -750,10 +946,10 @@ export default function NovoImovelPage() {
               {isSubmitting ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" />
-                  Criando...
+                  Salvando...
                 </>
               ) : (
-                'Criar Imóvel'
+                'Salvar Alterações'
               )}
             </button>
             <Link
