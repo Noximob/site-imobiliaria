@@ -140,12 +140,6 @@ export default function Header() {
                     >
                       Apartamento Vista para o Mar em Penha
                     </button>
-                    <button 
-                      onClick={() => handleLinkClick('/imoveis?cidade=penha&quadraMar=true')}
-                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
-                    >
-                      Apartamento Quadra Mar em Penha
-                    </button>
                   </div>
                 )}
               </div>
@@ -257,12 +251,6 @@ export default function Header() {
                       className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
                     >
                       Apartamento Vista para o Mar em Barra Velha
-                    </button>
-                    <button 
-                      onClick={() => handleLinkClick('/imoveis?cidade=barra-velha&quadraMar=true')}
-                      className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
-                    >
-                      Apartamento Quadra Mar em Barra Velha
                     </button>
                   </div>
                 )}
