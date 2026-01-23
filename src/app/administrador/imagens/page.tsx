@@ -215,6 +215,19 @@ export default function AdminImagens() {
     setPendingDeletes(prev => prev.filter(p => p.imageId !== imageId))
   }
 
+  // Função para extrair extensão do arquivo
+  const getFileExtension = (fileOrUrl: File | string): string => {
+    if (typeof fileOrUrl === 'string') {
+      // É uma URL - extrair extensão da URL
+      const match = fileOrUrl.match(/\.([a-zA-Z0-9]+)(\?|$)/)
+      return match ? `.${match[1].toLowerCase()}` : ''
+    } else {
+      // É um File object
+      const name = fileOrUrl.name
+      const lastDot = name.lastIndexOf('.')
+      return lastDot > 0 ? name.substring(lastDot).toLowerCase() : ''
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -367,8 +380,13 @@ export default function AdminImagens() {
                             className="object-cover"
                             loading="lazy"
                           />
-                          <div className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
-                            NOVA
+                          <div className="absolute top-2 right-2 flex flex-col gap-1 items-end">
+                            <div className="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
+                              NOVA
+                            </div>
+                            <div className="bg-gray-800 bg-opacity-75 text-white text-xs font-medium px-2 py-1 rounded">
+                              {getFileExtension(pending.file)}
+                            </div>
                           </div>
                         </>
                       ) : markedForDelete ? (
@@ -384,6 +402,11 @@ export default function AdminImagens() {
                               🗑️ SERÁ APAGADA
                             </div>
                           </div>
+                          {image.currentPath && image.currentPath !== '/imagens/placeholder.png' && (
+                            <div className="absolute bottom-2 right-2 bg-gray-800 bg-opacity-75 text-white text-xs font-medium px-2 py-1 rounded">
+                              {getFileExtension(image.currentPath)}
+                            </div>
+                          )}
                         </>
                       ) : image.currentPath && image.currentPath !== '/imagens/placeholder.png' ? (
                         <>
@@ -395,8 +418,13 @@ export default function AdminImagens() {
                             loading="lazy"
                             unoptimized
                           />
-                          <div className="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
-                            ATUAL
+                          <div className="absolute top-2 right-2 flex flex-col gap-1 items-end">
+                            <div className="bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
+                              ATUAL
+                            </div>
+                            <div className="bg-gray-800 bg-opacity-75 text-white text-xs font-medium px-2 py-1 rounded">
+                              {getFileExtension(image.currentPath)}
+                            </div>
                           </div>
                         </>
                       ) : (
