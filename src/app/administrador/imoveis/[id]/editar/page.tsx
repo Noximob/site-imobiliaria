@@ -143,24 +143,16 @@ export default function EditarImovelPage() {
     
     if (!numbers) return ''
     
-    // Sempre trata os últimos 2 dígitos como centavos
-    // Ex: "5000" -> "50" reais + "00" centavos = "50,00"
-    // Mas o usuário quer "5000" -> "5.000,00", então vamos tratar diferente:
-    // Se o número termina com "00", trata como reais inteiros
-    // Caso contrário, últimos 2 dígitos são centavos
-    
+    // Lógica: sempre trata os últimos 2 dígitos como centavos
+    // Mas se o usuário está digitando e o número tem mais de 2 dígitos,
+    // e os últimos 2 são "00", trata como reais inteiros para facilitar
     let amount: number
+    
     if (numbers.length <= 2) {
-      // 1-2 dígitos: são centavos
+      // 1-2 dígitos: são centavos (ex: "5" -> 0,05 ou "50" -> 0,50)
       amount = parseInt(numbers, 10) / 100
-    } else if (numbers.endsWith('00') && numbers.length > 2) {
-      // Termina com 00 e tem mais de 2 dígitos: trata como reais inteiros
-      // Ex: "5000" -> "5000" reais = "5.000,00"
-      const reais = numbers.slice(0, -2)
-      amount = parseInt(reais, 10)
     } else {
-      // Mais de 2 dígitos e não termina com 00: últimos 2 são centavos
-      // Ex: "500050" -> "5000" reais + "50" centavos = "5.000,50"
+      // 3+ dígitos: últimos 2 são centavos
       const reais = numbers.slice(0, -2)
       const centavos = numbers.slice(-2)
       amount = parseFloat(`${reais}.${centavos}`)
@@ -511,7 +503,7 @@ export default function EditarImovelPage() {
                     required
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    Digite apenas números. A formatação será aplicada automaticamente.
+                    Digite apenas números. Ex: digite "500000" para "5.000,00" ou "500050" para "5.000,50"
                   </p>
                 </div>
 
