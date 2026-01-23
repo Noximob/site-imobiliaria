@@ -117,9 +117,19 @@ export default function NovoImovelPage() {
   // Função para extrair extensão do arquivo
   const getFileExtension = (file: File | string): string => {
     if (typeof file === 'string') {
-      // É uma URL - extrair extensão da URL
-      const match = file.match(/\.([a-zA-Z0-9]+)(\?|$)/)
-      return match ? `.${match[1].toLowerCase()}` : ''
+      // É uma URL ou caminho - remover query parameters e hash primeiro
+      let cleanPath = file.split('?')[0].split('#')[0]
+      
+      // Encontrar a última extensão válida (após o último ponto)
+      const lastDot = cleanPath.lastIndexOf('.')
+      if (lastDot > 0 && lastDot < cleanPath.length - 1) {
+        const ext = cleanPath.substring(lastDot + 1).toLowerCase()
+        // Validar que é uma extensão válida (apenas letras e números, 2-5 caracteres)
+        if (/^[a-z0-9]{2,5}$/.test(ext)) {
+          return `.${ext}`
+        }
+      }
+      return ''
     } else {
       // É um File object
       const name = file.name
