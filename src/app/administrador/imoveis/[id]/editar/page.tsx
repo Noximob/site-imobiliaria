@@ -254,7 +254,7 @@ export default function EditarImovelPage() {
       const todasTags = tagsCaracteristicas
 
       // Preparar dados do imóvel
-      const imovelData = {
+      const imovelData: any = {
         titulo: formData.titulo.trim(),
         descricao: formData.descricao.trim(),
         preco: parseFloat(formData.preco.replace(/[^\d,.-]/g, '').replace(',', '.')) || 0,

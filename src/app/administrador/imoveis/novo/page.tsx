@@ -140,7 +140,7 @@ export default function NovoImovelPage() {
       const todasTags = tagsCaracteristicas
 
       // Preparar dados do imóvel
-      const imovelData = {
+      const imovelData: any = {
         titulo: formData.titulo.trim(),
         descricao: formData.descricao.trim(),
         preco: parseFloat(formData.preco.replace(/[^\d,.-]/g, '').replace(',', '.')) || 0,
@@ -179,6 +179,7 @@ export default function NovoImovelPage() {
         selecaoNox: formData.selecaoNox,
         dataEntrega: formData.dataEntrega || undefined,
         coordenadas: undefined, // Pode ser adicionado depois
+        fotoPrincipalIndex: 0, // Sempre 0, pois ordenamos assim
       }
 
       // Preparar fotos: ordenar (principal primeiro, depois menores, depois resto)
@@ -202,9 +203,6 @@ export default function NovoImovelPage() {
           fotosOrdenadas.push(foto.file)
         }
       })
-
-      // Definir índice da foto principal (sempre 0, pois ordenamos assim)
-      imovelData.fotoPrincipalIndex = 0
 
       // Criar imóvel
       const id = await createImovelWithFotos(imovelData, fotosOrdenadas)
