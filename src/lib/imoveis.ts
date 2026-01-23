@@ -231,30 +231,32 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
         return false;
       }
       
-      // Filtro por comodidades (buscar nas tags)
+      // Filtro por comodidades (buscar nas tags/características de forma flexível)
+      // O usuário escreve nas características do DWV, então buscamos de forma case-insensitive
       const tags = imovel.tags || []
       
-      // Debug: log quando filtro frenteMar está ativo
-      if (filtros.frenteMar) {
-        const temTag = tags.includes('Frente Mar')
-        if (!temTag) {
-          console.log(`🔍 Filtro Frente Mar: Imóvel ${imovel.id} (${imovel.titulo?.substring(0, 50)}) NÃO tem tag. Tags disponíveis: [${tags.join(', ')}]`)
-        }
+      // Função auxiliar para verificar se uma tag contém a palavra-chave (case-insensitive)
+      const temCaracteristica = (palavraChave: string): boolean => {
+        const palavraNormalizada = palavraChave.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        return tags.some(tag => {
+          const tagNormalizada = tag.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          return tagNormalizada.includes(palavraNormalizada) || tagNormalizada === palavraNormalizada
+        })
       }
       
-      if (filtros.frenteMar && !tags.includes('Frente Mar')) {
+      if (filtros.frenteMar && !temCaracteristica('frente mar')) {
         return false;
       }
       
-      if (filtros.mobiliado && !tags.includes('Mobiliado')) {
+      if (filtros.mobiliado && !temCaracteristica('mobiliado')) {
         return false;
       }
       
-      if (filtros.vistaMar && !tags.includes('Vista Mar')) {
+      if (filtros.vistaMar && !temCaracteristica('vista mar')) {
         return false;
       }
       
-      if (filtros.areaLazer && !tags.includes('Área de Lazer')) {
+      if (filtros.areaLazer && !temCaracteristica('área de lazer') && !temCaracteristica('area de lazer')) {
         return false;
       }
       
