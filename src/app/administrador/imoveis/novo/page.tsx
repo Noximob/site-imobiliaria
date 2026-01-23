@@ -114,6 +114,20 @@ export default function NovoImovelPage() {
     return parseFloat(cleanValue) || 0
   }
 
+  // Função para extrair extensão do arquivo
+  const getFileExtension = (file: File | string): string => {
+    if (typeof file === 'string') {
+      // É uma URL - extrair extensão da URL
+      const match = file.match(/\.([a-zA-Z0-9]+)(\?|$)/)
+      return match ? `.${match[1].toLowerCase()}` : ''
+    } else {
+      // É um File object
+      const name = file.name
+      const lastDot = name.lastIndexOf('.')
+      return lastDot > 0 ? name.substring(lastDot).toLowerCase() : ''
+    }
+  }
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
     
