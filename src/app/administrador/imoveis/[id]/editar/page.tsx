@@ -143,8 +143,18 @@ export default function EditarImovelPage() {
     
     if (!numbers) return ''
     
-    // Converte para número e divide por 100 para ter centavos
-    const amount = parseInt(numbers, 10) / 100
+    // Trata como centavos se tiver mais de 2 dígitos e o último for 0
+    // Caso contrário, trata como reais
+    let amount: number
+    if (numbers.length <= 2) {
+      // Se tem 1 ou 2 dígitos, são centavos
+      amount = parseInt(numbers, 10) / 100
+    } else {
+      // Se tem mais de 2 dígitos, são reais (os últimos 2 são centavos)
+      const reais = numbers.slice(0, -2)
+      const centavos = numbers.slice(-2)
+      amount = parseFloat(`${reais}.${centavos}`)
+    }
     
     // Formata como moeda brasileira
     return new Intl.NumberFormat('pt-BR', {
