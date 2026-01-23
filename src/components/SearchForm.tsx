@@ -24,8 +24,7 @@ export default function SearchForm() {
     mobiliado: false,
     frenteMar: false,
     vistaMar: false,
-    areaLazer: false,
-    homeClub: false
+    areaLazer: false
   })
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -70,7 +69,6 @@ export default function SearchForm() {
     if (filtros.frenteMar) params.append('frenteMar', 'true')
     if (filtros.vistaMar) params.append('vistaMar', 'true')
     if (filtros.areaLazer) params.append('areaLazer', 'true')
-    if (filtros.homeClub) params.append('homeClub', 'true')
     
     // Redirecionar para página de imóveis com filtros
     router.push(`/imoveis?${params.toString()}`)
@@ -83,7 +81,7 @@ export default function SearchForm() {
     }))
   }
 
-  const handleToggle = (field: 'mobiliado' | 'frenteMar' | 'vistaMar' | 'areaLazer' | 'homeClub') => {
+  const handleToggle = (field: 'mobiliado' | 'frenteMar' | 'vistaMar' | 'areaLazer') => {
     setFiltros(prev => ({
       ...prev,
       [field]: !prev[field]

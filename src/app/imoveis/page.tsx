@@ -69,7 +69,6 @@ function ImoveisPageContent() {
     if (searchParams.get('vistaMar') === 'true') params.vistaMar = true
     if (searchParams.get('frenteMar') === 'true') params.frenteMar = true
     if (searchParams.get('areaLazer') === 'true') params.areaLazer = true
-    if (searchParams.get('homeClub') === 'true') params.homeClub = true
     
     // Sempre atualizar filtros iniciais quando a URL mudar
     setFiltrosIniciais(params)
@@ -154,7 +153,6 @@ function ImoveisPageContent() {
       mobiliado: novosFiltros.mobiliado || undefined,
       vistaMar: novosFiltros.vistaMar || undefined,
       areaLazer: novosFiltros.areaLazer || undefined,
-      homeClub: novosFiltros.homeClub || undefined,
     }
     
     setFiltros(filtrosFormatados)

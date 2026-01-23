@@ -451,11 +451,8 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
     // Mobiliado
     { keywords: ['mobiliado', 'mobiliada', 'mobília', 'mobilia', 'totalmente mobiliado', 'completo mobiliado'], tag: 'Mobiliado' },
     
-    // Área de Lazer
-    { keywords: ['área de lazer', 'area de lazer', 'área lazer', 'area lazer', 'lazer completo', 'espaço de lazer', 'espaco de lazer'], tag: 'Área de Lazer' },
-    
-    // Home Club
-    { keywords: ['home club completo', 'home club', 'homeclub', 'clube completo', 'clube'], tag: 'Home Club completo' },
+    // Área de Lazer (unificado com Home Club)
+    { keywords: ['área de lazer', 'area de lazer', 'área lazer', 'area lazer', 'lazer completo', 'espaço de lazer', 'espaco de lazer', 'home club completo', 'home club', 'homeclub', 'clube completo', 'clube'], tag: 'Área de Lazer' },
   ]
   
   // 4. Buscar palavras-chave no texto do descritivo
@@ -964,8 +961,7 @@ export function convertDWVToImovel(dwvImovel: DWVImovel, index: number): any {
   const temFrenteMar = tags.includes('Frente Mar')
   const temVistaMar = tags.includes('Vista Mar')
   const temMobiliado = tags.includes('Mobiliado')
-  const temAreaLazer = tags.includes('Área de Lazer')
-  const temHomeClub = tags.includes('Home Club completo')
+  const temAreaLazer = tags.includes('Área de Lazer') // Unificado: detecta tanto "área de lazer" quanto "home club"
 
   // Contato
   const whatsapp = dwvImovel.construction_company?.whatsapp || '(47) 99753-0113'

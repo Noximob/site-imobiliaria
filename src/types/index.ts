@@ -69,7 +69,6 @@ export interface FiltrosImovel {
   mobiliado?: boolean;
   vistaMar?: boolean;
   areaLazer?: boolean;
-  homeClub?: boolean;
   areaMin?: number;
   areaMax?: number;
   dataEntrega?: (string | number)[]; // ['entregues'] ou array de anos [2026, 2027, ...] ou ambos

@@ -21,8 +21,7 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
     mobiliado: false,
     frenteMar: false,
     vistaMar: false,
-    areaLazer: false,
-    homeClub: false
+    areaLazer: false
   })
 
   // Aplicar filtros iniciais quando vierem da URL (sempre que mudarem)
@@ -44,7 +43,6 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
         frenteMar: filtrosIniciais.frenteMar || false,
         vistaMar: filtrosIniciais.vistaMar || false,
         areaLazer: filtrosIniciais.areaLazer || false,
-        homeClub: filtrosIniciais.homeClub || false
       }
       setFiltros(novosFiltros)
       onFiltrosChange?.(novosFiltros)
@@ -66,7 +64,6 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
         frenteMar: false,
         vistaMar: false,
         areaLazer: false,
-        homeClub: false
       }
       setFiltros(filtrosLimpos)
       onFiltrosChange?.(filtrosLimpos)
@@ -101,7 +98,6 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
       frenteMar: false,
       vistaMar: false,
       areaLazer: false,
-      homeClub: false
     }
     setFiltros(filtrosLimpos)
     onFiltrosChange?.(filtrosLimpos)
@@ -307,7 +303,6 @@ export default function FiltrosImoveis({ onFiltrosChange, filtrosIniciais }: Fil
             { key: 'frenteMar', label: 'Frente Mar' },
             { key: 'vistaMar', label: 'Vista Mar' },
             { key: 'areaLazer', label: 'Área de Lazer' },
-            { key: 'homeClub', label: 'Home Club completo' }
           ].map(({ key, label }) => (
             <label key={key} className="flex items-center">
               <input

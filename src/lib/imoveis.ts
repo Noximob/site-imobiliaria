@@ -258,10 +258,6 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
         return false;
       }
       
-      if (filtros.homeClub && !tags.includes('Home Club completo')) {
-        return false;
-      }
-      
       // Filtro por área mínima
       if (filtros.areaMin && imovel.caracteristicas.area < filtros.areaMin) {
         return false;
