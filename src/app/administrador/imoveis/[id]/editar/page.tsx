@@ -35,8 +35,6 @@ export default function EditarImovelPage() {
     vagas: '',
     area: '',
     suite: '',
-    whatsapp: '(47) 99753-0113',
-    email: '',
     publicado: true,
     selecaoNox: false,
     dataEntrega: '',
@@ -95,8 +93,6 @@ export default function EditarImovelPage() {
           vagas: imovel.caracteristicas?.vagas?.toString() || '',
           area: imovel.caracteristicas?.area?.toString() || '',
           suite: imovel.caracteristicas?.suite?.toString() || '',
-          whatsapp: imovel.contato?.whatsapp || '(47) 99753-0113',
-          email: imovel.contato?.email || '',
           publicado: imovel.publicado !== false,
           selecaoNox: imovel.selecaoNox || false,
           dataEntrega: imovel.dataEntrega || '',
@@ -285,9 +281,8 @@ export default function EditarImovelPage() {
         },
         tags: todasTags,
         contato: {
-          whatsapp: formData.whatsapp.trim(),
+          whatsapp: '(47) 99753-0113',
           corretor: 'NOX Imóveis',
-          email: formData.email.trim() || undefined,
         },
         publicado: formData.publicado,
         selecaoNox: formData.selecaoNox,
@@ -474,24 +469,24 @@ export default function EditarImovelPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Status *
-                  </label>
-                  <select
-                    name="status"
-                    value={formData.status}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    required
-                  >
-                    <option value="lancamento">Lançamento</option>
-                    <option value="em-construcao">Em Construção</option>
-                    <option value="prontos">Prontos</option>
-                  </select>
-                </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Status *
+                </label>
+                <select
+                  name="status"
+                  value={formData.status}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  required
+                >
+                  <option value="lancamento">Lançamento</option>
+                  <option value="em-construcao">Em Construção</option>
+                  <option value="prontos">Prontos</option>
+                </select>
+              </div>
 
+              {formData.status !== 'prontos' && (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Data de Entrega
@@ -504,7 +499,7 @@ export default function EditarImovelPage() {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
-              </div>
+              )}
             </div>
           </div>
 
@@ -846,38 +841,6 @@ export default function EditarImovelPage() {
             )}
           </div>
 
-          {/* Contato */}
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Contato</h2>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  WhatsApp
-                </label>
-                <input
-                  type="text"
-                  name="whatsapp"
-                  value={formData.whatsapp}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  placeholder="(47) 99753-0113"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                />
-              </div>
-            </div>
-          </div>
 
           {/* Opções */}
           <div>
