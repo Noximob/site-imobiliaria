@@ -69,7 +69,6 @@ export default function SearchForm() {
     if (filtros.mobiliado) params.append('mobiliado', 'true')
     if (filtros.frenteMar) params.append('frenteMar', 'true')
     if (filtros.vistaMar) params.append('vistaMar', 'true')
-    if (filtros.quadraMar) params.append('quadraMar', 'true')
     if (filtros.areaLazer) params.append('areaLazer', 'true')
     if (filtros.homeClub) params.append('homeClub', 'true')
     
