@@ -599,8 +599,9 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
     })
   })
   
-  // 6. Adicionar todas as features que não foram mapeadas (características simples de 1-2 palavras)
-  // Essas são as características que aparecem na última seção do DWV
+  // 6. Adicionar TODAS as features que não foram mapeadas (características completas)
+  // Essas são as características que aparecem na última seção do DWV e compõem a descrição completa
+  // Não importa se são 1 palavra, 2 palavras ou mais - todas devem aparecer
   normalizedTags.forEach(tag => {
     // Verificar se já foi adicionada via tagMap
     const jaFoiAdicionada = tags.some(t => 
@@ -608,12 +609,12 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
     )
     
     if (!jaFoiAdicionada) {
-      // Adicionar apenas se tiver 1-2 palavras e não for "mobiliado" (para evitar falsos positivos)
-      const palavras = tag.trim().split(/\s+/).filter(p => p.length > 0)
+      // Adicionar todas as características, exceto "mobiliado" (para evitar falsos positivos)
       const temMobiliado = tag.includes('mobiliado') || tag.includes('mobiliada')
       
-      if (palavras.length <= 2 && palavras.length > 0 && !temMobiliado) {
+      if (!temMobiliado && tag.trim().length > 0) {
         // Capitalizar primeira letra de cada palavra
+        const palavras = tag.trim().split(/\s+/).filter(p => p.length > 0)
         const tagFormatada = palavras.map(p => 
           p.charAt(0).toUpperCase() + p.slice(1).toLowerCase()
         ).join(' ')
@@ -625,14 +626,9 @@ function extractTags(unit?: DWVUnit | null, building?: DWVBuilding | null, third
     }
   })
   
-  // 7. Filtrar tags para manter apenas características simples (1-2 palavras)
-  // As características devem ser palavras ou 2 palavras no máximo
-  const tagsFiltradas = tags.filter(tag => {
-    const palavras = tag.trim().split(/\s+/).filter(p => p.length > 0)
-    return palavras.length <= 2 && palavras.length > 0
-  })
-  
-  return tagsFiltradas
+  // 7. Retornar todas as tags (características completas para exibição)
+  // Não filtrar por número de palavras - todas compõem a descrição completa do imóvel
+  return tags
 }
 
 /**
