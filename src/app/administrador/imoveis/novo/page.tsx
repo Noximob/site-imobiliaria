@@ -49,14 +49,24 @@ export default function NovoImovelPage() {
     
     if (!numbers) return ''
     
-    // Trata como centavos se tiver mais de 2 dígitos e o último for 0
-    // Caso contrário, trata como reais
+    // Sempre trata os últimos 2 dígitos como centavos
+    // Ex: "5000" -> "50" reais + "00" centavos = "50,00"
+    // Mas o usuário quer "5000" -> "5.000,00", então vamos tratar diferente:
+    // Se o número termina com "00", trata como reais inteiros
+    // Caso contrário, últimos 2 dígitos são centavos
+    
     let amount: number
     if (numbers.length <= 2) {
-      // Se tem 1 ou 2 dígitos, são centavos
+      // 1-2 dígitos: são centavos
       amount = parseInt(numbers, 10) / 100
+    } else if (numbers.endsWith('00') && numbers.length > 2) {
+      // Termina com 00 e tem mais de 2 dígitos: trata como reais inteiros
+      // Ex: "5000" -> "5000" reais = "5.000,00"
+      const reais = numbers.slice(0, -2)
+      amount = parseInt(reais, 10)
     } else {
-      // Se tem mais de 2 dígitos, são reais (os últimos 2 são centavos)
+      // Mais de 2 dígitos e não termina com 00: últimos 2 são centavos
+      // Ex: "500050" -> "5000" reais + "50" centavos = "5.000,50"
       const reais = numbers.slice(0, -2)
       const centavos = numbers.slice(-2)
       amount = parseFloat(`${reais}.${centavos}`)
