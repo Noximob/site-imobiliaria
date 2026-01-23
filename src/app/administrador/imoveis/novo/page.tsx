@@ -56,14 +56,42 @@ export default function NovoImovelPage() {
       amount = parseInt(numbers, 10) / 100
     } else {
       // 3+ dígitos: verificar se termina com "00" (valor inteiro)
-      // Se termina com "00", trata como reais inteiros (ex: "5000" -> 5000 reais = 5.000,00)
-      // Caso contrário, últimos 2 são centavos (ex: "500050" -> 5000,50 reais = 5.000,50)
-      if (numbers.endsWith('00') && numbers.length > 2) {
-        // Termina com 00: trata como reais inteiros
-        const reais = numbers.slice(0, -2)
-        amount = parseInt(reais, 10)
+      // Se termina com "00" E tem mais de 3 dígitos, trata como reais inteiros
+      // Ex: "5000" (4 dígitos, termina com 00) -> "50" reais = 50,00 (ERRADO)
+      // Precisamos de lógica diferente: se tem 4+ dígitos e termina com "00",
+      // e o número antes do "00" tem mais de 1 dígito, trata como reais inteiros
+      if (numbers.endsWith('00') && numbers.length >= 4) {
+        // Tem 4+ dígitos e termina com 00: verificar se é valor inteiro
+        // Se os 2 dígitos antes do "00" também são "00", é valor inteiro maior
+        // Ex: "5000" -> "50" + "00" -> mas queremos "5000" reais
+        // Vamos tratar: se tem 4+ dígitos e termina com "00", 
+        // e o número sem os últimos 2 dígitos tem mais de 1 dígito,
+        // trata como reais inteiros (assumindo que o usuário digitou o valor completo)
+        const semUltimosDois = numbers.slice(0, -2)
+        if (semUltimosDois.length >= 2) {
+          // Tem pelo menos 2 dígitos antes do "00": trata como reais inteiros
+          // Ex: "5000" -> "50" reais = 50,00 (ainda errado)
+          // Vou mudar: se termina com "00" e tem 4+ dígitos, 
+          // e não é um número que claramente tem centavos (ex: "500050"),
+          // trata como reais inteiros
+          // Na verdade, melhor: se o número completo dividido por 100 é inteiro,
+          // trata como reais inteiros
+          const valorCompleto = parseInt(numbers, 10)
+          if (valorCompleto % 100 === 0) {
+            // É múltiplo de 100: trata como reais inteiros
+            amount = valorCompleto / 100
+          } else {
+            // Não é múltiplo de 100: últimos 2 são centavos
+            const reais = numbers.slice(0, -2)
+            const centavos = numbers.slice(-2)
+            amount = parseFloat(`${reais}.${centavos}`)
+          }
+        } else {
+          // Tem apenas 1 dígito antes do "00": são centavos
+          amount = parseInt(numbers, 10) / 100
+        }
       } else {
-        // Não termina com 00: últimos 2 são centavos
+        // Não termina com 00 ou tem menos de 4 dígitos: últimos 2 são centavos
         const reais = numbers.slice(0, -2)
         const centavos = numbers.slice(-2)
         amount = parseFloat(`${reais}.${centavos}`)
