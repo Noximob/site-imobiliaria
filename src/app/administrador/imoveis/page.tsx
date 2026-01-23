@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { ArrowLeft, Building, Edit, Loader2, Trash2 } from 'lucide-react'
+import { ArrowLeft, Building, Edit, Loader2, Trash2, ChevronDown, ChevronUp } from 'lucide-react'
 import Link from 'next/link'
 import { formatPrice } from '@/lib/imoveis'
 
@@ -20,6 +20,8 @@ export default function AdminImoveis() {
   const [imoveis, setImoveis] = useState<ImovelAdmin[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [deletingId, setDeletingId] = useState<string | null>(null)
+  const [manuaisAberto, setManuaisAberto] = useState(true)
+  const [dwvAberto, setDwvAberto] = useState(true)
 
   useEffect(() => {
     const loadImoveis = async () => {
@@ -202,12 +204,26 @@ export default function AdminImoveis() {
             {/* Imóveis Manuais */}
             {imoveisManuais.length > 0 && (
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                <div className="px-6 py-4 border-b border-gray-200 bg-purple-50">
-                  <h2 className="text-lg font-semibold text-gray-900">
-                    Imóveis Manuais ({imoveisManuais.length})
-                  </h2>
-                  <p className="text-sm text-gray-600 mt-1">Imóveis adicionados manualmente</p>
+                <div className="px-6 py-4 border-b border-gray-200 bg-purple-50 flex items-center justify-between">
+                  <div>
+                    <h2 className="text-lg font-semibold text-gray-900">
+                      Imóveis Manuais ({imoveisManuais.length})
+                    </h2>
+                    <p className="text-sm text-gray-600 mt-1">Imóveis adicionados manualmente</p>
+                  </div>
+                  <button
+                    onClick={() => setManuaisAberto(!manuaisAberto)}
+                    className="p-2 hover:bg-purple-100 rounded-lg transition-colors"
+                    aria-label={manuaisAberto ? 'Recolher' : 'Expandir'}
+                  >
+                    {manuaisAberto ? (
+                      <ChevronUp className="w-5 h-5 text-gray-600" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-gray-600" />
+                    )}
+                  </button>
                 </div>
+                {manuaisAberto && (
                 <div className="divide-y divide-gray-200">
                   {imoveisManuais.map((imovel) => (
                     <div
@@ -265,18 +281,33 @@ export default function AdminImoveis() {
                     </div>
                   ))}
                 </div>
+                )}
               </div>
             )}
 
             {/* Imóveis DWV */}
             {imoveisDWV.length > 0 && (
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                <div className="px-6 py-4 border-b border-gray-200 bg-blue-50">
-                  <h2 className="text-lg font-semibold text-gray-900">
-                    Imóveis DWV ({imoveisDWV.length})
-                  </h2>
-                  <p className="text-sm text-gray-600 mt-1">Imóveis sincronizados do DWV (não podem ser editados manualmente)</p>
+                <div className="px-6 py-4 border-b border-gray-200 bg-blue-50 flex items-center justify-between">
+                  <div>
+                    <h2 className="text-lg font-semibold text-gray-900">
+                      Imóveis DWV ({imoveisDWV.length})
+                    </h2>
+                    <p className="text-sm text-gray-600 mt-1">Imóveis sincronizados do DWV (não podem ser editados manualmente)</p>
+                  </div>
+                  <button
+                    onClick={() => setDwvAberto(!dwvAberto)}
+                    className="p-2 hover:bg-blue-100 rounded-lg transition-colors"
+                    aria-label={dwvAberto ? 'Recolher' : 'Expandir'}
+                  >
+                    {dwvAberto ? (
+                      <ChevronUp className="w-5 h-5 text-gray-600" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-gray-600" />
+                    )}
+                  </button>
                 </div>
+                {dwvAberto && (
                 <div className="divide-y divide-gray-200">
                   {imoveisDWV.map((imovel) => (
                     <div
@@ -321,6 +352,7 @@ export default function AdminImoveis() {
                     </div>
                   ))}
                 </div>
+                )}
               </div>
             )}
           </div>
