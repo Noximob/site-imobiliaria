@@ -64,6 +64,19 @@
       "id": "1769191575173",
       "createdAt": "2026-01-23T18:06:15.173Z",
       "updatedAt": "2026-01-23T18:06:15.173Z"
+    },
+    {
+      "nome": "Murilo",
+      "cargo": "Corretor(a) de imóveis",
+      "creci": "1234",
+      "telefone": "889898",
+      "instagram": "suidhas",
+      "email": "asiodaoisd",
+      "foto": "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imagens/corretores/corretor-1769191730408.jpg",
+      "ativo": true,
+      "id": "1769191747413",
+      "createdAt": "2026-01-23T18:09:07.413Z",
+      "updatedAt": "2026-01-23T18:09:07.413Z"
     }
   ]
 }
