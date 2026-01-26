@@ -50,10 +50,12 @@ export default function AdminImagens() {
         githubImages = await response.json()
       }
       
+      // IMPORTANTE: Usar APENAS o caminho retornado pelo GitHub (com extensão real)
+      // Se não existir no GitHub, currentPath será undefined (não usar fallback do config)
       const imagesWithUrls = siteImagesConfig.map(img => ({
         id: img.id,
         description: img.description,
-        currentPath: githubImages[img.id] || img.localPath, // Usar imagem real se existir
+        currentPath: githubImages[img.id] || undefined, // SEM fallback - usar apenas o que existe no GitHub
         recommendedSize: img.recommendedSize,
         category: img.category,
         subcategory: img.subcategory,
@@ -62,11 +64,11 @@ export default function AdminImagens() {
       setSiteImages(imagesWithUrls)
     } catch (error) {
       console.error('Erro ao carregar imagens:', error)
-      // Fallback para configuração estática
+      // Em caso de erro, não usar fallback - deixar currentPath como undefined
       const imagesWithUrls = siteImagesConfig.map(img => ({
         id: img.id,
         description: img.description,
-        currentPath: img.localPath,
+        currentPath: undefined, // Não usar fallback
         recommendedSize: img.recommendedSize,
         category: img.category,
         subcategory: img.subcategory,

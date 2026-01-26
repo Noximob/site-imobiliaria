@@ -53,9 +53,6 @@ export async function GET() {
 
     console.log(`📦 Total de arquivos encontrados: ${allFiles.length}`)
 
-    // Mapear arquivos para IDs usando siteImagesConfig
-    const imagesMap: { [key: string]: string } = {}
-    
     // Função auxiliar para extrair nome base do arquivo (sem extensão)
     const getBaseName = (path: string): string => {
       const lastSlash = path.lastIndexOf('/')
@@ -63,76 +60,59 @@ export async function GET() {
       const lastDot = filename.lastIndexOf('.')
       return lastDot > 0 ? filename.substring(0, lastDot) : filename
     }
-    
-    // Função auxiliar para obter extensão
-    const getExtension = (path: string): string => {
-      const lastDot = path.lastIndexOf('.')
-      return lastDot > 0 ? path.substring(lastDot + 1).toLowerCase() : ''
-    }
-    
-    // Prioridade de extensões (maior = melhor)
-    const extensionPriority: { [key: string]: number } = {
-      'avif': 4,
-      'webp': 3,
-      'jpg': 2,
-      'jpeg': 2,
-      'png': 1,
-    }
-    
-    // Primeiro, processar todos os arquivos e agrupar por nome base
-    const filesByBaseName: { [baseName: string]: Array<{ path: string; ext: string; priority: number }> } = {}
+
+    // Criar mapa de arquivos por nome base
+    // Chave: nome base, Valor: caminho completo do arquivo encontrado
+    const filesByBaseName: { [baseName: string]: string } = {}
     
     for (const file of allFiles) {
       if (file.type === 'file') {
         const relativePath = file.path.replace('public', '')
         const baseName = getBaseName(relativePath)
-        const ext = getExtension(relativePath)
-        const priority = extensionPriority[ext] || 0
         
+        // Se já existe um arquivo com mesmo nome base, manter o que já está
+        // (isso garante que se houver múltiplos, mantemos o primeiro encontrado)
+        // Mas na verdade, vamos priorizar: avif > webp > jpg/jpeg > png
         if (!filesByBaseName[baseName]) {
-          filesByBaseName[baseName] = []
+          filesByBaseName[baseName] = relativePath
+        } else {
+          // Verificar extensões e priorizar
+          const existingExt = filesByBaseName[baseName].split('.').pop()?.toLowerCase() || ''
+          const newExt = relativePath.split('.').pop()?.toLowerCase() || ''
+          
+          const priority: { [key: string]: number } = {
+            'avif': 4,
+            'webp': 3,
+            'jpg': 2,
+            'jpeg': 2,
+            'png': 1,
+          }
+          
+          const existingPriority = priority[existingExt] || 0
+          const newPriority = priority[newExt] || 0
+          
+          if (newPriority > existingPriority) {
+            filesByBaseName[baseName] = relativePath
+          }
         }
-        
-        filesByBaseName[baseName].push({ path: relativePath, ext, priority })
       }
     }
+
+    // Mapear para os configs usando o nome base
+    const imagesMap: { [key: string]: string } = {}
     
-    // Agora mapear para os configs, priorizando extensões melhores
     for (const config of siteImagesConfig) {
       const configBaseName = getBaseName(config.localPath)
-      const configPath = config.localPath
       
-      // Verificar se existe arquivo com mesmo nome base
-      const matchingFiles = filesByBaseName[configBaseName] || []
-      
-      if (matchingFiles.length > 0) {
-        // Ordenar por prioridade (maior primeiro)
-        matchingFiles.sort((a, b) => b.priority - a.priority)
-        
-        // Usar o arquivo com maior prioridade
-        const bestFile = matchingFiles[0]
-        imagesMap[config.id] = bestFile.path
-        
-        if (bestFile.path === configPath) {
-          console.log(`✅ Mapeado (exato): ${config.id} -> ${bestFile.path}`)
-        } else {
-          console.log(`✅ Mapeado (prioridade): ${config.id} -> ${bestFile.path} (config: ${configPath})`)
-        }
+      // Procurar arquivo com mesmo nome base
+      if (filesByBaseName[configBaseName]) {
+        // Usar o caminho REAL do arquivo encontrado (com extensão real)
+        imagesMap[config.id] = filesByBaseName[configBaseName]
+        console.log(`✅ ${config.id} -> ${filesByBaseName[configBaseName]}`)
       } else {
-        // Nenhum arquivo encontrado, usar o caminho do config como fallback
-        // (mas não adicionar ao map, deixar vazio para mostrar que não existe)
-        console.warn(`⚠️ Arquivo não encontrado para: ${config.id} (esperado: ${configPath})`)
-      }
-    }
-    
-    // Também processar arquivos que não têm config (para logs)
-    for (const baseName in filesByBaseName) {
-      const configExists = siteImagesConfig.some(config => getBaseName(config.localPath) === baseName)
-      if (!configExists) {
-        const files = filesByBaseName[baseName]
-        files.forEach(file => {
-          console.warn(`⚠️ Arquivo sem config: ${file.path}`)
-        })
+        // Arquivo não encontrado - não adicionar ao map
+        // Isso fará com que currentPath seja undefined e não mostre extensão
+        console.warn(`⚠️ Arquivo não encontrado: ${config.id} (base: ${configBaseName})`)
       }
     }
 
