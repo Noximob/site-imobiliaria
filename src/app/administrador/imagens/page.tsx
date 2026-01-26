@@ -48,17 +48,16 @@ export default function AdminImagens() {
       const response = await fetch(`/api/list-github-images?t=${Date.now()}`, {
         cache: 'no-store'
       })
-      let githubImages: { [key: string]: string } = {}
+      let githubImages: { [key: string]: { path: string; extension: string; size: number } } = {}
       
       if (response.ok) {
         githubImages = await response.json()
         console.log('📦 Imagens retornadas pela API:', Object.keys(githubImages).length)
         
         // Log de imagens com extensões modernas
-        for (const [id, path] of Object.entries(githubImages)) {
-          const ext = path.split('.').pop()?.toLowerCase()
-          if (ext === 'avif' || ext === 'webp') {
-            console.log(`✨ ${id}: ${path} (${ext})`)
+        for (const [id, imageInfo] of Object.entries(githubImages)) {
+          if (imageInfo.extension === 'avif' || imageInfo.extension === 'webp') {
+            console.log(`✨ ${id}: ${imageInfo.path} (${imageInfo.extension})`)
           }
         }
       } else {
