@@ -9,6 +9,15 @@ const octokit = new Octokit({
 const REPO_OWNER = 'Noximob'
 const REPO_NAME = 'site-imobiliaria'
 
+// Função auxiliar para formatar tamanho de arquivo
+function formatFileSize(bytes: number): string {
+  if (bytes === 0) return '0 B'
+  const k = 1024
+  const sizes = ['B', 'KB', 'MB', 'GB']
+  const i = Math.floor(Math.log(bytes) / Math.log(k))
+  return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i]
+}
+
 async function getAllFilesRecursive(path: string): Promise<any[]> {
   try {
     const { data } = await octokit.repos.getContent({
@@ -130,8 +139,21 @@ export async function GET() {
       }
     }
 
+    // Criar mapa de arquivos completos (com path, size) para buscar tamanhos
+    // O objeto file da API do GitHub tem a propriedade 'size' em bytes
+    const filesByFullPath: { [path: string]: { size: number } } = {}
+    for (const file of allFiles) {
+      if (file.type === 'file') {
+        const relativePath = file.path.replace('public', '')
+        // A API do GitHub retorna size em bytes
+        const fileSize = (file as any).size || 0
+        filesByFullPath[relativePath] = { size: fileSize }
+      }
+    }
+
     // Mapear para os configs usando o nome base
-    const imagesMap: { [key: string]: string } = {}
+    // Retornar objeto com path, extension e size
+    const imagesMap: { [key: string]: { path: string; extension: string; size: number } } = {}
     
     for (const config of siteImagesConfig) {
       const configBaseName = getBaseName(config.localPath)
@@ -141,18 +163,24 @@ export async function GET() {
         // Usar o caminho REAL do arquivo encontrado (com extensão real)
         const foundPath = filesByBaseName[configBaseName]
         const foundExt = getExtension(foundPath)
-        imagesMap[config.id] = foundPath
+        const fileInfo = filesByFullPath[foundPath]
+        const fileSize = fileInfo ? fileInfo.size : 0
+        
+        imagesMap[config.id] = {
+          path: foundPath,
+          extension: foundExt,
+          size: fileSize
+        }
         
         // Log detalhado mostrando extensão encontrada
         const configExt = getExtension(config.localPath)
         if (foundExt !== configExt) {
-          console.log(`✅ ${config.id}: usando ${foundExt} (config tinha ${configExt}) -> ${foundPath}`)
+          console.log(`✅ ${config.id}: usando ${foundExt} (config tinha ${configExt}) -> ${foundPath} (${formatFileSize(fileSize)})`)
         } else {
-          console.log(`✅ ${config.id} -> ${foundPath}`)
+          console.log(`✅ ${config.id} -> ${foundPath} (${formatFileSize(fileSize)})`)
         }
       } else {
         // Arquivo não encontrado - não adicionar ao map
-        // Isso fará com que currentPath seja undefined e não mostre extensão
         console.warn(`⚠️ Arquivo não encontrado: ${config.id} (base: ${configBaseName}, esperado: ${config.localPath})`)
       }
     }
@@ -160,6 +188,11 @@ export async function GET() {
     console.log(`🎯 Total de imagens mapeadas: ${Object.keys(imagesMap).length}`)
 
     return NextResponse.json(imagesMap)
+  } catch (error) {
+    console.error('❌ Erro ao listar imagens do GitHub:', error)
+    return NextResponse.json({ error: 'Erro ao buscar imagens' }, { status: 500 })
+  }
+}
   } catch (error) {
     console.error('❌ Erro ao listar imagens do GitHub:', error)
     return NextResponse.json({ error: 'Erro ao buscar imagens' }, { status: 500 })

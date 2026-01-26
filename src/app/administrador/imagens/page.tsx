@@ -10,6 +10,8 @@ interface SiteImage {
   id: string
   description: string
   currentPath: string | undefined
+  extension: string | undefined
+  size: number | undefined
   recommendedSize: string
   category: string
   subcategory?: string
@@ -66,16 +68,14 @@ export default function AdminImagens() {
       // IMPORTANTE: Usar APENAS o caminho retornado pelo GitHub (com extensão real)
       // Se não existir no GitHub, currentPath será undefined (não usar fallback do config)
       const imagesWithUrls = siteImagesConfig.map(img => {
-        const foundPath = githubImages[img.id]
-        if (foundPath) {
-          const ext = foundPath.split('.').pop()?.toLowerCase()
-          console.log(`✅ ${img.id}: ${foundPath} (${ext})`)
-        }
+        const imageInfo = githubImages[img.id]
         
         return {
           id: img.id,
           description: img.description,
-          currentPath: foundPath || undefined, // SEM fallback - usar apenas o que existe no GitHub
+          currentPath: imageInfo?.path || undefined, // SEM fallback - usar apenas o que existe no GitHub
+          extension: imageInfo?.extension || undefined,
+          size: imageInfo?.size || undefined,
           recommendedSize: img.recommendedSize,
           category: img.category,
           subcategory: img.subcategory,
@@ -90,6 +90,8 @@ export default function AdminImagens() {
         id: img.id,
         description: img.description,
         currentPath: undefined, // Não usar fallback
+        extension: undefined,
+        size: undefined,
         recommendedSize: img.recommendedSize,
         category: img.category,
         subcategory: img.subcategory,
@@ -238,6 +240,15 @@ export default function AdminImagens() {
     setPendingDeletes(prev => prev.filter(p => p.imageId !== imageId))
   }
 
+  // Função para formatar tamanho de arquivo
+  const formatFileSize = (bytes: number | undefined): string => {
+    if (!bytes || bytes === 0) return 'N/A'
+    const k = 1024
+    const sizes = ['B', 'KB', 'MB', 'GB']
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
+    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i]
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -373,9 +384,23 @@ export default function AdminImagens() {
                   <p className="text-xs text-gray-500 mb-2">
                     {image.category} {image.subcategory && `• ${image.subcategory}`}
                   </p>
-                  <p className="text-xs text-gray-400 mb-3">
+                  <p className="text-xs text-gray-400 mb-2">
                     Tamanho recomendado: {image.recommendedSize}
                   </p>
+                  {image.currentPath && (
+                    <div className="flex items-center gap-2 text-xs text-gray-600 mb-3">
+                      {image.extension && (
+                        <span className="bg-gray-100 px-2 py-1 rounded font-mono">
+                          .{image.extension.toUpperCase()}
+                        </span>
+                      )}
+                      {image.size !== undefined && (
+                        <span className="bg-gray-100 px-2 py-1 rounded">
+                          {formatFileSize(image.size)}
+                        </span>
+                      )}
+                    </div>
+                  )}
 
                   {/* Preview */}
                   <div className="mb-4">
