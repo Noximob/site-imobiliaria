@@ -229,6 +229,7 @@ export default function AdminImagens() {
         const ext = cleanPath.substring(lastDot + 1).toLowerCase()
         // Validar que é uma extensão válida (apenas letras e números, 2-5 caracteres)
         // Inclui extensões como: jpg, png, gif, webp, avif, svg, etc.
+        // IMPORTANTE: avif e webp têm 4 caracteres, então o limite de 5 está correto
         if (/^[a-z0-9]{2,5}$/.test(ext)) {
           return `.${ext}`
         }
@@ -238,7 +239,11 @@ export default function AdminImagens() {
       // É um File object
       const name = fileOrUrl.name
       const lastDot = name.lastIndexOf('.')
-      return lastDot > 0 ? name.substring(lastDot).toLowerCase() : ''
+      if (lastDot > 0) {
+        const ext = name.substring(lastDot + 1).toLowerCase()
+        return `.${ext}`
+      }
+      return ''
     }
   }
 

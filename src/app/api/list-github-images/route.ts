@@ -61,40 +61,58 @@ export async function GET() {
       return lastDot > 0 ? filename.substring(0, lastDot) : filename
     }
 
+    // Função auxiliar para obter extensão
+    const getExtension = (path: string): string => {
+      const lastDot = path.lastIndexOf('.')
+      return lastDot > 0 ? path.substring(lastDot + 1).toLowerCase() : ''
+    }
+
     // Criar mapa de arquivos por nome base
     // Chave: nome base, Valor: caminho completo do arquivo encontrado
     const filesByBaseName: { [baseName: string]: string } = {}
+    
+    // Primeiro, coletar TODOS os arquivos com mesmo nome base
+    const filesByBaseNameArray: { [baseName: string]: Array<{ path: string; ext: string }> } = {}
     
     for (const file of allFiles) {
       if (file.type === 'file') {
         const relativePath = file.path.replace('public', '')
         const baseName = getBaseName(relativePath)
+        const ext = getExtension(relativePath)
         
-        // Se já existe um arquivo com mesmo nome base, manter o que já está
-        // (isso garante que se houver múltiplos, mantemos o primeiro encontrado)
-        // Mas na verdade, vamos priorizar: avif > webp > jpg/jpeg > png
-        if (!filesByBaseName[baseName]) {
-          filesByBaseName[baseName] = relativePath
-        } else {
-          // Verificar extensões e priorizar
-          const existingExt = filesByBaseName[baseName].split('.').pop()?.toLowerCase() || ''
-          const newExt = relativePath.split('.').pop()?.toLowerCase() || ''
-          
-          const priority: { [key: string]: number } = {
-            'avif': 4,
-            'webp': 3,
-            'jpg': 2,
-            'jpeg': 2,
-            'png': 1,
-          }
-          
-          const existingPriority = priority[existingExt] || 0
-          const newPriority = priority[newExt] || 0
-          
-          if (newPriority > existingPriority) {
-            filesByBaseName[baseName] = relativePath
-          }
+        if (!filesByBaseNameArray[baseName]) {
+          filesByBaseNameArray[baseName] = []
         }
+        
+        filesByBaseNameArray[baseName].push({ path: relativePath, ext })
+      }
+    }
+    
+    // Agora, para cada nome base, escolher o arquivo com maior prioridade
+    const priority: { [key: string]: number } = {
+      'avif': 5,
+      'webp': 4,
+      'jpg': 3,
+      'jpeg': 3,
+      'png': 2,
+      'gif': 1,
+    }
+    
+    for (const baseName in filesByBaseNameArray) {
+      const files = filesByBaseNameArray[baseName]
+      
+      // Ordenar por prioridade (maior primeiro)
+      files.sort((a, b) => {
+        const priorityA = priority[a.ext] || 0
+        const priorityB = priority[b.ext] || 0
+        return priorityB - priorityA
+      })
+      
+      // Usar o arquivo com maior prioridade
+      filesByBaseName[baseName] = files[0].path
+      
+      if (files.length > 1) {
+        console.log(`📋 ${baseName}: encontrados ${files.length} arquivos, usando ${files[0].ext} (${files[0].path})`)
       }
     }
 
