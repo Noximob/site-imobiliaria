@@ -9,7 +9,7 @@ import { siteImagesConfig } from '@/lib/github-images'
 interface SiteImage {
   id: string
   description: string
-  currentPath: string
+  currentPath: string | undefined
   recommendedSize: string
   category: string
   subcategory?: string
