@@ -57,6 +57,21 @@ export async function POST(request: NextRequest) {
       !filesToDelete.includes(item.path)
     )
     
+    // Função auxiliar para obter extensão do arquivo
+    const getFileExtension = (fileName: string): string => {
+      const lastDot = fileName.lastIndexOf('.')
+      return lastDot > 0 ? fileName.substring(lastDot + 1).toLowerCase() : ''
+    }
+    
+    // Função auxiliar para substituir extensão no caminho
+    const replaceExtension = (path: string, newExt: string): string => {
+      const lastDot = path.lastIndexOf('.')
+      if (lastDot > 0) {
+        return path.substring(0, lastDot + 1) + newExt
+      }
+      return path + '.' + newExt
+    }
+    
     // Adicionar novos uploads
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
@@ -69,7 +84,19 @@ export async function POST(request: NextRequest) {
       
       const arrayBuffer = await file.arrayBuffer()
       const buffer = Buffer.from(arrayBuffer)
-      const filePath = `public${imageConfig.localPath}`
+      
+      // Detectar extensão do arquivo original
+      const originalExt = getFileExtension(file.name)
+      
+      // Se o arquivo for .avif, .webp ou outra extensão moderna, usar ela
+      // Caso contrário, manter a extensão do config
+      let filePath = `public${imageConfig.localPath}`
+      
+      if (originalExt && ['avif', 'webp'].includes(originalExt)) {
+        // Substituir extensão no caminho pela extensão do arquivo
+        filePath = replaceExtension(filePath, originalExt)
+        console.log(`🔄 Usando extensão do arquivo: ${originalExt} (era ${getFileExtension(imageConfig.localPath)})`)
+      }
       
       // Criar blob
       const { data: blobData } = await octokit.git.createBlob({
@@ -87,7 +114,7 @@ export async function POST(request: NextRequest) {
         sha: blobData.sha
       })
       
-      console.log(`✅ Upload preparado: ${imageId}`)
+      console.log(`✅ Upload preparado: ${imageId} -> ${filePath}`)
     }
     
     // Criar nova tree
