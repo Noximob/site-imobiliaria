@@ -79,54 +79,60 @@ export async function GET() {
       'png': 1,
     }
     
+    // Primeiro, processar todos os arquivos e agrupar por nome base
+    const filesByBaseName: { [baseName: string]: Array<{ path: string; ext: string; priority: number }> } = {}
+    
     for (const file of allFiles) {
       if (file.type === 'file') {
-        // Construir o caminho relativo (ex: /imagens/logo.png)
         const relativePath = file.path.replace('public', '')
+        const baseName = getBaseName(relativePath)
+        const ext = getExtension(relativePath)
+        const priority = extensionPriority[ext] || 0
         
-        // Tentar match exato primeiro
-        let matchingConfig = siteImagesConfig.find(config => config.localPath === relativePath)
-        
-        if (matchingConfig) {
-          // Match exato encontrado
-          imagesMap[matchingConfig.id] = relativePath
-          console.log(`✅ Mapeado (exato): ${matchingConfig.id} -> ${relativePath}`)
-        } else {
-          // Tentar match por nome base (ignorando extensão)
-          const fileBaseName = getBaseName(relativePath)
-          const fileExtension = getExtension(relativePath)
-          
-          // Procurar configs que tenham o mesmo nome base
-          const candidateConfigs = siteImagesConfig.filter(config => {
-            const configBaseName = getBaseName(config.localPath)
-            return configBaseName === fileBaseName
-          })
-          
-          if (candidateConfigs.length > 0) {
-            // Se já existe uma imagem mapeada para este ID, verificar se devemos substituir
-            const configId = candidateConfigs[0].id
-            const existingPath = imagesMap[configId]
-            
-            if (!existingPath) {
-              // Nenhuma imagem mapeada ainda, usar esta
-              imagesMap[configId] = relativePath
-              console.log(`✅ Mapeado (nome base): ${configId} -> ${relativePath}`)
-            } else {
-              // Já existe uma imagem mapeada, verificar qual tem prioridade maior
-              const existingExt = getExtension(existingPath)
-              const existingPriority = extensionPriority[existingExt] || 0
-              const currentPriority = extensionPriority[fileExtension] || 0
-              
-              if (currentPriority > existingPriority) {
-                // Substituir pela imagem com extensão de maior prioridade
-                imagesMap[configId] = relativePath
-                console.log(`✅ Mapeado (substituído por prioridade): ${configId} -> ${relativePath} (era ${existingPath})`)
-              }
-            }
-          } else {
-            console.warn(`⚠️ Arquivo sem config: ${relativePath}`)
-          }
+        if (!filesByBaseName[baseName]) {
+          filesByBaseName[baseName] = []
         }
+        
+        filesByBaseName[baseName].push({ path: relativePath, ext, priority })
+      }
+    }
+    
+    // Agora mapear para os configs, priorizando extensões melhores
+    for (const config of siteImagesConfig) {
+      const configBaseName = getBaseName(config.localPath)
+      const configPath = config.localPath
+      
+      // Verificar se existe arquivo com mesmo nome base
+      const matchingFiles = filesByBaseName[configBaseName] || []
+      
+      if (matchingFiles.length > 0) {
+        // Ordenar por prioridade (maior primeiro)
+        matchingFiles.sort((a, b) => b.priority - a.priority)
+        
+        // Usar o arquivo com maior prioridade
+        const bestFile = matchingFiles[0]
+        imagesMap[config.id] = bestFile.path
+        
+        if (bestFile.path === configPath) {
+          console.log(`✅ Mapeado (exato): ${config.id} -> ${bestFile.path}`)
+        } else {
+          console.log(`✅ Mapeado (prioridade): ${config.id} -> ${bestFile.path} (config: ${configPath})`)
+        }
+      } else {
+        // Nenhum arquivo encontrado, usar o caminho do config como fallback
+        // (mas não adicionar ao map, deixar vazio para mostrar que não existe)
+        console.warn(`⚠️ Arquivo não encontrado para: ${config.id} (esperado: ${configPath})`)
+      }
+    }
+    
+    // Também processar arquivos que não têm config (para logs)
+    for (const baseName in filesByBaseName) {
+      const configExists = siteImagesConfig.some(config => getBaseName(config.localPath) === baseName)
+      if (!configExists) {
+        const files = filesByBaseName[baseName]
+        files.forEach(file => {
+          console.warn(`⚠️ Arquivo sem config: ${file.path}`)
+        })
       }
     }
 
