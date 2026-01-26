@@ -402,7 +402,7 @@ export default function AdminImagens() {
                             </div>
                           </div>
                         </>
-                      ) : markedForDelete ? (
+                      ) : markedForDelete && image.currentPath ? (
                         <>
                           <Image
                             src={image.currentPath}
@@ -415,7 +415,7 @@ export default function AdminImagens() {
                               🗑️ SERÁ APAGADA
                             </div>
                           </div>
-                          {image.currentPath && image.currentPath !== '/imagens/placeholder.png' && (
+                          {image.currentPath !== '/imagens/placeholder.png' && (
                             <div className="absolute bottom-2 right-2 bg-gray-800 bg-opacity-75 text-white text-xs font-medium px-2 py-1 rounded">
                               {getFileExtension(image.currentPath)}
                             </div>
