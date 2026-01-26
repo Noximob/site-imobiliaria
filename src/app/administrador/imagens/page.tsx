@@ -386,18 +386,11 @@ export default function AdminImagens() {
                   <p className="text-xs text-gray-400 mb-2">
                     Tamanho recomendado: {image.recommendedSize}
                   </p>
-                  {image.currentPath && (
-                    <div className="flex items-center gap-2 text-xs text-gray-600 mb-3">
-                      {image.extension && (
-                        <span className="bg-gray-100 px-2 py-1 rounded font-mono">
-                          .{image.extension.toUpperCase()}
-                        </span>
-                      )}
-                      {image.size !== undefined && (
-                        <span className="bg-gray-100 px-2 py-1 rounded">
-                          {formatFileSize(image.size)}
-                        </span>
-                      )}
+                  {image.currentPath && image.size !== undefined && (
+                    <div className="text-xs text-gray-600 mb-3">
+                      <span className="bg-gray-100 px-2 py-1 rounded">
+                        {formatFileSize(image.size)}
+                      </span>
                     </div>
                   )}
 
