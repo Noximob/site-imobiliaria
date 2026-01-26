@@ -42,28 +42,49 @@ export default function AdminImagens() {
 
   const loadImages = async () => {
     try {
-      // Buscar imagens reais do GitHub
-      const response = await fetch('/api/list-github-images')
+      // Buscar imagens reais do GitHub (com cache-busting)
+      const response = await fetch(`/api/list-github-images?t=${Date.now()}`, {
+        cache: 'no-store'
+      })
       let githubImages: { [key: string]: string } = {}
       
       if (response.ok) {
         githubImages = await response.json()
+        console.log('📦 Imagens retornadas pela API:', Object.keys(githubImages).length)
+        
+        // Log de imagens com extensões modernas
+        for (const [id, path] of Object.entries(githubImages)) {
+          const ext = path.split('.').pop()?.toLowerCase()
+          if (ext === 'avif' || ext === 'webp') {
+            console.log(`✨ ${id}: ${path} (${ext})`)
+          }
+        }
+      } else {
+        console.error('❌ Erro na resposta da API:', response.status)
       }
       
       // IMPORTANTE: Usar APENAS o caminho retornado pelo GitHub (com extensão real)
       // Se não existir no GitHub, currentPath será undefined (não usar fallback do config)
-      const imagesWithUrls = siteImagesConfig.map(img => ({
-        id: img.id,
-        description: img.description,
-        currentPath: githubImages[img.id] || undefined, // SEM fallback - usar apenas o que existe no GitHub
-        recommendedSize: img.recommendedSize,
-        category: img.category,
-        subcategory: img.subcategory,
-      }))
+      const imagesWithUrls = siteImagesConfig.map(img => {
+        const foundPath = githubImages[img.id]
+        if (foundPath) {
+          const ext = foundPath.split('.').pop()?.toLowerCase()
+          console.log(`✅ ${img.id}: ${foundPath} (${ext})`)
+        }
+        
+        return {
+          id: img.id,
+          description: img.description,
+          currentPath: foundPath || undefined, // SEM fallback - usar apenas o que existe no GitHub
+          recommendedSize: img.recommendedSize,
+          category: img.category,
+          subcategory: img.subcategory,
+        }
+      })
       
       setSiteImages(imagesWithUrls)
     } catch (error) {
-      console.error('Erro ao carregar imagens:', error)
+      console.error('❌ Erro ao carregar imagens:', error)
       // Em caso de erro, não usar fallback - deixar currentPath como undefined
       const imagesWithUrls = siteImagesConfig.map(img => ({
         id: img.id,

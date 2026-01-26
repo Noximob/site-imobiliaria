@@ -74,17 +74,31 @@ export async function GET() {
     // Primeiro, coletar TODOS os arquivos com mesmo nome base
     const filesByBaseNameArray: { [baseName: string]: Array<{ path: string; ext: string }> } = {}
     
+    console.log('📝 Processando arquivos encontrados...')
     for (const file of allFiles) {
       if (file.type === 'file') {
         const relativePath = file.path.replace('public', '')
         const baseName = getBaseName(relativePath)
         const ext = getExtension(relativePath)
         
+        // Log para arquivos com extensões modernas
+        if (ext === 'avif' || ext === 'webp') {
+          console.log(`🔍 Encontrado arquivo moderno: ${relativePath} (${ext})`)
+        }
+        
         if (!filesByBaseNameArray[baseName]) {
           filesByBaseNameArray[baseName] = []
         }
         
         filesByBaseNameArray[baseName].push({ path: relativePath, ext })
+      }
+    }
+    
+    // Log de arquivos com múltiplas extensões
+    for (const baseName in filesByBaseNameArray) {
+      const files = filesByBaseNameArray[baseName]
+      if (files.length > 1) {
+        console.log(`📦 ${baseName}: ${files.length} versões encontradas: ${files.map(f => f.ext).join(', ')}`)
       }
     }
     
@@ -125,12 +139,21 @@ export async function GET() {
       // Procurar arquivo com mesmo nome base
       if (filesByBaseName[configBaseName]) {
         // Usar o caminho REAL do arquivo encontrado (com extensão real)
-        imagesMap[config.id] = filesByBaseName[configBaseName]
-        console.log(`✅ ${config.id} -> ${filesByBaseName[configBaseName]}`)
+        const foundPath = filesByBaseName[configBaseName]
+        const foundExt = getExtension(foundPath)
+        imagesMap[config.id] = foundPath
+        
+        // Log detalhado mostrando extensão encontrada
+        const configExt = getExtension(config.localPath)
+        if (foundExt !== configExt) {
+          console.log(`✅ ${config.id}: usando ${foundExt} (config tinha ${configExt}) -> ${foundPath}`)
+        } else {
+          console.log(`✅ ${config.id} -> ${foundPath}`)
+        }
       } else {
         // Arquivo não encontrado - não adicionar ao map
         // Isso fará com que currentPath seja undefined e não mostre extensão
-        console.warn(`⚠️ Arquivo não encontrado: ${config.id} (base: ${configBaseName})`)
+        console.warn(`⚠️ Arquivo não encontrado: ${config.id} (base: ${configBaseName}, esperado: ${config.localPath})`)
       }
     }
 
