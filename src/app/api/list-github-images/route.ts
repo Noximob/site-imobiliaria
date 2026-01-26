@@ -193,8 +193,3 @@ export async function GET() {
     return NextResponse.json({ error: 'Erro ao buscar imagens' }, { status: 500 })
   }
 }
-  } catch (error) {
-    console.error('❌ Erro ao listar imagens do GitHub:', error)
-    return NextResponse.json({ error: 'Erro ao buscar imagens' }, { status: 500 })
-  }
-}
