@@ -226,6 +226,7 @@ export default function AdminImagens() {
       if (lastDot > 0 && lastDot < cleanPath.length - 1) {
         const ext = cleanPath.substring(lastDot + 1).toLowerCase()
         // Validar que é uma extensão válida (apenas letras e números, 2-5 caracteres)
+        // Inclui extensões como: jpg, png, gif, webp, avif, svg, etc.
         if (/^[a-z0-9]{2,5}$/.test(ext)) {
           return `.${ext}`
         }
