@@ -20,12 +20,10 @@ function ImoveisPageContent() {
   const [currentPage, setCurrentPage] = useState(1)
   const [ordenacao, setOrdenacao] = useState<'sem-ordenacao' | 'menor-preco' | 'maior-preco' | 'mais-dormitorios' | 'menos-dormitorios'>('sem-ordenacao')
   const itemsPerPage = 10
+  const [showFiltersMobile, setShowFiltersMobile] = useState(false)
+  const [showOrdenacaoMobile, setShowOrdenacaoMobile] = useState(false)
 
   useEffect(() => {
-    // Força overflow hidden no body apenas nesta página
-    document.body.style.overflow = 'hidden'
-    document.documentElement.style.overflow = 'hidden'
-    
     // Listener para atualizar quando favoritos mudarem
     const handleFavoritosChange = () => {
       setFavoritosUpdate(prev => prev + 1)
@@ -33,10 +31,8 @@ function ImoveisPageContent() {
     
     window.addEventListener('favoritos-changed', handleFavoritosChange)
     
-    // Cleanup: restaura overflow quando sair da página
+    // Cleanup
     return () => {
-      document.body.style.overflow = 'unset'
-      document.documentElement.style.overflow = 'unset'
       window.removeEventListener('favoritos-changed', handleFavoritosChange)
     }
   }, [])
@@ -159,24 +155,25 @@ function ImoveisPageContent() {
   }
 
   return (
-    <div className="h-screen bg-gray-50 flex flex-col overflow-hidden" style={{ height: '100vh', overflow: 'hidden' }}>
-      {/* Conteúdo Principal com Duas Colunas */}
-      <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar de Filtros - Lado Esquerdo - COM SCROLL */}
-        <div className="w-80 bg-white shadow-lg overflow-y-auto">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      {/* Layout principal: sidebar + conteúdo em telas grandes; apenas conteúdo no mobile */}
+      <div className="flex-1 flex max-w-7xl mx-auto w-full">
+        {/* Sidebar de Filtros - Desktop apenas */}
+        <div className="hidden lg:block w-80 bg-white shadow-lg overflow-y-auto">
           <FiltrosImoveis onFiltrosChange={handleFiltrosChange} filtrosIniciais={filtrosIniciais} />
         </div>
 
-        {/* Área Principal - Lado Direito */}
+        {/* Área Principal */}
         <div className="flex-1 flex flex-col">
-          {/* Header Fixo dos Imóveis - FIXO COMO HEADER */}
-          <div className="bg-white shadow-sm border-b border-gray-200 px-6 py-3 flex-shrink-0">
-            <div className="flex items-center justify-between mb-2">
+          {/* Header / Barra superior */}
+          <div className="bg-white shadow-sm border-b border-gray-200 px-4 sm:px-6 py-3 flex-shrink-0">
+            <div className="flex items-center justify-between gap-3 mb-2">
               <div>
-                <h1 className="text-2xl font-semibold text-gray-900">Imóveis à Venda</h1>
-                <p className="text-xs text-gray-600 mt-1">Home &gt; Imóveis à Venda</p>
+                <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">Imóveis à Venda</h1>
+                <p className="text-xs text-gray-600 mt-1 hidden sm:block">Home &gt; Imóveis à Venda</p>
               </div>
-              <div className="flex items-center gap-3">
+              {/* Ordenação desktop */}
+              <div className="hidden sm:flex items-center gap-3">
                 <select
                   value={ordenacao}
                   onChange={(e) => setOrdenacao(e.target.value as any)}
@@ -190,7 +187,26 @@ function ImoveisPageContent() {
                 </select>
               </div>
             </div>
-            <p className="text-sm text-gray-600">
+
+            {/* Barra de ações no mobile: Filtrar / Ordenar */}
+            <div className="mt-2 flex gap-3 sm:hidden">
+              <button
+                type="button"
+                onClick={() => setShowFiltersMobile(true)}
+                className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-purple-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-600"
+              >
+                <span>Filtrar</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowOrdenacaoMobile(true)}
+                className="flex-1 inline-flex items-center justify-center gap-2 rounded-full border border-purple-500 px-4 py-2 text-sm font-semibold text-purple-600 bg-white hover:bg-purple-50"
+              >
+                <span>Ordenar</span>
+              </button>
+            </div>
+
+            <p className="mt-2 text-sm text-gray-600">
               {isLoading 
                 ? 'Carregando imóveis...' 
                 : `Encontramos ${imoveis.length} ${imoveis.length === 1 ? 'imóvel' : 'imóveis'} com seus critérios de busca`
@@ -198,9 +214,9 @@ function ImoveisPageContent() {
             </p>
           </div>
 
-          {/* Lista de Imóveis - COM SCROLL */}
+          {/* Lista de Imóveis */}
           <div className="flex-1 overflow-y-auto">
-            <div className="max-w-6xl mx-auto px-6 py-8 pb-24">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 pb-24">
               {isLoading ? (
                 <div className="text-center py-12">
                   <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
@@ -216,14 +232,14 @@ function ImoveisPageContent() {
                     {imoveis
                       .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
                       .map((imovel) => (
-                    <div key={imovel.id} className="bg-white rounded-lg shadow-lg overflow-hidden flex h-64">
-                      <div className="w-64 h-full relative">
+                    <div key={imovel.id} className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col sm:flex-row sm:h-64">
+                      <div className="w-full sm:w-64 h-56 sm:h-full relative">
                         {imovel.fotos && imovel.fotos.length > 0 ? (
                           <Image
                             src={imovel.fotos[0]}
                             alt={imovel.titulo}
                             fill
-                            className="object-contain bg-gray-100"
+                            className="object-cover sm:object-contain bg-gray-100"
                             unoptimized
                           />
                         ) : (
@@ -232,7 +248,7 @@ function ImoveisPageContent() {
                           </div>
                         )}
                       </div>
-                      <div className="flex-1 p-5 flex flex-col justify-between">
+                      <div className="flex-1 p-4 sm:p-5 flex flex-col justify-between">
                         <div>
                           <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
                             {imovel.titulo}
@@ -395,6 +411,83 @@ function ImoveisPageContent() {
           </div>
         </div>
       </div>
+      
+      {/* Overlay de Filtros - Mobile */}
+      {showFiltersMobile && (
+        <div className="fixed inset-0 z-40 flex lg:hidden">
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={() => setShowFiltersMobile(false)}
+          />
+          <div className="relative ml-auto h-full w-full max-w-md bg-white rounded-l-2xl shadow-xl flex flex-col">
+            <div className="flex items-center justify-between px-4 py-3 border-b">
+              <h2 className="text-base font-semibold text-gray-900">Filtrar imóveis</h2>
+              <button
+                type="button"
+                onClick={() => setShowFiltersMobile(false)}
+                className="text-gray-500 hover:text-gray-700 text-sm font-medium"
+              >
+                Fechar
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto">
+              <FiltrosImoveis
+                onFiltrosChange={(novos) => {
+                  handleFiltrosChange(novos)
+                }}
+                filtrosIniciais={filtrosIniciais}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Overlay de Ordenação - Mobile */}
+      {showOrdenacaoMobile && (
+        <div className="fixed inset-0 z-40 flex lg:hidden">
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={() => setShowOrdenacaoMobile(false)}
+          />
+          <div className="relative mt-auto w-full bg-white rounded-t-2xl shadow-xl">
+            <div className="flex items-center justify-between px-4 py-3 border-b">
+              <h2 className="text-base font-semibold text-gray-900">Ordenar</h2>
+              <button
+                type="button"
+                onClick={() => setShowOrdenacaoMobile(false)}
+                className="text-gray-500 hover:text-gray-700 text-sm font-medium"
+              >
+                Fechar
+              </button>
+            </div>
+            <div className="p-4 space-y-2">
+              {[
+                { value: 'sem-ordenacao', label: 'Sem ordenação' },
+                { value: 'menor-preco', label: 'Menor preço' },
+                { value: 'maior-preco', label: 'Maior preço' },
+                { value: 'mais-dormitorios', label: 'Mais dormitórios' },
+                { value: 'menos-dormitorios', label: 'Menos dormitórios' },
+              ].map((opt) => (
+                <button
+                  key={opt.value}
+                  type="button"
+                  onClick={() => {
+                    setOrdenacao(opt.value as any)
+                    setShowOrdenacaoMobile(false)
+                  }}
+                  className={`w-full text-left px-3 py-2 rounded-lg text-sm ${
+                    ordenacao === opt.value
+                      ? 'bg-purple-50 text-purple-700 font-semibold'
+                      : 'text-gray-800 hover:bg-gray-50'
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
