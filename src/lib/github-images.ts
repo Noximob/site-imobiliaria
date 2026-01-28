@@ -574,16 +574,15 @@ export const siteImagesConfig: SiteImageConfig[] = [
   }
 ]
 
-// Função para obter URL da imagem (SOMENTE GitHub - sem fallback)
+// Função para obter URL da imagem: passa pelo resolver (/api/image?id=xxx)
+// para que o site use sempre o arquivo real no GitHub (ex: .avif), igual ao admin.
 export function getImageUrl(imageId: string): string {
   const config = siteImagesConfig.find(img => img.id === imageId)
   if (!config) {
     console.warn(`Imagem não encontrada: ${imageId}`)
     return ''
   }
-  
-  // Retorna URL do GitHub (sem fallback local)
-  return config.localPath
+  return `/api/image?id=${encodeURIComponent(imageId)}`
 }
 
 // Função para obter todas as imagens
