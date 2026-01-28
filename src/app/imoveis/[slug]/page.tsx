@@ -411,13 +411,13 @@ export default function ImovelDetalhePage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Coluna Esquerda - Conteúdo Principal */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Título Completo com Badges */}
+            {/* Conteúdo no estilo DWV: definições primeiro, traço, depois o que foi escrito */}
             <div className="bg-white rounded-lg shadow-sm p-6">
+              {/* 1) Nome do imóvel */}
               <h1 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4">
                 {imovel.titulo}
               </h1>
               
-              {/* Badges de Destaque */}
               {imovel.selecaoNox && (
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="px-3 py-1 bg-purple-100 border border-purple-300 text-purple-800 rounded-md text-sm font-medium">
@@ -426,17 +426,8 @@ export default function ImovelDetalhePage() {
                 </div>
               )}
 
-              {/* Texto introdutório */}
-              {imovel.descricao && (
-                <div className="mb-4">
-                  <p className="text-gray-700 leading-relaxed text-base">
-                    {imovel.descricao.split('\n')[0]}
-                  </p>
-                </div>
-              )}
-
-              {/* Lista de características principais */}
-              <div className="space-y-2 mb-4">
+              {/* 2) Definições do imóvel (lista de especificações - igual DWV) */}
+              <div className="space-y-2 mb-0">
                 {imovel.caracteristicas.area > 0 && (
                   <p className="text-gray-700">
                     - {imovel.caracteristicas.area}m² de área interna
@@ -469,11 +460,14 @@ export default function ImovelDetalhePage() {
                 )}
               </div>
 
-              {/* Descrição completa */}
-              {imovel.descricao && imovel.descricao.split('\n').length > 1 && (
-                <div className="mt-4 pt-4 border-t border-gray-200">
+              {/* 3) Separador visual (sigelo traço) */}
+              <div className="my-6 border-t border-gray-300" aria-hidden />
+
+              {/* 4) O que foi escrito sobre o imóvel (descrição) */}
+              {imovel.descricao && (
+                <div>
                   <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                    {imovel.descricao.split('\n').slice(1).join('\n')}
+                    {imovel.descricao}
                   </p>
                 </div>
               )}
