@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   description: 'Encontre casas, apartamentos e terrenos para venda e aluguel. A melhor imobiliária da região com os melhores imóveis.',
   keywords: 'imobiliária, casas, apartamentos, terrenos, venda, aluguel, imóveis',
   authors: [{ name: 'Imobiliária' }],
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   openGraph: {
     title: 'Imobiliária - Encontre o Imóvel dos Seus Sonhos',
     description: 'Encontre casas, apartamentos e terrenos para venda e aluguel. A melhor imobiliária da região com os melhores imóveis.',
