@@ -155,7 +155,7 @@ function ImoveisPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-gray-50 flex flex-col overflow-x-hidden">
       {/* Layout principal: sidebar + conteúdo em telas grandes; apenas conteúdo no mobile */}
       <div className="flex-1 flex max-w-7xl mx-auto w-full">
         {/* Sidebar de Filtros - Desktop apenas */}
@@ -425,9 +425,12 @@ function ImoveisPageContent() {
               <button
                 type="button"
                 onClick={() => setShowFiltersMobile(false)}
-                className="text-gray-500 hover:text-gray-700 text-sm font-medium"
+                className="text-gray-500 hover:text-gray-700 p-1.5 rounded-full border border-transparent hover:border-gray-300"
+                aria-label="Fechar filtros"
               >
-                Fechar
+                <span aria-hidden="true" className="text-lg leading-none">
+                  ×
+                </span>
               </button>
             </div>
             <div className="flex-1 overflow-y-auto">
@@ -455,9 +458,12 @@ function ImoveisPageContent() {
               <button
                 type="button"
                 onClick={() => setShowOrdenacaoMobile(false)}
-                className="text-gray-500 hover:text-gray-700 text-sm font-medium"
+                className="text-gray-500 hover:text-gray-700 p-1.5 rounded-full border border-transparent hover:border-gray-300"
+                aria-label="Fechar ordenação"
               >
-                Fechar
+                <span aria-hidden="true" className="text-lg leading-none">
+                  ×
+                </span>
               </button>
             </div>
             <div className="p-4 space-y-2">
