@@ -155,7 +155,7 @@ function ImoveisPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col overflow-x-hidden">
+    <div className="min-h-screen bg-gray-50 flex flex-col w-screen overflow-x-hidden">
       {/* Layout principal: sidebar + conteúdo em telas grandes; apenas conteúdo no mobile */}
       <div className="flex-1 flex max-w-7xl mx-auto w-full">
         {/* Sidebar de Filtros - Desktop apenas */}
