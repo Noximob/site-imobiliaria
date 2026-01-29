@@ -50,73 +50,53 @@ export default async function ComoComprarPage() {
       <link rel="preload" as="image" href={siteImages['topico-como-comprar']} />
       
       <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative text-white py-8 min-h-[350px] flex items-center">
-        {/* Background Image - Zero flicker */}
-        {/* Background Image - Zero cinza */}
-        <div 
+      {/* Hero Section: no mobile empilha (texto em cima, cards embaixo); no desktop lado a lado */}
+      <section className="relative text-white py-8 min-h-[280px] sm:min-h-[350px] flex items-center">
+        <div
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: `url(${siteImages['topico-como-comprar']})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: 'transparent',
-            // Força renderização imediata
-            willChange: 'auto',
-            // Evita placeholder cinza
             background: `transparent url(${siteImages['topico-como-comprar']}) center/cover no-repeat`
           }}
         />
-        
-        {/* Overlay removido - agora transparente */}
-        
-        {/* Content */}
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="flex items-center justify-between">
-            {/* Lado Esquerdo - Texto e Botão */}
-            <div className="text-white w-1/2">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-4">
+            {/* Texto: no mobile full width em cima */}
+            <div className="text-white w-full md:w-1/2 text-center md:text-left">
               <div className="space-y-4">
-                <div className="text-3xl md:text-4xl font-bold leading-tight">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
                   {getText('como_comprar.hero.titulo')}
-                </div>
+                </h1>
               </div>
             </div>
-            
-            {/* Lado Direito - Pessoas (placeholder para depois escolher a foto) */}
-            <div className="w-1/2 flex justify-end">
-              <div className="grid grid-cols-3 gap-3">
-                {/* Pessoa 1 */}
+            {/* Cards: no mobile embaixo, em linha; no desktop à direita */}
+            <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-xs mx-auto md:max-w-none md:mx-0">
                 <div className="text-center">
-                  <div className="relative mb-3">
-                    <div className="w-24 h-32 bg-white/20 backdrop-blur-sm rounded-lg mx-auto flex items-center justify-center border border-white/30">
-                      <Users className="w-12 h-12 text-white" />
+                  <div className="relative mb-2 sm:mb-3">
+                    <div className="w-16 h-20 sm:w-24 sm:h-32 bg-white/20 backdrop-blur-sm rounded-lg mx-auto flex items-center justify-center border border-white/30">
+                      <Users className="w-8 h-8 sm:w-12 sm:h-12 text-white" />
                     </div>
                   </div>
-                  <h4 className="text-white font-semibold text-xs">Especialista em</h4>
-                  <p className="text-white/80 text-xs">Vendas</p>
+                  <h4 className="text-white font-semibold text-[10px] sm:text-xs">Especialista em</h4>
+                  <p className="text-white/80 text-[10px] sm:text-xs">Vendas</p>
                 </div>
-                
-                {/* Pessoa 2 */}
                 <div className="text-center">
-                  <div className="relative mb-3">
-                    <div className="w-24 h-32 bg-white/20 backdrop-blur-sm rounded-lg mx-auto flex items-center justify-center border border-white/30">
-                      <Building className="w-12 h-12 text-white" />
+                  <div className="relative mb-2 sm:mb-3">
+                    <div className="w-16 h-20 sm:w-24 sm:h-32 bg-white/20 backdrop-blur-sm rounded-lg mx-auto flex items-center justify-center border border-white/30">
+                      <Building className="w-8 h-8 sm:w-12 sm:h-12 text-white" />
                     </div>
                   </div>
-                  <h4 className="text-white font-semibold text-xs">Consultor em</h4>
-                  <p className="text-white/80 text-xs">Investimentos</p>
+                  <h4 className="text-white font-semibold text-[10px] sm:text-xs">Consultor em</h4>
+                  <p className="text-white/80 text-[10px] sm:text-xs">Investimentos</p>
                 </div>
-                
-                {/* Pessoa 3 */}
                 <div className="text-center">
-                  <div className="relative mb-3">
-                    <div className="w-24 h-32 bg-white/20 backdrop-blur-sm rounded-lg mx-auto flex items-center justify-center border border-white/30">
-                      <Award className="w-12 h-12 text-white" />
+                  <div className="relative mb-2 sm:mb-3">
+                    <div className="w-16 h-20 sm:w-24 sm:h-32 bg-white/20 backdrop-blur-sm rounded-lg mx-auto flex items-center justify-center border border-white/30">
+                      <Award className="w-8 h-8 sm:w-12 sm:h-12 text-white" />
                     </div>
                   </div>
-                  <h4 className="text-white font-semibold text-xs">Especialista em</h4>
-                  <p className="text-white/80 text-xs">Financiamentos</p>
+                  <h4 className="text-white font-semibold text-[10px] sm:text-xs">Especialista em</h4>
+                  <p className="text-white/80 text-[10px] sm:text-xs">Financiamentos</p>
                 </div>
               </div>
             </div>
@@ -124,69 +104,60 @@ export default async function ComoComprarPage() {
         </div>
       </section>
 
-      {/* Seção Como é Comprar */}
+      {/* Seção Como é Comprar: no mobile empilha (título + botão em cima, 4 passos embaixo) */}
       <section className="py-8 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-start justify-between">
-            {/* Lado Esquerdo - Título e Botão */}
-            <div className="w-1/2">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 leading-tight">
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
+            {/* Título e Botão: no mobile full width em cima */}
+            <div className="w-full lg:w-1/2">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                 {getText('como_comprar.como_funciona.titulo')}
               </h2>
-              
-              <div className="mt-6">
-                <Link 
-                  href="/imoveis" 
-                  className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors inline-flex items-center text-base"
+              <div className="mt-4 sm:mt-6">
+                <Link
+                  href="/imoveis"
+                  className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors inline-flex items-center text-sm sm:text-base w-full sm:w-auto justify-center"
                 >
                   {getText('como_comprar.como_funciona.botao_buscar')}
                 </Link>
               </div>
             </div>
-            
-            {/* Lado Direito - 4 Passos Horizontais */}
-            <div className="w-1/2 flex justify-end">
-              <div className="grid grid-cols-4 gap-4">
-                {/* Passo 1 */}
+            {/* 4 Passos: no mobile grid 2 colunas embaixo; no desktop à direita em linha */}
+            <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 w-full max-w-lg lg:max-w-none">
                 <div>
-                  <div className="text-3xl font-bold text-gray-300 mb-2">{getText('como_comprar.como_funciona.passo_1.numero')}</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-300 mb-1 sm:mb-2">{getText('como_comprar.como_funciona.passo_1.numero')}</div>
                   <h3 className="text-sm font-bold text-gray-900 mb-1">
                     {getText('como_comprar.como_funciona.passo_1.titulo')}
                   </h3>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-gray-600 leading-snug">
                     {getText('como_comprar.como_funciona.passo_1.descricao')}
                   </p>
                 </div>
-                
-                {/* Passo 2 */}
                 <div>
-                  <div className="text-3xl font-bold text-gray-300 mb-2">{getText('como_comprar.como_funciona.passo_2.numero')}</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-300 mb-1 sm:mb-2">{getText('como_comprar.como_funciona.passo_2.numero')}</div>
                   <h3 className="text-sm font-bold text-gray-900 mb-1">
                     {getText('como_comprar.como_funciona.passo_2.titulo')}
                   </h3>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-gray-600 leading-snug">
                     {getText('como_comprar.como_funciona.passo_2.descricao')}
                   </p>
                 </div>
-                
-                {/* Passo 3 */}
                 <div>
-                  <div className="text-3xl font-bold text-gray-300 mb-2">{getText('como_comprar.como_funciona.passo_3.numero')}</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-300 mb-1 sm:mb-2">{getText('como_comprar.como_funciona.passo_3.numero')}</div>
                   <h3 className="text-sm font-bold text-gray-900 mb-1">
                     {getText('como_comprar.como_funciona.passo_3.titulo')}
                   </h3>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-gray-600 leading-snug">
                     {getText('como_comprar.como_funciona.passo_3.descricao')}
                   </p>
                 </div>
-                
-                {/* Passo 4 */}
                 <div>
-                  <div className="text-3xl font-bold text-gray-300 mb-2">{getText('como_comprar.como_funciona.passo_4.numero')}</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-300 mb-1 sm:mb-2">{getText('como_comprar.como_funciona.passo_4.numero')}</div>
                   <h3 className="text-sm font-bold text-gray-900 mb-1">
                     {getText('como_comprar.como_funciona.passo_4.titulo')}
                   </h3>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-gray-600 leading-snug">
                     {getText('como_comprar.como_funciona.passo_4.descricao')}
                   </p>
                 </div>
