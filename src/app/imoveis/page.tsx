@@ -419,17 +419,18 @@ function ImoveisPageContent() {
             className="absolute inset-0 bg-black/40"
             onClick={() => setShowFiltersMobile(false)}
           />
-          {/* Botão X em cima de tudo - fixed na tela, sempre visível */}
-          <button
-            type="button"
-            onClick={() => setShowFiltersMobile(false)}
-            className="fixed z-[100] flex items-center justify-center w-14 h-14 rounded-full bg-white border-2 border-gray-300 shadow-xl text-gray-800 active:bg-gray-100"
-            style={{ top: 'max(12px, env(safe-area-inset-top))', right: 'max(16px, env(safe-area-inset-right))' }}
-            aria-label="Fechar filtros"
-          >
-            <X className="w-7 h-7" strokeWidth={2.5} />
-          </button>
           <div className="relative ml-auto h-full w-full max-w-md bg-white rounded-l-2xl shadow-xl flex flex-col overflow-hidden" style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}>
+            {/* Em cima de todos os filtros: um X para fechar */}
+            <div className="flex justify-end flex-shrink-0 px-4 py-3 border-b border-gray-200 bg-white">
+              <button
+                type="button"
+                onClick={() => setShowFiltersMobile(false)}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300"
+                aria-label="Fechar filtros"
+              >
+                <X className="w-5 h-5" strokeWidth={2.5} />
+              </button>
+            </div>
             <div className="flex-1 overflow-y-auto overflow-x-hidden" style={{ minHeight: 0 }}>
               <FiltrosImoveis
                 onFiltrosChange={(novos) => {
