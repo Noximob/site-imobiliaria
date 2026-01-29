@@ -79,8 +79,8 @@ export default function TrabalheConoscoPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Primeira Tela - Hero Section: no mobile texto em cima, foto embaixo; no desktop lado a lado */}
-      <div className="relative min-h-screen md:h-screen">
-        <div className="min-h-0 h-full flex flex-col md:flex-row">
+      <div className="relative md:min-h-screen md:h-screen">
+        <div className="min-h-0 md:h-full flex flex-col md:flex-row">
           {/* Bloco de texto (no mobile em cima, no desktop à esquerda) */}
           <div className="flex-1 flex items-center justify-center bg-purple-900 py-12 md:py-0 md:min-h-0 order-1">
             <div className="text-white max-w-lg px-6 sm:px-8 text-center md:text-left">
@@ -100,7 +100,7 @@ export default function TrabalheConoscoPage() {
           </div>
 
           {/* Imagem da equipe (no mobile embaixo, no desktop à direita) */}
-          <div className="flex-1 relative min-h-[280px] sm:min-h-[320px] md:min-h-0 order-2 bg-gray-100">
+          <div className="flex-1 relative min-h-[280px] sm:min-h-[320px] md:min-h-0 order-2 bg-gray-800">
             <Image
               src={trabalheImage}
               alt="Equipe Nox Imóveis"
@@ -113,8 +113,8 @@ export default function TrabalheConoscoPage() {
         </div>
       </div>
 
-      {/* Seção de Valores */}
-      <div className="bg-gray-800 py-8 -mt-20 relative z-10">
+      {/* Seção de Valores - colada embaixo da foto, sem tira branca */}
+      <div className="bg-gray-800 py-8 relative z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Cultura de Aprendizado */}
