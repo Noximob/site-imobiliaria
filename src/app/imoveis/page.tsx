@@ -421,8 +421,8 @@ function ImoveisPageContent() {
           />
           <div className="relative ml-auto h-full w-full max-w-md bg-white rounded-l-2xl shadow-xl flex flex-col overflow-hidden" style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}>
             <div className="flex-1 overflow-y-auto overflow-x-hidden" style={{ minHeight: 0 }}>
-              {/* Acima do Status: ícone X roxo para fechar o filtro */}
-              <div className="flex justify-end px-4 pt-4 pb-2 bg-white sticky top-0 z-10">
+              {/* Acima do Status: ícone X roxo para fechar (abaixo do header do site) */}
+              <div className="flex justify-end px-4 pt-14 pb-2 bg-white sticky top-0 z-10">
                 <button
                   type="button"
                   onClick={() => setShowFiltersMobile(false)}
