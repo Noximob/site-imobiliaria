@@ -7,7 +7,7 @@ import Link from 'next/link'
 import FiltrosImoveis from '@/components/FiltrosImoveis'
 import { getAllImoveis, searchImoveis, formatPrice } from '@/lib/imoveis'
 import { Imovel, FiltrosImovel } from '@/types'
-import { Heart } from 'lucide-react'
+import { Heart, X } from 'lucide-react'
 import { toggleFavorito, isFavorito } from '@/lib/favoritos'
 
 function ImoveisPageContent() {
@@ -155,25 +155,25 @@ function ImoveisPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col overflow-x-hidden">
+    <div className="min-h-screen bg-gray-50 flex flex-col overflow-x-hidden w-full max-w-full box-border">
       {/* Layout principal: sidebar + conteúdo em telas grandes; apenas conteúdo no mobile */}
-      <div className="flex-1 flex max-w-7xl mx-auto w-full">
+      <div className="flex-1 flex max-w-7xl mx-auto w-full min-w-0 box-border">
         {/* Sidebar de Filtros - Desktop apenas */}
-        <div className="hidden lg:block w-80 bg-white shadow-lg overflow-y-auto">
+        <div className="hidden lg:block w-80 flex-shrink-0 bg-white shadow-lg overflow-y-auto">
           <FiltrosImoveis onFiltrosChange={handleFiltrosChange} filtrosIniciais={filtrosIniciais} />
         </div>
 
-        {/* Área Principal */}
-        <div className="flex-1 flex flex-col">
+        {/* Área Principal - centralizada e sem overflow no mobile */}
+        <div className="flex-1 flex flex-col min-w-0 w-full">
           {/* Header / Barra superior */}
-          <div className="bg-white shadow-sm border-b border-gray-200 px-4 sm:px-6 py-3 flex-shrink-0">
-            <div className="flex items-center justify-between gap-3 mb-2">
-              <div>
-                <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">Imóveis à Venda</h1>
+          <div className="bg-white shadow-sm border-b border-gray-200 px-4 sm:px-6 py-3 flex-shrink-0 min-w-0">
+            <div className="flex items-center justify-between gap-3 mb-2 min-w-0">
+              <div className="min-w-0 flex-1">
+                <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 truncate">Imóveis à Venda</h1>
                 <p className="text-xs text-gray-600 mt-1 hidden sm:block">Home &gt; Imóveis à Venda</p>
               </div>
               {/* Ordenação desktop */}
-              <div className="hidden sm:flex items-center gap-3">
+              <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
                 <select
                   value={ordenacao}
                   onChange={(e) => setOrdenacao(e.target.value as any)}
@@ -188,25 +188,25 @@ function ImoveisPageContent() {
               </div>
             </div>
 
-            {/* Barra de ações no mobile: Filtrar / Ordenar */}
-            <div className="mt-2 flex gap-3 sm:hidden">
+            {/* Barra de ações no mobile: Filtrar / Ordenar - cabem na tela */}
+            <div className="mt-2 flex gap-2 sm:hidden min-w-0 w-full">
               <button
                 type="button"
                 onClick={() => setShowFiltersMobile(true)}
-                className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-purple-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-600"
+                className="flex-1 min-w-0 inline-flex items-center justify-center rounded-full bg-purple-500 px-3 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-purple-600"
               >
-                <span>Filtrar</span>
+                Filtrar
               </button>
               <button
                 type="button"
                 onClick={() => setShowOrdenacaoMobile(true)}
-                className="flex-1 inline-flex items-center justify-center gap-2 rounded-full border border-purple-500 px-4 py-2 text-sm font-semibold text-purple-600 bg-white hover:bg-purple-50"
+                className="flex-1 min-w-0 inline-flex items-center justify-center rounded-full border border-purple-500 px-3 py-2.5 text-sm font-semibold text-purple-600 bg-white hover:bg-purple-50"
               >
-                <span>Ordenar</span>
+                Ordenar
               </button>
             </div>
 
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-gray-600 min-w-0">
               {isLoading 
                 ? 'Carregando imóveis...' 
                 : `Encontramos ${imoveis.length} ${imoveis.length === 1 ? 'imóvel' : 'imóveis'} com seus critérios de busca`
@@ -215,8 +215,8 @@ function ImoveisPageContent() {
           </div>
 
           {/* Lista de Imóveis */}
-          <div className="flex-1 overflow-y-auto">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 pb-24">
+          <div className="flex-1 overflow-y-auto overflow-x-hidden min-w-0">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 pb-24 w-full box-border">
               {isLoading ? (
                 <div className="text-center py-12">
                   <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
@@ -232,8 +232,8 @@ function ImoveisPageContent() {
                     {imoveis
                       .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
                       .map((imovel) => (
-                    <div key={imovel.id} className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col sm:flex-row sm:h-64">
-                      <div className="w-full sm:w-64 h-56 sm:h-full relative">
+                    <div key={imovel.id} className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col sm:flex-row sm:h-64 min-w-0 w-full">
+                      <div className="w-full sm:w-64 h-56 sm:h-full relative flex-shrink-0 min-w-0">
                         {imovel.fotos && imovel.fotos.length > 0 ? (
                           <Image
                             src={imovel.fotos[0]}
@@ -248,7 +248,7 @@ function ImoveisPageContent() {
                           </div>
                         )}
                       </div>
-                      <div className="flex-1 p-4 sm:p-5 flex flex-col justify-between">
+                      <div className="flex-1 p-4 sm:p-5 flex flex-col justify-between min-w-0">
                         <div>
                           <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
                             {imovel.titulo}
@@ -420,17 +420,15 @@ function ImoveisPageContent() {
             onClick={() => setShowFiltersMobile(false)}
           />
           <div className="relative ml-auto h-full w-full max-w-md bg-white rounded-l-2xl shadow-xl flex flex-col">
-            <div className="flex items-center justify-between px-4 py-3 border-b">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 flex-shrink-0">
               <h2 className="text-base font-semibold text-gray-900">Filtrar imóveis</h2>
               <button
                 type="button"
                 onClick={() => setShowFiltersMobile(false)}
-                className="text-gray-500 hover:text-gray-700 p-1.5 rounded-full border border-transparent hover:border-gray-300"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-800 transition-colors"
                 aria-label="Fechar filtros"
               >
-                <span aria-hidden="true" className="text-lg leading-none">
-                  ×
-                </span>
+                <X className="w-5 h-5" strokeWidth={2.5} />
               </button>
             </div>
             <div className="flex-1 overflow-y-auto">
@@ -453,17 +451,15 @@ function ImoveisPageContent() {
             onClick={() => setShowOrdenacaoMobile(false)}
           />
           <div className="relative mt-auto w-full bg-white rounded-t-2xl shadow-xl">
-            <div className="flex items-center justify-between px-4 py-3 border-b">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
               <h2 className="text-base font-semibold text-gray-900">Ordenar</h2>
               <button
                 type="button"
                 onClick={() => setShowOrdenacaoMobile(false)}
-                className="text-gray-500 hover:text-gray-700 p-1.5 rounded-full border border-transparent hover:border-gray-300"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-800 transition-colors"
                 aria-label="Fechar ordenação"
               >
-                <span aria-hidden="true" className="text-lg leading-none">
-                  ×
-                </span>
+                <X className="w-5 h-5" strokeWidth={2.5} />
               </button>
             </div>
             <div className="p-4 space-y-2">
