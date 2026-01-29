@@ -420,18 +420,18 @@ function ImoveisPageContent() {
             onClick={() => setShowFiltersMobile(false)}
           />
           <div className="relative ml-auto h-full w-full max-w-md bg-white rounded-l-2xl shadow-xl flex flex-col overflow-hidden" style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}>
-            {/* Em cima de todos os filtros: um X para fechar */}
-            <div className="flex justify-end flex-shrink-0 px-4 py-3 border-b border-gray-200 bg-white">
-              <button
-                type="button"
-                onClick={() => setShowFiltersMobile(false)}
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300"
-                aria-label="Fechar filtros"
-              >
-                <X className="w-5 h-5" strokeWidth={2.5} />
-              </button>
-            </div>
             <div className="flex-1 overflow-y-auto overflow-x-hidden" style={{ minHeight: 0 }}>
+              {/* Acima do Status: ícone X roxo para fechar o filtro */}
+              <div className="flex justify-end px-4 pt-4 pb-2 bg-white sticky top-0 z-10">
+                <button
+                  type="button"
+                  onClick={() => setShowFiltersMobile(false)}
+                  className="flex items-center justify-center w-11 h-11 rounded-full bg-purple-500 text-white hover:bg-purple-600 active:opacity-90"
+                  aria-label="Fechar filtros"
+                >
+                  <X className="w-6 h-6" strokeWidth={2.5} />
+                </button>
+              </div>
               <FiltrosImoveis
                 onFiltrosChange={(novos) => {
                   handleFiltrosChange(novos)
