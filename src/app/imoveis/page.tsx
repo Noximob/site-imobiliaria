@@ -419,8 +419,8 @@ function ImoveisPageContent() {
             className="absolute inset-0 bg-black/40"
             onClick={() => setShowFiltersMobile(false)}
           />
-          <div className="relative ml-auto h-full w-full max-w-md bg-white rounded-l-2xl shadow-xl flex flex-col pt-[env(safe-area-inset-top,0px)]">
-            <div className="sticky top-0 z-10 flex items-center justify-between gap-3 px-4 py-3 border-b border-gray-200 bg-white flex-shrink-0 rounded-tl-2xl">
+          <div className="relative ml-auto h-full w-full max-w-md bg-white rounded-l-2xl shadow-xl flex flex-col min-h-0 pt-[env(safe-area-inset-top,0px)]">
+            <div className="flex items-center justify-between gap-3 px-4 py-3 border-b border-gray-200 bg-white flex-shrink-0 rounded-tl-2xl">
               <h2 className="text-base font-semibold text-gray-900 flex-1 min-w-0">Filtrar imóveis</h2>
               <button
                 type="button"
@@ -431,7 +431,7 @@ function ImoveisPageContent() {
                 <X className="w-5 h-5" strokeWidth={2.5} />
               </button>
             </div>
-            <div className="flex-1 overflow-y-auto">
+            <div className="flex-1 min-h-0 overflow-y-auto">
               <FiltrosImoveis
                 onFiltrosChange={(novos) => {
                   handleFiltrosChange(novos)
