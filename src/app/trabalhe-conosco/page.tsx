@@ -78,40 +78,37 @@ export default function TrabalheConoscoPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Primeira Tela - Hero Section */}
-      <div className="relative h-screen">
-        <div className="h-full flex">
-          {/* Lado Esquerdo - Texto */}
-          <div className="flex-1 flex items-center justify-center bg-purple-900">
-            <div className="text-white max-w-lg px-8">
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+      {/* Primeira Tela - Hero Section: no mobile texto em cima, foto embaixo; no desktop lado a lado */}
+      <div className="relative min-h-screen md:h-screen">
+        <div className="min-h-0 h-full flex flex-col md:flex-row">
+          {/* Bloco de texto (no mobile em cima, no desktop à esquerda) */}
+          <div className="flex-1 flex items-center justify-center bg-purple-900 py-12 md:py-0 md:min-h-0 order-1">
+            <div className="text-white max-w-lg px-6 sm:px-8 text-center md:text-left">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4 md:mb-6">
                 {getText('trabalhe_conosco.hero.titulo')}
               </h1>
-              <p className="text-lg md:text-xl text-purple-100 leading-relaxed mb-8">
+              <p className="text-base sm:text-lg md:text-xl text-purple-100 leading-relaxed mb-6 md:mb-8">
                 {getText('trabalhe_conosco.hero.subtitulo')}
               </p>
               <button
                 onClick={() => document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300"
+                className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300 w-full sm:w-auto"
               >
                 {getText('trabalhe_conosco.hero.botao')}
               </button>
             </div>
           </div>
 
-          {/* Lado Direito - Imagem da Equipe */}
-          <div className="flex-1 relative">
+          {/* Imagem da equipe (no mobile embaixo, no desktop à direita) */}
+          <div className="flex-1 relative min-h-[280px] sm:min-h-[320px] md:min-h-0 order-2 bg-gray-100">
             <Image
               src={trabalheImage}
               alt="Equipe Nox Imóveis"
               fill
-              className="object-cover"
+              className="object-cover object-center"
               loading="lazy"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center text-white bg-black/50 px-4 py-2 rounded-lg">
-              <p className="text-sm font-medium">Foto da equipe</p>
-              <p className="text-xs text-white/80">4 pessoas sorrindo</p>
-            </div>
           </div>
         </div>
       </div>
