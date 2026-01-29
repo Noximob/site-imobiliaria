@@ -420,12 +420,12 @@ function ImoveisPageContent() {
             onClick={() => setShowFiltersMobile(false)}
           />
           <div className="relative ml-auto h-full w-full max-w-md bg-white rounded-l-2xl shadow-xl flex flex-col min-h-0 pt-[env(safe-area-inset-top,0px)]">
-            <div className="flex items-center justify-between gap-3 px-4 py-3 border-b border-gray-200 bg-white flex-shrink-0 rounded-tl-2xl">
-              <h2 className="text-base font-semibold text-gray-900 flex-1 min-w-0">Filtrar imóveis</h2>
+            <div className="flex items-center justify-between gap-2 px-4 py-3 border-b border-gray-200 bg-white flex-shrink-0 rounded-tl-2xl">
+              <span className="text-base font-semibold text-gray-900">Filtro</span>
               <button
                 type="button"
                 onClick={() => setShowFiltersMobile(false)}
-                className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-800 hover:text-gray-900 transition-colors shadow-sm"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 transition-colors"
                 aria-label="Fechar filtros"
               >
                 <X className="w-5 h-5" strokeWidth={2.5} />
