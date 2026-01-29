@@ -419,6 +419,15 @@ function ImoveisPageContent() {
             className="absolute inset-0 bg-black/40"
             onClick={() => setShowFiltersMobile(false)}
           />
+          {/* X fixo em cima de tudo - sempre visível para fechar */}
+          <button
+            type="button"
+            onClick={() => setShowFiltersMobile(false)}
+            className="fixed top-[env(safe-area-inset-top,0px)] right-4 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-lg text-gray-800 hover:bg-gray-100 active:scale-95 transition-all"
+            aria-label="Fechar filtros"
+          >
+            <X className="w-6 h-6" strokeWidth={2.5} />
+          </button>
           <div className="relative ml-auto h-full w-full max-w-md bg-white rounded-l-2xl shadow-xl flex flex-col min-h-0 pt-[env(safe-area-inset-top,0px)]">
             <div className="flex items-center justify-between gap-2 px-4 py-3 border-b border-gray-200 bg-white flex-shrink-0 rounded-tl-2xl">
               <span className="text-base font-semibold text-gray-900">Filtro</span>
