@@ -422,12 +422,12 @@ function ImoveisPageContent() {
           <div className="relative ml-auto h-full w-full max-w-md bg-white rounded-l-2xl shadow-xl flex flex-col overflow-hidden" style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}>
             <div className="flex-1 overflow-y-auto overflow-x-hidden" style={{ minHeight: 0 }}>
               {/* Header do filtro: Filtro à esquerda, X à direita */}
-              <div className="flex items-center justify-between px-4 pt-20 pb-2 bg-white sticky top-0 z-10">
-                <span className="text-base font-semibold text-gray-900">Filtro</span>
+              <div className="flex items-center justify-between px-5 pt-20 pb-3 bg-white border-b border-gray-100 sticky top-0 z-10">
+                <span className="text-lg font-semibold text-purple-600 tracking-tight">Filtro</span>
                 <button
                   type="button"
                   onClick={() => setShowFiltersMobile(false)}
-                  className="flex items-center justify-center w-11 h-11 rounded-full bg-purple-500 text-white hover:bg-purple-600 active:opacity-90"
+                  className="flex items-center justify-center w-11 h-11 rounded-full bg-purple-500 text-white hover:bg-purple-600 active:opacity-90 shadow-sm"
                   aria-label="Fechar filtros"
                 >
                   <X className="w-6 h-6" strokeWidth={2.5} />
