@@ -437,6 +437,7 @@ function ImoveisPageContent() {
                 onFiltrosChange={(novos) => {
                   handleFiltrosChange(novos)
                 }}
+                onApply={() => setShowFiltersMobile(false)}
                 filtrosIniciais={filtrosIniciais}
               />
             </div>
