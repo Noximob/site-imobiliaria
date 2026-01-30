@@ -37,24 +37,44 @@ export default function TrabalheConoscoPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  const fileToBase64 = (file: File): Promise<string> =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = () => {
+        const result = reader.result as string
+        const base64 = result.includes(',') ? result.split(',')[1] : result
+        resolve(base64 || '')
+      }
+      reader.onerror = reject
+      reader.readAsDataURL(file)
+    })
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     try {
-      // Por enquanto, não vamos fazer upload dos arquivos, apenas salvar os dados
-      // Os arquivos podem ser enviados depois se necessário
+      const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
+      const arquivosParaEnviar: { name: string; contentBase64: string }[] = []
+      for (const f of arquivos) {
+        if (f.size > MAX_FILE_SIZE) {
+          alert(`O arquivo "${f.name}" excede 5MB. Remova ou use um arquivo menor.`)
+          setIsSubmitting(false)
+          return
+        }
+        const contentBase64 = await fileToBase64(f)
+        arquivosParaEnviar.push({ name: f.name, contentBase64 })
+      }
+
       const response = await fetch('/api/formularios/trabalhe-conosco', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          arquivos: arquivos.map(f => f.name) // Apenas os nomes por enquanto
-        }),
+          arquivos: arquivosParaEnviar
+        })
       })
-      
+
       if (response.ok) {
         alert('Currículo enviado com sucesso! Entraremos em contato em breve.')
         setFormData({
@@ -66,7 +86,8 @@ export default function TrabalheConoscoPage() {
         })
         setArquivos([])
       } else {
-        alert('Erro ao enviar currículo. Tente novamente.')
+        const err = await response.json().catch(() => ({}))
+        alert(err?.error || 'Erro ao enviar currículo. Tente novamente.')
       }
     } catch (error) {
       console.error('Erro ao enviar formulário:', error)

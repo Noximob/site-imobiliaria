@@ -13,9 +13,18 @@ interface FormularioTrabalheConosco {
   email: string
   instagram: string
   informacoes: string
-  arquivos?: string[] // URLs dos arquivos se houver
+  arquivos?: string[] // nomes (retrocompatível)
+  arquivosUrls?: { name: string; url: string }[] // nome + link para download
   createdAt: string
   lido: boolean
+}
+
+const ARQUIVOS_DIR = 'public/dados/trabalhe-conosco-arquivos'
+const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB por arquivo
+const MAX_FILES = 15
+
+function sanitizeFileName(name: string): string {
+  return name.replace(/[^a-zA-Z0-9._-]/g, '_').slice(0, 100) || 'arquivo'
 }
 
 // GET - Buscar todos os formulários
@@ -34,7 +43,8 @@ export async function GET() {
       if ('content' in response.data) {
         const content = Buffer.from(response.data.content, 'base64').toString('utf-8')
         const data = JSON.parse(content)
-        return NextResponse.json(data.formularios || [])
+        const list = data.formularios
+        return NextResponse.json(Array.isArray(list) ? list : [])
       }
     } catch (error) {
       // Arquivo não existe, retorna array vazio
@@ -51,13 +61,46 @@ export async function GET() {
 // POST - Criar novo formulário
 export async function POST(request: NextRequest) {
   try {
-    const dados: Omit<FormularioTrabalheConosco, 'id' | 'createdAt' | 'lido'> = await request.json()
-    
-    // Buscar dados atuais
+    const body = await request.json()
+    const { arquivos: arquivosPayload, ...rest } = body
+    const dados = rest as Omit<FormularioTrabalheConosco, 'id' | 'createdAt' | 'lido' | 'arquivos' | 'arquivosUrls'>
+
+    const formId = Date.now().toString()
+    const arquivosUrls: { name: string; url: string }[] = []
+
+    // Upload de arquivos para o GitHub (se vierem com conteúdo em base64)
+    if (Array.isArray(arquivosPayload) && arquivosPayload.length > 0 && arquivosPayload.length <= MAX_FILES) {
+      for (let i = 0; i < arquivosPayload.length; i++) {
+        const item = arquivosPayload[i]
+        const name = typeof item?.name === 'string' ? item.name : `arquivo-${i}`
+        const contentBase64 = item?.contentBase64
+        if (typeof contentBase64 !== 'string') continue
+        const size = Buffer.byteLength(contentBase64, 'base64')
+        if (size > MAX_FILE_SIZE) continue
+        const safeName = sanitizeFileName(name)
+        const filePath = `${ARQUIVOS_DIR}/${formId}/${safeName}`
+        try {
+          await octokit.repos.createOrUpdateFileContents({
+            owner: REPO_OWNER,
+            repo: REPO_NAME,
+            path: filePath,
+            message: `Currículo: ${dados.nome} - ${safeName}`,
+            content: contentBase64,
+            branch: 'main'
+          })
+          const url = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/${filePath}`
+          arquivosUrls.push({ name, url })
+        } catch (err) {
+          console.error('Erro ao salvar arquivo no GitHub:', safeName, err)
+        }
+      }
+    }
+
+    // Buscar dados atuais do JSON
     const filePath = 'public/dados/formularios-trabalhe-conosco.json'
     let currentData: { formularios: FormularioTrabalheConosco[] } = { formularios: [] }
     let sha: string | undefined
-    
+
     try {
       const response = await octokit.repos.getContent({
         owner: REPO_OWNER,
@@ -65,27 +108,27 @@ export async function POST(request: NextRequest) {
         path: filePath,
         ref: 'main'
       })
-      
+
       if ('content' in response.data) {
         const content = Buffer.from(response.data.content, 'base64').toString('utf-8')
         currentData = JSON.parse(content)
         sha = response.data.sha
       }
-    } catch (error) {
+    } catch {
       // Arquivo não existe, será criado
     }
-    
-    // Criar novo formulário
+
     const novoFormulario: FormularioTrabalheConosco = {
       ...dados,
-      id: Date.now().toString(),
+      id: formId,
       createdAt: new Date().toISOString(),
-      lido: false
+      lido: false,
+      arquivos: arquivosPayload?.map((a: { name?: string }) => a?.name).filter(Boolean) || [],
+      ...(arquivosUrls.length > 0 && { arquivosUrls })
     }
-    
+
     currentData.formularios.push(novoFormulario)
-    
-    // Salvar no GitHub
+
     await octokit.repos.createOrUpdateFileContents({
       owner: REPO_OWNER,
       repo: REPO_NAME,
@@ -98,10 +141,14 @@ export async function POST(request: NextRequest) {
     
     // Enviar email (não bloqueia a resposta se falhar)
     try {
+      const emailPayload = {
+        ...dados,
+        arquivos: arquivosUrls.length > 0 ? arquivosUrls.map(a => a.name) : (arquivosPayload?.map((a: { name?: string }) => a?.name).filter(Boolean) || [])
+      }
       const emailResult = await sendEmail({
         to: 'imoveisnox@gmail.com',
         subject: `Novo Formulário: Trabalhe Conosco - ${dados.nome}`,
-        html: formatFormularioTrabalheConoscoEmail(dados)
+        html: formatFormularioTrabalheConoscoEmail(emailPayload)
       })
       
       if (!emailResult.success) {

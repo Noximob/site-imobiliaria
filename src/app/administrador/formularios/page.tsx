@@ -50,6 +50,7 @@ interface FormularioTrabalheConosco {
   instagram: string
   informacoes: string
   arquivos?: string[]
+  arquivosUrls?: { name: string; url: string }[]
   createdAt: string
   lido: boolean
 }
@@ -77,11 +78,14 @@ export default function FormulariosPage() {
         fetch('/api/formularios/trabalhe-conosco').then(r => r.json()),
       ])
 
+      // Garantir que sempre seja array (evita quebra se a API retornar erro ou formato inesperado)
+      const toArray = (v: unknown) => (Array.isArray(v) ? v : [])
+
       setFormularios([
-        { tipo: 'anunciar', dados: anunciar },
-        { tipo: 'encontre-imovel', dados: encontre },
-        { tipo: 'contato', dados: contato },
-        { tipo: 'trabalhe-conosco', dados: trabalhe },
+        { tipo: 'anunciar', dados: toArray(anunciar) },
+        { tipo: 'encontre-imovel', dados: toArray(encontre) },
+        { tipo: 'contato', dados: toArray(contato) },
+        { tipo: 'trabalhe-conosco', dados: toArray(trabalhe) },
       ])
     } catch (error) {
       console.error('Erro ao carregar formulários:', error)
@@ -324,9 +328,23 @@ export default function FormulariosPage() {
                                         <p className="mt-1 text-gray-700">{(formulario as FormularioTrabalheConosco).informacoes}</p>
                                       </div>
                                     )}
-                                    {(formulario as FormularioTrabalheConosco).arquivos && (formulario as FormularioTrabalheConosco).arquivos!.length > 0 && (
+                                    {(formulario as FormularioTrabalheConosco).arquivosUrls && (formulario as FormularioTrabalheConosco).arquivosUrls!.length > 0 && (
                                       <div>
-                                        <strong>Arquivos:</strong>
+                                        <strong>Currículo / Anexos (clique para abrir):</strong>
+                                        <ul className="mt-1 space-y-1">
+                                          {(formulario as FormularioTrabalheConosco).arquivosUrls!.map((a, idx) => (
+                                            <li key={idx}>
+                                              <a href={a.url} target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:underline">
+                                                {a.name}
+                                              </a>
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                    )}
+                                    {(formulario as FormularioTrabalheConosco).arquivos && (formulario as FormularioTrabalheConosco).arquivos!.length > 0 && !(formulario as FormularioTrabalheConosco).arquivosUrls?.length && (
+                                      <div>
+                                        <strong>Arquivos (apenas nomes, envio antigo):</strong>
                                         <ul className="mt-1 list-disc list-inside">
                                           {(formulario as FormularioTrabalheConosco).arquivos!.map((arquivo, idx) => (
                                             <li key={idx}>{arquivo}</li>
