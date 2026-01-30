@@ -32,7 +32,6 @@ export default function Footer() {
   const anunciarImovel = getText('footer.coluna_servicos.anunciar_imovel')
   const encontreMeuImovel = getText('footer.coluna_servicos.encontre_meu_imovel')
   const comoComprar = getText('footer.coluna_servicos.como_comprar')
-  const simularFinanciamento = getText('footer.coluna_servicos.simular_financiamento')
   
   // Coluna Institucional
   const institucionalTitulo = getText('footer.coluna_institucional.titulo')
@@ -126,18 +125,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                  <Link href="/encontrar" className="text-gray-300 hover:text-white text-xs sm:text-sm transition-colors">
+                  <Link href="/imoveis" className="text-gray-300 hover:text-white text-xs sm:text-sm transition-colors">
                     {encontreMeuImovel}
                 </Link>
               </li>
               <li>
                   <Link href="/como-comprar" className="text-gray-300 hover:text-white text-xs sm:text-sm transition-colors">
                     {comoComprar}
-                </Link>
-              </li>
-              <li>
-                  <Link href="/simular-financiamento" className="text-gray-300 hover:text-white text-xs sm:text-sm transition-colors">
-                    {simularFinanciamento}
                 </Link>
               </li>
             </ul>
