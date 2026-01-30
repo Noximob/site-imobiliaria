@@ -86,7 +86,7 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
     
     // Debug: contar imóveis com dataEntrega por status
     if (filtros.dataEntrega && Array.isArray(filtros.dataEntrega) && filtros.dataEntrega.length > 0) {
-      const temEntregues = filtros.dataEntrega.some((d: string | number) => d === 'entregues')
+      const temEntregues = filtros.dataEntrega.some((d: string | number) => d === 'entregues' || d === 'prontos')
       const anosSelecionados = filtros.dataEntrega.filter((d: string | number): d is number => typeof d === 'number')
       
       const imoveisComDataEntrega = imoveis.filter(i => i.dataEntrega)
@@ -148,7 +148,7 @@ export async function searchImoveis(filtros: FiltrosImovel): Promise<Imovel[]> {
       
       // Filtro por data de entrega
       if (filtros.dataEntrega && Array.isArray(filtros.dataEntrega) && filtros.dataEntrega.length > 0) {
-        const temEntregues = filtros.dataEntrega.some((d: string | number) => d === 'entregues')
+        const temEntregues = filtros.dataEntrega.some((d: string | number) => d === 'entregues' || d === 'prontos')
         const anosSelecionados = filtros.dataEntrega.filter((d: string | number): d is number => typeof d === 'number')
         
         let matchDataEntrega = false

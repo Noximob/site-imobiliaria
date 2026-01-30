@@ -154,20 +154,19 @@ export default function FiltrosImoveis({ onFiltrosChange, onApply, filtrosInicia
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Data de Entrega</label>
           <div className="space-y-2">
-            {/* Checkbox Entregues */}
+            {/* Checkbox Prontos: ao marcar grava 'entregues' e 'prontos' para trazer todos os prontos/entregues */}
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
-                checked={filtros.dataEntrega.includes('entregues')}
+                checked={filtros.dataEntrega.includes('entregues') || filtros.dataEntrega.includes('prontos')}
                 onChange={(e) => {
-                  const newDataEntrega = e.target.checked
-                    ? [...filtros.dataEntrega, 'entregues']
-                    : filtros.dataEntrega.filter(d => d !== 'entregues')
+                  const semProntos = filtros.dataEntrega.filter(d => d !== 'entregues' && d !== 'prontos')
+                  const newDataEntrega = e.target.checked ? [...semProntos, 'entregues', 'prontos'] : semProntos
                   handleInputChange('dataEntrega', newDataEntrega)
                 }}
                 className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
               />
-              <span className="text-sm text-gray-700">Entregues</span>
+              <span className="text-sm text-gray-700">Prontos</span>
             </label>
             
             {/* Anos */}

@@ -71,7 +71,7 @@ export interface FiltrosImovel {
   areaLazer?: boolean;
   areaMin?: number;
   areaMax?: number;
-  dataEntrega?: (string | number)[]; // ['entregues'] ou array de anos [2026, 2027, ...] ou ambos
+  dataEntrega?: (string | number)[]; // ['entregues' | 'prontos'] ou array de anos [2026, 2027, ...] ou ambos
 }
 
 export interface Lead {
