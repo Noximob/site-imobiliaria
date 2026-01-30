@@ -25,6 +25,13 @@ export default function EditarFotosImovelDWV() {
   const [dataEntrega, setDataEntrega] = useState<string>('')
   const [comodidades, setComodidades] = useState({ mobiliado: false, frenteMar: false, vistaMar: false, areaLazer: false })
 
+  // Filtros do site: Status, Tipo, Cidade (dropdowns) + Quartos, Banheiros, Vagas (botões) — preenchidos automaticamente do DWV
+  const [tipo, setTipo] = useState<string>('apartamento')
+  const [cidade, setCidade] = useState<string>('penha')
+  const [quartos, setQuartos] = useState<string>('')
+  const [banheiros, setBanheiros] = useState<string>('')
+  const [vagas, setVagas] = useState<string>('')
+
   // Função para extrair extensão da URL
   const getFileExtension = (url: string): string => {
     // Remover query parameters e hash primeiro
@@ -74,6 +81,15 @@ export default function EditarFotosImovelDWV() {
           vistaMar: tags.some((t: string) => /vista\s*(para\s*o\s*)?mar/i.test(t)),
           areaLazer: tags.some((t: string) => /área\s*de\s*lazer|area\s*de\s*lazer|home\s*club|clube\s*completo/i.test(t)),
         })
+        // Preencher filtros do site a partir dos dados do DWV
+        setTipo(imovelEncontrado.tipo || 'apartamento')
+        setCidade(imovelEncontrado.endereco?.cidade || 'penha')
+        const q = imovelEncontrado.caracteristicas?.quartos
+        setQuartos(q != null && q > 0 ? (q >= 4 ? '4' : String(q)) : '')
+        const b = imovelEncontrado.caracteristicas?.banheiros
+        setBanheiros(b != null && b > 0 ? (b >= 4 ? '4' : String(b)) : '')
+        const v = imovelEncontrado.caracteristicas?.vagas
+        setVagas(v != null && v > 0 ? (v >= 4 ? '4' : String(v)) : '')
         // Carregar seleções existentes ou usar padrão
         const todasFotos = imovelEncontrado.fotos || []
         setFotoPrincipal(imovelEncontrado.fotoPrincipalDWV || todasFotos[0] || null)
@@ -152,6 +168,14 @@ export default function EditarFotosImovelDWV() {
       const imovelAtualizado = {
         ...imovelCompleto,
         status,
+        tipo: tipo || imovelCompleto.tipo,
+        endereco: { ...imovelCompleto.endereco, cidade: cidade || imovelCompleto.endereco?.cidade },
+        caracteristicas: {
+          ...imovelCompleto.caracteristicas,
+          quartos: parseInt(quartos, 10) || 0,
+          banheiros: parseInt(banheiros, 10) || 0,
+          vagas: parseInt(vagas, 10) || 0,
+        },
         dataEntrega: dataEntrega || undefined,
         tags,
         fotoPrincipalDWV: fotoPrincipal,
@@ -265,6 +289,108 @@ export default function EditarFotosImovelDWV() {
             ❌ {error}
           </div>
         )}
+
+        {/* Filtros do site: Status, Tipo, Cidade (dropdowns) + Quartos, Banheiros, Vagas (botões) — preenchidos automaticamente do DWV */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Filtros do site</h2>
+          <p className="text-sm text-gray-600 mb-4">Estes campos definem como o imóvel aparece nos filtros. São preenchidos automaticamente com os dados do DWV.</p>
+          <div className="space-y-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                <select
+                  value={status === 'prontos' ? 'prontos' : 'lancamento'}
+                  onChange={(e) => setStatus(e.target.value === 'prontos' ? 'prontos' : 'lancamento')}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                >
+                  <option value="prontos">Imóveis Prontos</option>
+                  <option value="lancamento">Lançamento/em construção</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Tipo</label>
+                <select
+                  value={tipo}
+                  onChange={(e) => setTipo(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                >
+                  <option value="apartamento">Apartamento</option>
+                  <option value="cobertura">Cobertura/Diferenciado</option>
+                  <option value="comercial">Salas Comerciais</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Cidade</label>
+                <select
+                  value={cidade}
+                  onChange={(e) => setCidade(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                >
+                  <option value="penha">Penha</option>
+                  <option value="barra-velha">Barra Velha</option>
+                  <option value="balneario-picarras">Balneário Piçarras</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Quartos</label>
+              <div className="flex gap-2">
+                {(['1', '2', '3', '4+'] as const).map((qtd) => {
+                  const value = qtd === '4+' ? '4' : qtd
+                  const isSelected = quartos === value
+                  return (
+                    <button
+                      key={qtd}
+                      type="button"
+                      onClick={() => setQuartos(isSelected ? '' : value)}
+                      className={`px-4 py-2 rounded-lg border text-sm ${isSelected ? 'bg-purple-500 text-white border-purple-500' : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'}`}
+                    >
+                      {qtd}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Banheiros</label>
+              <div className="flex gap-2">
+                {['1+', '2+', '3+', '4+'].map((qtd) => {
+                  const value = qtd.replace('+', '')
+                  const isSelected = banheiros === value
+                  return (
+                    <button
+                      key={qtd}
+                      type="button"
+                      onClick={() => setBanheiros(isSelected ? '' : value)}
+                      className={`px-4 py-2 rounded-lg border text-sm ${isSelected ? 'bg-purple-500 text-white border-purple-500' : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'}`}
+                    >
+                      {qtd}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Vagas</label>
+              <div className="flex gap-2">
+                {['1+', '2+', '3+', '4+'].map((qtd) => {
+                  const value = qtd.replace('+', '')
+                  const isSelected = vagas === value
+                  return (
+                    <button
+                      key={qtd}
+                      type="button"
+                      onClick={() => setVagas(isSelected ? '' : value)}
+                      className={`px-4 py-2 rounded-lg border text-sm ${isSelected ? 'bg-purple-500 text-white border-purple-500' : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'}`}
+                    >
+                      {qtd}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Data de Entrega e Comodidades (integrar com filtro do site) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">

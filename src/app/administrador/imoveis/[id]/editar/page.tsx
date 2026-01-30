@@ -97,9 +97,21 @@ export default function EditarImovelPage() {
           numero: imovel.endereco?.numero || '',
           cep: imovel.endereco?.cep || '',
           estado: imovel.endereco?.estado || 'SC',
-          quartos: imovel.caracteristicas?.quartos?.toString() || '',
-          banheiros: imovel.caracteristicas?.banheiros?.toString() || '',
-          vagas: imovel.caracteristicas?.vagas?.toString() || '',
+          quartos: (() => {
+            const q = imovel.caracteristicas?.quartos
+            if (q == null || q === 0) return ''
+            return q >= 4 ? '4' : String(q)
+          })(),
+          banheiros: (() => {
+            const b = imovel.caracteristicas?.banheiros
+            if (b == null || b === 0) return ''
+            return b >= 4 ? '4' : String(b)
+          })(),
+          vagas: (() => {
+            const v = imovel.caracteristicas?.vagas
+            if (v == null || v === 0) return ''
+            return v >= 4 ? '4' : String(v)
+          })(),
           area: imovel.caracteristicas?.area?.toString() || '',
           suite: imovel.caracteristicas?.suite?.toString() || '',
           publicado: imovel.publicado !== false,
@@ -782,21 +794,73 @@ export default function EditarImovelPage() {
           {/* Características */}
           <div>
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Características</h2>
-            <div className="grid grid-cols-4 gap-4">
+            {/* Quartos, Banheiros, Vagas — mesmo estilo do filtro do site (botões) */}
+            <div className="space-y-4 mb-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Quartos
-                </label>
-                <input
-                  type="number"
-                  name="quartos"
-                  value={formData.quartos}
-                  onChange={handleInputChange}
-                  min="0"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-2">Quartos</label>
+                <div className="flex gap-2">
+                  {(['1', '2', '3', '4+'] as const).map((qtd) => {
+                    const value = qtd === '4+' ? '4' : qtd
+                    const isSelected = formData.quartos === value
+                    return (
+                      <button
+                        key={qtd}
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, quartos: isSelected ? '' : value }))}
+                        className={`px-4 py-2 rounded-lg border text-sm ${
+                          isSelected ? 'bg-purple-500 text-white border-purple-500' : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
+                        }`}
+                      >
+                        {qtd}
+                      </button>
+                    )
+                  })}
+                </div>
               </div>
-
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Banheiros</label>
+                <div className="flex gap-2">
+                  {['1+', '2+', '3+', '4+'].map((qtd) => {
+                    const value = qtd.replace('+', '')
+                    const isSelected = formData.banheiros === value
+                    return (
+                      <button
+                        key={qtd}
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, banheiros: isSelected ? '' : value }))}
+                        className={`px-4 py-2 rounded-lg border text-sm ${
+                          isSelected ? 'bg-purple-500 text-white border-purple-500' : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
+                        }`}
+                      >
+                        {qtd}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Vagas</label>
+                <div className="flex gap-2">
+                  {['1+', '2+', '3+', '4+'].map((qtd) => {
+                    const value = qtd.replace('+', '')
+                    const isSelected = formData.vagas === value
+                    return (
+                      <button
+                        key={qtd}
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, vagas: isSelected ? '' : value }))}
+                        className={`px-4 py-2 rounded-lg border text-sm ${
+                          isSelected ? 'bg-purple-500 text-white border-purple-500' : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
+                        }`}
+                      >
+                        {qtd}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Suítes
@@ -805,34 +869,6 @@ export default function EditarImovelPage() {
                   type="number"
                   name="suite"
                   value={formData.suite}
-                  onChange={handleInputChange}
-                  min="0"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Banheiros
-                </label>
-                <input
-                  type="number"
-                  name="banheiros"
-                  value={formData.banheiros}
-                  onChange={handleInputChange}
-                  min="0"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Vagas
-                </label>
-                <input
-                  type="number"
-                  name="vagas"
-                  value={formData.vagas}
                   onChange={handleInputChange}
                   min="0"
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
