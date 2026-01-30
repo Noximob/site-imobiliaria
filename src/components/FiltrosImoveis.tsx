@@ -323,7 +323,7 @@ export default function FiltrosImoveis({ onFiltrosChange, onApply, filtrosInicia
         <button
           onClick={() => {
             onFiltrosChange?.(filtros)
-            onApply?.()
+            requestAnimationFrame(() => onApply?.())
           }}
           className="w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
         >
