@@ -20,6 +20,11 @@ export default function EditarFotosImovelDWV() {
   const [fotoPrincipal, setFotoPrincipal] = useState<string | null>(null)
   const [fotosMenores, setFotosMenores] = useState<string[]>([])
 
+  // Data de Entrega e Comodidades (para integrar com o filtro do site)
+  const [status, setStatus] = useState<'prontos' | 'lancamento' | 'em-construcao'>('lancamento')
+  const [dataEntrega, setDataEntrega] = useState<string>('')
+  const [comodidades, setComodidades] = useState({ mobiliado: false, frenteMar: false, vistaMar: false, areaLazer: false })
+
   // Função para extrair extensão da URL
   const getFileExtension = (url: string): string => {
     // Remover query parameters e hash primeiro
@@ -60,7 +65,15 @@ export default function EditarFotosImovelDWV() {
         }
 
         setImovel(imovelEncontrado)
-        
+        setStatus(imovelEncontrado.status || 'lancamento')
+        setDataEntrega(imovelEncontrado.dataEntrega || '')
+        const tags = imovelEncontrado.tags || []
+        setComodidades({
+          mobiliado: tags.some((t: string) => /mobiliad[oa]/i.test(t)),
+          frenteMar: tags.some((t: string) => /frente\s*mar|beira\s*mar/i.test(t)),
+          vistaMar: tags.some((t: string) => /vista\s*(para\s*o\s*)?mar/i.test(t)),
+          areaLazer: tags.some((t: string) => /área\s*de\s*lazer|area\s*de\s*lazer|home\s*club|clube\s*completo/i.test(t)),
+        })
         // Carregar seleções existentes ou usar padrão
         const todasFotos = imovelEncontrado.fotos || []
         setFotoPrincipal(imovelEncontrado.fotoPrincipalDWV || todasFotos[0] || null)
@@ -125,9 +138,22 @@ export default function EditarFotosImovelDWV() {
         throw new Error('Imóvel não encontrado')
       }
 
-      // Atualizar apenas as seleções de fotos
+      // Comodidades -> tags (para o filtro do site)
+      const comodidadesTags: string[] = []
+      if (comodidades.frenteMar) comodidadesTags.push('Frente Mar')
+      if (comodidades.mobiliado) comodidadesTags.push('Mobiliado')
+      if (comodidades.vistaMar) comodidadesTags.push('Vista Mar')
+      if (comodidades.areaLazer) comodidadesTags.push('Área de Lazer')
+      const tagsExistentes = (imovelCompleto.tags || []).filter(
+        (t: string) => !/mobiliad[oa]|frente\s*mar|beira\s*mar|vista\s*(para\s*o\s*)?mar|área\s*de\s*lazer|area\s*de\s*lazer|home\s*club|clube\s*completo/i.test(t)
+      )
+      const tags = [...tagsExistentes, ...comodidadesTags]
+
       const imovelAtualizado = {
         ...imovelCompleto,
+        status,
+        dataEntrega: dataEntrega || undefined,
+        tags,
         fotoPrincipalDWV: fotoPrincipal,
         fotosMenoresDWV: fotosMenores,
         updatedAt: new Date().toISOString(),
@@ -239,6 +265,74 @@ export default function EditarFotosImovelDWV() {
             ❌ {error}
           </div>
         )}
+
+        {/* Data de Entrega e Comodidades (integrar com filtro do site) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Data de Entrega</h2>
+            <label className="flex items-center gap-2 cursor-pointer mb-3">
+              <input
+                type="checkbox"
+                checked={status === 'prontos'}
+                onChange={(e) => setStatus(e.target.checked ? 'prontos' : 'lancamento')}
+                className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+              />
+              <span className="text-sm text-gray-700">Prontos</span>
+            </label>
+            {status !== 'prontos' && (
+              <div className="mb-2">
+                <label className="block text-xs text-gray-500 mb-1">Status</label>
+                <select
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value as 'lancamento' | 'em-construcao')}
+                  className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-lg text-sm"
+                >
+                  <option value="lancamento">Lançamento</option>
+                  <option value="em-construcao">Em Construção</option>
+                </select>
+              </div>
+            )}
+            <div className="flex flex-wrap gap-2 mt-2">
+              {[2026, 2027, 2028, 2029, 2030, 2031].map((ano) => {
+                const selected = dataEntrega && (dataEntrega.startsWith(String(ano)) || dataEntrega === String(ano))
+                return (
+                  <button
+                    key={ano}
+                    type="button"
+                    onClick={() => setDataEntrega(selected ? '' : `${ano}-01-01`)}
+                    className={`px-3 py-2 rounded-lg border text-sm ${
+                      selected ? 'bg-purple-500 text-white border-purple-500' : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
+                    }`}
+                  >
+                    {ano}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Comodidades</h2>
+            <p className="text-sm text-gray-600 mb-3">Marque para o imóvel aparecer no filtro do site.</p>
+            <div className="flex flex-wrap gap-4">
+              {[
+                { key: 'mobiliado', label: 'Mobiliado' },
+                { key: 'frenteMar', label: 'Frente Mar' },
+                { key: 'vistaMar', label: 'Vista Mar' },
+                { key: 'areaLazer', label: 'Área de Lazer' },
+              ].map(({ key, label }) => (
+                <label key={key} className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={comodidades[key as keyof typeof comodidades]}
+                    onChange={(e) => setComodidades(prev => ({ ...prev, [key]: e.target.checked }))}
+                    className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                  />
+                  <span className="text-sm text-gray-700">{label}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
 
         {todasFotos.length === 0 ? (
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">

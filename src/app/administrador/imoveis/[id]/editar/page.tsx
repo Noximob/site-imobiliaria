@@ -39,6 +39,7 @@ export default function EditarImovelPage() {
     selecaoNox: false,
     dataEntrega: '',
     caracteristicas: '', // Campo de texto para características (tags)
+    comodidades: { mobiliado: false, frenteMar: false, vistaMar: false, areaLazer: false },
   })
 
   // Fotos - sistema como DWV: combinar existentes (URLs) e novas (Files)
@@ -105,8 +106,14 @@ export default function EditarImovelPage() {
           selecaoNox: imovel.selecaoNox || false,
           dataEntrega: imovel.dataEntrega || '',
           caracteristicas: imovel.tags?.filter((tag: string) => 
-            !['Frente Mar', 'Mobiliado', 'Vista Mar', 'Área de Lazer'].includes(tag)
+            !['Frente Mar', 'Frente-mar', 'Mobiliado', 'Mobiliada', 'Vista Mar', 'Área de Lazer', 'Area de lazer'].includes(tag)
           ).join(', ') || '',
+          comodidades: {
+            mobiliado: !!(imovel.tags && imovel.tags.some((t: string) => /mobiliad[oa]/i.test(t))),
+            frenteMar: !!(imovel.tags && imovel.tags.some((t: string) => /frente\s*mar|beira\s*mar/i.test(t))),
+            vistaMar: !!(imovel.tags && imovel.tags.some((t: string) => /vista\s*(para\s*o\s*)?mar/i.test(t))),
+            areaLazer: !!(imovel.tags && imovel.tags.some((t: string) => /área\s*de\s*lazer|area\s*de\s*lazer|home\s*club|clube\s*completo/i.test(t))),
+          },
         })
 
         // Carregar fotos existentes
@@ -356,13 +363,17 @@ export default function EditarImovelPage() {
         throw new Error('Selecione pelo menos 1 foto menor')
       }
 
-      // Processar características (tags) - o sistema detecta automaticamente comodidades
+      // Processar características (tags) + comodidades marcadas manualmente
       const tagsCaracteristicas = formData.caracteristicas
         .split(',')
         .map(tag => tag.trim())
         .filter(tag => tag.length > 0)
-
-      const todasTags = tagsCaracteristicas
+      const comodidadesTags: string[] = []
+      if (formData.comodidades.frenteMar) comodidadesTags.push('Frente Mar')
+      if (formData.comodidades.mobiliado) comodidadesTags.push('Mobiliado')
+      if (formData.comodidades.vistaMar) comodidadesTags.push('Vista Mar')
+      if (formData.comodidades.areaLazer) comodidadesTags.push('Área de Lazer')
+      const todasTags = [...tagsCaracteristicas, ...comodidadesTags]
 
       // Preparar dados do imóvel
       const imovelData: any = {
@@ -587,37 +598,88 @@ export default function EditarImovelPage() {
                 </div>
               </div>
 
+              {/* Data de Entrega (igual ao filtro: Prontos + anos) */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Status *
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Data de Entrega
                 </label>
-                <select
-                  name="status"
-                  value={formData.status}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  required
-                >
-                  <option value="lancamento">Lançamento</option>
-                  <option value="em-construcao">Em Construção</option>
-                  <option value="prontos">Prontos</option>
-                </select>
-              </div>
-
-              {formData.status !== 'prontos' && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Data de Entrega
+                <div className="space-y-2 mb-2">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.status === 'prontos'}
+                      onChange={(e) => setFormData(prev => ({
+                        ...prev,
+                        status: e.target.checked ? 'prontos' : 'lancamento',
+                      }))}
+                      className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                    />
+                    <span className="text-sm text-gray-700">Prontos</span>
                   </label>
-                  <input
-                    type="date"
-                    name="dataEntrega"
-                    value={formData.dataEntrega}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  />
                 </div>
-              )}
+                {formData.status !== 'prontos' && (
+                  <div className="mb-2">
+                    <label className="block text-xs text-gray-500 mb-1">Status</label>
+                    <select
+                      value={formData.status}
+                      onChange={(e) => setFormData(prev => ({ ...prev, status: e.target.value as 'lancamento' | 'em-construcao' }))}
+                      className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-lg text-sm"
+                    >
+                      <option value="lancamento">Lançamento</option>
+                      <option value="em-construcao">Em Construção</option>
+                    </select>
+                  </div>
+                )}
+                <div className="flex flex-wrap gap-2">
+                  {[2026, 2027, 2028, 2029, 2030, 2031].map((ano) => {
+                    const anoStr = String(ano)
+                    const selected = formData.dataEntrega && (formData.dataEntrega.startsWith(anoStr) || formData.dataEntrega === anoStr)
+                    return (
+                      <button
+                        key={ano}
+                        type="button"
+                        onClick={() => setFormData(prev => ({
+                          ...prev,
+                          dataEntrega: selected ? '' : `${ano}-01-01`,
+                        }))}
+                        className={`px-3 py-2 rounded-lg border text-sm ${
+                          selected ? 'bg-purple-500 text-white border-purple-500' : 'bg-white text-gray-700 border-gray-300 hover:border-purple-500'
+                        }`}
+                      >
+                        {ano}
+                      </button>
+                    )
+                  })}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">Marque Prontos e/ou escolha o ano de entrega para o filtro do site.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Comodidades (igual ao filtro: marcar para integrar) */}
+          <div>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">Comodidades</h2>
+            <p className="text-sm text-gray-600 mb-3">Marque as comodidades para o imóvel aparecer no filtro do site.</p>
+            <div className="flex flex-wrap gap-4">
+              {[
+                { key: 'mobiliado', label: 'Mobiliado' },
+                { key: 'frenteMar', label: 'Frente Mar' },
+                { key: 'vistaMar', label: 'Vista Mar' },
+                { key: 'areaLazer', label: 'Área de Lazer' },
+              ].map(({ key, label }) => (
+                <label key={key} className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.comodidades[key as keyof typeof formData.comodidades]}
+                    onChange={(e) => setFormData(prev => ({
+                      ...prev,
+                      comodidades: { ...prev.comodidades, [key]: e.target.checked },
+                    }))}
+                    className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                  />
+                  <span className="text-sm text-gray-700">{label}</span>
+                </label>
+              ))}
             </div>
           </div>
 
