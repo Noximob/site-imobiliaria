@@ -122,6 +122,7 @@ export default function FavoritosPage() {
                         fill
                         className="object-contain hover:scale-105 transition-transform duration-300 bg-gray-100"
                         loading="lazy"
+                        unoptimized
                       />
                       <div className="absolute top-4 left-4">
                         <span className={`px-3 py-1 rounded-full text-sm font-medium ${
