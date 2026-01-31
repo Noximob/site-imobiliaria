@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { Menu, X, Phone, MapPin, ChevronDown, Instagram, Facebook } from 'lucide-react'
 import Image from 'next/image'
@@ -29,6 +29,43 @@ export default function Header() {
   const [isPenhaOpen, setIsPenhaOpen] = useState(false)
   const [isPicarrasOpen, setIsPicarrasOpen] = useState(false)
   const [isBarraVelhaOpen, setIsBarraVelhaOpen] = useState(false)
+  const penhaRef = useRef<HTMLDivElement>(null)
+  const picarrasRef = useRef<HTMLDivElement>(null)
+  const barraVelhaRef = useRef<HTMLDivElement>(null)
+
+  // Fechar ao clicar fora
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Node
+      if (
+        penhaRef.current && !penhaRef.current.contains(target) &&
+        picarrasRef.current && !picarrasRef.current.contains(target) &&
+        barraVelhaRef.current && !barraVelhaRef.current.contains(target)
+      ) {
+        setIsPenhaOpen(false)
+        setIsPicarrasOpen(false)
+        setIsBarraVelhaOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const togglePenha = () => {
+    setIsPenhaOpen(prev => !prev)
+    setIsPicarrasOpen(false)
+    setIsBarraVelhaOpen(false)
+  }
+  const togglePicarras = () => {
+    setIsPicarrasOpen(prev => !prev)
+    setIsPenhaOpen(false)
+    setIsBarraVelhaOpen(false)
+  }
+  const toggleBarraVelha = () => {
+    setIsBarraVelhaOpen(prev => !prev)
+    setIsPenhaOpen(false)
+    setIsPicarrasOpen(false)
+  }
 
   const handleLinkClick = (href: string) => {
     // Fechar dropdowns
@@ -92,12 +129,9 @@ export default function Header() {
             {/* Desktop Navigation - Cidades */}
             <nav className="hidden lg:flex items-center space-x-3">
               {/* Imóveis em Penha */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setIsPenhaOpen(true)}
-                onMouseLeave={() => setIsPenhaOpen(false)}
-              >
+              <div ref={penhaRef} className="relative">
                     <button 
+                      onClick={togglePenha}
                       className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm font-bold"
                     >
                       <MapPin className="w-4 h-4" />
@@ -105,11 +139,7 @@ export default function Header() {
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isPenhaOpen && (
-                  <div 
-                    className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50"
-                    onMouseEnter={() => setIsPenhaOpen(true)}
-                    onMouseLeave={() => setIsPenhaOpen(false)}
-                  >
+                  <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
                     <button 
                       onClick={() => handleLinkClick('/imoveis?cidade=penha&tipo=apartamento')}
                       className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
@@ -145,12 +175,9 @@ export default function Header() {
               </div>
 
               {/* Imóveis em Piçarras */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setIsPicarrasOpen(true)}
-                onMouseLeave={() => setIsPicarrasOpen(false)}
-              >
+              <div ref={picarrasRef} className="relative">
                     <button 
+                      onClick={togglePicarras}
                       className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm font-bold"
                     >
                       <MapPin className="w-4 h-4" />
@@ -158,11 +185,7 @@ export default function Header() {
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isPicarrasOpen && (
-                  <div 
-                    className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50"
-                    onMouseEnter={() => setIsPicarrasOpen(true)}
-                    onMouseLeave={() => setIsPicarrasOpen(false)}
-                  >
+                  <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
                     <button 
                       onClick={() => handleLinkClick('/imoveis?cidade=balneario-picarras&tipo=apartamento')}
                       className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
@@ -204,12 +227,9 @@ export default function Header() {
               </div>
 
               {/* Imóveis em Barra Velha */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setIsBarraVelhaOpen(true)}
-                onMouseLeave={() => setIsBarraVelhaOpen(false)}
-              >
+              <div ref={barraVelhaRef} className="relative">
                     <button 
+                      onClick={toggleBarraVelha}
                       className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 transition-colors text-sm font-bold"
                     >
                       <MapPin className="w-4 h-4" />
@@ -217,11 +237,7 @@ export default function Header() {
                       <ChevronDown className="w-3 h-3" />
                     </button>
                 {isBarraVelhaOpen && (
-                  <div 
-                    className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50"
-                    onMouseEnter={() => setIsBarraVelhaOpen(true)}
-                    onMouseLeave={() => setIsBarraVelhaOpen(false)}
-                  >
+                  <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
                     <button 
                       onClick={() => handleLinkClick('/imoveis?cidade=barra-velha&tipo=apartamento')}
                       className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
