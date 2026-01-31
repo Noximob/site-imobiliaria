@@ -44,7 +44,23 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'GitHub token não configurado' }, { status: 500 })
     }
 
-    const { imovel, fotos } = await request.json()
+    let imovel: any
+    let fotos: string[] | undefined
+    try {
+      const body = await request.json()
+      imovel = body.imovel
+      fotos = body.fotos
+    } catch (parseError) {
+      console.error('Erro ao parsear body:', parseError)
+      return NextResponse.json(
+        { error: 'Corpo da requisição inválido ou muito grande. Tente usar menos fotos ou fotos menores.' },
+        { status: 400 }
+      )
+    }
+
+    if (!imovel) {
+      return NextResponse.json({ error: 'Dados do imóvel são obrigatórios' }, { status: 400 })
+    }
 
     // Gerar ID único de 5 dígitos
     // Usa timestamp e pega os últimos 5 dígitos, garantindo que seja sempre 5 dígitos

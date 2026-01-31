@@ -61,11 +61,10 @@ export function generateSlug(titulo: string): string {
 
 export async function createImovelWithFotos(imovelData: any, fotosFiles: File[]): Promise<string> {
   try {
-    // Converter fotos para base64 (sem redimensionamento automático)
+    // Comprimir fotos antes de enviar (evita limite de tamanho da API)
     const fotosBase64: string[] = []
-    
     for (const foto of fotosFiles) {
-      const base64 = await fileToBase64(foto)
+      const base64 = await compressImage(foto)
       fotosBase64.push(base64)
     }
 
@@ -80,13 +79,19 @@ export async function createImovelWithFotos(imovelData: any, fotosFiles: File[])
       }),
     })
 
-    if (!response.ok) {
-      const error = await response.json()
-      throw new Error(error.error || 'Erro ao criar imóvel')
+    const text = await response.text()
+    let data: { id?: string; error?: string }
+    try {
+      data = text ? JSON.parse(text) : {}
+    } catch {
+      throw new Error(response.ok ? 'Resposta inválida do servidor' : `Erro ${response.status}: ${text.slice(0, 200)}`)
     }
 
-    const data = await response.json()
-    return data.id
+    if (!response.ok) {
+      throw new Error(data.error || 'Erro ao criar imóvel')
+    }
+
+    return data.id!
   } catch (error) {
     console.error('Erro ao criar imóvel:', error)
     throw error
@@ -98,11 +103,9 @@ export async function updateImovelWithFotos(id: string, imovelData: any, fotosFi
     let fotosBase64: string[] | undefined
 
     if (fotosFiles && fotosFiles.length > 0) {
-      // Converter fotos para base64 (sem redimensionamento automático)
       fotosBase64 = []
-      
       for (const foto of fotosFiles) {
-        const base64 = await fileToBase64(foto)
+        const base64 = await compressImage(foto)
         fotosBase64.push(base64)
       }
     }
@@ -119,9 +122,17 @@ export async function updateImovelWithFotos(id: string, imovelData: any, fotosFi
       }),
     })
 
+    const text = await response.text()
     if (!response.ok) {
-      const error = await response.json()
-      throw new Error(error.error || 'Erro ao atualizar imóvel')
+      try {
+        const data = text ? JSON.parse(text) : {}
+        throw new Error(data.error || 'Erro ao atualizar imóvel')
+      } catch (err) {
+        if (err instanceof SyntaxError || (err instanceof Error && !err.message.includes('Erro ao atualizar'))) {
+          throw new Error(`Erro ${response.status}: ${text.slice(0, 200)}`)
+        }
+        throw err
+      }
     }
   } catch (error) {
     console.error('Erro ao atualizar imóvel:', error)
@@ -143,6 +154,55 @@ export async function deleteImovel(id: string): Promise<void> {
     console.error('Erro ao deletar imóvel:', error)
     throw error
   }
+}
+
+/** Redimensiona e comprime a imagem para caber no limite da API (~4MB total) */
+async function compressImage(file: File, maxWidth = 1600, quality = 0.82): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    const url = URL.createObjectURL(file)
+    img.onload = () => {
+      URL.revokeObjectURL(url)
+      const canvas = document.createElement('canvas')
+      let { width, height } = img
+      if (width > maxWidth || height > maxWidth) {
+        if (width > height) {
+          height = (height / width) * maxWidth
+          width = maxWidth
+        } else {
+          width = (width / height) * maxWidth
+          height = maxWidth
+        }
+      }
+      canvas.width = width
+      canvas.height = height
+      const ctx = canvas.getContext('2d')
+      if (!ctx) {
+        fileToBase64(file).then(resolve).catch(reject)
+        return
+      }
+      ctx.drawImage(img, 0, 0, width, height)
+      canvas.toBlob(
+        (blob) => {
+          if (!blob) {
+            fileToBase64(file).then(resolve).catch(reject)
+            return
+          }
+          const reader = new FileReader()
+          reader.onload = () => resolve(reader.result as string)
+          reader.onerror = reject
+          reader.readAsDataURL(blob)
+        },
+        'image/jpeg',
+        quality
+      )
+    }
+    img.onerror = () => {
+      URL.revokeObjectURL(url)
+      fileToBase64(file).then(resolve).catch(reject)
+    }
+    img.src = url
+  })
 }
 
 function fileToBase64(file: File): Promise<string> {
