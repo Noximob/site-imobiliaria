@@ -59,11 +59,11 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
               <div className="space-y-2 text-left max-w-xs mx-auto">
                 <div className="flex items-center gap-2">
                   <Phone className="w-4 h-4 flex-shrink-0" />
-                  <a href={`tel:${corretor.telefone}`} className="text-sm break-all">{corretor.telefone}</a>
+                  <a href={`tel:${corretor.telefone}`} target="_blank" rel="noopener noreferrer" className="text-sm break-all">{corretor.telefone}</a>
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="w-4 h-4 flex-shrink-0" />
-                  <a href={`mailto:${corretor.email}`} className="text-sm break-all">{corretor.email}</a>
+                  <a href={`mailto:${corretor.email}`} target="_blank" rel="noopener noreferrer" className="text-sm break-all">{corretor.email}</a>
                 </div>
                 {corretor.instagram && (
                   <div className="flex items-center gap-2">

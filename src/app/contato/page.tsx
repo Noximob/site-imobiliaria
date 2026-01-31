@@ -105,6 +105,8 @@ export default function ContatoPage() {
             <div className="pt-4">
               <a
                 href="https://wa.me/5547997530113"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 text-lg shadow-2xl hover:shadow-green-500/25 transform hover:scale-105"
               >
                 <svg className="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">

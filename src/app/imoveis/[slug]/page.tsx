@@ -64,9 +64,9 @@ export default function ImovelDetalhePage() {
     } else if (contatoTipo === 'email') {
       const subject = encodeURIComponent(`Interesse no imóvel: ${imovel?.titulo}`)
       const body = encodeURIComponent(`${formData.mensagem}\n\nNome: ${formData.nome}\nEmail: ${formData.email}\nTelefone: ${formData.telefone}`)
-      window.location.href = `mailto:${imovel?.contato?.email || ''}?subject=${subject}&body=${body}`
+      window.open(`mailto:${imovel?.contato?.email || ''}?subject=${subject}&body=${body}`, '_blank')
     } else if (contatoTipo === 'telefone') {
-      window.location.href = `tel:${imovel?.contato?.telefone || imovel?.contato?.whatsapp || ''}`
+      window.open(`tel:${imovel?.contato?.telefone || imovel?.contato?.whatsapp || ''}`, '_blank')
     }
   }
 

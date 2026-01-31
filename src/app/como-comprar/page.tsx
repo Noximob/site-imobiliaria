@@ -248,6 +248,8 @@ export default async function ComoComprarPage() {
             </p>
             <a
               href="https://wa.me/5547997530113"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-green-500 hover:bg-green-600 text-black font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center text-sm"
             >
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
