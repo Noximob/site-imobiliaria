@@ -183,8 +183,12 @@ export async function POST(request: NextRequest) {
       // Arquivo não existe, está ok
     }
 
-    // Gerar slug
-    const slug = generateSlug(imovel.titulo)
+    // Gerar slug único (evitar colisão quando há imóveis com mesmo título, ex: 2 "Gran Vista")
+    let slug = generateSlug(imovel.titulo)
+    const slugExiste = imoveis.some((i: any) => i.slug === slug)
+    if (slugExiste) {
+      slug = `${slug}-${id}`
+    }
 
     // Adicionar novo imóvel
     // Se imovel.fotos já estiver definido (fotos ordenadas do admin), usar essas
@@ -352,12 +356,20 @@ export async function PUT(request: NextRequest) {
       selecaoNoxValue = imoveis[index].selecaoNox === true || imoveis[index].selecaoNox === 'true' || imoveis[index].selecaoNox === 1
     }
     
+    // Garantir slug único (corrige duplicados como 2 "Gran Vista")
+    let slugFinal = imovel.slug ?? imoveis[index].slug ?? generateSlug(imovel.titulo || imoveis[index].titulo)
+    const slugDuplicado = imoveis.some((i: any, idx: number) => idx !== index && i.slug === slugFinal)
+    if (slugDuplicado) {
+      slugFinal = `${slugFinal}-${id}`
+    }
+
     // Atualizar imóvel - garantir que selecaoNox seja sempre boolean true/false
     // Preservar campos de seleção de fotos DWV se não vierem no update
     imoveis[index] = {
       ...imoveis[index], // Manter dados existentes primeiro
       ...imovel, // Sobrescrever com dados atualizados
       id, // Garantir que o ID não mude
+      slug: slugFinal, // Slug único
       fotoPrincipalIndex: imovel.fotoPrincipalIndex ?? imoveis[index].fotoPrincipalIndex ?? 0,
       selecaoNox: selecaoNoxValue, // Sempre boolean true/false
       // Preservar seleções de fotos DWV se não vierem no update, senão usar as novas

@@ -1,6 +1,15 @@
 import { Imovel, FiltrosImovel } from '@/types';
 
 const CACHE_DURATION = 0; // Sem cache para desenvolvimento
+
+/** Retorna a URL da foto principal (DWV ou manual) */
+export function getFotoPrincipal(imovel: Imovel | any): string | undefined {
+  const fotoPrincipalDWV = imovel?.fotoPrincipalDWV
+  if (fotoPrincipalDWV) return fotoPrincipalDWV
+  const fotos = imovel?.fotos || []
+  const idx = imovel?.fotoPrincipalIndex ?? 0
+  return fotos[idx] || fotos[0]
+}
 let cachedImoveis: Imovel[] | null = null;
 let cacheTimestamp: number | null = null;
 

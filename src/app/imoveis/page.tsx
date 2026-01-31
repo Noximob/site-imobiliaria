@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import FiltrosImoveis from '@/components/FiltrosImoveis'
-import { getAllImoveis, searchImoveis, formatPrice } from '@/lib/imoveis'
+import { getAllImoveis, searchImoveis, formatPrice, getFotoPrincipal } from '@/lib/imoveis'
 import { Imovel, FiltrosImovel } from '@/types'
 import { Heart, X } from 'lucide-react'
 import { toggleFavorito, isFavorito } from '@/lib/favoritos'
@@ -234,9 +234,9 @@ function ImoveisPageContent() {
                       .map((imovel) => (
                     <div key={imovel.id} className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col sm:flex-row sm:h-64 min-w-0 w-full">
                       <div className="w-full sm:w-64 h-56 sm:h-full relative flex-shrink-0 min-w-0">
-                        {imovel.fotos && imovel.fotos.length > 0 ? (
+                        {getFotoPrincipal(imovel) ? (
                           <Image
-                            src={imovel.fotos[0]}
+                            src={getFotoPrincipal(imovel)!}
                             alt={imovel.titulo}
                             fill
                             className="object-cover sm:object-contain bg-gray-100"

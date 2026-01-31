@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Heart } from 'lucide-react'
-import { getAllImoveis, formatPrice } from '@/lib/imoveis'
+import { getAllImoveis, formatPrice, getFotoPrincipal } from '@/lib/imoveis'
 import { getFavoritos, toggleFavorito, isFavorito } from '@/lib/favoritos'
 import { Imovel } from '@/types'
 import { MapPin, Bed, Bath, Car, Ruler } from 'lucide-react'
@@ -106,7 +106,7 @@ export default function FavoritosPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {imoveisFavoritos.map((imovel) => {
-              const primeiraFoto = imovel.fotos[0] || '/placeholder-imovel.jpg'
+              const primeiraFoto = getFotoPrincipal(imovel) || '/placeholder-imovel.jpg'
               
               return (
                 <div key={imovel.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">

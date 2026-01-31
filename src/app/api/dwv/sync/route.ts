@@ -187,6 +187,19 @@ export async function POST(request: NextRequest) {
       ...imoveisNaoDWV,
     ]
 
+    // Garantir slugs únicos (evitar colisão quando há imóveis com mesmo título, ex: 2 "Gran Vista")
+    const slugsVistos = new Map<string, number>() // slug -> índice do primeiro imóvel com esse slug
+    imoveisFinais.forEach((imovel: any, index: number) => {
+      const slug = imovel.slug || 'imovel'
+      if (slugsVistos.has(slug)) {
+        // Slug duplicado: este imóvel recebe slug-id
+        imoveisFinais[index] = { ...imovel, slug: `${slug}-${imovel.id}` }
+        console.log(`🔗 Slug duplicado corrigido: ${imovel.titulo?.substring(0, 40)} -> ${slug}-${imovel.id}`)
+      } else {
+        slugsVistos.set(slug, index)
+      }
+    })
+
     // SEMPRE fazer commit (upload total), mesmo sem mudanças aparentes
     // Isso garante que tags e descrições atualizadas no DWV sejam sempre refletidas
     const temMudancas = adicionados > 0 || removidos > 0 || atualizados > 0

@@ -2,14 +2,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MapPin, Bed, Bath, Car, Ruler, Star } from 'lucide-react'
 import { Imovel } from '@/types'
-import { formatPrice } from '@/lib/imoveis'
+import { formatPrice, getFotoPrincipal } from '@/lib/imoveis'
 
 interface ImovelCardProps {
   imovel: Imovel
 }
 
 export default function ImovelCard({ imovel }: ImovelCardProps) {
-  const primeiraFoto = imovel.fotos[0] || '/placeholder-imovel.jpg'
+  const primeiraFoto = getFotoPrincipal(imovel) || '/placeholder-imovel.jpg'
   
   return (
     <div className="card hover:shadow-lg transition-shadow duration-300">

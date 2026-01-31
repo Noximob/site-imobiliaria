@@ -9,7 +9,7 @@ import { getText } from '@/lib/site-texts'
 import { getCorretoresAtivos } from '@/lib/corretores-data'
 import { getDepoimentosAtivos } from '@/lib/depoimentos-data'
 import { getAllImoveis } from '@/lib/imoveis-github'
-import { formatPrice } from '@/lib/imoveis'
+import { formatPrice, getFotoPrincipal } from '@/lib/imoveis'
 import { Imovel } from '@/types'
 import Link from 'next/link'
 import type { Metadata } from 'next'
@@ -275,7 +275,7 @@ export default async function HomePage() {
                     {imovel.fotos && imovel.fotos.length > 0 ? (
                       <>
                         <Image 
-                          src={imovel.fotos[imovel.fotoPrincipalIndex ?? 0]} 
+                          src={getFotoPrincipal(imovel)!} 
                           alt={imovel.titulo} 
                           fill
                           className="object-contain bg-gray-100"
