@@ -23,7 +23,7 @@
     },
     "dataEntrega": "2028-10-17",
     "caracteristicas": {
-      "quartos": 0,
+      "quartos": 4,
       "banheiros": 1,
       "vagas": 2,
       "area": 158.21,
@@ -111,9 +111,16 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T19:15:05.000Z",
-    "updatedAt": "2026-01-23T17:49:49.300Z",
+    "updatedAt": "2026-01-31T01:21:33.942Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "fotoPrincipalDWV": "https://dwvimagesv1.b-cdn.net/images/developments/526515c5-f2cc-4f60-85be-364b732c9627/galleries/pictures/GRANT_VISTA_-_LAZER_COBERTURA_1.jpg-name-94f187599a9f5f57f026f54b94b52e741b72c5c1971ce56d60a4d0a3c89b352e.jpg",
+    "fotosMenoresDWV": [
+      "https://dwvimagesv1.b-cdn.net/images/developments/526515c5-f2cc-4f60-85be-364b732c9627/galleries/pictures/GRANT_VISTA_-_SALAO_DE_FESTAS_4.jpg-name-64a34c6479358adcec60bd6990d75dfaa537df93d08d7f5071b5b71114f86348.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/526515c5-f2cc-4f60-85be-364b732c9627/galleries/pictures/GRANT_VISTA_-_SALAO_DE_FESTAS_3.jpg-name-c8678f7e067d38dd4f887215f9912d14195ffe221bc8f2d667f8a89e14574e20.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/526515c5-f2cc-4f60-85be-364b732c9627/galleries/pictures/GRANT_VISTA_-_PISCINA_1.jpg-name-353baae96fc7d3bfce4d1c33200bca8aa8e44e3493e1eb46d20e3eb1b098e910.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/526515c5-f2cc-4f60-85be-364b732c9627/galleries/pictures/GRANT_VISTA_-_MUSCULACAO_PILATES_E_YOGA_1.jpg-name-8f2b6fe79a1e772a241c9a73c14d3cc6694aaa026446610fa3e852731dc1b966.jpg"
+    ]
   },
   {
     "id": "91697",
