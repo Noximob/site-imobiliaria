@@ -32,39 +32,39 @@ function SobrePageClient({ depoimentos, corretores }: { depoimentos: any[], corr
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section - Quem Somos: primeira tela inteira, foto + texto organizados */}
-      <section className="min-h-screen h-screen flex flex-col md:flex-row overflow-hidden">
-        {/* Coluna da foto */}
-        <div className="flex-1 relative min-h-[40vh] md:min-h-0 order-2 md:order-1">
+      {/* Hero Section - como página principal: foto em tela inteira, dizeres em cima */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Foto de fundo */}
+        <div className="absolute inset-0">
           <Image 
             src={sobreImages.hero}
             alt="Nox Imóveis - Quem Somos" 
             fill
             className="object-cover"
             priority
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="100vw"
           />
+          {/* Overlay leve para legibilidade do texto */}
+          <div className="absolute inset-0 bg-black/40" />
         </div>
         
-        {/* Coluna do texto + botão */}
-        <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-purple-900 to-purple-800 py-12 md:py-0 order-1 md:order-2">
-          <div className="text-white max-w-lg px-6 sm:px-10 text-center md:text-left">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 md:mb-6">
-              {getText('quem_somos.hero.titulo')}
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-purple-100 leading-relaxed mb-8 md:mb-10">
-              {getText('quem_somos.hero.subtitulo')}
-            </p>
-            <button 
-              onClick={() => {
-                const element = document.getElementById('nossa-historia')
-                if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-              }}
-              className="w-full sm:w-auto bg-white text-purple-700 hover:bg-purple-100 font-bold py-4 px-10 rounded-lg text-lg transition-colors duration-300 shadow-lg"
-            >
-              {getText('quem_somos.hero.botao')}
-            </button>
-          </div>
+        {/* Conteúdo em cima da foto */}
+        <div className="relative z-10 text-white text-center max-w-3xl px-6 sm:px-8">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 md:mb-6 drop-shadow-lg">
+            {getText('quem_somos.hero.titulo')}
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl mb-8 md:mb-10 text-white/95 drop-shadow-md">
+            {getText('quem_somos.hero.subtitulo')}
+          </p>
+          <button 
+            onClick={() => {
+              const element = document.getElementById('nossa-historia')
+              if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }}
+            className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-12 rounded-lg text-lg transition-colors duration-300 shadow-xl"
+          >
+            {getText('quem_somos.hero.botao')}
+          </button>
         </div>
       </section>
 
