@@ -104,10 +104,15 @@ export default function Header() {
             {/* Telefone e Redes Sociais */}
           <div className="hidden lg:flex items-center space-x-4">
               {/* WhatsApp */}
-              <div className="flex items-center space-x-2 text-sm text-green-600">
-              <Phone className="w-4 h-4" />
+              <a
+                href={getWhatsAppLink(telefone)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 text-sm text-green-600 hover:text-green-700 transition-colors"
+              >
+                <Phone className="w-4 h-4 shrink-0" />
                 <span className="font-medium">{telefone}</span>
-              </div>
+              </a>
               
               {/* Redes Sociais */}
               <div className="flex items-center space-x-3">
