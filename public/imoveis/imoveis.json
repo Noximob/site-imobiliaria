@@ -23,7 +23,7 @@
     },
     "dataEntrega": "2028-10-17",
     "caracteristicas": {
-      "quartos": 0,
+      "quartos": 4,
       "banheiros": 1,
       "vagas": 2,
       "area": 158.21,
@@ -111,9 +111,16 @@
     },
     "visualizacoes": 0,
     "createdAt": "2026-01-09T19:15:05.000Z",
-    "updatedAt": "2026-01-31T01:33:02.288Z",
+    "updatedAt": "2026-01-31T01:36:05.630Z",
     "publicado": true,
-    "selecaoNox": false
+    "selecaoNox": false,
+    "fotoPrincipalDWV": "https://dwvimagesv1.b-cdn.net/images/developments/526515c5-f2cc-4f60-85be-364b732c9627/galleries/pictures/GRANT_VISTA_-_LAZER_COBERTURA_1.jpg-name-94f187599a9f5f57f026f54b94b52e741b72c5c1971ce56d60a4d0a3c89b352e.jpg",
+    "fotosMenoresDWV": [
+      "https://dwvimagesv1.b-cdn.net/images/developments/526515c5-f2cc-4f60-85be-364b732c9627/galleries/pictures/GRANT_VISTA_-_PISCINA_3.jpg-name-06faad2f9a319652cb8a41b2fd3239f010f584715f81127e6de7770dbf346cec.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/526515c5-f2cc-4f60-85be-364b732c9627/galleries/pictures/GRANT_VISTA_-_PISCINA_2.jpg-name-3490fc487ba389d6334733f27d9f2277774a28be793ac1332207c9205e823b4d.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/526515c5-f2cc-4f60-85be-364b732c9627/galleries/pictures/GRANT_VISTA_-_PISCINA_1.jpg-name-353baae96fc7d3bfce4d1c33200bca8aa8e44e3493e1eb46d20e3eb1b098e910.jpg",
+      "https://dwvimagesv1.b-cdn.net/images/developments/526515c5-f2cc-4f60-85be-364b732c9627/galleries/pictures/GRANT_VISTA_-_GARAGEM.jpg-name-745dabb0fa9618f305774bc4ae2473459885563e160f01527588141d3c487d2e.jpg"
+    ]
   },
   {
     "id": "91697",
