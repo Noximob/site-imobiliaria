@@ -1,6 +1,5 @@
 'use client'
 
-import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -33,39 +32,39 @@ function SobrePageClient({ depoimentos, corretores }: { depoimentos: any[], corr
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section - Quem Somos */}
-      <section className="relative h-[70vh] flex items-end justify-start overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
+      {/* Hero Section - Quem Somos: primeira tela inteira, foto + texto organizados */}
+      <section className="min-h-screen h-screen flex flex-col md:flex-row overflow-hidden">
+        {/* Coluna da foto */}
+        <div className="flex-1 relative min-h-[40vh] md:min-h-0 order-2 md:order-1">
           <Image 
             src={sobreImages.hero}
             alt="Nox Imóveis - Quem Somos" 
             fill
             className="object-cover"
-            loading="lazy"
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
-          <div className="absolute inset-0 bg-transparent"></div>
         </div>
         
-        {/* Content Overlay */}
-        <div className="relative z-10 text-white p-6 pb-12 max-w-xl">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
-            {getText('quem_somos.hero.titulo')}
-          </h1>
-          <p className="text-base md:text-lg mb-6 text-white/90">
-            {getText('quem_somos.hero.subtitulo')}
-          </p>
-          <button 
-            onClick={() => {
-              const element = document.getElementById('nossa-historia')
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-              }
-            }}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg text-sm transition-colors duration-300 shadow-lg"
-          >
-            {getText('quem_somos.hero.botao')}
-          </button>
+        {/* Coluna do texto + botão */}
+        <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-purple-900 to-purple-800 py-12 md:py-0 order-1 md:order-2">
+          <div className="text-white max-w-lg px-6 sm:px-10 text-center md:text-left">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 md:mb-6">
+              {getText('quem_somos.hero.titulo')}
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl text-purple-100 leading-relaxed mb-8 md:mb-10">
+              {getText('quem_somos.hero.subtitulo')}
+            </p>
+            <button 
+              onClick={() => {
+                const element = document.getElementById('nossa-historia')
+                if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+              }}
+              className="w-full sm:w-auto bg-white text-purple-700 hover:bg-purple-100 font-bold py-4 px-10 rounded-lg text-lg transition-colors duration-300 shadow-lg"
+            >
+              {getText('quem_somos.hero.botao')}
+            </button>
+          </div>
         </div>
       </section>
 
