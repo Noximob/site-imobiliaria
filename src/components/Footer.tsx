@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Instagram, Facebook } from 'lucide-react'
+import { Instagram, Facebook, Youtube } from 'lucide-react'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
 import { getWhatsAppLink } from '@/lib/whatsapp'
@@ -83,6 +83,9 @@ export default function Footer() {
               </a>
               <a href="https://www.facebook.com/share/1BtwHUDDAj/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="p-2 text-purple-400 hover:text-purple-300 transition-colors" aria-label="Facebook">
                 <Facebook className="w-5 h-5" />
+              </a>
+              <a href="https://www.youtube.com/@NoxIm%C3%B3veis" target="_blank" rel="noopener noreferrer" className="p-2 text-purple-400 hover:text-purple-300 transition-colors" aria-label="YouTube">
+                <Youtube className="w-5 h-5" />
               </a>
             </div>
           </div>
