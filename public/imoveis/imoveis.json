@@ -8427,5 +8427,57 @@
     "fotoPrincipalIndex": 0,
     "createdAt": "2026-01-23T00:32:41.995Z",
     "updatedAt": "2026-01-23T00:32:41.995Z"
+  },
+  {
+    "titulo": "vdvs",
+    "descricao": "vista mar",
+    "preco": 800,
+    "tipo": "apartamento",
+    "status": "lancamento",
+    "endereco": {
+      "cidade": "penha",
+      "bairro": "Gravatá",
+      "rua": "Rua Jordelina Florzina Flores",
+      "numero": "154",
+      "cep": "88385000",
+      "estado": "SC"
+    },
+    "caracteristicas": {
+      "quartos": 3,
+      "banheiros": 2,
+      "vagas": 2,
+      "area": 120,
+      "suite": 1,
+      "frenteMar": false,
+      "piscina": false,
+      "churrasqueira": false,
+      "academia": false,
+      "portaria": false,
+      "elevador": false,
+      "varanda": false,
+      "sacada": false
+    },
+    "tags": [
+      "vista mar"
+    ],
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "corretor": "NOX Imóveis"
+    },
+    "publicado": true,
+    "selecaoNox": true,
+    "dataEntrega": "2027-10-10",
+    "fotoPrincipalIndex": 0,
+    "id": "40489",
+    "slug": "vdvs",
+    "fotos": [
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/40489_0.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/40489_1.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/40489_2.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/40489_3.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/40489_4.jpg"
+    ],
+    "createdAt": "2026-01-31T01:17:22.841Z",
+    "updatedAt": "2026-01-31T01:17:22.841Z"
   }
 ]
