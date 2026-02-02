@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next'
 import { getAllImoveis } from '@/lib/imoveis'
+import fs from 'fs'
+import path from 'path'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://noximobiliaria.com.br'
@@ -78,7 +80,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 0.5,
     },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
   ]
+
+  // Buscar artigos do blog publicados
+  let blogPages: MetadataRoute.Sitemap = []
+  try {
+    const artigosPath = path.join(process.cwd(), 'public/blog/artigos.json')
+    if (fs.existsSync(artigosPath)) {
+      const data = fs.readFileSync(artigosPath, 'utf-8')
+      const artigos = JSON.parse(data).filter((a: { publicado?: boolean }) => a.publicado === true)
+      blogPages = artigos.map((artigo: { slug: string; updatedAt?: string; dataPublicacao?: string }) => ({
+        url: `${baseUrl}/blog/${artigo.slug}`,
+        lastModified: artigo.updatedAt || artigo.dataPublicacao ? new Date(artigo.updatedAt || artigo.dataPublicacao || '') : new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+      }))
+    }
+  } catch (error) {
+    console.error('Erro ao buscar artigos do blog para sitemap:', error)
+  }
 
   // Buscar todos os imóveis publicados
   let imoveisPages: MetadataRoute.Sitemap = []
@@ -95,5 +121,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // Combinar todas as páginas
-  return [...staticPages, ...imoveisPages]
+  return [...staticPages, ...blogPages, ...imoveisPages]
 }

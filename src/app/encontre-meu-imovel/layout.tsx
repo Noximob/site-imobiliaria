@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  alternates: { canonical: 'https://noximobiliaria.com.br/encontre-meu-imovel' },
 }
 
 export default function EncontreMeuImovelLayout({
