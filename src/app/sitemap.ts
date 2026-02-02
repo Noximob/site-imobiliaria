@@ -2,50 +2,98 @@ import { MetadataRoute } from 'next'
 import { getAllImoveis } from '@/lib/imoveis'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://imobiliaria.netlify.app'
-  
+  const baseUrl = 'https://noximoveis.com.br'
+
   // Páginas estáticas
-  const staticPages = [
+  const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
+      changeFrequency: 'daily',
       priority: 1,
     },
     {
       url: `${baseUrl}/imoveis`,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
+      changeFrequency: 'daily',
       priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/sobre`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
     },
     {
       url: `${baseUrl}/contato`,
       lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/sobre`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/anunciar`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/trabalhe-conosco`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/como-comprar`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/encontre-meu-imovel`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/viva-penha`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/viva-balneario-picarras`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/viva-barra-velha`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/favoritos`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.5,
     },
   ]
 
-  // Páginas dinâmicas de imóveis
-  let imovelPages: MetadataRoute.Sitemap = []
+  // Buscar todos os imóveis publicados
+  let imoveisPages: MetadataRoute.Sitemap = []
   try {
     const imoveis = await getAllImoveis()
-    imovelPages = imoveis.map((imovel) => ({
+    imoveisPages = imoveis.map((imovel) => ({
       url: `${baseUrl}/imoveis/${imovel.slug}`,
-      lastModified: imovel.updatedAt,
+      lastModified: imovel.updatedAt || imovel.createdAt || new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
     }))
   } catch (error) {
-    // Se falhar ao carregar imóveis durante o build, continuar sem eles
-    console.error('Erro ao carregar imóveis para sitemap:', error)
+    console.error('Erro ao buscar imóveis para sitemap:', error)
   }
 
-  return [...staticPages, ...imovelPages]
+  // Combinar todas as páginas
+  return [...staticPages, ...imoveisPages]
 }

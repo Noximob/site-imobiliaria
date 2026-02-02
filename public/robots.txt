@@ -1,0 +1,12 @@
+# Permitir que todos os buscadores rastreiem o site
+User-agent: *
+Allow: /
+
+# Bloquear apenas a área administrativa
+Disallow: /administrador/
+
+# Localização do sitemap
+Sitemap: https://noximoveis.com.br/sitemap.xml
+
+# Crawl-delay (opcional - evita sobrecarga no servidor)
+Crawl-delay: 1
