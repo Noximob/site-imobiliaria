@@ -239,9 +239,9 @@ export default function Footer() {
                 <Image
                   src="/imagens/alumma-logo.png"
                   alt="Alumma"
-                  width={120}
-                  height={36}
-                  className="h-7 sm:h-8 w-auto inline-block align-middle"
+                  width={480}
+                  height={144}
+                  className="h-28 sm:h-32 w-auto inline-block align-middle"
                 />
                 <span className="hidden sm:inline text-gray-400">|</span>
                 <span>Soluções para Imobiliárias de alta performance</span>
