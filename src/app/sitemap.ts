@@ -86,6 +86,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 0.7,
     },
+    { url: `${baseUrl}/imoveis/penha`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/imoveis/balneario-picarras`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/imoveis/barra-velha`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/imoveis/apartamentos`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/imoveis/frente-mar`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
   ]
 
   // Buscar artigos do blog publicados
