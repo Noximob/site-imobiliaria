@@ -233,9 +233,14 @@ export default function Footer() {
                 <span className="w-px h-4 sm:h-5 bg-gray-400 shrink-0" aria-hidden />
                 <span>CRECI 9839J</span>
               </p>
-              {/* Feito pela Alumma */}
-              <p className="text-sm sm:text-base text-gray-600 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
-                <span>Feito pelo time da</span>
+              {/* Site feito pelo time Alumma - clicável */}
+              <a
+                href="https://www.alumma.com.br"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm sm:text-base text-gray-600 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 hover:text-gray-800 transition-colors rounded-lg px-2 py-1 -m-1"
+              >
+                <span>Site feito pelo time</span>
                 <Image
                   src="/imagens/alumma-logo.png"
                   alt="Alumma"
@@ -245,7 +250,7 @@ export default function Footer() {
                 />
                 <span className="hidden sm:inline text-gray-400">|</span>
                 <span>Soluções para Imobiliárias de alta performance</span>
-              </p>
+              </a>
             </div>
           </div>
         </div>
