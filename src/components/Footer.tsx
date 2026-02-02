@@ -19,7 +19,6 @@ export default function Footer() {
   const logoUrl = getImageUrl('logo-footer')
   const telefone = getText('footer.telefone')
   const textoAcompanhe = getText('footer.texto_acompanhe')
-  const copyright = getText('footer.copyright')
   
   // Coluna Imóveis
   const imoveisTitulo = getText('footer.coluna_imoveis.titulo')
@@ -52,7 +51,6 @@ export default function Footer() {
   const endereco = getText('footer.central_atendimento.endereco')
   const cidade = getText('footer.central_atendimento.cidade')
   const telefoneCentral = getText('footer.central_atendimento.telefone_central')
-  const creciSc = getText('footer.central_atendimento.creci_sc')
   return (
     <footer className="bg-gray-900 text-white">
       {/* Rodapé Tradicional */}
@@ -223,16 +221,23 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          {/* Copyright */}
-          <div className="mt-6 sm:mt-8 pt-6 border-t border-gray-700">
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-2 text-center">
-              <p className="text-gray-400 text-xs sm:text-sm order-2 sm:order-1">
-                {copyright}
-              </p>
-              <p className="text-gray-400 text-xs sm:text-sm order-1 sm:order-2">
-                {creciSc}
-              </p>
-            </div>
+          {/* Copyright e crédito (estilo Felicità) */}
+          <div className="mt-6 sm:mt-8 pt-6 border-t border-gray-700 text-center">
+            <p className="text-gray-400 text-xs sm:text-sm mb-2">
+              Nox Imóveis, CRECI 9839J
+            </p>
+            <p className="text-gray-400 text-xs sm:text-sm flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+              <span>Feito pelo time da</span>
+              <Image
+                src="/imagens/alumma-logo.png"
+                alt="Alumma"
+                width={80}
+                height={24}
+                className="h-5 sm:h-6 w-auto inline-block align-middle"
+              />
+              <span className="hidden sm:inline">|</span>
+              <span>Soluções para Imobiliárias de alta performance</span>
+            </p>
           </div>
         </div>
       </div>
