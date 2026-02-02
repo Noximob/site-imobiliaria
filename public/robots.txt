@@ -6,7 +6,7 @@ Allow: /
 Disallow: /administrador/
 
 # Localização do sitemap
-Sitemap: https://noximoveis.com.br/sitemap.xml
+Sitemap: https://noximobiliaria.com.br/sitemap.xml
 
 # Crawl-delay (opcional - evita sobrecarga no servidor)
 Crawl-delay: 1

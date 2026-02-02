@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://noximoveis.com.br',
+    canonical: 'https://noximobiliaria.com.br',
   },
 }
 
@@ -147,9 +147,9 @@ export default async function HomePage() {
             "@type": "RealEstateAgent",
             "name": "Nox Imóveis",
             "description": "Imobiliária especializada em imóveis em Penha, Balneário Piçarras e Barra Velha",
-            "url": "https://noximoveis.com.br",
-            "logo": "https://noximoveis.com.br/imagens/Logo.png",
-            "image": "https://noximoveis.com.br/imagens/banners/banner-home.png",
+            "url": "https://noximobiliaria.com.br",
+            "logo": "https://noximobiliaria.com.br/imagens/Logo.png",
+            "image": "https://noximobiliaria.com.br/imagens/banners/banner-home.png",
             "telephone": "+5547997530113",
             "address": {
               "@type": "PostalAddress",
