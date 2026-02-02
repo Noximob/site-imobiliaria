@@ -6,6 +6,7 @@ import { Heart } from 'lucide-react'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
 import { getWhatsAppLink } from '@/lib/whatsapp'
+import { trackWhatsAppClick, trackFormSubmit } from '@/lib/analytics'
 import TeamSection from '@/components/TeamSection'
 import { getCorretoresAtivos } from '@/lib/corretores-data'
 
@@ -60,6 +61,7 @@ function EncontreMeuImovelPageClient({ corretores }: { corretores: any[] }) {
       })
       
       if (response.ok) {
+        trackFormSubmit('encontre_meu_imovel')
         alert('Formulário enviado com sucesso! Nossa equipe entrará em contato em breve.')
         setFormData({
           nome: '',
@@ -263,6 +265,7 @@ function EncontreMeuImovelPageClient({ corretores }: { corretores: any[] }) {
                 href={getWhatsAppLink('(47) 99753-0113')}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick('encontre_meu_imovel')}
                 className="inline-block bg-white text-purple-700 hover:bg-purple-100 font-bold py-3 px-8 rounded-lg transition-colors duration-300 shadow-lg"
               >
                 {getText('encontre_meu_imovel.cta_contato.botao')}

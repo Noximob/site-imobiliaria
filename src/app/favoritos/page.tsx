@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Heart } from 'lucide-react'
 import { getAllImoveis, formatPrice, getFotoPrincipal } from '@/lib/imoveis'
 import { getFavoritos, toggleFavorito, isFavorito } from '@/lib/favoritos'
+import { trackFavorito } from '@/lib/analytics'
 import { Imovel } from '@/types'
 import { MapPin, Bed, Bath, Car, Ruler } from 'lucide-react'
 
@@ -52,7 +53,8 @@ export default function FavoritosPage() {
   }, [])
 
   const handleToggleFavorito = (imovelId: string) => {
-    toggleFavorito(imovelId)
+    const added = toggleFavorito(imovelId)
+    trackFavorito(imovelId, added)
     // Atualizar lista imediatamente
     setImoveisFavoritos(prev => prev.filter(imovel => imovel.id !== imovelId))
     // Disparar evento para outras partes da aplicação

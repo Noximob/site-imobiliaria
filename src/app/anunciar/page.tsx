@@ -7,6 +7,7 @@ import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
 import DepoimentosSection from '@/components/DepoimentosSection'
 import { getDepoimentosAtivos } from '@/lib/depoimentos-data'
+import { trackFormSubmit } from '@/lib/analytics'
 
 const anunciarImage = getImageUrl('anunciar-imovel')
 
@@ -51,6 +52,7 @@ function AnunciarPageClient({ depoimentos }: { depoimentos: any[] }) {
       })
       
       if (response.ok) {
+        trackFormSubmit('anunciar')
         alert('Formulário enviado com sucesso! Entraremos em contato em breve.')
         setFormData({
           telefone: '',

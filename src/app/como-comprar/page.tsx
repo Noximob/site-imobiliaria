@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { CheckCircle, Users, FileText, Home, Shield, CreditCard, Calculator, Phone, Mail, MapPin, Building, Award } from 'lucide-react'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
+import { trackWhatsAppClick } from '@/lib/analytics'
 
 const comoComprarImages = {
   apartamentoPenha: getImageUrl('apartamentos'),
@@ -250,6 +251,7 @@ export default async function ComoComprarPage() {
               href="https://wa.me/5547997530113"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick('como_comprar')}
               className="bg-green-500 hover:bg-green-600 text-black font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center text-sm"
             >
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
 import { getWhatsAppLink } from '@/lib/whatsapp'
+import { trackWhatsAppClick } from '@/lib/analytics'
 
 export default function VivaBarraVelhaPage() {
   const barraVelhaImages = {
@@ -308,6 +309,7 @@ export default function VivaBarraVelhaPage() {
                 href={getWhatsAppLink('(47) 99753-0113')}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick('viva_barra_velha')}
                 className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-5 rounded-lg text-sm transition-colors duration-300 shadow-lg"
               >
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">

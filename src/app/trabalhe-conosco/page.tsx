@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Upload, X } from 'lucide-react'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
+import { trackFormSubmit } from '@/lib/analytics'
 
 const trabalheImage = getImageUrl('trabalhe-conosco')
 
@@ -76,6 +77,7 @@ export default function TrabalheConoscoPage() {
       })
 
       if (response.ok) {
+        trackFormSubmit('trabalhe_conosco')
         alert('Currículo enviado com sucesso! Entraremos em contato em breve.')
         setFormData({
           nome: '',

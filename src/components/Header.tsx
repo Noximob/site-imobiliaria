@@ -8,6 +8,7 @@ import Image from 'next/image'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
 import { getWhatsAppLink } from '@/lib/whatsapp'
+import { trackWhatsAppClick } from '@/lib/analytics'
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -108,6 +109,7 @@ export default function Header() {
                 href={getWhatsAppLink(telefone)}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick('header')}
                 className="flex items-center space-x-2 text-sm text-green-600 hover:text-green-700 transition-colors"
               >
                 <Phone className="w-4 h-4 shrink-0" />
@@ -371,6 +373,7 @@ export default function Header() {
                     href={getWhatsAppLink('(47) 99753-0113')}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackWhatsAppClick('header_mobile')}
                     className="flex items-center space-x-2 text-white text-sm hover:text-green-400 transition-colors"
                   >
                     <Phone className="w-4 h-4 text-purple-400" />

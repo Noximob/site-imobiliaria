@@ -10,6 +10,7 @@ import { getCorretoresAtivos } from '@/lib/corretores-data'
 import { getDepoimentosAtivos } from '@/lib/depoimentos-data'
 import { getAllImoveis } from '@/lib/imoveis-github'
 import { formatPrice, getFotoPrincipal } from '@/lib/imoveis'
+import { trackWhatsAppClick } from '@/lib/analytics'
 import { Imovel } from '@/types'
 import Link from 'next/link'
 import type { Metadata } from 'next'
@@ -566,6 +567,7 @@ export default async function HomePage() {
                 href="https://wa.me/5547997530113"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick('home')}
                 className="inline-flex items-center space-x-2 bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

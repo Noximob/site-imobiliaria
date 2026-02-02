@@ -6,6 +6,7 @@ import { Instagram, Facebook, Youtube } from 'lucide-react'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
 import { getWhatsAppLink } from '@/lib/whatsapp'
+import { trackWhatsAppClick } from '@/lib/analytics'
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -63,6 +64,7 @@ export default function Footer() {
               href={getWhatsAppLink(telefone)}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick('footer')}
               className="flex items-center justify-center md:justify-start gap-2 hover:text-green-400 transition-colors"
             >
               <svg className="w-5 h-5 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 24 24">
@@ -215,6 +217,7 @@ export default function Footer() {
                 href={getWhatsAppLink(telefoneCentral)}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick('footer_central')}
                 className="text-purple-400 font-semibold hover:text-green-400 transition-colors text-sm sm:text-base"
               >
                 {telefoneCentral}

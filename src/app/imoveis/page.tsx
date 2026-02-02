@@ -9,6 +9,7 @@ import { getAllImoveis, searchImoveis, formatPrice, getFotoPrincipal } from '@/l
 import { Imovel, FiltrosImovel } from '@/types'
 import { Heart, X } from 'lucide-react'
 import { toggleFavorito, isFavorito } from '@/lib/favoritos'
+import { trackFavorito } from '@/lib/analytics'
 
 function ImoveisPageContent() {
   const searchParams = useSearchParams()
@@ -327,7 +328,8 @@ function ImoveisPageContent() {
                               onClick={(e) => {
                                 e.preventDefault()
                                 e.stopPropagation()
-                                toggleFavorito(imovel.id)
+                                const added = toggleFavorito(imovel.id)
+                                trackFavorito(imovel.id, added)
                               }}
                               className={`transition-colors ${
                                 isFavorito(imovel.id) 

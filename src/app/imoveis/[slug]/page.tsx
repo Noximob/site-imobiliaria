@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { getImovelBySlug, getAllImoveis, formatPrice } from '@/lib/imoveis'
 import { getWhatsAppLink } from '@/lib/whatsapp'
 import { toggleFavorito, isFavorito } from '@/lib/favoritos'
+import { trackViewItem, trackImovelContato, trackWhatsAppClick, trackFavorito } from '@/lib/analytics'
 import { 
   MapPin, 
   Key,
@@ -43,7 +44,7 @@ export default function ImovelDetalhePage() {
         }
         setImovel(imovelData)
         setIsFavoritado(isFavorito(imovelData.id))
-        
+        trackViewItem(imovelData.id, imovelData.slug || slug, imovelData.titulo || '')
       } catch (error) {
         console.error('Erro ao carregar imóvel:', error)
         notFound()
@@ -57,7 +58,7 @@ export default function ImovelDetalhePage() {
 
   const handleSubmitForm = (e: React.FormEvent) => {
     e.preventDefault()
-    
+    trackImovelContato(contatoTipo)
     if (contatoTipo === 'whatsapp') {
       const message = encodeURIComponent(`${formData.mensagem}\n\nNome: ${formData.nome}\nEmail: ${formData.email}\nTelefone: ${formData.telefone}`)
       window.open(getWhatsAppLink(imovel?.contato?.whatsapp || '', message), '_blank')
@@ -171,6 +172,7 @@ export default function ImovelDetalhePage() {
                   if (imovel) {
                     const novoEstado = toggleFavorito(imovel.id)
                     setIsFavoritado(novoEstado)
+                    trackFavorito(imovel.id, novoEstado)
                   }
                 }}
                 className={`flex items-center gap-1.5 px-2.5 py-1 bg-white border border-gray-200 rounded-md hover:bg-gray-50 transition-colors ${
@@ -637,6 +639,7 @@ export default function ImovelDetalhePage() {
               href={getWhatsAppLink(imovel.contato?.whatsapp || '', `Olá, gostaria de receber mais informações sobre este imóvel: ${imovel.titulo}`)}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick('imovel_detalhe_botao')}
               className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
             >
               <MessageCircle className="w-5 h-5" />

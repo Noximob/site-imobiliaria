@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
 import { getWhatsAppLink } from '@/lib/whatsapp'
+import { trackWhatsAppClick, trackFormSubmit } from '@/lib/analytics'
 
 const contatoImage = getImageUrl('contato')
 
@@ -53,6 +54,7 @@ export default function ContatoPage() {
       })
       
       if (response.ok) {
+        trackFormSubmit('contato')
         alert('Mensagem enviada com sucesso! Entraremos em contato em breve.')
         setFormData({
           nome: '',
@@ -107,6 +109,7 @@ export default function ContatoPage() {
                 href="https://wa.me/5547997530113"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick('contato')}
                 className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 text-lg shadow-2xl hover:shadow-green-500/25 transform hover:scale-105"
               >
                 <svg className="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
@@ -121,6 +124,7 @@ export default function ContatoPage() {
               href={getWhatsAppLink('(47) 99753-0113')}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick('contato_telefone')}
               className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 hover:bg-white/20 transition-colors"
             >
               <Phone className="w-5 h-5 text-purple-300" />
