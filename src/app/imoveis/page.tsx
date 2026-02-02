@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, Suspense } from 'react'
+import { useEffect, useState, useRef, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -22,6 +22,7 @@ function ImoveisPageContent() {
   const itemsPerPage = 10
   const [showFiltersMobile, setShowFiltersMobile] = useState(false)
   const [showOrdenacaoMobile, setShowOrdenacaoMobile] = useState(false)
+  const listScrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     // Listener para atualizar quando favoritos mudarem
@@ -120,6 +121,12 @@ function ImoveisPageContent() {
     return () => clearTimeout(timeoutId)
   }, [filtros, ordenacao])
 
+  // Ao mudar de página, voltar ao topo para melhor experiência (desktop e mobile)
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    listScrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [currentPage])
+
   const handleFiltrosChange = (novosFiltros: any) => {
     // Função auxiliar para converter valores com "+" (ex: "4+" -> 4, "1+" -> 1)
     const parseFilterValue = (value: string): number | undefined => {
@@ -215,7 +222,7 @@ function ImoveisPageContent() {
           </div>
 
           {/* Lista de Imóveis */}
-          <div className="flex-1 overflow-y-auto overflow-x-hidden min-w-0">
+          <div ref={listScrollRef} className="flex-1 overflow-y-auto overflow-x-hidden min-w-0">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 pb-24 w-full box-border">
               {isLoading ? (
                 <div className="text-center py-12">
