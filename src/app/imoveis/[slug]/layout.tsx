@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import fs from 'fs'
 import path from 'path'
 import { Octokit } from '@octokit/rest'
-import { getFotoPrincipal, formatPrice } from '@/lib/imoveis'
+import { formatPrice } from '@/lib/imoveis'
 
 const baseUrl = 'https://noximobiliaria.com.br'
 
@@ -61,9 +61,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     .filter(Boolean)
     .join(' ')
 
-  const fotoPrincipal = getFotoPrincipal(imovel)
-  // URL absoluta obrigatória para WhatsApp/Facebook
-  const ogImage = fotoPrincipal?.startsWith('http') ? fotoPrincipal : fotoPrincipal ? `${baseUrl}${fotoPrincipal.startsWith('/') ? '' : '/'}${fotoPrincipal}` : undefined
+  // Imagem OG gerada dinamicamente (preço, endereço, foto)
+  const ogImage = `${baseUrl}/api/og/imovel/${slug}`
 
   const openGraph: Metadata['openGraph'] = {
     title: `${titulo} | Nox Imóveis`,

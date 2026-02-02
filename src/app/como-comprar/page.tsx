@@ -46,8 +46,20 @@ export default async function ComoComprarPage() {
     'como-comprar-5': getImageUrl('como-comprar-5'),
   }
   
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: 'Como descubro a melhor oportunidade de imóvel?', acceptedAnswer: { '@type': 'Answer', text: getText('como_comprar.como_funciona.passo_1.descricao') } },
+      { '@type': 'Question', name: 'Como agendo visita ou reunião?', acceptedAnswer: { '@type': 'Answer', text: getText('como_comprar.como_funciona.passo_2.descricao') } },
+      { '@type': 'Question', name: 'Como funciona a negociação?', acceptedAnswer: { '@type': 'Answer', text: getText('como_comprar.como_funciona.passo_3.descricao') } },
+      { '@type': 'Question', name: 'Como finalizo a compra?', acceptedAnswer: { '@type': 'Answer', text: getText('como_comprar.como_funciona.passo_4.descricao') } },
+    ],
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       {/* Pré-carregar imagem crítica */}
       <link rel="preload" as="image" href={siteImages['topico-como-comprar']} />
       

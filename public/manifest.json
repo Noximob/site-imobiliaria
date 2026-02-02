@@ -1,0 +1,18 @@
+{
+  "name": "Nox Imóveis - Penha, Piçarras e Barra Velha",
+  "short_name": "Nox Imóveis",
+  "description": "Imóveis à venda em Penha, Balneário Piçarras e Barra Velha. Apartamentos, casas e lançamentos.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#7c3aed",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
