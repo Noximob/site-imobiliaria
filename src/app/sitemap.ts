@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { getAllImoveis } from '@/lib/imoveis'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://www.noximoveisdigital.com'
+  const baseUrl = 'https://noximoveis.com.br'
 
   // Páginas estáticas
   const staticPages: MetadataRoute.Sitemap = [
