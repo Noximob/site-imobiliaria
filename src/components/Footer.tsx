@@ -221,23 +221,32 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          {/* Copyright e crédito (estilo Felicità) */}
-          <div className="mt-6 sm:mt-8 pt-6 border-t border-gray-700 text-center">
-            <p className="text-gray-400 text-xs sm:text-sm mb-2">
-              Nox Imóveis, CRECI 9839J
-            </p>
-            <p className="text-gray-400 text-xs sm:text-sm flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
-              <span>Feito pelo time da</span>
-              <Image
-                src="/imagens/alumma-logo.png"
-                alt="Alumma"
-                width={80}
-                height={24}
-                className="h-5 sm:h-6 w-auto inline-block align-middle"
-              />
-              <span className="hidden sm:inline">|</span>
-              <span>Soluções para Imobiliárias de alta performance</span>
-            </p>
+        </div>
+
+        {/* Faixa inferior: fundo branco, créditos */}
+        <div className="bg-white text-gray-700">
+          <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 py-4 sm:py-5">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center sm:justify-between gap-3 sm:gap-4 text-center sm:text-left">
+              {/* Nox Imóveis | CRECI */}
+              <p className="text-sm sm:text-base font-medium text-gray-800 flex items-center justify-center gap-2">
+                <span>Nox Imóveis</span>
+                <span className="w-px h-4 sm:h-5 bg-gray-400 shrink-0" aria-hidden />
+                <span>CRECI 9839J</span>
+              </p>
+              {/* Feito pela Alumma */}
+              <p className="text-sm sm:text-base text-gray-600 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+                <span>Feito pelo time da</span>
+                <Image
+                  src="/imagens/alumma-logo.png"
+                  alt="Alumma"
+                  width={120}
+                  height={36}
+                  className="h-7 sm:h-8 w-auto inline-block align-middle"
+                />
+                <span className="hidden sm:inline text-gray-400">|</span>
+                <span>Soluções para Imobiliárias de alta performance</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
