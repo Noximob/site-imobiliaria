@@ -47,6 +47,7 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
         <img
           src={corretor.foto || '/placeholder-corretor.jpg'}
           alt={corretor.nome}
+          loading="lazy"
           className="w-full h-full object-cover object-top"
           loading="lazy"
         />

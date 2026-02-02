@@ -38,6 +38,15 @@ export default function RootLayout({
 
   return (
     <html lang="pt-BR" className="h-full">
+      <head>
+        {/* Preload banner da home para LCP - Core Web Vitals */}
+        <link
+          rel="preload"
+          as="image"
+          href="https://noximobiliaria.com.br/api/image?id=banner-home"
+          fetchPriority="high"
+        />
+      </head>
       <body className={`${inter.className} h-full`}>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}

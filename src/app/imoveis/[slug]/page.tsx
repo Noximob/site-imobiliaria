@@ -237,6 +237,7 @@ export default function ImovelDetalhePage() {
                 <img
                   src={fotosParaExibir[0]}
                   alt={`${imovel.titulo} - Foto principal`}
+                  fetchPriority="high"
                   className="w-full h-full object-cover"
                   style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
@@ -268,6 +269,7 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosParaExibir[1]}
                       alt={`${imovel.titulo} - Foto 2`}
+                      loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover"
                     />
                   </Link>
@@ -290,6 +292,7 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosParaExibir[2]}
                       alt={`${imovel.titulo} - Foto 3`}
+                      loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover"
                     />
                   </Link>
@@ -312,6 +315,7 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosParaExibir[3]}
                       alt={`${imovel.titulo} - Foto 4`}
+                      loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover"
                     />
                   </Link>
@@ -334,6 +338,7 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosParaExibir[4]}
                       alt={`${imovel.titulo} - Foto 5`}
+                      loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover"
                     />
                     {/* Botão Visualizar Fotos - Canto inferior direito */}
@@ -360,6 +365,7 @@ export default function ImovelDetalhePage() {
                     <img
                       src={fotosParaExibir[fotosParaExibir.length - 1]}
                       alt={`${imovel.titulo} - Última foto`}
+                      loading="lazy"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute bottom-2 right-2 z-10">

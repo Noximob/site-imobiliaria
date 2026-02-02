@@ -5,6 +5,9 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Gzip/Brotli: Netlify habilita compressão automaticamente para todos os assets.
+# Nenhuma configuração adicional necessária.
+
 [[headers]]
   for = "/*"
   [headers.values]
