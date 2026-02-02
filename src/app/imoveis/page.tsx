@@ -9,7 +9,7 @@ import { getAllImoveis, searchImoveis, formatPrice, getFotoPrincipal } from '@/l
 import { Imovel, FiltrosImovel } from '@/types'
 import { Heart, X } from 'lucide-react'
 import { toggleFavorito, isFavorito } from '@/lib/favoritos'
-import { trackFavorito } from '@/lib/analytics'
+import { trackFavorito, trackFilterApply, trackImovelClick, trackPagination } from '@/lib/analytics'
 
 function ImoveisPageContent() {
   const searchParams = useSearchParams()
@@ -160,6 +160,14 @@ function ImoveisPageContent() {
     }
     
     setFiltros(filtrosFormatados)
+    trackFilterApply({
+      cidade: filtrosFormatados.cidade,
+      tipo: filtrosFormatados.tipo,
+      status: filtrosFormatados.status,
+      quartos: filtrosFormatados.quartos?.[0],
+      valor_min: filtrosFormatados.precoMin,
+      valor_max: filtrosFormatados.precoMax,
+    })
   }
 
   return (
@@ -345,6 +353,7 @@ function ImoveisPageContent() {
                               href={`/imoveis/${imovel.slug}`}
                               target="_blank"
                               rel="noopener noreferrer"
+                              onClick={() => trackImovelClick(imovel.id, imovel.slug, imovel.titulo)}
                               className="bg-purple-500 hover:bg-purple-600 text-white font-medium py-2 px-5 rounded-md transition-colors duration-200 text-sm"
                             >
                               SABER MAIS
@@ -360,7 +369,11 @@ function ImoveisPageContent() {
                   {imoveis.length > itemsPerPage && (
                     <div className="mt-8 flex items-center justify-center gap-2">
                       <button
-                        onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                        onClick={() => {
+                          const p = Math.max(1, currentPage - 1)
+                          setCurrentPage(p)
+                          trackPagination(p)
+                        }}
                         disabled={currentPage === 1}
                         className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                       >
@@ -386,7 +399,10 @@ function ImoveisPageContent() {
                                   <span className="px-2 text-gray-500">...</span>
                                 )}
                                 <button
-                                  onClick={() => setCurrentPage(page)}
+                                  onClick={() => {
+                                    setCurrentPage(page)
+                                    trackPagination(page)
+                                  }}
                                   className={`px-3 py-2 rounded-lg transition-colors ${
                                     currentPage === page
                                       ? 'bg-purple-600 text-white'
@@ -401,7 +417,11 @@ function ImoveisPageContent() {
                       </div>
                       
                       <button
-                        onClick={() => setCurrentPage(prev => Math.min(Math.ceil(imoveis.length / itemsPerPage), prev + 1))}
+                        onClick={() => {
+                          const p = Math.min(Math.ceil(imoveis.length / itemsPerPage), currentPage + 1)
+                          setCurrentPage(p)
+                          trackPagination(p)
+                        }}
                         disabled={currentPage === Math.ceil(imoveis.length / itemsPerPage)}
                         className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                       >

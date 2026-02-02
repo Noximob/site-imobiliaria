@@ -8,7 +8,7 @@ import Image from 'next/image'
 import { getImageUrl } from '@/lib/github-images'
 import { getText } from '@/lib/site-texts'
 import { getWhatsAppLink } from '@/lib/whatsapp'
-import { trackWhatsAppClick } from '@/lib/analytics'
+import { trackWhatsAppClick, trackSocialClick } from '@/lib/analytics'
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -118,16 +118,16 @@ export default function Header() {
               
               {/* Redes Sociais */}
               <div className="flex items-center space-x-3">
-                <a href="https://www.instagram.com/noximoveis?igsh=cmVzYTFzNmZkNQ%3D%3D" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-700 transition-colors" aria-label="Instagram">
+                <a href="https://www.instagram.com/noximoveis?igsh=cmVzYTFzNmZkNQ%3D%3D" target="_blank" rel="noopener noreferrer" onClick={() => trackSocialClick('instagram')} className="text-purple-600 hover:text-purple-700 transition-colors" aria-label="Instagram">
                   <Instagram className="w-5 h-5" />
                 </a>
-                <a href="https://www.tiktok.com/@noximoveis?_r=1&_t=ZS-93IL19xyQDN" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-700 transition-colors" aria-label="TikTok">
+                <a href="https://www.tiktok.com/@noximoveis?_r=1&_t=ZS-93IL19xyQDN" target="_blank" rel="noopener noreferrer" onClick={() => trackSocialClick('tiktok')} className="text-purple-600 hover:text-purple-700 transition-colors" aria-label="TikTok">
                   <TikTokIcon className="w-5 h-5" />
                 </a>
-              <a href="https://www.facebook.com/share/1BtwHUDDAj/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-700 transition-colors" aria-label="Facebook">
+              <a href="https://www.facebook.com/share/1BtwHUDDAj/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" onClick={() => trackSocialClick('facebook')} className="text-purple-600 hover:text-purple-700 transition-colors" aria-label="Facebook">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="https://www.youtube.com/@NoxIm%C3%B3veis" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-700 transition-colors" aria-label="YouTube">
+              <a href="https://www.youtube.com/@NoxIm%C3%B3veis" target="_blank" rel="noopener noreferrer" onClick={() => trackSocialClick('youtube')} className="text-purple-600 hover:text-purple-700 transition-colors" aria-label="YouTube">
                 <Youtube className="w-5 h-5" />
               </a>
             </div>

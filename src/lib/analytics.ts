@@ -43,3 +43,24 @@ export function trackFavorito(imovelId: string, added: boolean): void {
 export function trackImovelContato(method: 'whatsapp' | 'email' | 'telefone'): void {
   gtagEvent('imovel_contato', { method })
 }
+
+/** Uso de filtros na lista de imóveis */
+export function trackFilterApply(params: { cidade?: string; tipo?: string; status?: string; quartos?: number; valor_min?: number; valor_max?: number }): void {
+  gtagEvent('filter_apply', params)
+}
+
+/** Clique no imóvel na lista (card / Saber mais) – funil lista → ficha */
+export function trackImovelClick(imovelId: string, slug: string, itemName: string): void {
+  gtagEvent('select_content', { content_type: 'imovel', item_id: imovelId, item_name: itemName })
+  gtagEvent('imovel_click', { imovel_id: imovelId, slug, item_name: itemName })
+}
+
+/** Troca de página na listagem (paginação) */
+export function trackPagination(page: number): void {
+  gtagEvent('list_pagination', { page })
+}
+
+/** Clique em rede social (Instagram, YouTube, etc.) */
+export function trackSocialClick(platform: string): void {
+  gtagEvent('social_click', { platform })
+}
