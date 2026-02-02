@@ -1,14 +1,13 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://imobiliaria.netlify.app'
-  
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://noximobiliaria.com.br'
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/admin/', '/_next/'],
+      disallow: ['/api/', '/administrador/', '/_next/'],
     },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${baseUrl.replace(/\/$/, '')}/sitemap.xml`,
   }
 }

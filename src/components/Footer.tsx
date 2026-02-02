@@ -171,7 +171,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/viva-picarras" className="text-gray-300 hover:text-white text-xs sm:text-sm transition-colors">
+                  <Link href="/viva-balneario-picarras" className="text-gray-300 hover:text-white text-xs sm:text-sm transition-colors">
                     {vivaPicarras}
                   </Link>
                 </li>
