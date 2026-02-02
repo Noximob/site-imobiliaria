@@ -164,7 +164,7 @@ function ImoveisPageContent() {
       cidade: filtrosFormatados.cidade,
       tipo: filtrosFormatados.tipo,
       status: filtrosFormatados.status,
-      quartos: filtrosFormatados.quartos?.[0],
+      quartos: Array.isArray(filtrosFormatados.quartos) ? filtrosFormatados.quartos[0] : filtrosFormatados.quartos,
       valor_min: filtrosFormatados.precoMin,
       valor_max: filtrosFormatados.precoMax,
     })
