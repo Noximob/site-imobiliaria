@@ -49,7 +49,6 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
           alt={corretor.nome}
           loading="lazy"
           className="w-full h-full object-cover object-top"
-          loading="lazy"
         />
         {expandedId === corretor.id && (
           <div className="absolute inset-0 bg-black/90 flex items-center justify-center overflow-y-auto">
