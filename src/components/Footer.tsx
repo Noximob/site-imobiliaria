@@ -223,10 +223,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Faixa inferior: fundo branco, créditos */}
+        {/* Faixa inferior: fundo branco, créditos (compacta) */}
         <div className="bg-white text-gray-700">
-          <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 py-4 sm:py-5">
-            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center sm:justify-between gap-3 sm:gap-4 text-center sm:text-left">
+          <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 py-2 sm:py-2.5">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center sm:justify-between gap-2 sm:gap-3 text-center sm:text-left">
               {/* Nox Imóveis | CRECI */}
               <p className="text-sm sm:text-base font-medium text-gray-800 flex items-center justify-center gap-2">
                 <span>Nox Imóveis</span>
