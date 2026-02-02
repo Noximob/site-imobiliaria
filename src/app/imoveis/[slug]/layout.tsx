@@ -86,6 +86,86 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-export default function ImovelLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>
+function toAbsUrl(url: string): string {
+  if (!url) return ''
+  return url.startsWith('http') ? url : `${baseUrl}${url.startsWith('/') ? '' : '/'}${url}`
+}
+
+export default async function ImovelLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const imovel = await getImovelBySlugServer(slug)
+
+  const cidadeSlug = imovel?.endereco?.cidade ?? ''
+  const cidadeNome =
+    cidadeSlug === 'barra-velha'
+      ? 'Barra Velha'
+      : cidadeSlug === 'balneario-picarras'
+        ? 'Balneário Piçarras'
+        : cidadeSlug === 'penha'
+          ? 'Penha'
+          : cidadeSlug || 'Imóveis'
+
+  const breadcrumbList = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+      { '@type': 'ListItem', position: 2, name: 'Imóveis', item: `${baseUrl}/imoveis` },
+      { '@type': 'ListItem', position: 3, name: cidadeNome, item: `${baseUrl}/imoveis?cidade=${cidadeSlug}` },
+      { '@type': 'ListItem', position: 4, name: imovel?.titulo ?? 'Imóvel', item: `${baseUrl}/imoveis/${slug}` },
+    ],
+  }
+
+  const jsonLd = imovel
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'RealEstateListing',
+        name: imovel.titulo || 'Imóvel',
+        description: imovel.descricao?.substring(0, 200) || imovel.titulo,
+        url: `${baseUrl}/imoveis/${slug}`,
+        image: (imovel.fotos || []).slice(0, 5).map((f: string) => toAbsUrl(f)),
+        address: imovel.endereco
+          ? {
+              '@type': 'PostalAddress',
+              streetAddress: [imovel.endereco.rua, imovel.endereco.numero].filter(Boolean).join(', '),
+              addressLocality: imovel.endereco.bairro,
+              addressRegion: imovel.endereco.estado,
+              addressCountry: 'BR',
+            }
+          : undefined,
+        numberOfRooms: imovel.caracteristicas?.quartos || undefined,
+        floorSize: imovel.caracteristicas?.area
+          ? { '@type': 'QuantitativeValue', value: imovel.caracteristicas.area, unitCode: 'MTK' }
+          : undefined,
+        offers: imovel.preco
+          ? {
+              '@type': 'Offer',
+              price: imovel.preco,
+              priceCurrency: 'BRL',
+            }
+          : undefined,
+      }
+    : null
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbList) }}
+      />
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
+      {children}
+    </>
+  )
 }
