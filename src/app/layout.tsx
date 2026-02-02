@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import ConditionalLayout from '@/components/ConditionalLayout'
 
@@ -32,9 +33,23 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-N7ZT76PDDH'
+
   return (
     <html lang="pt-BR" className="h-full">
       <body className={`${inter.className} h-full`}>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${gaId}');
+          `}
+        </Script>
         <ConditionalLayout>
           {children}
         </ConditionalLayout>
