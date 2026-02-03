@@ -138,7 +138,7 @@ export default async function HomePage() {
   return (
     <>
       
-      {/* Structured Data para SEO */}
+      {/* Structured Data LocalBusiness/RealEstateAgent para SEO local */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -148,11 +148,12 @@ export default async function HomePage() {
             "name": "Nox Imóveis",
             "description": "Imobiliária especializada em imóveis em Penha, Balneário Piçarras e Barra Velha",
             "url": "https://noximobiliaria.com.br",
-            "logo": "https://noximobiliaria.com.br/imagens/Logo.png",
+            "logo": "https://noximobiliaria.com.br/imagens/logo-nox-imoveis-penha-picarras-barra-velha.png",
             "image": "https://noximobiliaria.com.br/imagens/banners/banner-home.png",
             "telephone": "+5547997530113",
             "address": {
               "@type": "PostalAddress",
+              "streetAddress": getText('footer.central_atendimento.endereco'),
               "addressLocality": "Penha",
               "addressRegion": "SC",
               "addressCountry": "BR"
