@@ -27,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/sobre`,
+      url: `${baseUrl}/sobre/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
@@ -63,7 +63,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/viva-balneario-picarras`,
+      url: `${baseUrl}/viva-balneario-picarras/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
