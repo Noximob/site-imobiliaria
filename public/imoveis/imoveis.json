@@ -8434,5 +8434,60 @@
     "fotoPrincipalIndex": 0,
     "createdAt": "2026-01-23T00:32:41.995Z",
     "updatedAt": "2026-01-23T00:32:41.995Z"
+  },
+  {
+    "titulo": "Apartamento frente mar na planta em Praia do Tabuleiro, Barra Velha — 2 ou 3 dormitórios, 68 a 88m², entrega Dez/2029",
+    "descricao": "Orla da Barra é um apartamento frente mar na planta, pensado para quem busca segunda residência, alto padrão de acabamento e também para quem quer investir com bom modelo de pagamento. Localizado na Praia do Tabuleiro (Barra Velha/SC), oferece plantas de 68 a 88m² de área privativa, com opção de 2 ou 3 dormitórios (1 suíte) e entrega prevista para dezembro de 2029.\n\nA experiência é de frente mar “de verdade”: vista para o mar em todos os apartamentos, sacada com churrasqueira e acabamento no padrão Santer, com porcelanato 80×80, piso vinílico nos dormitórios, persianas automatizadas, esquadrias de alumínio e pé-direito de 2,70m com gesso rebaixado — um conjunto que eleva conforto, estética e percepção de valor.\n\nUm dos grandes diferenciais está no modelo de negócio: possibilidade de pagar cerca de 30% até a entrega das chaves, direto com a construtora durante a obra e sem crédito associativo, o que costuma ser muito atrativo para investidores e para quem quer um frente mar sem imobilizar todo o caixa desde o início.\n\nValores a partir de R$ 936.408,50. (sujeito a alteração conforme tabela e disponibilidade)",
+    "preco": 936.408,
+    "tipo": "apartamento",
+    "status": "lancamento",
+    "endereco": {
+      "cidade": "barra-velha",
+      "bairro": "Tabuleiro",
+      "rua": "Av. Avelino José Borges",
+      "numero": "1448",
+      "cep": "88390-000",
+      "estado": "SC"
+    },
+    "caracteristicas": {
+      "quartos": 2,
+      "banheiros": 2,
+      "vagas": 1,
+      "area": 68,
+      "suite": 1,
+      "frenteMar": false,
+      "piscina": false,
+      "churrasqueira": false,
+      "academia": false,
+      "portaria": false,
+      "elevador": false,
+      "varanda": false,
+      "sacada": false
+    },
+    "tags": [
+      "Construtora Santer | Vista mar em todos os apartamentos",
+      "Sacada com churrasqueira",
+      "Condição com pagamento até a chave"
+    ],
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "corretor": "NOX Imóveis"
+    },
+    "publicado": true,
+    "selecaoNox": true,
+    "dataEntrega": "2029-12-01",
+    "fotoPrincipalIndex": 0,
+    "id": "38988",
+    "slug": "apartamento-frente-mar-na-planta-em-praia-do-tabuleiro-barra-velha-2-ou-3-dormitorios-68-a-88m-entrega-dez2029",
+    "fotos": [
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/38988_0.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/38988_1.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/38988_2.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/38988_3.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/38988_4.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/38988_5.jpg"
+    ],
+    "createdAt": "2026-02-03T00:12:21.447Z",
+    "updatedAt": "2026-02-03T00:12:21.447Z"
   }
 ]
