@@ -20,6 +20,7 @@ export default function FotosPage() {
   const [zoom, setZoom] = useState(1)
   const [mostrarMiniaturas, setMostrarMiniaturas] = useState(true)
   const thumbnailRefs = useRef<{ [key: number]: HTMLButtonElement | null }>({})
+  const touchStartX = useRef<number>(0)
 
   useEffect(() => {
     const loadImovel = async () => {
@@ -130,6 +131,20 @@ export default function FotosPage() {
     return () => window.removeEventListener('keydown', handleKeyPress)
   }, [router, fotosOrdenadas.length])
 
+  const MIN_SWIPE_PX = 50
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const endX = e.changedTouches[0].clientX
+    const diff = touchStartX.current - endX
+    if (Math.abs(diff) < MIN_SWIPE_PX || fotosOrdenadas.length <= 1) return
+    if (diff > 0) proximaFoto()
+    else fotoAnterior()
+  }
+
   // Fazer scroll automático da miniatura ativa
   useEffect(() => {
     const thumbnailElement = thumbnailRefs.current[fotoAtualValida]
@@ -166,10 +181,12 @@ export default function FotosPage() {
 
   return (
     <div className="fixed inset-0 bg-gray-900 flex flex-col overflow-hidden z-50">
-      {/* Foto Principal - Horizontal em cima, ocupa quase toda a tela */}
-      <div 
-        className="relative bg-gray-950 flex items-center justify-center transition-all duration-300" 
+      {/* Foto Principal - Horizontal em cima, ocupa quase toda a tela. Mobile: swipe para trocar foto. */}
+      <div
+        className="relative bg-gray-950 flex items-center justify-center transition-all duration-300 touch-pan-y"
         style={{ height: mostrarMiniaturas ? 'calc(100vh - 96px)' : '100vh' }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
         {fotosOrdenadas[fotoAtualValida] && (
           <div className="relative w-full h-full">
