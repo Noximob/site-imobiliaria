@@ -8,8 +8,8 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://noximobiliaria.com.br'),
-  title: 'Imobiliária - Encontre o Imóvel dos Seus Sonhos',
-  description: 'Encontre casas, apartamentos e terrenos para venda e aluguel. A melhor imobiliária da região com os melhores imóveis.',
+  title: 'Nox Imóveis - Imóveis em Penha, Balneário Piçarras e Barra Velha',
+  description: 'Encontre o imóvel dos seus sonhos em Penha, Balneário Piçarras e Barra Velha. Apartamentos, casas e terrenos com a melhor imobiliária da região.',
   keywords: 'imobiliária, casas, apartamentos, terrenos, venda, aluguel, imóveis',
   authors: [{ name: 'Nox Imóveis' }],
   icons: {

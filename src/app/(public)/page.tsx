@@ -156,7 +156,7 @@ export default async function HomePage() {
             "description": "Imobiliária especializada em imóveis em Penha, Balneário Piçarras e Barra Velha",
             "url": "https://noximobiliaria.com.br",
             "logo": "https://noximobiliaria.com.br/imagens/logo-nox-imoveis-penha-picarras-barra-velha.png",
-            "image": "https://noximobiliaria.com.br/imagens/banners/banner-home.png",
+            "image": "https://noximobiliaria.com.br/api/image?id=banner-home",
             "telephone": "+5547997530113",
             "address": {
               "@type": "PostalAddress",

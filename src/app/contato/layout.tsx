@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Contato - Imobiliária',
+  title: 'Contato - Nox Imóveis',
   description: 'Entre em contato conosco. Estamos prontos para te ajudar a encontrar o imóvel ideal.',
   openGraph: {
     title: 'Contato - Nox Imóveis',

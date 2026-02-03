@@ -20,10 +20,10 @@ export async function GET() {
         (a: { titulo: string; slug: string; resumo?: string; dataPublicacao?: string; updatedAt?: string }) =>
           `  <item>
     <title>${escapeXml(a.titulo)}</title>
-    <link>${baseUrl}/blog/${a.slug}</link>
+    <link>${baseUrl}/blog/${a.slug}/</link>
     <description>${escapeXml((a.resumo || a.titulo).substring(0, 300))}</description>
     <pubDate>${new Date(a.dataPublicacao || a.updatedAt || Date.now()).toUTCString()}</pubDate>
-    <guid isPermaLink="true">${baseUrl}/blog/${a.slug}</guid>
+    <guid isPermaLink="true">${baseUrl}/blog/${a.slug}/</guid>
   </item>`
       )
       .join('\n')
