@@ -48,6 +48,10 @@ function buildH1FromFilters(f: Record<string, unknown>): string {
   return 'Imóveis à Venda'
 }
 
+function hasH1RelevantKeys(f: Record<string, unknown>): boolean {
+  return !!(f.cidade || f.tipo || f.status || f.frenteMar || f.vistaMar || f.mobiliado)
+}
+
 function ImoveisPageContent() {
   const searchParams = useSearchParams()
   const [imoveis, setImoveis] = useState<Imovel[]>([])
@@ -222,12 +226,20 @@ function ImoveisPageContent() {
           <div className="bg-white shadow-sm border-b border-gray-200 px-4 sm:px-6 py-3 flex-shrink-0 min-w-0">
             <div className="flex items-center justify-between gap-3 mb-2 min-w-0">
               <div className="min-w-0 flex-1">
-                <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 truncate">
-                  {buildH1FromFilters(filtrosIniciais)}
-                </h1>
-                <p className="text-xs text-gray-600 mt-1 hidden sm:block">
-                  Home &gt; Imóveis{Object.keys(filtrosIniciais).length > 0 ? ` &gt; ${buildH1FromFilters(filtrosIniciais)}` : ''}
-                </p>
+                {(() => {
+                  const h1Filters = hasH1RelevantKeys(filtros) ? filtros : filtrosIniciais
+                  const h1Text = buildH1FromFilters(h1Filters)
+                  return (
+                    <>
+                      <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 truncate">
+                        {h1Text}
+                      </h1>
+                      <p className="text-xs text-gray-600 mt-1 hidden sm:block">
+                        Home &gt; Imóveis{hasH1RelevantKeys(h1Filters) ? ` &gt; ${h1Text}` : ''}
+                      </p>
+                    </>
+                  )
+                })()}
               </div>
               {/* Ordenação desktop */}
               <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
