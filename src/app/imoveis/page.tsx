@@ -312,7 +312,11 @@ function ImoveisPageContent() {
                       .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
                       .map((imovel) => (
                     <div key={imovel.id} className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col sm:flex-row sm:h-64 min-w-0 w-full">
-                      <div className="w-full sm:w-64 h-56 sm:h-full relative flex-shrink-0 min-w-0">
+                      <Link
+                        href={`/imoveis/${imovel.slug}/`}
+                        className="w-full sm:w-64 h-56 sm:h-full relative flex-shrink-0 min-w-0 block"
+                        onClick={() => trackImovelClick(imovel.id, imovel.slug, imovel.titulo)}
+                      >
                         {getFotoPrincipal(imovel) ? (
                           <Image
                             src={getFotoPrincipal(imovel)!}
@@ -326,12 +330,18 @@ function ImoveisPageContent() {
                             <span className="text-gray-500 text-sm">Sem imagem</span>
                           </div>
                         )}
-                      </div>
+                      </Link>
                       <div className="flex-1 p-4 sm:p-5 flex flex-col justify-between min-w-0">
                         <div>
-                          <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
-                            {imovel.titulo}
-                          </h3>
+                          <Link
+                            href={`/imoveis/${imovel.slug}/`}
+                            onClick={() => trackImovelClick(imovel.id, imovel.slug, imovel.titulo)}
+                            className="block"
+                          >
+                            <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2 hover:text-purple-600 transition-colors">
+                              {imovel.titulo}
+                            </h3>
+                          </Link>
                           <p className="text-gray-600 text-xs mb-1">
                             {imovel.endereco.rua && `${imovel.endereco.rua}, `}
                             {imovel.endereco.numero && `${imovel.endereco.numero}, `}
@@ -413,9 +423,7 @@ function ImoveisPageContent() {
                               />
                             </button>
                             <Link 
-                              href={`/imoveis/${imovel.slug}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                              href={`/imoveis/${imovel.slug}/`}
                               onClick={() => trackImovelClick(imovel.id, imovel.slug, imovel.titulo)}
                               className="bg-purple-500 hover:bg-purple-600 text-white font-medium py-2 px-5 rounded-md transition-colors duration-200 text-sm"
                             >
