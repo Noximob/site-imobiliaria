@@ -8744,5 +8744,77 @@
     ],
     "createdAt": "2026-02-03T22:34:02.388Z",
     "updatedAt": "2026-02-03T22:35:56.734Z"
+  },
+  {
+    "titulo": "Cobertura duplex na planta no Centro de Penha, próximo à Praia Bacia da Vovó — Vista Paradiso (Santer), 4 suítes, 257,79m² privativos",
+    "descricao": "O Vista Paradiso é um residencial de alto padrão no Centro de Penha, próximo à Praia Bacia da Vovó, com foco em privacidade, segurança e uma estrutura de lazer completa. Para quem busca uma cobertura, o grande diferencial está no conjunto: uma cobertura duplex com 4 suítes e 257,79m² de área privativa, com espaços amplos e um padrão de condomínio bem acima da média.\n\nAlém do padrão do apartamento, o empreendimento entrega uma experiência de condomínio bem pensada para rotina e temporada, com acessos controlados, cabine para delivery e estrutura para banhistas, mantendo o prédio organizado mesmo em períodos de maior movimento.\n\nEntrega: Dezembro/2023, com valores a partir de R$ 1.939.206,75 (valores e disponibilidade podem mudar conforme tabela).\n\nDestaques rápidos:\n- Cobertura duplex com 4 suítes\n- Área privativa: 257,79m²\n- Home box exclusivo\n- 2 ou 4 vagas de garagem com possibilidade de aquisição de mais vagas e home box\n- Infraestrutura para instalação de carregador para carro elétrico\n- 30 andares\n- 99 apartamentos\n- 2 elevadores sociais e 1 de serviço\n- Heliponto de emergência\n- Endereço: R. Joaquim Antônio Simão, 265 - Centro, Penha - SC, 88385-000\n- Valores a partir de R$ 1.939.206,75\n\nCaracterísticas dos apartamentos:\n- Home box exclusivo\n- Infraestrutura para instalação de carregador para carro elétrico\n\nLazer e áreas comuns:\n- Mais de 1800m² de área de lazer\n- Quiosque com churrasqueira coberta ao lado da piscina\n- Acesso biométrico e monitoramento por câmeras nas áreas comuns\n- Áreas de lazer externas e circulações com som ambiente\n- Cabine para delivery\n- Acesso para banhistas com ducha\n- Bicicletário\n\nNo Centro de Penha, próximo à Praia Bacia da Vovó, o Vista Paradiso une a praticidade de estar perto do mar e de tudo que você precisa no dia a dia com um padrão mais exclusivo de condomínio e cobertura.\n\nQuer que eu te mande a tabela atualizada, disponibilidade das coberturas e as condições para essa unidade?\nMe chama no WhatsApp e eu te mando tudo organizado.",
+    "preco": 6.115,
+    "tipo": "apartamento",
+    "status": "prontos",
+    "endereco": {
+      "cidade": "penha",
+      "bairro": "Centro",
+      "rua": "R. Joaquim Antônio Simão",
+      "numero": "265",
+      "cep": "88385-000",
+      "estado": "SC"
+    },
+    "caracteristicas": {
+      "quartos": 4,
+      "banheiros": 5,
+      "vagas": 4,
+      "area": 257.79,
+      "suite": 4,
+      "frenteMar": false,
+      "piscina": false,
+      "churrasqueira": false,
+      "academia": false,
+      "portaria": false,
+      "elevador": false,
+      "varanda": false,
+      "sacada": false
+    },
+    "tags": [
+      "Construtora Santer",
+      "Cobertura duplex",
+      "4 suítes",
+      "257",
+      "79m² privativos",
+      "+1800m² de lazer",
+      "Acesso biométrico e monitoramento",
+      "Cabine para delivery",
+      "Heliponto de emergência",
+      "Vista Mar"
+    ],
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "corretor": "NOX Imóveis"
+    },
+    "publicado": true,
+    "selecaoNox": false,
+    "coordenadas": {
+      "lat": -26.7687687,
+      "lng": -48.6487049
+    },
+    "fotoPrincipalIndex": 0,
+    "id": "36802",
+    "slug": "cobertura-duplex-na-planta-no-centro-de-penha-proximo-a-praia-bacia-da-vovo-vista-paradiso-santer-4-suites-25779m-privativos",
+    "fotos": [
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/36802_0.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/36802_1.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/36802_2.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/36802_3.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/36802_4.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/36802_5.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/36802_6.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/36802_7.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/36802_8.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/36802_9.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/36802_10.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/36802_11.jpg",
+      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/36802_12.jpg"
+    ],
+    "createdAt": "2026-02-03T23:07:22.080Z",
+    "updatedAt": "2026-02-03T23:07:22.080Z"
   }
 ]
