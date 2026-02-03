@@ -146,7 +146,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const imoveis = await getImoveisFromGitHub()
     imoveisPages = imoveis.map((imovel) => ({
       url: `${baseUrl}/imoveis/${imovel.slug}/`,
-      lastModified: imovel.updatedAt || imovel.createdAt ? new Date(imovel.updatedAt || imovel.createdAt) : new Date(),
+      lastModified: new Date(imovel.updatedAt || imovel.createdAt || Date.now()),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
     }))
