@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useRef, Suspense } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import FiltrosImoveis from '@/components/FiltrosImoveis'
@@ -51,6 +51,8 @@ function hasRelevantFilters(f: { cidade?: string; tipo?: string; status?: string
 
 function ImoveisPageContent() {
   const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
   const [imoveis, setImoveis] = useState<Imovel[]>([])
   const [filtros, setFiltros] = useState<FiltrosImovel>({})
   const [filtrosIniciais, setFiltrosIniciais] = useState<any>({})
@@ -198,6 +200,19 @@ function ImoveisPageContent() {
     }
     
     setFiltros(filtrosFormatados)
+
+    // Sincronizar URL para o H1 e breadcrumb atualizarem
+    const q = new URLSearchParams()
+    if (novosFiltros.cidade) q.set('cidade', novosFiltros.cidade)
+    if (novosFiltros.tipo) q.set('tipo', novosFiltros.tipo)
+    if (novosFiltros.status) q.set('status', novosFiltros.status)
+    if (novosFiltros.frenteMar) q.set('frenteMar', 'true')
+    if (novosFiltros.vistaMar) q.set('vistaMar', 'true')
+    if (novosFiltros.mobiliado) q.set('mobiliado', 'true')
+    const query = q.toString()
+    const url = query ? `${pathname}?${query}` : pathname
+    router.replace(url, { scroll: false })
+
     trackFilterApply({
       cidade: filtrosFormatados.cidade,
       tipo: filtrosFormatados.tipo,
