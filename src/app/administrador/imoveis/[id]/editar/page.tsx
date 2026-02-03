@@ -30,6 +30,8 @@ export default function EditarImovelPage() {
     numero: '',
     cep: '',
     estado: 'SC',
+    latitude: '',
+    longitude: '',
     quartos: '',
     banheiros: '',
     vagas: '',
@@ -117,6 +119,8 @@ export default function EditarImovelPage() {
           publicado: imovel.publicado !== false,
           selecaoNox: imovel.selecaoNox || false,
           dataEntrega: imovel.dataEntrega || '',
+          latitude: imovel.coordenadas?.lat?.toString() || '',
+          longitude: imovel.coordenadas?.lng?.toString() || '',
           caracteristicas: imovel.tags?.filter((tag: string) => 
             !['Frente Mar', 'Frente-mar', 'Mobiliado', 'Mobiliada', 'Vista Mar', 'Área de Lazer', 'Area de lazer'].includes(tag)
           ).join(', ') || '',
@@ -425,6 +429,9 @@ export default function EditarImovelPage() {
         publicado: formData.publicado,
         selecaoNox: formData.selecaoNox,
         dataEntrega: formData.dataEntrega || undefined,
+        coordenadas: formData.latitude && formData.longitude 
+          ? { lat: parseFloat(formData.latitude.replace(',', '.')), lng: parseFloat(formData.longitude.replace(',', '.')) }
+          : undefined,
         fotoPrincipalIndex: fotoPrincipalIndex,
       }
 
@@ -786,6 +793,44 @@ export default function EditarImovelPage() {
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   />
+                </div>
+              </div>
+
+              {/* Coordenadas para Mapa */}
+              <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <h3 className="text-sm font-semibold text-blue-900 mb-2">
+                  📍 Localização no Mapa (opcional)
+                </h3>
+                <p className="text-xs text-blue-700 mb-3">
+                  Adicione as coordenadas para exibir o imóvel no mapa. Você pode obter as coordenadas no Google Maps: clique com botão direito no local e copie os números.
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Latitude
+                    </label>
+                    <input
+                      type="text"
+                      name="latitude"
+                      value={formData.latitude}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      placeholder="Ex: -26.7867"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Longitude
+                    </label>
+                    <input
+                      type="text"
+                      name="longitude"
+                      value={formData.longitude}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      placeholder="Ex: -48.6453"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
