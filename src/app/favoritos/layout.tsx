@@ -3,6 +3,14 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Favoritos - Nox Imóveis',
   description: 'Seus imóveis favoritos. Nox Imóveis - Penha, Piçarras e Barra Velha.',
+  openGraph: {
+    title: 'Favoritos - Nox Imóveis',
+    description: 'Seus imóveis favoritos. Nox Imóveis - Penha, Piçarras e Barra Velha.',
+    type: 'website',
+    locale: 'pt_BR',
+    url: 'https://noximobiliaria.com.br/favoritos/',
+    images: [{ url: 'https://noximobiliaria.com.br/api/image?id=banner-home', width: 1920, height: 1080, alt: 'Nox Imóveis' }],
+  },
   alternates: { canonical: 'https://noximobiliaria.com.br/favoritos/' },
 }
 

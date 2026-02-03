@@ -9,6 +9,8 @@ export const metadata: Metadata = {
     description: 'Conheça nossa história, missão e valores. A melhor imobiliária da região.',
     type: 'website',
     locale: 'pt_BR',
+    url: 'https://noximobiliaria.com.br/sobre/',
+    images: [{ url: 'https://noximobiliaria.com.br/api/image?id=banner-home', width: 1920, height: 1080, alt: 'Nox Imóveis' }],
   },
   robots: {
     index: true,

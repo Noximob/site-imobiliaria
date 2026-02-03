@@ -24,6 +24,8 @@ export const metadata: Metadata = {
     description: 'Aprenda como comprar um imóvel com segurança e tranquilidade. Guia completo com todos os passos, documentação necessária e dicas importantes.',
     type: 'website',
     locale: 'pt_BR',
+    url: 'https://noximobiliaria.com.br/como-comprar/',
+    images: [{ url: 'https://noximobiliaria.com.br/api/image?id=banner-home', width: 1920, height: 1080, alt: 'Nox Imóveis' }],
   },
   robots: {
     index: true,

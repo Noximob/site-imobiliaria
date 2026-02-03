@@ -9,6 +9,8 @@ export const metadata: Metadata = {
     description: 'Deixe a Nox Imóveis encontrar o imóvel perfeito para você! Preencha nosso formulário e receba as melhores opções.',
     type: 'website',
     locale: 'pt_BR',
+    url: 'https://noximobiliaria.com.br/encontre-meu-imovel/',
+    images: [{ url: 'https://noximobiliaria.com.br/api/image?id=banner-home', width: 1920, height: 1080, alt: 'Nox Imóveis' }],
   },
   robots: {
     index: true,
