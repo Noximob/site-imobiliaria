@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: 'Entre em contato conosco. Estamos prontos para te ajudar a encontrar o imóvel ideal.',
     type: 'website',
   },
-  alternates: { canonical: 'https://noximobiliaria.com.br/contato' },
+  alternates: { canonical: 'https://noximobiliaria.com.br/contato/' },
 }
 
 export default function ContatoLayout({

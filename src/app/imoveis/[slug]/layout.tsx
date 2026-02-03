@@ -80,7 +80,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: description || `Imóvel à venda - ${titulo}. Nox Imóveis - Penha, Piçarras e Barra Velha.`,
     openGraph,
     alternates: {
-      canonical: `${baseUrl}/imoveis/${slug}`,
+      canonical: `${baseUrl}/imoveis/${slug}/`,
     },
   }
 }

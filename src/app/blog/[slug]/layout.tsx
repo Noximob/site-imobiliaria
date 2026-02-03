@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       images: imagem ? [{ url: imagem, width: 1200, height: 630, alt: titulo }] : undefined,
     },
     alternates: {
-      canonical: `${baseUrl}/blog/${slug}`,
+      canonical: `${baseUrl}/blog/${slug}/`,
     },
   }
 }

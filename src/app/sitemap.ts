@@ -6,22 +6,22 @@ import path from 'path'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://noximobiliaria.com.br'
 
-  // Páginas estáticas
+  // Páginas estáticas (URLs com trailing slash para alinhar com trailingSlash: true)
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: baseUrl,
+      url: `${baseUrl}/`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 1,
     },
     {
-      url: `${baseUrl}/imoveis`,
+      url: `${baseUrl}/imoveis/`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/contato`,
+      url: `${baseUrl}/contato/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
@@ -33,31 +33,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/anunciar`,
+      url: `${baseUrl}/anunciar/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/trabalhe-conosco`,
+      url: `${baseUrl}/trabalhe-conosco/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/como-comprar`,
+      url: `${baseUrl}/como-comprar/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/encontre-meu-imovel`,
+      url: `${baseUrl}/encontre-meu-imovel/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/viva-penha`,
+      url: `${baseUrl}/viva-penha/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
@@ -69,28 +69,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/viva-barra-velha`,
+      url: `${baseUrl}/viva-barra-velha/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/favoritos`,
+      url: `${baseUrl}/favoritos/`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.5,
     },
     {
-      url: `${baseUrl}/blog`,
+      url: `${baseUrl}/blog/`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.7,
     },
-    { url: `${baseUrl}/imoveis/penha`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
-    { url: `${baseUrl}/imoveis/balneario-picarras`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
-    { url: `${baseUrl}/imoveis/barra-velha`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
-    { url: `${baseUrl}/imoveis/apartamentos`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
-    { url: `${baseUrl}/imoveis/frente-mar`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/imoveis/penha/`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/imoveis/balneario-picarras/`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/imoveis/barra-velha/`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/imoveis/apartamentos/`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/imoveis/frente-mar/`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
   ]
 
   // Buscar artigos do blog publicados
@@ -101,7 +101,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       const data = fs.readFileSync(artigosPath, 'utf-8')
       const artigos = JSON.parse(data).filter((a: { publicado?: boolean }) => a.publicado === true)
       blogPages = artigos.map((artigo: { slug: string; updatedAt?: string; dataPublicacao?: string }) => ({
-        url: `${baseUrl}/blog/${artigo.slug}`,
+        url: `${baseUrl}/blog/${artigo.slug}/`,
         lastModified: artigo.updatedAt || artigo.dataPublicacao ? new Date(artigo.updatedAt || artigo.dataPublicacao || '') : new Date(),
         changeFrequency: 'monthly' as const,
         priority: 0.6,
@@ -116,7 +116,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const imoveis = await getAllImoveis()
     imoveisPages = imoveis.map((imovel) => ({
-      url: `${baseUrl}/imoveis/${imovel.slug}`,
+      url: `${baseUrl}/imoveis/${imovel.slug}/`,
       lastModified: imovel.updatedAt || imovel.createdAt || new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,

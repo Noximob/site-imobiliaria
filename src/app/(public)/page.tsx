@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://noximobiliaria.com.br',
+    canonical: 'https://noximobiliaria.com.br/',
   },
 }
 

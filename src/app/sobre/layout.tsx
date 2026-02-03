@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  alternates: { canonical: 'https://noximobiliaria.com.br/sobre' },
+  alternates: { canonical: 'https://noximobiliaria.com.br/sobre/' },
 }
 
 export default function SobreLayout({
