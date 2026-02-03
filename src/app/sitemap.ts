@@ -1,7 +1,36 @@
 import { MetadataRoute } from 'next'
-import { getAllImoveis } from '@/lib/imoveis'
+import { Octokit } from '@octokit/rest'
 import fs from 'fs'
 import path from 'path'
+
+const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
+const REPO_OWNER = 'Noximob'
+const REPO_NAME = 'site-imobiliaria'
+const IMOVEIS_PATH = 'public/imoveis/imoveis.json'
+
+async function getImoveisFromGitHub(): Promise<{ slug: string; updatedAt?: string; createdAt?: string }[]> {
+  try {
+    if (!process.env.GITHUB_TOKEN) return []
+    const { data } = await octokit.repos.getContent({
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      path: IMOVEIS_PATH,
+    })
+    if (!('content' in data)) return []
+    const imoveis = JSON.parse(Buffer.from(data.content, 'base64').toString('utf-8'))
+    return imoveis
+      .filter((i: any) => i.publicado === true || i.publicado === 'true' || i.publicado === 1)
+      .map((i: any) => ({
+        slug: i.slug,
+        updatedAt: i.updatedAt,
+        createdAt: i.createdAt,
+      }))
+  } catch (e: any) {
+    if (e?.status === 404) return []
+    console.error('Erro ao buscar imóveis do GitHub para sitemap:', e)
+    return []
+  }
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://noximobiliaria.com.br'
@@ -111,13 +140,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Erro ao buscar artigos do blog para sitemap:', error)
   }
 
-  // Buscar todos os imóveis publicados
+  // Buscar todos os imóveis publicados diretamente do GitHub (não depende de NEXT_PUBLIC_SITE_URL)
   let imoveisPages: MetadataRoute.Sitemap = []
   try {
-    const imoveis = await getAllImoveis()
+    const imoveis = await getImoveisFromGitHub()
     imoveisPages = imoveis.map((imovel) => ({
       url: `${baseUrl}/imoveis/${imovel.slug}/`,
-      lastModified: imovel.updatedAt || imovel.createdAt || new Date(),
+      lastModified: imovel.updatedAt || imovel.createdAt ? new Date(imovel.updatedAt || imovel.createdAt) : new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
     }))
