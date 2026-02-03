@@ -8387,55 +8387,6 @@
     "selecaoNox": false
   },
   {
-    "titulo": "kkkk",
-    "descricao": "kkkk",
-    "preco": 7777,
-    "tipo": "apartamento",
-    "status": "lancamento",
-    "endereco": {
-      "cidade": "penha",
-      "bairro": "7777",
-      "rua": "777",
-      "numero": "777",
-      "cep": "88385000",
-      "estado": "SC"
-    },
-    "caracteristicas": {
-      "quartos": 1,
-      "banheiros": 1,
-      "vagas": 1,
-      "area": 1515,
-      "suite": 1,
-      "frenteMar": true,
-      "piscina": false,
-      "churrasqueira": false,
-      "academia": false,
-      "portaria": false,
-      "elevador": false,
-      "varanda": false,
-      "sacada": false
-    },
-    "tags": [
-      "Frente Mar"
-    ],
-    "contato": {
-      "whatsapp": "(47) 99753-0113",
-      "corretor": "NOX Imóveis"
-    },
-    "publicado": true,
-    "selecaoNox": false,
-    "dataEntrega": "2026-01-30",
-    "id": "60406",
-    "slug": "kkkk",
-    "fotos": [
-      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/60406_0.jpg",
-      "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/60406_1.jpg"
-    ],
-    "fotoPrincipalIndex": 0,
-    "createdAt": "2026-01-23T00:32:41.995Z",
-    "updatedAt": "2026-01-23T00:32:41.995Z"
-  },
-  {
     "titulo": "Apartamento frente mar na planta em Praia do Tabuleiro, Barra Velha — 2 ou 3 dormitórios, 68 a 88m², entrega Dez/2029",
     "descricao": "Orla da Barra é um apartamento frente mar na planta, pensado para quem busca segunda residência, alto padrão de acabamento e também para quem quer investir com bom modelo de pagamento. Localizado na Praia do Tabuleiro (Barra Velha/SC), oferece plantas de 68 a 88m² de área privativa, com opção de 2 ou 3 dormitórios (1 suíte) e entrega prevista para dezembro de 2029.\n\nA experiência é de frente mar “de verdade”: vista para o mar em todos os apartamentos, sacada com churrasqueira e acabamento no padrão Santer, com porcelanato 80×80, piso vinílico nos dormitórios, persianas automatizadas, esquadrias de alumínio e pé-direito de 2,70m com gesso rebaixado — um conjunto que eleva conforto, estética e percepção de valor.\n\nUm dos grandes diferenciais está no modelo de negócio: possibilidade de pagar cerca de 30% até a entrega das chaves, direto com a construtora durante a obra e sem crédito associativo, o que costuma ser muito atrativo para investidores e para quem quer um frente mar sem imobilizar todo o caixa desde o início.\n\nValores a partir de R$ 936.408,50. (sujeito a alteração conforme tabela e disponibilidade)\n\nDestaques rápidos:\n- Frente mar na planta\n- Entrega: Dezembro/2029\n- Área privativa: 68 a 88m²\n- Plantas: 2 ou 3 dormitórios | 1 suíte\n- Vista mar em todos os apartamentos\n- Sacada com churrasqueira\n- Torres de 30 andares\n- 5 elevadores por torre\n- Lazer com +2.500m², incluindo piscina com raia e beach tennis com vista mar\n- Condição comercial: possibilidade de pagar ~30% até a chave (direto com a construtora)\n\nMais de 2.500m² de lazer, com destaques:\n- Piscina de 180m² com raia\n- Piscina splash infantil\n- Deck molhado\n- Quadra de beach tennis com vista mar\n- Academia\n- 8 salões de festas (tamanhos diferentes)\n- Ofurô\n- Mercado interno (comodidade no dia a dia)\n\nA Praia do Tabuleiro, em Barra Velha, combina o que mais pesa para quem compra no litoral: mar na frente + usabilidade real. Em produtos frente mar, fatores como vista permanente, padrão de acabamento e área de lazer completa tendem a reforçar liquidez e desejo — especialmente para veraneio e locação de temporada, quando o empreendimento entrega um pacote completo (estrutura, comodidade e experiência).\n\nQuer que eu te envie tabela atualizada, plantas (68 a 88m²) e disponibilidade por andar/coluna do Orla da Barra?\nMe chama no WhatsApp e eu te mando tudo certinho + opções que fazem mais sentido pro teu objetivo (morar, veraneio ou investir).",
     "preco": 936408.5,
