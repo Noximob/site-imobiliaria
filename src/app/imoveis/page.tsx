@@ -48,8 +48,10 @@ function buildH1FromFilters(f: Record<string, unknown>): string {
   return 'Imóveis à Venda'
 }
 
-function hasH1RelevantKeys(f: Record<string, unknown>): boolean {
-  return !!(f.cidade || f.tipo || f.status || f.frenteMar || f.vistaMar || f.mobiliado)
+function hasH1RelevantKeys(f: unknown): boolean {
+  if (!f || typeof f !== 'object') return false
+  const o = f as Record<string, unknown>
+  return !!(o.cidade || o.tipo || o.status || o.frenteMar || o.vistaMar || o.mobiliado)
 }
 
 function ImoveisPageContent() {
@@ -227,7 +229,7 @@ function ImoveisPageContent() {
             <div className="flex items-center justify-between gap-3 mb-2 min-w-0">
               <div className="min-w-0 flex-1">
                 {(() => {
-                  const h1Filters = hasH1RelevantKeys(filtros) ? filtros : filtrosIniciais
+                  const h1Filters: Record<string, unknown> = hasH1RelevantKeys(filtros) ? (filtros as Record<string, unknown>) : filtrosIniciais
                   const h1Text = buildH1FromFilters(h1Filters)
                   return (
                     <>
