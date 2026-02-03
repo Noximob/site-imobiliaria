@@ -8510,7 +8510,7 @@
   {
     "titulo": "Apartamento frente mar na planta em Penha/SC — Fort Myers (Vetter), 2 a 3 suítes, entrega Set/2031",
     "descricao": "O Fort Myers é um empreendimento frente mar na planta, pensado para quem busca um produto alto padrão para viver momentos no litoral com estrutura completa de lazer e um padrão de entrega acima da média. A proposta da Vetter é criar espaços para estar junto: a vida é feita para compartilhar, e isso aparece tanto na área de lazer quanto na forma como o condomínio foi planejado.\n\nO projeto conta com 1 torre de 46 pavimentos e 183 unidades, com apartamentos de 2 a 3 suítes e amplas vistas de frente para o mar. Um diferencial importante para o dia a dia é a operação do prédio: são 5 elevadores, sendo 3 sociais e 2 para banhistas, trazendo mais fluidez e praticidade, especialmente em períodos de alta temporada.\n\nEntrega prevista: setembro de 2031, com unidades a partir de R$ 1.110.690,60 (valores e disponibilidade podem mudar conforme tabela).\n\nDestaques rápidos:\n- Frente mar na planta com amplas vistas de frente para o mar\n- Entrega: Setembro/2031\n- Tipologias: Apartamentos com 2 a 3 suítes\n- Torre: 1 torre de 46 pavimentos\n- Total de unidades: 183\n- Elevadores: 5 (3 sociais e 2 para banhistas)\n- Lazer: mais de 2400m² de área de lazer\n- Endereço: Av. Itapocorói, 1712 - Armação, Penha - SC, 88385-000\n- Valores a partir de R$ 1.110.690,60\n\nCaracterísticas dos apartamentos:\n- Forro em gesso\n- Portas laqueadas\n- Água quente com aquecimento a gás em todas as torneiras\n- Área técnica para ar-condicionado\n- Janelas com persianas motorizadas\n- Nicho nos banheiros\n- Churrasqueira a carvão\n- Laminado de madeira nos quartos\n\nLazer e áreas comuns:\n- Mais de 2400m² de área de lazer\n- Piscina climatizada com borda infinita\n- Splash kids\n- Light garden\n- Lounge\n- Hidromassagem\n- Quadra esportiva\n- Pet place\n- Vetter fitness club\n- 02 salões de festa\n- Marketplace\n- Deck externo\n- Game Center\n- Duchas e lava-pés\n- Horta comunitária\n- Cinema\n- Vetter business & coffe\n- Vetter ocean Cave Bar & Lounge\n- Game Room\n- Bike community\n\nA Praia da Armação, em Penha, é um dos endereços mais desejados para quem busca frente mar: o Fort Myers fica na Av. Itapocorói, literalmente de frente para o mar, unindo vista permanente e acesso direto à praia com a praticidade de estar numa das principais avenidas da região, que conecta os pontos-chave da cidade e facilita tanto o uso no dia a dia quanto o veraneio.\n\nQuer que eu te mande a tabela atualizada, disponibilidade por andar e as melhores opções de planta do Fort Myers? Me chama no WhatsApp que eu te envio tudo organizado.",
-    "preco": 1.11,
+    "preco": 1110690.6,
     "tipo": "apartamento",
     "status": "lancamento",
     "endereco": {
@@ -8541,7 +8541,10 @@
       "46 pavimentos",
       "Lazer +2400m²",
       "Piscina climatizada com borda infinita",
-      "5 elevadores"
+      "5 elevadores",
+      "Frente Mar",
+      "Vista Mar",
+      "Área de Lazer"
     ],
     "contato": {
       "whatsapp": "(47) 99753-0113",
@@ -8584,6 +8587,6 @@
       "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/53836_23.jpg"
     ],
     "createdAt": "2026-02-03T15:52:42.135Z",
-    "updatedAt": "2026-02-03T15:52:42.135Z"
+    "updatedAt": "2026-02-03T15:53:52.016Z"
   }
 ]
