@@ -380,8 +380,13 @@ export default function ImovelDetalhePage() {
                 </div>
               )}
 
-              {/* 2) Definições do imóvel (lista de especificações - igual DWV); só itens > 0 */}
+              {/* 2) Definições do imóvel — espelha a barra de ícones (código, área, suítes, quartos, banheiros, vagas); só itens > 0 */}
               <div className="space-y-2 mb-0">
+                {imovel.id != null && (
+                  <p className="text-gray-700">
+                    - Código: {String(imovel.id).slice(-5).padStart(5, '0')}
+                  </p>
+                )}
                 {Number(imovel.caracteristicas?.area) > 0 && (
                   <p className="text-gray-700">
                     - {imovel.caracteristicas.area}m² de área interna
@@ -392,9 +397,14 @@ export default function ImovelDetalhePage() {
                     - {imovel.caracteristicas.suite} {imovel.caracteristicas.suite === 1 ? 'suíte' : 'suítes'}{imovel.caracteristicas.suite === 1 && imovel.tags?.includes('Master') ? ', sendo uma master com banheira' : ''}
                   </p>
                 )}
-                {Number(imovel.caracteristicas?.quartos) > 0 && Number(imovel.caracteristicas?.suite) === 0 && (
+                {Number(imovel.caracteristicas?.quartos) > 0 && (
                   <p className="text-gray-700">
                     - {imovel.caracteristicas.quartos} {imovel.caracteristicas.quartos === 1 ? 'quarto' : 'quartos'}
+                  </p>
+                )}
+                {Number(imovel.caracteristicas?.banheiros) > 0 && (
+                  <p className="text-gray-700">
+                    - {imovel.caracteristicas.banheiros} {imovel.caracteristicas.banheiros === 1 ? 'banheiro' : 'banheiros'}
                   </p>
                 )}
                 {Number(imovel.caracteristicas?.vagas) > 0 && (
