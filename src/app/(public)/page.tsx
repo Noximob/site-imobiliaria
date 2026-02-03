@@ -31,9 +31,10 @@ export const metadata: Metadata = {
     description: "Encontre o imóvel dos seus sonhos em Penha, Balneário Piçarras e Barra Velha. Apartamentos, casas e terrenos com a melhor imobiliária da região.",
     type: 'website',
     locale: 'pt_BR',
+    url: 'https://noximobiliaria.com.br/',
     images: [
       {
-        url: '/imagens/banners/banner-home.png',
+        url: 'https://noximobiliaria.com.br/api/image?id=banner-home',
         width: 1920,
         height: 1080,
         alt: "Nox Imóveis - Imóveis em Penha, Balneário Piçarras e Barra Velha",

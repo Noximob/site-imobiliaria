@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     url: 'https://noximobiliaria.com.br/',
     images: [
       {
-        url: '/imagens/banners/banner-home.png',
+        url: 'https://noximobiliaria.com.br/api/image?id=banner-home',
         width: 1920,
         height: 1080,
         alt: 'Nox Imóveis - Imóveis em Penha, Balneário Piçarras e Barra Velha',
