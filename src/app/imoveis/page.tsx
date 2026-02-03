@@ -11,49 +11,6 @@ import { Heart, X } from 'lucide-react'
 import { toggleFavorito, isFavorito } from '@/lib/favoritos'
 import { trackFavorito, trackFilterApply, trackImovelClick, trackPagination } from '@/lib/analytics'
 
-const CIDADE_LABELS: Record<string, string> = {
-  penha: 'Penha',
-  'balneario-picarras': 'Balneário Piçarras',
-  'barra-velha': 'Barra Velha',
-}
-
-const TIPO_LABELS: Record<string, string> = {
-  apartamento: 'Apartamentos',
-  casa: 'Casas',
-  cobertura: 'Coberturas',
-  terreno: 'Terrenos',
-}
-
-function buildH1FromFilters(f: Record<string, unknown>): string {
-  const cidade = typeof f.cidade === 'string' ? CIDADE_LABELS[f.cidade] || f.cidade : null
-  const tipo = typeof f.tipo === 'string' ? TIPO_LABELS[f.tipo] || f.tipo : null
-  const lancamento = f.status === 'lancamento'
-  const frenteMar = f.frenteMar === true
-  const vistaMar = f.vistaMar === true
-  const mobiliado = f.mobiliado === true
-
-  const extras: string[] = []
-  if (frenteMar) extras.push('Frente Mar')
-  if (vistaMar) extras.push('Vista Mar')
-  if (mobiliado) extras.push('Mobiliados')
-  const extraStr = extras.length > 0 ? ` ${extras.join(' e ')}` : ''
-
-  if (lancamento && cidade) return `Empreendimentos em ${cidade}${extraStr}`
-  if (lancamento) return `Empreendimentos e Lançamentos${extraStr}`
-  if (tipo && cidade) return `${tipo} em ${cidade}${extraStr}`
-  if (tipo) return `${tipo} à Venda${extraStr}`
-  if (cidade) return `Imóveis em ${cidade}${extraStr}`
-  if (extraStr.trim()) return `Imóveis${extraStr}`
-
-  return 'Imóveis à Venda'
-}
-
-function hasH1RelevantKeys(f: unknown): boolean {
-  if (!f || typeof f !== 'object') return false
-  const o = f as Record<string, unknown>
-  return !!(o.cidade || o.tipo || o.status || o.frenteMar || o.vistaMar || o.mobiliado)
-}
-
 function ImoveisPageContent() {
   const searchParams = useSearchParams()
   const [imoveis, setImoveis] = useState<Imovel[]>([])
@@ -228,20 +185,8 @@ function ImoveisPageContent() {
           <div className="bg-white shadow-sm border-b border-gray-200 px-4 sm:px-6 py-3 flex-shrink-0 min-w-0">
             <div className="flex items-center justify-between gap-3 mb-2 min-w-0">
               <div className="min-w-0 flex-1">
-                {(() => {
-                  const h1Filters: Record<string, unknown> = hasH1RelevantKeys(filtros) ? (filtros as Record<string, unknown>) : filtrosIniciais
-                  const h1Text = buildH1FromFilters(h1Filters)
-                  return (
-                    <>
-                      <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 truncate">
-                        {h1Text}
-                      </h1>
-                      <p className="text-xs text-gray-600 mt-1 hidden sm:block">
-                        Home &gt; Imóveis{hasH1RelevantKeys(h1Filters) ? ` &gt; ${h1Text}` : ''}
-                      </p>
-                    </>
-                  )
-                })()}
+                <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 truncate">Imóveis à Venda</h1>
+                <p className="text-xs text-gray-600 mt-1 hidden sm:block">Home &gt; Imóveis à Venda</p>
               </div>
               {/* Ordenação desktop */}
               <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
