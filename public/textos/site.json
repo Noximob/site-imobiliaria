@@ -2222,7 +2222,7 @@
     },
     "nossa_historia": {
       "titulo": {
-        "value": "Conheça a maior imobiliária de Santa Catarina!",
+        "value": "Conheça a imobiliária mais autêntica de Santa Catarina",
         "type": "titulo",
         "label": "📌 Título História",
         "hint": "Título da seção Nossa História",
@@ -2230,7 +2230,7 @@
         "section": "Nossa História"
       },
       "paragrafo_1": {
-        "value": "A história da Nox começa com uma parceria de sucesso: Brayann Germano – referência em Gestão de Equipes no Mercado Imobiliário – e Jeferson Tilchlher – corretor experiente e amplamente reconhecido.",
+        "value": "A Nox Imóveis nasceu da prática do mercado para orientar compras na planta com clareza e segurança no litoral norte de Santa Catarina, conectando pessoas a oportunidades reais em Penha, Piçarras e Barra Velha.",
         "type": "texto",
         "label": "📝 Parágrafo 1",
         "hint": "Primeiro parágrafo da história",
@@ -2238,7 +2238,7 @@
         "section": "Nossa História"
       },
       "paragrafo_2": {
-        "value": "Pouco tempo depois, a chegada de Fernando Menon – especialista em Gestão de tráfego e estratégias de marketing imobiliário – e Bruna Eleutério – corretora de imóveis especialista em lançamentos, permitiu que a Nox desse um grande passo para o sucesso, a abertura de uma sala em um dos melhores locais de BC.",
+        "value": "Somos especialistas em lançamentos e imóveis na planta, com foco em quem busca morar perto do mar, ter uma segunda residência ou investir com visão de valorização. Aqui você não recebe apenas opções: recebe direção, com análise de região, fluxo de pagamento e o que faz sentido para seu objetivo.",
         "type": "texto",
         "label": "📝 Parágrafo 2",
         "hint": "Segundo parágrafo da história",
@@ -2246,7 +2246,7 @@
         "section": "Nossa História"
       },
       "paragrafo_3": {
-        "value": "A partir desse momento, nossa imobiliária passou a crescer de forma exponencial, tornando-sereferência no mercado de Santa Catarina. Atualmente, funcionamos com três lojas – duas em BC e uma em Itajaí – para atender cada vez melhor às suas necessidades.",
+        "value": "Fundada por Renan Scheffel e Roberto Zen, a Nox une atendimento próximo com estratégia: curadoria de empreendimentos, comparativos objetivos e acompanhamento do início ao pós-venda — da escolha à negociação, documentação e entrega das chaves.",
         "type": "texto",
         "label": "📝 Parágrafo 3",
         "hint": "Terceiro parágrafo da história",
@@ -2275,7 +2275,7 @@
           "section": "Missão, Visão e Valores"
         },
         "descricao": {
-          "value": "Oferecer soluções imobiliárias inteligentes e seguras, conectando clientes às melhores oportunidades de investimento e moradia, com transparência e acompanhamento em cada etapa.",
+          "value": "Orientar clientes na compra de imóveis no litoral de SC com clareza, segurança e estratégia, oferecendo curadoria real, atendimento próximo e acompanhamento completo do início ao pós-venda.",
           "type": "texto",
           "label": "📝 Missão Descrição",
           "hint": "Descrição da Missão",
@@ -2293,7 +2293,7 @@
           "section": "Missão, Visão e Valores"
         },
         "descricao": {
-          "value": "Ser referência no mercado imobiliário do litoral catarinense, reconhecida por transformar imóveis em patrimônio sólido e rentável para nosso cliente.",
+          "value": "Ser referência no litoral catarinense em imóveis na planta, unindo performance, transparência e experiência de compra impecável.",
           "type": "texto",
           "label": "📝 Visão Descrição",
           "hint": "Descrição da Visão",
@@ -2311,7 +2311,7 @@
           "section": "Missão, Visão e Valores"
         },
         "descricao": {
-          "value": "Transparência: clareza em todas as negociações.\n\nCompromisso: dedicação total ao sucesso e à segurança de cada cliente.\n\nInovação: uso de tecnologia e",
+          "value": "Autenticidade, transparência, responsabilidade, agilidade, foco no cliente, ética e compromisso com resultado.",
           "type": "texto",
           "label": "📝 Valores Descrição",
           "hint": "Descrição dos Valores",
