@@ -27,6 +27,12 @@ export const metadata: Metadata = {
     url: 'https://noximobiliaria.com.br/como-comprar/',
     images: [{ url: 'https://noximobiliaria.com.br/api/image?id=banner-home', width: 1920, height: 1080, alt: 'Nox Imóveis' }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Como Comprar um Imóvel - Guia Completo | Nox Imóveis',
+    description: 'Aprenda como comprar um imóvel com segurança e tranquilidade. Guia completo com todos os passos, documentação necessária e dicas importantes.',
+    images: ['https://noximobiliaria.com.br/api/image?id=banner-home'],
+  },
   robots: {
     index: true,
     follow: true,

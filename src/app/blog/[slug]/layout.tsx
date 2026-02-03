@@ -41,12 +41,56 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       url: `${baseUrl}/blog/${slug}`,
       images: imagem ? [{ url: imagem, width: 1200, height: 630, alt: titulo }] : undefined,
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${titulo} | Nox Imóveis`,
+      description: resumo,
+      images: imagem ? [imagem] : undefined,
+    },
     alternates: {
       canonical: `${baseUrl}/blog/${slug}/`,
     },
   }
 }
 
-export default function ArtigoLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>
+export default async function ArtigoLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const artigo = getArtigoBySlugServer(slug)
+
+  const articleSchema = artigo
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: artigo.titulo,
+        description: artigo.resumo?.substring(0, 160),
+        image: artigo.imagem?.startsWith('http')
+          ? artigo.imagem
+          : artigo.imagem
+            ? `${baseUrl}${artigo.imagem.startsWith('/') ? '' : '/'}${artigo.imagem}`
+            : undefined,
+        datePublished: artigo.dataPublicacao,
+        dateModified: artigo.dataAtualizacao || artigo.dataPublicacao,
+        author: { '@type': 'Organization', name: artigo.autor || 'Nox Imóveis' },
+        publisher: { '@type': 'Organization', name: 'Nox Imóveis', url: baseUrl },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': `${baseUrl}/blog/${slug}/` },
+      }
+    : null
+
+  return (
+    <>
+      {articleSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
+      )}
+      {children}
+    </>
+  )
 }

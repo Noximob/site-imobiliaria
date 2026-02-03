@@ -12,6 +12,12 @@ export const metadata: Metadata = {
     url: 'https://noximobiliaria.com.br/viva-balneario-picarras/',
     images: [{ url: 'https://noximobiliaria.com.br/api/image?id=banner-home', width: 1920, height: 1080, alt: 'Nox Imóveis' }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Viva Balneário Piçarras - Descubra o Paraíso Catarinense | Nox Imóveis',
+    description: 'Descubra Balneário Piçarras, o paraíso catarinense com praias deslumbrantes, Unipraias, Cristo Luz e oportunidades de investimento incríveis.',
+    images: ['https://noximobiliaria.com.br/api/image?id=banner-home'],
+  },
   robots: {
     index: true,
     follow: true,

@@ -12,6 +12,12 @@ export const metadata: Metadata = {
     url: 'https://noximobiliaria.com.br/sobre/',
     images: [{ url: 'https://noximobiliaria.com.br/api/image?id=banner-home', width: 1920, height: 1080, alt: 'Nox Imóveis' }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sobre Nós - Nox Imóveis',
+    description: 'Conheça nossa história, missão e valores. A melhor imobiliária da região.',
+    images: ['https://noximobiliaria.com.br/api/image?id=banner-home'],
+  },
   robots: {
     index: true,
     follow: true,

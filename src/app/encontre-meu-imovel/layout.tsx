@@ -12,6 +12,12 @@ export const metadata: Metadata = {
     url: 'https://noximobiliaria.com.br/encontre-meu-imovel/',
     images: [{ url: 'https://noximobiliaria.com.br/api/image?id=banner-home', width: 1920, height: 1080, alt: 'Nox Imóveis' }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Encontre seu Imóvel dos Sonhos - Nox Imóveis',
+    description: 'Deixe a Nox Imóveis encontrar o imóvel perfeito para você! Preencha nosso formulário e receba as melhores opções.',
+    images: ['https://noximobiliaria.com.br/api/image?id=banner-home'],
+  },
   robots: {
     index: true,
     follow: true,

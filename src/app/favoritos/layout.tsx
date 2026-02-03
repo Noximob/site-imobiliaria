@@ -11,6 +11,12 @@ export const metadata: Metadata = {
     url: 'https://noximobiliaria.com.br/favoritos/',
     images: [{ url: 'https://noximobiliaria.com.br/api/image?id=banner-home', width: 1920, height: 1080, alt: 'Nox Imóveis' }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Favoritos - Nox Imóveis',
+    description: 'Seus imóveis favoritos. Nox Imóveis - Penha, Piçarras e Barra Velha.',
+    images: ['https://noximobiliaria.com.br/api/image?id=banner-home'],
+  },
   alternates: { canonical: 'https://noximobiliaria.com.br/favoritos/' },
 }
 

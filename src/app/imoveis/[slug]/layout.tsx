@@ -75,10 +75,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph.images = [{ url: ogImage, width: 1200, height: 630, alt: titulo }]
   }
 
+  const twitter = ogImage
+    ? { card: 'summary_large_image' as const, title: `${titulo} | Nox Imóveis`, description: description || `Imóvel à venda - ${titulo}`, images: [ogImage] }
+    : { card: 'summary_large_image' as const, title: `${titulo} | Nox Imóveis`, description: description || `Imóvel à venda - ${titulo}` }
+
   return {
     title: `${titulo} | Nox Imóveis`,
     description: description || `Imóvel à venda - ${titulo}. Nox Imóveis - Penha, Piçarras e Barra Velha.`,
     openGraph,
+    twitter,
     alternates: {
       canonical: `${baseUrl}/imoveis/${slug}/`,
     },
