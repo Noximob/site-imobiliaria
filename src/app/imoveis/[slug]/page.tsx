@@ -218,15 +218,14 @@ export default function ImovelDetalhePage() {
           </div>
         </div>
 
-        {/* Galeria de Fotos - Mobile: 1 col (principal + grid 2x2). Desktop: 2 cols (principal | 2x2) - mesmo padrão DWV e manuais */}
+        {/* Galeria - Mobile: principal (2/3) + 2 menores empilhadas (1/3). Desktop: principal (1/2) + grid 2x2 com 4 menores */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-3">
           {fotosParaExibir.length > 0 ? (
             <div
-              className="grid grid-cols-1 md:grid-cols-2 gap-1.5 p-1.5 min-h-0"
-              style={{ minHeight: 'min(70vh, 480px)', height: 'min(70vh, 480px)' }}
+              className="grid grid-cols-[2fr_1fr] md:grid-cols-2 gap-1.5 p-1.5 min-h-0 h-[52vh] max-h-[340px] md:h-[70vh] md:max-h-none"
               onMouseLeave={() => setHoveredPhotoIndex(null)}
             >
-              {/* Foto Principal - mobile: full width com aspect-ratio; desktop: coluna esquerda */}
+              {/* Foto Principal - ocupa coluna esquerda inteira (mobile 2/3, desktop 1/2) */}
               <Link
                 href={`/imoveis/${imovel.slug}/fotos?index=0`}
                 className={`relative w-full h-full min-h-0 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 block ${
@@ -244,13 +243,14 @@ export default function ImovelDetalhePage() {
                 />
               </Link>
 
-              {/* Grid 2x2 - 4 fotos menores - aspect-ratio 1:1 para proporção igual em mobile e desktop */}
-              <div className="grid grid-cols-2 grid-rows-2 gap-1.5 min-h-0 h-full min-h-[180px] md:min-h-0">
+              {/* Coluna direita: mobile = 2 fotos empilhadas (1 e 2); desktop = grid 2x2 com 4 fotos */}
+              <div className="grid grid-rows-2 grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-1.5 min-h-0 h-full">
                 {[1, 2, 3, 4].map((i) => {
                   const temFoto = !!fotosParaExibir[i]
                   const ultimaCelulaComFoto = Math.min(4, Math.max(1, fotosParaExibir.length - 1))
                   const mostrarBotao = i === ultimaCelulaComFoto && fotosParaExibir.length > 1
                   const linkIndex = temFoto ? i : Math.min(i, fotosParaExibir.length - 1)
+                  const mostrarNoMobile = i <= 2
                   return (
                     <Link
                       key={i}
@@ -259,8 +259,8 @@ export default function ImovelDetalhePage() {
                         hoveredPhotoIndex === null || hoveredPhotoIndex === i
                           ? 'opacity-100 scale-100'
                           : 'opacity-50 scale-95'
-                      }`}
-                      style={{ aspectRatio: '1' }}
+                      } ${mostrarNoMobile ? '' : 'hidden md:block'}`}
+                      style={mostrarNoMobile ? undefined : { aspectRatio: '1' }}
                       onMouseEnter={() => setHoveredPhotoIndex(i)}
                     >
                       {temFoto ? (
