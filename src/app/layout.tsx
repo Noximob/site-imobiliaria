@@ -11,17 +11,26 @@ export const metadata: Metadata = {
   title: 'Imobiliária - Encontre o Imóvel dos Seus Sonhos',
   description: 'Encontre casas, apartamentos e terrenos para venda e aluguel. A melhor imobiliária da região com os melhores imóveis.',
   keywords: 'imobiliária, casas, apartamentos, terrenos, venda, aluguel, imóveis',
-  authors: [{ name: 'Imobiliária' }],
+  authors: [{ name: 'Nox Imóveis' }],
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg',
     apple: '/favicon.svg',
   },
   openGraph: {
-    title: 'Imobiliária - Encontre o Imóvel dos Seus Sonhos',
-    description: 'Encontre casas, apartamentos e terrenos para venda e aluguel. A melhor imobiliária da região com os melhores imóveis.',
+    title: 'Nox Imóveis - Imóveis em Penha, Balneário Piçarras e Barra Velha',
+    description: 'Encontre o imóvel dos seus sonhos em Penha, Balneário Piçarras e Barra Velha. Apartamentos, casas e terrenos com a melhor imobiliária da região.',
     type: 'website',
     locale: 'pt_BR',
+    url: 'https://noximobiliaria.com.br/',
+    images: [
+      {
+        url: '/imagens/banners/banner-home.png',
+        width: 1920,
+        height: 1080,
+        alt: 'Nox Imóveis - Imóveis em Penha, Balneário Piçarras e Barra Velha',
+      },
+    ],
   },
   robots: {
     index: true,
