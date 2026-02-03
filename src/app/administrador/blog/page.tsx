@@ -17,7 +17,8 @@ export default function AdminBlog() {
     conteudo: '',
     categoria: '',
     autor: 'Equipe Nox',
-    publicado: true
+    publicado: true,
+    tags: ''
   })
   const [imagemFile, setImagemFile] = useState<File | null>(null)
   const [imagemPreview, setImagemPreview] = useState<string | null>(null)
@@ -59,7 +60,8 @@ export default function AdminBlog() {
       conteudo: artigo.conteudo,
       categoria: artigo.categoria,
       autor: artigo.autor,
-      publicado: artigo.publicado
+      publicado: artigo.publicado,
+      tags: Array.isArray(artigo.tags) ? artigo.tags.join(', ') : ''
     })
     setImagemFile(null)
     setImagemPreview(null)
@@ -87,7 +89,8 @@ export default function AdminBlog() {
       conteudo: '',
       categoria: '',
       autor: 'Equipe Nox',
-      publicado: true
+      publicado: true,
+      tags: ''
     })
     setImagemFile(null)
     setImagemPreview(null)
@@ -111,15 +114,18 @@ export default function AdminBlog() {
     setIsLoading(true)
     try {
       if (editingArtigo) {
-        // Editar artigo existente
+        // Editar artigo existente: manter slug original para não quebrar URL
+        const tagsArray = novoArtigo.tags
+          ? novoArtigo.tags.split(',').map((t) => t.trim()).filter(Boolean)
+          : []
         const artigoData = {
           titulo: novoArtigo.titulo,
-          slug: generateSlug(novoArtigo.titulo),
+          slug: editingArtigo.slug,
           resumo: novoArtigo.resumo,
           conteudo: novoArtigo.conteudo,
           autor: novoArtigo.autor,
           categoria: novoArtigo.categoria,
-          tags: [],
+          tags: tagsArray,
           publicado: novoArtigo.publicado,
         }
 
@@ -127,6 +133,9 @@ export default function AdminBlog() {
         alert('Artigo atualizado com sucesso!')
       } else {
         // Criar novo artigo
+        const tagsArray = novoArtigo.tags
+          ? novoArtigo.tags.split(',').map((t) => t.trim()).filter(Boolean)
+          : []
         const artigoData = {
           titulo: novoArtigo.titulo,
           slug: generateSlug(novoArtigo.titulo),
@@ -134,7 +143,7 @@ export default function AdminBlog() {
           conteudo: novoArtigo.conteudo,
           autor: novoArtigo.autor,
           categoria: novoArtigo.categoria,
-          tags: [],
+          tags: tagsArray,
           publicado: novoArtigo.publicado,
           dataPublicacao: new Date()
         }
@@ -274,6 +283,20 @@ export default function AdminBlog() {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                   placeholder="Conteúdo completo do artigo"
                 />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Tags
+                </label>
+                <input
+                  type="text"
+                  value={novoArtigo.tags}
+                  onChange={(e) => setNovoArtigo({...novoArtigo, tags: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  placeholder="Ex: Penha, investimento, apartamento (separadas por vírgula)"
+                />
+                <p className="text-xs text-gray-500 mt-1">Opcional. Ajuda em SEO e organização.</p>
               </div>
 
               <div>

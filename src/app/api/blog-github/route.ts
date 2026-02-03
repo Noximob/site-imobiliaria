@@ -136,10 +136,14 @@ export async function PUT(request: NextRequest) {
       artigo.imagem = `/blog/imagens/${id}.jpg`
     }
 
-    // Atualizar artigo
+    // Atualizar artigo preservando slug e id (evita quebrar URL e referências)
+    const slugOriginal = artigos[index].slug
+    const idOriginal = artigos[index].id
     artigos[index] = {
       ...artigos[index],
       ...artigo,
+      slug: slugOriginal,
+      id: idOriginal,
       updatedAt: new Date().toISOString(),
     }
 
