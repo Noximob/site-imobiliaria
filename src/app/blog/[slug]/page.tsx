@@ -96,6 +96,15 @@ export default function ArtigoPage() {
       {/* Header do Artigo */}
       <div className="bg-white border-b">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <nav aria-label="Breadcrumb" className="text-sm text-gray-600 mb-4">
+            <ol className="flex flex-wrap items-center gap-1">
+              <li><Link href="/" className="text-purple-600 hover:underline">Home</Link></li>
+              <li><span className="mx-1">›</span></li>
+              <li><Link href="/blog/" className="text-purple-600 hover:underline">Blog</Link></li>
+              <li><span className="mx-1">›</span></li>
+              <li><span className="text-gray-900 line-clamp-1">{artigo.titulo}</span></li>
+            </ol>
+          </nav>
           <div className="flex items-center justify-between mb-6">
             <Link 
               href="/"

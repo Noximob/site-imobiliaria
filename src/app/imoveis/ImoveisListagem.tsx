@@ -188,12 +188,35 @@ function ImoveisPageContent() {
                 {(() => {
                   const active = hasRelevantFilters(filtros) ? filtros : filtrosIniciais
                   const h1Text = getH1Text(active)
+                  const hasFilter = hasRelevantFilters(active)
+                  const baseUrl = 'https://noximobiliaria.com.br'
+                  const currentUrl = baseUrl + pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '')
+                  const breadcrumbList = {
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
+                    itemListElement: [
+                      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl + '/' },
+                      { '@type': 'ListItem', position: 2, name: 'Imóveis', item: baseUrl + '/imoveis/' },
+                      ...(hasFilter ? [{ '@type': 'ListItem', position: 3, name: h1Text, item: currentUrl }] : []),
+                    ],
+                  }
                   return (
                     <>
                       <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 truncate">{h1Text}</h1>
-                      <p className="text-xs text-gray-600 mt-1 hidden sm:block">
-                        Home &gt; Imóveis{hasRelevantFilters(active) ? ` &gt; ${h1Text}` : ' à Venda'}
-                      </p>
+                      <nav aria-label="Breadcrumb" className="text-xs text-gray-600 mt-1 hidden sm:block">
+                        <ol className="flex flex-wrap items-center gap-1">
+                          <li><Link href="/" className="text-purple-600 hover:underline">Home</Link></li>
+                          <li><span className="mx-1">›</span></li>
+                          <li><Link href="/imoveis/" className="text-purple-600 hover:underline">Imóveis</Link></li>
+                          {hasFilter && (
+                            <>
+                              <li><span className="mx-1">›</span></li>
+                              <li><span className="text-gray-900">{h1Text}</span></li>
+                            </>
+                          )}
+                        </ol>
+                      </nav>
+                      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbList) }} />
                     </>
                   )
                 })()}

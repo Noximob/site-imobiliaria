@@ -82,6 +82,16 @@ export default async function ArtigoLayout({
       }
     : null
 
+  const breadcrumbList = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blog/` },
+      { '@type': 'ListItem', position: 3, name: artigo?.titulo || 'Artigo', item: `${baseUrl}/blog/${slug}/` },
+    ],
+  }
+
   return (
     <>
       {articleSchema && (
@@ -90,6 +100,10 @@ export default async function ArtigoLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
         />
       )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbList) }}
+      />
       {children}
     </>
   )

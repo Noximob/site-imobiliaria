@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Favoritos - Nox Imóveis',
   description: 'Seus imóveis favoritos. Nox Imóveis - Penha, Piçarras e Barra Velha.',
+  robots: { index: false, follow: true },
   openGraph: {
     title: 'Favoritos - Nox Imóveis',
     description: 'Seus imóveis favoritos. Nox Imóveis - Penha, Piçarras e Barra Velha.',

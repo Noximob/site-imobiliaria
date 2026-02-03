@@ -72,6 +72,18 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} h-full`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Nox Imóveis',
+              url: 'https://noximobiliaria.com.br',
+              logo: 'https://noximobiliaria.com.br/imagens/logo-nox-imoveis-penha-picarras-barra-velha.png',
+            }),
+          }}
+        />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
           strategy="afterInteractive"

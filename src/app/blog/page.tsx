@@ -78,8 +78,25 @@ export default function BlogPage() {
     )
   }
 
+  const breadcrumbList = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://noximobiliaria.com.br/' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://noximobiliaria.com.br/blog/' },
+    ],
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbList) }} />
+      <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+        <ol className="flex items-center gap-1 text-sm text-gray-600">
+          <li><Link href="/" className="text-purple-600 hover:underline">Home</Link></li>
+          <li><span className="mx-1">›</span></li>
+          <li><span className="text-gray-900">Blog</span></li>
+        </ol>
+      </nav>
       {/* Hero Section - Blog */}
       <section className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700 py-10">
         {/* Background Pattern */}
