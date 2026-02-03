@@ -314,8 +314,8 @@ export default function ImovelDetalhePage() {
               <span className="text-xs text-gray-500">Código</span>
             </div>
             
-            {/* Quartos */}
-            {imovel.caracteristicas.quartos > 0 && (
+            {/* Quartos - só exibe se > 0 */}
+            {Number(imovel.caracteristicas?.quartos) > 0 && (
               <div className="flex flex-col items-center gap-2 text-gray-700">
                 <BedDouble className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
                 <span className="font-medium text-xs">{imovel.caracteristicas.quartos}</span>
@@ -323,8 +323,8 @@ export default function ImovelDetalhePage() {
               </div>
             )}
             
-            {/* Suítes */}
-            {imovel.caracteristicas.suite && imovel.caracteristicas.suite > 0 && (
+            {/* Suítes - só exibe se > 0 */}
+            {Number(imovel.caracteristicas?.suite) > 0 && (
               <div className="flex flex-col items-center gap-2 text-gray-700">
                 <BedDouble className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
                 <span className="font-medium text-xs">{imovel.caracteristicas.suite}</span>
@@ -332,8 +332,8 @@ export default function ImovelDetalhePage() {
               </div>
             )}
             
-            {/* Banheiros */}
-            {imovel.caracteristicas.banheiros > 0 && (
+            {/* Banheiros - só exibe se > 0 */}
+            {Number(imovel.caracteristicas?.banheiros) > 0 && (
               <div className="flex flex-col items-center gap-2 text-gray-700">
                 <Droplet className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
                 <span className="font-medium text-xs">{imovel.caracteristicas.banheiros}</span>
@@ -341,8 +341,8 @@ export default function ImovelDetalhePage() {
               </div>
             )}
             
-            {/* Vagas */}
-            {imovel.caracteristicas.vagas > 0 && (
+            {/* Vagas - só exibe se > 0 */}
+            {Number(imovel.caracteristicas?.vagas) > 0 && (
               <div className="flex flex-col items-center gap-2 text-gray-700">
                 <Car className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
                 <span className="font-medium text-xs">{imovel.caracteristicas.vagas}</span>
@@ -350,8 +350,8 @@ export default function ImovelDetalhePage() {
               </div>
             )}
             
-            {/* Área */}
-            {imovel.caracteristicas.area > 0 && (
+            {/* Área - só exibe se > 0 */}
+            {Number(imovel.caracteristicas?.area) > 0 && (
               <div className="flex flex-col items-center gap-2 text-gray-700">
                 <Maximize2 className="w-5 h-5 text-purple-600" strokeWidth={2.5} />
                 <span className="font-medium text-xs">{imovel.caracteristicas.area} M²</span>
@@ -380,24 +380,24 @@ export default function ImovelDetalhePage() {
                 </div>
               )}
 
-              {/* 2) Definições do imóvel (lista de especificações - igual DWV) */}
+              {/* 2) Definições do imóvel (lista de especificações - igual DWV); só itens > 0 */}
               <div className="space-y-2 mb-0">
-                {imovel.caracteristicas.area > 0 && (
+                {Number(imovel.caracteristicas?.area) > 0 && (
                   <p className="text-gray-700">
                     - {imovel.caracteristicas.area}m² de área interna
                   </p>
                 )}
-                {imovel.caracteristicas.suite && imovel.caracteristicas.suite > 0 && (
+                {Number(imovel.caracteristicas?.suite) > 0 && (
                   <p className="text-gray-700">
                     - {imovel.caracteristicas.suite} {imovel.caracteristicas.suite === 1 ? 'suíte' : 'suítes'}{imovel.caracteristicas.suite === 1 && imovel.tags?.includes('Master') ? ', sendo uma master com banheira' : ''}
                   </p>
                 )}
-                {imovel.caracteristicas.quartos > 0 && !imovel.caracteristicas.suite && (
+                {Number(imovel.caracteristicas?.quartos) > 0 && Number(imovel.caracteristicas?.suite) === 0 && (
                   <p className="text-gray-700">
                     - {imovel.caracteristicas.quartos} {imovel.caracteristicas.quartos === 1 ? 'quarto' : 'quartos'}
                   </p>
                 )}
-                {imovel.caracteristicas.vagas > 0 && (
+                {Number(imovel.caracteristicas?.vagas) > 0 && (
                   <p className="text-gray-700">
                     - {imovel.caracteristicas.vagas} {imovel.caracteristicas.vagas === 1 ? 'vaga de garagem' : 'vagas de garagem'}
                   </p>

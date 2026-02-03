@@ -182,23 +182,31 @@ export default function FavoritosPage() {
                     
                     <div className="flex items-center justify-between text-sm text-gray-600">
                       <div className="flex items-center space-x-4">
-                        <div className="flex items-center">
-                          <Bed className="w-4 h-4 mr-1" />
-                          <span>{imovel.caracteristicas.quartos}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Bath className="w-4 h-4 mr-1" />
-                          <span>{imovel.caracteristicas.banheiros}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Car className="w-4 h-4 mr-1" />
-                          <span>{imovel.caracteristicas.vagas}</span>
-                        </div>
+                        {Number(imovel.caracteristicas?.quartos) > 0 && (
+                          <div className="flex items-center">
+                            <Bed className="w-4 h-4 mr-1" />
+                            <span>{imovel.caracteristicas.quartos}</span>
+                          </div>
+                        )}
+                        {Number(imovel.caracteristicas?.banheiros) > 0 && (
+                          <div className="flex items-center">
+                            <Bath className="w-4 h-4 mr-1" />
+                            <span>{imovel.caracteristicas.banheiros}</span>
+                          </div>
+                        )}
+                        {Number(imovel.caracteristicas?.vagas) > 0 && (
+                          <div className="flex items-center">
+                            <Car className="w-4 h-4 mr-1" />
+                            <span>{imovel.caracteristicas.vagas}</span>
+                          </div>
+                        )}
                       </div>
-                      <div className="flex items-center">
-                        <Ruler className="w-4 h-4 mr-1" />
-                        <span>{imovel.caracteristicas.area}m²</span>
-                      </div>
+                      {Number(imovel.caracteristicas?.area) > 0 && (
+                        <div className="flex items-center">
+                          <Ruler className="w-4 h-4 mr-1" />
+                          <span>{imovel.caracteristicas.area}m²</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

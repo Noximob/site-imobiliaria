@@ -285,25 +285,25 @@ function ImoveisPageContent() {
                               {imovel.caracteristicas.piscina && <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded">Piscina</span>}
                             </div>
                             <div className="flex items-center gap-3 text-xs text-gray-600 mb-3">
-                              {imovel.caracteristicas.quartos > 0 && (
+                              {Number(imovel.caracteristicas?.quartos) > 0 && (
                                 <div className="flex items-center gap-1">
                                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z" /></svg>
                                   <span>{imovel.caracteristicas.quartos} {imovel.caracteristicas.quartos === 1 ? 'Quarto' : 'Quartos'}</span>
                                 </div>
                               )}
-                              {imovel.caracteristicas.banheiros > 0 && (
+                              {Number(imovel.caracteristicas?.banheiros) > 0 && (
                                 <div className="flex items-center gap-1">
                                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
                                   <span>{imovel.caracteristicas.banheiros} {imovel.caracteristicas.banheiros === 1 ? 'Banheiro' : 'Banheiros'}</span>
                                 </div>
                               )}
-                              {imovel.caracteristicas.vagas > 0 && (
+                              {Number(imovel.caracteristicas?.vagas) > 0 && (
                                 <div className="flex items-center gap-1">
                                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M10.5 3L12 2l1.5 1H21v6H3V3h7.5z" /></svg>
                                   <span>{imovel.caracteristicas.vagas} {imovel.caracteristicas.vagas === 1 ? 'Vaga' : 'Vagas'}</span>
                                 </div>
                               )}
-                              {imovel.caracteristicas.area > 0 && (
+                              {Number(imovel.caracteristicas?.area) > 0 && (
                                 <div className="flex items-center gap-1">
                                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4a2 2 0 012-2h12a2 2 0 012 2v4M4 8v8a2 2 0 002 2h12a2 2 0 002-2V8M4 8h16" /></svg>
                                   <span>{imovel.caracteristicas.area}m²</span>
