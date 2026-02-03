@@ -248,9 +248,11 @@ export default function ImovelDetalhePage() {
                 {[1, 2, 3, 4].map((i) => {
                   const temFoto = !!fotosParaExibir[i]
                   const ultimaCelulaComFoto = Math.min(4, Math.max(1, fotosParaExibir.length - 1))
-                  const mostrarBotao = i === ultimaCelulaComFoto && fotosParaExibir.length > 1
                   const linkIndex = temFoto ? i : Math.min(i, fotosParaExibir.length - 1)
                   const mostrarNoMobile = i <= 2
+                  const mostrarBotaoDesktop = i === ultimaCelulaComFoto && fotosParaExibir.length > 1
+                  const mostrarBotaoMobile = i === 2 && fotosParaExibir.length > 1
+                  const mostrarBotao = mostrarBotaoDesktop || mostrarBotaoMobile
                   return (
                     <Link
                       key={i}
@@ -270,7 +272,7 @@ export default function ImovelDetalhePage() {
                           loading="lazy"
                           className="absolute inset-0 w-full h-full object-cover object-center"
                         />
-                      ) : mostrarBotao && fotosParaExibir.length > 1 ? (
+                      ) : mostrarBotaoDesktop && fotosParaExibir.length > 1 ? (
                         <img
                           src={fotosParaExibir[fotosParaExibir.length - 1]}
                           alt={`${imovel.titulo} - Foto`}
@@ -281,7 +283,7 @@ export default function ImovelDetalhePage() {
                         <div className="absolute inset-0 bg-gray-50" />
                       )}
                       {mostrarBotao && (
-                        <div className="absolute bottom-2 right-2 z-20 pointer-events-auto">
+                        <div className={`absolute bottom-2 right-2 z-20 pointer-events-auto ${mostrarBotaoMobile && mostrarBotaoDesktop ? '' : mostrarBotaoMobile ? 'md:hidden' : 'hidden md:block'}`}>
                           <div className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium text-sm transition-colors flex items-center gap-2 shadow-lg">
                             <span>Visualizar Fotos</span>
                             {fotosParaExibir.length > 5 && (
