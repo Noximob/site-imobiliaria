@@ -8469,7 +8469,9 @@
       "Vista mar em todos os apartamentos",
       "Sacada com churrasqueira",
       "Condição com pagamento até a chave",
-      "Vista Mar"
+      "Frente Mar",
+      "Vista Mar",
+      "Área de Lazer"
     ],
     "contato": {
       "whatsapp": "(47) 99753-0113",
@@ -8490,6 +8492,6 @@
       "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/38988_5.jpg"
     ],
     "createdAt": "2026-02-03T00:12:21.447Z",
-    "updatedAt": "2026-02-03T00:22:16.938Z"
+    "updatedAt": "2026-02-03T00:25:50.803Z"
   }
 ]
