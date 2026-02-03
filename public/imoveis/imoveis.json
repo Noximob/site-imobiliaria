@@ -8599,7 +8599,7 @@
   {
     "titulo": "Apartamento na planta em Santo Antônio, Balneário Piçarras — Viverde Eco Club (Santer), 2 quartos com 1 suíte, entrega Dez/2027",
     "descricao": "O Viverde Eco Club é um home club na planta em Balneário Piçarras, pensado para quem quer morar com estrutura completa de lazer e, ao mesmo tempo, estar perto dos principais acessos e serviços da cidade. O projeto combina condomínio residencial com um centro comercial interno, trazendo mais praticidade para o dia a dia.\n\nO empreendimento conta com 5 torres de 8 andares e 2 elevadores por torre. As unidades têm de 68,72m² a 88,35m², com opções de 2 quartos, com ou sem suíte, além de uma área de lazer muito acima do padrão, com mais de 3600m².\n\nEntrega prevista: Dezembro/2027 (valores e disponibilidade podem mudar conforme tabela).\n\nDestaques rápidos:\n- Home club com mais de 3600m² de área de lazer\n- 5 torres de 8 andares\n- 2 elevadores por torre\n- Centro comercial com 2 pavimentos e 17 salas comerciais\n- Localização: 400m da Av. Getúlio Vargas e 1300m do mar\n- Próximo ao Colégio Prisma\n- Endereço: Rua João Carvalho, Bairro Santo Antônio, Balneário Piçarras\n\nCaracterísticas dos apartamentos:\n- Área privativa: 55,72m² a 61,32m²\n- Opções de 2 quartos ou 1 suíte + 1 quarto\n\nLazer e áreas comuns:\n- Salões de festas\n- Piscina adulto com borda infinita\n- Piscina infantil com splash\n- Prainha\n- Academias interna e externa\n- Quadra de beach tennis\n- Quadra de esportes\n- Cowork\n- Quiosques\n- Lounges\n- Redários\n- Centro comercial com 2 pavimentos e 17 salas comerciais\n\nA região é um dos pontos fortes: na Rua João Carvalho, no bairro Santo Antônio em Balneário Piçarras, a poucos metros da Av. Getúlio Vargas e a cerca de 1300m do mar, juntando praticidade de serviços com fácil acesso à praia.\n\nQuer que eu te mande a tabela atualizada, disponibilidade por torre/andar e as melhores opções para o teu objetivo (morar, veraneio ou investir)?\nMe chama no WhatsApp que eu te envio tudo organizado.",
-    "preco": 545.611,
+    "preco": 545611.72,
     "tipo": "apartamento",
     "status": "lancamento",
     "endereco": {
@@ -8631,7 +8631,8 @@
       "5 torres de 8 andares",
       "Centro comercial com 17 salas",
       "400m da Av. Getúlio Vargas",
-      "1300m do mar"
+      "1300m do mar",
+      "Área de Lazer"
     ],
     "contato": {
       "whatsapp": "(47) 99753-0113",
@@ -8663,6 +8664,6 @@
       "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/imoveis/imagens/23591_12.jpg"
     ],
     "createdAt": "2026-02-03T22:03:48.589Z",
-    "updatedAt": "2026-02-03T22:03:48.589Z"
+    "updatedAt": "2026-02-03T22:05:57.154Z"
   }
 ]
