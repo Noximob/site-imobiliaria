@@ -41,24 +41,29 @@ export default function FotosPage() {
     loadImovel()
   }, [slug])
 
-  // Calcular fotos ordenadas usando useMemo
+  // Calcular fotos ordenadas: mesma lógica da ficha (1 principal + 4 menores + resto)
   const fotosOrdenadas = useMemo(() => {
     if (!imovel || !imovel.fotos || imovel.fotos.length === 0) {
       return []
     }
-    
     const todasFotos = imovel.fotos || []
+    const fotoPrincipalDWV = imovel.fotoPrincipalDWV
+    const fotosMenoresDWV = imovel.fotosMenoresDWV || []
     const fotoPrincipalIndex = imovel.fotoPrincipalIndex ?? 0
-    
-    // Reorganizar fotos: foto principal primeiro
-    let fotos = [...todasFotos]
-    if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < fotos.length) {
-      const fotoPrincipal = fotos[fotoPrincipalIndex]
-      fotos.splice(fotoPrincipalIndex, 1)
-      fotos.unshift(fotoPrincipal)
+
+    if (fotoPrincipalDWV) {
+      const menores = fotosMenoresDWV.length > 0
+        ? fotosMenoresDWV
+        : todasFotos.filter((f: string) => f !== fotoPrincipalDWV).slice(0, 4)
+      const escolhidas = new Set([fotoPrincipalDWV, ...menores])
+      const restantes = todasFotos.filter((f: string) => !escolhidas.has(f))
+      return [fotoPrincipalDWV, ...menores, ...restantes]
     }
-    
-    return fotos
+    // Imóveis manuais: principal primeiro, depois 4 menores, depois resto
+    const idx = fotoPrincipalIndex >= 0 && fotoPrincipalIndex < todasFotos.length ? fotoPrincipalIndex : 0
+    const principal = todasFotos[idx]
+    const rest = todasFotos.filter((_: string, i: number) => i !== idx)
+    return [principal, ...rest.slice(0, 4), ...rest.slice(4)]
   }, [imovel])
 
   // Atualizar fotoAtual quando initialIndex mudar ou quando fotos forem carregadas

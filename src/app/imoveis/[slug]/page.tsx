@@ -91,33 +91,35 @@ export default function ImovelDetalhePage() {
     ? imovel.precoOriginal - imovel.preco
     : 0
 
-  // SIMPLIFICADO: Se for imóvel do DWV com seleções salvas, usar essas seleções
-  // Caso contrário, usar as primeiras 5 fotos na ordem que estão
+  // Montar galeria: 1 principal + 4 menores (igual DWV e imóveis manuais)
   const todasFotos = imovel.fotos || []
   const fotoPrincipalDWV = (imovel as any).fotoPrincipalDWV
   const fotosMenoresDWV = (imovel as any).fotosMenoresDWV || []
-  
-  let fotosParaExibir = [...todasFotos]
-  
-  // Se há seleções do DWV, usar essas seleções
+  const fotoPrincipalIndex = (imovel as any).fotoPrincipalIndex ?? 0
+
+  let fotosParaExibir: string[]
+
   if (fotoPrincipalDWV) {
-    // Se tem menores selecionadas, usar elas; senão, usar as primeiras 4 disponíveis
-    const menoresParaUsar = fotosMenoresDWV.length > 0 
-      ? fotosMenoresDWV 
+    // DWV: usar seleções salvas (principal + 4 menores)
+    const menoresParaUsar = fotosMenoresDWV.length > 0
+      ? fotosMenoresDWV
       : todasFotos.filter((f: string) => f !== fotoPrincipalDWV).slice(0, 4)
-    
     fotosParaExibir = [fotoPrincipalDWV, ...menoresParaUsar]
-    // Adicionar fotos restantes
     const fotosEscolhidas = new Set([fotoPrincipalDWV, ...menoresParaUsar])
     const fotosRestantes = todasFotos.filter((f: string) => !fotosEscolhidas.has(f))
     fotosParaExibir = [...fotosParaExibir, ...fotosRestantes]
   } else {
-    // Lógica antiga: mover foto principal para o início se definida
-    const fotoPrincipalIndex = (imovel as any).fotoPrincipalIndex ?? 0
-    if (fotoPrincipalIndex > 0 && fotoPrincipalIndex < fotosParaExibir.length) {
-      const fotoPrincipal = fotosParaExibir[fotoPrincipalIndex]
-      fotosParaExibir.splice(fotoPrincipalIndex, 1)
-      fotosParaExibir.unshift(fotoPrincipal)
+    // Imóveis manuais: principal = fotos[fotoPrincipalIndex], depois 4 menores (resto na ordem)
+    // Assim fica igual ao DWV: primeira foto grande, grid 2x2 com as 4 seguintes
+    if (todasFotos.length === 0) {
+      fotosParaExibir = []
+    } else {
+      const idx = fotoPrincipalIndex >= 0 && fotoPrincipalIndex < todasFotos.length ? fotoPrincipalIndex : 0
+      const principal = todasFotos[idx]
+      const rest = todasFotos.filter((_: string, i: number) => i !== idx)
+      const menores = rest.slice(0, 4)
+      const resto = rest.slice(4)
+      fotosParaExibir = [principal, ...menores, ...resto]
     }
   }
 
