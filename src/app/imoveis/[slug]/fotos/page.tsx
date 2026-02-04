@@ -181,6 +181,8 @@ export default function FotosPage() {
 
   return (
     <div className="fixed inset-0 bg-gray-900 flex flex-col overflow-hidden z-50">
+      {/* H1 único para SEO — visualmente oculto, galeria fullscreen */}
+      <h1 className="sr-only">Fotos do imóvel: {imovel.titulo}</h1>
       {/* Foto Principal - Horizontal em cima, ocupa quase toda a tela. Mobile: swipe para trocar foto. */}
       <div
         className="relative bg-gray-950 flex items-center justify-center transition-all duration-300 touch-pan-y"

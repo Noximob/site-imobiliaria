@@ -367,10 +367,10 @@ export default function ImovelDetalhePage() {
           <div className="lg:col-span-2 space-y-6">
             {/* Conteúdo no estilo DWV: definições primeiro, traço, depois o que foi escrito */}
             <div className="bg-white rounded-lg shadow-sm p-6">
-              {/* 1) Nome do imóvel */}
-              <h1 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4">
+              {/* 1) Nome do imóvel — H2 pois o H1 único da página está no topo (título + endereço) */}
+              <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4">
                 {imovel.titulo}
-              </h1>
+              </h2>
               
               {imovel.selecaoNox && (
                 <div className="flex flex-wrap gap-2 mb-4">
