@@ -6,6 +6,7 @@ import { ArrowLeft, Upload, X, Loader2, Image as ImageIcon, Check } from 'lucide
 import Link from 'next/link'
 import { createImovelWithFotos } from '@/lib/imoveis-github'
 import { generateSlug } from '@/lib/imoveis'
+import TitleInputSeo from '@/components/TitleInputSeo'
 
 export default function NovoImovelPage() {
   const router = useRouter()
@@ -369,15 +370,11 @@ export default function NovoImovelPage() {
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Informações Básicas</h2>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Título do Imóvel *
-                </label>
-                <input
-                  type="text"
-                  name="titulo"
+                <TitleInputSeo
+                  label="Título do Imóvel"
                   value={formData.titulo}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  name="titulo"
                   placeholder="Ex: Apartamento Frente Mar em Penha"
                   required
                 />

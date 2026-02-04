@@ -5,6 +5,7 @@ import { ArrowLeft, BookOpen, Plus, X, Edit, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import { createArtigoWithImage, getAllArtigos, generateSlug, updateArtigoWithImage, deleteArtigo } from '@/lib/blog-github'
 import { Artigo } from '@/types'
+import TitleInputSeo from '@/components/TitleInputSeo'
 
 export default function AdminBlog() {
   const [artigos, setArtigos] = useState<Artigo[]>([])
@@ -214,14 +215,10 @@ export default function AdminBlog() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Título *
-                  </label>
-                  <input
-                    type="text"
+                  <TitleInputSeo
+                    label="Título"
                     value={novoArtigo.titulo}
                     onChange={(e) => setNovoArtigo({...novoArtigo, titulo: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                     placeholder="Digite o título do artigo"
                     required
                   />
