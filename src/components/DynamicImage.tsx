@@ -66,6 +66,7 @@ export default function DynamicImage({
         fill
         className={className}
         priority={priority}
+        sizes="(max-width: 768px) 100vw, 50vw"
       />
     )
   }

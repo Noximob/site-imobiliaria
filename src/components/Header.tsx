@@ -98,6 +98,7 @@ export default function Header() {
                   fill
                   className="object-contain bg-transparent"
                   priority
+                  sizes="128px"
                 />
             </div>
           </Link>

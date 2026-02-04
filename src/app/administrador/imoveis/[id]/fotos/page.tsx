@@ -492,6 +492,8 @@ export default function EditarFotosImovelDWV() {
                     <img
                       src={foto}
                       alt={`Foto ${index + 1}`}
+                      width={320}
+                      height={240}
                       className="w-full h-full object-cover"
                     />
                     {fotoPrincipal === foto && (
@@ -598,6 +600,8 @@ export default function EditarFotosImovelDWV() {
                       <img
                         src={fotoPrincipal}
                         alt="Principal"
+                        width={800}
+                        height={600}
                         className="w-full h-full object-cover"
                         style={{ objectFit: 'cover', objectPosition: 'center' }}
                       />
@@ -630,6 +634,8 @@ export default function EditarFotosImovelDWV() {
                           <img
                             src={foto}
                             alt={`Menor ${index + 1}`}
+                            width={400}
+                            height={300}
                             className="w-full h-full object-cover"
                             style={{ objectFit: 'cover', objectPosition: 'center' }}
                           />

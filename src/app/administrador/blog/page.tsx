@@ -316,6 +316,8 @@ export default function AdminBlog() {
                     <img
                       src={imagemPreview || editingArtigo?.imagem || ''}
                       alt="Preview"
+                      width={128}
+                      height={128}
                       className="w-32 h-32 object-cover rounded-md"
                     />
                   </div>

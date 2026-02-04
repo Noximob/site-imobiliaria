@@ -173,13 +173,14 @@ export default function BlogPage() {
               
               return (
                 <div key={artigo.id} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
-                  <div className="relative h-48">
+                  <div className="relative h-48 w-full">
                     <Image 
                       src={artigo.imagem || '/placeholder-blog.jpg'} 
                       alt={artigo.titulo} 
                       fill
                       className="object-cover"
                       loading="lazy"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     {/* Data Overlay */}
                     <div className="absolute top-4 left-4">

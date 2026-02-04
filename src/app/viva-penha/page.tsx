@@ -32,6 +32,7 @@ export default function VivaPenhaPage() {
             alt="Penha - Viva Penha" 
             fill
             className="object-cover bg-transparent"
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-transparent"></div>
         </div>
@@ -180,6 +181,7 @@ export default function VivaPenhaPage() {
                     fill
                     className="object-cover"
                     loading="lazy"
+                    sizes="33vw"
                   />
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
@@ -189,6 +191,7 @@ export default function VivaPenhaPage() {
                     fill
                     className="object-cover"
                     loading="lazy"
+                    sizes="33vw"
                   />
                 </div>
               </div>
@@ -200,6 +203,7 @@ export default function VivaPenhaPage() {
                     fill
                     className="object-cover"
                     loading="lazy"
+                    sizes="33vw"
                   />
                 </div>
                 <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
@@ -209,6 +213,7 @@ export default function VivaPenhaPage() {
                     fill
                     className="object-cover"
                     loading="lazy"
+                    sizes="33vw"
                   />
                 </div>
               </div>
@@ -220,6 +225,7 @@ export default function VivaPenhaPage() {
                     fill
                     className="object-cover"
                     loading="lazy"
+                    sizes="33vw"
                   />
                 </div>
                 <div className="relative h-32 rounded-lg overflow-hidden shadow-lg">
@@ -229,6 +235,7 @@ export default function VivaPenhaPage() {
                     fill
                     className="object-cover"
                     loading="lazy"
+                    sizes="33vw"
                   />
                 </div>
               </div>

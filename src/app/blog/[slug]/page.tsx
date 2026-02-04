@@ -162,6 +162,7 @@ export default function ArtigoPage() {
             fill
             className="object-cover"
             loading="lazy"
+            sizes="(max-width: 768px) 100vw, 896px"
           />
           {/* Data Overlay */}
           <div className="absolute top-6 left-6">

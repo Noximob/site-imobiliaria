@@ -18,13 +18,14 @@ export default function ImovelCard({ imovel }: ImovelCardProps) {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div className="relative h-48 overflow-hidden bg-transparent">
+        <div className="relative w-full aspect-[4/3] overflow-hidden bg-transparent" style={{ minHeight: '12rem' }}>
           <Image
             src={primeiraFoto}
             alt={imovel.titulo}
             fill
             className="object-contain hover:scale-105 transition-transform duration-300 bg-gray-100"
             loading="lazy"
+            sizes="(max-width: 640px) 100vw, 400px"
           />
           <div className="absolute top-4 left-4">
             <span className={`px-3 py-1 rounded-full text-sm font-medium ${

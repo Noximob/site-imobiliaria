@@ -48,6 +48,8 @@ export default function TeamSection({ corretores }: TeamSectionProps) {
           src={corretor.foto || '/placeholder-corretor.jpg'}
           alt={corretor.nome}
           loading="lazy"
+          width={400}
+          height={300}
           className="w-full h-full object-cover object-top"
         />
         {expandedId === corretor.id && (

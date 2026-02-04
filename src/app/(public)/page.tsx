@@ -280,7 +280,7 @@ export default async function HomePage() {
                   rel="noopener noreferrer"
                   className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
                 >
-                  <div className="h-64 relative">
+                  <div className="h-64 relative w-full">
                     {imovel.fotos && imovel.fotos.length > 0 ? (
                       <>
                         <Image 
@@ -289,6 +289,7 @@ export default async function HomePage() {
                           fill
                           className="object-contain bg-gray-100"
                           unoptimized
+                          sizes="(max-width: 768px) 100vw, 33vw"
                         />
                         {/* Tag Mobiliado se existir nas tags */}
                         {(imovel.tags && imovel.tags.some(tag => tag.toLowerCase().includes('mobiliado'))) && (

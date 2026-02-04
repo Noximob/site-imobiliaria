@@ -200,6 +200,7 @@ export default function FotosPage() {
               style={{ transform: `scale(${zoom})` }}
               unoptimized
               priority
+              sizes="100vw"
             />
           </div>
         )}
@@ -285,6 +286,7 @@ export default function FotosPage() {
                   fill
                   className="object-cover"
                   unoptimized
+                  sizes="80px"
                 />
               </button>
             ))}

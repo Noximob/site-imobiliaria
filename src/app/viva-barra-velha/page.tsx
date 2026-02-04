@@ -32,6 +32,7 @@ export default function VivaBarraVelhaPage() {
             alt="Barra Velha - Viva Barra Velha" 
             fill
             className="object-cover bg-transparent"
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-transparent"></div>
         </div>

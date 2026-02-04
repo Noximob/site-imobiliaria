@@ -1001,6 +1001,8 @@ export default function EditarImovelPage() {
                           <img
                             src={preview}
                             alt={`Foto ${index + 1}`}
+                            width={320}
+                            height={240}
                             className="w-full h-full object-cover"
                           />
                           {fotoPrincipalIndex === index && (
@@ -1068,6 +1070,8 @@ export default function EditarImovelPage() {
                             <img
                               src={preview}
                               alt={`Foto ${index + 1}`}
+                              width={320}
+                              height={180}
                               className="w-full h-full object-cover"
                             />
                             {isPrincipal && (

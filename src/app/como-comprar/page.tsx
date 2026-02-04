@@ -211,6 +211,7 @@ export default async function ComoComprarPage() {
                   fill
                   className="object-cover"
                   loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-transparent"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -251,6 +252,7 @@ export default async function ComoComprarPage() {
                   fill
                   className="object-cover"
                   loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-transparent"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -328,6 +330,7 @@ export default async function ComoComprarPage() {
                   fill
                   className="object-cover"
                   loading="lazy"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
               
@@ -355,6 +358,7 @@ export default async function ComoComprarPage() {
                   fill
                   className="object-cover"
                   loading="lazy"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
               

@@ -239,6 +239,8 @@ export default function ImovelDetalhePage() {
                   src={fotosParaExibir[0]}
                   alt={`${imovel.titulo} - Foto principal`}
                   fetchPriority="high"
+                  width={800}
+                  height={600}
                   className="absolute inset-0 w-full h-full object-cover object-center"
                 />
               </Link>
@@ -270,6 +272,8 @@ export default function ImovelDetalhePage() {
                           src={fotosParaExibir[i]}
                           alt={`${imovel.titulo} - Foto ${i + 1}`}
                           loading="lazy"
+                          width={400}
+                          height={300}
                           className="absolute inset-0 w-full h-full object-cover object-center"
                         />
                       ) : mostrarBotaoDesktop && fotosParaExibir.length > 1 ? (
@@ -277,6 +281,8 @@ export default function ImovelDetalhePage() {
                           src={fotosParaExibir[fotosParaExibir.length - 1]}
                           alt={`${imovel.titulo} - Foto`}
                           loading="lazy"
+                          width={400}
+                          height={300}
                           className="absolute inset-0 w-full h-full object-cover object-center"
                         />
                       ) : (

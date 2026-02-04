@@ -261,7 +261,7 @@ function ImoveisPageContent() {
                       <div key={imovel.id} className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col sm:flex-row sm:h-64 min-w-0 w-full">
                         <Link href={`/imoveis/${imovel.slug}/`} className="w-full sm:w-64 h-56 sm:h-full relative flex-shrink-0 min-w-0 block" onClick={() => trackImovelClick(imovel.id, imovel.slug, imovel.titulo)}>
                           {getFotoPrincipal(imovel) ? (
-                            <Image src={getFotoPrincipal(imovel)!} alt={imovel.titulo} fill className="object-cover sm:object-contain bg-gray-100" unoptimized />
+                            <Image src={getFotoPrincipal(imovel)!} alt={imovel.titulo} fill className="object-cover sm:object-contain bg-gray-100" unoptimized sizes="(max-width: 640px) 100vw, 256px" />
                           ) : (
                             <div className="w-full h-full bg-gray-300 flex items-center justify-center">
                               <span className="text-gray-500 text-sm">Sem imagem</span>

@@ -742,6 +742,8 @@ export default function NovoImovelPage() {
                           <img
                             src={foto.preview}
                             alt={`Foto ${index + 1}`}
+                            width={320}
+                            height={240}
                             className="w-full h-full object-cover"
                           />
                           {fotoPrincipalIndex === index && (
@@ -806,6 +808,8 @@ export default function NovoImovelPage() {
                             <img
                               src={foto.preview}
                               alt={`Foto ${index + 1}`}
+                              width={320}
+                              height={180}
                               className="w-full h-full object-cover"
                             />
                             {isPrincipal && (
