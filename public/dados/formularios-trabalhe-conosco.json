@@ -1,17 +1,3 @@
 {
-  "formularios": [
-    {
-      "nome": "Roberto Erico Zen",
-      "telefone": "(47) 99710-9895",
-      "email": "imoveisnox@gmail.com",
-      "instagram": "",
-      "informacoes": "jjj",
-      "arquivos": [
-        "1.docx"
-      ],
-      "id": "1769711034617",
-      "createdAt": "2026-01-29T18:23:54.617Z",
-      "lido": false
-    }
-  ]
+  "formularios": []
 }
