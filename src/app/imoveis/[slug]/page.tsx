@@ -53,7 +53,7 @@ export default function ImovelDetalhePage() {
         setIsFavoritado(isFavorito(imovelData.id))
         trackViewItem(imovelData.id, imovelData.slug || slug, imovelData.titulo || '')
 
-        // Carregar 3 imóveis relacionados (mesma cidade e/ou mesmo tipo, excluindo o atual)
+        // Carregar até 5 imóveis relacionados (mesma cidade e/ou mesmo tipo, excluindo o atual)
         const todos = await getAllImoveis()
         const outros = todos.filter((i: Imovel) => i.slug !== imovelData.slug && i.id !== imovelData.id)
         const cidadeAtual = imovelData.endereco?.cidade
@@ -64,7 +64,7 @@ export default function ImovelDetalhePage() {
           if (scoreB !== scoreA) return scoreB - scoreA
           return Math.abs((a.preco || 0) - (imovelData.preco || 0)) - Math.abs((b.preco || 0) - (imovelData.preco || 0))
         })
-        setIndicados(ordenados.slice(0, 6))
+        setIndicados(ordenados.slice(0, 5))
       } catch (error) {
         console.error('Erro ao carregar imóvel:', error)
         notFound()
@@ -651,21 +651,22 @@ export default function ImovelDetalhePage() {
                 <div className="flex-1 flex items-center gap-2">
                   <button
                     type="button"
-                    onClick={() => setIndicadosIndex((i) => Math.max(0, i - 1))}
-                    disabled={indicadosIndex === 0}
+                    onClick={() => setIndicadosIndex((i) => (i === 0 ? indicados.length - 1 : i - 1))}
+                    disabled={indicados.length <= 1}
                     className="flex-shrink-0 w-10 h-10 rounded-lg bg-gray-900 text-white flex items-center justify-center hover:bg-gray-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                     aria-label="Anterior"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
-                  <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-4 min-w-0 overflow-hidden">
-                    {indicados.slice(indicadosIndex * 3, indicadosIndex * 3 + 3).map((item) => {
+                  <div className="flex-1 flex justify-center min-w-0 overflow-hidden">
+                    {indicados[indicadosIndex] && (() => {
+                      const item = indicados[indicadosIndex]
                       const foto = getFotoPrincipal(item)
                       const favoritado = isFavorito(item.id)
                       return (
                         <div
                           key={item.id}
-                          className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col"
+                          className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col w-full max-w-sm"
                         >
                           <Link href={`/imoveis/${item.slug}`} className="block relative aspect-[4/3] bg-gray-200 overflow-hidden">
                             {foto ? (
@@ -739,12 +740,12 @@ export default function ImovelDetalhePage() {
                           </div>
                         </div>
                       )
-                    })}
+                    })()}
                   </div>
                   <button
                     type="button"
-                    onClick={() => setIndicadosIndex((i) => Math.min(Math.max(0, Math.ceil(indicados.length / 3) - 1), i + 1))}
-                    disabled={indicadosIndex >= Math.ceil(indicados.length / 3) - 1}
+                    onClick={() => setIndicadosIndex((i) => (i >= indicados.length - 1 ? 0 : i + 1))}
+                    disabled={indicados.length <= 1}
                     className="flex-shrink-0 w-10 h-10 rounded-lg bg-gray-900 text-white flex items-center justify-center hover:bg-gray-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                     aria-label="Próximo"
                   >
