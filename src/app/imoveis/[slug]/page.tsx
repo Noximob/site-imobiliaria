@@ -160,9 +160,9 @@ export default function ImovelDetalhePage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 pb-2">
         {/* Breadcrumbs */}
-        <nav aria-label="Breadcrumb" className="mb-3">
+        <nav aria-label="Breadcrumb" className="mb-2">
           <ol className="flex flex-wrap items-center gap-1 text-sm text-gray-500">
             <li>
               <Link href="/" className="hover:text-purple-600 transition-colors">Home</Link>
@@ -181,12 +181,12 @@ export default function ImovelDetalhePage() {
         </nav>
 
         {/* Informações do Imóvel - ACIMA da Galeria - Textos elegantes e menores */}
-        <div className="bg-white rounded-lg shadow-sm p-4 mb-3">
-          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+        <div className="bg-white rounded-lg shadow-sm p-3 mb-2">
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
             {/* Coluna Esquerda - Título, Endereço, Código */}
             <div className="flex-1">
               {/* Título Principal - Elegante e menor */}
-              <h1 className="text-xl md:text-2xl font-light text-gray-900 mb-2 tracking-tight">
+              <h1 className="text-xl md:text-2xl font-light text-gray-900 mb-1.5 tracking-tight">
                 {imovel.titulo}
               </h1>
               
@@ -239,10 +239,11 @@ export default function ImovelDetalhePage() {
         </div>
 
         {/* Galeria - Mobile: principal (2/3) + 2 menores empilhadas (1/3). Desktop: principal (1/2) + grid 2x2 com 4 menores */}
-        <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-3">
+        <div className="bg-white rounded-lg shadow-sm mb-3 overflow-hidden">
           {fotosParaExibir.length > 0 ? (
+            <>
             <div
-              className="grid grid-cols-[2fr_1fr] md:grid-cols-2 gap-1.5 p-1.5 min-h-0 h-[52vh] max-h-[340px] md:h-[70vh] md:max-h-[480px]"
+              className="grid grid-cols-[2fr_1fr] md:grid-cols-2 gap-1.5 p-1.5 min-h-0 h-[48vh] max-h-[300px] md:h-[58vh] md:max-h-[420px]"
               onMouseLeave={() => setHoveredPhotoIndex(null)}
             >
               {/* Foto Principal - ocupa coluna esquerda inteira (mobile 2/3, desktop 1/2) */}
@@ -323,6 +324,16 @@ export default function ImovelDetalhePage() {
                 })}
               </div>
             </div>
+            {/* Botão Visualizar Fotos sempre visível abaixo da galeria */}
+            <div className="px-4 py-3 border-t border-gray-100 flex justify-center sm:justify-end">
+              <Link
+                href={`/imoveis/${imovel.slug}/fotos`}
+                className="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium text-sm hover:bg-gray-50 hover:border-purple-200 transition-colors"
+              >
+                Visualizar Fotos{fotosParaExibir.length > 1 ? ` (${fotosParaExibir.length})` : ''}
+              </Link>
+            </div>
+            </>
           ) : (
             <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
               <span className="text-gray-500">Sem imagens</span>
