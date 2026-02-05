@@ -69,3 +69,9 @@ Análise feita com base no que **já está implementado** no código, excluindo 
 - Estratégia de palavras-chave e conteúdo novo.
 
 Com a aplicação do noindex na galeria, o risco de duplicação entre ficha e galeria fica resolvido no lado técnico.
+
+---
+
+## Carrossel mobile (detalhe do imóvel) – altura dinâmica e SEO
+
+O carrossel de fotos no mobile passa a redimensionar conforme a proporção de cada foto (igual à ideia da listagem, mas dinâmico ao trocar de foto). **Impacto em SEO:** a mudança de altura gera um pequeno **layout shift** (CLS – Cumulative Layout Shift), um dos Core Web Vitals. Para reduzir isso foi colocada uma **transição de 0,3s** no `aspect-ratio`, e o shift só ocorre após ação do usuário (swipe/seta), não no carregamento inicial. Assim o impacto no SEO é **baixo**: o Google penaliza sobretudo shifts inesperados no load; aqui o movimento é esperado e suavizado. Se no futuro quiser priorizar CLS ao máximo, basta fixar de novo um único aspect-ratio (ex.: 4/3) no carrossel.

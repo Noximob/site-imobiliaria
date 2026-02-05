@@ -31,6 +31,7 @@ export default function ImovelDetalhePage() {
   const [isFavoritado, setIsFavoritado] = useState(false)
   const [hoveredPhotoIndex, setHoveredPhotoIndex] = useState<number | null>(null)
   const [mobilePhotoIndex, setMobilePhotoIndex] = useState(0)
+  const [mobileCarouselAspect, setMobileCarouselAspect] = useState<number | null>(null)
   const [touchStartX, setTouchStartX] = useState<number | null>(null)
   const [contatoTipo, setContatoTipo] = useState<'telefone' | 'email' | 'whatsapp'>('email')
   const [formData, setFormData] = useState({
@@ -45,6 +46,7 @@ export default function ImovelDetalhePage() {
 
   useEffect(() => {
     setMobilePhotoIndex(0)
+    setMobileCarouselAspect(null)
   }, [slug])
 
   useEffect(() => {
@@ -248,9 +250,13 @@ export default function ImovelDetalhePage() {
         <div className="bg-white rounded-lg shadow-sm mb-3 overflow-hidden">
           {fotosParaExibir.length > 0 ? (
             <>
-              {/* Mobile: carrossel com setas leves + swipe por toque */}
+              {/* Mobile: carrossel com setas leves + swipe; altura dinâmica conforme proporção da foto */}
               <div
-                className="md:hidden relative aspect-[4/3] w-full overflow-hidden bg-gray-50 touch-pan-y"
+                className="md:hidden relative w-full overflow-hidden bg-gray-50 touch-pan-y"
+                style={{
+                  aspectRatio: mobileCarouselAspect != null ? String(mobileCarouselAspect) : '4/3',
+                  transition: 'aspect-ratio 0.3s ease',
+                }}
                 onTouchStart={(e) => setTouchStartX(e.targetTouches[0].clientX)}
                 onTouchEnd={(e) => {
                   if (touchStartX == null || fotosParaExibir.length <= 1) return
@@ -258,8 +264,10 @@ export default function ImovelDetalhePage() {
                   const diff = touchStartX - endX
                   const minSwipe = 50
                   if (diff > minSwipe) {
+                    setMobileCarouselAspect(null)
                     setMobilePhotoIndex((i) => (i + 1) % fotosParaExibir.length)
                   } else if (diff < -minSwipe) {
+                    setMobileCarouselAspect(null)
                     setMobilePhotoIndex((i) => (i - 1 + fotosParaExibir.length) % fotosParaExibir.length)
                   }
                   setTouchStartX(null)
@@ -277,6 +285,12 @@ export default function ImovelDetalhePage() {
                     width={800}
                     height={600}
                     className="w-full h-full object-cover object-center pointer-events-none"
+                    onLoad={(e) => {
+                      const el = e.currentTarget
+                      if (el.naturalWidth && el.naturalHeight) {
+                        setMobileCarouselAspect(el.naturalWidth / el.naturalHeight)
+                      }
+                    }}
                   />
                 </Link>
                 {fotosParaExibir.length > 1 && (
@@ -286,6 +300,7 @@ export default function ImovelDetalhePage() {
                       onClick={(e) => {
                         e.preventDefault()
                         e.stopPropagation()
+                        setMobileCarouselAspect(null)
                         setMobilePhotoIndex((i) => (i - 1 + fotosParaExibir.length) % fotosParaExibir.length)
                       }}
                       className="absolute left-1.5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-white/25 text-white/50 hover:bg-white/35 hover:text-white/70 transition-colors"
@@ -298,6 +313,7 @@ export default function ImovelDetalhePage() {
                       onClick={(e) => {
                         e.preventDefault()
                         e.stopPropagation()
+                        setMobileCarouselAspect(null)
                         setMobilePhotoIndex((i) => (i + 1) % fotosParaExibir.length)
                       }}
                       className="absolute right-1.5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-white/25 text-white/50 hover:bg-white/35 hover:text-white/70 transition-colors"
