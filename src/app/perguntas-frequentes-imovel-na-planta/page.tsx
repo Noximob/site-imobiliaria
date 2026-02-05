@@ -104,7 +104,9 @@ export default function PerguntasFrequentesImovelNaPlantaPage() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-3 mb-4">
               <HelpCircle className="w-10 h-10 text-purple-200" />
-              <span className="text-purple-200 text-sm font-medium uppercase tracking-wide">Guia imóvel na planta</span>
+              <Link href="/guia-imovel-na-planta-litoral-sc" className="text-purple-200 hover:text-white text-sm font-medium uppercase tracking-wide transition-colors">
+                Guia imóvel na planta
+              </Link>
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight max-w-3xl">
               Perguntas frequentes sobre imóvel na planta
