@@ -6,7 +6,7 @@ const baseUrl = 'https://noximobiliaria.com.br'
 
 export const metadata: Metadata = {
   title: 'Frente Mar x Quadra Mar - Imóvel na Planta | Nox',
-  description: 'Diferenças entre imóvel frente mar e quadra mar no litoral SC. Valorização, uso e como escolher em Penha, Piçarras e Barra Velha.',
+  description: 'Frente mar x quadra mar: diferenças, valorização e como escolher no litoral SC. Penha, Piçarras e Barra Velha. Guia Nox Imóveis.',
   keywords: 'frente mar quadra mar, apartamento frente mar, valorização imóvel litoral',
   authors: [{ name: 'Nox Imóveis' }],
   openGraph: {
@@ -29,7 +29,9 @@ export default function FrenteMarVsQuadraMarPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-4">
             <MapPin className="w-10 h-10 text-purple-200" />
-            <span className="text-purple-200 text-sm font-medium uppercase tracking-wide">Guia imóvel na planta</span>
+            <span className="text-purple-200 text-sm font-medium uppercase tracking-wide">Guia Imóvel na Planta</span>
+            <span className="text-purple-300">·</span>
+            <span className="text-white/90 text-sm">Frente mar x quadra mar</span>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight max-w-3xl">
             Frente mar x quadra mar
@@ -58,12 +60,12 @@ export default function FrenteMarVsQuadraMarPage() {
 
       <section className="py-10 bg-white border-t border-gray-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">Relacionados</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-6">No guia</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Link href="/guia-imovel-na-planta-litoral-sc" className="block p-4 rounded-lg bg-purple-50 border border-purple-100 text-purple-800 font-medium hover:bg-purple-100 transition-colors">Guia completo</Link>
+            <Link href="/guia-imovel-na-planta-litoral-sc" className="block p-4 rounded-lg bg-purple-50 border border-purple-100 text-purple-800 font-medium hover:bg-purple-100 transition-colors">Índice do guia</Link>
+            <Link href="/perguntas-frequentes-imovel-na-planta" className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 transition-colors">Perguntas e respostas</Link>
             <Link href="/investir-imovel-na-planta-litoral" className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 transition-colors">Investir na planta</Link>
-            <Link href="/seguranca-imovel-na-planta" className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 transition-colors">Segurança na planta</Link>
-            <Link href="/perguntas-frequentes-imovel-na-planta" className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 transition-colors">Perguntas frequentes</Link>
+            <Link href="/seguranca-imovel-na-planta" className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 transition-colors">Segurança</Link>
           </div>
         </div>
       </section>

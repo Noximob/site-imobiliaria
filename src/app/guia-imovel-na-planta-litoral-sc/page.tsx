@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { BookOpen, FileText, Shield, CreditCard, MapPin } from 'lucide-react'
+import { BookOpen, FileText, Shield, CreditCard, MapPin, HelpCircle } from 'lucide-react'
 
 const baseUrl = 'https://noximobiliaria.com.br'
 
@@ -44,7 +44,7 @@ export default function GuiaImovelNaPlantaLitoralScPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-4">
             <BookOpen className="w-10 h-10 text-purple-200" />
-            <span className="text-purple-200 text-sm font-medium uppercase tracking-wide">Guia completo</span>
+            <span className="text-purple-200 text-sm font-medium uppercase tracking-wide">Guia Imóvel na Planta</span>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight max-w-3xl">
             Imóvel na planta no litoral de Santa Catarina
@@ -75,10 +75,11 @@ export default function GuiaImovelNaPlantaLitoralScPage() {
         </div>
       </section>
 
-      {/* Cards para satélites + FAQ */}
+      {/* Índice do guia */}
       <section className="py-10 bg-white border-t border-gray-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">Tópicos do guia</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Índice do guia</h2>
+          <p className="text-gray-600 mb-6">Escolha um tema abaixo ou veja todas as perguntas e respostas em um só lugar.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {LINKS_SATELITES.map(({ href, label, icon: Icon }) => (
               <Link
@@ -94,17 +95,17 @@ export default function GuiaImovelNaPlantaLitoralScPage() {
               href="/perguntas-frequentes-imovel-na-planta"
               className="flex items-start gap-3 p-4 rounded-lg bg-purple-50 border border-purple-200 hover:bg-purple-100 transition-colors"
             >
-              <BookOpen className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
-              <span className="font-medium text-purple-900">Perguntas frequentes</span>
+              <HelpCircle className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+              <span className="font-medium text-purple-900">Perguntas e respostas</span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Relacionados */}
+      {/* Links úteis do site */}
       <section className="py-10 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">Relacionados</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-6">No site</h2>
           <div className="flex flex-wrap gap-3">
             <Link href="/imoveis?status=lancamento" className="inline-flex items-center px-4 py-2 rounded-lg bg-purple-600 text-white font-medium hover:bg-purple-700 transition-colors text-sm">
               Ver lançamentos

@@ -104,9 +104,9 @@ export default function PerguntasFrequentesImovelNaPlantaPage() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-3 mb-4">
               <HelpCircle className="w-10 h-10 text-purple-200" />
-              <Link href="/guia-imovel-na-planta-litoral-sc" className="text-purple-200 hover:text-white text-sm font-medium uppercase tracking-wide transition-colors">
-                Guia imóvel na planta
-              </Link>
+              <span className="text-purple-200 text-sm font-medium uppercase tracking-wide">Guia Imóvel na Planta</span>
+              <span className="text-purple-300">·</span>
+              <span className="text-white/90 text-sm">Perguntas e respostas</span>
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight max-w-3xl">
               Perguntas frequentes sobre imóvel na planta
@@ -139,35 +139,21 @@ export default function PerguntasFrequentesImovelNaPlantaPage() {
           </div>
         </section>
 
-        {/* Interlinks: HUB + 3 satélites */}
+        {/* Navegação do guia */}
         <section className="py-10 bg-white border-t border-gray-200">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Conteúdos relacionados</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Link
-                href="/guia-imovel-na-planta-litoral-sc"
-                className="block p-4 rounded-lg bg-purple-50 border border-purple-100 text-purple-800 font-medium hover:bg-purple-100 transition-colors"
-              >
-                Guia completo: imóvel na planta no litoral SC
-              </Link>
-              <Link
-                href="/como-comprar-imovel-na-planta"
-                className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 hover:border-purple-100 transition-colors"
-              >
-                Como comprar imóvel na planta
-              </Link>
-              <Link
-                href="/seguranca-imovel-na-planta"
-                className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 hover:border-purple-100 transition-colors"
-              >
-                Segurança ao comprar na planta
-              </Link>
-              <Link
-                href="/fluxo-pagamento-imovel-na-planta"
-                className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 hover:border-purple-100 transition-colors"
-              >
-                Fluxo de pagamento na planta
-              </Link>
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p className="text-gray-600 mb-4">Este conteúdo faz parte do <strong>Guia Imóvel na Planta</strong>.</p>
+            <Link
+              href="/guia-imovel-na-planta-litoral-sc"
+              className="inline-block px-6 py-3 rounded-lg bg-purple-600 text-white font-medium hover:bg-purple-700 transition-colors"
+            >
+              Ver índice completo do guia
+            </Link>
+            <p className="mt-6 text-sm text-gray-500 mb-2">Outros temas:</p>
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-1">
+              <Link href="/como-comprar-imovel-na-planta" className="text-purple-600 hover:text-purple-700 font-medium text-sm">Como comprar</Link>
+              <Link href="/seguranca-imovel-na-planta" className="text-purple-600 hover:text-purple-700 font-medium text-sm">Segurança</Link>
+              <Link href="/fluxo-pagamento-imovel-na-planta" className="text-purple-600 hover:text-purple-700 font-medium text-sm">Pagamento</Link>
             </div>
           </div>
         </section>

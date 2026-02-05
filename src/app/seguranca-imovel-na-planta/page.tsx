@@ -6,12 +6,12 @@ const baseUrl = 'https://noximobiliaria.com.br'
 
 export const metadata: Metadata = {
   title: 'Segurança ao Comprar Imóvel na Planta | Nox Imóveis',
-  description: 'Como comprar imóvel na planta com segurança. Registro, patrimônio de afetação e dicas para Penha, Piçarras e Barra Velha.',
+  description: 'Segurança ao comprar imóvel na planta: registro de incorporação, patrimônio de afetação e dicas para Penha, Piçarras e Barra Velha.',
   keywords: 'segurança imóvel na planta, patrimônio de afetação, comprar na planta seguro',
   authors: [{ name: 'Nox Imóveis' }],
   openGraph: {
     title: 'Segurança ao Comprar Imóvel na Planta | Nox Imóveis',
-    description: 'Como garantir segurança ao comprar imóvel na planta no litoral SC.',
+    description: 'Segurança ao comprar na planta: registro, patrimônio de afetação e dicas no litoral SC.',
     type: 'website',
     locale: 'pt_BR',
     url: `${baseUrl}/seguranca-imovel-na-planta/`,
@@ -29,7 +29,9 @@ export default function SegurancaImovelNaPlantaPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-4">
             <Shield className="w-10 h-10 text-purple-200" />
-            <span className="text-purple-200 text-sm font-medium uppercase tracking-wide">Guia imóvel na planta</span>
+            <span className="text-purple-200 text-sm font-medium uppercase tracking-wide">Guia Imóvel na Planta</span>
+            <span className="text-purple-300">·</span>
+            <span className="text-white/90 text-sm">Segurança</span>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight max-w-3xl">
             Segurança ao comprar imóvel na planta
@@ -58,12 +60,12 @@ export default function SegurancaImovelNaPlantaPage() {
 
       <section className="py-10 bg-white border-t border-gray-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">Relacionados</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-6">No guia</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Link href="/guia-imovel-na-planta-litoral-sc" className="block p-4 rounded-lg bg-purple-50 border border-purple-100 text-purple-800 font-medium hover:bg-purple-100 transition-colors">Guia completo</Link>
+            <Link href="/guia-imovel-na-planta-litoral-sc" className="block p-4 rounded-lg bg-purple-50 border border-purple-100 text-purple-800 font-medium hover:bg-purple-100 transition-colors">Índice do guia</Link>
+            <Link href="/perguntas-frequentes-imovel-na-planta" className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 transition-colors">Perguntas e respostas</Link>
             <Link href="/como-comprar-imovel-na-planta" className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 transition-colors">Como comprar</Link>
             <Link href="/fluxo-pagamento-imovel-na-planta" className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 transition-colors">Fluxo de pagamento</Link>
-            <Link href="/perguntas-frequentes-imovel-na-planta" className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 transition-colors">Perguntas frequentes</Link>
           </div>
         </div>
       </section>

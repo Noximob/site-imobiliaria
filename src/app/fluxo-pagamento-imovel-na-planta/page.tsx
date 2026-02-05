@@ -6,7 +6,7 @@ const baseUrl = 'https://noximobiliaria.com.br'
 
 export const metadata: Metadata = {
   title: 'Fluxo de Pagamento - Imóvel na Planta | Nox Imóveis',
-  description: 'Entenda como funciona o pagamento de imóvel na planta: entrada, parcelas na obra e financiamento na entrega no litoral SC.',
+  description: 'Entenda o pagamento de imóvel na planta: entrada, parcelas na obra e financiamento na entrega. Dicas para Penha, Piçarras e Barra Velha.',
   keywords: 'pagamento imóvel na planta, parcelas na obra, financiamento na entrega',
   authors: [{ name: 'Nox Imóveis' }],
   openGraph: {
@@ -29,7 +29,9 @@ export default function FluxoPagamentoImovelNaPlantaPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-4">
             <CreditCard className="w-10 h-10 text-purple-200" />
-            <span className="text-purple-200 text-sm font-medium uppercase tracking-wide">Guia imóvel na planta</span>
+            <span className="text-purple-200 text-sm font-medium uppercase tracking-wide">Guia Imóvel na Planta</span>
+            <span className="text-purple-300">·</span>
+            <span className="text-white/90 text-sm">Pagamento</span>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight max-w-3xl">
             Fluxo de pagamento de imóvel na planta
@@ -58,12 +60,12 @@ export default function FluxoPagamentoImovelNaPlantaPage() {
 
       <section className="py-10 bg-white border-t border-gray-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">Relacionados</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-6">No guia</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Link href="/guia-imovel-na-planta-litoral-sc" className="block p-4 rounded-lg bg-purple-50 border border-purple-100 text-purple-800 font-medium hover:bg-purple-100 transition-colors">Guia completo</Link>
+            <Link href="/guia-imovel-na-planta-litoral-sc" className="block p-4 rounded-lg bg-purple-50 border border-purple-100 text-purple-800 font-medium hover:bg-purple-100 transition-colors">Índice do guia</Link>
+            <Link href="/perguntas-frequentes-imovel-na-planta" className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 transition-colors">Perguntas e respostas</Link>
             <Link href="/como-comprar-imovel-na-planta" className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 transition-colors">Como comprar</Link>
             <Link href="/usar-fgts-imovel-na-planta" className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 transition-colors">Usar FGTS</Link>
-            <Link href="/perguntas-frequentes-imovel-na-planta" className="block p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-800 font-medium hover:bg-purple-50 transition-colors">Perguntas frequentes</Link>
           </div>
         </div>
       </section>
