@@ -238,80 +238,99 @@ export default function ImovelDetalhePage() {
           </div>
         </div>
 
-        {/* Galeria: esquerda mais estreita (2fr) = menos corte em fotos altas; principal com contain (não corta); 4 direita maiores (3fr) e preenchidas */}
+        {/* Galeria: mobile = 1 hero + Ver fotos (harmônico, SEO); desktop = grid 1+4 */}
         <div className="bg-white rounded-lg shadow-sm mb-3 overflow-hidden">
           {fotosParaExibir.length > 0 ? (
-            <div
-              className="grid grid-cols-[2fr_3fr] gap-2 p-2 items-stretch"
-              style={{ height: 'clamp(380px, 65vh, 580px)' }}
-              onMouseLeave={() => setHoveredPhotoIndex(null)}
-            >
-              {/* Esquerda: object-contain; fundo branco nas faixas; opaca quando hover em outra foto */}
-              <Link
-                href={`/imoveis/${imovel.slug}/fotos?index=0`}
-                className={`flex w-full h-full min-h-0 items-center justify-center rounded-lg overflow-hidden bg-white transition-opacity duration-200 ${hoveredPhotoIndex != null && hoveredPhotoIndex !== 0 ? 'opacity-70' : 'opacity-100'}`}
-                onMouseEnter={() => setHoveredPhotoIndex(0)}
-              >
-                <img
-                  src={fotosParaExibir[0]}
-                  alt={`${imovel.titulo} - Foto principal`}
-                  fetchPriority="high"
-                  width={800}
-                  height={600}
-                  className="max-w-full max-h-full w-auto h-auto object-contain object-center"
-                />
-              </Link>
-
-              {/* Direita: 4 fotos um pouco maiores (3fr); object-cover para preencher os quadrados */}
-              <div className="grid grid-rows-2 grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-2 h-full min-h-0">
-                {[1, 2, 3, 4].map((i) => {
-                  const temFoto = !!fotosParaExibir[i]
-                  const ultimaCelulaComFoto = Math.min(4, Math.max(1, fotosParaExibir.length - 1))
-                  const linkIndex = temFoto ? i : Math.min(i, fotosParaExibir.length - 1)
-                  const mostrarNoMobile = i <= 2
-                  const mostrarBotaoDesktop = i === ultimaCelulaComFoto && fotosParaExibir.length > 1
-                  const mostrarBotaoMobile = i === 2 && fotosParaExibir.length > 1
-                  const mostrarBotao = mostrarBotaoDesktop || mostrarBotaoMobile
-                  return (
-                    <Link
-                      key={i}
-                      href={`/imoveis/${imovel.slug}/fotos?index=${linkIndex}`}
-                      className={`relative w-full min-h-0 rounded-lg overflow-hidden block transition-opacity duration-200 ${hoveredPhotoIndex != null && hoveredPhotoIndex !== i ? 'opacity-70' : 'opacity-100'} ${mostrarNoMobile ? '' : 'hidden md:block'}`}
-                      onMouseEnter={() => setHoveredPhotoIndex(i)}
-                    >
-                      {temFoto ? (
-                        <img
-                          src={fotosParaExibir[i]}
-                          alt={`${imovel.titulo} - Foto ${i + 1}`}
-                          loading="lazy"
-                          width={400}
-                          height={300}
-                          className="absolute inset-0 w-full h-full object-cover object-center"
-                        />
-                      ) : mostrarBotaoDesktop && fotosParaExibir.length > 1 ? (
-                        <img
-                          src={fotosParaExibir[fotosParaExibir.length - 1]}
-                          alt={`${imovel.titulo} - Foto`}
-                          loading="lazy"
-                          width={400}
-                          height={300}
-                          className="absolute inset-0 w-full h-full object-cover object-center"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 bg-white" />
-                      )}
-                      {mostrarBotao && (
-                        <div className={`absolute bottom-1.5 right-1.5 z-20 ${mostrarBotaoMobile && mostrarBotaoDesktop ? '' : mostrarBotaoMobile ? 'md:hidden' : 'hidden md:block'}`}>
-                          <span className="inline-flex items-center gap-1.5 bg-white/80 backdrop-blur-sm border border-gray-300/90 text-gray-800 px-3 py-1.5 rounded-md text-xs font-medium shadow-sm">
-                            Ver fotos{fotosParaExibir.length > 1 ? ` (${fotosParaExibir.length})` : ''}
-                          </span>
-                        </div>
-                      )}
-                    </Link>
-                  )
-                })}
+            <>
+              {/* Mobile: uma foto em destaque (4:3), botão Ver fotos – limpo e bom para SEO */}
+              <div className="md:hidden">
+                <Link
+                  href={`/imoveis/${imovel.slug}/fotos`}
+                  className="block relative aspect-[4/3] w-full overflow-hidden bg-gray-50"
+                >
+                  <img
+                    src={fotosParaExibir[0]}
+                    alt={`${imovel.titulo} - Foto principal`}
+                    fetchPriority="high"
+                    width={800}
+                    height={600}
+                    className="w-full h-full object-cover object-center"
+                  />
+                  {fotosParaExibir.length > 1 && (
+                    <span className="absolute bottom-3 right-3 z-10 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur-sm border border-gray-200 text-gray-800 px-3 py-2 rounded-lg text-sm font-medium shadow-sm">
+                      Ver fotos ({fotosParaExibir.length})
+                    </span>
+                  )}
+                </Link>
               </div>
-            </div>
+
+              {/* Desktop: grid esquerda (2fr) + 4 direita (3fr), hover e contain na principal */}
+              <div
+                className="hidden md:grid grid-cols-[2fr_3fr] gap-2 p-2 items-stretch"
+                style={{ height: 'clamp(380px, 65vh, 580px)' }}
+                onMouseLeave={() => setHoveredPhotoIndex(null)}
+              >
+                <Link
+                  href={`/imoveis/${imovel.slug}/fotos?index=0`}
+                  className={`flex w-full h-full min-h-0 items-center justify-center rounded-lg overflow-hidden bg-white transition-opacity duration-200 ${hoveredPhotoIndex != null && hoveredPhotoIndex !== 0 ? 'opacity-70' : 'opacity-100'}`}
+                  onMouseEnter={() => setHoveredPhotoIndex(0)}
+                >
+                  <img
+                    src={fotosParaExibir[0]}
+                    alt={`${imovel.titulo} - Foto principal`}
+                    fetchPriority="high"
+                    width={800}
+                    height={600}
+                    className="max-w-full max-h-full w-auto h-auto object-contain object-center"
+                  />
+                </Link>
+                <div className="grid grid-rows-2 grid-cols-2 gap-2 h-full min-h-0">
+                  {[1, 2, 3, 4].map((i) => {
+                    const temFoto = !!fotosParaExibir[i]
+                    const ultimaCelulaComFoto = Math.min(4, Math.max(1, fotosParaExibir.length - 1))
+                    const linkIndex = temFoto ? i : Math.min(i, fotosParaExibir.length - 1)
+                    const mostrarBotaoDesktop = i === ultimaCelulaComFoto && fotosParaExibir.length > 1
+                    return (
+                      <Link
+                        key={i}
+                        href={`/imoveis/${imovel.slug}/fotos?index=${linkIndex}`}
+                        className={`relative w-full min-h-0 rounded-lg overflow-hidden block transition-opacity duration-200 ${hoveredPhotoIndex != null && hoveredPhotoIndex !== i ? 'opacity-70' : 'opacity-100'}`}
+                        onMouseEnter={() => setHoveredPhotoIndex(i)}
+                      >
+                        {temFoto ? (
+                          <img
+                            src={fotosParaExibir[i]}
+                            alt={`${imovel.titulo} - Foto ${i + 1}`}
+                            loading="lazy"
+                            width={400}
+                            height={300}
+                            className="absolute inset-0 w-full h-full object-cover object-center"
+                          />
+                        ) : mostrarBotaoDesktop && fotosParaExibir.length > 1 ? (
+                          <img
+                            src={fotosParaExibir[fotosParaExibir.length - 1]}
+                            alt={`${imovel.titulo} - Foto`}
+                            loading="lazy"
+                            width={400}
+                            height={300}
+                            className="absolute inset-0 w-full h-full object-cover object-center"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 bg-white" />
+                        )}
+                        {mostrarBotaoDesktop && (
+                          <div className="absolute bottom-1.5 right-1.5 z-20">
+                            <span className="inline-flex items-center gap-1.5 bg-white/80 backdrop-blur-sm border border-gray-300/90 text-gray-800 px-3 py-1.5 rounded-md text-xs font-medium shadow-sm">
+                              Ver fotos{fotosParaExibir.length > 1 ? ` (${fotosParaExibir.length})` : ''}
+                            </span>
+                          </div>
+                        )}
+                      </Link>
+                    )
+                  })}
+                </div>
+              </div>
+            </>
           ) : (
             <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
               <span className="text-gray-500">Sem imagens</span>

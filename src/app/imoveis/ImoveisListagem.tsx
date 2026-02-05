@@ -257,9 +257,13 @@ function ImoveisPageContent() {
               ) : (
                 <>
                   <div className="space-y-8">
-                    {imoveis.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((imovel) => (
+                    {imoveis.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((imovel, index) => (
                       <div key={imovel.id} className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col sm:flex-row sm:h-64 min-w-0 w-full">
-                        <Link href={`/imoveis/${imovel.slug}/`} className="w-full sm:w-64 h-56 sm:h-full relative flex-shrink-0 min-w-0 block" onClick={() => trackImovelClick(imovel.id, imovel.slug, imovel.titulo)}>
+                        <Link
+                          href={`/imoveis/${imovel.slug}/`}
+                          className={`w-full sm:w-64 sm:h-full relative flex-shrink-0 min-w-0 block ${index % 2 === 0 ? 'aspect-[4/3]' : 'aspect-[3/4]'} sm:aspect-auto`}
+                          onClick={() => trackImovelClick(imovel.id, imovel.slug, imovel.titulo)}
+                        >
                           {getFotoPrincipal(imovel) ? (
                             <Image src={getFotoPrincipal(imovel)!} alt={imovel.titulo} fill className="object-cover sm:object-contain bg-gray-100" unoptimized sizes="(max-width: 640px) 100vw, 256px" />
                           ) : (
