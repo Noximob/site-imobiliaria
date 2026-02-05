@@ -238,18 +238,18 @@ export default function ImovelDetalhePage() {
           </div>
         </div>
 
-        {/* Galeria uniforme: 1 grande + 4 quadrados; todas object-cover (corte lateral ok), mesmo layout em todo imóvel */}
+        {/* Galeria: esquerda mais estreita (2fr) = menos corte em fotos altas; principal com contain (não corta); 4 direita maiores (3fr) e preenchidas */}
         <div className="bg-white rounded-lg shadow-sm mb-3 overflow-hidden">
           {fotosParaExibir.length > 0 ? (
             <div
-              className="grid grid-cols-[3fr_2fr] gap-2 p-2 items-stretch"
+              className="grid grid-cols-[2fr_3fr] gap-2 p-2 items-stretch"
               style={{ height: 'clamp(380px, 65vh, 580px)' }}
               onMouseLeave={() => setHoveredPhotoIndex(null)}
             >
-              {/* Esquerda: mesma regra das outras – preenche a célula, object-cover (pode cortar laterais) */}
+              {/* Esquerda: object-contain para não cortar a foto principal; faixas discretas (bg) quando a foto for muito vertical */}
               <Link
                 href={`/imoveis/${imovel.slug}/fotos?index=0`}
-                className="relative w-full h-full min-h-0 rounded-lg overflow-hidden block"
+                className="flex w-full h-full min-h-0 items-center justify-center rounded-lg overflow-hidden bg-gray-50"
                 onMouseEnter={() => setHoveredPhotoIndex(0)}
               >
                 <img
@@ -258,11 +258,11 @@ export default function ImovelDetalhePage() {
                   fetchPriority="high"
                   width={800}
                   height={600}
-                  className="absolute inset-0 w-full h-full object-cover object-center"
+                  className="max-w-full max-h-full w-auto h-auto object-contain object-center"
                 />
               </Link>
 
-              {/* Direita: 4 fotos 2x2 – mesmo object-cover, layout idêntico em todas as páginas */}
+              {/* Direita: 4 fotos um pouco maiores (3fr); object-cover para preencher os quadrados */}
               <div className="grid grid-rows-2 grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-2 h-full min-h-0">
                 {[1, 2, 3, 4].map((i) => {
                   const temFoto = !!fotosParaExibir[i]
