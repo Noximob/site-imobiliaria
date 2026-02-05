@@ -89,6 +89,14 @@ export async function GET() {
       { url: `${baseUrl}/imoveis/barra-velha/`, lastmod: new Date(), changefreq: 'weekly', priority: 0.85, images: [] as string[] },
       { url: `${baseUrl}/imoveis/apartamentos/`, lastmod: new Date(), changefreq: 'weekly', priority: 0.85, images: [] as string[] },
       { url: `${baseUrl}/imoveis/frente-mar/`, lastmod: new Date(), changefreq: 'weekly', priority: 0.85, images: [] as string[] },
+      { url: `${baseUrl}/guia-imovel-na-planta-litoral-sc/`, lastmod: new Date(), changefreq: 'monthly', priority: 0.7, images: [] as string[] },
+      { url: `${baseUrl}/perguntas-frequentes-imovel-na-planta/`, lastmod: new Date(), changefreq: 'monthly', priority: 0.7, images: [] as string[] },
+      { url: `${baseUrl}/como-comprar-imovel-na-planta/`, lastmod: new Date(), changefreq: 'monthly', priority: 0.6, images: [] as string[] },
+      { url: `${baseUrl}/fluxo-pagamento-imovel-na-planta/`, lastmod: new Date(), changefreq: 'monthly', priority: 0.6, images: [] as string[] },
+      { url: `${baseUrl}/usar-fgts-imovel-na-planta/`, lastmod: new Date(), changefreq: 'monthly', priority: 0.6, images: [] as string[] },
+      { url: `${baseUrl}/investir-imovel-na-planta-litoral/`, lastmod: new Date(), changefreq: 'monthly', priority: 0.6, images: [] as string[] },
+      { url: `${baseUrl}/frente-mar-vs-quadra-mar/`, lastmod: new Date(), changefreq: 'monthly', priority: 0.6, images: [] as string[] },
+      { url: `${baseUrl}/seguranca-imovel-na-planta/`, lastmod: new Date(), changefreq: 'monthly', priority: 0.6, images: [] as string[] },
     ]
 
     let blogUrls: { url: string; lastmod: Date; changefreq: string; priority: number; images: string[] }[] = []

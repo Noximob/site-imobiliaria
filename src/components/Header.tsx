@@ -344,6 +344,12 @@ export default function Header() {
                 <div>
                   <h3 className="text-purple-400 text-base font-semibold mb-2">Institucional</h3>
                   <div className="space-y-1">
+                    <Link href="/guia-imovel-na-planta-litoral-sc" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                      Guia imóvel na planta
+                    </Link>
+                    <Link href="/perguntas-frequentes-imovel-na-planta" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                      Perguntas frequentes
+                    </Link>
                     <Link href="/sobre" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Quem somos
                     </Link>
