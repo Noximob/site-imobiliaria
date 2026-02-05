@@ -2616,272 +2616,6 @@
         "section": "Guia Imóvel na Planta"
       }
     },
-    "faq": {
-      "hero_titulo": {
-        "value": "Perguntas frequentes sobre imóvel na planta",
-        "type": "titulo",
-        "label": "FAQ – Título principal",
-        "hint": "Título da página de perguntas frequentes",
-        "maxLength": 80,
-        "section": "Guia Imóvel na Planta"
-      },
-      "hero_subtitulo": {
-        "value": "Respostas objetivas para as principais dúvidas sobre compra de imóvel na planta no litoral de Santa Catarina.",
-        "type": "texto",
-        "label": "FAQ – Subtítulo",
-        "hint": "Subtítulo da página FAQ",
-        "maxLength": 150,
-        "section": "Guia Imóvel na Planta"
-      },
-      "hero_sublabel": {
-        "value": "Perguntas e respostas",
-        "type": "texto",
-        "label": "FAQ – Label no hero (tipo de página)",
-        "hint": "Texto ao lado do label do guia no topo da página (ex: Perguntas e respostas)",
-        "maxLength": 40,
-        "section": "Guia Imóvel na Planta"
-      },
-      "cta_texto": {
-        "value": "Este conteúdo faz parte do Guia Imóvel na Planta.",
-        "type": "texto",
-        "label": "FAQ – Texto acima do botão",
-        "hint": "Frase antes do botão Ver índice",
-        "maxLength": 80,
-        "section": "Guia Imóvel na Planta"
-      },
-      "cta_botao": {
-        "value": "Ver índice completo do guia",
-        "type": "botao",
-        "label": "FAQ – Botão índice",
-        "hint": "Texto do botão que leva ao índice do guia",
-        "maxLength": 50,
-        "section": "Guia Imóvel na Planta"
-      },
-      "outros_temas_label": {
-        "value": "Outros temas:",
-        "type": "texto",
-        "label": "FAQ – Label Outros temas",
-        "hint": "Texto acima dos 3 links (Como comprar, Segurança, Pagamento)",
-        "maxLength": 30,
-        "section": "Guia Imóvel na Planta"
-      },
-      "link_como_comprar": {
-        "value": "Como comprar",
-        "type": "link",
-        "label": "FAQ – Link Como comprar",
-        "hint": "Texto do primeiro link de Outros temas",
-        "maxLength": 30,
-        "section": "Guia Imóvel na Planta"
-      },
-      "link_seguranca": {
-        "value": "Segurança",
-        "type": "link",
-        "label": "FAQ – Link Segurança",
-        "hint": "Texto do segundo link",
-        "maxLength": 30,
-        "section": "Guia Imóvel na Planta"
-      },
-      "link_pagamento": {
-        "value": "Pagamento",
-        "type": "link",
-        "label": "FAQ – Link Pagamento",
-        "hint": "Texto do terceiro link",
-        "maxLength": 30,
-        "section": "Guia Imóvel na Planta"
-      },
-      "pergunta_1": {
-        "value": "O que é comprar um imóvel na planta?",
-        "type": "texto",
-        "label": "FAQ Pergunta 1",
-        "hint": "Pergunta 1",
-        "maxLength": 200,
-        "section": "Guia Imóvel na Planta"
-      },
-      "resposta_1": {
-        "value": "Comprar um imóvel na planta significa adquirir a unidade antes da conclusão da obra, diretamente da construtora ou com intermediação imobiliária. O principal benefício é entrar no projeto em fase inicial, normalmente com melhor condição de preço e pagamento parcelado durante a construção. No litoral de Santa Catarina, muitos compradores utilizam esse modelo tanto para moradia futura quanto para investimento e segunda residência.",
-        "type": "texto",
-        "label": "FAQ Resposta 1",
-        "hint": "Resposta 1",
-        "maxLength": 600,
-        "section": "Guia Imóvel na Planta"
-      },
-      "pergunta_2": {
-        "value": "Imóvel na planta é seguro?",
-        "type": "texto",
-        "label": "FAQ Pergunta 2",
-        "hint": "Pergunta 2",
-        "maxLength": 200,
-        "section": "Guia Imóvel na Planta"
-      },
-      "resposta_2": {
-        "value": "Sim, desde que o empreendimento tenha registro de incorporação e siga as exigências legais. Um ponto importante é o patrimônio de afetação, que separa financeiramente a obra do restante da empresa. Também é essencial avaliar o histórico de entregas da construtora, padrão construtivo e transparência contratual. Com análise correta, é uma modalidade amplamente utilizada e segura.",
-        "type": "texto",
-        "label": "FAQ Resposta 2",
-        "hint": "Resposta 2",
-        "maxLength": 600,
-        "section": "Guia Imóvel na Planta"
-      },
-      "pergunta_3": {
-        "value": "Como funciona o pagamento de um apartamento na planta?",
-        "type": "texto",
-        "label": "FAQ Pergunta 3",
-        "hint": "Pergunta 3",
-        "maxLength": 200,
-        "section": "Guia Imóvel na Planta"
-      },
-      "resposta_3": {
-        "value": "Normalmente o pagamento é dividido em entrada, parcelas mensais durante a obra e reforços intermediários. Na entrega das chaves, o saldo pode ser quitado com recursos próprios ou financiamento bancário. Esse modelo permite distribuir o investimento ao longo do tempo e é bastante comum nos lançamentos imobiliários do litoral.",
-        "type": "texto",
-        "label": "FAQ Resposta 3",
-        "hint": "Resposta 3",
-        "maxLength": 600,
-        "section": "Guia Imóvel na Planta"
-      },
-      "pergunta_4": {
-        "value": "Posso financiar somente na entrega do imóvel?",
-        "type": "texto",
-        "label": "FAQ Pergunta 4",
-        "hint": "Pergunta 4",
-        "maxLength": 200,
-        "section": "Guia Imóvel na Planta"
-      },
-      "resposta_4": {
-        "value": "Sim. Em muitos empreendimentos o comprador paga parte durante a obra direto à construtora e deixa o saldo final para financiamento bancário na entrega. Isso reduz o desembolso inicial e permite organizar melhor o planejamento financeiro até a conclusão do projeto.",
-        "type": "texto",
-        "label": "FAQ Resposta 4",
-        "hint": "Resposta 4",
-        "maxLength": 600,
-        "section": "Guia Imóvel na Planta"
-      },
-      "pergunta_5": {
-        "value": "Posso usar FGTS para comprar imóvel na planta?",
-        "type": "texto",
-        "label": "FAQ Pergunta 5",
-        "hint": "Pergunta 5",
-        "maxLength": 200,
-        "section": "Guia Imóvel na Planta"
-      },
-      "resposta_5": {
-        "value": "Em muitos casos é possível usar o FGTS na etapa de financiamento ou na composição de entrada, desde que o comprador atenda às regras legais. É necessário não possuir outro imóvel na mesma cidade e cumprir requisitos de tempo de trabalho. Cada situação deve ser analisada individualmente.",
-        "type": "texto",
-        "label": "FAQ Resposta 5",
-        "hint": "Resposta 5",
-        "maxLength": 600,
-        "section": "Guia Imóvel na Planta"
-      },
-      "pergunta_6": {
-        "value": "Vale a pena investir em imóvel na planta?",
-        "type": "texto",
-        "label": "FAQ Pergunta 6",
-        "hint": "Pergunta 6",
-        "maxLength": 200,
-        "section": "Guia Imóvel na Planta"
-      },
-      "resposta_6": {
-        "value": "Depende do projeto, localização e condição de entrada. Muitos investidores buscam imóveis na planta porque entram em fase inicial e acompanham a valorização até a entrega. No litoral catarinense, a demanda por moradia e veraneio ajuda a sustentar interesse, mas toda decisão deve considerar perfil e prazo.",
-        "type": "texto",
-        "label": "FAQ Resposta 6",
-        "hint": "Resposta 6",
-        "maxLength": 600,
-        "section": "Guia Imóvel na Planta"
-      },
-      "pergunta_7": {
-        "value": "Imóvel frente mar valoriza mais que quadra mar?",
-        "type": "texto",
-        "label": "FAQ Pergunta 7",
-        "hint": "Pergunta 7",
-        "maxLength": 200,
-        "section": "Guia Imóvel na Planta"
-      },
-      "resposta_7": {
-        "value": "Imóveis frente mar costumam ter maior escassez e procura, o que favorece valorização ao longo do tempo. Porém, projetos quadra mar com boa vista, padrão construtivo e localização estratégica também podem performar muito bem. A análise deve considerar conjunto do empreendimento.",
-        "type": "texto",
-        "label": "FAQ Resposta 7",
-        "hint": "Resposta 7",
-        "maxLength": 600,
-        "section": "Guia Imóvel na Planta"
-      },
-      "pergunta_8": {
-        "value": "Posso revender antes da entrega?",
-        "type": "texto",
-        "label": "FAQ Pergunta 8",
-        "hint": "Pergunta 8",
-        "maxLength": 200,
-        "section": "Guia Imóvel na Planta"
-      },
-      "resposta_8": {
-        "value": "Na maioria dos contratos é possível fazer cessão de direitos, ou seja, transferir o contrato para outro comprador antes da entrega. As regras variam por construtora e precisam estar previstas em contrato.",
-        "type": "texto",
-        "label": "FAQ Resposta 8",
-        "hint": "Resposta 8",
-        "maxLength": 600,
-        "section": "Guia Imóvel na Planta"
-      },
-      "pergunta_9": {
-        "value": "Comprar com imobiliária é mais caro que direto com a construtora?",
-        "type": "texto",
-        "label": "FAQ Pergunta 9",
-        "hint": "Pergunta 9",
-        "maxLength": 200,
-        "section": "Guia Imóvel na Planta"
-      },
-      "resposta_9": {
-        "value": "Não. O valor normalmente é o mesmo. A imobiliária é remunerada pela construtora. O diferencial é a assessoria, comparação entre projetos e apoio técnico na escolha e negociação.",
-        "type": "texto",
-        "label": "FAQ Resposta 9",
-        "hint": "Resposta 9",
-        "maxLength": 600,
-        "section": "Guia Imóvel na Planta"
-      },
-      "pergunta_10": {
-        "value": "Quais custos existem além do valor do imóvel?",
-        "type": "texto",
-        "label": "FAQ Pergunta 10",
-        "hint": "Pergunta 10",
-        "maxLength": 200,
-        "section": "Guia Imóvel na Planta"
-      },
-      "resposta_10": {
-        "value": "Além do valor da unidade, existem custos como ITBI, escritura e registro. Se houver financiamento, podem existir taxas bancárias. Esses valores variam conforme município e modalidade de compra.",
-        "type": "texto",
-        "label": "FAQ Resposta 10",
-        "hint": "Resposta 10",
-        "maxLength": 600,
-        "section": "Guia Imóvel na Planta"
-      },
-      "pergunta_11": {
-        "value": "O que é patrimônio de afetação?",
-        "type": "texto",
-        "label": "FAQ Pergunta 11",
-        "hint": "Pergunta 11",
-        "maxLength": 200,
-        "section": "Guia Imóvel na Planta"
-      },
-      "resposta_11": {
-        "value": "É um mecanismo legal que separa os recursos financeiros da obra do restante da empresa. Isso protege o andamento da construção e dá mais segurança aos compradores.",
-        "type": "texto",
-        "label": "FAQ Resposta 11",
-        "hint": "Resposta 11",
-        "maxLength": 600,
-        "section": "Guia Imóvel na Planta"
-      },
-      "pergunta_12": {
-        "value": "Imóvel na planta é melhor para morar ou investir?",
-        "type": "texto",
-        "label": "FAQ Pergunta 12",
-        "hint": "Pergunta 12",
-        "maxLength": 200,
-        "section": "Guia Imóvel na Planta"
-      },
-      "resposta_12": {
-        "value": "Pode servir para ambos. Para morar, permite planejar a mudança futura. Para investir, possibilita entrada antecipada em bons projetos. A escolha depende do objetivo do comprador.",
-        "type": "texto",
-        "label": "FAQ Resposta 12",
-        "hint": "Resposta 12",
-        "maxLength": 600,
-        "section": "Guia Imóvel na Planta"
-      }
-    },
     "temas": {
       "tema_como_comprar": {
         "value": "Como comprar imóvel na planta",
@@ -2931,6 +2665,272 @@
         "maxLength": 50,
         "section": "Guia Imóvel na Planta"
       }
+    }
+  },
+  "FAQ Imóvel na Planta": {
+    "hero_titulo": {
+      "value": "Perguntas frequentes sobre imóvel na planta",
+      "type": "titulo",
+      "label": "Título principal",
+      "hint": "Título da página de perguntas frequentes",
+      "maxLength": 80,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "hero_subtitulo": {
+      "value": "Respostas objetivas para as principais dúvidas sobre compra de imóvel na planta no litoral de Santa Catarina.",
+      "type": "texto",
+      "label": "Subtítulo",
+      "hint": "Subtítulo da página FAQ",
+      "maxLength": 150,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "hero_sublabel": {
+      "value": "Perguntas e respostas",
+      "type": "texto",
+      "label": "Label no hero (tipo de página)",
+      "hint": "Texto ao lado do label do guia no topo (ex: Perguntas e respostas)",
+      "maxLength": 40,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "cta_texto": {
+      "value": "Este conteúdo faz parte do Guia Imóvel na Planta.",
+      "type": "texto",
+      "label": "Texto acima do botão",
+      "hint": "Frase antes do botão Ver índice",
+      "maxLength": 80,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "cta_botao": {
+      "value": "Ver índice completo do guia",
+      "type": "botao",
+      "label": "Botão índice",
+      "hint": "Texto do botão que leva ao índice do guia",
+      "maxLength": 50,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "outros_temas_label": {
+      "value": "Outros temas:",
+      "type": "texto",
+      "label": "Label Outros temas",
+      "hint": "Texto acima dos 3 links (Como comprar, Segurança, Pagamento)",
+      "maxLength": 30,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "link_como_comprar": {
+      "value": "Como comprar",
+      "type": "link",
+      "label": "Link Como comprar",
+      "hint": "Texto do primeiro link de Outros temas",
+      "maxLength": 30,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "link_seguranca": {
+      "value": "Segurança",
+      "type": "link",
+      "label": "Link Segurança",
+      "hint": "Texto do segundo link",
+      "maxLength": 30,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "link_pagamento": {
+      "value": "Pagamento",
+      "type": "link",
+      "label": "Link Pagamento",
+      "hint": "Texto do terceiro link",
+      "maxLength": 30,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "pergunta_1": {
+      "value": "O que é comprar um imóvel na planta?",
+      "type": "texto",
+      "label": "Pergunta 1",
+      "hint": "Pergunta 1",
+      "maxLength": 200,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "resposta_1": {
+      "value": "Comprar um imóvel na planta significa adquirir a unidade antes da conclusão da obra, diretamente da construtora ou com intermediação imobiliária. O principal benefício é entrar no projeto em fase inicial, normalmente com melhor condição de preço e pagamento parcelado durante a construção. No litoral de Santa Catarina, muitos compradores utilizam esse modelo tanto para moradia futura quanto para investimento e segunda residência.",
+      "type": "texto",
+      "label": "Resposta 1",
+      "hint": "Resposta 1",
+      "maxLength": 600,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "pergunta_2": {
+      "value": "Imóvel na planta é seguro?",
+      "type": "texto",
+      "label": "Pergunta 2",
+      "hint": "Pergunta 2",
+      "maxLength": 200,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "resposta_2": {
+      "value": "Sim, desde que o empreendimento tenha registro de incorporação e siga as exigências legais. Um ponto importante é o patrimônio de afetação, que separa financeiramente a obra do restante da empresa. Também é essencial avaliar o histórico de entregas da construtora, padrão construtivo e transparência contratual. Com análise correta, é uma modalidade amplamente utilizada e segura.",
+      "type": "texto",
+      "label": "Resposta 2",
+      "hint": "Resposta 2",
+      "maxLength": 600,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "pergunta_3": {
+      "value": "Como funciona o pagamento de um apartamento na planta?",
+      "type": "texto",
+      "label": "Pergunta 3",
+      "hint": "Pergunta 3",
+      "maxLength": 200,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "resposta_3": {
+      "value": "Normalmente o pagamento é dividido em entrada, parcelas mensais durante a obra e reforços intermediários. Na entrega das chaves, o saldo pode ser quitado com recursos próprios ou financiamento bancário. Esse modelo permite distribuir o investimento ao longo do tempo e é bastante comum nos lançamentos imobiliários do litoral.",
+      "type": "texto",
+      "label": "Resposta 3",
+      "hint": "Resposta 3",
+      "maxLength": 600,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "pergunta_4": {
+      "value": "Posso financiar somente na entrega do imóvel?",
+      "type": "texto",
+      "label": "Pergunta 4",
+      "hint": "Pergunta 4",
+      "maxLength": 200,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "resposta_4": {
+      "value": "Sim. Em muitos empreendimentos o comprador paga parte durante a obra direto à construtora e deixa o saldo final para financiamento bancário na entrega. Isso reduz o desembolso inicial e permite organizar melhor o planejamento financeiro até a conclusão do projeto.",
+      "type": "texto",
+      "label": "Resposta 4",
+      "hint": "Resposta 4",
+      "maxLength": 600,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "pergunta_5": {
+      "value": "Posso usar FGTS para comprar imóvel na planta?",
+      "type": "texto",
+      "label": "Pergunta 5",
+      "hint": "Pergunta 5",
+      "maxLength": 200,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "resposta_5": {
+      "value": "Em muitos casos é possível usar o FGTS na etapa de financiamento ou na composição de entrada, desde que o comprador atenda às regras legais. É necessário não possuir outro imóvel na mesma cidade e cumprir requisitos de tempo de trabalho. Cada situação deve ser analisada individualmente.",
+      "type": "texto",
+      "label": "Resposta 5",
+      "hint": "Resposta 5",
+      "maxLength": 600,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "pergunta_6": {
+      "value": "Vale a pena investir em imóvel na planta?",
+      "type": "texto",
+      "label": "Pergunta 6",
+      "hint": "Pergunta 6",
+      "maxLength": 200,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "resposta_6": {
+      "value": "Depende do projeto, localização e condição de entrada. Muitos investidores buscam imóveis na planta porque entram em fase inicial e acompanham a valorização até a entrega. No litoral catarinense, a demanda por moradia e veraneio ajuda a sustentar interesse, mas toda decisão deve considerar perfil e prazo.",
+      "type": "texto",
+      "label": "Resposta 6",
+      "hint": "Resposta 6",
+      "maxLength": 600,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "pergunta_7": {
+      "value": "Imóvel frente mar valoriza mais que quadra mar?",
+      "type": "texto",
+      "label": "Pergunta 7",
+      "hint": "Pergunta 7",
+      "maxLength": 200,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "resposta_7": {
+      "value": "Imóveis frente mar costumam ter maior escassez e procura, o que favorece valorização ao longo do tempo. Porém, projetos quadra mar com boa vista, padrão construtivo e localização estratégica também podem performar muito bem. A análise deve considerar conjunto do empreendimento.",
+      "type": "texto",
+      "label": "Resposta 7",
+      "hint": "Resposta 7",
+      "maxLength": 600,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "pergunta_8": {
+      "value": "Posso revender antes da entrega?",
+      "type": "texto",
+      "label": "Pergunta 8",
+      "hint": "Pergunta 8",
+      "maxLength": 200,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "resposta_8": {
+      "value": "Na maioria dos contratos é possível fazer cessão de direitos, ou seja, transferir o contrato para outro comprador antes da entrega. As regras variam por construtora e precisam estar previstas em contrato.",
+      "type": "texto",
+      "label": "Resposta 8",
+      "hint": "Resposta 8",
+      "maxLength": 600,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "pergunta_9": {
+      "value": "Comprar com imobiliária é mais caro que direto com a construtora?",
+      "type": "texto",
+      "label": "Pergunta 9",
+      "hint": "Pergunta 9",
+      "maxLength": 200,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "resposta_9": {
+      "value": "Não. O valor normalmente é o mesmo. A imobiliária é remunerada pela construtora. O diferencial é a assessoria, comparação entre projetos e apoio técnico na escolha e negociação.",
+      "type": "texto",
+      "label": "Resposta 9",
+      "hint": "Resposta 9",
+      "maxLength": 600,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "pergunta_10": {
+      "value": "Quais custos existem além do valor do imóvel?",
+      "type": "texto",
+      "label": "Pergunta 10",
+      "hint": "Pergunta 10",
+      "maxLength": 200,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "resposta_10": {
+      "value": "Além do valor da unidade, existem custos como ITBI, escritura e registro. Se houver financiamento, podem existir taxas bancárias. Esses valores variam conforme município e modalidade de compra.",
+      "type": "texto",
+      "label": "Resposta 10",
+      "hint": "Resposta 10",
+      "maxLength": 600,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "pergunta_11": {
+      "value": "O que é patrimônio de afetação?",
+      "type": "texto",
+      "label": "Pergunta 11",
+      "hint": "Pergunta 11",
+      "maxLength": 200,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "resposta_11": {
+      "value": "É um mecanismo legal que separa os recursos financeiros da obra do restante da empresa. Isso protege o andamento da construção e dá mais segurança aos compradores.",
+      "type": "texto",
+      "label": "Resposta 11",
+      "hint": "Resposta 11",
+      "maxLength": 600,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "pergunta_12": {
+      "value": "Imóvel na planta é melhor para morar ou investir?",
+      "type": "texto",
+      "label": "Pergunta 12",
+      "hint": "Pergunta 12",
+      "maxLength": 200,
+      "section": "FAQ Imóvel na Planta"
+    },
+    "resposta_12": {
+      "value": "Pode servir para ambos. Para morar, permite planejar a mudança futura. Para investir, possibilita entrada antecipada em bons projetos. A escolha depende do objetivo do comprador.",
+      "type": "texto",
+      "label": "Resposta 12",
+      "hint": "Resposta 12",
+      "maxLength": 600,
+      "section": "FAQ Imóvel na Planta"
     }
   }
 }

@@ -5,13 +5,14 @@ import { getText } from '@/lib/site-texts'
 
 const baseUrl = 'https://noximobiliaria.com.br'
 const G = 'Guia Imóvel na Planta'
+const F = 'FAQ Imóvel na Planta'
 
 function getFaqItems() {
   return Array.from({ length: 12 }, (_, i) => {
     const n = i + 1
     return {
-      pergunta: getText(`${G}.faq.pergunta_${n}`),
-      resposta: getText(`${G}.faq.resposta_${n}`),
+      pergunta: getText(`${F}.pergunta_${n}`),
+      resposta: getText(`${F}.resposta_${n}`),
     }
   })
 }
@@ -72,13 +73,13 @@ export default function PerguntasFrequentesImovelNaPlantaPage() {
               <HelpCircle className="w-10 h-10 text-purple-200" />
               <span className="text-purple-200 text-sm font-medium uppercase tracking-wide">{getText(`${G}.hub.hero_label`)}</span>
               <span className="text-purple-300">·</span>
-              <span className="text-white/90 text-sm">{getText(`${G}.faq.hero_sublabel`)}</span>
+              <span className="text-white/90 text-sm">{getText(`${F}.hero_sublabel`)}</span>
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight max-w-3xl">
-              {getText(`${G}.faq.hero_titulo`)}
+              {getText(`${F}.hero_titulo`)}
             </h1>
             <p className="mt-4 text-purple-100 text-base sm:text-lg max-w-2xl">
-              {getText(`${G}.faq.hero_subtitulo`)}
+              {getText(`${F}.hero_subtitulo`)}
             </p>
           </div>
         </section>
@@ -108,18 +109,18 @@ export default function PerguntasFrequentesImovelNaPlantaPage() {
         {/* Navegação do guia */}
         <section className="py-10 bg-white border-t border-gray-200">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-gray-600 mb-4">{getText(`${G}.faq.cta_texto`)}</p>
+            <p className="text-gray-600 mb-4">{getText(`${F}.cta_texto`)}</p>
             <Link
               href="/guia-imovel-na-planta-litoral-sc"
               className="inline-block px-6 py-3 rounded-lg bg-purple-600 text-white font-medium hover:bg-purple-700 transition-colors"
             >
-              {getText(`${G}.faq.cta_botao`)}
+              {getText(`${F}.cta_botao`)}
             </Link>
-            <p className="mt-6 text-sm text-gray-500 mb-2">{getText(`${G}.faq.outros_temas_label`)}</p>
+            <p className="mt-6 text-sm text-gray-500 mb-2">{getText(`${F}.outros_temas_label`)}</p>
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-1">
-              <Link href="/como-comprar-imovel-na-planta" className="text-purple-600 hover:text-purple-700 font-medium text-sm">{getText(`${G}.faq.link_como_comprar`)}</Link>
-              <Link href="/seguranca-imovel-na-planta" className="text-purple-600 hover:text-purple-700 font-medium text-sm">{getText(`${G}.faq.link_seguranca`)}</Link>
-              <Link href="/fluxo-pagamento-imovel-na-planta" className="text-purple-600 hover:text-purple-700 font-medium text-sm">{getText(`${G}.faq.link_pagamento`)}</Link>
+              <Link href="/como-comprar-imovel-na-planta" className="text-purple-600 hover:text-purple-700 font-medium text-sm">{getText(`${F}.link_como_comprar`)}</Link>
+              <Link href="/seguranca-imovel-na-planta" className="text-purple-600 hover:text-purple-700 font-medium text-sm">{getText(`${F}.link_seguranca`)}</Link>
+              <Link href="/fluxo-pagamento-imovel-na-planta" className="text-purple-600 hover:text-purple-700 font-medium text-sm">{getText(`${F}.link_pagamento`)}</Link>
             </div>
           </div>
         </section>
