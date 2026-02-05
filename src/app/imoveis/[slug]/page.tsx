@@ -238,19 +238,18 @@ export default function ImovelDetalhePage() {
           </div>
         </div>
 
-        {/* Galeria: 1 grande (vertical) + 4 menores (paisagem), Ver fotos sempre visível e leve */}
+        {/* Galeria: 1 grande + 4 menores, fotos ocupam exatamente o espaço (sem preenchimento), 1 só botão Ver fotos */}
         <div className="bg-white rounded-lg shadow-sm mb-3 overflow-hidden">
           {fotosParaExibir.length > 0 ? (
-            <>
             <div
-              className="grid grid-cols-[2fr_1fr] md:grid-cols-2 gap-1.5 p-1.5"
+              className="grid grid-cols-[2fr_1fr] md:grid-cols-2 gap-1.5 p-1.5 items-stretch"
               style={{ height: 'clamp(280px, 50vh, 420px)' }}
               onMouseLeave={() => setHoveredPhotoIndex(null)}
             >
-              {/* Esquerda: 1 foto grande – ocupa toda a altura (até embaixo), object-cover para preencher */}
+              {/* Esquerda: 1 foto – ocupa 100% da altura (até embaixo), preenche o espaço */}
               <Link
                 href={`/imoveis/${imovel.slug}/fotos?index=0`}
-                className="relative w-full h-full min-h-0 rounded-lg overflow-hidden bg-gray-100 block"
+                className="relative w-full h-full min-h-0 rounded-lg overflow-hidden block"
                 onMouseEnter={() => setHoveredPhotoIndex(0)}
               >
                 <img
@@ -263,7 +262,7 @@ export default function ImovelDetalhePage() {
                 />
               </Link>
 
-              {/* Direita: 4 fotos em 2x2, células quadradas, fotos inteiras (object-contain) */}
+              {/* Direita: 4 fotos 2x2 – cada uma ocupa exatamente o espaço da célula, sem preenchimento */}
               <div className="grid grid-rows-2 grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-1.5 h-full min-h-0">
                 {[1, 2, 3, 4].map((i) => {
                   const temFoto = !!fotosParaExibir[i]
@@ -277,7 +276,7 @@ export default function ImovelDetalhePage() {
                     <Link
                       key={i}
                       href={`/imoveis/${imovel.slug}/fotos?index=${linkIndex}`}
-                      className={`relative w-full min-h-0 rounded-lg overflow-hidden bg-gray-100 block ${mostrarNoMobile ? '' : 'hidden md:block'}`}
+                      className={`relative w-full min-h-0 rounded-lg overflow-hidden block ${mostrarNoMobile ? '' : 'hidden md:block'}`}
                       onMouseEnter={() => setHoveredPhotoIndex(i)}
                     >
                       {temFoto ? (
@@ -287,7 +286,7 @@ export default function ImovelDetalhePage() {
                           loading="lazy"
                           width={400}
                           height={300}
-                          className="absolute inset-0 w-full h-full object-contain object-center"
+                          className="absolute inset-0 w-full h-full object-cover object-center"
                         />
                       ) : mostrarBotaoDesktop && fotosParaExibir.length > 1 ? (
                         <img
@@ -296,10 +295,10 @@ export default function ImovelDetalhePage() {
                           loading="lazy"
                           width={400}
                           height={300}
-                          className="absolute inset-0 w-full h-full object-contain object-center"
+                          className="absolute inset-0 w-full h-full object-cover object-center"
                         />
                       ) : (
-                        <div className="absolute inset-0 bg-gray-50" />
+                        <div className="absolute inset-0 bg-gray-100" />
                       )}
                       {mostrarBotao && (
                         <div className={`absolute bottom-1.5 right-1.5 z-20 ${mostrarBotaoMobile && mostrarBotaoDesktop ? '' : mostrarBotaoMobile ? 'md:hidden' : 'hidden md:block'}`}>
@@ -313,16 +312,6 @@ export default function ImovelDetalhePage() {
                 })}
               </div>
             </div>
-            {/* Barra com botão leve – sempre visível logo abaixo da galeria */}
-            <div className="px-3 py-2.5 bg-gray-50/80 border-t border-gray-100 flex justify-center sm:justify-end items-center">
-              <Link
-                href={`/imoveis/${imovel.slug}/fotos`}
-                className="inline-flex items-center gap-1.5 bg-white/90 backdrop-blur-sm border border-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
-              >
-                Ver fotos{fotosParaExibir.length > 1 ? ` (${fotosParaExibir.length})` : ''}
-              </Link>
-            </div>
-            </>
           ) : (
             <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
               <span className="text-gray-500">Sem imagens</span>
