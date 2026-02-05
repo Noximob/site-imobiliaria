@@ -238,7 +238,7 @@ export default function ImovelDetalhePage() {
           </div>
         </div>
 
-        {/* Galeria no estilo referência: foto esquerda inteira (sem cortar), 4 direita preenchem; primeira dobra = fotos */}
+        {/* Galeria uniforme: 1 grande + 4 quadrados; todas object-cover (corte lateral ok), mesmo layout em todo imóvel */}
         <div className="bg-white rounded-lg shadow-sm mb-3 overflow-hidden">
           {fotosParaExibir.length > 0 ? (
             <div
@@ -246,10 +246,10 @@ export default function ImovelDetalhePage() {
               style={{ height: 'clamp(380px, 65vh, 580px)' }}
               onMouseLeave={() => setHoveredPhotoIndex(null)}
             >
-              {/* Esquerda: foto sempre inteira – centralizada no espaço, object-contain, fundo neutro nas faixas */}
+              {/* Esquerda: mesma regra das outras – preenche a célula, object-cover (pode cortar laterais) */}
               <Link
                 href={`/imoveis/${imovel.slug}/fotos?index=0`}
-                className="flex w-full h-full min-h-0 items-center justify-center rounded-lg overflow-hidden bg-gray-100"
+                className="relative w-full h-full min-h-0 rounded-lg overflow-hidden block"
                 onMouseEnter={() => setHoveredPhotoIndex(0)}
               >
                 <img
@@ -258,11 +258,11 @@ export default function ImovelDetalhePage() {
                   fetchPriority="high"
                   width={800}
                   height={600}
-                  className="max-w-full max-h-full w-auto h-auto object-contain object-center"
+                  className="absolute inset-0 w-full h-full object-cover object-center"
                 />
               </Link>
 
-              {/* Direita: 4 fotos 2x2 – preenchem a célula (object-cover), como na referência */}
+              {/* Direita: 4 fotos 2x2 – mesmo object-cover, layout idêntico em todas as páginas */}
               <div className="grid grid-rows-2 grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-2 h-full min-h-0">
                 {[1, 2, 3, 4].map((i) => {
                   const temFoto = !!fotosParaExibir[i]
