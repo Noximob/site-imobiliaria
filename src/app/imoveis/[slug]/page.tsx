@@ -262,7 +262,7 @@ export default function ImovelDetalhePage() {
                   fetchPriority="high"
                   width={800}
                   height={600}
-                  className="absolute inset-0 w-full h-full object-cover object-center"
+                  className="absolute inset-0 w-full h-full object-cover object-bottom"
                 />
               </Link>
 
@@ -324,11 +324,11 @@ export default function ImovelDetalhePage() {
                 })}
               </div>
             </div>
-            {/* Botão Visualizar Fotos sempre visível abaixo da galeria */}
-            <div className="px-4 py-3 border-t border-gray-100 flex justify-center sm:justify-end">
+            {/* Botão Visualizar Fotos (abre carrossel) – sempre visível abaixo da galeria */}
+            <div className="px-4 py-4 bg-gray-50 border-t border-gray-200 flex justify-center sm:justify-end min-h-[52px] items-center">
               <Link
                 href={`/imoveis/${imovel.slug}/fotos`}
-                className="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium text-sm hover:bg-gray-50 hover:border-purple-200 transition-colors"
+                className="inline-flex items-center gap-2 bg-purple-600 text-white px-5 py-2.5 rounded-lg font-medium text-sm hover:bg-purple-700 transition-colors shadow-sm"
               >
                 Visualizar Fotos{fotosParaExibir.length > 1 ? ` (${fotosParaExibir.length})` : ''}
               </Link>
