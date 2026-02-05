@@ -238,18 +238,19 @@ export default function ImovelDetalhePage() {
           </div>
         </div>
 
-        {/* Galeria - Mobile: principal (2/3) + 2 menores empilhadas (1/3). Desktop: principal (1/2) + grid 2x2 com 4 menores */}
+        {/* Galeria: 1 grande (vertical) + 4 menores (paisagem), Ver fotos sempre visível e leve */}
         <div className="bg-white rounded-lg shadow-sm mb-3 overflow-hidden">
           {fotosParaExibir.length > 0 ? (
             <>
             <div
-              className="grid grid-cols-[2fr_1fr] md:grid-cols-2 gap-1.5 p-1.5 min-h-0 h-[48vh] max-h-[300px] md:h-[58vh] md:max-h-[420px] items-stretch"
+              className="grid grid-cols-[2fr_1fr] md:grid-cols-2 gap-1.5 p-1.5"
+              style={{ height: 'clamp(280px, 50vh, 420px)' }}
               onMouseLeave={() => setHoveredPhotoIndex(null)}
             >
-              {/* Foto Principal - mesma altura que as 2 linhas da direita */}
+              {/* Esquerda: 1 foto grande – ocupa toda a altura (até embaixo), object-cover para preencher */}
               <Link
                 href={`/imoveis/${imovel.slug}/fotos?index=0`}
-                className="relative w-full h-full min-h-0 self-stretch rounded-lg overflow-hidden bg-gray-100 cursor-pointer transition-opacity block"
+                className="relative w-full h-full min-h-0 rounded-lg overflow-hidden bg-gray-100 block"
                 onMouseEnter={() => setHoveredPhotoIndex(0)}
               >
                 <img
@@ -258,12 +259,12 @@ export default function ImovelDetalhePage() {
                   fetchPriority="high"
                   width={800}
                   height={600}
-                  className="absolute inset-0 w-full h-full object-contain object-center"
+                  className="absolute inset-0 w-full h-full object-cover object-center"
                 />
               </Link>
 
-              {/* Coluna direita: 2x2 grid, mesma altura que a foto da esquerda */}
-              <div className="grid grid-rows-2 grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-1.5 min-h-0 h-full self-stretch">
+              {/* Direita: 4 fotos em 2x2, células quadradas, fotos inteiras (object-contain) */}
+              <div className="grid grid-rows-2 grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-1.5 h-full min-h-0">
                 {[1, 2, 3, 4].map((i) => {
                   const temFoto = !!fotosParaExibir[i]
                   const ultimaCelulaComFoto = Math.min(4, Math.max(1, fotosParaExibir.length - 1))
@@ -272,15 +273,11 @@ export default function ImovelDetalhePage() {
                   const mostrarBotaoDesktop = i === ultimaCelulaComFoto && fotosParaExibir.length > 1
                   const mostrarBotaoMobile = i === 2 && fotosParaExibir.length > 1
                   const mostrarBotao = mostrarBotaoDesktop || mostrarBotaoMobile
-                  const sempreVisivel = mostrarBotao
                   return (
                     <Link
                       key={i}
                       href={`/imoveis/${imovel.slug}/fotos?index=${linkIndex}`}
-                      className={`relative w-full min-h-0 rounded-lg overflow-hidden bg-gray-100 cursor-pointer transition-all duration-300 block ${
-                        sempreVisivel ? 'opacity-100 scale-100' : (hoveredPhotoIndex === null || hoveredPhotoIndex === i ? 'opacity-100 scale-100' : 'opacity-50 scale-95')
-                      } ${mostrarNoMobile ? '' : 'hidden md:block'}`}
-                      style={mostrarNoMobile ? undefined : { aspectRatio: '1' }}
+                      className={`relative w-full min-h-0 rounded-lg overflow-hidden bg-gray-100 block ${mostrarNoMobile ? '' : 'hidden md:block'}`}
                       onMouseEnter={() => setHoveredPhotoIndex(i)}
                     >
                       {temFoto ? (
@@ -305,13 +302,10 @@ export default function ImovelDetalhePage() {
                         <div className="absolute inset-0 bg-gray-50" />
                       )}
                       {mostrarBotao && (
-                        <div className={`absolute bottom-2 right-2 z-20 pointer-events-auto ${mostrarBotaoMobile && mostrarBotaoDesktop ? '' : mostrarBotaoMobile ? 'md:hidden' : 'hidden md:block'}`}>
-                          <div className="bg-purple-600 text-white px-4 py-2 rounded-lg font-medium text-sm shadow-lg flex items-center gap-2">
-                            <span>Visualizar Fotos</span>
-                            {fotosParaExibir.length > 5 && (
-                              <span className="text-xs opacity-90">({fotosParaExibir.length})</span>
-                            )}
-                          </div>
+                        <div className={`absolute bottom-1.5 right-1.5 z-20 ${mostrarBotaoMobile && mostrarBotaoDesktop ? '' : mostrarBotaoMobile ? 'md:hidden' : 'hidden md:block'}`}>
+                          <span className="inline-flex items-center gap-1.5 bg-white/80 backdrop-blur-sm border border-gray-300/90 text-gray-800 px-3 py-1.5 rounded-md text-xs font-medium shadow-sm">
+                            Ver fotos{fotosParaExibir.length > 1 ? ` (${fotosParaExibir.length})` : ''}
+                          </span>
                         </div>
                       )}
                     </Link>
@@ -319,13 +313,13 @@ export default function ImovelDetalhePage() {
                 })}
               </div>
             </div>
-            {/* Botão Visualizar Fotos (abre carrossel) – sempre visível abaixo da galeria */}
-            <div className="px-4 py-4 bg-gray-50 border-t border-gray-200 flex justify-center sm:justify-end min-h-[52px] items-center">
+            {/* Barra com botão leve – sempre visível logo abaixo da galeria */}
+            <div className="px-3 py-2.5 bg-gray-50/80 border-t border-gray-100 flex justify-center sm:justify-end items-center">
               <Link
                 href={`/imoveis/${imovel.slug}/fotos`}
-                className="inline-flex items-center gap-2 bg-purple-600 text-white px-5 py-2.5 rounded-lg font-medium text-sm hover:bg-purple-700 transition-colors shadow-sm"
+                className="inline-flex items-center gap-1.5 bg-white/90 backdrop-blur-sm border border-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
               >
-                Visualizar Fotos{fotosParaExibir.length > 1 ? ` (${fotosParaExibir.length})` : ''}
+                Ver fotos{fotosParaExibir.length > 1 ? ` (${fotosParaExibir.length})` : ''}
               </Link>
             </div>
             </>
