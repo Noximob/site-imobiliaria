@@ -48,6 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `Fotos - ${titulo} | Nox Imóveis`,
     description,
+    robots: { index: false, follow: true },
     openGraph: {
       title: `Fotos - ${titulo} | Nox Imóveis`,
       description,

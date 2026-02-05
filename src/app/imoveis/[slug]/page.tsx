@@ -30,6 +30,8 @@ export default function ImovelDetalhePage() {
   const [isLoading, setIsLoading] = useState(true)
   const [isFavoritado, setIsFavoritado] = useState(false)
   const [hoveredPhotoIndex, setHoveredPhotoIndex] = useState<number | null>(null)
+  const [mobilePhotoIndex, setMobilePhotoIndex] = useState(0)
+  const [touchStartX, setTouchStartX] = useState<number | null>(null)
   const [contatoTipo, setContatoTipo] = useState<'telefone' | 'email' | 'whatsapp'>('email')
   const [formData, setFormData] = useState({
     nome: '',
@@ -40,6 +42,10 @@ export default function ImovelDetalhePage() {
   const [indicados, setIndicados] = useState<Imovel[]>([])
   const [indicadosIndex, setIndicadosIndex] = useState(0)
   const [, setFavoritosRefresh] = useState(0)
+
+  useEffect(() => {
+    setMobilePhotoIndex(0)
+  }, [slug])
 
   useEffect(() => {
     const loadImovel = async () => {
@@ -242,26 +248,73 @@ export default function ImovelDetalhePage() {
         <div className="bg-white rounded-lg shadow-sm mb-3 overflow-hidden">
           {fotosParaExibir.length > 0 ? (
             <>
-              {/* Mobile: uma foto em destaque (4:3), botão Ver fotos – limpo e bom para SEO */}
-              <div className="md:hidden">
+              {/* Mobile: carrossel com setas leves + swipe por toque */}
+              <div
+                className="md:hidden relative aspect-[4/3] w-full overflow-hidden bg-gray-50 touch-pan-y"
+                onTouchStart={(e) => setTouchStartX(e.targetTouches[0].clientX)}
+                onTouchEnd={(e) => {
+                  if (touchStartX == null || fotosParaExibir.length <= 1) return
+                  const endX = e.changedTouches[0].clientX
+                  const diff = touchStartX - endX
+                  const minSwipe = 50
+                  if (diff > minSwipe) {
+                    setMobilePhotoIndex((i) => (i + 1) % fotosParaExibir.length)
+                  } else if (diff < -minSwipe) {
+                    setMobilePhotoIndex((i) => (i - 1 + fotosParaExibir.length) % fotosParaExibir.length)
+                  }
+                  setTouchStartX(null)
+                }}
+              >
                 <Link
-                  href={`/imoveis/${imovel.slug}/fotos`}
-                  className="block relative aspect-[4/3] w-full overflow-hidden bg-gray-50"
+                  href={`/imoveis/${imovel.slug}/fotos?index=${mobilePhotoIndex}`}
+                  className="block w-full h-full"
                 >
                   <img
-                    src={fotosParaExibir[0]}
-                    alt={`${imovel.titulo} - Foto principal`}
-                    fetchPriority="high"
+                    src={fotosParaExibir[mobilePhotoIndex]}
+                    alt={`${imovel.titulo} - Foto ${mobilePhotoIndex + 1}`}
+                    fetchPriority={mobilePhotoIndex === 0 ? 'high' : undefined}
+                    loading={mobilePhotoIndex === 0 ? undefined : 'lazy'}
                     width={800}
                     height={600}
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-cover object-center pointer-events-none"
                   />
-                  {fotosParaExibir.length > 1 && (
-                    <span className="absolute bottom-3 right-3 z-10 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur-sm border border-gray-200 text-gray-800 px-3 py-2 rounded-lg text-sm font-medium shadow-sm">
-                      Ver fotos ({fotosParaExibir.length})
-                    </span>
-                  )}
                 </Link>
+                {fotosParaExibir.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        setMobilePhotoIndex((i) => (i - 1 + fotosParaExibir.length) % fotosParaExibir.length)
+                      }}
+                      className="absolute left-1.5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-white/25 text-white/50 hover:bg-white/35 hover:text-white/70 transition-colors"
+                      aria-label="Foto anterior"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        setMobilePhotoIndex((i) => (i + 1) % fotosParaExibir.length)
+                      }}
+                      className="absolute right-1.5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-white/25 text-white/50 hover:bg-white/35 hover:text-white/70 transition-colors"
+                      aria-label="Próxima foto"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </>
+                )}
+                {fotosParaExibir.length > 1 && (
+                  <Link
+                    href={`/imoveis/${imovel.slug}/fotos`}
+                    className="absolute bottom-3 right-3 z-10 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur-sm border border-gray-200 text-gray-800 px-3 py-2 rounded-lg text-sm font-medium shadow-sm"
+                  >
+                    Ver fotos ({fotosParaExibir.length})
+                  </Link>
+                )}
               </div>
 
               {/* Desktop: grid esquerda (2fr) + 4 direita (3fr), hover e contain na principal */}
