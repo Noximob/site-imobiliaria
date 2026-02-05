@@ -246,10 +246,10 @@ export default function ImovelDetalhePage() {
               style={{ height: 'clamp(380px, 65vh, 580px)' }}
               onMouseLeave={() => setHoveredPhotoIndex(null)}
             >
-              {/* Esquerda: object-contain para não cortar a foto principal; faixas discretas (bg) quando a foto for muito vertical */}
+              {/* Esquerda: object-contain; fundo branco nas faixas; opaca quando hover em outra foto */}
               <Link
                 href={`/imoveis/${imovel.slug}/fotos?index=0`}
-                className="flex w-full h-full min-h-0 items-center justify-center rounded-lg overflow-hidden bg-gray-50"
+                className={`flex w-full h-full min-h-0 items-center justify-center rounded-lg overflow-hidden bg-white transition-opacity duration-200 ${hoveredPhotoIndex != null && hoveredPhotoIndex !== 0 ? 'opacity-70' : 'opacity-100'}`}
                 onMouseEnter={() => setHoveredPhotoIndex(0)}
               >
                 <img
@@ -276,7 +276,7 @@ export default function ImovelDetalhePage() {
                     <Link
                       key={i}
                       href={`/imoveis/${imovel.slug}/fotos?index=${linkIndex}`}
-                      className={`relative w-full min-h-0 rounded-lg overflow-hidden block ${mostrarNoMobile ? '' : 'hidden md:block'}`}
+                      className={`relative w-full min-h-0 rounded-lg overflow-hidden block transition-opacity duration-200 ${hoveredPhotoIndex != null && hoveredPhotoIndex !== i ? 'opacity-70' : 'opacity-100'} ${mostrarNoMobile ? '' : 'hidden md:block'}`}
                       onMouseEnter={() => setHoveredPhotoIndex(i)}
                     >
                       {temFoto ? (
@@ -298,7 +298,7 @@ export default function ImovelDetalhePage() {
                           className="absolute inset-0 w-full h-full object-cover object-center"
                         />
                       ) : (
-                        <div className="absolute inset-0 bg-gray-100" />
+                        <div className="absolute inset-0 bg-white" />
                       )}
                       {mostrarBotao && (
                         <div className={`absolute bottom-1.5 right-1.5 z-20 ${mostrarBotaoMobile && mostrarBotaoDesktop ? '' : mostrarBotaoMobile ? 'md:hidden' : 'hidden md:block'}`}>
