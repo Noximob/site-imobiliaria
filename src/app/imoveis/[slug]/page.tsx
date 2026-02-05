@@ -238,18 +238,18 @@ export default function ImovelDetalhePage() {
           </div>
         </div>
 
-        {/* Galeria: 1 grande + 4 menores, fotos ocupam exatamente o espaço (sem preenchimento), 1 só botão Ver fotos */}
+        {/* Galeria: esquerda mais fina (foto inteira), direita 4 fotos um pouco maiores – proporção harmoniosa */}
         <div className="bg-white rounded-lg shadow-sm mb-3 overflow-hidden">
           {fotosParaExibir.length > 0 ? (
             <div
-              className="grid grid-cols-[2fr_1fr] md:grid-cols-2 gap-1.5 p-1.5 items-stretch"
-              style={{ height: 'clamp(280px, 50vh, 420px)' }}
+              className="grid grid-cols-[3fr_2fr] gap-2 p-2 items-stretch"
+              style={{ height: 'clamp(340px, 58vh, 520px)' }}
               onMouseLeave={() => setHoveredPhotoIndex(null)}
             >
-              {/* Esquerda: 1 foto – ocupa 100% da altura (até embaixo), preenche o espaço */}
+              {/* Esquerda: 1 foto – redimensiona pra caber inteira, sem cortar (object-contain) */}
               <Link
                 href={`/imoveis/${imovel.slug}/fotos?index=0`}
-                className="relative w-full h-full min-h-0 rounded-lg overflow-hidden block"
+                className="relative w-full h-full min-h-0 rounded-lg overflow-hidden bg-gray-50"
                 onMouseEnter={() => setHoveredPhotoIndex(0)}
               >
                 <img
@@ -258,12 +258,12 @@ export default function ImovelDetalhePage() {
                   fetchPriority="high"
                   width={800}
                   height={600}
-                  className="absolute inset-0 w-full h-full object-cover object-center"
+                  className="w-full h-full object-contain object-center"
                 />
               </Link>
 
-              {/* Direita: 4 fotos 2x2 – cada uma ocupa exatamente o espaço da célula, sem preenchimento */}
-              <div className="grid grid-rows-2 grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-1.5 h-full min-h-0">
+              {/* Direita: 4 fotos 2x2 – mais gap entre elas; cada uma preenche a célula */}
+              <div className="grid grid-rows-2 grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-2 h-full min-h-0">
                 {[1, 2, 3, 4].map((i) => {
                   const temFoto = !!fotosParaExibir[i]
                   const ultimaCelulaComFoto = Math.min(4, Math.max(1, fotosParaExibir.length - 1))
