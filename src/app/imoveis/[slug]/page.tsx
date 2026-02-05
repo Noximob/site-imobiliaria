@@ -242,7 +242,7 @@ export default function ImovelDetalhePage() {
         <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-3">
           {fotosParaExibir.length > 0 ? (
             <div
-              className="grid grid-cols-[2fr_1fr] md:grid-cols-2 gap-1.5 p-1.5 min-h-0 h-[52vh] max-h-[340px] md:h-[70vh] md:max-h-none"
+              className="grid grid-cols-[2fr_1fr] md:grid-cols-2 gap-1.5 p-1.5 min-h-0 h-[52vh] max-h-[340px] md:h-[70vh] md:max-h-[480px]"
               onMouseLeave={() => setHoveredPhotoIndex(null)}
             >
               {/* Foto Principal - ocupa coluna esquerda inteira (mobile 2/3, desktop 1/2) */}
