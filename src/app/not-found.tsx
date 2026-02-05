@@ -1,5 +1,12 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Home, Building2 } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Página não encontrada | Nox Imóveis',
+  description: 'O endereço que você acessou não existe ou foi alterado.',
+  robots: { index: false, follow: true },
+}
 
 export default function NotFound() {
   return (
