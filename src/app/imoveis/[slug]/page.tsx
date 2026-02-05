@@ -238,17 +238,17 @@ export default function ImovelDetalhePage() {
           </div>
         </div>
 
-        {/* Galeria - Mobile: principal (2/3) + 2 menores empilhadas (1/3). Desktop: principal (1/2) + grid 2x2 com 4 menores */}
+        {/* Galeria - Proporção fixa 2:1 no desktop (1 grande + 4 quadradas), fotos inteiras sem corte */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-3">
           {fotosParaExibir.length > 0 ? (
             <div
-              className="grid grid-cols-[2fr_1fr] md:grid-cols-2 gap-1.5 p-1.5 min-h-0 h-[52vh] max-h-[340px] md:h-[70vh] md:max-h-none"
+              className="grid grid-cols-[2fr_1fr] md:grid-cols-2 gap-1.5 p-1.5 w-full min-h-0 aspect-[4/3] max-h-[320px] md:aspect-[2/1] md:max-h-[520px]"
               onMouseLeave={() => setHoveredPhotoIndex(null)}
             >
-              {/* Foto Principal - ocupa coluna esquerda inteira (mobile 2/3, desktop 1/2) */}
+              {/* Foto Principal - coluna esquerda */}
               <Link
                 href={`/imoveis/${imovel.slug}/fotos?index=0`}
-                className={`relative w-full h-full min-h-0 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 block ${
+                className={`relative w-full h-full min-h-0 rounded-lg overflow-hidden bg-gray-100 cursor-pointer transition-all duration-300 block ${
                   hoveredPhotoIndex === null || hoveredPhotoIndex === 0
                     ? 'opacity-100 scale-100'
                     : 'opacity-50 scale-95'
@@ -261,12 +261,12 @@ export default function ImovelDetalhePage() {
                   fetchPriority="high"
                   width={800}
                   height={600}
-                  className="absolute inset-0 w-full h-full object-cover object-center"
+                  className="absolute inset-0 w-full h-full object-contain object-center"
                 />
               </Link>
 
-              {/* Coluna direita: mobile = 2 fotos empilhadas (1 e 2); desktop = grid 2x2 com 4 fotos */}
-              <div className="grid grid-rows-2 grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-1.5 min-h-0 h-full">
+              {/* Coluna direita: 2x2 grid, células quadradas */}
+              <div className="grid grid-rows-2 grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-1.5 min-h-0 h-full [&>*]:aspect-square">
                 {[1, 2, 3, 4].map((i) => {
                   const temFoto = !!fotosParaExibir[i]
                   const ultimaCelulaComFoto = Math.min(4, Math.max(1, fotosParaExibir.length - 1))
@@ -279,12 +279,11 @@ export default function ImovelDetalhePage() {
                     <Link
                       key={i}
                       href={`/imoveis/${imovel.slug}/fotos?index=${linkIndex}`}
-                      className={`relative w-full min-h-0 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 block ${
+                      className={`relative w-full min-h-0 rounded-lg overflow-hidden bg-gray-100 cursor-pointer transition-all duration-300 block ${
                         hoveredPhotoIndex === null || hoveredPhotoIndex === i
                           ? 'opacity-100 scale-100'
                           : 'opacity-50 scale-95'
                       } ${mostrarNoMobile ? '' : 'hidden md:block'}`}
-                      style={mostrarNoMobile ? undefined : { aspectRatio: '1' }}
                       onMouseEnter={() => setHoveredPhotoIndex(i)}
                     >
                       {temFoto ? (
@@ -294,7 +293,7 @@ export default function ImovelDetalhePage() {
                           loading="lazy"
                           width={400}
                           height={300}
-                          className="absolute inset-0 w-full h-full object-cover object-center"
+                          className="absolute inset-0 w-full h-full object-contain object-center"
                         />
                       ) : mostrarBotaoDesktop && fotosParaExibir.length > 1 ? (
                         <img
@@ -303,7 +302,7 @@ export default function ImovelDetalhePage() {
                           loading="lazy"
                           width={400}
                           height={300}
-                          className="absolute inset-0 w-full h-full object-cover object-center"
+                          className="absolute inset-0 w-full h-full object-contain object-center"
                         />
                       ) : (
                         <div className="absolute inset-0 bg-gray-50" />
