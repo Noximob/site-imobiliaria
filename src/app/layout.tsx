@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import ConditionalLayout from '@/components/ConditionalLayout'
+import { getText } from '@/lib/site-texts'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -81,6 +82,19 @@ export default function RootLayout({
               name: 'Nox Imóveis',
               url: 'https://noximobiliaria.com.br',
               logo: 'https://noximobiliaria.com.br/imagens/logo-nox-imoveis-penha-picarras-barra-velha.png',
+              telephone: '+5547997530113',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: getText('footer.central_atendimento.endereco'),
+                addressLocality: 'Penha',
+                addressRegion: 'SC',
+                addressCountry: 'BR',
+              },
+              areaServed: [
+                { '@type': 'City', name: 'Penha' },
+                { '@type': 'City', name: 'Balneário Piçarras' },
+                { '@type': 'City', name: 'Barra Velha' },
+              ],
             }),
           }}
         />

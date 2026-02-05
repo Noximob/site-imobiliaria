@@ -75,3 +75,13 @@ Com a aplicação do noindex na galeria, o risco de duplicação entre ficha e g
 ## Carrossel mobile (detalhe do imóvel) – altura dinâmica e SEO
 
 O carrossel de fotos no mobile passa a redimensionar conforme a proporção de cada foto (igual à ideia da listagem, mas dinâmico ao trocar de foto). **Impacto em SEO:** a mudança de altura gera um pequeno **layout shift** (CLS – Cumulative Layout Shift), um dos Core Web Vitals. Para reduzir isso foi colocada uma **transição de 0,3s** no `aspect-ratio`, e o shift só ocorre após ação do usuário (swipe/seta), não no carregamento inicial. Assim o impacto no SEO é **baixo**: o Google penaliza sobretudo shifts inesperados no load; aqui o movimento é esperado e suavizado. Se no futuro quiser priorizar CLS ao máximo, basta fixar de novo um único aspect-ratio (ex.: 4/3) no carrossel.
+
+---
+
+## Pontos de melhoria (só código – se quiser ir além)
+
+| Ponto | O que faz | Complexidade |
+|-------|-----------|--------------|
+| **1. Canonical nas listagens filtradas** | Hoje todas as URLs (/imoveis/, /imoveis/?cidade=penha, etc.) dizem ao Google “minha versão oficial é /imoveis/”. Com isso, só essa URL compete no índice. Se você **definir canonical por URL** (cada filtro com sua própria URL canônica), o Google pode indexar “Imóveis em Penha”, “Apartamentos em Barra Velha” etc. como páginas separadas e mostrar a URL certa na busca. | **Fácil** – No `generateMetadata` de `imoveis/page.tsx`, montar a URL atual (com os parâmetros da busca) e devolver `alternates: { canonical: essaUrl }`. Poucas linhas. |
+| **2. Schema Organization (telefone, endereço, área)** | O bloco de dados estruturados da empresa (nome, logo) que já existe no layout ganha **telefone**, **endereço** e **cidades de atuação**. O Google usa isso para resultado local (busca por “imobiliária em Penha” etc.) e para exibir contato/endereço em alguns resultados. | **Fácil** – Só incluir mais campos no JSON-LD do layout raiz. Depende de você ter telefone e endereço em um lugar fixo (config, env ou texto do site). |
+| **3. ItemList na listagem de imóveis** | Enviar um bloco de dados estruturados do tipo “lista” com os imóveis da página (título, URL, imagem). O Google *pode* usar isso para rich results (ex.: carrossel ou lista na busca). Não é garantido que mude algo visível. | **Médio** – A listagem de imóveis é carregada no cliente (React); o JSON-LD precisa ser gerado no servidor ou injetado depois. Exige buscar a lista no servidor na hora do render ou expor os dados de outra forma para montar o ItemList. |

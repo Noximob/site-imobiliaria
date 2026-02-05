@@ -57,13 +57,23 @@ export function generateMetadata({
   const title = getMetadataTitle({ cidade, tipo, status, frenteMar, vistaMar, mobiliado })
   const base = 'Nox Imóveis'
   const description = `Encontre ${title.toLowerCase()} em Penha, Balneário Piçarras e Barra Velha. Apartamentos, casas e terrenos.`
+  const search = new URLSearchParams()
+  if (cidade) search.set('cidade', cidade)
+  if (tipo) search.set('tipo', tipo)
+  if (status) search.set('status', status)
+  if (frenteMar) search.set('frenteMar', frenteMar)
+  if (vistaMar) search.set('vistaMar', vistaMar)
+  if (mobiliado) search.set('mobiliado', mobiliado)
+  const canonicalUrl = search.toString()
+    ? `https://noximobiliaria.com.br/imoveis/?${search.toString()}`
+    : 'https://noximobiliaria.com.br/imoveis/'
   return {
     title: `${title} | ${base}`,
     description,
     openGraph: {
       title: `${title} | ${base}`,
       description,
-      url: 'https://noximobiliaria.com.br/imoveis/',
+      url: canonicalUrl,
       images: [{ url: 'https://noximobiliaria.com.br/api/image?id=banner-home', width: 1920, height: 1080, alt: 'Nox Imóveis' }],
     },
     twitter: {
@@ -72,6 +82,7 @@ export function generateMetadata({
       description,
       images: ['https://noximobiliaria.com.br/api/image?id=banner-home'],
     },
+    alternates: { canonical: canonicalUrl },
   }
 }
 
