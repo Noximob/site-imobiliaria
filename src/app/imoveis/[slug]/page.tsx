@@ -243,17 +243,13 @@ export default function ImovelDetalhePage() {
           {fotosParaExibir.length > 0 ? (
             <>
             <div
-              className="grid grid-cols-[2fr_1fr] md:grid-cols-2 gap-1.5 p-1.5 min-h-0 h-[48vh] max-h-[300px] md:h-[58vh] md:max-h-[420px]"
+              className="grid grid-cols-[2fr_1fr] md:grid-cols-2 gap-1.5 p-1.5 min-h-0 h-[48vh] max-h-[300px] md:h-[58vh] md:max-h-[420px] items-stretch"
               onMouseLeave={() => setHoveredPhotoIndex(null)}
             >
-              {/* Foto Principal - ocupa coluna esquerda inteira (mobile 2/3, desktop 1/2) */}
+              {/* Foto Principal - mesma altura que as 2 linhas da direita */}
               <Link
                 href={`/imoveis/${imovel.slug}/fotos?index=0`}
-                className={`relative w-full h-full min-h-0 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 block ${
-                  hoveredPhotoIndex === null || hoveredPhotoIndex === 0
-                    ? 'opacity-100 scale-100'
-                    : 'opacity-50 scale-95'
-                }`}
+                className="relative w-full h-full min-h-0 self-stretch rounded-lg overflow-hidden bg-gray-100 cursor-pointer transition-opacity block"
                 onMouseEnter={() => setHoveredPhotoIndex(0)}
               >
                 <img
@@ -262,12 +258,12 @@ export default function ImovelDetalhePage() {
                   fetchPriority="high"
                   width={800}
                   height={600}
-                  className="absolute inset-0 w-full h-full object-cover object-bottom"
+                  className="absolute inset-0 w-full h-full object-contain object-center"
                 />
               </Link>
 
-              {/* Coluna direita: mobile = 2 fotos empilhadas (1 e 2); desktop = grid 2x2 com 4 fotos */}
-              <div className="grid grid-rows-2 grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-1.5 min-h-0 h-full">
+              {/* Coluna direita: 2x2 grid, mesma altura que a foto da esquerda */}
+              <div className="grid grid-rows-2 grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-1.5 min-h-0 h-full self-stretch">
                 {[1, 2, 3, 4].map((i) => {
                   const temFoto = !!fotosParaExibir[i]
                   const ultimaCelulaComFoto = Math.min(4, Math.max(1, fotosParaExibir.length - 1))
@@ -276,14 +272,13 @@ export default function ImovelDetalhePage() {
                   const mostrarBotaoDesktop = i === ultimaCelulaComFoto && fotosParaExibir.length > 1
                   const mostrarBotaoMobile = i === 2 && fotosParaExibir.length > 1
                   const mostrarBotao = mostrarBotaoDesktop || mostrarBotaoMobile
+                  const sempreVisivel = mostrarBotao
                   return (
                     <Link
                       key={i}
                       href={`/imoveis/${imovel.slug}/fotos?index=${linkIndex}`}
-                      className={`relative w-full min-h-0 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 block ${
-                        hoveredPhotoIndex === null || hoveredPhotoIndex === i
-                          ? 'opacity-100 scale-100'
-                          : 'opacity-50 scale-95'
+                      className={`relative w-full min-h-0 rounded-lg overflow-hidden bg-gray-100 cursor-pointer transition-all duration-300 block ${
+                        sempreVisivel ? 'opacity-100 scale-100' : (hoveredPhotoIndex === null || hoveredPhotoIndex === i ? 'opacity-100 scale-100' : 'opacity-50 scale-95')
                       } ${mostrarNoMobile ? '' : 'hidden md:block'}`}
                       style={mostrarNoMobile ? undefined : { aspectRatio: '1' }}
                       onMouseEnter={() => setHoveredPhotoIndex(i)}
@@ -295,7 +290,7 @@ export default function ImovelDetalhePage() {
                           loading="lazy"
                           width={400}
                           height={300}
-                          className="absolute inset-0 w-full h-full object-cover object-center"
+                          className="absolute inset-0 w-full h-full object-contain object-center"
                         />
                       ) : mostrarBotaoDesktop && fotosParaExibir.length > 1 ? (
                         <img
@@ -304,17 +299,17 @@ export default function ImovelDetalhePage() {
                           loading="lazy"
                           width={400}
                           height={300}
-                          className="absolute inset-0 w-full h-full object-cover object-center"
+                          className="absolute inset-0 w-full h-full object-contain object-center"
                         />
                       ) : (
                         <div className="absolute inset-0 bg-gray-50" />
                       )}
                       {mostrarBotao && (
                         <div className={`absolute bottom-2 right-2 z-20 pointer-events-auto ${mostrarBotaoMobile && mostrarBotaoDesktop ? '' : mostrarBotaoMobile ? 'md:hidden' : 'hidden md:block'}`}>
-                          <div className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium text-sm transition-colors flex items-center gap-2 shadow-lg">
+                          <div className="bg-purple-600 text-white px-4 py-2 rounded-lg font-medium text-sm shadow-lg flex items-center gap-2">
                             <span>Visualizar Fotos</span>
                             {fotosParaExibir.length > 5 && (
-                              <span className="text-xs text-gray-600">({fotosParaExibir.length})</span>
+                              <span className="text-xs opacity-90">({fotosParaExibir.length})</span>
                             )}
                           </div>
                         </div>
