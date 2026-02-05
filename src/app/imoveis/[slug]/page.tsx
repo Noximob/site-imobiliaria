@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { notFound, useParams } from 'next/navigation'
 import Link from 'next/link'
-import { getImovelBySlug, getAllImoveis, formatPrice } from '@/lib/imoveis'
+import { getImovelBySlug, getAllImoveis, formatPrice, getFotoPrincipal } from '@/lib/imoveis'
 import { getWhatsAppLink } from '@/lib/whatsapp'
 import { toggleFavorito, isFavorito } from '@/lib/favoritos'
 import { trackViewItem, trackImovelContato, trackWhatsAppClick, trackFavorito } from '@/lib/analytics'
@@ -16,8 +16,12 @@ import {
   BedDouble,
   Droplet,
   Car,
-  Maximize2
+  Maximize2,
+  Building2,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react'
+import type { Imovel } from '@/types'
 
 export default function ImovelDetalhePage() {
   const params = useParams()
@@ -33,6 +37,9 @@ export default function ImovelDetalhePage() {
     telefone: '',
     mensagem: 'Olá, gostaria de receber mais informações sobre este imóvel. Aguardo contato, obrigado.'
   })
+  const [indicados, setIndicados] = useState<Imovel[]>([])
+  const [indicadosIndex, setIndicadosIndex] = useState(0)
+  const [, setFavoritosRefresh] = useState(0)
 
   useEffect(() => {
     const loadImovel = async () => {
@@ -45,6 +52,19 @@ export default function ImovelDetalhePage() {
         setImovel(imovelData)
         setIsFavoritado(isFavorito(imovelData.id))
         trackViewItem(imovelData.id, imovelData.slug || slug, imovelData.titulo || '')
+
+        // Carregar 3 imóveis relacionados (mesma cidade e/ou mesmo tipo, excluindo o atual)
+        const todos = await getAllImoveis()
+        const outros = todos.filter((i: Imovel) => i.slug !== imovelData.slug && i.id !== imovelData.id)
+        const cidadeAtual = imovelData.endereco?.cidade
+        const tipoAtual = imovelData.tipo
+        const ordenados = outros.sort((a: Imovel, b: Imovel) => {
+          const scoreA = (a.endereco?.cidade === cidadeAtual ? 2 : 0) + (a.tipo === tipoAtual ? 1 : 0)
+          const scoreB = (b.endereco?.cidade === cidadeAtual ? 2 : 0) + (b.tipo === tipoAtual ? 1 : 0)
+          if (scoreB !== scoreA) return scoreB - scoreA
+          return Math.abs((a.preco || 0) - (imovelData.preco || 0)) - Math.abs((b.preco || 0) - (imovelData.preco || 0))
+        })
+        setIndicados(ordenados.slice(0, 6))
       } catch (error) {
         console.error('Erro ao carregar imóvel:', error)
         notFound()
@@ -52,7 +72,7 @@ export default function ImovelDetalhePage() {
         setIsLoading(false)
       }
     }
-    
+
     loadImovel()
   }, [slug])
 
@@ -617,6 +637,136 @@ export default function ImovelDetalhePage() {
                 </div>
               </div>
         </div>
+
+        {/* Indicados para você - antes do footer */}
+        {indicados.length > 0 && (
+          <section className="mt-10 mb-6">
+            <div className="bg-gray-100 rounded-lg p-6">
+              <h2 className="text-lg font-semibold text-gray-900 uppercase tracking-wide flex items-center gap-2 mb-6">
+                <Building2 className="w-5 h-5 text-purple-600" />
+                Indicados para você
+              </h2>
+              <div className="flex flex-col lg:flex-row gap-6 items-stretch">
+                {/* Carrossel: setas + 3 cards */}
+                <div className="flex-1 flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setIndicadosIndex((i) => Math.max(0, i - 1))}
+                    disabled={indicadosIndex === 0}
+                    className="flex-shrink-0 w-10 h-10 rounded-lg bg-gray-900 text-white flex items-center justify-center hover:bg-gray-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                    aria-label="Anterior"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-4 min-w-0 overflow-hidden">
+                    {indicados.slice(indicadosIndex * 3, indicadosIndex * 3 + 3).map((item) => {
+                      const foto = getFotoPrincipal(item)
+                      const favoritado = isFavorito(item.id)
+                      return (
+                        <div
+                          key={item.id}
+                          className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col"
+                        >
+                          <Link href={`/imoveis/${item.slug}`} className="block relative aspect-[4/3] bg-gray-200 overflow-hidden">
+                            {foto ? (
+                              <img
+                                src={foto}
+                                alt={item.titulo}
+                                className="w-full h-full object-cover"
+                                loading="lazy"
+                              />
+                            ) : (
+                              <div className="w-full h-full bg-gray-200" />
+                            )}
+                          </Link>
+                          <div className="p-4 flex flex-col flex-1">
+                            <div className="flex items-start justify-between gap-2 mb-1">
+                              <Link href={`/imoveis/${item.slug}`}>
+                                <h3 className="font-semibold text-gray-900 text-sm line-clamp-2 hover:text-purple-600 transition-colors">
+                                  {item.titulo}
+                                </h3>
+                              </Link>
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  toggleFavorito(item.id)
+                                  setFavoritosRefresh((n) => n + 1)
+                                }}
+                                className="flex-shrink-0 text-gray-400 hover:text-red-500 transition-colors"
+                                aria-label="Favoritar"
+                              >
+                                <Heart className={`w-4 h-4 ${favoritado ? 'fill-red-500 text-red-500' : ''}`} />
+                              </button>
+                            </div>
+                            <p className="text-xs text-gray-500 mb-2">
+                              {item.endereco?.rua}, {item.endereco?.numero}, {item.endereco?.bairro} - {item.endereco?.cidade}/{item.endereco?.estado}
+                            </p>
+                            <p className="text-xs text-gray-600 mb-2">Cód.: {String(item.id).slice(-5).padStart(5, '0')}</p>
+                            <p className="text-sm font-semibold text-red-600 mb-2">{formatPrice(item.preco)}</p>
+                            <div className="flex flex-wrap gap-3 text-xs text-gray-600 mb-4">
+                              {Number(item.caracteristicas?.quartos) > 0 && (
+                                <span className="flex items-center gap-0.5">
+                                  <BedDouble className="w-3.5 h-3.5 text-purple-600" />
+                                  {item.caracteristicas.quartos} Quartos
+                                </span>
+                              )}
+                              {Number(item.caracteristicas?.suite) > 0 && (
+                                <span className="flex items-center gap-0.5">
+                                  <BedDouble className="w-3.5 h-3.5 text-purple-600" />
+                                  {item.caracteristicas.suite} Suíte
+                                </span>
+                              )}
+                              {Number(item.caracteristicas?.vagas) > 0 && (
+                                <span className="flex items-center gap-0.5">
+                                  <Car className="w-3.5 h-3.5 text-purple-600" />
+                                  {item.caracteristicas.vagas} Vaga
+                                </span>
+                              )}
+                              {Number(item.caracteristicas?.area) > 0 && (
+                                <span className="flex items-center gap-0.5">
+                                  <Maximize2 className="w-3.5 h-3.5 text-purple-600" />
+                                  {item.caracteristicas.area}m²
+                                </span>
+                              )}
+                            </div>
+                            <Link
+                              href={`/imoveis/${item.slug}`}
+                              className="mt-auto w-full bg-orange-500 hover:bg-orange-600 text-white text-center font-semibold py-2.5 px-4 rounded-lg text-sm transition-colors block"
+                            >
+                              Saber mais
+                            </Link>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setIndicadosIndex((i) => Math.min(Math.max(0, Math.ceil(indicados.length / 3) - 1), i + 1))}
+                    disabled={indicadosIndex >= Math.ceil(indicados.length / 3) - 1}
+                    className="flex-shrink-0 w-10 h-10 rounded-lg bg-gray-900 text-white flex items-center justify-center hover:bg-gray-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                    aria-label="Próximo"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
+                {/* CTA lateral */}
+                <div className="lg:w-72 flex-shrink-0 bg-gray-900 rounded-lg p-6 flex flex-col justify-center text-center lg:text-left">
+                  <p className="text-white text-sm leading-relaxed mb-4">
+                    Ainda não é o que procurava? Nós podemos encontrar um lugar que combina com você!
+                  </p>
+                  <Link
+                    href="/encontre-meu-imovel"
+                    className="inline-flex justify-center lg:justify-start bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-5 rounded-lg text-sm uppercase tracking-wide transition-colors"
+                  >
+                    Encontre meu imóvel
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
       </div>
     </div>
   )
