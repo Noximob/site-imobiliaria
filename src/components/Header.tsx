@@ -362,7 +362,10 @@ export default function Header() {
                     <Link href="/viva-barra-velha" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                       Viva Barra Velha
                     </Link>
-                    <Link href="/perguntas-frequentes-imovel-na-planta" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                    <Link href="/guia-imovel-na-planta-litoral-sc" className="block text-white text-sm hover:text-gray-300 font-medium" onClick={() => setIsMenuOpen(false)}>
+                      Guia completo imóvel na planta
+                    </Link>
+                    <Link href="/perguntas-frequentes-imovel-na-planta" className="block text-white text-sm hover:text-gray-300 font-medium" onClick={() => setIsMenuOpen(false)}>
                       Perguntas frequentes
                     </Link>
                     <Link href="/blog" className="block text-white text-sm hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
