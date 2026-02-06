@@ -62,7 +62,10 @@ function getH1Text(f: H1FilterInput): string {
 
   // Quartos: deixa H1 único (ex: "de 2 Quartos", "com 4 ou mais Quartos")
   let quartosStr = ''
-  const qArr = f.quartos !== undefined ? (Array.isArray(f.quartos) ? f.quartos.map((x) => (typeof x === 'string' ? parseInt(x, 10) : x)).filter((n) => !isNaN(n)) as number[]) : []) : []
+  const rawQuartos = f.quartos !== undefined && Array.isArray(f.quartos) ? f.quartos : []
+  const qArr: number[] = rawQuartos
+    .map((x) => (typeof x === 'string' ? parseInt(x, 10) : x))
+    .filter((n): n is number => !isNaN(n))
   if (qArr.length > 0) {
     const has4Plus = qArr.includes(4)
     if (has4Plus && qArr.length === 1) quartosStr = ' com 4 ou mais Quartos'
