@@ -154,6 +154,10 @@ export default function ArtigoPage() {
 
       {/* Conteúdo do Artigo */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* H2 estrutural para o corpo do artigo */}
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+          Sobre este artigo
+        </h2>
         {/* Imagem Principal */}
         <div className="relative mb-8 rounded-lg overflow-hidden aspect-[4/3] md:aspect-[16/9]">
           <Image 

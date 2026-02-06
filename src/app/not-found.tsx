@@ -16,6 +16,10 @@ export default function NotFound() {
         <h1 className="text-2xl font-semibold text-gray-900 mb-2">
           Página não encontrada
         </h1>
+        {/* H2 estrutural explicando o contexto do erro */}
+        <h2 className="text-lg font-medium text-gray-700 mb-2">
+          O endereço pode ter sido removido, alterado ou digitado incorretamente.
+        </h2>
         <p className="text-gray-600 mb-8">
           O endereço que você acessou não existe ou foi alterado. Use os links abaixo para voltar ao site.
         </p>

@@ -85,8 +85,11 @@ export default function PerguntasFrequentesImovelNaPlantaPage() {
         </section>
 
         {/* FAQ em acordeão */}
-        <section className="py-10 sm:py-14">
+        <section className="py-10 sm:py-14" aria-labelledby="faq-titulo">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="faq-titulo" className="text-xl md:text-2xl font-bold text-gray-900 mb-6">
+              Perguntas e respostas
+            </h2>
             <div className="space-y-3">
               {faqItems.map((item, index) => (
                 <details
@@ -107,8 +110,11 @@ export default function PerguntasFrequentesImovelNaPlantaPage() {
         </section>
 
         {/* Navegação do guia */}
-        <section className="py-10 bg-white border-t border-gray-200">
+        <section className="py-10 bg-white border-t border-gray-200" aria-labelledby="outros-temas-titulo">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 id="outros-temas-titulo" className="text-xl font-bold text-gray-900 mb-4">
+              Outros temas do guia
+            </h2>
             <p className="text-gray-600 mb-4">{getText(`${F}.cta_texto`)}</p>
             <Link
               href="/guia-imovel-na-planta-litoral-sc"

@@ -111,6 +111,9 @@ function EncontreMeuImovelPageClient({ corretores }: { corretores: any[] }) {
 
               {/* Bloco roxo escuro - Como Funciona (estilo referência) */}
               <div className="flex-1 bg-gradient-to-br from-purple-900 to-purple-800 text-white p-6 lg:p-8 rounded-xl shadow-xl min-h-[320px] flex flex-col justify-center">
+                <h2 className="text-xl font-bold text-white mb-4">
+                  {getText('encontre_meu_imovel.como_funciona.titulo') || 'Como funciona'}
+                </h2>
                 <div className="space-y-6">
                   <div>
                     <div className="text-3xl font-bold text-purple-300 mb-1">{getText('encontre_meu_imovel.como_funciona.passo_1.numero')}</div>

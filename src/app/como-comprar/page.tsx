@@ -194,10 +194,10 @@ export default async function ComoComprarPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Cabeçalho da Seção */}
           <div className="text-center mb-8">
-            <h2 className="text-blue-600 text-sm font-medium mb-1">{getText('como_comprar.imovel_praia.titulo')}</h2>
-            <h3 className="text-xl md:text-2xl font-bold text-gray-900">
+            <p className="text-blue-600 text-sm font-medium mb-1">{getText('como_comprar.imovel_praia.titulo')}</p>
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900">
               {getText('como_comprar.imovel_praia.subtitulo')}
-            </h3>
+            </h2>
           </div>
 
           {/* Cards das Cidades */}

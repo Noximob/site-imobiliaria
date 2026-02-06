@@ -270,7 +270,7 @@ export default function EditarFotosImovelDWV() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Explicação */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-          <h3 className="font-semibold text-blue-900 mb-2">ℹ️ Por que editar fotos aqui?</h3>
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">ℹ️ Por que editar fotos aqui?</h2>
           <p className="text-sm text-blue-800">
             No DWV você consegue escolher a foto principal, mas não as 4 fotos menores que aparecem 
             na página de detalhes do imóvel. Use esta ferramenta para selecionar quais fotos aparecerão 

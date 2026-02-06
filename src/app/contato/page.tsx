@@ -135,6 +135,10 @@ export default function ContatoPage() {
 
           {/* Lado Direito - Formulário */}
           <div className="bg-white rounded-lg shadow-sm p-5">
+            {/* H2 estrutural para a seção do formulário de contato */}
+            <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4">
+              Envie sua mensagem
+            </h2>
             <form onSubmit={handleSubmit} className="space-y-3">
               {/* Nome */}
               <div>

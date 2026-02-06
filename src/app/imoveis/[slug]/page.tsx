@@ -470,9 +470,9 @@ export default function ImovelDetalhePage() {
           <div className="lg:col-span-2 space-y-6">
             {/* Conteúdo no estilo DWV: definições primeiro, traço, depois o que foi escrito */}
             <div className="bg-white rounded-lg shadow-sm p-6">
-              {/* 1) Nome do imóvel — H2 pois o H1 único da página está no topo (título + endereço) */}
+              {/* Seção principal do imóvel (H1 já está no topo) */}
               <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4">
-                {imovel.titulo}
+                Sobre o imóvel
               </h2>
               
               {imovel.selecaoNox && (
@@ -612,7 +612,8 @@ export default function ImovelDetalhePage() {
           {/* Coluna Direita - Formulário de Contato */}
           <div className="lg:col-span-1">
             <div className="bg-gray-900 rounded-lg shadow-lg p-6 sticky top-4">
-          <h3 className="text-white text-lg font-semibold mb-4">RECEBER CONTATO POR:</h3>
+              <h2 className="text-xl font-semibold text-white mb-4">Entre em contato</h2>
+              <h3 className="text-white text-sm font-semibold mb-3 uppercase tracking-wide">Receber contato por</h3>
           
           {/* Opções de Contato */}
           <div className="flex gap-2 mb-6">

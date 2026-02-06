@@ -332,6 +332,7 @@ function ImoveisPageContent() {
                 </div>
               ) : (
                 <>
+                  <h2 className="text-lg font-semibold text-gray-900 mb-4">Imóveis encontrados</h2>
                   <div className="space-y-8">
                     {imoveis.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((imovel, index) => (
                       <div key={imovel.id} className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col sm:flex-row sm:h-64 min-w-0 w-full">

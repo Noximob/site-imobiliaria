@@ -139,6 +139,9 @@ export default function TrabalheConoscoPage() {
       {/* Seção de Valores - colada embaixo da foto, sem tira branca */}
       <div className="bg-gray-800 py-8 relative z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-white text-center mb-6">
+            Nossos valores
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Cultura de Aprendizado */}
             <div className="text-center text-white">

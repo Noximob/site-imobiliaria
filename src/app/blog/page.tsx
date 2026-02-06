@@ -134,6 +134,10 @@ export default function BlogPage() {
         {/* Informações da página */}
         <div className="mb-12">
           <div className="bg-white rounded-2xl shadow-lg border border-purple-100 p-6 text-center">
+            {/* H2 estrutural para hierarquia do conteúdo do blog */}
+            <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3">
+              Últimos artigos do blog Nox Imóveis
+            </h2>
             <div className="flex items-center justify-center space-x-2 mb-2">
               <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
               <span className="text-gray-600 font-medium">
