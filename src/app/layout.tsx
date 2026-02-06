@@ -14,7 +14,11 @@ export const metadata: Metadata = {
   keywords: 'imobiliária, casas, apartamentos, terrenos, venda, aluguel, imóveis',
   authors: [{ name: 'Nox Imóveis' }],
   icons: {
-    icon: '/favicon.svg',
+    // PNG 48x48 primeiro para o Google usar na bolinha dos resultados de busca (preferem PNG/ICO)
+    icon: [
+      { url: '/icon', type: 'image/png', sizes: '48x48' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
     shortcut: '/favicon.svg',
     apple: '/favicon.svg',
   },
@@ -58,6 +62,8 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="h-full">
       <head>
+        {/* Favicon 48x48 PNG para Google usar na bolinha dos resultados de busca */}
+        <link rel="icon" type="image/png" sizes="48x48" href="/icon" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="alternate" type="application/rss+xml" title="Blog Nox Imóveis" href="https://noximobiliaria.com.br/blog/rss.xml" />
         <meta name="theme-color" content="#7c3aed" />
