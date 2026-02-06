@@ -1,5 +1,7 @@
 import siteTextsData from '../../public/textos/site.json'
 
+export type HeadingType = 'H1' | 'H2' | 'H3' | 'meta'
+
 export interface SiteText {
   value: string
   type: 'titulo' | 'texto' | 'link' | 'botao' | 'contato'
@@ -7,6 +9,10 @@ export interface SiteText {
   hint: string
   maxLength: number
   section: string
+  /** Indica se o texto é usado como heading na página (para orientação no admin) */
+  headingType?: HeadingType
+  /** Mínimo recomendado de caracteres (para SEO/heading) */
+  minLength?: number
 }
 
 export interface SiteTextsData {

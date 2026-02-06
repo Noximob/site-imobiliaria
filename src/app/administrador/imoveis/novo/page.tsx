@@ -371,13 +371,16 @@ export default function NovoImovelPage() {
             <div className="space-y-4">
               <div>
                 <TitleInputSeo
-                  label="Título do Imóvel"
+                  label="Título do Imóvel (H1)"
                   value={formData.titulo}
                   onChange={handleInputChange}
                   name="titulo"
                   placeholder="Ex: Apartamento Frente Mar em Penha"
                   required
                 />
+                <p className="text-xs text-gray-500 mt-1">
+                  H1 na página do imóvel. Recomendado: 30–70 caracteres para o título (o Google mostra título + "| Nox Imóveis").
+                </p>
               </div>
 
               <div>
@@ -389,9 +392,14 @@ export default function NovoImovelPage() {
                   value={formData.descricao}
                   onChange={handleInputChange}
                   rows={4}
+                  maxLength={5000}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   placeholder="Descrição completa do imóvel..."
                 />
+                <p className="text-xs text-gray-500 mt-1">
+                  Texto da página. A meta no Google é montada automaticamente (título + cidade + preço + quartos + área). Recomendado: 150–2000 caracteres.
+                </p>
+                <span className="text-xs text-gray-500">{formData.descricao.length}/5000 caracteres</span>
               </div>
 
               <div className="grid grid-cols-2 gap-4">

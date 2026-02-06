@@ -216,12 +216,13 @@ export default function AdminBlog() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <TitleInputSeo
-                    label="Título"
+                    label="Título (H1)"
                     value={novoArtigo.titulo}
                     onChange={(e) => setNovoArtigo({...novoArtigo, titulo: e.target.value})}
                     placeholder="Digite o título do artigo"
                     required
                   />
+                  <p className="text-xs text-gray-500 mt-1">H1 na página do artigo. Recomendado: 30–70 caracteres.</p>
                 </div>
 
                 <div>
@@ -257,16 +258,24 @@ export default function AdminBlog() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Resumo *
+                  Resumo (Meta description) *
                 </label>
                 <textarea
                   value={novoArtigo.resumo}
                   onChange={(e) => setNovoArtigo({...novoArtigo, resumo: e.target.value})}
                   rows={3}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  placeholder="Breve descrição do artigo"
+                  maxLength={200}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 ${novoArtigo.resumo.length > 160 ? 'border-amber-500 bg-amber-50/50' : 'border-gray-300'}`}
+                  placeholder="Breve descrição do artigo (ideal 150–160 caracteres para o Google)"
                   required
                 />
+                <p className="text-xs text-gray-500 mt-1">
+                  Usado como meta description no Google. Recomendado: 150–160 caracteres.
+                </p>
+                <span className={`text-xs ${novoArtigo.resumo.length > 160 ? 'text-amber-600' : 'text-gray-500'}`}>
+                  {novoArtigo.resumo.length}/200 caracteres
+                  {novoArtigo.resumo.length > 160 && ' — acima do ideal para meta'}
+                </span>
               </div>
 
               <div>

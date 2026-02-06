@@ -3,7 +3,74 @@
 import { useState, useEffect } from 'react'
 import { ArrowLeft, FileText, Save, RefreshCw, Loader2, CheckCircle, Search, Filter } from 'lucide-react'
 import Link from 'next/link'
-import { getAllSections, getTextsBySection, getTextMetadata, type SiteText } from '@/lib/site-texts'
+import { getAllSections, getTextsBySection, getTextMetadata, type SiteText, type HeadingType } from '@/lib/site-texts'
+
+/** Regras de heading e limites por seção e chave do texto (orientação SEO no admin) */
+const HEADING_RULES: Record<string, Record<string, { headingType: HeadingType; minLength: number }>> = {
+  home: {
+    'banner.titulo': { headingType: 'H1', minLength: 30 },
+    'selecao_nox.titulo': { headingType: 'H2', minLength: 10 },
+    'encontre_imovel.titulo': { headingType: 'H2', minLength: 20 },
+    'encontre_imovel.penha.titulo': { headingType: 'H3', minLength: 5 },
+    'encontre_imovel.picarras.titulo': { headingType: 'H3', minLength: 5 },
+    'encontre_imovel.barra_velha.titulo': { headingType: 'H3', minLength: 5 },
+  },
+  blog: {
+    'hero.titulo': { headingType: 'H1', minLength: 30 },
+  },
+  contato: {
+    'hero.titulo': { headingType: 'H1', minLength: 20 },
+  },
+  como_comprar: {
+    'hero.titulo': { headingType: 'H1', minLength: 20 },
+    'como_funciona.titulo': { headingType: 'H2', minLength: 10 },
+    'imovel_praia.titulo': { headingType: 'H2', minLength: 10 },
+    'localizacao.titulo': { headingType: 'H2', minLength: 10 },
+  },
+  encontre_meu_imovel: {
+    'hero.titulo': { headingType: 'H1', minLength: 20 },
+    'como_funciona.passo_1.titulo': { headingType: 'H3', minLength: 5 },
+    'como_funciona.passo_2.titulo': { headingType: 'H3', minLength: 5 },
+    'como_funciona.passo_3.titulo': { headingType: 'H3', minLength: 5 },
+    'como_funciona.passo_4.titulo': { headingType: 'H3', minLength: 5 },
+    'cta_contato.titulo': { headingType: 'H2', minLength: 10 },
+  },
+  trabalhe_conosco: {
+    'hero.titulo': { headingType: 'H1', minLength: 20 },
+    'valores.valor_1.titulo': { headingType: 'H3', minLength: 5 },
+    'valores.valor_2.titulo': { headingType: 'H3', minLength: 5 },
+    'valores.valor_3.titulo': { headingType: 'H3', minLength: 5 },
+    'formulario.titulo': { headingType: 'H2', minLength: 10 },
+  },
+  anunciar: {
+    'hero.titulo': { headingType: 'H1', minLength: 20 },
+    'introducao.titulo': { headingType: 'H2', minLength: 10 },
+    'vantagens.titulo': { headingType: 'H2', minLength: 10 },
+  },
+  viva_penha: {
+    'hero.titulo': { headingType: 'H1', minLength: 15 },
+    'introducao.titulo': { headingType: 'H2', minLength: 10 },
+    'o_que_fazer.titulo': { headingType: 'H2', minLength: 10 },
+    'beneficios.infraestrutura.titulo': { headingType: 'H3', minLength: 5 },
+    'beneficios.atracoes.titulo': { headingType: 'H3', minLength: 5 },
+    'beneficios.seguranca.titulo': { headingType: 'H3', minLength: 5 },
+    'beneficios.diversidade.titulo': { headingType: 'H3', minLength: 5 },
+  },
+  viva_picarras: {
+    'hero.titulo': { headingType: 'H1', minLength: 15 },
+    'introducao.titulo': { headingType: 'H2', minLength: 10 },
+    'o_que_fazer.titulo': { headingType: 'H2', minLength: 10 },
+  },
+  viva_barra_velha: {
+    'hero.titulo': { headingType: 'H1', minLength: 15 },
+    'introducao.titulo': { headingType: 'H2', minLength: 10 },
+    'o_que_fazer.titulo': { headingType: 'H2', minLength: 10 },
+  },
+  quem_somos: {
+    'hero.titulo': { headingType: 'H1', minLength: 20 },
+    'nossa_historia.titulo': { headingType: 'H2', minLength: 10 },
+  },
+}
 
 interface PendingTextChange {
   path: string
@@ -264,13 +331,26 @@ export default function AdminTextos() {
           {filteredTexts.map(([key, text]) => {
             const pendingChange = getPendingChange(key)
             const currentValue = pendingChange ? pendingChange.value : text.value
+            const headingRule = HEADING_RULES[selectedSection]?.[key]
+            const minLen = text.minLength ?? headingRule?.minLength
+            const headingType = text.headingType ?? headingRule?.headingType
             
             return (
               <div key={key} className={`bg-white rounded-lg shadow-md p-6 ${pendingChange ? 'ring-2 ring-blue-500' : ''}`}>
                 <div className="flex flex-col lg:flex-row lg:items-start gap-4">
                   {/* Info */}
                   <div className="lg:w-1/3">
-                    <h3 className="font-semibold text-gray-900 mb-2">{text.label}</h3>
+                    <div className="flex items-center gap-2 flex-wrap mb-2">
+                      <h3 className="font-semibold text-gray-900">{text.label}</h3>
+                      {headingType && (
+                        <span
+                          className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800"
+                          title={`Este texto é exibido como ${headingType} na página`}
+                        >
+                          {headingType}
+                        </span>
+                      )}
+                    </div>
                     <p className="text-sm text-gray-600 mb-1">
                       <strong>Seção:</strong> {text.section}
                     </p>
@@ -278,7 +358,12 @@ export default function AdminTextos() {
                       <strong>Tipo:</strong> {text.type}
                     </p>
                     <p className="text-sm text-gray-600 mb-2">
-                      <strong>Máximo:</strong> {text.maxLength} caracteres
+                      {minLen != null ? (
+                        <strong>Mín./Máx.:</strong>
+                      ) : (
+                        <strong>Máximo:</strong>
+                      )}{' '}
+                      {minLen != null ? `${minLen}–${text.maxLength}` : text.maxLength} caracteres
                     </p>
                     {text.hint && (
                       <p className="text-xs text-gray-500 italic">{text.hint}</p>
@@ -311,9 +396,12 @@ export default function AdminTextos() {
                           rows={3}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                         />
-                        <div className="flex justify-between items-center mt-1">
-                          <span className="text-xs text-gray-500">
+                        <div className="flex justify-between items-center mt-1 flex-wrap gap-1">
+                          <span className={`text-xs ${minLen != null && currentValue.length > 0 && currentValue.length < minLen ? 'text-amber-600' : 'text-gray-500'}`}>
                             {currentValue.length}/{text.maxLength} caracteres
+                            {minLen != null && currentValue.length > 0 && currentValue.length < minLen && (
+                              <span className="ml-1">— recomendado pelo menos {minLen}</span>
+                            )}
                           </span>
                           {pendingChange && (
                             <span className="text-xs text-blue-600 font-medium">
