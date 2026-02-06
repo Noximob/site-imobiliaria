@@ -6,7 +6,7 @@ import { ArrowLeft, Upload, X, Loader2, Image as ImageIcon, Check } from 'lucide
 import Link from 'next/link'
 import { createImovelWithFotos } from '@/lib/imoveis-github'
 import { generateSlug } from '@/lib/imoveis'
-import TitleInputSeo from '@/components/TitleInputSeo'
+import { SEO_CHAR_RANGES, isOutOfSuggestedRange } from '@/lib/seo-headings'
 
 export default function NovoImovelPage() {
   const router = useRouter()
@@ -369,23 +369,29 @@ export default function NovoImovelPage() {
           <div>
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Informações Básicas</h2>
             <div className="space-y-4">
-              <div>
-                <TitleInputSeo
-                  label="Título do Imóvel (H1)"
+              <div className={isOutOfSuggestedRange('H1', formData.titulo.length) ? 'rounded-lg border-2 border-amber-400 bg-amber-50/60 p-3' : ''}>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Título do Imóvel (H1) *
+                </label>
+                <input
+                  type="text"
+                  name="titulo"
                   value={formData.titulo}
                   onChange={handleInputChange}
-                  name="titulo"
                   placeholder="Ex: Apartamento Frente Mar em Penha"
                   required
+                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${isOutOfSuggestedRange('H1', formData.titulo.length) ? 'border-amber-500' : 'border-gray-300'}`}
                 />
-                <p className="text-xs text-gray-500 mt-1">
-                  H1 na página do imóvel. Recomendado: 30–70 caracteres para o título (o Google mostra título + "| Nox Imóveis").
-                </p>
+                <p className="text-xs text-gray-500 mt-1">Ideal: {SEO_CHAR_RANGES.H1.min}–{SEO_CHAR_RANGES.H1.max} caracteres (sugestivo).</p>
+                <span className={`text-xs ${isOutOfSuggestedRange('H1', formData.titulo.length) ? 'text-amber-600 font-medium' : 'text-gray-500'}`}>
+                  {formData.titulo.length} caracteres
+                  {isOutOfSuggestedRange('H1', formData.titulo.length) && ' — fora do ideal'}
+                </span>
               </div>
 
-              <div>
+              <div className={isOutOfSuggestedRange('paragrafo', formData.descricao.length) ? 'rounded-lg border-2 border-amber-400 bg-amber-50/60 p-3' : ''}>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Descrição
+                  Descrição (Parágrafo)
                 </label>
                 <textarea
                   name="descricao"
@@ -393,13 +399,14 @@ export default function NovoImovelPage() {
                   onChange={handleInputChange}
                   rows={4}
                   maxLength={5000}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  placeholder="Descrição completa do imóvel..."
+                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${isOutOfSuggestedRange('paragrafo', formData.descricao.length) ? 'border-amber-500' : 'border-gray-300'}`}
+                  placeholder="Descrição completa do imóvel (texto de parágrafo)..."
                 />
-                <p className="text-xs text-gray-500 mt-1">
-                  Texto da página. A meta no Google é montada automaticamente (título + cidade + preço + quartos + área). Recomendado: 150–2000 caracteres.
-                </p>
-                <span className="text-xs text-gray-500">{formData.descricao.length}/5000 caracteres</span>
+                <p className="text-xs text-gray-500 mt-1">Ideal: {SEO_CHAR_RANGES.paragrafo.min}–{SEO_CHAR_RANGES.paragrafo.max} caracteres (sugestivo).</p>
+                <span className={`text-xs ${isOutOfSuggestedRange('paragrafo', formData.descricao.length) ? 'text-amber-600 font-medium' : 'text-gray-500'}`}>
+                  {formData.descricao.length}/5000 caracteres
+                  {isOutOfSuggestedRange('paragrafo', formData.descricao.length) && ' — fora do ideal'}
+                </span>
               </div>
 
               <div className="grid grid-cols-2 gap-4">

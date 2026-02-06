@@ -4,71 +4,72 @@ import { useState, useEffect } from 'react'
 import { ArrowLeft, FileText, Save, RefreshCw, Loader2, CheckCircle, Search, Filter } from 'lucide-react'
 import Link from 'next/link'
 import { getAllSections, getTextsBySection, getTextMetadata, type SiteText, type HeadingType } from '@/lib/site-texts'
+import { SEO_CHAR_RANGES, isOutOfSuggestedRange } from '@/lib/seo-headings'
 
-/** Regras de heading e limites por seção e chave do texto (orientação SEO no admin) */
-const HEADING_RULES: Record<string, Record<string, { headingType: HeadingType; minLength: number }>> = {
+/** Por seção e chave: qual papel SEO (H1/H2/H3). Limites ideais vêm de SEO_CHAR_RANGES. */
+const HEADING_RULES: Record<string, Record<string, { headingType: HeadingType }>> = {
   home: {
-    'banner.titulo': { headingType: 'H1', minLength: 30 },
-    'selecao_nox.titulo': { headingType: 'H2', minLength: 10 },
-    'encontre_imovel.titulo': { headingType: 'H2', minLength: 20 },
-    'encontre_imovel.penha.titulo': { headingType: 'H3', minLength: 5 },
-    'encontre_imovel.picarras.titulo': { headingType: 'H3', minLength: 5 },
-    'encontre_imovel.barra_velha.titulo': { headingType: 'H3', minLength: 5 },
+    'banner.titulo': { headingType: 'H1' },
+    'selecao_nox.titulo': { headingType: 'H2' },
+    'encontre_imovel.titulo': { headingType: 'H2' },
+    'encontre_imovel.penha.titulo': { headingType: 'H3' },
+    'encontre_imovel.picarras.titulo': { headingType: 'H3' },
+    'encontre_imovel.barra_velha.titulo': { headingType: 'H3' },
   },
   blog: {
-    'hero.titulo': { headingType: 'H1', minLength: 30 },
+    'hero.titulo': { headingType: 'H1' },
   },
   contato: {
-    'hero.titulo': { headingType: 'H1', minLength: 20 },
+    'hero.titulo': { headingType: 'H1' },
   },
   como_comprar: {
-    'hero.titulo': { headingType: 'H1', minLength: 20 },
-    'como_funciona.titulo': { headingType: 'H2', minLength: 10 },
-    'imovel_praia.titulo': { headingType: 'H2', minLength: 10 },
-    'localizacao.titulo': { headingType: 'H2', minLength: 10 },
+    'hero.titulo': { headingType: 'H1' },
+    'como_funciona.titulo': { headingType: 'H2' },
+    'imovel_praia.titulo': { headingType: 'H2' },
+    'localizacao.titulo': { headingType: 'H2' },
   },
   encontre_meu_imovel: {
-    'hero.titulo': { headingType: 'H1', minLength: 20 },
-    'como_funciona.passo_1.titulo': { headingType: 'H3', minLength: 5 },
-    'como_funciona.passo_2.titulo': { headingType: 'H3', minLength: 5 },
-    'como_funciona.passo_3.titulo': { headingType: 'H3', minLength: 5 },
-    'como_funciona.passo_4.titulo': { headingType: 'H3', minLength: 5 },
-    'cta_contato.titulo': { headingType: 'H2', minLength: 10 },
+    'hero.titulo': { headingType: 'H1' },
+    'como_funciona.passo_1.titulo': { headingType: 'H3' },
+    'como_funciona.passo_2.titulo': { headingType: 'H3' },
+    'como_funciona.passo_3.titulo': { headingType: 'H3' },
+    'como_funciona.passo_4.titulo': { headingType: 'H3' },
+    'cta_contato.titulo': { headingType: 'H2' },
   },
   trabalhe_conosco: {
-    'hero.titulo': { headingType: 'H1', minLength: 20 },
-    'valores.valor_1.titulo': { headingType: 'H3', minLength: 5 },
-    'valores.valor_2.titulo': { headingType: 'H3', minLength: 5 },
-    'valores.valor_3.titulo': { headingType: 'H3', minLength: 5 },
-    'formulario.titulo': { headingType: 'H2', minLength: 10 },
+    'hero.titulo': { headingType: 'H1' },
+    'valores.valor_1.titulo': { headingType: 'H3' },
+    'valores.valor_2.titulo': { headingType: 'H3' },
+    'valores.valor_3.titulo': { headingType: 'H3' },
+    'formulario.titulo': { headingType: 'H2' },
   },
   anunciar: {
-    'hero.titulo': { headingType: 'H1', minLength: 20 },
-    'introducao.titulo': { headingType: 'H2', minLength: 10 },
-    'vantagens.titulo': { headingType: 'H2', minLength: 10 },
+    'hero.titulo': { headingType: 'H1' },
+    'introducao.titulo': { headingType: 'H2' },
+    'vantagens.titulo': { headingType: 'H2' },
   },
   viva_penha: {
-    'hero.titulo': { headingType: 'H1', minLength: 15 },
-    'introducao.titulo': { headingType: 'H2', minLength: 10 },
-    'o_que_fazer.titulo': { headingType: 'H2', minLength: 10 },
-    'beneficios.infraestrutura.titulo': { headingType: 'H3', minLength: 5 },
-    'beneficios.atracoes.titulo': { headingType: 'H3', minLength: 5 },
-    'beneficios.seguranca.titulo': { headingType: 'H3', minLength: 5 },
-    'beneficios.diversidade.titulo': { headingType: 'H3', minLength: 5 },
+    'hero.titulo': { headingType: 'H1' },
+    'introducao.titulo': { headingType: 'H2' },
+    'o_que_fazer.titulo': { headingType: 'H2' },
+    'beneficios.infraestrutura.titulo': { headingType: 'H3' },
+    'beneficios.atracoes.titulo': { headingType: 'H3' },
+    'beneficios.seguranca.titulo': { headingType: 'H3' },
+    'beneficios.diversidade.titulo': { headingType: 'H3' },
   },
-  viva_picarras: {
-    'hero.titulo': { headingType: 'H1', minLength: 15 },
-    'introducao.titulo': { headingType: 'H2', minLength: 10 },
-    'o_que_fazer.titulo': { headingType: 'H2', minLength: 10 },
+  viva_balneario_picarras: {
+    'hero.titulo': { headingType: 'H1' },
+    'introducao.titulo': { headingType: 'H2' },
+    'o_que_fazer.titulo': { headingType: 'H2' },
   },
   viva_barra_velha: {
-    'hero.titulo': { headingType: 'H1', minLength: 15 },
-    'introducao.titulo': { headingType: 'H2', minLength: 10 },
-    'o_que_fazer.titulo': { headingType: 'H2', minLength: 10 },
+    'hero.titulo': { headingType: 'H1' },
+    'introducao.titulo': { headingType: 'H2' },
+    'o_que_fazer.titulo': { headingType: 'H2' },
   },
   quem_somos: {
-    'hero.titulo': { headingType: 'H1', minLength: 20 },
-    'nossa_historia.titulo': { headingType: 'H2', minLength: 10 },
+    'hero.titulo': { headingType: 'H1' },
+    'nossa_historia.titulo': { headingType: 'H2' },
   },
 }
 
@@ -288,6 +289,18 @@ export default function AdminTextos() {
           </p>
         </div>
 
+        {/* O que é H1, H2, H3 e Parágrafo (SEO) */}
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+          <p className="text-sm font-semibold text-amber-900 mb-2">📌 H1, H2, H3 e Parágrafo no site</p>
+          <ul className="text-xs text-amber-800 space-y-1 list-disc list-inside">
+            <li><strong>H1</strong> — Título principal da página. Só 1 por página. Palavra-chave principal. Ideal: 30–60 caracteres.</li>
+            <li><strong>H2</strong> — Seções principais do conteúdo. Vários por página. Ideal: 25–60 caracteres.</li>
+            <li><strong>H3</strong> — Sub-seções dentro de um H2. Ideal: 20–50 caracteres.</li>
+            <li><strong>Parágrafo</strong> — Texto normal (&lt;p&gt;). Headings são rótulos de seção, não blocos de conteúdo.</li>
+          </ul>
+          <p className="text-xs text-amber-700 mt-2">Se o texto sair do ideal de caracteres, a caixa fica em amarelo (sugestivo; você pode salvar normalmente).</p>
+        </div>
+
         {/* Filters */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
           <div className="flex flex-col sm:flex-row gap-4">
@@ -332,9 +345,11 @@ export default function AdminTextos() {
             const pendingChange = getPendingChange(key)
             const currentValue = pendingChange ? pendingChange.value : text.value
             const headingRule = HEADING_RULES[selectedSection]?.[key]
-            const minLen = text.minLength ?? headingRule?.minLength
-            const headingType = text.headingType ?? headingRule?.headingType
-            
+            const headingType = (text.headingType ?? headingRule?.headingType) as keyof typeof SEO_CHAR_RANGES | undefined
+            const role = headingType && headingType in SEO_CHAR_RANGES ? headingType : null
+            const range = role ? SEO_CHAR_RANGES[role as keyof typeof SEO_CHAR_RANGES] : null
+            const foraDoIdeal = role && isOutOfSuggestedRange(role as 'H1'|'H2'|'H3', currentValue.length)
+
             return (
               <div key={key} className={`bg-white rounded-lg shadow-md p-6 ${pendingChange ? 'ring-2 ring-blue-500' : ''}`}>
                 <div className="flex flex-col lg:flex-row lg:items-start gap-4">
@@ -342,12 +357,12 @@ export default function AdminTextos() {
                   <div className="lg:w-1/3">
                     <div className="flex items-center gap-2 flex-wrap mb-2">
                       <h3 className="font-semibold text-gray-900">{text.label}</h3>
-                      {headingType && (
+                      {role && (
                         <span
                           className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800"
-                          title={`Este texto é exibido como ${headingType} na página`}
+                          title={role === 'paragrafo' ? 'Texto de parágrafo na página' : `Exibido como ${role} na página`}
                         >
-                          {headingType}
+                          {role}
                         </span>
                       )}
                     </div>
@@ -358,12 +373,15 @@ export default function AdminTextos() {
                       <strong>Tipo:</strong> {text.type}
                     </p>
                     <p className="text-sm text-gray-600 mb-2">
-                      {minLen != null ? (
-                        <strong>Mín./Máx.:</strong>
+                      {range ? (
+                        <>
+                          <strong>Ideal (sugestivo):</strong> {range.min}–{range.max} caracteres
+                        </>
                       ) : (
-                        <strong>Máximo:</strong>
-                      )}{' '}
-                      {minLen != null ? `${minLen}–${text.maxLength}` : text.maxLength} caracteres
+                        <>
+                          <strong>Máximo no sistema:</strong> {text.maxLength} caracteres
+                        </>
+                      )}
                     </p>
                     {text.hint && (
                       <p className="text-xs text-gray-500 italic">{text.hint}</p>
@@ -384,23 +402,28 @@ export default function AdminTextos() {
                       </div>
 
                       {/* Editor */}
-                      <div>
+                      <div className={foraDoIdeal ? 'rounded-lg border-2 border-amber-400 bg-amber-50/60 p-3' : ''}>
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Novo Valor
                         </label>
                         <textarea
                           value={currentValue}
                           onChange={(e) => handleTextChange(key, e.target.value, text)}
-                          placeholder={`Digite o novo valor (máximo ${text.maxLength} caracteres)...`}
+                          placeholder={range ? `Ideal: ${range.min}–${range.max} caracteres (sugestivo)...` : `Digite o novo valor (máx. ${text.maxLength})...`}
                           maxLength={text.maxLength}
                           rows={3}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                          className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${foraDoIdeal ? 'border-amber-500' : 'border-gray-300'}`}
                         />
+                        <p className="text-xs text-gray-600 mt-1">
+                          {range ? `Ideal: ${range.min}–${range.max} caracteres (sugestivo).` : `Máximo: ${text.maxLength} caracteres.`}
+                        </p>
                         <div className="flex justify-between items-center mt-1 flex-wrap gap-1">
-                          <span className={`text-xs ${minLen != null && currentValue.length > 0 && currentValue.length < minLen ? 'text-amber-600' : 'text-gray-500'}`}>
-                            {currentValue.length}/{text.maxLength} caracteres
-                            {minLen != null && currentValue.length > 0 && currentValue.length < minLen && (
-                              <span className="ml-1">— recomendado pelo menos {minLen}</span>
+                          <span className={`text-xs ${foraDoIdeal ? 'text-amber-700 font-medium' : 'text-gray-500'}`}>
+                            {currentValue.length}{range ? '' : `/${text.maxLength}`} caracteres
+                            {foraDoIdeal && range && (
+                              <span className="ml-1">
+                                — fora do ideal ({currentValue.length < range.min ? 'abaixo de ' + range.min : 'acima de ' + range.max})
+                              </span>
                             )}
                           </span>
                           {pendingChange && (

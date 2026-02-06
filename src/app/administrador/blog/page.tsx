@@ -5,7 +5,7 @@ import { ArrowLeft, BookOpen, Plus, X, Edit, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import { createArtigoWithImage, getAllArtigos, generateSlug, updateArtigoWithImage, deleteArtigo } from '@/lib/blog-github'
 import { Artigo } from '@/types'
-import TitleInputSeo from '@/components/TitleInputSeo'
+import { SEO_CHAR_RANGES, isOutOfSuggestedRange } from '@/lib/seo-headings'
 
 export default function AdminBlog() {
   const [artigos, setArtigos] = useState<Artigo[]>([])
@@ -214,15 +214,23 @@ export default function AdminBlog() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <TitleInputSeo
-                    label="Título (H1)"
+                <div className={isOutOfSuggestedRange('H1', novoArtigo.titulo.length) ? 'rounded-lg border-2 border-amber-400 bg-amber-50/60 p-3' : ''}>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Título (H1) *
+                  </label>
+                  <input
+                    type="text"
                     value={novoArtigo.titulo}
                     onChange={(e) => setNovoArtigo({...novoArtigo, titulo: e.target.value})}
                     placeholder="Digite o título do artigo"
                     required
+                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 ${isOutOfSuggestedRange('H1', novoArtigo.titulo.length) ? 'border-amber-500' : 'border-gray-300'}`}
                   />
-                  <p className="text-xs text-gray-500 mt-1">H1 na página do artigo. Recomendado: 30–70 caracteres.</p>
+                  <p className="text-xs text-gray-500 mt-1">Ideal: {SEO_CHAR_RANGES.H1.min}–{SEO_CHAR_RANGES.H1.max} caracteres (sugestivo).</p>
+                  <span className={`text-xs ${isOutOfSuggestedRange('H1', novoArtigo.titulo.length) ? 'text-amber-600 font-medium' : 'text-gray-500'}`}>
+                    {novoArtigo.titulo.length} caracteres
+                    {isOutOfSuggestedRange('H1', novoArtigo.titulo.length) && ' — fora do ideal'}
+                  </span>
                 </div>
 
                 <div>
@@ -256,7 +264,7 @@ export default function AdminBlog() {
                 </div>
               </div>
 
-              <div>
+              <div className={isOutOfSuggestedRange('meta', novoArtigo.resumo.length) ? 'rounded-lg border-2 border-amber-400 bg-amber-50/60 p-3' : ''}>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Resumo (Meta description) *
                 </label>
@@ -265,30 +273,31 @@ export default function AdminBlog() {
                   onChange={(e) => setNovoArtigo({...novoArtigo, resumo: e.target.value})}
                   rows={3}
                   maxLength={200}
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 ${novoArtigo.resumo.length > 160 ? 'border-amber-500 bg-amber-50/50' : 'border-gray-300'}`}
-                  placeholder="Breve descrição do artigo (ideal 150–160 caracteres para o Google)"
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 ${isOutOfSuggestedRange('meta', novoArtigo.resumo.length) ? 'border-amber-500' : 'border-gray-300'}`}
+                  placeholder={`Ideal: ${SEO_CHAR_RANGES.meta.min}–${SEO_CHAR_RANGES.meta.max} caracteres para o Google`}
                   required
                 />
                 <p className="text-xs text-gray-500 mt-1">
-                  Usado como meta description no Google. Recomendado: 150–160 caracteres.
+                  Ideal: {SEO_CHAR_RANGES.meta.min}–{SEO_CHAR_RANGES.meta.max} caracteres (sugestivo).
                 </p>
-                <span className={`text-xs ${novoArtigo.resumo.length > 160 ? 'text-amber-600' : 'text-gray-500'}`}>
+                <span className={`text-xs ${isOutOfSuggestedRange('meta', novoArtigo.resumo.length) ? 'text-amber-600 font-medium' : 'text-gray-500'}`}>
                   {novoArtigo.resumo.length}/200 caracteres
-                  {novoArtigo.resumo.length > 160 && ' — acima do ideal para meta'}
+                  {isOutOfSuggestedRange('meta', novoArtigo.resumo.length) && ' — fora do ideal para meta'}
                 </span>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Conteúdo
+                  Conteúdo (parágrafos; use H2/H3 no texto para seções)
                 </label>
                 <textarea
                   value={novoArtigo.conteudo}
                   onChange={(e) => setNovoArtigo({...novoArtigo, conteudo: e.target.value})}
                   rows={6}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  placeholder="Conteúdo completo do artigo"
+                  placeholder="Conteúdo completo do artigo. Texto normal = parágrafo; headings = rótulos de seção."
                 />
+                <p className="text-xs text-gray-500 mt-1">Parágrafo para texto explicativo. H2/H3 apenas para títulos de seção.</p>
               </div>
 
               <div>

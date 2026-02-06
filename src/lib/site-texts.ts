@@ -1,6 +1,6 @@
 import siteTextsData from '../../public/textos/site.json'
 
-export type HeadingType = 'H1' | 'H2' | 'H3' | 'meta'
+export type HeadingType = 'H1' | 'H2' | 'H3' | 'meta' | 'paragrafo'
 
 export interface SiteText {
   value: string
