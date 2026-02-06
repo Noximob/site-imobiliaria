@@ -12,7 +12,8 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'raw.githubusercontent.com',
-        pathname: '/Noximob/site-imobiliaria/**',
+        // Repositório GitHub do projeto (sempre em minúsculo para evitar URLs com UPPERCASE)
+        pathname: '/noximob/site-imobiliaria/**',
       },
       // Imagens DWV (CDN DigitalOcean Spaces)
       {

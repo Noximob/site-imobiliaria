@@ -4,7 +4,8 @@ import fs from 'fs'
 import path from 'path'
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
-const REPO_OWNER = 'Noximob'
+// Dono do repositório no GitHub (usar sempre minúsculo para evitar URLs com UPPERCASE)
+const REPO_OWNER = 'noximob'
 const REPO_NAME = 'site-imobiliaria'
 const IMOVEIS_PATH = 'public/imoveis/imoveis.json'
 const baseUrl = 'https://noximobiliaria.com.br'
