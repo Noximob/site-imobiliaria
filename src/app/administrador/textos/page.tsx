@@ -4,10 +4,45 @@ import { useState, useEffect } from 'react'
 import { ArrowLeft, FileText, Save, RefreshCw, Loader2, CheckCircle, Search, Filter } from 'lucide-react'
 import Link from 'next/link'
 import { getAllSections, getTextsBySection, getTextMetadata, type SiteText, type HeadingType } from '@/lib/site-texts'
-import { SEO_CHAR_RANGES, isOutOfSuggestedRange } from '@/lib/seo-headings'
+import { SEO_CHAR_RANGES, isOutOfSuggestedRange, type SeoRole } from '@/lib/seo-headings'
 
-/** Por seção e chave: qual papel SEO (H1/H2/H3). Alinhado ao uso real nas páginas (<h1>/<h2>/<h3>). */
+/** Por seção e chave: qual papel SEO (H1/H2/H3/H4/label). Alinhado ao uso real nas páginas. */
 const HEADING_RULES: Record<string, Record<string, { headingType: HeadingType }>> = {
+  header: {
+    'telefone': { headingType: 'label' },
+    'menu_imoveis_penha': { headingType: 'label' },
+    'menu_imoveis_picarras': { headingType: 'label' },
+    'menu_imoveis_barra_velha': { headingType: 'label' },
+  },
+  footer: {
+    'telefone': { headingType: 'label' },
+    'texto_acompanhe': { headingType: 'label' },
+    'copyright': { headingType: 'label' },
+    'coluna_imoveis.titulo': { headingType: 'H3' },
+    'coluna_imoveis.imoveis_venda': { headingType: 'label' },
+    'coluna_imoveis.empreendimentos': { headingType: 'label' },
+    'coluna_imoveis.favoritos': { headingType: 'label' },
+    'coluna_servicos.titulo': { headingType: 'H3' },
+    'coluna_servicos.anunciar_imovel': { headingType: 'label' },
+    'coluna_servicos.encontre_meu_imovel': { headingType: 'label' },
+    'coluna_servicos.como_comprar': { headingType: 'label' },
+    'coluna_servicos.simular_financiamento': { headingType: 'label' },
+    'coluna_institucional.titulo': { headingType: 'H3' },
+    'coluna_institucional.quem_somos': { headingType: 'label' },
+    'coluna_institucional.contato': { headingType: 'label' },
+    'coluna_institucional.trabalhe_conosco': { headingType: 'label' },
+    'coluna_localizacao.titulo': { headingType: 'H3' },
+    'coluna_localizacao.viva_penha': { headingType: 'label' },
+    'coluna_localizacao.viva_picarras': { headingType: 'label' },
+    'coluna_localizacao.viva_barra_velha': { headingType: 'label' },
+    'coluna_localizacao.blog': { headingType: 'label' },
+    'central_atendimento.titulo': { headingType: 'H4' },
+    'central_atendimento.creci': { headingType: 'label' },
+    'central_atendimento.endereco': { headingType: 'label' },
+    'central_atendimento.cidade': { headingType: 'label' },
+    'central_atendimento.telefone_central': { headingType: 'label' },
+    'central_atendimento.creci_sc': { headingType: 'label' },
+  },
   home: {
     'banner.titulo': { headingType: 'H1' },
     'selecao_nox.titulo': { headingType: 'H2' },
@@ -81,6 +116,9 @@ const HEADING_RULES: Record<string, Record<string, { headingType: HeadingType }>
     'vantagens_investir.localizacao.titulo': { headingType: 'H3' },
     'vantagens_investir.qualidade_vida.titulo': { headingType: 'H3' },
     'vantagens_investir.turismo.titulo': { headingType: 'H3' },
+    'cta_investimento.titulo': { headingType: 'H3' },
+    'anuncie.titulo': { headingType: 'H3' },
+    'anuncie.subtitulo': { headingType: 'H3' },
   },
   viva_balneario_picarras: {
     'hero.titulo': { headingType: 'H1' },
@@ -99,6 +137,9 @@ const HEADING_RULES: Record<string, Record<string, { headingType: HeadingType }>
     'vantagens_investir.localizacao.titulo': { headingType: 'H3' },
     'vantagens_investir.qualidade_vida.titulo': { headingType: 'H3' },
     'vantagens_investir.turismo.titulo': { headingType: 'H3' },
+    'cta_investimento.titulo': { headingType: 'H3' },
+    'anuncie.titulo': { headingType: 'H3' },
+    'anuncie.subtitulo': { headingType: 'H3' },
   },
   viva_barra_velha: {
     'hero.titulo': { headingType: 'H1' },
@@ -117,10 +158,14 @@ const HEADING_RULES: Record<string, Record<string, { headingType: HeadingType }>
     'vantagens_investir.localizacao.titulo': { headingType: 'H3' },
     'vantagens_investir.qualidade_vida.titulo': { headingType: 'H3' },
     'vantagens_investir.turismo.titulo': { headingType: 'H3' },
+    'cta_investimento.titulo': { headingType: 'H3' },
+    'anuncie.titulo': { headingType: 'H3' },
+    'anuncie.subtitulo': { headingType: 'H3' },
   },
   quem_somos: {
     'hero.titulo': { headingType: 'H1' },
     'nossa_historia.titulo': { headingType: 'H2' },
+    'cta_trabalhe.titulo': { headingType: 'H2' },
     'missao_visao_valores.missao.titulo': { headingType: 'H3' },
     'missao_visao_valores.visao.titulo': { headingType: 'H3' },
     'missao_visao_valores.valores.titulo': { headingType: 'H3' },
@@ -343,16 +388,18 @@ export default function AdminTextos() {
           </p>
         </div>
 
-        {/* O que é H1, H2, H3 e Parágrafo (SEO) */}
+        {/* Papéis de texto (SEO e UI) — do header ao footer */}
         <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
-          <p className="text-sm font-semibold text-amber-900 mb-2">📌 H1, H2, H3 e Parágrafo no site</p>
+          <p className="text-sm font-semibold text-amber-900 mb-2">📌 Papéis dos textos no site (header, páginas, footer)</p>
           <ul className="text-xs text-amber-800 space-y-1 list-disc list-inside">
-            <li><strong>H1</strong> — Título principal da página. Só 1 por página. Palavra-chave principal. Ideal: 30–60 caracteres.</li>
-            <li><strong>H2</strong> — Seções principais do conteúdo. Vários por página. Ideal: 25–60 caracteres.</li>
-            <li><strong>H3</strong> — Sub-seções dentro de um H2. Ideal: 20–50 caracteres.</li>
-            <li><strong>Parágrafo</strong> — Texto normal (&lt;p&gt;). Headings são rótulos de seção, não blocos de conteúdo.</li>
+            <li><strong>H1</strong> — Título principal da página. Só 1 por página. Ideal: 30–60 caracteres.</li>
+            <li><strong>H2</strong> — Seções principais. Ideal: 25–60 caracteres.</li>
+            <li><strong>H3</strong> — Sub-seções. Ideal: 20–50 caracteres.</li>
+            <li><strong>H4</strong> — Títulos menores (ex.: rodapé). Ideal: 15–40 caracteres.</li>
+            <li><strong>Label</strong> — Menus, links, botões, telefones. Ideal: 5–50 caracteres.</li>
+            <li><strong>Parágrafo</strong> — Texto em bloco (&lt;p&gt;). Ideal: 150–2000 caracteres.</li>
           </ul>
-          <p className="text-xs text-amber-700 mt-2">Se o texto sair do ideal de caracteres, a caixa fica em amarelo (sugestivo; você pode salvar normalmente).</p>
+          <p className="text-xs text-amber-700 mt-2">Se o texto sair do ideal, a caixa fica em amarelo (sugestivo; você pode salvar normalmente).</p>
         </div>
 
         {/* Filters */}
@@ -402,9 +449,10 @@ export default function AdminTextos() {
             const relativeKey = key.startsWith(selectedSection + '.') ? key.slice(selectedSection.length + 1) : key
             const headingRule = HEADING_RULES[selectedSection]?.[relativeKey]
             const headingType = (text.headingType ?? headingRule?.headingType) as keyof typeof SEO_CHAR_RANGES | undefined
-            const role = headingType && headingType in SEO_CHAR_RANGES ? headingType : null
-            const range = role ? SEO_CHAR_RANGES[role as keyof typeof SEO_CHAR_RANGES] : null
-            const foraDoIdeal = role && isOutOfSuggestedRange(role as 'H1'|'H2'|'H3', currentValue.length)
+            // Sempre exibir papel e ideal: se não tiver regra, usar "label" para todas as abas se comportarem igual
+            const role: keyof typeof SEO_CHAR_RANGES = (headingType && headingType in SEO_CHAR_RANGES ? headingType : 'label') as keyof typeof SEO_CHAR_RANGES
+            const range = SEO_CHAR_RANGES[role]
+            const foraDoIdeal = isOutOfSuggestedRange(role as SeoRole, currentValue.length)
 
             return (
               <div key={key} className={`bg-white rounded-lg shadow-md p-6 ${pendingChange ? 'ring-2 ring-blue-500' : ''}`}>
@@ -467,6 +515,7 @@ export default function AdminTextos() {
                           onChange={(e) => handleTextChange(key, e.target.value, text)}
                           placeholder={range ? `Ideal: ${range.min}–${range.max} caracteres (sugestivo)...` : `Digite o novo valor (máx. ${text.maxLength})...`}
                           maxLength={range ? Math.max(text.maxLength, range.max) : text.maxLength}
+                          title={range ? `Para ${role}: permitido até ${Math.max(text.maxLength, range.max)} caracteres (ideal ${range.min}–${range.max}).` : undefined}
                           rows={3}
                           className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${foraDoIdeal ? 'border-amber-500' : 'border-gray-300'}`}
                         />
