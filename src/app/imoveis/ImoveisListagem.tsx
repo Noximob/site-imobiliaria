@@ -24,29 +24,90 @@ const TIPO_LABELS: Record<string, string> = {
   terreno: 'Terrenos',
 }
 
-function getH1Text(f: { cidade?: string; tipo?: string; status?: string; frenteMar?: boolean; vistaMar?: boolean; mobiliado?: boolean }): string {
+/** Formata preço de forma curta para H1 (ex: "R$ 500 mil", "até R$ 1 mi") */
+function formatPriceShort(value: number): string {
+  if (value >= 1_000_000) return `R$ ${(value / 1_000_000).toFixed(1).replace('.', ',')} mi`
+  if (value >= 1_000) return `R$ ${(value / 1_000).toFixed(0)} mil`
+  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(value)
+}
+
+type H1FilterInput = {
+  cidade?: string
+  tipo?: string
+  status?: string
+  frenteMar?: boolean
+  vistaMar?: boolean
+  mobiliado?: boolean
+  quartos?: number | number[] | string[]
+  dataEntrega?: (string | number)[]
+  precoMin?: number
+  precoMax?: number
+  valorMin?: string
+  valorMax?: string
+}
+
+function getH1Text(f: H1FilterInput): string {
   const cidade = f.cidade ? (CIDADE_LABELS[f.cidade] || f.cidade) : null
   const tipo = f.tipo ? (TIPO_LABELS[f.tipo] || f.tipo) : null
   const lancamento = f.status === 'lancamento'
   const frenteMar = f.frenteMar === true
   const vistaMar = f.vistaMar === true
   const mobiliado = f.mobiliado === true
+
   const extras: string[] = []
   if (frenteMar) extras.push('Frente Mar')
   if (vistaMar) extras.push('Vista Mar')
   if (mobiliado) extras.push('Mobiliados')
   const extraStr = extras.length > 0 ? ` ${extras.join(' e ')}` : ''
-  if (lancamento && cidade) return `Empreendimentos em ${cidade}${extraStr}`
-  if (lancamento) return `Empreendimentos e Lançamentos${extraStr}`
-  if (tipo && cidade) return `${tipo} em ${cidade}${extraStr}`
-  if (tipo) return `${tipo} à Venda${extraStr}`
-  if (cidade) return `Imóveis em ${cidade}${extraStr}`
-  if (extraStr.trim()) return `Imóveis${extraStr}`
+
+  // Quartos: deixa H1 único (ex: "de 2 Quartos", "com 4 ou mais Quartos")
+  let quartosStr = ''
+  const qArr = f.quartos !== undefined ? (Array.isArray(f.quartos) ? f.quartos.map((x) => (typeof x === 'string' ? parseInt(x, 10) : x)).filter((n) => !isNaN(n)) as number[]) : []) : []
+  if (qArr.length > 0) {
+    const has4Plus = qArr.includes(4)
+    if (has4Plus && qArr.length === 1) quartosStr = ' com 4 ou mais Quartos'
+    else if (qArr.length === 1) quartosStr = ` de ${qArr[0]} ${qArr[0] === 1 ? 'Quarto' : 'Quartos'}`
+    else quartosStr = ` de ${[...qArr].sort((a, b) => a - b).join(', ')} Quartos`
+  }
+
+  // Data de entrega: Entregues ou anos (ex: "com Entrega em 2026")
+  let entregaStr = ''
+  const de = f.dataEntrega && Array.isArray(f.dataEntrega) && f.dataEntrega.length > 0 ? f.dataEntrega : []
+  if (de.length > 0) {
+    const temEntregues = de.some((d) => d === 'entregues' || d === 'prontos' || String(d).toLowerCase() === 'entregues')
+    const anos = de.filter((d): d is number => typeof d === 'number').sort((a, b) => a - b)
+    if (temEntregues && anos.length > 0) entregaStr = ` Entregues e em ${anos.join(', ')}`
+    else if (temEntregues) entregaStr = ' Entregues'
+    else if (anos.length > 0) entregaStr = ` com Entrega em ${anos.join(', ')}`
+  }
+
+  // Faixa de preço: diferencia URLs (ex: "até R$ 500 mil", "acima de R$ 300 mil")
+  const precoMin = f.precoMin ?? (f.valorMin ? Number(f.valorMin) : undefined)
+  const precoMax = f.precoMax ?? (f.valorMax ? Number(f.valorMax) : undefined)
+  let precoStr = ''
+  if (precoMax != null && !isNaN(precoMax) && (precoMin == null || isNaN(precoMin))) precoStr = ` até ${formatPriceShort(precoMax)}`
+  else if (precoMin != null && !isNaN(precoMin) && (precoMax == null || isNaN(precoMax))) precoStr = ` acima de ${formatPriceShort(precoMin)}`
+  else if (precoMin != null && !isNaN(precoMin) && precoMax != null && !isNaN(precoMax)) precoStr = ` de ${formatPriceShort(precoMin)} a ${formatPriceShort(precoMax)}`
+
+  const suffix = `${quartosStr}${extraStr}${entregaStr}${precoStr}`.trim()
+
+  if (lancamento && cidade) return `Empreendimentos em ${cidade}${suffix ? ` – ${suffix}` : ''}`
+  if (lancamento) return `Empreendimentos e Lançamentos${suffix ? ` – ${suffix}` : ''}`
+  if (tipo && cidade) return `${tipo} em ${cidade}${suffix ? ` – ${suffix}` : ''}`
+  if (tipo) return `${tipo} à Venda${suffix ? ` – ${suffix}` : ''}`
+  if (cidade) return `Imóveis em ${cidade}${suffix ? ` – ${suffix}` : ''}`
+  if (extraStr.trim()) return `Imóveis${extraStr}${quartosStr}${entregaStr}${precoStr}`.trim()
+  if (suffix) return `Imóveis à Venda – ${suffix}`
   return 'Imóveis à Venda'
 }
 
-function hasRelevantFilters(f: { cidade?: string; tipo?: string; status?: string; frenteMar?: boolean; vistaMar?: boolean; mobiliado?: boolean }): boolean {
-  return !!(f.cidade || f.tipo || f.status || f.frenteMar || f.vistaMar || f.mobiliado)
+function hasRelevantFilters(f: H1FilterInput): boolean {
+  const hasQuartos = f.quartos !== undefined && Array.isArray(f.quartos) && f.quartos.length > 0
+  const hasDataEntrega = f.dataEntrega !== undefined && Array.isArray(f.dataEntrega) && f.dataEntrega.length > 0
+  const precoMin = f.precoMin ?? (f.valorMin ? Number(f.valorMin) : undefined)
+  const precoMax = f.precoMax ?? (f.valorMax ? Number(f.valorMax) : undefined)
+  const hasPreco = (precoMin != null && !isNaN(precoMin)) || (precoMax != null && !isNaN(precoMax))
+  return !!(f.cidade || f.tipo || f.status || f.frenteMar || f.vistaMar || f.mobiliado || hasQuartos || hasDataEntrega || hasPreco)
 }
 
 function ImoveisPageContent() {
@@ -88,6 +149,13 @@ function ImoveisPageContent() {
     if (searchParams.get('vistaMar') === 'true') params.vistaMar = true
     if (searchParams.get('frenteMar') === 'true') params.frenteMar = true
     if (searchParams.get('areaLazer') === 'true') params.areaLazer = true
+    const dataEntrega = searchParams.getAll('dataEntrega')
+    if (dataEntrega.length > 0) {
+      params.dataEntrega = dataEntrega.map((d) => {
+        const n = parseInt(d, 10)
+        return isNaN(n) ? d : n
+      })
+    }
     setFiltrosIniciais(params)
   }, [searchParams])
 
@@ -162,6 +230,14 @@ function ImoveisPageContent() {
     if (novosFiltros.frenteMar) q.set('frenteMar', 'true')
     if (novosFiltros.vistaMar) q.set('vistaMar', 'true')
     if (novosFiltros.mobiliado) q.set('mobiliado', 'true')
+    if (novosFiltros.valorMin) q.set('valorMin', String(novosFiltros.valorMin))
+    if (novosFiltros.valorMax) q.set('valorMax', String(novosFiltros.valorMax))
+    if (Array.isArray(novosFiltros.quartos) && novosFiltros.quartos.length > 0) {
+      novosFiltros.quartos.forEach((quarto: string) => q.append('quartos', quarto))
+    }
+    if (Array.isArray(novosFiltros.dataEntrega) && novosFiltros.dataEntrega.length > 0) {
+      novosFiltros.dataEntrega.forEach((d: string | number) => q.append('dataEntrega', String(d)))
+    }
     const query = q.toString()
     const url = query ? `${pathname}?${query}` : pathname
     router.replace(url, { scroll: false })
