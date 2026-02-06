@@ -553,6 +553,8 @@ export default function EditarFotosImovelDWV() {
                       <img
                         src={foto}
                         alt={`Foto ${index + 1}`}
+                        width={320}
+                        height={180}
                         className="w-full h-full object-cover"
                       />
                       {isPrincipal && (

@@ -751,8 +751,10 @@ export default function ImovelDetalhePage() {
                               <img
                                 src={foto}
                                 alt={item.titulo}
-                                className="w-full h-full object-cover"
                                 loading="lazy"
+                                width={400}
+                                height={300}
+                                className="w-full h-full object-cover"
                               />
                             ) : (
                               <div className="w-full h-full bg-gray-200" />
