@@ -344,7 +344,9 @@ export default function AdminTextos() {
           {filteredTexts.map(([key, text]) => {
             const pendingChange = getPendingChange(key)
             const currentValue = pendingChange ? pendingChange.value : text.value
-            const headingRule = HEADING_RULES[selectedSection]?.[key]
+            // Chaves vêm como "secao.sub.titulo"; HEADING_RULES usa só a parte relativa "sub.titulo"
+            const relativeKey = key.startsWith(selectedSection + '.') ? key.slice(selectedSection.length + 1) : key
+            const headingRule = HEADING_RULES[selectedSection]?.[relativeKey]
             const headingType = (text.headingType ?? headingRule?.headingType) as keyof typeof SEO_CHAR_RANGES | undefined
             const role = headingType && headingType in SEO_CHAR_RANGES ? headingType : null
             const range = role ? SEO_CHAR_RANGES[role as keyof typeof SEO_CHAR_RANGES] : null
@@ -410,7 +412,7 @@ export default function AdminTextos() {
                           value={currentValue}
                           onChange={(e) => handleTextChange(key, e.target.value, text)}
                           placeholder={range ? `Ideal: ${range.min}–${range.max} caracteres (sugestivo)...` : `Digite o novo valor (máx. ${text.maxLength})...`}
-                          maxLength={text.maxLength}
+                          maxLength={range ? Math.max(text.maxLength, range.max) : text.maxLength}
                           rows={3}
                           className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${foraDoIdeal ? 'border-amber-500' : 'border-gray-300'}`}
                         />
@@ -419,7 +421,7 @@ export default function AdminTextos() {
                         </p>
                         <div className="flex justify-between items-center mt-1 flex-wrap gap-1">
                           <span className={`text-xs ${foraDoIdeal ? 'text-amber-700 font-medium' : 'text-gray-500'}`}>
-                            {currentValue.length}{range ? '' : `/${text.maxLength}`} caracteres
+                            {currentValue.length}{range ? `/${range.max}` : `/${text.maxLength}`} caracteres
                             {foraDoIdeal && range && (
                               <span className="ml-1">
                                 — fora do ideal ({currentValue.length < range.min ? 'abaixo de ' + range.min : 'acima de ' + range.max})
