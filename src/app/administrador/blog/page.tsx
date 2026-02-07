@@ -272,16 +272,15 @@ export default function AdminBlog() {
                   value={novoArtigo.resumo}
                   onChange={(e) => setNovoArtigo({...novoArtigo, resumo: e.target.value})}
                   rows={3}
-                  maxLength={200}
                   className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 ${isOutOfSuggestedRange('meta', novoArtigo.resumo.length) ? 'border-amber-500' : 'border-gray-300'}`}
-                  placeholder={`Ideal: ${SEO_CHAR_RANGES.meta.min}–${SEO_CHAR_RANGES.meta.max} caracteres para o Google`}
+                  placeholder={`Ideal: ${SEO_CHAR_RANGES.meta.min}–${SEO_CHAR_RANGES.meta.max} caracteres para o Google (sugestivo)`}
                   required
                 />
                 <p className="text-xs text-gray-500 mt-1">
                   Ideal: {SEO_CHAR_RANGES.meta.min}–{SEO_CHAR_RANGES.meta.max} caracteres (sugestivo).
                 </p>
                 <span className={`text-xs ${isOutOfSuggestedRange('meta', novoArtigo.resumo.length) ? 'text-amber-600 font-medium' : 'text-gray-500'}`}>
-                  {novoArtigo.resumo.length}/200 caracteres
+                  {novoArtigo.resumo.length} caracteres
                   {isOutOfSuggestedRange('meta', novoArtigo.resumo.length) && ' — fora do ideal para meta'}
                 </span>
               </div>

@@ -398,13 +398,12 @@ export default function NovoImovelPage() {
                   value={formData.descricao}
                   onChange={handleInputChange}
                   rows={4}
-                  maxLength={5000}
                   className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${isOutOfSuggestedRange('paragrafo', formData.descricao.length) ? 'border-amber-500' : 'border-gray-300'}`}
                   placeholder="Descrição completa do imóvel (texto de parágrafo)..."
                 />
                 <p className="text-xs text-gray-500 mt-1">Ideal: {SEO_CHAR_RANGES.paragrafo.min}–{SEO_CHAR_RANGES.paragrafo.max} caracteres (sugestivo).</p>
                 <span className={`text-xs ${isOutOfSuggestedRange('paragrafo', formData.descricao.length) ? 'text-amber-600 font-medium' : 'text-gray-500'}`}>
-                  {formData.descricao.length}/5000 caracteres
+                  {formData.descricao.length} caracteres
                   {isOutOfSuggestedRange('paragrafo', formData.descricao.length) && ' — fora do ideal'}
                 </span>
               </div>

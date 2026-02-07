@@ -170,6 +170,63 @@ const HEADING_RULES: Record<string, Record<string, { headingType: HeadingType }>
     'missao_visao_valores.visao.titulo': { headingType: 'H3' },
     'missao_visao_valores.valores.titulo': { headingType: 'H3' },
   },
+  'Guia Imóvel na Planta': {
+    'hub.hero_label': { headingType: 'label' },
+    'hub.hero_titulo': { headingType: 'H1' },
+    'hub.hero_subtitulo': { headingType: 'label' },
+    'hub.paragrafo_1': { headingType: 'paragrafo' },
+    'hub.paragrafo_2': { headingType: 'paragrafo' },
+    'hub.paragrafo_3': { headingType: 'paragrafo' },
+    'hub.paragrafo_4': { headingType: 'paragrafo' },
+    'hub.indice_titulo': { headingType: 'H2' },
+    'hub.indice_subtitulo': { headingType: 'label' },
+    'hub.perguntas_respostas_label': { headingType: 'label' },
+    'hub.no_site_titulo': { headingType: 'H2' },
+    'hub.link_ver_lancamentos': { headingType: 'label' },
+    'hub.link_como_comprar_imovel': { headingType: 'label' },
+    'hub.link_encontre_meu_imovel': { headingType: 'label' },
+    'temas.tema_como_comprar': { headingType: 'label' },
+    'temas.tema_fluxo': { headingType: 'label' },
+    'temas.tema_fgts': { headingType: 'label' },
+    'temas.tema_investir': { headingType: 'label' },
+    'temas.tema_frente_mar': { headingType: 'label' },
+    'temas.tema_seguranca': { headingType: 'label' },
+  },
+  'FAQ Imóvel na Planta': {
+    'hero_titulo': { headingType: 'H1' },
+    'hero_subtitulo': { headingType: 'label' },
+    'hero_sublabel': { headingType: 'label' },
+    'cta_texto': { headingType: 'label' },
+    'cta_botao': { headingType: 'label' },
+    'outros_temas_label': { headingType: 'label' },
+    'link_como_comprar': { headingType: 'label' },
+    'link_seguranca': { headingType: 'label' },
+    'link_pagamento': { headingType: 'label' },
+    'pergunta_1': { headingType: 'H3' },
+    'pergunta_2': { headingType: 'H3' },
+    'pergunta_3': { headingType: 'H3' },
+    'pergunta_4': { headingType: 'H3' },
+    'pergunta_5': { headingType: 'H3' },
+    'pergunta_6': { headingType: 'H3' },
+    'pergunta_7': { headingType: 'H3' },
+    'pergunta_8': { headingType: 'H3' },
+    'pergunta_9': { headingType: 'H3' },
+    'pergunta_10': { headingType: 'H3' },
+    'pergunta_11': { headingType: 'H3' },
+    'pergunta_12': { headingType: 'H3' },
+    'resposta_1': { headingType: 'paragrafo' },
+    'resposta_2': { headingType: 'paragrafo' },
+    'resposta_3': { headingType: 'paragrafo' },
+    'resposta_4': { headingType: 'paragrafo' },
+    'resposta_5': { headingType: 'paragrafo' },
+    'resposta_6': { headingType: 'paragrafo' },
+    'resposta_7': { headingType: 'paragrafo' },
+    'resposta_8': { headingType: 'paragrafo' },
+    'resposta_9': { headingType: 'paragrafo' },
+    'resposta_10': { headingType: 'paragrafo' },
+    'resposta_11': { headingType: 'paragrafo' },
+    'resposta_12': { headingType: 'paragrafo' },
+  },
 }
 
 interface PendingTextChange {
@@ -396,7 +453,7 @@ export default function AdminTextos() {
             <li><strong>H2</strong> — Seções principais. Ideal: 25–60 caracteres.</li>
             <li><strong>H3</strong> — Sub-seções. Ideal: 20–50 caracteres.</li>
             <li><strong>H4</strong> — Títulos menores (ex.: rodapé). Ideal: 15–40 caracteres.</li>
-            <li><strong>Label</strong> — Menus, links, botões, telefones. Ideal: 5–50 caracteres.</li>
+            <li><strong>Label</strong> — Menus, links, botões, textos curtos. Ideal: 5–50 caracteres.</li>
             <li><strong>Parágrafo</strong> — Texto em bloco (&lt;p&gt;). Ideal: 150–2000 caracteres.</li>
           </ul>
           <p className="text-xs text-amber-700 mt-2">Se o texto sair do ideal, a caixa fica em amarelo (sugestivo; você pode salvar normalmente).</p>
@@ -477,15 +534,7 @@ export default function AdminTextos() {
                       <strong>Tipo:</strong> {text.type}
                     </p>
                     <p className="text-sm text-gray-600 mb-2">
-                      {range ? (
-                        <>
-                          <strong>Ideal (sugestivo):</strong> {range.min}–{range.max} caracteres
-                        </>
-                      ) : (
-                        <>
-                          <strong>Máximo no sistema:</strong> {text.maxLength} caracteres
-                        </>
-                      )}
+                      <strong>Ideal (sugestivo):</strong> {range.min}–{range.max} caracteres
                     </p>
                     {text.hint && (
                       <p className="text-xs text-gray-500 italic">{text.hint}</p>
@@ -513,19 +562,17 @@ export default function AdminTextos() {
                         <textarea
                           value={currentValue}
                           onChange={(e) => handleTextChange(key, e.target.value, text)}
-                          placeholder={range ? `Ideal: ${range.min}–${range.max} caracteres (sugestivo)...` : `Digite o novo valor (máx. ${text.maxLength})...`}
-                          maxLength={range ? Math.max(text.maxLength, range.max) : text.maxLength}
-                          title={range ? `Para ${role}: permitido até ${Math.max(text.maxLength, range.max)} caracteres (ideal ${range.min}–${range.max}).` : undefined}
+                          placeholder={`Ideal: ${range.min}–${range.max} caracteres (sugestivo)...`}
                           rows={3}
                           className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${foraDoIdeal ? 'border-amber-500' : 'border-gray-300'}`}
                         />
                         <p className="text-xs text-gray-600 mt-1">
-                          {range ? `Ideal: ${range.min}–${range.max} caracteres (sugestivo).` : `Máximo: ${text.maxLength} caracteres.`}
+                          Ideal: {range.min}–{range.max} caracteres (sugestivo).
                         </p>
                         <div className="flex justify-between items-center mt-1 flex-wrap gap-1">
                           <span className={`text-xs ${foraDoIdeal ? 'text-amber-700 font-medium' : 'text-gray-500'}`}>
-                            {currentValue.length}{range ? `/${range.max}` : `/${text.maxLength}`} caracteres
-                            {foraDoIdeal && range && (
+                            {currentValue.length} caracteres
+                            {foraDoIdeal && (
                               <span className="ml-1">
                                 — fora do ideal ({currentValue.length < range.min ? 'abaixo de ' + range.min : 'acima de ' + range.max})
                               </span>
