@@ -419,7 +419,7 @@
       },
       "barra_velha": {
         "titulo": {
-          "value": "Imóveis em Barra Velha: alavancagem e valorizaçãobbb",
+          "value": "Imóveis em Barra Velha: alavancagem e valorização",
           "type": "titulo",
           "label": "📍 Título Barra Velha",
           "hint": "Título da cidade Barra Velha",
@@ -576,7 +576,7 @@
         "section": "Anuncie com a Nox"
       },
       "subtitulo": {
-        "value": "A melhor forma de anunciar seu imóvel!",
+        "value": "Anuncie seu imóvel com avaliação gratuita",
         "type": "texto",
         "label": "📝 Subtítulo",
         "hint": "Subtítulo da seção",
@@ -584,7 +584,7 @@
         "section": "Anuncie com a Nox"
       },
       "botao_avaliar": {
-        "value": "Avaliar Imóvel",
+        "value": "Avaliar meu imóvel",
         "type": "botao",
         "label": "🔘 Botão Avaliar",
         "hint": "Texto do botão para avaliar imóvel",
@@ -604,7 +604,7 @@
     },
     "equipe": {
       "titulo": {
-        "value": "Conheça nossa equipe",
+        "value": "Nossa equipe de especialistas em imóveis",
         "type": "titulo",
         "label": "📌 Título Seção",
         "hint": "Título da seção Equipe",
