@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { ArrowLeft, FileText, Save, RefreshCw, Loader2, CheckCircle, Search, Filter } from 'lucide-react'
 import Link from 'next/link'
-import { getAllSections, getTextsBySection, getTextMetadata, type SiteText, type HeadingType } from '@/lib/site-texts'
+import { getAllSections, getTextsBySection, getTextsBySectionFromData, type SiteText, type HeadingType } from '@/lib/site-texts'
 import { SEO_CHAR_RANGES, isOutOfSuggestedRange, type SeoRole } from '@/lib/seo-headings'
 
 /** Por seção e chave: qual papel SEO (H1/H2/H3/H4/label). Alinhado ao uso real nas páginas. */
@@ -249,14 +249,13 @@ export default function AdminTextos() {
     loadInitialData()
   }, [])
 
-  // Função para buscar textos do GitHub
+  // Buscar JSON atual do GitHub e mostrar na seção atual
   const loadTextsFromGitHub = async () => {
     try {
       const response = await fetch('/api/update-texts-github')
       if (response.ok) {
-        const githubTexts = await response.json()
-        // Atualizar dados locais com os do GitHub
-        setTexts(getTextsBySection(selectedSection))
+        const githubData = await response.json()
+        setTexts(getTextsBySectionFromData(githubData, selectedSection))
       }
     } catch (error) {
       console.error('Erro ao carregar textos do GitHub:', error)
@@ -350,13 +349,29 @@ export default function AdminTextos() {
 
       const result = await response.json()
 
+      const countOk = result.results?.filter((r: { success: boolean }) => r.success).length ?? 0
+      const countFail = result.results?.filter((r: { success: boolean }) => !r.success).length ?? 0
+
       // Limpar mudanças pendentes
       setPendingChanges([])
 
-      // Recarregar textos da seção atual
-      await loadTexts(selectedSection)
+      // Recarregar do GitHub para mostrar o que foi realmente salvo
+      try {
+        const getResponse = await fetch('/api/update-texts-github')
+        if (getResponse.ok) {
+          const githubData = await getResponse.json()
+          setTexts(getTextsBySectionFromData(githubData, selectedSection))
+        }
+      } catch (_) {
+        loadTexts(selectedSection)
+      }
 
-      alert(`✅ ${pendingChanges.length} texto(s) atualizado(s) com sucesso!\n\n🔄 O site será atualizado automaticamente em ~2 minutos.`)
+      if (countFail > 0) {
+        const failedPaths = result.results?.filter((r: { success: boolean }) => !r.success).map((r: { path: string }) => r.path) ?? []
+        alert(`✅ ${countOk} texto(s) atualizado(s).\n❌ ${countFail} não atualizaram (estrutura não encontrada): ${failedPaths.join(', ')}\n\n🔄 O site será atualizado em ~2 minutos.`)
+      } else {
+        alert(`✅ ${countOk} texto(s) atualizado(s) com sucesso!\n\n🔄 O site será atualizado automaticamente em ~2 minutos.`)
+      }
       
     } catch (error) {
       console.error('Erro ao publicar textos:', error)

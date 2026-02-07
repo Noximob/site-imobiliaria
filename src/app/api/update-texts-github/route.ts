@@ -75,20 +75,24 @@ export async function POST(request: NextRequest) {
           current = current[keys[i]]
         }
         
-        // Atualizar o valor final
+        // Atualizar ou criar o valor final
         const finalKey = keys[keys.length - 1]
-        if (current[finalKey] && typeof current[finalKey] === 'object') {
+        const sectionName = keys[0]
+        if (current[finalKey] && typeof current[finalKey] === 'object' && 'value' in current[finalKey]) {
           current[finalKey].value = change.value
-          results.push({ path: change.path, success: true })
-          console.log(`✅ Texto atualizado: ${change.path}`)
         } else {
-          results.push({ 
-            path: change.path, 
-            success: false, 
-            error: 'Estrutura de texto não encontrada' 
-          })
-          console.error(`❌ Estrutura não encontrada: ${change.path}`)
+          // Estrutura não existia: criar objeto mínimo para o texto ser salvo
+          current[finalKey] = {
+            value: change.value,
+            type: 'texto',
+            label: finalKey,
+            hint: '',
+            maxLength: 500,
+            section: sectionName
+          }
         }
+        results.push({ path: change.path, success: true })
+        console.log(`✅ Texto atualizado: ${change.path}`)
         
       } catch (error) {
         results.push({ 

@@ -127,6 +127,13 @@ export function getTextsBySection(section: string): { [key: string]: SiteText } 
   return extractTextsRecursive(sectionData, section)
 }
 
+/** Igual a getTextsBySection, mas usa um objeto de dados (ex.: JSON do GitHub) em vez do import local. */
+export function getTextsBySectionFromData(data: any, section: string): { [key: string]: SiteText } {
+  const sectionData = data?.[section]
+  if (!sectionData) return {}
+  return extractTextsRecursive(sectionData, section)
+}
+
 // Função para obter todas as seções disponíveis
 export function getAllSections(): string[] {
   return Object.keys(siteTextsData as any)
