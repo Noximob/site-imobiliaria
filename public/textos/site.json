@@ -264,7 +264,7 @@
   "home": {
     "banner": {
       "titulo": {
-        "value": "Imobiliária em Penha, Piçarras e Barra Velha | Imóveis na planta",
+        "value": "Imobiliária em Penha, Piçarras e Barra Velha",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página",
@@ -300,7 +300,7 @@
     },
     "selecao_nox": {
       "titulo": {
-        "value": "Apartamentos na planta selecionados em Penha, Piçarras e Barra Velha\n",
+        "value": "Apartamentos na planta selecionados",
         "type": "titulo",
         "label": "📌 Título Seção",
         "hint": "Título da seção Seleção Nox",
@@ -308,7 +308,7 @@
         "section": "Seleção Nox"
       },
       "descricao": {
-        "value": "Selecionamos apartamentos na planta e lançamentos imobiliários em Penha, Balneário Piçarras e Barra Velha, com foco em valorização, localização estratégica e qualidade construtiva.",
+        "value": "Selecionamos lançamentos imobiliários em Penha, Balneário Piçarras e Barra Velha, com foco em valorização, localização estratégica e qualidade construtiva.",
         "type": "texto",
         "label": "📝 Descrição",
         "hint": "Descrição da seção",
