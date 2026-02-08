@@ -626,7 +626,7 @@
   "viva_penha": {
     "hero": {
       "titulo": {
-        "value": "Sobre Penha",
+        "value": "Viva Penha SC: guia para morar, visitar e investir",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página Viva Penha",
@@ -694,7 +694,7 @@
         "section": "O que fazer"
       },
       "atracao_2": {
-        "value": "19 Praias incríveis",
+        "value": "19 praias para conhecer",
         "type": "texto",
         "label": "🎢 Atração 2",
         "hint": "Segunda atração",
@@ -710,7 +710,7 @@
         "section": "O que fazer"
       },
       "atracao_4": {
-        "value": "Trilhas ecológicas",
+        "value": "Trilhas e mirantes naturais",
         "type": "texto",
         "label": "🌙 Atração 4",
         "hint": "Quarta atração",
@@ -718,7 +718,7 @@
         "section": "O que fazer"
       },
       "atracao_5": {
-        "value": "Gastronomia típica",
+        "value": "Gastronomia típica da região",
         "type": "texto",
         "label": "🍽️ Atração 5",
         "hint": "Quinta atração",
