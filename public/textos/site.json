@@ -626,7 +626,7 @@
   "viva_penha": {
     "hero": {
       "titulo": {
-        "value": "Viva Penha SC: guia para morar, visitar e investir",
+        "value": "Viva Penha (SC): guia para morar, visitar e investir",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página Viva Penha",
