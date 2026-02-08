@@ -2512,7 +2512,7 @@
         "section": "Guia Imóvel na Planta"
       },
       "hero_titulo": {
-        "value": "Imóvel na planta no litoral de Santa Catarina",
+        "value": "Como comprar imóvel na planta no litoral de Santa Catarina",
         "type": "titulo",
         "label": "Hero – Título (HUB)",
         "hint": "Título principal da página índice do guia",
@@ -2520,7 +2520,7 @@
         "section": "Guia Imóvel na Planta"
       },
       "hero_subtitulo": {
-        "value": "Tudo o que você precisa saber para comprar com segurança em Penha, Balneário Piçarras e Barra Velha.",
+        "value": "Tudo o que você precisa saber para comprar com segurança — do contrato a entrega das chaves",
         "type": "texto",
         "label": "Hero – Subtítulo (HUB)",
         "hint": "Subtítulo da página índice do guia",
@@ -2528,7 +2528,7 @@
         "section": "Guia Imóvel na Planta"
       },
       "paragrafo_1": {
-        "value": "Comprar imóvel na planta no litoral catarinense é uma opção cada vez mais buscada por quem deseja segunda residência, investimento ou planejamento de mudança. Em regiões como Penha, Balneário Piçarras e Barra Velha, os lançamentos oferecem condições de entrada e parcelamento que facilitam o acesso ao imóvel dos sonhos.",
+        "value": "Comprar imóvel na planta no litoral de Santa Catarina é uma das formas mais inteligentes de morar, veranear ou investir com potencial de valorização. Mas pra dar certo, não é sobre “achar um prédio bonito” — é sobre comprar com segurança, entender o fluxo de pagamento e escolher a localização certa pro seu objetivo.",
         "type": "texto",
         "label": "HUB – Parágrafo 1",
         "hint": "Primeiro parágrafo (links Penha/Piçarras/Barra Velha ficam no código)",
@@ -2536,7 +2536,7 @@
         "section": "Guia Imóvel na Planta"
       },
       "paragrafo_2": {
-        "value": "Entender como comprar imóvel na planta é o primeiro passo: desde a escolha do empreendimento até a entrega das chaves. A segurança da operação depende de verificar o registro do empreendimento e o histórico da construtora — abordamos isso em detalhes no guia de segurança ao comprar na planta.",
+        "value": "Neste guia, você vai ver de forma simples o que realmente importa: como funciona o processo de compra, como analisar a construtora e a documentação, quais cuidados tomar no contrato, como planejar entrada + parcelas durante a obra e o que muda entre frente mar e quadra mar. Também explicamos onde o FGTS pode entrar (quando faz sentido e quando não faz).",
         "type": "texto",
         "label": "HUB – Parágrafo 2",
         "hint": "Segundo parágrafo",
@@ -2544,7 +2544,7 @@
         "section": "Guia Imóvel na Planta"
       },
       "paragrafo_3": {
-        "value": "O fluxo de pagamento costuma incluir entrada, parcelas durante a obra e a possibilidade de financiar o saldo na entrega. Muitos compradores também utilizam o FGTS na etapa de financiamento ou na entrada, dentro das regras legais. Para quem pensa em investir em imóvel na planta no litoral, a análise do projeto, localização e demanda da região é fundamental.",
+        "value": "A ideia aqui é te dar clareza pra tomar decisão com tranquilidade — e se você quiser, a NOX te ajuda a comparar opções e encontrar um imóvel que encaixe no seu perfil, sem perder tempo com o que não faz sentido.",
         "type": "texto",
         "label": "HUB – Parágrafo 3",
         "hint": "Terceiro parágrafo",
@@ -2552,7 +2552,7 @@
         "section": "Guia Imóvel na Planta"
       },
       "paragrafo_4": {
-        "value": "A decisão entre frente mar e quadra mar influencia valor e uso do imóvel. Cada perfil tem suas vantagens; o importante é alinhar a escolha ao seu objetivo. Se ainda tiver dúvidas, consulte nossas perguntas frequentes sobre imóvel na planta.",
+        "value": "",
         "type": "texto",
         "label": "HUB – Parágrafo 4",
         "hint": "Quarto parágrafo",
