@@ -2484,7 +2484,7 @@
   "blog": {
     "hero": {
       "titulo": {
-        "value": "Blog Nox Imóveis",
+        "value": "Blog imobiliário em Penha, Piçarras e Barra Velha",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página do blog",
@@ -2492,7 +2492,7 @@
         "section": "Hero"
       },
       "subtitulo": {
-        "value": "Dicas, novidades e informações sobre o mercado imobiliário para você tomar as melhores decisões.",
+        "value": "Notícias, guias e análises sobre imóveis na planta, mercado local e dicas para comprar, investir ou morar no litoral norte de SC.",
         "type": "texto",
         "label": "📝 Subtítulo",
         "hint": "Subtítulo do hero",
