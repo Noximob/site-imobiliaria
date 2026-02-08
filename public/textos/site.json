@@ -1286,7 +1286,7 @@
   "viva_balneario_picarras": {
     "hero": {
       "titulo": {
-        "value": "Sobre Balneário Piçarras",
+        "value": "Balneário Piçarras (SC): guia para morar, veranear e investir",
         "type": "titulo",
         "label": "📌 Título Principal",
         "hint": "Título principal da página Viva Balneário Piçarras",
@@ -1304,7 +1304,7 @@
     },
     "introducao": {
       "titulo": {
-        "value": "Descubra Balneário Piçarras, a joia do litoral",
+        "value": "Descubra Balneário Piçarras: qualidade de vida e orla urbana",
         "type": "titulo",
         "label": "📌 Título Introdução",
         "hint": "Título da seção de introdução",
@@ -1320,7 +1320,7 @@
         "section": "Introdução"
       },
       "botao_imoveis": {
-        "value": "Ver imóveis",
+        "value": "Ver imóveis em Balneário Piçarras",
         "type": "botao",
         "label": "🔘 Botão Ver Imóveis",
         "hint": "Texto do botão Ver imóveis",
