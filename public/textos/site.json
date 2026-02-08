@@ -660,7 +660,7 @@
         "section": "Introdução"
       },
       "botao_imoveis": {
-        "value": "Ver imóveis",
+        "value": "Ver imóveis em Penha",
         "type": "botao",
         "label": "🔘 Botão Ver Imóveis",
         "hint": "Texto do botão Ver imóveis",
