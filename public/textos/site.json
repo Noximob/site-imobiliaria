@@ -2528,7 +2528,7 @@
         "section": "Guia Imóvel na Planta"
       },
       "paragrafo_1": {
-        "value": "Comprar imóvel na planta no litoral de Santa Catarina é uma das formas mais inteligentes de morar, veranear ou investir com potencial de valorização. Mas pra dar certo, não é sobre “achar um prédio bonito” — é sobre comprar com segurança, entender o fluxo de pagamento e escolher a localização certa pro seu objetivo.",
+        "value": "Comprar imóvel na planta no litoral catarinense exige planejamento e informação. O processo começa pela definição do objetivo: morar, investir, ter uma segunda residência ou gerar renda com aluguel por temporada.",
         "type": "texto",
         "label": "HUB – Parágrafo 1",
         "hint": "Primeiro parágrafo (links Penha/Piçarras/Barra Velha ficam no código)",
@@ -2536,7 +2536,7 @@
         "section": "Guia Imóvel na Planta"
       },
       "paragrafo_2": {
-        "value": "Neste guia, você vai ver de forma simples o que realmente importa: como funciona o processo de compra, como analisar a construtora e a documentação, quais cuidados tomar no contrato, como planejar entrada + parcelas durante a obra e o que muda entre frente mar e quadra mar. Também explicamos onde o FGTS pode entrar (quando faz sentido e quando não faz).",
+        "value": "Depois disso, escolha o empreendimento com atenção à segurança jurídica e construtiva. Verifique o registro de incorporação, o patrimônio de afetação e o histórico da construtora — e use uma imobiliária local para comparar projetos, localização e condições reais de compra.",
         "type": "texto",
         "label": "HUB – Parágrafo 2",
         "hint": "Segundo parágrafo",
@@ -2544,7 +2544,7 @@
         "section": "Guia Imóvel na Planta"
       },
       "paragrafo_3": {
-        "value": "A ideia aqui é te dar clareza pra tomar decisão com tranquilidade — e se você quiser, a NOX te ajuda a comparar opções e encontrar um imóvel que encaixe no seu perfil, sem perder tempo com o que não faz sentido.",
+        "value": "Também é essencial entender o fluxo de pagamento: entrada, parcelas durante a obra e possibilidade de financiamento na entrega. Organize a documentação e a análise de crédito com antecedência, inclusive se pretende usar o FGTS na compra.",
         "type": "texto",
         "label": "HUB – Parágrafo 3",
         "hint": "Terceiro parágrafo",
@@ -2552,7 +2552,7 @@
         "section": "Guia Imóvel na Planta"
       },
       "paragrafo_4": {
-        "value": "",
+        "value": "Por fim, alinhe a escolha ao seu estilo de vida e ao potencial do imóvel: frente mar ou quadra mar, liquidez, demanda e perspectiva de valorização. Se quiser, você pode seguir pelo guia abaixo com tópicos de segurança, fluxo de pagamento, FGTS e perguntas frequentes.",
         "type": "texto",
         "label": "HUB – Parágrafo 4",
         "hint": "Quarto parágrafo",
