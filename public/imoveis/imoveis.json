@@ -8816,5 +8816,85 @@
     ],
     "createdAt": "2026-02-03T23:07:22.080Z",
     "updatedAt": "2026-02-03T23:07:22.080Z"
+  },
+  {
+    "titulo": "Apartamento pronto frente mar — Al Mare Beach Front, vista mar",
+    "descricao": "Este apartamento no Al Mare Beach Front é uma oportunidade para quem quer um imóvel pronto, frente mar, em Balneário Piçarras, no bairro Itacolomi, com uma planta que atende muito bem tanto moradia quanto veraneio. São 94m² de área privativa, com 3 quartos (sendo 1 suíte), e um dos pontos mais desejados em um frente mar: vista para o mar diretamente da sacada.\n\nO imóvel está semi mobiliado, trazendo praticidade para quem quer entrar com menos obra e menos tempo de preparação. A combinação de localização frente mar + estrutura de condomínio completa torna esse tipo de unidade muito forte para uso próprio e também para quem busca liquidez em um endereço consolidado da orla.\n\nValor: R$ 1.600.000,00 (valores e condições podem mudar conforme negociação e disponibilidade).\n\nDESTAQUES RÁPIDOS:\n- Apartamento pronto frente mar em Balneário Piçarras\n- Bairro Itacolomi\n- Semi mobiliado\n- 94m² de área privativa\n- 3 quartos, sendo 1 suíte\n- Sacada com vista para o mar\n\nLAZER E ÁREAS COMUNS:\n- Parque de águas e áreas de piscina\n- Academia\n- Brinquedoteca e playground\n- Salão de jogos\n- Espaço gourmet e festas\n- Spa\n- Quadra poliesportiva\n- Deck de observação\n- Churrasqueiras\n- Boulevard arborizado\n- Segurança e controle de acesso\n- Heliponto\n- Lojas de conveniência\n- Home cinema\n- Serviço de praia e opções pay-per-use\n\nFrente mar no bairro Itacolomi, em Balneário Piçarras, em um ponto de orla que favorece uso frequente, praticidade e alta procura por apartamentos com vista para o mar.\n\nQuer receber mais informações, fotos e detalhes do que fica no semi mobiliado?\nMe chama no WhatsApp que eu te envio tudo organizado e agendamos uma visita.",
+    "preco": 1.6,
+    "tipo": "apartamento",
+    "status": "prontos",
+    "endereco": {
+      "cidade": "balneario-picarras",
+      "bairro": "Itacolomi",
+      "rua": "Avenida Nereu Ramos",
+      "numero": "4770",
+      "cep": "88380-000",
+      "estado": "SC"
+    },
+    "caracteristicas": {
+      "quartos": 3,
+      "banheiros": 2,
+      "vagas": 1,
+      "area": 94,
+      "suite": 1,
+      "frenteMar": false,
+      "piscina": false,
+      "churrasqueira": false,
+      "academia": false,
+      "portaria": false,
+      "elevador": false,
+      "varanda": false,
+      "sacada": false
+    },
+    "tags": [
+      "Frente mar",
+      "Semi mobiliado",
+      "Sacada com vista para o mar",
+      "Vista Mar",
+      "Área de Lazer"
+    ],
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "corretor": "NOX Imóveis"
+    },
+    "publicado": true,
+    "selecaoNox": false,
+    "coordenadas": {
+      "lat": -26.7347693,
+      "lng": -48.6823397
+    },
+    "fotoPrincipalIndex": 0,
+    "id": "98478",
+    "slug": "apartamento-pronto-frente-mar-al-mare-beach-front-vista-mar",
+    "fotos": [
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_0.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_1.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_2.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_3.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_4.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_5.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_6.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_7.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_8.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_9.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_10.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_11.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_12.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_13.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_14.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_15.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_16.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_17.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_18.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_19.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_20.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_21.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_22.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_23.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_24.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/98478_25.jpg"
+    ],
+    "createdAt": "2026-02-09T13:33:26.625Z",
+    "updatedAt": "2026-02-09T13:33:26.625Z"
   }
 ]
