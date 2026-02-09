@@ -68,7 +68,7 @@
     {
       "nome": "Murilo",
       "cargo": "Administrativo",
-      "creci": "1234",
+      "creci": "Administrativo",
       "telefone": "(48) 999099063",
       "instagram": "stmmurilo",
       "email": "stmmurilo@gmail.com",
@@ -76,7 +76,7 @@
       "ativo": true,
       "id": "1769191747413",
       "createdAt": "2026-01-23T18:09:07.413Z",
-      "updatedAt": "2026-02-09T14:08:39.567Z"
+      "updatedAt": "2026-02-09T14:12:02.617Z"
     },
     {
       "nome": "Rodolpho Eduardo",
