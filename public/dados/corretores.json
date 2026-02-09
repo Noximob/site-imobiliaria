@@ -2,7 +2,7 @@
   "corretores": [
     {
       "nome": "Breno Mello",
-      "cargo": "Corretor de imóveis",
+      "cargo": "Corretor(a) de imóveis",
       "creci": "62702",
       "telefone": "(47) 991544925",
       "instagram": "@brenohenriquemello",
@@ -11,7 +11,7 @@
       "ativo": true,
       "id": "1761070427201",
       "createdAt": "2025-10-21T18:13:47.201Z",
-      "updatedAt": "2026-02-09T13:54:11.025Z"
+      "updatedAt": "2026-02-09T13:55:25.470Z"
     },
     {
       "nome": "Toni Santos",
