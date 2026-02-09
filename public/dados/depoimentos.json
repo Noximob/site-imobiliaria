@@ -22,6 +22,14 @@
       "id": "1770648022950",
       "createdAt": "2026-02-09T14:40:22.950Z",
       "updatedAt": "2026-02-09T14:40:22.950Z"
+    },
+    {
+      "nome": "Silvino",
+      "comentario": "Eu estava buscando investimento em Balneário Piçarras e a Nox trouxe análises bem objetivas: localização, potencial de valorização e liquidez. Me senti seguro porque não empurraram nada, só mostraram o que fazia sentido com o meu perfil.",
+      "ativo": true,
+      "id": "1770648613676",
+      "createdAt": "2026-02-09T14:50:13.676Z",
+      "updatedAt": "2026-02-09T14:50:13.676Z"
     }
   ]
 }
