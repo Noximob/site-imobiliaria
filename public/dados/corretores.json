@@ -68,15 +68,15 @@
     {
       "nome": "Murilo",
       "cargo": "Administrativo",
-      "creci": "Administrativo",
-      "telefone": "(48) 999099063",
-      "instagram": "stmmurilo",
+      "creci": "-",
+      "telefone": "(48) 99909-9063",
+      "instagram": "@stmmurilo",
       "email": "stmmurilo@gmail.com",
       "foto": "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imagens/corretores/corretor-1769195081297.avif",
       "ativo": true,
       "id": "1769191747413",
       "createdAt": "2026-01-23T18:09:07.413Z",
-      "updatedAt": "2026-02-09T14:12:02.617Z"
+      "updatedAt": "2026-02-10T19:57:06.502Z"
     },
     {
       "nome": "Rodolpho Eduardo",
