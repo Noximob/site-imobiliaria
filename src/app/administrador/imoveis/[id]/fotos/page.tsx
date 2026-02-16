@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import { ArrowLeft, Check, Loader2, Image as ImageIcon } from 'lucide-react'
+import { ArrowLeft, Check, Loader2, Image as ImageIcon, X, Plus } from 'lucide-react'
 import Link from 'next/link'
 
 export default function EditarFotosImovelDWV() {
@@ -31,6 +31,14 @@ export default function EditarFotosImovelDWV() {
   const [quartos, setQuartos] = useState<string>('')
   const [banheiros, setBanheiros] = useState<string>('')
   const [vagas, setVagas] = useState<string>('')
+
+  // Características e infraestrutura (edição do que vem do DWV: ocultar ou adicionar)
+  const [tagsOcultas, setTagsOcultas] = useState<string[]>([])
+  const [tagsAdicionais, setTagsAdicionais] = useState<string[]>([])
+  const [novaTag, setNovaTag] = useState('')
+  const [infraestruturaOculta, setInfraestruturaOculta] = useState<string[]>([])
+  const [infraestruturaAdicional, setInfraestruturaAdicional] = useState<string[]>([])
+  const [novaInfra, setNovaInfra] = useState('')
 
   // Função para extrair extensão da URL
   const getFileExtension = (url: string): string => {
@@ -94,6 +102,11 @@ export default function EditarFotosImovelDWV() {
         const todasFotos = imovelEncontrado.fotos || []
         setFotoPrincipal(imovelEncontrado.fotoPrincipalDWV || todasFotos[0] || null)
         setFotosMenores(imovelEncontrado.fotosMenoresDWV || todasFotos.slice(1, 5) || [])
+        // Overrides de características/infra (editáveis no admin)
+        setTagsOcultas(imovelEncontrado.tagsOcultas || [])
+        setTagsAdicionais(imovelEncontrado.tagsAdicionais || [])
+        setInfraestruturaOculta(imovelEncontrado.infraestruturaOculta || [])
+        setInfraestruturaAdicional(imovelEncontrado.infraestruturaAdicional || [])
       } catch (error: any) {
         setError(error.message)
       } finally {
@@ -178,6 +191,10 @@ export default function EditarFotosImovelDWV() {
         },
         dataEntrega: dataEntrega || undefined,
         tags,
+        tagsOcultas: tagsOcultas.length > 0 ? tagsOcultas : undefined,
+        tagsAdicionais: tagsAdicionais.length > 0 ? tagsAdicionais : undefined,
+        infraestruturaOculta: infraestruturaOculta.length > 0 ? infraestruturaOculta : undefined,
+        infraestruturaAdicional: infraestruturaAdicional.length > 0 ? infraestruturaAdicional : undefined,
         fotoPrincipalDWV: fotoPrincipal,
         fotosMenoresDWV: fotosMenores,
         updatedAt: new Date().toISOString(),
@@ -457,6 +474,114 @@ export default function EditarFotosImovelDWV() {
                 </label>
               ))}
             </div>
+          </div>
+
+          {/* Características (tags do DWV): ocultar ou adicionar */}
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Características (do DWV)</h2>
+            <p className="text-sm text-gray-600 mb-4">Oculte itens que não devem aparecer no site ou adicione novos. O sync do DWV não remove suas alterações.</p>
+            {imovel && (
+              <>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Visíveis no site (clique em Ocultar para esconder)</label>
+                  <div className="flex flex-wrap gap-2">
+                    {(imovel.tags || []).filter((t: string) => !tagsOcultas.some(o => o.trim().toLowerCase() === t.trim().toLowerCase())).map((tag: string, idx: number) => (
+                      <span key={idx} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-purple-50 text-purple-800 border border-purple-200">
+                        {tag}
+                        <button type="button" onClick={() => setTagsOcultas(prev => [...prev, tag])} className="p-0.5 rounded hover:bg-purple-200" title="Ocultar no site">
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </span>
+                    ))}
+                    {tagsAdicionais.map((tag: string, idx: number) => (
+                      <span key={`add-${idx}`} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-green-50 text-green-800 border border-green-200">
+                        {tag}
+                        <button type="button" onClick={() => setTagsAdicionais(prev => prev.filter((_, i) => i !== idx))} className="p-0.5 rounded hover:bg-green-200" title="Remover">
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2 items-center">
+                  <input
+                    type="text"
+                    value={novaTag}
+                    onChange={(e) => setNovaTag(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), novaTag.trim() && setTagsAdicionais(prev => [...prev, novaTag.trim()]) && setNovaTag(''))}
+                    placeholder="Nova característica"
+                    className="px-3 py-2 border border-gray-300 rounded-lg text-sm w-48"
+                  />
+                  <button type="button" onClick={() => { if (novaTag.trim()) { setTagsAdicionais(prev => [...prev, novaTag.trim()]); setNovaTag('') } }} className="inline-flex items-center gap-1 px-3 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700">
+                    <Plus className="w-4 h-4" /> Adicionar
+                  </button>
+                </div>
+                {tagsOcultas.length > 0 && (
+                  <div className="mt-3 pt-3 border-t border-gray-200">
+                    <span className="text-xs text-gray-500">Ocultas no site (clique para exibir de novo): </span>
+                    {tagsOcultas.map((tag: string, idx: number) => (
+                      <button key={idx} type="button" onClick={() => setTagsOcultas(prev => prev.filter((_, i) => i !== idx))} className="mr-2 mt-1 text-sm text-gray-500 underline hover:text-purple-600">
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+
+          {/* Infraestrutura (do DWV): ocultar ou adicionar */}
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Infraestrutura (do DWV)</h2>
+            <p className="text-sm text-gray-600 mb-4">Oculte itens ou adicione novos. O sync do DWV não remove suas alterações.</p>
+            {imovel && (
+              <>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Visíveis no site</label>
+                  <div className="flex flex-wrap gap-2">
+                    {(imovel.infraestrutura || []).filter((i: string) => !infraestruturaOculta.some(o => o.trim().toLowerCase() === i.trim().toLowerCase())).map((item: string, idx: number) => (
+                      <span key={idx} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-orange-50 text-orange-800 border border-orange-200">
+                        {item}
+                        <button type="button" onClick={() => setInfraestruturaOculta(prev => [...prev, item])} className="p-0.5 rounded hover:bg-orange-200" title="Ocultar no site">
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </span>
+                    ))}
+                    {infraestruturaAdicional.map((item: string, idx: number) => (
+                      <span key={`add-${idx}`} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-green-50 text-green-800 border border-green-200">
+                        {item}
+                        <button type="button" onClick={() => setInfraestruturaAdicional(prev => prev.filter((_, i) => i !== idx))} className="p-0.5 rounded hover:bg-green-200" title="Remover">
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2 items-center">
+                  <input
+                    type="text"
+                    value={novaInfra}
+                    onChange={(e) => setNovaInfra(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), novaInfra.trim() && setInfraestruturaAdicional(prev => [...prev, novaInfra.trim()]) && setNovaInfra(''))}
+                    placeholder="Novo item de infraestrutura"
+                    className="px-3 py-2 border border-gray-300 rounded-lg text-sm w-48"
+                  />
+                  <button type="button" onClick={() => { if (novaInfra.trim()) { setInfraestruturaAdicional(prev => [...prev, novaInfra.trim()]); setNovaInfra('') } }} className="inline-flex items-center gap-1 px-3 py-2 bg-orange-600 text-white rounded-lg text-sm font-medium hover:bg-orange-700">
+                    <Plus className="w-4 h-4" /> Adicionar
+                  </button>
+                </div>
+                {infraestruturaOculta.length > 0 && (
+                  <div className="mt-3 pt-3 border-t border-gray-200">
+                    <span className="text-xs text-gray-500">Ocultas no site: </span>
+                    {infraestruturaOculta.map((item: string, idx: number) => (
+                      <button key={idx} type="button" onClick={() => setInfraestruturaOculta(prev => prev.filter((_, i) => i !== idx))} className="mr-2 mt-1 text-sm text-gray-500 underline hover:text-purple-600">
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
           </div>
         </div>
 

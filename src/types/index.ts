@@ -35,6 +35,14 @@ export interface Imovel {
   };
   infraestrutura?: string[]; // Ex: "Água Individual", "Interfone", "Churrasqueira", "Salão de Festas", etc.
   tags?: string[]; // Ex: "Mobiliado", "Novo", "Reformado", etc.
+  /** Ocultar estas tags na página do imóvel (editável no admin DWV) */
+  tagsOcultas?: string[];
+  /** Tags adicionais exibidas na página (editável no admin DWV) */
+  tagsAdicionais?: string[];
+  /** Ocultar estes itens de infraestrutura na página (editável no admin DWV) */
+  infraestruturaOculta?: string[];
+  /** Itens de infraestrutura adicionais (editável no admin DWV) */
+  infraestruturaAdicional?: string[];
   fotos: string[];
   fotoPrincipalIndex?: number; // Índice da foto principal (padrão: 0)
   coordenadas?: {

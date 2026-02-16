@@ -148,20 +148,26 @@ export async function POST(request: NextRequest) {
         // IMÓVEL EXISTENTE: SEMPRE atualizar com dados mais recentes do DWV
         const imovelExistente = imoveisDWVMap.get(key)
         
-        // Preservar alguns campos que podem ter sido editados manualmente ou são específicos do site
+        // Preservar campos editados no admin (fotos, características/infra)
         const camposPreservados = {
           visualizacoes: imovelExistente.visualizacoes || 0,
           createdAt: imovelExistente.createdAt || new Date().toISOString(),
           publicado: imovelExistente.publicado !== undefined ? imovelExistente.publicado : true,
+          fotoPrincipalDWV: imovelExistente.fotoPrincipalDWV,
+          fotosMenoresDWV: imovelExistente.fotosMenoresDWV,
+          tagsOcultas: imovelExistente.tagsOcultas,
+          tagsAdicionais: imovelExistente.tagsAdicionais,
+          infraestruturaOculta: imovelExistente.infraestruturaOculta,
+          infraestruturaAdicional: imovelExistente.infraestruturaAdicional,
         }
         
-        // Atualizar com dados mais recentes do DWV, preservando campos específicos do site
+        // Atualizar com dados mais recentes do DWV, preservando campos do site
         imoveisDWVMap.set(key, {
           ...imovel, // Dados mais recentes do DWV (incluindo tags atualizadas)
           ...camposPreservados, // Preservar campos do site
-          updatedAt: new Date().toISOString(), // Atualizar timestamp
-          fonteDWV: true, // Garantir flag
-          dwvId: imovel.dwvId || imovel.id, // Garantir dwvId
+          updatedAt: new Date().toISOString(),
+          fonteDWV: true,
+          dwvId: imovel.dwvId || imovel.id,
         })
         atualizados++
         console.log(`🔄 Imóvel atualizado: ${key} - ${imovel.titulo?.substring(0, 50)}`)

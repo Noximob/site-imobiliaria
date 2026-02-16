@@ -239,11 +239,18 @@ export default function ImovelDetalhePage() {
     }
   }
 
-  // Características vêm apenas das tags/comodidades (interligadas com o filtro)
-  // Não incluir outras características booleanas, apenas as tags
-  const caracteristicasList: string[] = []
+  // Características: tags do DWV com overrides do admin (ocultar/adicionar)
+  const tagsOcultas = (imovel as any).tagsOcultas || []
+  const tagsAdicionais = (imovel as any).tagsAdicionais || []
+  const tagsExibir = (imovel.tags || []).filter(
+    (t: string) => !tagsOcultas.some((o: string) => o.trim().toLowerCase() === t.trim().toLowerCase())
+  ).concat(tagsAdicionais)
 
-  const infraestruturaList = imovel.infraestrutura || []
+  const infraestruturaOculta = (imovel as any).infraestruturaOculta || []
+  const infraestruturaAdicional = (imovel as any).infraestruturaAdicional || []
+  const infraestruturaList = ((imovel.infraestrutura || []).filter(
+    (i: string) => !infraestruturaOculta.some((o: string) => o.trim().toLowerCase() === i.trim().toLowerCase())
+  ) as string[]).concat(infraestruturaAdicional)
 
   const cidadeNome =
     imovel.endereco?.cidade === 'barra-velha'
@@ -628,12 +635,12 @@ export default function ImovelDetalhePage() {
               )}
             </div>
 
-            {/* Características - Apenas tags/comodidades (interligadas com o filtro) */}
-            {imovel.tags && imovel.tags.length > 0 && (
+            {/* Características - tags com overrides do admin (ocultas/adicionais) */}
+            {tagsExibir.length > 0 && (
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-6">Características</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {imovel.tags.map((tag: string, index: number) => (
+                  {tagsExibir.map((tag: string, index: number) => (
                     <div key={index} className="flex items-center gap-3 text-gray-700">
                       <div className="w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center flex-shrink-0">
                         <Check className="w-4 h-4 text-white" strokeWidth={3} />
