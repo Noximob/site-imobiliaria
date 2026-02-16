@@ -66,6 +66,26 @@ const TRADUCOES_DWV: Record<string, string> = {
   Coworking: 'Coworking',
   Laundry: 'Lavanderia',
   Valet: 'Manobrista',
+  // Termos que o DWV envia em inglês (com espaço ou underscore)
+  Desk: 'Escritório',
+  Porch: 'Varanda',
+  Closet: 'Closet',
+  Barbecue_Grill: 'Churrasqueira',
+  Hot_Water_Infrastructure: 'Infraestrutura para água quente',
+  Gas_Heating: 'Aquecimento a gás',
+  Social_Bathroom: 'Lavabo',
+  Porcelain: 'Porcelanato',
+  Air_Conditioning_Infrastructure: 'Infraestrutura para ar-condicionado',
+  Dining_Room: 'Sala de jantar',
+  Living_Room: 'Sala de estar',
+  Individual_Water_Meter: 'Medidor de água individual',
+  Password_Lock_Entrance_Door: 'Porta de entrada com fechadura digital',
+  Kitchen: 'Cozinha',
+  Individual_Gas: 'Gás individual',
+  Balcony: 'Varanda',
+  Workmanship_On_Plaster: 'Acabamento em gesso',
+  Service_Area: 'Área de serviço',
+  Internet: 'Internet',
 }
 
 function traduzirComodidade(raw: string): string {
