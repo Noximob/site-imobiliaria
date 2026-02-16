@@ -530,13 +530,13 @@ export default function ImovelDetalhePage() {
               {/* 3) Separador visual (sigelo traço) */}
               <div className="my-6 border-t border-gray-300" aria-hidden />
 
-              {/* 4) O que foi escrito sobre o imóvel (descrição) */}
+              {/* 4) O que foi escrito sobre o imóvel (descrição) — DWV envia HTML (p, strong, ul, li); renderizar como HTML e respeitar o quadro */}
               {imovel.descricao && (
-                <div>
-                  <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                    {imovel.descricao}
-                  </p>
-                </div>
+                <div
+                  className="prose prose-gray max-w-none text-gray-700 leading-relaxed break-words overflow-hidden [&_p]:mb-3 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-1 [&_strong]:font-semibold"
+                  style={{ wordBreak: 'break-word' }}
+                  dangerouslySetInnerHTML={{ __html: imovel.descricao }}
+                />
               )}
             </div>
 
