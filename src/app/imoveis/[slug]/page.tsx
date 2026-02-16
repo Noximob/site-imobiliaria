@@ -23,6 +23,59 @@ import {
 } from 'lucide-react'
 import type { Imovel } from '@/types'
 
+/** Comodidades/características que vêm do DWV em inglês → exibição em português */
+const TRADUCOES_DWV: Record<string, string> = {
+  Adult_pool: 'Piscina adulto',
+  Intercom: 'Interfone',
+  Gourmet_space: 'Área gourmet',
+  Toys_playroom: 'Brinquedoteca',
+  Bar: 'Bar',
+  Rooftop: 'Cobertura',
+  Entrance_hall_decorated_and_furnished: 'Hall de entrada decorado e mobiliado',
+  Bike_rack: 'Bicicletário',
+  Lounge: 'Salão de convivência',
+  Sauna: 'Sauna',
+  Playground: 'Playground',
+  Gym: 'Academia',
+  Whirpool_in_the_pool: 'Whirlpool na piscina',
+  Be_social: 'Área de convivência',
+  Whirlpool: 'Whirlpool',
+  Helipad: 'Heliporto',
+  Elevator: 'Elevador',
+  Games_room: 'Sala de jogos',
+  Water_reuse: 'Reuso de água',
+  Individual_water_light_gas_meters: 'Medidores individuais de água, luz e gás',
+  Entrance_to_bathers_and_beach_box: 'Acesso a banhistas e box de praia',
+  Solarium: 'Solário',
+  Party_room: 'Salão de festas',
+  Spa: 'Spa',
+  Playroom: 'Brinquedoteca',
+  Termic_pool: 'Piscina térmica',
+  Child_pool: 'Piscina infantil',
+  Jacuzzi: 'Jacuzzi',
+  Pool: 'Piscina',
+  Security: 'Segurança 24h',
+  Concierge: 'Portaria',
+  Garden: 'Jardim',
+  Barbecue: 'Churrasqueira',
+  Pet_area: 'Área pet',
+  Sports_court: 'Quadra esportiva',
+  Running_track: 'Pista de caminhada',
+  Cinema: 'Cinema',
+  Library: 'Biblioteca',
+  Coworking: 'Coworking',
+  Laundry: 'Lavanderia',
+  Valet: 'Manobrista',
+}
+
+function traduzirComodidade(raw: string): string {
+  const trimmed = (raw || '').trim()
+  if (!trimmed) return trimmed
+  const traducao = TRADUCOES_DWV[trimmed] ?? TRADUCOES_DWV[trimmed.replace(/\s+/g, '_')]
+  if (traducao) return traducao
+  return trimmed.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+}
+
 export default function ImovelDetalhePage() {
   const params = useParams()
   const slug = params.slug as string
@@ -550,7 +603,7 @@ export default function ImovelDetalhePage() {
                       <div className="w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center flex-shrink-0">
                         <Check className="w-4 h-4 text-white" strokeWidth={3} />
                       </div>
-                      <span className="text-base">{tag}</span>
+                      <span className="text-base">{traduzirComodidade(tag)}</span>
                     </div>
                   ))}
                 </div>
@@ -567,7 +620,7 @@ export default function ImovelDetalhePage() {
                       <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
                         <Check className="w-3 h-3 text-white" />
                       </div>
-                      <span>{item}</span>
+                      <span>{traduzirComodidade(item)}</span>
                     </div>
                   ))}
                 </div>
