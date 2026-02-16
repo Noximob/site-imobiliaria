@@ -329,18 +329,10 @@ export async function PUT(request: NextRequest) {
         sha: fotosCommit.sha
       })
 
-      // Se imovel.fotos já estiver definido (fotos ordenadas do admin), usar essas
-      // Caso contrário, adicionar novas fotos às existentes
-      if (imovel.fotos && imovel.fotos.length > 0) {
-        // Usar fotos ordenadas do admin
-        // Fazer upload apenas das novas fotos que ainda não existem
-        const novasFotosParaUpload = fotosUrls.filter(url => !fotosExistentes.includes(url))
-        // Se houver novas fotos para upload, já foram feitas acima
-        imovel.fotos = imovel.fotos // Manter ordem do admin
-      } else {
-        // Adicionar novas fotos às existentes (não substituir)
-        imovel.fotos = [...fotosExistentes, ...fotosUrls]
-      }
+      // Cliente envia imovel.fotos = só URLs existentes ordenadas; novas vêm em body.fotos (base64).
+      // Incluir sempre as novas URLs ao final para não perder fotos recém-enviadas.
+      const fotosExistentesOrdenadas = (imovel.fotos && imovel.fotos.length > 0) ? imovel.fotos : fotosExistentes
+      imovel.fotos = [...fotosExistentesOrdenadas, ...fotosUrls]
     } else {
       // Se não houver novas fotos, usar as fotos ordenadas do admin ou manter as existentes
       imovel.fotos = imovel.fotos && imovel.fotos.length > 0 ? imovel.fotos : (imoveis[index].fotos || [])
@@ -364,9 +356,8 @@ export async function PUT(request: NextRequest) {
       slugFinal = `${slugFinal}-${id}`
     }
 
-    // Atualizar imóvel - garantir que selecaoNox seja sempre boolean true/false
-    // Preservar campos de seleção de fotos DWV se não vierem no update
-    imoveis[index] = {
+    // Objeto atualizado do imóvel (a ser aplicado na lista)
+    const imovelAtualizado = {
       ...imoveis[index], // Manter dados existentes primeiro
       ...imovel, // Sobrescrever com dados atualizados
       id, // Garantir que o ID não mude
@@ -379,14 +370,31 @@ export async function PUT(request: NextRequest) {
       updatedAt: new Date().toISOString(),
     }
 
-    // Salvar no GitHub
+    // Reler imoveis.json e SHA para evitar 409 (outro processo pode ter atualizado entre o GET e agora)
+    const { data: dataAtual } = await octokit.repos.getContent({
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      path: IMOVEIS_PATH,
+      ref: 'heads/main',
+    })
+    if (!('content' in dataAtual)) {
+      return NextResponse.json({ error: 'Arquivo imoveis não encontrado' }, { status: 404 })
+    }
+    const imoveisAtual = JSON.parse(Buffer.from(dataAtual.content, 'base64').toString('utf-8'))
+    const indexAtual = imoveisAtual.findIndex((i: any) => i.id === id)
+    if (indexAtual === -1) {
+      return NextResponse.json({ error: 'Imóvel não encontrado na lista atual' }, { status: 404 })
+    }
+    imoveisAtual[indexAtual] = imovelAtualizado
+
+    // Salvar no GitHub com SHA atual para não sobrescrever commits paralelos
     await octokit.repos.createOrUpdateFileContents({
       owner: REPO_OWNER,
       repo: REPO_NAME,
       path: IMOVEIS_PATH,
       message: `Atualizar imóvel: ${imovel.titulo}`,
-      content: Buffer.from(JSON.stringify(imoveis, null, 2)).toString('base64'),
-      sha: data.sha,
+      content: Buffer.from(JSON.stringify(imoveisAtual, null, 2)).toString('base64'),
+      sha: dataAtual.sha,
     })
 
     return NextResponse.json({ success: true })
