@@ -77,19 +77,6 @@
       "id": "1769191747413",
       "createdAt": "2026-01-23T18:09:07.413Z",
       "updatedAt": "2026-02-18T12:26:52.306Z"
-    },
-    {
-      "nome": "Rodolpho Eduardo",
-      "cargo": "Marketing",
-      "creci": "-",
-      "telefone": "(47) 98873-2260",
-      "instagram": "@takepro.midias",
-      "email": "rodolpho.edu@gmail.com",
-      "foto": "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imagens/corretores/corretor-1769195109647.avif",
-      "ativo": true,
-      "id": "1769192479350",
-      "createdAt": "2026-01-23T18:21:19.350Z",
-      "updatedAt": "2026-02-10T19:57:21.929Z"
     }
   ]
 }
