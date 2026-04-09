@@ -1,3 +1,23 @@
 {
-  "formularios": []
+  "formularios": [
+    {
+      "nome": "Agustina Perez",
+      "telefone": "+543835411974",
+      "email": "eagusperez09@gmail.com",
+      "instagram": "@perez_aguuss",
+      "informacoes": "Boa tarde! Meu nome é Agustina Perez, sou técnica em hotelaria e tenho experiência em atendimento ao público e hospitalidade. Também já trabalhei no Brasil durante a temporada de verão.\nestou em busca de uma oportunidade de trabalho. Anexo envio meu currículo e fico à disposição.\n\nMuito obrigada pela atenção",
+      "id": "1775772489060",
+      "createdAt": "2026-04-09T22:08:09.812Z",
+      "lido": false,
+      "arquivos": [
+        "cv Perez Agustina..pdf"
+      ],
+      "arquivosUrls": [
+        {
+          "name": "cv Perez Agustina..pdf",
+          "url": "https://raw.githubusercontent.com/Noximob/site-imobiliaria/main/public/dados/trabalhe-conosco-arquivos/1775772489060/cv_Perez_Agustina..pdf"
+        }
+      ]
+    }
+  ]
 }
