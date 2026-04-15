@@ -8909,5 +8909,70 @@
     ],
     "createdAt": "2026-02-09T13:33:26.625Z",
     "updatedAt": "2026-02-10T15:26:22.340Z"
+  },
+  {
+    "titulo": "Itajuba Beach Club | 2 quartos, Itajuba - Barra Velha/SC",
+    "descricao": "O Itajuba Beach Club é a oportunidade perfeita para quem quer investir ou ter um apartamento a poucos metros do mar na areia na praia do Cerro em Barra Velha. O empreendimento conta com 2 torres de 12 pavimentos, 2 elevadores por torre e condomínio com diversas opções de lazer equipadas e decoradas. As áreas privativas variam de 50m² a 51m², 2 dormitórios, sacada com churrasqueira e ainda conta com opção de planta com Giardino. Todas as unidades com vista mar, e a localização é excelente próxima a diversos comércios da região",
+    "preco": 398,
+    "tipo": "apartamento",
+    "status": "prontos",
+    "endereco": {
+      "cidade": "barra-velha",
+      "bairro": "Itajuba",
+      "rua": "R. João José Pereira, Barra Velha - SC",
+      "numero": "389",
+      "cep": "88390-000",
+      "estado": "SC"
+    },
+    "caracteristicas": {
+      "quartos": 2,
+      "banheiros": 1,
+      "vagas": 1,
+      "area": 50.28,
+      "suite": 0,
+      "frenteMar": false,
+      "piscina": false,
+      "churrasqueira": false,
+      "academia": false,
+      "portaria": false,
+      "elevador": false,
+      "varanda": false,
+      "sacada": false
+    },
+    "tags": [
+      "Home Club Completo",
+      "2 Elevadores por Torre",
+      "Ótima Localização"
+    ],
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "corretor": "NOX Imóveis"
+    },
+    "publicado": true,
+    "selecaoNox": true,
+    "coordenadas": {
+      "lat": -26.70709693718472,
+      "lng": -48.68808891531652
+    },
+    "fotoPrincipalIndex": 0,
+    "id": "58292",
+    "slug": "itajuba-beach-club-2-quartos-itajuba-barra-velhasc",
+    "fotos": [
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/58292_0.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/58292_1.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/58292_2.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/58292_3.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/58292_4.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/58292_5.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/58292_6.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/58292_7.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/58292_8.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/58292_9.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/58292_10.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/58292_11.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/58292_12.jpg"
+    ],
+    "createdAt": "2026-04-15T11:34:23.813Z",
+    "updatedAt": "2026-04-15T11:34:23.813Z"
   }
 ]
