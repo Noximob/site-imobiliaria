@@ -9048,8 +9048,8 @@
     "updatedAt": "2026-04-28T19:39:04.187Z"
   },
   {
-    "titulo": "Apartamento pronto frente mar na Praia Alegre, Penha — 3 quartos, mobiliado, 1 vaga - Itacolomi Home Club",
-    "descricao": "Este apartamento no Itacolomi Home Club é uma oportunidade para quem busca um imóvel pronto frente mar na Praia Alegre, em Penha, com vista definitiva e uma estrutura de condomínio completa. São 94m² de área útil, com 3 quartos e 2 banheiros, combinando conforto para uso diário com uma experiência forte de veraneio.\n\nA unidade é mobiliada e totalmente climatizada, com armários na cozinha e nos quartos, além de sacada com reiki e churrasqueira, trazendo praticidade e um padrão de uso pronto para curtir o litoral com conforto desde o primeiro dia.\n\nValor: R$ 1.550.000,00 (valores e disponibilidade podem mudar conforme negociação).\n\nDestaques rápidos:\n\nApartamento pronto frente mar na Praia Alegre, Penha\nVista definitiva para o mar\n94m² de área útil\n3 quartos\n2 banheiros\n1 vaga de garagem\nSacada com reiki e churrasqueira\nTotalmente climatizado\nMobiliado\nArmários na cozinha e nos quartos\nValor: R$ 1.550.000,00\n\nCaracterísticas do apartamento:\n\n3 quartos\n2 banheiros\nSacada com reiki\nChurrasqueira\nTotalmente climatizado\nMobiliado\nArmários na cozinha\nArmários nos quartos\n\nLazer e áreas comuns:\n\nPortaria 24h e segurança\nPiscina semiolímpica aquecida\nPiscina infantil aquecida\nAcademia\nSauna\nSalão gourmet\nDois salões de festas\nCinema\nSala de jogos\nBrinquedoteca\nÁrea kids\nQuadra poliesportiva\nDois quiosques com churrasqueira\nEspaço pet\nBar molhado\nLoja de conveniência 24h\n\nNa Praia Alegre, em Penha, este apartamento entrega frente mar com vista definitiva e um home club completo, perfeito para quem quer morar ou veranear com estrutura de condomínio e praticidade no dia a dia.\n\nQuer que eu te mande as fotos, a lista do que fica no mobiliado e agende uma visita para conhecer essa unidade frente mar?\nMe chama no WhatsApp que eu te envio tudo organizado.",
+    "titulo": "Apartamento pronto frente mar na Praia Alegre, Penha — 1 suite + 2 quartos, mobiliado, 1 vaga - Itacolomi Home Club",
+    "descricao": "Este apartamento no Itacolomi Home Club é uma oportunidade para quem busca um imóvel pronto frente mar na Praia Alegre, em Penha, com vista definitiva e uma estrutura de condomínio completa. São 94m² de área útil, com 3 quartos e 2 banheiros, combinando conforto para uso diário com uma experiência forte de veraneio.\n\nA unidade é mobiliada e totalmente climatizada, com armários na cozinha e nos quartos, além de sacada com reiki e churrasqueira, trazendo praticidade e um padrão de uso pronto para curtir o litoral com conforto desde o primeiro dia.\n\nValor: R$ 1.550.000,00 (valores e disponibilidade podem mudar conforme negociação).\n\nDestaques rápidos:\n\nApartamento pronto frente mar na Praia Alegre, Penha\nVista definitiva para o mar\n94m² de área útil\n3 quartos (sendo uma suite)\n2 banheiros\n1 vaga de garagem\nSacada com reiki e churrasqueira\nTotalmente climatizado\nMobiliado\nArmários na cozinha e nos quartos\nValor: R$ 1.550.000,00\n\nCaracterísticas do apartamento:\n\n3 quartos\n2 banheiros\nSacada com reiki\nChurrasqueira\nTotalmente climatizado\nMobiliado\nArmários na cozinha\nArmários nos quartos\n\nLazer e áreas comuns:\n\nPortaria 24h e segurança\nPiscina semiolímpica aquecida\nPiscina infantil aquecida\nAcademia\nSauna\nSalão gourmet\nDois salões de festas\nCinema\nSala de jogos\nBrinquedoteca\nÁrea kids\nQuadra poliesportiva\nDois quiosques com churrasqueira\nEspaço pet\nBar molhado\nLoja de conveniência 24h\n\nNa Praia Alegre, em Penha, este apartamento entrega frente mar com vista definitiva e um home club completo, perfeito para quem quer morar ou veranear com estrutura de condomínio e praticidade no dia a dia.\n\nQuer que eu te mande as fotos, a lista do que fica no mobiliado e agende uma visita para conhecer essa unidade frente mar?\nMe chama no WhatsApp que eu te envio tudo organizado.",
     "preco": 1500000,
     "tipo": "apartamento",
     "status": "prontos",
@@ -9066,7 +9066,7 @@
       "banheiros": 2,
       "vagas": 1,
       "area": 94,
-      "suite": 0,
+      "suite": 1,
       "frenteMar": false,
       "piscina": false,
       "churrasqueira": false,
@@ -9114,6 +9114,6 @@
       "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/47844_12.jpg"
     ],
     "createdAt": "2026-04-28T20:10:55.169Z",
-    "updatedAt": "2026-04-28T20:11:40.309Z"
+    "updatedAt": "2026-04-28T20:26:53.183Z"
   }
 ]
