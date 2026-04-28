@@ -9119,7 +9119,7 @@
   {
     "titulo": "Apartamento pronto frente mar em Itacolomi, Balneário Piçarras - 1 suíte + 2 quartos, mobiliado, 2 vagas - Al Maré",
     "descricao": "Este apartamento no Al Maré, em Balneário Piçarras, é uma opção para quem quer viver a experiência de frente mar em um dos maiores home clubs da cidade, com uma unidade pronta e mobiliada em alto padrão. A planta de 94m² com 1 suíte + 2 quartos entrega equilíbrio entre área íntima e convivência, com conforto para morar ou veranear com estrutura completa de condomínio.\n\nO imóvel se destaca pelo nível de acabamento e mobiliário: é uma mobília de primeira qualidade, trazendo uma experiência realmente pronta, com estética e funcionalidade para quem quer entrar e usar sem precisar de reformas.\n\nValor: R$ 1.790.000,00\n\nDestaques rápidos:\n\nApartamento pronto frente mar em Balneário Piçarras\nAl Maré (Grupo Estrutura) | Unidade 1604 | Torre 3\n94m² de área privativa\n1 suíte + 2 quartos\n2 vagas de garagem\nHome club alto padrão frente mar\nMobiliado premium\nValor: R$ 1.790.000,00\n\nNa orla de Balneário Piçarras, em um endereço frente mar no Itacolomi, essa unidade entrega a combinação que mais pesa nesse tipo de compra: vista, praticidade de uso e estrutura de condomínio completa para aproveitar o litoral com conforto.\n\nQuer que eu te mande as fotos, a lista do que fica no mobiliado e agende uma visita para conhecer a unidade 1604 Torre 3?\nMe chama no WhatsApp que eu te envio tudo organizado.",
-    "preco": 1.79,
+    "preco": 1790000,
     "tipo": "apartamento",
     "status": "prontos",
     "endereco": {
@@ -9150,7 +9150,11 @@
       "Itacolomi",
       "1 suíte + 2 quartos",
       "2 vagas",
-      "Mobiliado premium"
+      "Mobiliado premium",
+      "Frente Mar",
+      "Mobiliado",
+      "Vista Mar",
+      "Área de Lazer"
     ],
     "contato": {
       "whatsapp": "(47) 99753-0113",
@@ -9178,6 +9182,6 @@
       "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/39010_9.jpg"
     ],
     "createdAt": "2026-04-28T20:52:25.425Z",
-    "updatedAt": "2026-04-28T20:52:25.425Z"
+    "updatedAt": "2026-04-28T20:53:06.654Z"
   }
 ]
