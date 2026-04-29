@@ -9322,5 +9322,67 @@
     ],
     "createdAt": "2026-04-29T17:56:34.184Z",
     "updatedAt": "2026-04-29T17:56:34.184Z"
+  },
+  {
+    "titulo": "Cobertura finamente mobiliada em Nossa Senhora da Paz, Balneário Piçarras — 2 suítes + 1 quarto, 2 vagas - Condomínio Gaivotas 1",
+    "descricao": "Esta cobertura no Condomínio Gaivotas 1 é uma opção pronta para quem busca espaço, conforto e praticidade em Balneário Piçarras, no bairro Nossa Senhora da Paz. São 137m² de área privativa, com 2 suítes + 1 quarto e 3 banheiros (2 das suítes + 1 social), além de uma planta bem funcional com living espaçoso e lavanderia separada.\n\nO grande diferencial é a área externa com cozinha coberta e churrasqueira, perfeita para receber com privacidade. O imóvel está finamente mobiliado, com móveis e decoração de alta qualidade e ar-condicionados já instalados, trazendo uma experiência pronta para morar com menos obra e menos tempo de preparação. Também conta com um espaço extra que funciona muito bem para varal ou até para pets.\n\nValor: R$ 1.200.000,00 (valores e disponibilidade podem mudar conforme negociação).\n\nDestaques rápidos:\n\nCobertura finamente mobiliada em Balneário Piçarras\nCondomínio Gaivotas 1\n137m² de área privativa\n2 suítes + 1 quarto\n3 banheiros (2 suítes + social)\nSol da manhã\nLiving espaçoso\nLavanderia separada\nEspaço para varal ou pets\nCozinha externa coberta com churrasqueira\nMóveis e decoração de alta qualidade\nAr-condicionados já instalados\n2 vagas de garagem\nValor: R$ 1.200.000,00\n\nLocalização:\n\nFácil acesso à BR-101 e às principais praias e comércios\n1.800m do mar\n900m de supermercado e farmácia\n\nNa Rua Fragata, no bairro Nossa Senhora da Paz em Balneário Piçarras, esta cobertura une acesso fácil à BR-101 com a praticidade de estar perto de comércios e a poucos minutos do mar.\n\nQuer que eu te mande as fotos, a lista completa do que fica no mobiliado e agende uma visita para conhecer essa cobertura?\nMe chama no WhatsApp que eu te envio tudo organizado.",
+    "preco": 1.2,
+    "tipo": "apartamento",
+    "status": "prontos",
+    "endereco": {
+      "cidade": "balneario-picarras",
+      "bairro": "Nossa Senhora da Paz",
+      "rua": "Rua Fragata",
+      "numero": "84",
+      "cep": "8839000",
+      "estado": "SC"
+    },
+    "caracteristicas": {
+      "quartos": 1,
+      "banheiros": 3,
+      "vagas": 2,
+      "area": 137,
+      "suite": 2,
+      "frenteMar": false,
+      "piscina": false,
+      "churrasqueira": false,
+      "academia": false,
+      "portaria": false,
+      "elevador": false,
+      "varanda": false,
+      "sacada": false
+    },
+    "tags": [
+      "Nossa Senhora da Paz",
+      "2 suítes + 1 quarto",
+      "2 vagas",
+      "Cozinha externa coberta com churrasqueira",
+      "Balneario Piçarras"
+    ],
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "corretor": "NOX Imóveis"
+    },
+    "publicado": true,
+    "selecaoNox": false,
+    "coordenadas": {
+      "lat": -26.783698943467492,
+      "lng": -48.672938933097306
+    },
+    "fotoPrincipalIndex": 0,
+    "id": "99924",
+    "slug": "cobertura-finamente-mobiliada-em-nossa-senhora-da-paz-balneario-picarras-2-suites-1-quarto-2-vagas-condominio-gaivotas-1-99924",
+    "fotos": [
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/99924_0.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/99924_1.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/99924_2.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/99924_3.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/99924_4.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/99924_5.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/99924_6.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/99924_7.jpg"
+    ],
+    "createdAt": "2026-04-29T17:56:44.422Z",
+    "updatedAt": "2026-04-29T17:56:44.422Z"
   }
 ]
