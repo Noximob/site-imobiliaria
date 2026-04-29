@@ -8913,7 +8913,7 @@
   {
     "titulo": "Itajuba Beach Club | 2 quartos, Itajuba - Barra Velha/SC",
     "descricao": "O Itajuba Beach Club é a oportunidade perfeita para quem quer investir ou ter um apartamento a poucos metros do mar na areia na praia do Cerro em Barra Velha. O empreendimento conta com 2 torres de 12 pavimentos, 2 elevadores por torre e condomínio com diversas opções de lazer equipadas e decoradas. As áreas privativas variam de 50m² a 51m², 2 dormitórios, sacada com churrasqueira e ainda conta com opção de planta com Giardino. Todas as unidades com vista mar, e a localização é excelente próxima a diversos comércios da região",
-    "preco": 398,
+    "preco": 398000,
     "tipo": "apartamento",
     "status": "prontos",
     "endereco": {
@@ -8942,7 +8942,8 @@
     "tags": [
       "Home Club Completo",
       "2 Elevadores por Torre",
-      "Ótima Localização"
+      "Ótima Localização",
+      "Área de Lazer"
     ],
     "contato": {
       "whatsapp": "(47) 99753-0113",
@@ -8973,7 +8974,7 @@
       "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/58292_12.jpg"
     ],
     "createdAt": "2026-04-15T11:34:23.813Z",
-    "updatedAt": "2026-04-15T11:34:23.813Z"
+    "updatedAt": "2026-04-29T15:57:58.681Z"
   },
   {
     "titulo": "Apartamento pronto frente mar na Praia do Quilombo, Penha — 3 suítes, 2 vagas - Residencial Torre del Mar",
