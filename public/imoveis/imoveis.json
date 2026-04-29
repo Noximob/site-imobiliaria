@@ -9258,5 +9258,79 @@
     ],
     "createdAt": "2026-04-29T17:09:55.535Z",
     "updatedAt": "2026-04-29T17:09:55.535Z"
+  },
+  {
+    "titulo": "Apartamento pronto proximo ao Beto Carrero —  2 quartos, 1 vaga - Edifício Residencial Nantes",
+    "descricao": "Este apartamento no Edifício Residencial Nantes é uma opção bem prática para quem busca imóvel pronto em Penha, no bairro Armação, com boa metragem e um condomínio com elevador. São 64,50m² de área privativa, com 2 quartos, ideal para quem quer morar com funcionalidade ou ter um imóvel de apoio no litoral.\n\nA unidade conta com 1 vaga privativa descoberta e fica no Apto 101, em um endereço bem localizado para quem valoriza acesso fácil aos principais pontos do bairro e da cidade.\n\nValor: R$ 530.000 (valores e disponibilidade podem mudar conforme negociação).\n\nDestaques rápidos:\n\nApartamento pronto em Armação, Penha\nEdifício Residencial Nantes\nEndereço: Rua Sérgio Gentil Serpa, 81 | Apto 101\nÁrea privativa: 64,50m²\n2 quartos (sem suíte)\n1 vaga privativa descoberta (10,50m²)\nPrédio com elevador\nÁrea total: 118,87m²\nValor: R$ 530.000\n\nLazer e áreas comuns:\n\nElevador\n\nNa Armação, em Penha, na Rua Sérgio Gentil Serpa, este apartamento entrega praticidade de localização e um formato de imóvel que funciona muito bem para morar ou ter como base no litoral.\n\nQuer que eu te mande as fotos, o valor de condomínio e agende uma visita para conhecer o Apto 101?\nMe chama no WhatsApp que eu te envio tudo organizado.",
+    "preco": 530,
+    "tipo": "apartamento",
+    "status": "prontos",
+    "endereco": {
+      "cidade": "penha",
+      "bairro": "Armação",
+      "rua": "Rua Sérgio Gentil Serpa",
+      "numero": "81",
+      "cep": "88385000",
+      "estado": "SC"
+    },
+    "caracteristicas": {
+      "quartos": 2,
+      "banheiros": 1,
+      "vagas": 1,
+      "area": 64.5,
+      "suite": 0,
+      "frenteMar": false,
+      "piscina": false,
+      "churrasqueira": false,
+      "academia": false,
+      "portaria": false,
+      "elevador": false,
+      "varanda": false,
+      "sacada": false
+    },
+    "tags": [
+      "Armação",
+      "2 quartos",
+      "1 vaga privativa descoberta",
+      "Prédio com elevador",
+      "Área de lazer",
+      "Proximo ao Beto Carrero"
+    ],
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "corretor": "NOX Imóveis"
+    },
+    "publicado": true,
+    "selecaoNox": false,
+    "coordenadas": {
+      "lat": -26.7989618161107,
+      "lng": -48.6080740880597
+    },
+    "fotoPrincipalIndex": 0,
+    "id": "24152",
+    "slug": "apartamento-pronto-proximo-ao-beto-carrero-2-quartos-1-vaga-edificio-residencial-nantes-24152",
+    "fotos": [
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_0.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_1.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_2.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_3.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_4.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_5.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_6.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_7.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_8.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_9.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_10.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_11.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_12.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_13.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_14.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_15.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_16.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_17.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/24152_18.jpg"
+    ],
+    "createdAt": "2026-04-29T17:10:33.039Z",
+    "updatedAt": "2026-04-29T17:10:33.039Z"
   }
 ]
