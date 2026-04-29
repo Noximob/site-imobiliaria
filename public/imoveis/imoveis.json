@@ -9323,5 +9323,70 @@
     ],
     "createdAt": "2026-04-29T17:56:34.184Z",
     "updatedAt": "2026-04-29T17:57:33.475Z"
+  },
+  {
+    "titulo": "Apartamento pronto em Barra Velha — 2 dormitórios, semi mobiliado, 300m da Praia Central - Bora Bora Easy Club",
+    "descricao": "O Bora Bora Easy Club é uma opção pronta para quem quer morar no coração de Barra Velha com praticidade no dia a dia e lazer completo de condomínio. A apenas 300 metros da Praia Central, ele combina localização, segurança e uma estrutura que funciona muito bem tanto para moradia quanto para quem quer um imóvel com boa usabilidade para veraneio.\n\nO apartamento tem 59m² privativos, com 2 dormitórios, sala e cozinha integradas, banheiro social, área de serviço e sacada com churrasqueira a carvão. A unidade é semi mobiliada e conta com 1 vaga de garagem coberta, trazendo praticidade para quem quer entrar com menos ajustes.\nValor: R$ 499.000 (valores e disponibilidade podem mudar conforme negociação).\n\n- Destaques rápidos:\n\nApartamento pronto em Barra Velha\n\nCondomínio Bora Bora Easy Club\n\n300 metros da Praia Central\n\n59m² privativos\n\n2 dormitórios\n\nSala e cozinha integradas\n\nBanheiro social\n\nÁrea de serviço\n\nSacada com churrasqueira a carvão\n\nSemi mobiliado\n\n1 vaga de garagem coberta\n\n\n- Características do apartamento:\n\nSala e cozinha integradas\n\nÁrea de serviço\n\nSacada\n\nChurrasqueira a carvão\n\nSemi mobiliado\n\n1 vaga de garagem coberta\n\n\n- Lazer e áreas comuns:\n\nPiscina\n\nAcademia\n\nSalões de festa\n\nBrinquedoteca\n\nSala de jogos\n\nQuiosques com churrasqueira\n\nQuadra poliesportiva\n\nPlayground\n\nHorta comunitária\n\nEspaço zen\n\nRedário\n\nPraça para caminhada\n\nPortaria 24h\n\nBicicletário\n\nMarketPlace interno\n\nMedidores individuais de luz, água e gás\n\nNo coração de Barra Velha, a 300 metros da Praia Central, o Bora Bora Easy Club entrega a combinação que mais pesa: localização prática, lazer completo e segurança para usar o imóvel o ano inteiro.\n\nQuer que eu te mande as fotos, o valor exato da unidade disponível e agende uma visita para conhecer o Bora Bora Easy Club?\nMe chama no WhatsApp que eu te envio tudo organizado.",
+    "preco": 499,
+    "tipo": "apartamento",
+    "status": "prontos",
+    "endereco": {
+      "cidade": "barra-velha",
+      "bairro": "Centro",
+      "rua": "R. Nicarágua, 150 - Centro, Barra Velha - SC, 88390-000",
+      "numero": "150",
+      "cep": "88390000",
+      "estado": "SC"
+    },
+    "caracteristicas": {
+      "quartos": 2,
+      "banheiros": 1,
+      "vagas": 1,
+      "area": 59,
+      "suite": 0,
+      "frenteMar": false,
+      "piscina": false,
+      "churrasqueira": false,
+      "academia": false,
+      "portaria": false,
+      "elevador": false,
+      "varanda": false,
+      "sacada": false
+    },
+    "tags": [
+      "300m da Praia Central",
+      "2 dormitórios",
+      "Sacada com churrasqueira a carvão",
+      "1 vaga coberta",
+      "Semi mobiliado",
+      "Vista Mar"
+    ],
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "corretor": "NOX Imóveis"
+    },
+    "publicado": true,
+    "selecaoNox": false,
+    "coordenadas": {
+      "lat": -26.636166066743662,
+      "lng": -48.68568097543203
+    },
+    "fotoPrincipalIndex": 0,
+    "id": "63490",
+    "slug": "apartamento-pronto-em-barra-velha-2-dormitorios-semi-mobiliado-300m-da-praia-central-bora-bora-easy-club",
+    "fotos": [
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/63490_0.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/63490_1.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/63490_2.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/63490_3.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/63490_4.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/63490_5.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/63490_6.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/63490_7.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/63490_8.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/63490_9.jpg"
+    ],
+    "createdAt": "2026-04-29T19:02:49.070Z",
+    "updatedAt": "2026-04-29T19:02:49.070Z"
   }
 ]
