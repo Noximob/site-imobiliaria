@@ -9460,7 +9460,7 @@
   {
     "titulo": "Apartamento pronto frente mar em Itacolomi, Balneário Piçarras —  mobiliado, 1 suíte + 1 quarto - Summer Home Club",
     "descricao": "Este apartamento no Summer Home Club, da Rogga, é uma excelente opção para quem quer um imóvel frente mar pronto em Balneário Piçarras, no bairro Itacolomi, com perfil perfeito para moradia e muito forte para locação. A unidade 1704 da Torre 1 tem 74,61m², com 1 suíte + 1 quarto, e já está mobiliada, pronta para entrar e usar.\n\nO imóvel conta com ar-condicionado nos dois quartos, trazendo conforto imediato e facilitando tanto o uso no dia a dia quanto a operação para aluguel. Em um produto frente mar, a combinação de localização no Itacolomi + mobiliado + estrutura de home club costuma ser exatamente o que mais gera demanda para quem compra pensando em praticidade e locações.\n\nValor: R$ 1.220.000,00 (valores e disponibilidade podem mudar conforme negociação).\n\n- Destaques rápidos:\n\nApartamento pronto frente mar em Itacolomi, Balneário Piçarras\n\nSummer Home Club (Rogga)\n\nUnidade 1704 | Torre 1\n\n74,61m² de área privativa\n\n1 suíte + 1 quarto\n\nMobiliado\n\nAr-condicionado nos dois quartos\n\nPerfeito para morar e ideal para locações\n\nValor: R$ 1.220.000,00\n\nCaracterísticas do apartamento:\n\nMobiliado\n\nAr-condicionado nos dois quartos\n\n\n- Lazer e áreas comuns:\n\nHome club com lazer completo\n\nFrente mar no Itacolomi, em Balneário Piçarras, esta unidade pronta e mobiliada entrega praticidade para morar e um perfil muito atrativo para locações, com conforto e experiência de uso desde o primeiro dia.\n\nQuer que eu te mande as fotos, a lista do que fica no mobiliado e agende uma visita para conhecer a unidade 1704 Torre 1?\nMe chama no WhatsApp que eu te envio tudo organizado.",
-    "preco": 1.22,
+    "preco": 1220000,
     "tipo": "apartamento",
     "status": "prontos",
     "endereco": {
@@ -9490,10 +9490,12 @@
       "Itacolomi",
       "Frente mar",
       "Pronto para morar ou alugar",
+      "2 quartos",
+      "2 suites",
+      "Frente Mar",
       "Mobiliado",
       "Vista Mar",
-      "2 quartos",
-      "2 suites"
+      "Área de Lazer"
     ],
     "contato": {
       "whatsapp": "(47) 99753-0113",
@@ -9523,6 +9525,6 @@
       "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/48864_11.jpg"
     ],
     "createdAt": "2026-04-30T15:20:56.961Z",
-    "updatedAt": "2026-04-30T15:20:56.961Z"
+    "updatedAt": "2026-04-30T15:21:26.479Z"
   }
 ]
