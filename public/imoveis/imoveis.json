@@ -9391,5 +9391,68 @@
     ],
     "createdAt": "2026-04-29T19:02:49.070Z",
     "updatedAt": "2026-04-29T19:04:37.243Z"
+  },
+  {
+    "titulo": "Apartamento pronto em Armação, Penha — 1 suíte + 1 quarto, vista lateral definitiva - Skyline",
+    "descricao": "Este apartamento no Skyline, da Rogga, é uma ótima opção para quem quer um imóvel pronto em Penha, no bairro Armação, com localização prática e fácil acesso ao mar. A unidade 703 da Torre 2 fica a aproximadamente 300 metros da praia e se destaca pela vista lateral definitiva, trazendo mais privacidade e valorizando a experiência de uso tanto para moradia quanto para veraneio.\n\nA região é muito conveniente no dia a dia, com mercado, farmácia e comércios próximos, o que facilita rotina e também o uso em temporada. Além disso, o empreendimento oferece área de lazer completa, deixando o imóvel ainda mais funcional para quem busca estrutura de condomínio.\n\nValor: R$ 750.000,00 (valores e disponibilidade podem mudar conforme negociação).\n\n- Destaques rápidos:\n\nApartamento pronto em Armação, Penha\n\nSkyline Rogga | Unidade 703 | Torre 2\n\n1 suíte + 1 quarto\n\nVista lateral definitiva\n\n300m do mar\n\nÁrea de lazer completa\n\nPróximo a mercado, farmácia e comércios\n\nValor: R$ 750.000,00\n\nLazer e áreas comuns:\n\nÁrea de lazer completa\n\nEm Armação, Penha, a cerca de 300m do mar e perto de mercado, farmácia e comércios, esta unidade une praticidade de localização com vista lateral definitiva e estrutura de condomínio completa.\n\nQuer que eu te mande as fotos e agende uma visita para conhecer a unidade 703 Torre 2?\nMe chama no WhatsApp que eu te envio tudo organizado.",
+    "preco": 750,
+    "tipo": "apartamento",
+    "status": "prontos",
+    "endereco": {
+      "cidade": "penha",
+      "bairro": "Armação",
+      "rua": "Av. Eugênio Krause",
+      "numero": "2865",
+      "cep": "88385000",
+      "estado": "SC"
+    },
+    "caracteristicas": {
+      "quartos": 1,
+      "banheiros": 2,
+      "vagas": 0,
+      "area": 0,
+      "suite": 1,
+      "frenteMar": false,
+      "piscina": false,
+      "churrasqueira": false,
+      "academia": false,
+      "portaria": false,
+      "elevador": false,
+      "varanda": false,
+      "sacada": false
+    },
+    "tags": [
+      "Armação",
+      "1 suíte + 1 quarto",
+      "Vista mar",
+      "300m do mar",
+      "Lazer completo"
+    ],
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "corretor": "NOX Imóveis"
+    },
+    "publicado": true,
+    "selecaoNox": false,
+    "coordenadas": {
+      "lat": -26.78869769887384,
+      "lng": -48.62795043848673
+    },
+    "fotoPrincipalIndex": 0,
+    "id": "42193",
+    "slug": "apartamento-pronto-em-armacao-penha-1-suite-1-quarto-vista-lateral-definitiva-skyline",
+    "fotos": [
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/42193_0.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/42193_1.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/42193_2.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/42193_3.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/42193_4.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/42193_5.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/42193_6.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/42193_7.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/42193_8.jpg"
+    ],
+    "createdAt": "2026-04-30T14:30:48.371Z",
+    "updatedAt": "2026-04-30T14:30:48.371Z"
   }
 ]
