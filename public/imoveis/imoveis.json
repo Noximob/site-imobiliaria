@@ -9395,7 +9395,7 @@
   {
     "titulo": "Apartamento pronto em Armação, Penha — 1 suíte + 1 quarto, vista lateral definitiva - Skyline",
     "descricao": "Este apartamento no Skyline, da Rogga, é uma ótima opção para quem quer um imóvel pronto em Penha, no bairro Armação, com localização prática e fácil acesso ao mar. A unidade 703 da Torre 2 fica a aproximadamente 300 metros da praia e se destaca pela vista lateral definitiva, trazendo mais privacidade e valorizando a experiência de uso tanto para moradia quanto para veraneio.\n\nA região é muito conveniente no dia a dia, com mercado, farmácia e comércios próximos, o que facilita rotina e também o uso em temporada. Além disso, o empreendimento oferece área de lazer completa, deixando o imóvel ainda mais funcional para quem busca estrutura de condomínio.\n\nValor: R$ 750.000,00 (valores e disponibilidade podem mudar conforme negociação).\n\n- Destaques rápidos:\n\nApartamento pronto em Armação, Penha\n\nSkyline Rogga | Unidade 703 | Torre 2\n\n1 suíte + 1 quarto\n\nVista lateral definitiva\n\n300m do mar\n\nÁrea de lazer completa\n\nPróximo a mercado, farmácia e comércios\n\nValor: R$ 750.000,00\n\nLazer e áreas comuns:\n\nÁrea de lazer completa\n\nEm Armação, Penha, a cerca de 300m do mar e perto de mercado, farmácia e comércios, esta unidade une praticidade de localização com vista lateral definitiva e estrutura de condomínio completa.\n\nQuer que eu te mande as fotos e agende uma visita para conhecer a unidade 703 Torre 2?\nMe chama no WhatsApp que eu te envio tudo organizado.",
-    "preco": 750,
+    "preco": 750000,
     "tipo": "apartamento",
     "status": "prontos",
     "endereco": {
@@ -9426,7 +9426,9 @@
       "1 suíte + 1 quarto",
       "Vista mar",
       "300m do mar",
-      "Lazer completo"
+      "Lazer completo",
+      "Vista Mar",
+      "Área de Lazer"
     ],
     "contato": {
       "whatsapp": "(47) 99753-0113",
@@ -9453,6 +9455,6 @@
       "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/42193_8.jpg"
     ],
     "createdAt": "2026-04-30T14:30:48.371Z",
-    "updatedAt": "2026-04-30T14:30:48.371Z"
+    "updatedAt": "2026-04-30T14:34:01.960Z"
   }
 ]
