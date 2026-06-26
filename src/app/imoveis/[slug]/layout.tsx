@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import { Octokit } from '@octokit/rest'
 import { getFotoPrincipal, formatPrice } from '@/lib/imoveis'
+import { descricaoTextoPlano } from '@/lib/format-descricao'
 
 const baseUrl = 'https://noximobiliaria.com.br'
 
@@ -131,7 +132,7 @@ export default async function ImovelLayout({
         '@context': 'https://schema.org',
         '@type': 'RealEstateListing',
         name: imovel.titulo || 'Imóvel',
-        description: imovel.descricao?.substring(0, 200) || imovel.titulo,
+        description: descricaoTextoPlano(imovel.descricao, 200) || imovel.titulo,
         url: `${baseUrl}/imoveis/${slug}`,
         image: (imovel.fotos || []).slice(0, 5).map((f: string) => toAbsUrl(f)),
         address: imovel.endereco

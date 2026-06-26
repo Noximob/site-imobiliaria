@@ -24,6 +24,7 @@ import {
 import type { Imovel } from '@/types'
 
 import { traduzirComodidade } from '@/lib/dwv-traducoes'
+import { formatarDescricaoHtml } from '@/lib/format-descricao'
 
 export default function ImovelDetalhePage() {
   const params = useParams()
@@ -544,7 +545,7 @@ export default function ImovelDetalhePage() {
                 <div
                   className="prose prose-gray max-w-none text-gray-700 leading-relaxed break-words overflow-hidden [&_p]:mb-3 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-1 [&_strong]:font-semibold"
                   style={{ wordBreak: 'break-word' }}
-                  dangerouslySetInnerHTML={{ __html: imovel.descricao }}
+                  dangerouslySetInnerHTML={{ __html: formatarDescricaoHtml(imovel.descricao) }}
                 />
               )}
             </div>
