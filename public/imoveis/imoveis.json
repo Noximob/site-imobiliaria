@@ -9564,7 +9564,8 @@
       "cozinha",
       "lavanderia",
       "sacada (grande)",
-      "churrasqueira."
+      "churrasqueira.",
+      "Mobiliado"
     ],
     "contato": {
       "whatsapp": "(47) 99753-0113",
@@ -9599,6 +9600,6 @@
       "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_16.jpg"
     ],
     "createdAt": "2026-06-30T17:42:19.468Z",
-    "updatedAt": "2026-06-30T17:42:19.468Z"
+    "updatedAt": "2026-06-30T17:45:32.211Z"
   }
 ]
