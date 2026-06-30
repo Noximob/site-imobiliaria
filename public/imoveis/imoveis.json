@@ -9525,5 +9525,80 @@
     ],
     "createdAt": "2026-04-30T15:20:56.961Z",
     "updatedAt": "2026-04-30T15:21:26.479Z"
+  },
+  {
+    "titulo": "Edifício Solar Onélia Francisca - 1 Suíte + 1 Quarto",
+    "descricao": "Localizado no **Edifício Onélia Francisca**, em plena **Avenida Nereu Ramos**, este apartamento oferece a oportunidade de viver no endereço mais valorizado e movimentado de Balneário Piçarras. De frente para a praia, em uma região com **selo internacional Bandeira Azul**, você estará cercado pelos melhores restaurantes, cafés, mercados, farmácias, bancos, lojas e toda a infraestrutura que torna o dia a dia muito mais prático, dispensando o uso do carro para as principais atividades. A Avenida Nereu Ramos é o principal eixo comercial e turístico da cidade, reunindo conveniência, lazer e excelente potencial de valorização.\n\nO apartamento está situado no **4º andar** e conta com **92 m² de área privativa**, distribuídos em uma planta funcional e confortável. São **1 suíte + 1 dormitório**, banheiro social, sala de estar integrada à copa, cozinha, lavanderia e uma ampla sacada com churrasqueira, perfeita para reunir família e amigos. Além disso, dispõe de **1 vaga de garagem**, proporcionando praticidade e segurança.\n\nUma excelente opção tanto para moradia quanto para investimento, unindo localização privilegiada, conforto e a qualidade de vida de morar em frente a uma das praias mais desejadas do litoral catarinense.",
+    "preco": 890,
+    "tipo": "apartamento",
+    "status": "prontos",
+    "endereco": {
+      "cidade": "penha",
+      "bairro": "Centro",
+      "rua": "Avenida Nereu Ramos",
+      "numero": "893",
+      "cep": "88380-000",
+      "estado": "SC"
+    },
+    "caracteristicas": {
+      "quartos": 1,
+      "banheiros": 2,
+      "vagas": 1,
+      "area": 92,
+      "suite": 1,
+      "frenteMar": false,
+      "piscina": false,
+      "churrasqueira": false,
+      "academia": false,
+      "portaria": false,
+      "elevador": false,
+      "varanda": false,
+      "sacada": false
+    },
+    "tags": [
+      "1 1 suíte",
+      "1 quarto",
+      "banheiro social",
+      "sala",
+      "copa",
+      "cozinha",
+      "lavanderia",
+      "sacada (grande)",
+      "churrasqueira."
+    ],
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "corretor": "NOX Imóveis"
+    },
+    "publicado": true,
+    "selecaoNox": true,
+    "coordenadas": {
+      "lat": -26.757431705676865,
+      "lng": -48.675700926981364
+    },
+    "fotoPrincipalIndex": 0,
+    "id": "29493",
+    "slug": "edificio-solar-onelia-francisca-1-suite-1-quarto",
+    "fotos": [
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_0.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_1.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_2.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_3.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_4.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_5.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_6.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_7.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_8.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_9.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_10.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_11.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_12.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_13.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_14.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_15.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_16.jpg"
+    ],
+    "createdAt": "2026-06-30T17:42:19.468Z",
+    "updatedAt": "2026-06-30T17:42:19.468Z"
   }
 ]
