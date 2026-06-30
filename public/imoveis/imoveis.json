@@ -9533,7 +9533,7 @@
     "tipo": "apartamento",
     "status": "prontos",
     "endereco": {
-      "cidade": "penha",
+      "cidade": "balneario-picarras",
       "bairro": "Centro",
       "rua": "Avenida Nereu Ramos",
       "numero": "893",
@@ -9556,15 +9556,15 @@
       "sacada": false
     },
     "tags": [
-      "1 1 suíte",
-      "1 quarto",
-      "banheiro social",
-      "sala",
-      "copa",
-      "cozinha",
-      "lavanderia",
-      "sacada (grande)",
-      "churrasqueira.",
+      "1 Suíte",
+      "1 Quarto",
+      "Banheiro social",
+      "Sala",
+      "Copa",
+      "Cozinha",
+      "Lavanderia",
+      "Sacada (grande)",
+      "Churrasqueira.",
       "Mobiliado"
     ],
     "contato": {
@@ -9600,6 +9600,6 @@
       "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/29493_16.jpg"
     ],
     "createdAt": "2026-06-30T17:42:19.468Z",
-    "updatedAt": "2026-06-30T17:45:32.211Z"
+    "updatedAt": "2026-06-30T17:47:28.515Z"
   }
 ]
