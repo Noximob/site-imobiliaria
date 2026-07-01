@@ -9601,5 +9601,79 @@
     ],
     "createdAt": "2026-06-30T17:42:19.468Z",
     "updatedAt": "2026-06-30T18:06:46.441Z"
+  },
+  {
+    "titulo": "Apartamento pronto com vista mar — 3 suítes - Aruba Residence (Insisa)",
+    "descricao": "Este apartamento no Aruba Residence é uma opção para quem busca mais exclusividade em Balneário Piçarras, no bairro Itacolomi. Com apenas 1 apartamento por andar, a unidade entrega 99,72m² de área privativa, 3 suítes, lavabo e uma planta bem resolvida para quem valoriza conforto na área íntima e espaço para receber.\n\nA vista para o mar é um dos destaques da unidade, junto com itens que trazem praticidade no dia a dia, como fechadura digital, preparação para aquecimento a gás, lavanderia e dormitórios com piso vinílico. É um imóvel pronto para quem procura uma opção mais reservada, em uma das regiões mais desejadas de Piçarras.\n\nValor: R$ 1.230.000,00 (valores e disponibilidade podem mudar conforme negociação).\n\nDestaques rápidos:\n\nApartamento pronto no Itacolomi, Balneário Piçarras\nAruba Residence\n1 apartamento por andar\n99,72m² de área privativa\n3 suítes\nLavabo\nVista para o mar\n1 vaga de garagem\nFechadura digital\nElevador\nValor: R$ 1.230.000,00\n\nCaracterísticas do apartamento:\n\n3 suítes\nLavabo\nVista mar\nFechadura digital\nDormitórios com piso vinílico\nPreparação para aquecimento a gás\nLavanderia\n1 vaga de garagem\n\nNa Rua Biguá, no bairro Itacolomi em Balneário Piçarras, o Aruba Residence une um endereço próximo ao mar com a exclusividade de ter apenas uma unidade por andar e vista para o mar.\n\nQuer que eu te mande as fotos, detalhes completos e agende uma visita para conhecer esse apartamento no Aruba Residence?\n\nMe chama no WhatsApp que eu te envio tudo organizado.",
+    "preco": 1.23,
+    "tipo": "apartamento",
+    "status": "prontos",
+    "endereco": {
+      "cidade": "balneario-picarras",
+      "bairro": "Itacolomi",
+      "rua": "Biguá",
+      "numero": "75",
+      "cep": "88380-000",
+      "estado": "SC"
+    },
+    "caracteristicas": {
+      "quartos": 0,
+      "banheiros": 4,
+      "vagas": 1,
+      "area": 99.72,
+      "suite": 3,
+      "frenteMar": false,
+      "piscina": false,
+      "churrasqueira": false,
+      "academia": false,
+      "portaria": false,
+      "elevador": false,
+      "varanda": false,
+      "sacada": false
+    },
+    "tags": [
+      "1 apartamento por andar",
+      "Vista Mar",
+      "3 suites",
+      "Itacolomi"
+    ],
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "corretor": "NOX Imóveis"
+    },
+    "publicado": true,
+    "selecaoNox": false,
+    "coordenadas": {
+      "lat": -26.730164294453147,
+      "lng": -48.68204026185978
+    },
+    "fotoPrincipalIndex": 0,
+    "id": "78054",
+    "slug": "apartamento-pronto-com-vista-mar-3-suites-aruba-residence-insisa",
+    "fotos": [
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_0.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_1.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_2.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_3.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_4.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_5.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_6.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_7.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_8.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_9.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_10.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_11.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_12.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_13.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_14.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_15.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_16.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_17.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_18.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_19.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/78054_20.jpg"
+    ],
+    "createdAt": "2026-07-01T13:38:07.230Z",
+    "updatedAt": "2026-07-01T13:38:07.230Z"
   }
 ]
