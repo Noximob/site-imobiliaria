@@ -9675,5 +9675,78 @@
     ],
     "createdAt": "2026-07-01T13:38:07.230Z",
     "updatedAt": "2026-07-01T13:44:00.675Z"
+  },
+  {
+    "titulo": "Apartamento na planta com vista mar — 1 suíte + 1 quarto -  Lavitta Beach and Park",
+    "descricao": "Apartamento na planta com vista mar em Armação, Penha — Lavitta Beach and Park, unidade 404C, 71,92m², 1 suíte + 1 quarto, entrega Dez/2026\n\nArmação | Vista mar | Unidade 404C | 71,92m² | 1 suíte + 1 quarto | Sacada com churrasqueira a carvão | Lazer completo | Entrega Dez/2026 | R$ 690.000,00\n\nEste apartamento no Lavitta Beach and Park é uma opção para quem busca um imóvel na planta em Penha, com vista para o mar, localização estratégica e estrutura completa para aproveitar o litoral. A unidade 404C conta com 71,92m², 1 suíte + 1 quarto e sacada com churrasqueira a carvão, combinando conforto para morar, veranear ou utilizar em locações.\n\nO empreendimento fica a poucos metros da praia, do Beto Carrero World e dos principais comércios da região, facilitando tanto a rotina quanto a experiência de quem vem para o litoral em períodos de descanso. Com entrega prevista para dezembro de 2026, é uma oportunidade para quem busca um imóvel próximo da entrega e com saldo direto com a construtora.\n\nValor: R$ 690.000,00, com entrada de R$ 499.060,00 e saldo de R$ 190.491,60 direto com a construtora. Analisa permuta em imóvel com potencial para locação, até R$ 460.000,00. Valores e disponibilidade podem mudar conforme negociação.\n\nDestaques rápidos:\n- Apartamento na planta em Armação, Penha\n- Lavitta Beach and Park\n- Unidade 404C\n- 71,92m² de área privativa\n- 1 suíte + 1 quarto\n- Vista para o mar\n- Sacada com churrasqueira a carvão\n- Entrega: Dezembro/2026\n- Entrada de R$ 499.060,00\n- Saldo de R$ 190.491,60 direto com a construtora\n- Analisa permuta em imóvel para locação até R$ 460.000,00\n- Valor: R$ 690.000,00\n\nLazer e áreas comuns:\n- Spa\n- Academia ao ar livre\n- Meia quadra\n- Praça\n- Bicicletário\n- Espaço gourmet\n- Piscina adulto com prainha\n- Piscina infantil com splash\n- Área de deck\n- Playground externo\n- Redário\n- Espaço zen\n- Lounge externo\n- Pet place\n\nNa Avenida Prefeito Eugênio Krause, em Armação, Penha, o Lavitta Beach and Park fica próximo à praia, ao Beto Carrero World e aos principais comércios da região, reunindo praticidade para uso próprio e boa experiência para quem busca imóvel no litoral.\n\nQuer que eu te mande as fotos, a tabela atualizada e os detalhes do fluxo direto com a construtora?\nMe chama no WhatsApp que eu te envio tudo organizado.",
+    "preco": 690,
+    "tipo": "apartamento",
+    "status": "em-construcao",
+    "endereco": {
+      "cidade": "penha",
+      "bairro": "Armação",
+      "rua": "Avenida Prefeito Eugênio Krause",
+      "numero": "3650",
+      "cep": "88385000",
+      "estado": "SC"
+    },
+    "caracteristicas": {
+      "quartos": 1,
+      "banheiros": 2,
+      "vagas": 1,
+      "area": 71.92,
+      "suite": 1,
+      "frenteMar": false,
+      "piscina": false,
+      "churrasqueira": false,
+      "academia": false,
+      "portaria": false,
+      "elevador": false,
+      "varanda": false,
+      "sacada": false
+    },
+    "tags": [
+      "Vista mar",
+      "Sacada com churrasqueira a carvão",
+      "Lazer completo",
+      "Entrega Dez/2026",
+      "Proximo ao Beto Carrero"
+    ],
+    "contato": {
+      "whatsapp": "(47) 99753-0113",
+      "corretor": "NOX Imóveis"
+    },
+    "publicado": true,
+    "selecaoNox": false,
+    "dataEntrega": "2026-12-10",
+    "coordenadas": {
+      "lat": -26.792915529714943,
+      "lng": -48.62126331960273
+    },
+    "fotoPrincipalIndex": 0,
+    "id": "62431",
+    "slug": "apartamento-na-planta-com-vista-mar-1-suite-1-quarto-lavitta-beach-and-park",
+    "fotos": [
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_0.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_1.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_2.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_3.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_4.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_5.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_6.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_7.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_8.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_9.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_10.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_11.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_12.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_13.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_14.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_15.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_16.jpg",
+      "https://raw.githubusercontent.com/noximob/site-imobiliaria/main/public/imoveis/imagens/62431_17.jpg"
+    ],
+    "createdAt": "2026-07-01T14:27:52.426Z",
+    "updatedAt": "2026-07-01T14:27:52.426Z"
   }
 ]
